@@ -135,48 +135,48 @@ namespace UnitVentilator {
     using namespace FluidProperties;
 
     // Currrent Module Unit type
-    std::string const cMO_UnitVentilator("ZoneHVAC:UnitVentilator");
+    thread_local std::string const cMO_UnitVentilator("ZoneHVAC:UnitVentilator");
 
     // Parameters for outside air control types:
-    int const Heating_ElectricCoilType(1);
-    int const Heating_GasCoilType(2);
-    int const Heating_WaterCoilType(3);
-    int const Heating_SteamCoilType(4);
-    int const Cooling_CoilWaterCooling(1);
-    int const Cooling_CoilDetailedCooling(2);
-    int const Cooling_CoilHXAssisted(3);
+    thread_local int const Heating_ElectricCoilType(1);
+    thread_local int const Heating_GasCoilType(2);
+    thread_local int const Heating_WaterCoilType(3);
+    thread_local int const Heating_SteamCoilType(4);
+    thread_local int const Cooling_CoilWaterCooling(1);
+    thread_local int const Cooling_CoilDetailedCooling(2);
+    thread_local int const Cooling_CoilHXAssisted(3);
     // OA operation modes
-    int const VariablePercent(1);
-    int const FixedTemperature(2);
-    int const FixedOAControl(3);
+    thread_local int const VariablePercent(1);
+    thread_local int const FixedTemperature(2);
+    thread_local int const FixedOAControl(3);
     // coil operation
-    int const On(1);  // normal coil operation
-    int const Off(0); // signal coil shouldn't run
-    int const NoneOption(0);
-    int const BothOption(1);
-    int const HeatingOption(2);
-    int const CoolingOption(3);
+    thread_local int const On(1);  // normal coil operation
+    thread_local int const Off(0); // signal coil shouldn't run
+    thread_local int const NoneOption(0);
+    thread_local int const BothOption(1);
+    thread_local int const HeatingOption(2);
+    thread_local int const CoolingOption(3);
 
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    bool HCoilOn(false);        // TRUE if the heating coil (gas or electric especially) should be running
-    int NumOfUnitVents(0);      // Number of unit ventilators in the input file
-    Real64 OAMassFlowRate(0.0); // Outside air mass flow rate for the unit ventilator
-    Real64 QZnReq(0.0);         // heating or cooling needed by zone [watts]
-    Array1D_bool MySizeFlag;
-    bool GetUnitVentilatorInputFlag(true); // First time, input is "gotten"
-    Array1D_bool CheckEquipName;
+    thread_local bool HCoilOn(false);        // TRUE if the heating coil (gas or electric especially) should be running
+    thread_local int NumOfUnitVents(0);      // Number of unit ventilators in the input file
+    thread_local Real64 OAMassFlowRate(0.0); // Outside air mass flow rate for the unit ventilator
+    thread_local Real64 QZnReq(0.0);         // heating or cooling needed by zone [watts]
+    thread_local Array1D_bool MySizeFlag;
+    thread_local bool GetUnitVentilatorInputFlag(true); // First time, input is "gotten"
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE UnitVentilator
     // PRIVATE UpdateUnitVentilator
 
     // Object Data
-    Array1D<UnitVentilatorData> UnitVent;
-    Array1D<UnitVentNumericFieldData> UnitVentNumericFields;
+    thread_local Array1D<UnitVentilatorData> UnitVent;
+    thread_local Array1D<UnitVentNumericFieldData> UnitVentNumericFields;
 
     // Functions
 
@@ -316,10 +316,10 @@ namespace UnitVentilator {
         using SingleDuct::GetATMixer;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetUnitVentilatorInput: "); // include trailing blank
+        thread_local static std::string const RoutineName("GetUnitVentilatorInput: "); // include trailing blank
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         bool IsNotOK;                   // TRUE if there was a problem with a list name
         int NumFields;                  // Total number of fields in object
@@ -327,7 +327,7 @@ namespace UnitVentilator {
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int UnitVentNum;                // Item to be "gotten"
         bool IsValid;                   // Set for outside air node check
-        static bool errFlag(false);     // interim error flag
+        thread_local static bool errFlag(false);     // interim error flag
         std::string cCoolingCoilType;   // Cooling coil object type
         std::string cHeatingCoilType;   // Heating coil object type
         int FanIndex;                   // index to fan used for flow checks
@@ -1279,7 +1279,7 @@ namespace UnitVentilator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitUnitVentilator");
+        thread_local static std::string const RoutineName("InitUnitVentilator");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1290,12 +1290,12 @@ namespace UnitVentilator {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int AirRelNode;  // relief air node number in unit ventilator loop
         int ColdConNode; // cold water control node number in unit ventilator loop
-        static bool MyOneTimeFlag(true);
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         int HotConNode;                   // hot water control node number in unit ventilator loop
         int InNode;                       // inlet node number in unit ventilator loop
         int OutNode;                      // outlet node number in unit ventilator loop
@@ -1630,7 +1630,7 @@ namespace UnitVentilator {
         using WaterCoils::WaterCoil;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeUnitVentilator");
+        thread_local static std::string const RoutineName("SizeUnitVentilator");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum; // index of plant sizing object for 1st heating loop
@@ -1643,16 +1643,16 @@ namespace UnitVentilator {
         Real64 EnthSteamOutWet;
         Real64 LatentHeatSteam;
         Real64 SteamDensity;
-        static int RefrigIndex(0);
-        static int CoilWaterInletNode(0);
-        static int CoilWaterOutletNode(0);
-        static int CoilSteamInletNode(0);
-        static int CoilSteamOutletNode(0);
+        thread_local static int RefrigIndex(0);
+        thread_local static int CoilWaterInletNode(0);
+        thread_local static int CoilWaterOutletNode(0);
+        thread_local static int CoilSteamInletNode(0);
+        thread_local static int CoilSteamOutletNode(0);
         std::string CoolingCoilName;
         std::string CoolingCoilType;
         Real64 rho;
         Real64 Cp;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         bool IsAutoSize;                // Index to autosize
         Real64 MaxAirVolFlowDes;        // Autosized maximum air flow for reporting
         Real64 MaxAirVolFlowUser;       // Hardsized maximum air flow for reporting
@@ -3315,9 +3315,9 @@ namespace UnitVentilator {
         Real64 mdot;                  // hot water or steam mass flow rate for current time step
         Real64 PartLoadRatio;         // unit ventilator part load ratio
         int FanOpMode;                // fan operating mode or fan type
-        static int ATMixOutNode(0);   // outlet node of ATM Mixer
-        static int ATMixerPriNode(0); // primary air node of ATM Mixer
-        static int ZoneNode(0);       // zone node
+        thread_local static int ATMixOutNode(0);   // outlet node of ATM Mixer
+        thread_local static int ATMixerPriNode(0); // primary air node of ATM Mixer
+        thread_local static int ZoneNode(0);       // zone node
         Real64 SpecHumMin(0);         // Specific humidity ratio of inlet air (kg moisture / kg moist air)
 
         // FLOW:

@@ -115,17 +115,17 @@ namespace PlantCondLoopOperation {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    int const HeatingOp(1); // Constant for Heating Operation
-    int const CoolingOp(2); // Constant for Cooling Operation
-    int const DualOp(3);    // Constant for Cooling or Heating Operation
+    thread_local int const HeatingOp(1); // Constant for Heating Operation
+    thread_local int const CoolingOp(2); // Constant for Cooling Operation
+    thread_local int const DualOp(3);    // Constant for Cooling or Heating Operation
 
-    bool const TurnItemOn(true);   // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
-    bool const TurnItemOff(false); // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
+    thread_local bool const TurnItemOn(true);   // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
+    thread_local bool const TurnItemOff(false); // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
 
     namespace {
-        bool GetPlantOpInput(true); // operation Get Input flag
-        bool InitLoadDistributionOneTimeFlag(true);
-        bool LoadEquipListOneTimeFlag(true);
+        thread_local bool GetPlantOpInput(true); // operation Get Input flag
+        thread_local bool InitLoadDistributionOneTimeFlag(true);
+        thread_local bool LoadEquipListOneTimeFlag(true);
     } // namespace
     // MODULE VARIABLE DECLARATIONS:
 
@@ -386,7 +386,7 @@ namespace PlantCondLoopOperation {
         using namespace DataIPShortCuts; // Data for field names, blank numerics
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetPlantOperationInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetPlantOperationInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int LoopNum;           // Loop counter (Plant or Cond)
@@ -545,7 +545,7 @@ namespace PlantCondLoopOperation {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOperationSchemeInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOperationSchemeInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int SchemeNum;
@@ -807,7 +807,7 @@ namespace PlantCondLoopOperation {
         Array1D<Real64> NumArray;      // Numeric input items for object
         Array1D_bool lAlphaBlanks;     // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;   // Logical array, numeric field input BLANK = .TRUE.
-        static int TotalArgs(0);       // Total number of alpha and numeric arguments (max) for a
+        thread_local static int TotalArgs(0);       // Total number of alpha and numeric arguments (max) for a
         //   certain object in the input file
         int Num;
         int NumEquipLists;
@@ -1001,7 +1001,7 @@ namespace PlantCondLoopOperation {
         Array1D<Real64> NumArray;      // Numeric input items for object
         Array1D_bool lAlphaBlanks;     // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;   // Logical array, numeric field input BLANK = .TRUE.
-        static int TotalArgs(0);       // Total number of alpha and numeric arguments (max) for a
+        thread_local static int TotalArgs(0);       // Total number of alpha and numeric arguments (max) for a
         //   certain object in the input file
         int Num;
         int NumEquipLists;
@@ -1120,10 +1120,10 @@ namespace PlantCondLoopOperation {
         int IOStat;
         bool IsNotOK;
         std::string CurrentModuleObject;
-        static int TotNumLists(0);
-        static Array1D_string EquipListsNameList;
-        static Array1D_int EquipListsTypeList;
-        static Array1D_int EquipListsIndexList;
+        thread_local static int TotNumLists(0);
+        thread_local static Array1D_string EquipListsNameList;
+        thread_local static Array1D_int EquipListsTypeList;
+        thread_local static Array1D_int EquipListsIndexList;
         int iIndex;
         bool firstblank;
 
@@ -1326,7 +1326,7 @@ namespace PlantCondLoopOperation {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const Plant(1);     // Used to identify whether the current loop is Plant
         int const Condenser(2); // Used to identify whether the current loop is Condenser
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtLD("*");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;
@@ -1690,7 +1690,7 @@ namespace PlantCondLoopOperation {
         bool SchemeNameFound;        // Set to FALSE if a match of OpScheme object and OpScheme name is not found
         std::string LoopOpSchemeObj; // Used to identify the object name for loop equipment operation scheme
         int StackMngrNum;            // local temporary for Erl program calling manager index
-        static bool lDummy;          // Fix Changed to static: Passed to SetupEMSActuator as source of persistent Reference
+        thread_local static bool lDummy;          // Fix Changed to static: Passed to SetupEMSActuator as source of persistent Reference
 
         SchemeNameFound = true;
 
@@ -2695,7 +2695,7 @@ namespace PlantCondLoopOperation {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PlantCondLoopOperation:DistributePlantLoad");
+        thread_local static std::string const RoutineName("PlantCondLoopOperation:DistributePlantLoad");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2704,15 +2704,15 @@ namespace PlantCondLoopOperation {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Real64 CurMassFlowRate(0.0);
-        static Real64 ToutLowLimit(0.0);
-        static Real64 ToutHiLimit(0.0);
-        static Real64 TinLowLimit(0.0);
-        static Real64 Tinlet(0.0);
-        static Real64 Tsensor(0.0);
-        static Real64 CurSpecHeat(0.0);
-        static Real64 QdotTmp(0.0);
-        static int ControlNodeNum(0);
+        thread_local static Real64 CurMassFlowRate(0.0);
+        thread_local static Real64 ToutLowLimit(0.0);
+        thread_local static Real64 ToutHiLimit(0.0);
+        thread_local static Real64 TinLowLimit(0.0);
+        thread_local static Real64 Tinlet(0.0);
+        thread_local static Real64 Tsensor(0.0);
+        thread_local static Real64 CurSpecHeat(0.0);
+        thread_local static Real64 QdotTmp(0.0);
+        thread_local static int ControlNodeNum(0);
 
         auto &this_component(PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum));
 
@@ -2852,7 +2852,7 @@ namespace PlantCondLoopOperation {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("FindCompSPLoad");
+        thread_local static std::string const RoutineName("FindCompSPLoad");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CompDemand;
@@ -3275,7 +3275,7 @@ namespace PlantCondLoopOperation {
         std::string ActuatorType;
         std::string ActuatorName;
         std::string UniqueIDName;
-        static std::string Units("[on/off]");
+        thread_local static std::string Units("[on/off]");
         // INTEGER                      :: NumAct
         int LoopNum;
         int LoopSideNum;
@@ -3383,7 +3383,7 @@ namespace PlantCondLoopOperation {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS
-        static std::string const RoutineName("ActivateEMSControls");
+        thread_local static std::string const RoutineName("ActivateEMSControls");
 
         // SUBROUTINE VARIABLE DEFINITIONS
         Real64 CurMassFlowRate;

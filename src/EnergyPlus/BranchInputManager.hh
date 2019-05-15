@@ -67,26 +67,26 @@ namespace BranchInputManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern std::string const cMIXER;
-    extern std::string const cSPLITTER;
+    thread_local extern std::string const cMIXER;
+    thread_local extern std::string const cSPLITTER;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumOfBranchLists;    // Number of Branch Lists found in IDF
-    extern int NumOfBranches;       // Number of Branches found in IDF
-    extern int NumOfConnectorLists; // Number of Connector Lists found in IDF
-    extern int NumSplitters;        // Number of Splitters found in IDF
-    extern int NumMixers;           // Number of Mixers found in IDF
+    thread_local extern int NumOfBranchLists;    // Number of Branch Lists found in IDF
+    thread_local extern int NumOfBranches;       // Number of Branches found in IDF
+    thread_local extern int NumOfConnectorLists; // Number of Connector Lists found in IDF
+    thread_local extern int NumSplitters;        // Number of Splitters found in IDF
+    thread_local extern int NumMixers;           // Number of Mixers found in IDF
 
-    extern bool GetBranchInputFlag;        // Flag used to retrieve Input
-    extern bool GetBranchListInputFlag;    // Flag used to retrieve Input
-    extern bool GetSplitterInputFlag;      // Flag used to retrieve Input
-    extern bool GetMixerInputFlag;         // Flag used to retrieve Input
-    extern bool GetConnectorListInputFlag; // Flag used to retrieve Input
-    extern bool InvalidBranchDefinitions;
+    thread_local extern bool GetBranchInputFlag;        // Flag used to retrieve Input
+    thread_local extern bool GetBranchListInputFlag;    // Flag used to retrieve Input
+    thread_local extern bool GetSplitterInputFlag;      // Flag used to retrieve Input
+    thread_local extern bool GetMixerInputFlag;         // Flag used to retrieve Input
+    thread_local extern bool GetConnectorListInputFlag; // Flag used to retrieve Input
+    thread_local extern bool InvalidBranchDefinitions;
 
-    extern std::string CurrentModuleObject; // for ease in getting objects
+    thread_local extern std::string CurrentModuleObject; // for ease in getting objects
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BranchInputManager
     // PUBLIC  TestAirPathIntegrity
@@ -192,11 +192,11 @@ namespace BranchInputManager {
     };
 
     // Object Data
-    extern Array1D<BranchListData> BranchList;    // Branch List data for each Branch List
-    extern Array1D<BranchData> Branch;            // Branch Data for each Branch
-    extern Array1D<ConnectorData> ConnectorLists; // Connector List data for each Connector List
-    extern Array1D<SplitterData> Splitters;       // Splitter Data for each Splitter
-    extern Array1D<MixerData> Mixers;             // Mixer Data for each Mixer
+    thread_local extern Array1D<BranchListData> BranchList;    // Branch List data for each Branch List
+    thread_local extern Array1D<BranchData> Branch;            // Branch Data for each Branch
+    thread_local extern Array1D<ConnectorData> ConnectorLists; // Connector List data for each Connector List
+    thread_local extern Array1D<SplitterData> Splitters;       // Splitter Data for each Splitter
+    thread_local extern Array1D<MixerData> Mixers;             // Mixer Data for each Mixer
 
     // Functions
     void clear_state();

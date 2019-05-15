@@ -103,8 +103,8 @@ namespace ReturnAirPathManager {
     // MODULE PARAMETER DEFINITIONS
 
     namespace {
-        bool GetInputFlag(true);
-        bool ErrorsFound(false);
+        thread_local bool GetInputFlag(true);
+        thread_local bool ErrorsFound(false);
     } // namespace
 
     // DERIVED TYPE DEFINITIONS

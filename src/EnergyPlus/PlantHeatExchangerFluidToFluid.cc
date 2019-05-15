@@ -105,46 +105,46 @@ namespace PlantHeatExchangerFluidToFluid {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const CrossFlowBothUnMixed(1);
-    int const CrossFlowBothMixed(2);
-    int const CrossFlowSupplyLoopMixedDemandLoopUnMixed(3);
-    int const CrossFlowSupplyLoopUnMixedDemandLoopMixed(4);
-    int const CounterFlow(5);
-    int const ParallelFlow(6);
-    int const Ideal(7);
+    thread_local int const CrossFlowBothUnMixed(1);
+    thread_local int const CrossFlowBothMixed(2);
+    thread_local int const CrossFlowSupplyLoopMixedDemandLoopUnMixed(3);
+    thread_local int const CrossFlowSupplyLoopUnMixedDemandLoopMixed(4);
+    thread_local int const CounterFlow(5);
+    thread_local int const ParallelFlow(6);
+    thread_local int const Ideal(7);
 
-    int const UncontrolledOn(1001);
-    int const OperationSchemeModulated(1002);
-    int const OperationSchemeOnOff(1003);
-    int const HeatingSetPointModulated(1004);
-    int const HeatingSetPointOnOff(1005);
-    int const CoolingSetPointModulated(1006);
-    int const CoolingSetPointOnOff(1007);
-    int const DualDeadBandSetPointModulated(1008);
-    int const DualDeadBandSetPointOnOff(1009);
-    int const CoolingDifferentialOnOff(1010);
-    int const CoolingSetPointOnOffWithComponentOverride(1011);
-    int const TrackComponentOnOff(1012);
+    thread_local int const UncontrolledOn(1001);
+    thread_local int const OperationSchemeModulated(1002);
+    thread_local int const OperationSchemeOnOff(1003);
+    thread_local int const HeatingSetPointModulated(1004);
+    thread_local int const HeatingSetPointOnOff(1005);
+    thread_local int const CoolingSetPointModulated(1006);
+    thread_local int const CoolingSetPointOnOff(1007);
+    thread_local int const DualDeadBandSetPointModulated(1008);
+    thread_local int const DualDeadBandSetPointOnOff(1009);
+    thread_local int const CoolingDifferentialOnOff(1010);
+    thread_local int const CoolingSetPointOnOffWithComponentOverride(1011);
+    thread_local int const TrackComponentOnOff(1012);
 
-    int const WetBulbTemperature(10);
-    int const DryBulbTemperature(11);
-    int const LoopTemperature(12);
+    thread_local int const WetBulbTemperature(10);
+    thread_local int const DryBulbTemperature(11);
+    thread_local int const LoopTemperature(12);
 
-    int const HeatingSupplySideLoop(501);
-    int const CoolingSupplySideLoop(502);
+    thread_local int const HeatingSupplySideLoop(501);
+    thread_local int const CoolingSupplySideLoop(502);
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    std::string ComponentClassName("HeatExchanger:FluidToFluid");
-    int NumberOfPlantFluidHXs(0);
-    bool GetInput(true);
-    Array1D_bool CheckFluidHXs;
+    thread_local std::string ComponentClassName("HeatExchanger:FluidToFluid");
+    thread_local int NumberOfPlantFluidHXs(0);
+    thread_local bool GetInput(true);
+    thread_local Array1D_bool CheckFluidHXs;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    Array1D<HeatExchangerStruct> FluidHX;
+    thread_local Array1D<HeatExchangerStruct> FluidHX;
 
     // Functions
 
@@ -263,16 +263,16 @@ namespace PlantHeatExchangerFluidToFluid {
         using ScheduleManager::GetScheduleIndex;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetFluidHeatExchangerInput: ");
+        thread_local static std::string const RoutineName("GetFluidHeatExchangerInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         int NumAlphas;               // Number of elements in the alpha array
         int NumNums;                 // Number of elements in the numeric array
         int IOStat;                  // IO Status when calling get input subroutine
-        static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
-        static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
-        static int TotalArgs(0);     // argument for call to GetObjectDefMaxArgs
+        thread_local static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
+        thread_local static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
+        thread_local static int TotalArgs(0);     // argument for call to GetObjectDefMaxArgs
         Array1D_string cAlphaFieldNames;
         Array1D_string cNumericFieldNames;
         Array1D_bool lNumericFieldBlanks;
@@ -655,14 +655,14 @@ namespace PlantHeatExchangerFluidToFluid {
         using PlantUtilities::InterConnectTwoPlantLoopSides;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineNameNoColon("InitFluidHeatExchanger");
+        thread_local static std::string const RoutineNameNoColon("InitFluidHeatExchanger");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true); // one time flag
-        static Array1D_bool MyEnvrnFlag; // environment flag
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true); // one time flag
+        thread_local static Array1D_bool MyEnvrnFlag; // environment flag
+        thread_local static Array1D_bool MyFlag;
         bool errFlag;
-        static std::string const RoutineName("InitFluidHeatExchanger: ");
+        thread_local static std::string const RoutineName("InitFluidHeatExchanger: ");
         Real64 rho;
         int LoopNum2;
         int LoopSideNum;
@@ -903,7 +903,7 @@ namespace PlantHeatExchangerFluidToFluid {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeFluidHeatExchanger");
+        thread_local static std::string const RoutineName("SizeFluidHeatExchanger");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNumSupSide; // Plant Sizing index for Loop Supply Side
@@ -1156,7 +1156,7 @@ namespace PlantHeatExchangerFluidToFluid {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ControlFluidHeatExchanger");
+        thread_local static std::string const RoutineName("ControlFluidHeatExchanger");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2022,7 +2022,7 @@ namespace PlantHeatExchangerFluidToFluid {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const CmaxMixedCminUnmixed(40);
         int const CmaxUnMixedCminMixed(41);
-        static std::string const RoutineName("CalcFluidHeatExchanger");
+        thread_local static std::string const RoutineName("CalcFluidHeatExchanger");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

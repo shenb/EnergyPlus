@@ -68,12 +68,12 @@ namespace EnergyPlus {
 namespace PlantPipingSystemsManager {
 
     // MODULE PARAMETER DEFINITIONS:
-    extern std::string const ObjName_ug_GeneralDomain;
-    extern std::string const ObjName_Circuit;
-    extern std::string const ObjName_Segment;
-    extern std::string const ObjName_HorizTrench;
-    extern std::string const ObjName_ZoneCoupled_Slab;
-    extern std::string const ObjName_ZoneCoupled_Basement;
+    thread_local extern std::string const ObjName_ug_GeneralDomain;
+    thread_local extern std::string const ObjName_Circuit;
+    thread_local extern std::string const ObjName_Segment;
+    thread_local extern std::string const ObjName_HorizTrench;
+    thread_local extern std::string const ObjName_ZoneCoupled_Slab;
+    thread_local extern std::string const ObjName_ZoneCoupled_Basement;
 
     // Using/Aliasing
     using namespace GroundTemperatureManager;
@@ -149,8 +149,8 @@ namespace PlantPipingSystemsManager {
         ZoneGroundInterface
     };
 
-    extern Array1D<Direction> NeighborFieldCells;
-    extern Array1D<Direction> NeighborBoundaryCells;
+    thread_local extern Array1D<Direction> NeighborFieldCells;
+    thread_local extern Array1D<Direction> NeighborBoundaryCells;
 
     struct BaseThermalPropertySet
     {
@@ -1044,9 +1044,9 @@ namespace PlantPipingSystemsManager {
     };
 
     // Object Data
-    extern Array1D<FullDomainStructureInfo> PipingSystemDomains;
-    extern Array1D<PipeCircuitInfo> PipingSystemCircuits;
-    extern Array1D<PipeSegmentInfo> PipingSystemSegments;
+    thread_local extern Array1D<FullDomainStructureInfo> PipingSystemDomains;
+    thread_local extern Array1D<PipeCircuitInfo> PipingSystemCircuits;
+    thread_local extern Array1D<PipeSegmentInfo> PipingSystemSegments;
 
     void clear_state();
 

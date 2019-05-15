@@ -131,39 +131,39 @@ namespace WaterToAirHeatPumpSimple {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    Real64 const CelsiustoKelvin(KelvinConv); // Conversion from Celsius to Kelvin
-    static std::string const BlankString;
+    thread_local Real64 const CelsiustoKelvin(KelvinConv); // Conversion from Celsius to Kelvin
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumWatertoAirHPs(0); // The Number of Water to Air Heat Pumps found in the Input
+    thread_local int NumWatertoAirHPs(0); // The Number of Water to Air Heat Pumps found in the Input
     // INTEGER        :: WaterIndex = 0                   ! Water index
     // INTEGER        :: Count = 0
-    bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
-    Array1D_bool MySizeFlag;
-    Array1D_bool SimpleHPTimeStepFlag; // determines whether the previous operating mode for the coil and it's partner has been initialized
+    thread_local bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool SimpleHPTimeStepFlag; // determines whether the previous operating mode for the coil and it's partner has been initialized
 
-    Real64 SourceSideMassFlowRate(0.0); // Source Side Mass flow rate [Kg/s]
-    Real64 SourceSideInletTemp(0.0);    // Source Side Inlet Temperature [C]
-    Real64 SourceSideInletEnth(0.0);    // Source Side Inlet Enthalpy [J/kg]
-    Real64 LoadSideMassFlowRate(0.0);   // Load Side Mass flow rate [Kg/s]
-    Real64 LoadSideInletDBTemp(0.0);    // Load Side Inlet Dry Bulb Temp [C]
-    Real64 LoadSideInletWBTemp(0.0);    // Load Side Inlet Wet Bulb Temp [C]
-    Real64 LoadSideInletHumRat(0.0);    // Load Side Outlet Humidity ratio
-    Real64 LoadSideInletEnth(0.0);      // Load Side Inlet Enthalpy [J/kg]
-    Real64 LoadSideOutletDBTemp(0.0);   // Load Side Outlet Dry Bulb Temp [C]
-    Real64 LoadSideOutletHumRat(0.0);   // Load Side Outlet Humidity ratio
-    Real64 LoadSideOutletEnth(0.0);     // Load Side Outlet Enthalpy [J/kg]
-    Real64 QSensible(0.0);              // Load side sensible heat transfer rate [W]
-    Real64 QLoadTotal(0.0);             // Load side total heat transfer rate [W]
-    Real64 QLatRated(0.0);              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
-    Real64 QLatActual(0.0);             // Actual Latent Capacity [W]
-    Real64 QSource(0.0);                // Source side heat transfer rate [W]
-    Real64 Winput(0.0);                 // Power Consumption [W]
-    Real64 PLRCorrLoadSideMdot(0.0);    // Load Side Mdot corrected for Part Load Ratio of the unit
-    bool MyOneTimeFlag(true);           // one time allocation flag
+    thread_local Real64 SourceSideMassFlowRate(0.0); // Source Side Mass flow rate [Kg/s]
+    thread_local Real64 SourceSideInletTemp(0.0);    // Source Side Inlet Temperature [C]
+    thread_local Real64 SourceSideInletEnth(0.0);    // Source Side Inlet Enthalpy [J/kg]
+    thread_local Real64 LoadSideMassFlowRate(0.0);   // Load Side Mass flow rate [Kg/s]
+    thread_local Real64 LoadSideInletDBTemp(0.0);    // Load Side Inlet Dry Bulb Temp [C]
+    thread_local Real64 LoadSideInletWBTemp(0.0);    // Load Side Inlet Wet Bulb Temp [C]
+    thread_local Real64 LoadSideInletHumRat(0.0);    // Load Side Outlet Humidity ratio
+    thread_local Real64 LoadSideInletEnth(0.0);      // Load Side Inlet Enthalpy [J/kg]
+    thread_local Real64 LoadSideOutletDBTemp(0.0);   // Load Side Outlet Dry Bulb Temp [C]
+    thread_local Real64 LoadSideOutletHumRat(0.0);   // Load Side Outlet Humidity ratio
+    thread_local Real64 LoadSideOutletEnth(0.0);     // Load Side Outlet Enthalpy [J/kg]
+    thread_local Real64 QSensible(0.0);              // Load side sensible heat transfer rate [W]
+    thread_local Real64 QLoadTotal(0.0);             // Load side total heat transfer rate [W]
+    thread_local Real64 QLatRated(0.0);              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
+    thread_local Real64 QLatActual(0.0);             // Actual Latent Capacity [W]
+    thread_local Real64 QSource(0.0);                // Source side heat transfer rate [W]
+    thread_local Real64 Winput(0.0);                 // Power Consumption [W]
+    thread_local Real64 PLRCorrLoadSideMdot(0.0);    // Load Side Mdot corrected for Part Load Ratio of the unit
+    thread_local bool MyOneTimeFlag(true);           // one time allocation flag
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -179,7 +179,7 @@ namespace WaterToAirHeatPumpSimple {
     // Utility routines
 
     // Object Data
-    Array1D<SimpleWatertoAirHPConditions> SimpleWatertoAirHP;
+    thread_local Array1D<SimpleWatertoAirHPConditions> SimpleWatertoAirHP;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -336,7 +336,7 @@ namespace WaterToAirHeatPumpSimple {
         using namespace OutputReportPredefined;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetSimpleWatertoAirHPInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetSimpleWatertoAirHPInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int HPNum;               // The Water to Air HP that you are currently loading input into
@@ -346,10 +346,10 @@ namespace WaterToAirHeatPumpSimple {
         int NumAlphas;           // Number of variables in String format
         int NumNums;             // Number of variables in Numeric format
         int NumParams;           // Total number of input fields
-        static int MaxNums(0);   // Maximum number of numeric input fields
-        static int MaxAlphas(0); // Maximum number of alpha input fields
+        thread_local static int MaxNums(0);   // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0); // Maximum number of alpha input fields
         int IOStat;
-        static bool ErrorsFound(false);  // If errors detected in input
+        thread_local static bool ErrorsFound(false);  // If errors detected in input
         std::string CurrentModuleObject; // for ease in getting objects
         Array1D_string AlphArray;        // Alpha input items for object
         Array1D_string cAlphaFields;     // Alpha field names
@@ -841,14 +841,14 @@ namespace WaterToAirHeatPumpSimple {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // Locals
-        static Array1D_bool MySizeFlag; // used for sizing PTHP inputs one time
+        thread_local static Array1D_bool MySizeFlag; // used for sizing PTHP inputs one time
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // shut off after compressor cycle off  [s]
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitSimpleWatertoAirHP");
+        thread_local static std::string const RoutineName("InitSimpleWatertoAirHP");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -859,8 +859,8 @@ namespace WaterToAirHeatPumpSimple {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int AirInletNode;                // Node Number of the air inlet
         int WaterInletNode;              // Node Number of the Water inlet
-        static Array1D_bool MyEnvrnFlag; // used for initializations each begin environment flag
-        static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyEnvrnFlag; // used for initializations each begin environment flag
+        thread_local static Array1D_bool MyPlantScanFlag;
         Real64 rho; // local fluid density
         Real64 Cp;  // local fluid specific heat
         bool errFlag;
@@ -1159,8 +1159,8 @@ namespace WaterToAirHeatPumpSimple {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeWaterToAirCoil");
-        static std::string const RoutineNameAlt("SizeHVACWaterToAir");
+        thread_local static std::string const RoutineName("SizeWaterToAirCoil");
+        thread_local static std::string const RoutineNameAlt("SizeHVACWaterToAir");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2135,8 +2135,8 @@ namespace WaterToAirHeatPumpSimple {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const Tref(283.15); // Reference Temperature for performance curves,10C [K]
-        static std::string const RoutineName("CalcHPCoolingSimple");
-        static std::string const RoutineNameSourceSideInletTemp("CalcHPCoolingSimple:SourceSideInletTemp");
+        thread_local static std::string const RoutineName("CalcHPCoolingSimple");
+        thread_local static std::string const RoutineNameSourceSideInletTemp("CalcHPCoolingSimple:SourceSideInletTemp");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2186,13 +2186,13 @@ namespace WaterToAirHeatPumpSimple {
 
         bool LatDegradModelSimFlag; // Latent degradation model simulation flag
         int NumIteration;           // Iteration Counter
-        static int Count(0);        // No idea what this is for.
-        static bool firstTime(true);
-        static Real64 LoadSideInletDBTemp_Init; // rated conditions
-        static Real64 LoadSideInletWBTemp_Init; // rated conditions
-        static Real64 LoadSideInletHumRat_Init; // rated conditions
-        static Real64 LoadSideInletEnth_Init;   // rated conditions
-        static Real64 CpAir_Init;               // rated conditions
+        thread_local static int Count(0);        // No idea what this is for.
+        thread_local static bool firstTime(true);
+        thread_local static Real64 LoadSideInletDBTemp_Init; // rated conditions
+        thread_local static Real64 LoadSideInletWBTemp_Init; // rated conditions
+        thread_local static Real64 LoadSideInletHumRat_Init; // rated conditions
+        thread_local static Real64 LoadSideInletEnth_Init;   // rated conditions
+        thread_local static Real64 CpAir_Init;               // rated conditions
         Real64 LoadSideInletDBTemp_Unit;        // calc conditions for unit
         Real64 LoadSideInletWBTemp_Unit;        // calc conditions for unit
         Real64 LoadSideInletHumRat_Unit;        // calc conditions for unit
@@ -2479,8 +2479,8 @@ namespace WaterToAirHeatPumpSimple {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const Tref(283.15); // Reference Temperature for performance curves,10C [K]
-        static std::string const RoutineName("CalcHPHeatingSimple");
-        static std::string const RoutineNameSourceSideInletTemp("CalcHPHeatingSimple:SourceSideInletTemp");
+        thread_local static std::string const RoutineName("CalcHPHeatingSimple");
+        thread_local static std::string const RoutineNameSourceSideInletTemp("CalcHPHeatingSimple:SourceSideInletTemp");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

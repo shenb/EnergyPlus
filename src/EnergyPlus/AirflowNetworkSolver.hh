@@ -63,52 +63,52 @@ namespace EnergyPlus {
 namespace AirflowNetworkSolver {
 
     // Data
-    extern int NetworkNumOfLinks;
-    extern int NetworkNumOfNodes;
+    thread_local extern int NetworkNumOfLinks;
+    thread_local extern int NetworkNumOfNodes;
 
-    extern int const NrInt; // Number of intervals for a large opening
+    thread_local extern int const NrInt; // Number of intervals for a large opening
 
     // Common block AFEDAT
-    extern Array1D<Real64> AFECTL;
-    extern Array1D<Real64> AFLOW2;
-    extern Array1D<Real64> AFLOW;
-    extern Array1D<Real64> PS;
-    extern Array1D<Real64> PW;
+    thread_local extern Array1D<Real64> AFECTL;
+    thread_local extern Array1D<Real64> AFLOW2;
+    thread_local extern Array1D<Real64> AFLOW;
+    thread_local extern Array1D<Real64> PS;
+    thread_local extern Array1D<Real64> PW;
 
     // Common block CONTRL
-    extern Real64 PB;
-    extern int LIST;
+    thread_local extern Real64 PB;
+    thread_local extern int LIST;
 
     // Common block ZONL
-    extern Array1D<Real64> RHOZ;
-    extern Array1D<Real64> SQRTDZ;
-    extern Array1D<Real64> VISCZ;
-    extern Array1D<Real64> SUMAF;
-    extern Array1D<Real64> TZ; // Temperature [C]
-    extern Array1D<Real64> WZ; // Humidity ratio [kg/kg]
-    extern Array1D<Real64> PZ; // Pressure [Pa]
+    thread_local extern Array1D<Real64> RHOZ;
+    thread_local extern Array1D<Real64> SQRTDZ;
+    thread_local extern Array1D<Real64> VISCZ;
+    thread_local extern Array1D<Real64> SUMAF;
+    thread_local extern Array1D<Real64> TZ; // Temperature [C]
+    thread_local extern Array1D<Real64> WZ; // Humidity ratio [kg/kg]
+    thread_local extern Array1D<Real64> PZ; // Pressure [Pa]
 
     // Other array variables
-    extern Array1D_int ID;
-    extern Array1D_int IK;
-    extern Array1D<Real64> AD;
-    extern Array1D<Real64> AU;
+    thread_local extern Array1D_int ID;
+    thread_local extern Array1D_int IK;
+    thread_local extern Array1D<Real64> AD;
+    thread_local extern Array1D<Real64> AU;
 
 #ifdef SKYLINE_MATRIX_REMOVE_ZERO_COLUMNS
-    extern Array1D_int newIK;     // noel
-    extern Array1D<Real64> newAU; // noel
+    thread_local extern Array1D_int newIK;     // noel
+    thread_local extern Array1D<Real64> newAU; // noel
 #endif
 
     // REAL(r64), ALLOCATABLE, DIMENSION(:) :: AL
-    extern Array1D<Real64> SUMF;
-    extern int Unit11;
-    extern int Unit21;
+    thread_local extern Array1D<Real64> SUMF;
+    thread_local extern int Unit11;
+    thread_local extern int Unit21;
 
     // Large opening variables
-    extern Array1D<Real64> DpProf;   // Differential pressure profile for Large Openings [Pa]
-    extern Array1D<Real64> RhoProfF; // Density profile in FROM zone [kg/m3]
-    extern Array1D<Real64> RhoProfT; // Density profile in TO zone [kg/m3]
-    extern Array2D<Real64> DpL;      // Array of stack pressures in link
+    thread_local extern Array1D<Real64> DpProf;   // Differential pressure profile for Large Openings [Pa]
+    thread_local extern Array1D<Real64> RhoProfF; // Density profile in FROM zone [kg/m3]
+    thread_local extern Array1D<Real64> RhoProfT; // Density profile in TO zone [kg/m3]
+    thread_local extern Array2D<Real64> DpL;      // Array of stack pressures in link
 
     // Functions
 

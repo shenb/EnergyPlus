@@ -183,16 +183,16 @@ namespace HeatBalanceSurfaceManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    static std::string const BlankString;
-    Array1D<Real64> SurfaceEnthalpyRead;
+    thread_local static std::string const BlankString;
+    thread_local Array1D<Real64> SurfaceEnthalpyRead;
 
     namespace {
-        bool ManageSurfaceHeatBalancefirstTime(true);
-        bool InitSurfaceHeatBalancefirstTime(true);
-        bool ComputeIntSWAbsorpFactorsfirstTime(true); // First time through routine
-        bool UpdateThermalHistoriesFirstTimeFlag(true);
-        bool CalculateZoneMRTfirstTime(true);          // Flag for first time calculations
-        bool calcHeatBalanceInsideSurfFirstTime(true); // Used for trapping errors or other problems
+        thread_local bool ManageSurfaceHeatBalancefirstTime(true);
+        thread_local bool InitSurfaceHeatBalancefirstTime(true);
+        thread_local bool ComputeIntSWAbsorpFactorsfirstTime(true); // First time through routine
+        thread_local bool UpdateThermalHistoriesFirstTimeFlag(true);
+        thread_local bool CalculateZoneMRTfirstTime(true);          // Flag for first time calculations
+        thread_local bool calcHeatBalanceInsideSurfFirstTime(true); // Used for trapping errors or other problems
     }                                                  // namespace
                                                        // DERIVED TYPE DEFINITIONS:
                                                        // na
@@ -370,8 +370,8 @@ namespace HeatBalanceSurfaceManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -967,23 +967,23 @@ namespace HeatBalanceSurfaceManager {
         int errFlag;
         int curWSC;
         // following variables are totals for fenestration table
-        static Real64 windowAreaWMult(0.0);
-        static Real64 fenTotArea(0.0);
-        static Real64 fenTotAreaNorth(0.0);
-        static Real64 fenTotAreaNonNorth(0.0);
-        static Real64 ufactArea(0.0);
-        static Real64 ufactAreaNorth(0.0);
-        static Real64 ufactAreaNonNorth(0.0);
-        static Real64 shgcArea(0.0);
-        static Real64 shgcAreaNorth(0.0);
-        static Real64 shgcAreaNonNorth(0.0);
-        static Real64 vistranArea(0.0);
-        static Real64 vistranAreaNorth(0.0);
-        static Real64 vistranAreaNonNorth(0.0);
-        static Real64 intFenTotArea(0.0);
-        static Real64 intUfactArea(0.0);
-        static Real64 intShgcArea(0.0);
-        static Real64 intVistranArea(0.0);
+        thread_local static Real64 windowAreaWMult(0.0);
+        thread_local static Real64 fenTotArea(0.0);
+        thread_local static Real64 fenTotAreaNorth(0.0);
+        thread_local static Real64 fenTotAreaNonNorth(0.0);
+        thread_local static Real64 ufactArea(0.0);
+        thread_local static Real64 ufactAreaNorth(0.0);
+        thread_local static Real64 ufactAreaNonNorth(0.0);
+        thread_local static Real64 shgcArea(0.0);
+        thread_local static Real64 shgcAreaNorth(0.0);
+        thread_local static Real64 shgcAreaNonNorth(0.0);
+        thread_local static Real64 vistranArea(0.0);
+        thread_local static Real64 vistranAreaNorth(0.0);
+        thread_local static Real64 vistranAreaNonNorth(0.0);
+        thread_local static Real64 intFenTotArea(0.0);
+        thread_local static Real64 intUfactArea(0.0);
+        thread_local static Real64 intShgcArea(0.0);
+        thread_local static Real64 intVistranArea(0.0);
         bool isNorth;
 
         numSurfaces = 0;
@@ -2274,9 +2274,9 @@ namespace HeatBalanceSurfaceManager {
         int TotGlassLay;                                // Number of glass layers
         int TotSolidLay;                                // Number of solid layers in fenestration system (glass + shading)
         int CurrentState;                               // Current state for Complex Fenestration
-        static Array1D<Real64> AbsDiffWin(CFSMAXNL);    // Diffuse solar absorptance of glass layers //Tuned Made static
-        static Array1D<Real64> AbsDiffWinGnd(CFSMAXNL); // Ground diffuse solar absorptance of glass layers //Tuned Made static
-        static Array1D<Real64> AbsDiffWinSky(CFSMAXNL); // Sky diffuse solar absorptance of glass layers //Tuned Made static
+        thread_local static Array1D<Real64> AbsDiffWin(CFSMAXNL);    // Diffuse solar absorptance of glass layers //Tuned Made static
+        thread_local static Array1D<Real64> AbsDiffWinGnd(CFSMAXNL); // Ground diffuse solar absorptance of glass layers //Tuned Made static
+        thread_local static Array1D<Real64> AbsDiffWinSky(CFSMAXNL); // Sky diffuse solar absorptance of glass layers //Tuned Made static
         int Lay;                                        // Layer number
         Real64 DividerAbs;                              // Window divider solar absorptance
         Real64 DividerRefl;                             // Window divider solar reflectance
@@ -3269,8 +3269,8 @@ namespace HeatBalanceSurfaceManager {
         Real64 AbsDiffBkBl;       // Blind diffuse back solar absorptance as part of glazing system
         Real64 EffBlEmiss;        // Blind emissivity (thermal absorptance) as part of glazing system
         Real64 pulseMultipler;    // use to create a pulse for the load component report computations
-        static Real64 curQL(0.0); // radiant value prior to adjustment for pulse for load component report
-        static Real64 adjQL(0.0); // radiant value including adjustment for pulse for load component report
+        thread_local static Real64 curQL(0.0); // radiant value prior to adjustment for pulse for load component report
+        thread_local static Real64 adjQL(0.0); // radiant value including adjustment for pulse for load component report
         int EQLNum;               // equivalent layer fenestration index
         int Lay;                  // equivalent layer fenestration layer index
 
@@ -3889,7 +3889,7 @@ namespace HeatBalanceSurfaceManager {
         Real64 AbsGl;
         Real64 DividerRefl; // Window divider short-wave reflectance
 
-        static Array1D_bool FirstCalcZone; // for error message
+        thread_local static Array1D_bool FirstCalcZone; // for error message
 
         // FLOW:
 
@@ -4075,7 +4075,7 @@ namespace HeatBalanceSurfaceManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array2D<Real64> D;
+        thread_local static Array2D<Real64> D;
         int SurfNum;
         int IZ;
         int JZ;
@@ -4218,7 +4218,7 @@ namespace HeatBalanceSurfaceManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool SurfPropOverridesPresent(false); // detect if EMS ever used for this and inits need to execute
+        thread_local static bool SurfPropOverridesPresent(false); // detect if EMS ever used for this and inits need to execute
         int MaterNum;                                // do loop counter over materials
         int ConstrNum;                               // do loop counter over constructions
         int TotLayers;                               // count of material layers in a construction
@@ -4313,7 +4313,7 @@ namespace HeatBalanceSurfaceManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool SurfConstructOverridesPresent(false); // detect if EMS ever used for this and inits need to execute
+        thread_local static bool SurfConstructOverridesPresent(false); // detect if EMS ever used for this and inits need to execute
 
         if (std::any_of(Surface.begin(), Surface.end(), [](DataSurfaces::SurfaceData const &e) { return e.EMSConstructionOverrideON; }))
             SurfConstructOverridesPresent = true;
@@ -4584,14 +4584,14 @@ namespace HeatBalanceSurfaceManager {
         int SideNum;     // DO loop counter for surfaces sides (inside, outside)
         int SurfNum;     // Surface number DO loop counter
 
-        static Array1D<Real64> QExt1;    // Heat flux at the exterior surface during first time step/series
-        static Array1D<Real64> QInt1;    // Heat flux at the interior surface during first time step/series
-        static Array1D<Real64> TempInt1; // Temperature of interior surface during first time step/series
-        static Array1D<Real64> TempExt1; // Temperature of exterior surface during first time step/series
-        static Array1D<Real64> Qsrc1;    // Heat source/sink (during first time step/series)
-        static Array1D<Real64> Tsrc1;    // Temperature at source/sink (during first time step/series)
-        static Array1D<Real64> Tuser1;   // Temperature at the user specified location (during first time step/series)
-        static Array1D<Real64> SumTime;  // Amount of time that has elapsed from start of master history to
+        thread_local static Array1D<Real64> QExt1;    // Heat flux at the exterior surface during first time step/series
+        thread_local static Array1D<Real64> QInt1;    // Heat flux at the interior surface during first time step/series
+        thread_local static Array1D<Real64> TempInt1; // Temperature of interior surface during first time step/series
+        thread_local static Array1D<Real64> TempExt1; // Temperature of exterior surface during first time step/series
+        thread_local static Array1D<Real64> Qsrc1;    // Heat source/sink (during first time step/series)
+        thread_local static Array1D<Real64> Tsrc1;    // Temperature at source/sink (during first time step/series)
+        thread_local static Array1D<Real64> Tuser1;   // Temperature at the user specified location (during first time step/series)
+        thread_local static Array1D<Real64> SumTime;  // Amount of time that has elapsed from start of master history to
         // the current time step
 
         // FLOW:
@@ -4906,9 +4906,9 @@ namespace HeatBalanceSurfaceManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         Real64 SumAET;                    // Intermediate calculational variable (area*emissivity*T) sum
-        static Array1D<Real64> SurfaceAE; // Product of area and emissivity for each surface
+        thread_local static Array1D<Real64> SurfaceAE; // Product of area and emissivity for each surface
         int SurfNum;                      // Surface number
-        static Array1D<Real64> ZoneAESum; // Sum of area times emissivity for all zone surfaces
+        thread_local static Array1D<Real64> ZoneAESum; // Sum of area times emissivity for all zone surfaces
         int ZoneNum;                      // Zone number
 
         // FLOW:
@@ -4996,7 +4996,7 @@ namespace HeatBalanceSurfaceManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int SurfNum;
         int ZoneNum;
-        static int TimeStepInDay(0);
+        thread_local static int TimeStepInDay(0);
 
         ZoneMRT({1, NumOfZones}) = MRT({1, NumOfZones});
 
@@ -5196,22 +5196,22 @@ namespace HeatBalanceSurfaceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcHeatBalanceOutsideSurf");
-        static std::string const RoutineNameGroundTemp("CalcHeatBalanceOutsideSurf:GroundTemp");
-        static std::string const RoutineNameGroundTempFC("CalcHeatBalanceOutsideSurf:GroundTempFC");
-        static std::string const RoutineNameOtherSideCoefNoCalcExt("CalcHeatBalanceOutsideSurf:OtherSideCoefNoCalcExt");
-        static std::string const RoutineNameOtherSideCoefCalcExt("CalcHeatBalanceOutsideSurf:OtherSideCoefCalcExt");
-        static std::string const RoutineNameOSCM("CalcHeatBalanceOutsideSurf:OSCM");
-        static std::string const RoutineNameExtEnvWetSurf("CalcHeatBalanceOutsideSurf:extEnvWetSurf");
-        static std::string const RoutineNameExtEnvDrySurf("CalcHeatBalanceOutsideSurf:extEnvDrySurf");
-        static std::string const RoutineNameNoWind("CalcHeatBalanceOutsideSurf:nowind");
-        static std::string const RoutineNameOther("CalcHeatBalanceOutsideSurf:interior/other");
-        static std::string const RoutineNameIZPart("CalcHeatBalanceOutsideSurf:IZPart");
-        static std::string const HBSurfManGroundHAMT("HBSurfMan:Ground:HAMT");
-        static std::string const HBSurfManRainHAMT("HBSurfMan:Rain:HAMT");
-        static std::string const HBSurfManDrySurfCondFD("HBSurfMan:DrySurf:CondFD");
-        static std::string const Outside("Outside");
-        static std::string const BlankString;
+        thread_local static std::string const RoutineName("CalcHeatBalanceOutsideSurf");
+        thread_local static std::string const RoutineNameGroundTemp("CalcHeatBalanceOutsideSurf:GroundTemp");
+        thread_local static std::string const RoutineNameGroundTempFC("CalcHeatBalanceOutsideSurf:GroundTempFC");
+        thread_local static std::string const RoutineNameOtherSideCoefNoCalcExt("CalcHeatBalanceOutsideSurf:OtherSideCoefNoCalcExt");
+        thread_local static std::string const RoutineNameOtherSideCoefCalcExt("CalcHeatBalanceOutsideSurf:OtherSideCoefCalcExt");
+        thread_local static std::string const RoutineNameOSCM("CalcHeatBalanceOutsideSurf:OSCM");
+        thread_local static std::string const RoutineNameExtEnvWetSurf("CalcHeatBalanceOutsideSurf:extEnvWetSurf");
+        thread_local static std::string const RoutineNameExtEnvDrySurf("CalcHeatBalanceOutsideSurf:extEnvDrySurf");
+        thread_local static std::string const RoutineNameNoWind("CalcHeatBalanceOutsideSurf:nowind");
+        thread_local static std::string const RoutineNameOther("CalcHeatBalanceOutsideSurf:interior/other");
+        thread_local static std::string const RoutineNameIZPart("CalcHeatBalanceOutsideSurf:IZPart");
+        thread_local static std::string const HBSurfManGroundHAMT("HBSurfMan:Ground:HAMT");
+        thread_local static std::string const HBSurfManRainHAMT("HBSurfMan:Rain:HAMT");
+        thread_local static std::string const HBSurfManDrySurfCondFD("HBSurfMan:DrySurf:CondFD");
+        thread_local static std::string const Outside("Outside");
+        thread_local static std::string const BlankString;
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -5880,11 +5880,11 @@ namespace HeatBalanceSurfaceManager {
         Real64 const SmallNumber(0.0001);            // avoid numerical junk causing problems?
         // in the CondFD relaxation factor.
         int const MinEMPDIterations(4); // Minimum number of iterations required for EMPD solution
-        static std::string const rhoAirZone("RhoAirZone");
-        static std::string const wsurf("Wsurf");
-        static std::string const HBSurfManInsideSurf("HB,SurfMan:InsideSurf");
-        static std::string const Inside("Inside");
-        static std::string const BlankString;
+        thread_local static std::string const rhoAirZone("RhoAirZone");
+        thread_local static std::string const wsurf("Wsurf");
+        thread_local static std::string const HBSurfManInsideSurf("HB,SurfMan:InsideSurf");
+        thread_local static std::string const Inside("Inside");
+        thread_local static std::string const BlankString;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AbsInt;     // Solar absorptance of inside movable insulation
@@ -5900,15 +5900,15 @@ namespace HeatBalanceSurfaceManager {
         int RoughSurf;   // Outside surface roughness
         Real64 EmisOut;  // Glass outside surface emissivity
 
-        static Array1D<Real64> TempInsOld; // Holds previous iteration's value for convergence check
+        thread_local static Array1D<Real64> TempInsOld; // Holds previous iteration's value for convergence check
         Real64 TempSurfOutTmp;             // Local Temporary Surface temperature for the outside surface face
         Real64 TempSurfInSat;              // Local temporary surface dew point temperature
 
         int OtherSideSurfNum;     // Surface number index for other side of an interzone partition
-        static int MinIterations; // Minimum number of iterations for the inside heat balance
+        thread_local static int MinIterations; // Minimum number of iterations for the inside heat balance
         //  CHARACTER(len=25):: ErrMsg
         //  CHARACTER(len=5) :: TimeStmp
-        static int ErrCount(0);
+        thread_local static int ErrCount(0);
         int PipeNum;  // TDD pipe object number
         int SurfNum2; // TDD:DIFFUSER object number
         Real64 Ueff;  // 1 / effective R value between TDD:DOME and TDD:DIFFUSER
@@ -5921,15 +5921,15 @@ namespace HeatBalanceSurfaceManager {
         Real64 MassFlowRate;
         Real64 NodeTemp;
         Real64 CpAir;
-        static Array1D<Real64> RefAirTemp; // reference air temperatures
-        static bool MyEnvrnFlag(true);
+        thread_local static Array1D<Real64> RefAirTemp; // reference air temperatures
+        thread_local static bool MyEnvrnFlag(true);
         //  LOGICAL, SAVE     :: DoThisLoop
-        static int InsideSurfErrCount(0);
+        thread_local static int InsideSurfErrCount(0);
         Real64 Wsurf;         // Moisture ratio for HAMT
         Real64 RhoAirZone;    // Zone moisture density for HAMT
         int OtherSideZoneNum; // Zone Number index for other side of an interzone partition HAMT
-        static int WarmupSurfTemp;
-        static int TimeStepInDay(0); // time step number
+        thread_local static int WarmupSurfTemp;
+        thread_local static int TimeStepInDay(0); // time step number
 
         // FLOW:
         if (calcHeatBalanceInsideSurfFirstTime) {
@@ -7343,7 +7343,7 @@ namespace HeatBalanceSurfaceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const BlankString;
+        thread_local static std::string const BlankString;
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // DERIVED TYPE DEFINITIONS:
@@ -7482,9 +7482,9 @@ namespace HeatBalanceSurfaceManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int iZone(0);
-        static int jSurf(0);
-        static int TimeStepInDay(0);
+        thread_local static int iZone(0);
+        thread_local static int jSurf(0);
+        thread_local static int TimeStepInDay(0);
 
         if (CompLoadReportIsReq && !isPulseZoneSizing) {
             TimeStepInDay = (HourOfDay - 1) * NumOfTimeStepInHour + TimeStep;

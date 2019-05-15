@@ -68,8 +68,8 @@ namespace PlantValves {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumTemperingValves;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumTemperingValves;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -109,7 +109,7 @@ namespace PlantValves {
     };
 
     // Object Data
-    extern Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
+    thread_local extern Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
 
     // Functions
 

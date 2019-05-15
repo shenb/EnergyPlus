@@ -90,56 +90,56 @@ namespace DataZoneEquipment {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    int const PathInlet(1);
-    int const CompInlet(2);
-    int const Intermediate(3);
-    int const Outlet(4);
+    thread_local int const PathInlet(1);
+    thread_local int const CompInlet(2);
+    thread_local int const Intermediate(3);
+    thread_local int const Outlet(4);
 
-    int const ZoneSplitter_Type(1);
-    int const ZoneSupplyPlenum_Type(2);
-    int const ZoneMixer_Type(3);
-    int const ZoneReturnPlenum_Type(4);
+    thread_local int const ZoneSplitter_Type(1);
+    thread_local int const ZoneSupplyPlenum_Type(2);
+    thread_local int const ZoneMixer_Type(3);
+    thread_local int const ZoneReturnPlenum_Type(4);
 
     // Start zone equip objects
     // list units that are valid for zone system availability managers first
-    int const FanCoil4Pipe_Num(1);
-    int const PkgTermHPAirToAir_Num(2);
-    int const PkgTermACAirToAir_Num(3);
-    int const PkgTermHPWaterToAir_Num(4);
-    int const WindowAC_Num(5);
-    int const UnitHeater_Num(6);
-    int const UnitVentilator_Num(7);
-    int const ERVStandAlone_Num(8);
-    int const VentilatedSlab_Num(9);
-    int const OutdoorAirUnit_Num(10);
-    int const VRFTerminalUnit_Num(11);
-    int const PurchasedAir_Num(12);
-    int const ZoneEvaporativeCoolerUnit_Num(13);
-    int const ZoneHybridEvaporativeCooler_Num(14);
-    int const AirDistUnit_Num(15);
-    int const DirectAir_Num(16);
-    int const BBWaterConvective_Num(17);
-    int const BBElectricConvective_Num(18);
-    int const HiTempRadiant_Num(19);
-    int const LoTempRadiant_Num(20);
-    int const ZoneExhaustFan_Num(21);
-    int const HeatXchngr_Num(22);
-    int const HPWaterHeater_Num(23);
-    int const BBWater_Num(24);
-    int const ZoneDXDehumidifier_Num(25);
-    int const BBSteam_Num(26);
-    int const BBElectric_Num(27);
-    int const RefrigerationAirChillerSet_Num(28);
-    int const UserDefinedZoneHVACForcedAir_Num(29);
-    int const CoolingPanel_Num(30);
-    int const ZoneUnitarySys_Num(31); // AirloopHVAC:UnitarySystem configured as zone equipment
-    int const TotalNumZoneEquipType(31);
+    thread_local int const FanCoil4Pipe_Num(1);
+    thread_local int const PkgTermHPAirToAir_Num(2);
+    thread_local int const PkgTermACAirToAir_Num(3);
+    thread_local int const PkgTermHPWaterToAir_Num(4);
+    thread_local int const WindowAC_Num(5);
+    thread_local int const UnitHeater_Num(6);
+    thread_local int const UnitVentilator_Num(7);
+    thread_local int const ERVStandAlone_Num(8);
+    thread_local int const VentilatedSlab_Num(9);
+    thread_local int const OutdoorAirUnit_Num(10);
+    thread_local int const VRFTerminalUnit_Num(11);
+    thread_local int const PurchasedAir_Num(12);
+    thread_local int const ZoneEvaporativeCoolerUnit_Num(13);
+    thread_local int const ZoneHybridEvaporativeCooler_Num(14);
+    thread_local int const AirDistUnit_Num(15);
+    thread_local int const DirectAir_Num(16);
+    thread_local int const BBWaterConvective_Num(17);
+    thread_local int const BBElectricConvective_Num(18);
+    thread_local int const HiTempRadiant_Num(19);
+    thread_local int const LoTempRadiant_Num(20);
+    thread_local int const ZoneExhaustFan_Num(21);
+    thread_local int const HeatXchngr_Num(22);
+    thread_local int const HPWaterHeater_Num(23);
+    thread_local int const BBWater_Num(24);
+    thread_local int const ZoneDXDehumidifier_Num(25);
+    thread_local int const BBSteam_Num(26);
+    thread_local int const BBElectric_Num(27);
+    thread_local int const RefrigerationAirChillerSet_Num(28);
+    thread_local int const UserDefinedZoneHVACForcedAir_Num(29);
+    thread_local int const CoolingPanel_Num(30);
+    thread_local int const ZoneUnitarySys_Num(31); // AirloopHVAC:UnitarySystem configured as zone equipment
+    thread_local int const TotalNumZoneEquipType(31);
     // **NOTE**... if you add another zone equipment object, then increment
     // TotalNumZoneEquipType above to match the total number of zone equipment types
     // End zone equip objects
 
-    int const NumValidSysAvailZoneComponents(14);
-    Array1D_string const cValidSysAvailManagerCompTypes(NumValidSysAvailZoneComponents,
+    thread_local int const NumValidSysAvailZoneComponents(14);
+    thread_local Array1D_string const cValidSysAvailManagerCompTypes(NumValidSysAvailZoneComponents,
                                                         {"ZoneHVAC:FourPipeFanCoil",
                                                          "ZoneHVAC:PackagedTerminalHeatPump",
                                                          "ZoneHVAC:PackagedTerminalAirConditioner",
@@ -156,41 +156,41 @@ namespace DataZoneEquipment {
                                                          "ZoneHVAC:HybridUnitaryHVAC"});
 
     // Per Person Ventilation Rate Mode
-    int const PerPersonDCVByCurrentLevel(1);
-    int const PerPersonByDesignLevel(2);
+    thread_local int const PerPersonDCVByCurrentLevel(1);
+    thread_local int const PerPersonByDesignLevel(2);
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
     namespace {
-        bool GetZoneEquipmentDataErrorsFound(false);
-        int GetZoneEquipmentDataFound(0);
+        thread_local bool GetZoneEquipmentDataErrorsFound(false);
+        thread_local int GetZoneEquipmentDataFound(0);
     } // namespace
 
-    int NumSupplyAirPaths(0);
-    int NumReturnAirPaths(0);
-    bool ZoneEquipInputsFilled(false);
-    bool ZoneEquipSimulatedOnce(false);
-    int NumOfZoneEquipLists(0); // The Number of Zone Equipment List objects
-    Array1D_int ZoneEquipAvail;
+    thread_local int NumSupplyAirPaths(0);
+    thread_local int NumReturnAirPaths(0);
+    thread_local bool ZoneEquipInputsFilled(false);
+    thread_local bool ZoneEquipSimulatedOnce(false);
+    thread_local int NumOfZoneEquipLists(0); // The Number of Zone Equipment List objects
+    thread_local Array1D_int ZoneEquipAvail;
 
-    Array1D_bool CrossMixingReportFlag;
-    Array1D_bool MixingReportFlag;
-    Array1D<Real64> VentMCP;
-    Array1D<Real64> ZMAT;
-    Array1D<Real64> ZHumRat;
+    thread_local Array1D_bool CrossMixingReportFlag;
+    thread_local Array1D_bool MixingReportFlag;
+    thread_local Array1D<Real64> VentMCP;
+    thread_local Array1D<Real64> ZMAT;
+    thread_local Array1D<Real64> ZHumRat;
 
     // Utility routines for module
 
     // Object Data
-    Array1D<EquipConfiguration> ZoneEquipConfig;
-    std::unordered_set<std::string> UniqueZoneEquipListNames;
-    Array1D<EquipList> ZoneEquipList;
-    Array1D<ControlList> HeatingControlList;
-    Array1D<ControlList> CoolingControlList;
-    Array1D<SupplyAir> SupplyAirPath;
-    Array1D<ReturnAir> ReturnAirPath;
+    thread_local Array1D<EquipConfiguration> ZoneEquipConfig;
+    thread_local std::unordered_set<std::string> UniqueZoneEquipListNames;
+    thread_local Array1D<EquipList> ZoneEquipList;
+    thread_local Array1D<ControlList> HeatingControlList;
+    thread_local Array1D<ControlList> CoolingControlList;
+    thread_local Array1D<SupplyAir> SupplyAirPath;
+    thread_local Array1D<ReturnAir> ReturnAirPath;
 
     // Functions
     // Clears the global data in DataZoneEquipment.
@@ -289,7 +289,7 @@ namespace DataZoneEquipment {
         using namespace ScheduleManager;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetZoneEquipmentData1: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetZoneEquipmentData1: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;
@@ -769,8 +769,8 @@ namespace DataZoneEquipment {
         Real64 ZoneContamControllerSched; // Schedule value for ZoneControl:ContaminantController
         Real64 CO2PeopleGeneration;       // CO2 generation from people at design level
         int PeopleNum;
-        static Array1D_bool MyEnvrnFlag;
-        static bool OneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static bool OneTimeFlag(true);
 
         OAVolumeFlowRate = 0.0;
         if (DSOAPtr == 0) return OAVolumeFlowRate;

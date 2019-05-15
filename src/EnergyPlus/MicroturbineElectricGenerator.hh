@@ -70,10 +70,10 @@ namespace MicroturbineElectricGenerator {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumMTGenerators; // number of MT Generators specified in input
-    extern bool GetMTInput;     // then TRUE, calls subroutine to read input file.
+    thread_local extern int NumMTGenerators; // number of MT Generators specified in input
+    thread_local extern bool GetMTInput;     // then TRUE, calls subroutine to read input file.
 
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE MicroturbineElectricGenerator
 
@@ -246,8 +246,8 @@ namespace MicroturbineElectricGenerator {
     };
 
     // Object Data
-    extern Array1D<MTGeneratorSpecs> MTGenerator; // dimension to number of generators
-    extern Array1D<ReportVars> MTGeneratorReport;
+    thread_local extern Array1D<MTGeneratorSpecs> MTGenerator; // dimension to number of generators
+    thread_local extern Array1D<ReportVars> MTGeneratorReport;
 
     // Functions
 

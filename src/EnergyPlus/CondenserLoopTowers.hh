@@ -64,66 +64,66 @@ namespace CondenserLoopTowers {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Empirical Model Type
-    extern int const CoolToolsXFModel;
+    thread_local extern int const CoolToolsXFModel;
     // CoolTools counterflow model does not work properly. The empirical model seems flawed since the tower
     // operates in the free convection regime on the design day.
     // INTEGER, PARAMETER             :: CoolToolsCFModel     = 2
-    extern int const CoolToolsUserDefined;
-    extern int const YorkCalcModel;
-    extern int const YorkCalcUserDefined;
+    thread_local extern int const CoolToolsUserDefined;
+    thread_local extern int const YorkCalcModel;
+    thread_local extern int const YorkCalcUserDefined;
 
-    extern int const EvapLossByUserFactor;
-    extern int const EvapLossByMoistTheory;
+    thread_local extern int const EvapLossByUserFactor;
+    thread_local extern int const EvapLossByMoistTheory;
 
-    extern int const BlowdownByConcentration;
-    extern int const BlowdownBySchedule;
+    thread_local extern int const BlowdownByConcentration;
+    thread_local extern int const BlowdownBySchedule;
 
-    extern std::string const cCoolingTower_SingleSpeed;
-    extern std::string const cCoolingTower_TwoSpeed;
-    extern std::string const cCoolingTower_VariableSpeed;
-    extern std::string const cCoolingTower_VariableSpeedMerkel;
+    thread_local extern std::string const cCoolingTower_SingleSpeed;
+    thread_local extern std::string const cCoolingTower_TwoSpeed;
+    thread_local extern std::string const cCoolingTower_VariableSpeed;
+    thread_local extern std::string const cCoolingTower_VariableSpeedMerkel;
 
-    extern int const PIM_NominalCapacity;
-    extern int const PIM_UFactor;
+    thread_local extern int const PIM_NominalCapacity;
+    thread_local extern int const PIM_UFactor;
 
-    extern int const CoolingTower_SingleSpeed;
-    extern int const CoolingTower_TwoSpeed;
-    extern int const CoolingTower_VariableSpeed;
-    extern int const CoolingTower_VariableSpeedMerkel;
+    thread_local extern int const CoolingTower_SingleSpeed;
+    thread_local extern int const CoolingTower_TwoSpeed;
+    thread_local extern int const CoolingTower_VariableSpeed;
+    thread_local extern int const CoolingTower_VariableSpeedMerkel;
 
-    extern int const CapacityControl_FanCycling;
-    extern int const CapacityControl_FluidBypass;
+    thread_local extern int const CapacityControl_FanCycling;
+    thread_local extern int const CapacityControl_FluidBypass;
 
-    extern int const CellCtrl_MinCell;
-    extern int const CellCtrl_MaxCell;
+    thread_local extern int const CellCtrl_MinCell;
+    thread_local extern int const CellCtrl_MaxCell;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumSimpleTowers; // Number of similar towers
+    thread_local extern int NumSimpleTowers; // Number of similar towers
 
     //? The following block of variables are used to carry model results for a tower instance
     //   across sim, update, and report routines.  Simulation manager must be careful
     //   in models with multiple towers.
 
-    extern Real64 InletWaterTemp;    // CW temperature at tower inlet
-    extern Real64 OutletWaterTemp;   // CW temperature at tower outlet
-    extern int WaterInletNode;       // Node number at tower inlet
-    extern int WaterOutletNode;      // Node number at tower outlet
-    extern Real64 WaterMassFlowRate; // WaterMassFlowRate through tower
+    thread_local extern Real64 InletWaterTemp;    // CW temperature at tower inlet
+    thread_local extern Real64 OutletWaterTemp;   // CW temperature at tower outlet
+    thread_local extern int WaterInletNode;       // Node number at tower inlet
+    thread_local extern int WaterOutletNode;      // Node number at tower outlet
+    thread_local extern Real64 WaterMassFlowRate; // WaterMassFlowRate through tower
     // DSU this is plant level stuff now REAL(r64)         :: TowerMassFlowRateMax     = 0.0d0    ! Max Hardware Mass Flow Rate
     // DSU this is plant level stuff now REAL(r64)         :: TowerMassFlowRateMin     = 0.0d0    ! Min Hardware Mass Flow Rate
     // DSU this is plant level stuff now REAL(r64)         :: LoopMassFlowRateMaxAvail = 0.0d0    ! Max Loop Mass Flow Rate available
     // DSU this is plant level stuff now REAL(r64)         :: LoopMassFlowRateMinAvail = 0.0d0    ! Min Loop Mass Flow Rate available
-    extern Real64 Qactual;          // Tower heat transfer
-    extern Real64 CTFanPower;       // Tower fan power used
-    extern Real64 AirFlowRateRatio; // Ratio of air flow rate through VS cooling tower to design air flow rate
-    extern Real64 BasinHeaterPower; // Basin heater power use (W)
-    extern Real64 WaterUsage;       // Tower water usage (m3/s)
-    extern Real64 FanCyclingRatio;  // cycling ratio of tower fan when min fan speed provide to much capacity
+    thread_local extern Real64 Qactual;          // Tower heat transfer
+    thread_local extern Real64 CTFanPower;       // Tower fan power used
+    thread_local extern Real64 AirFlowRateRatio; // Ratio of air flow rate through VS cooling tower to design air flow rate
+    thread_local extern Real64 BasinHeaterPower; // Basin heater power use (W)
+    thread_local extern Real64 WaterUsage;       // Tower water usage (m3/s)
+    thread_local extern Real64 FanCyclingRatio;  // cycling ratio of tower fan when min fan speed provide to much capacity
 
-    extern bool GetInput; // When TRUE, calls subroutine to read input file
-    extern Array1D_bool CheckEquipName;
+    thread_local extern bool GetInput; // When TRUE, calls subroutine to read input file
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE CondenserLoopTowers
 
@@ -437,10 +437,10 @@ namespace CondenserLoopTowers {
     };
 
     // Object Data
-    extern Array1D<Towerspecs> SimpleTower;           // dimension to number of machines
-    extern Array1D<TowerInletConds> SimpleTowerInlet; // inlet conditions
-    extern Array1D<ReportVars> SimpleTowerReport;     // report variables
-    extern Array1D<VSTowerData> VSTower;              // model coefficients and specific variables for VS tower
+    thread_local extern Array1D<Towerspecs> SimpleTower;           // dimension to number of machines
+    thread_local extern Array1D<TowerInletConds> SimpleTowerInlet; // inlet conditions
+    thread_local extern Array1D<ReportVars> SimpleTowerReport;     // report variables
+    thread_local extern Array1D<VSTowerData> VSTower;              // model coefficients and specific variables for VS tower
 
     // Functions
     void clear_state();

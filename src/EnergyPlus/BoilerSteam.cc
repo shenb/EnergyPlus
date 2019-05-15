@@ -114,23 +114,23 @@ namespace BoilerSteam {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    Real64 FuelUsed(0.0);           // W - Boiler fuel used
-    Real64 BoilerLoad(0.0);         // W - Boiler Load
-    Real64 BoilerMassFlowRate(0.0); // kg/s - Boiler mass flow rate
-    Real64 BoilerOutletTemp(0.0);   // W - Boiler outlet temperature
-    Real64 BoilerMaxPress(0.0);
-    int NumBoilers(0);                  // Number of boilers
-    Real64 BoilerMassFlowMaxAvail(0.0); // kg/s - Boiler mass flow rate
-    Real64 BoilerMassFlowMinAvail(0.0); // kg/s - Boiler mass flow rate
-    static std::string const FluidNameSteam("STEAM");
+    thread_local Real64 FuelUsed(0.0);           // W - Boiler fuel used
+    thread_local Real64 BoilerLoad(0.0);         // W - Boiler Load
+    thread_local Real64 BoilerMassFlowRate(0.0); // kg/s - Boiler mass flow rate
+    thread_local Real64 BoilerOutletTemp(0.0);   // W - Boiler outlet temperature
+    thread_local Real64 BoilerMaxPress(0.0);
+    thread_local int NumBoilers(0);                  // Number of boilers
+    thread_local Real64 BoilerMassFlowMaxAvail(0.0); // kg/s - Boiler mass flow rate
+    thread_local Real64 BoilerMassFlowMinAvail(0.0); // kg/s - Boiler mass flow rate
+    thread_local static std::string const FluidNameSteam("STEAM");
 
-    Array1D_bool CheckEquipName;
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Boilers
 
     // Object Data
-    Array1D<BoilerSpecs> Boiler; // dimension to number of machines
-    Array1D<ReportVars> BoilerReport;
+    thread_local Array1D<BoilerSpecs> Boiler; // dimension to number of machines
+    thread_local Array1D<ReportVars> BoilerReport;
 
     // MODULE SUBROUTINES:
 
@@ -194,7 +194,7 @@ namespace BoilerSteam {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool GetInput(true); // if TRUE read user input
+        thread_local static bool GetInput(true); // if TRUE read user input
         int BoilerNum;              // boiler counter/identifier
 
         // Get Input
@@ -273,7 +273,7 @@ namespace BoilerSteam {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetBoilerInput: ");
+        thread_local static std::string const RoutineName("GetBoilerInput: ");
 
         // LOCAL VARIABLES
         int BoilerNum;       // boiler identifier
@@ -281,7 +281,7 @@ namespace BoilerSteam {
         int NumNums;         // Number of elements in the numeric array
         int IOStat;          // IO Status when calling get input subroutine
         int SteamFluidIndex; // Fluid Index for Steam
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;
         Array1D_string BoilerFuelTypeForOutputVariable; // used to set up report variables
 
@@ -537,7 +537,7 @@ namespace BoilerSteam {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitBoiler");
+        thread_local static std::string const RoutineName("InitBoiler");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -546,9 +546,9 @@ namespace BoilerSteam {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyFlag;
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyFlag;
+        thread_local static Array1D_bool MyEnvrnFlag;
         bool FatalError;
         Real64 TempUpLimitBoilerOut; // C - Boiler outlet maximum temperature limit
         Real64 EnthSteamOutWet;
@@ -713,7 +713,7 @@ namespace BoilerSteam {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeBoiler");
+        thread_local static std::string const RoutineName("SizeBoiler");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -852,7 +852,7 @@ namespace BoilerSteam {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcBoilerModel");
+        thread_local static std::string const RoutineName("CalcBoilerModel");
 
         // DERIVED TYPE DEFINITIONS
         // na

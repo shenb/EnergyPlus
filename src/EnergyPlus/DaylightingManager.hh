@@ -70,56 +70,56 @@ namespace DaylightingManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const octreeCrossover; // Surface count crossover for switching to octree algorithm
+    thread_local extern int const octreeCrossover; // Surface count crossover for switching to octree algorithm
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int TotWindowsWithDayl;    // Total number of exterior windows in all daylit zones
-    extern int OutputFileDFS;         // Unit number for daylight factors
-    extern Array1D<Real64> DaylIllum; // Daylight illuminance at reference points (lux)
-    extern Real64 PHSUN;              // Solar altitude (radians)
-    extern Real64 SPHSUN;             // Sine of solar altitude
-    extern Real64 CPHSUN;             // Cosine of solar altitude
-    extern Real64 THSUN;              // Solar azimuth (rad) in Absolute Coordinate System (azimuth=0 along east)
-    extern Array1D<Real64> PHSUNHR;   // Hourly values of PHSUN
-    extern Array1D<Real64> SPHSUNHR;  // Hourly values of the sine of PHSUN
-    extern Array1D<Real64> CPHSUNHR;  // Hourly values of the cosine of PHSUN
-    extern Array1D<Real64> THSUNHR;   // Hourly values of THSUN
+    thread_local extern int TotWindowsWithDayl;    // Total number of exterior windows in all daylit zones
+    thread_local extern int OutputFileDFS;         // Unit number for daylight factors
+    thread_local extern Array1D<Real64> DaylIllum; // Daylight illuminance at reference points (lux)
+    thread_local extern Real64 PHSUN;              // Solar altitude (radians)
+    thread_local extern Real64 SPHSUN;             // Sine of solar altitude
+    thread_local extern Real64 CPHSUN;             // Cosine of solar altitude
+    thread_local extern Real64 THSUN;              // Solar azimuth (rad) in Absolute Coordinate System (azimuth=0 along east)
+    thread_local extern Array1D<Real64> PHSUNHR;   // Hourly values of PHSUN
+    thread_local extern Array1D<Real64> SPHSUNHR;  // Hourly values of the sine of PHSUN
+    thread_local extern Array1D<Real64> CPHSUNHR;  // Hourly values of the cosine of PHSUN
+    thread_local extern Array1D<Real64> THSUNHR;   // Hourly values of THSUN
 
     // In the following I,J,K arrays:
     // I = 1 for clear sky, 2 for clear turbid, 3 for intermediate, 4 for overcast;
     // J = 1 for bare window, 2 - 12 for shaded;
     // K = sun position index.
-    extern Array3D<Real64> EINTSK; // Sky-related portion of internally reflected illuminance
-    extern Array2D<Real64> EINTSU; // Sun-related portion of internally reflected illuminance,
+    thread_local extern Array3D<Real64> EINTSK; // Sky-related portion of internally reflected illuminance
+    thread_local extern Array2D<Real64> EINTSU; // Sun-related portion of internally reflected illuminance,
     // excluding entering beam
-    extern Array2D<Real64> EINTSUdisk; // Sun-related portion of internally reflected illuminance
+    thread_local extern Array2D<Real64> EINTSUdisk; // Sun-related portion of internally reflected illuminance
     // due to entering beam
-    extern Array3D<Real64> WLUMSK;     // Sky-related window luminance
-    extern Array2D<Real64> WLUMSU;     // Sun-related window luminance, excluding view of solar disk
-    extern Array2D<Real64> WLUMSUdisk; // Sun-related window luminance, due to view of solar disk
+    thread_local extern Array3D<Real64> WLUMSK;     // Sky-related window luminance
+    thread_local extern Array2D<Real64> WLUMSU;     // Sun-related window luminance, excluding view of solar disk
+    thread_local extern Array2D<Real64> WLUMSUdisk; // Sun-related window luminance, due to view of solar disk
 
-    extern Array2D<Real64> GILSK; // Horizontal illuminance from sky, by sky type, for each hour of the day
-    extern Array1D<Real64> GILSU; // Horizontal illuminance from sun for each hour of the day
+    thread_local extern Array2D<Real64> GILSK; // Horizontal illuminance from sky, by sky type, for each hour of the day
+    thread_local extern Array1D<Real64> GILSU; // Horizontal illuminance from sun for each hour of the day
 
-    extern Array3D<Real64> EDIRSK;     // Sky-related component of direct illuminance
-    extern Array2D<Real64> EDIRSU;     // Sun-related component of direct illuminance (excluding beam solar at ref pt)
-    extern Array2D<Real64> EDIRSUdisk; // Sun-related component of direct illuminance due to beam solar at ref pt
-    extern Array3D<Real64> AVWLSK;     // Sky-related average window luminance
-    extern Array2D<Real64> AVWLSU;     // Sun-related average window luminance, excluding view of solar disk
-    extern Array2D<Real64> AVWLSUdisk; // Sun-related average window luminance due to view of solar disk
+    thread_local extern Array3D<Real64> EDIRSK;     // Sky-related component of direct illuminance
+    thread_local extern Array2D<Real64> EDIRSU;     // Sun-related component of direct illuminance (excluding beam solar at ref pt)
+    thread_local extern Array2D<Real64> EDIRSUdisk; // Sun-related component of direct illuminance due to beam solar at ref pt
+    thread_local extern Array3D<Real64> AVWLSK;     // Sky-related average window luminance
+    thread_local extern Array2D<Real64> AVWLSU;     // Sun-related average window luminance, excluding view of solar disk
+    thread_local extern Array2D<Real64> AVWLSUdisk; // Sun-related average window luminance due to view of solar disk
 
     // Allocatable daylight factor arrays  -- are in the ZoneDaylight Structure
 
-    extern Array2D<Real64> TDDTransVisBeam;
-    extern Array3D<Real64> TDDFluxInc;
-    extern Array3D<Real64> TDDFluxTrans;
+    thread_local extern Array2D<Real64> TDDTransVisBeam;
+    thread_local extern Array3D<Real64> TDDFluxInc;
+    thread_local extern Array3D<Real64> TDDFluxTrans;
 
-    extern Array2D_int MapErrIndex;
-    extern Array2D_int RefErrIndex;
+    thread_local extern Array2D_int MapErrIndex;
+    thread_local extern Array2D_int RefErrIndex;
 
-    extern Array1D_bool CheckTDDZone;
+    thread_local extern Array1D_bool CheckTDDZone;
 
-    extern std::string mapLine; // character variable to hold map outputs
+    thread_local extern std::string mapLine; // character variable to hold map outputs
 
     // Functions
     void clear_state();

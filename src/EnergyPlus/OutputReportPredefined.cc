@@ -76,822 +76,822 @@ namespace OutputReportPredefined {
     // The variables get their value in AssignPredefined
 
     // Climate Summary Report
-    int pdrClim;
-    int pdstDesDay;
-    int pdchDDmaxDB;
-    int pdchDDrange;
-    int pdchDDhumid;
-    int pdchDDhumTyp;
-    int pdchDDwindSp;
-    int pdchDDwindDr;
-    int pdstWthr;
-    int pdchWthrVal;
+    thread_local int pdrClim;
+    thread_local int pdstDesDay;
+    thread_local int pdchDDmaxDB;
+    thread_local int pdchDDrange;
+    thread_local int pdchDDhumid;
+    thread_local int pdchDDhumTyp;
+    thread_local int pdchDDwindSp;
+    thread_local int pdchDDwindDr;
+    thread_local int pdstWthr;
+    thread_local int pdchWthrVal;
 
     // HVAC Equipment Report
-    int pdrEquip;
-    int pdstMech;
-    int pdchMechType;
-    int pdchMechNomCap;
-    int pdchMechNomEff;
-    int pdchMechIPLVSI;
-    int pdchMechIPLVIP;
+    thread_local int pdrEquip;
+    thread_local int pdstMech;
+    thread_local int pdchMechType;
+    thread_local int pdchMechNomCap;
+    thread_local int pdchMechNomEff;
+    thread_local int pdchMechIPLVSI;
+    thread_local int pdchMechIPLVIP;
     // Fan subtable
-    int pdstFan;
-    int pdchFanType;
-    int pdchFanTotEff;
-    int pdchFanDeltaP;
-    int pdchFanVolFlow;
-    int pdchFanMotorIn;
-    int pdchFanEnergyIndex;
-    int pdchFanEndUse;
-    int pdchFanPwr;
-    int pdchFanPwrPerFlow;
-    int pdchFanDesDay;
-    int pdchFanPkTime;
+    thread_local int pdstFan;
+    thread_local int pdchFanType;
+    thread_local int pdchFanTotEff;
+    thread_local int pdchFanDeltaP;
+    thread_local int pdchFanVolFlow;
+    thread_local int pdchFanMotorIn;
+    thread_local int pdchFanEnergyIndex;
+    thread_local int pdchFanEndUse;
+    thread_local int pdchFanPwr;
+    thread_local int pdchFanPwrPerFlow;
+    thread_local int pdchFanDesDay;
+    thread_local int pdchFanPkTime;
     // Pump subtable
-    int pdstPump;
-    int pdchPumpType;
-    int pdchPumpControl;
-    int pdchPumpHead;
-    int pdchPumpFlow;
-    int pdchPumpPower;
-    int pdchPumpPwrPerFlow;
-    int pdchMotEff;
+    thread_local int pdstPump;
+    thread_local int pdchPumpType;
+    thread_local int pdchPumpControl;
+    thread_local int pdchPumpHead;
+    thread_local int pdchPumpFlow;
+    thread_local int pdchPumpPower;
+    thread_local int pdchPumpPwrPerFlow;
+    thread_local int pdchMotEff;
     // Cooling coil subtable
-    int pdstCoolCoil;
-    int pdchCoolCoilType;
-    int pdchCoolCoilDesCap;
-    int pdchCoolCoilTotCap;
-    int pdchCoolCoilSensCap;
-    int pdchCoolCoilLatCap;
-    int pdchCoolCoilSHR;
-    int pdchCoolCoilNomEff;
-    int pdchCoolCoilUATotal;
-    int pdchCoolCoilArea;
+    thread_local int pdstCoolCoil;
+    thread_local int pdchCoolCoilType;
+    thread_local int pdchCoolCoilDesCap;
+    thread_local int pdchCoolCoilTotCap;
+    thread_local int pdchCoolCoilSensCap;
+    thread_local int pdchCoolCoilLatCap;
+    thread_local int pdchCoolCoilSHR;
+    thread_local int pdchCoolCoilNomEff;
+    thread_local int pdchCoolCoilUATotal;
+    thread_local int pdchCoolCoilArea;
 
     // DX Cooling Coil subtable
-    int pdstDXCoolCoil;
-    int pdchDXCoolCoilType; // DX cooling coil type
+    thread_local int pdstDXCoolCoil;
+    thread_local int pdchDXCoolCoilType; // DX cooling coil type
 
-    int pdchDXCoolCoilNetCapSI; // Standard Rated (Net) Cooling Capacity [W]
-    int pdchDXCoolCoilCOP;      // EER/COP value in SI unit at AHRI std. 340/360 conditions [W/W]
-    int pdchDXCoolCoilSEERIP;   // SEER value in IP unit at AHRI std. 210/240 conditions [Btu/W-hr]
-    int pdchDXCoolCoilEERIP;    // EER value in IP unit at AHRI std. 340/360 conditions [Btu/W-h]
-    int pdchDXCoolCoilIEERIP;   // IEER value in IP unit at AHRI std. 340/360 conditions
+    thread_local int pdchDXCoolCoilNetCapSI; // Standard Rated (Net) Cooling Capacity [W]
+    thread_local int pdchDXCoolCoilCOP;      // EER/COP value in SI unit at AHRI std. 340/360 conditions [W/W]
+    thread_local int pdchDXCoolCoilSEERIP;   // SEER value in IP unit at AHRI std. 210/240 conditions [Btu/W-hr]
+    thread_local int pdchDXCoolCoilEERIP;    // EER value in IP unit at AHRI std. 340/360 conditions [Btu/W-h]
+    thread_local int pdchDXCoolCoilIEERIP;   // IEER value in IP unit at AHRI std. 340/360 conditions
 
     // DX Cooling Coil subtable per ANSI/ASHRAE Std 127 for Tests A, B, C and D
-    int pdstDXCoolCoil2;
-    int pdchDXCoolCoilNetCapSIA;  // Standard Rated (Net) Cooling Capacity [W], Test A
-    int pdchDXCoolCoilElecPowerA; // Standard Rated Electric Power [W], Test A
-    int pdchDXCoolCoilNetCapSIB;  // Standard Rated (Net) Cooling Capacity [W], Test B
-    int pdchDXCoolCoilElecPowerB; // Standard Rated Electric Power [W], Test B
-    int pdchDXCoolCoilNetCapSIC;  // Standard Rated (Net) Cooling Capacity [W], Test C
-    int pdchDXCoolCoilElecPowerC; // Standard Rated Electric Power [W], Test C
-    int pdchDXCoolCoilNetCapSID;  // Standard Rated (Net) Cooling Capacity [W], Test D
-    int pdchDXCoolCoilElecPowerD; // Standard Rated Electric Power [W], Test D
+    thread_local int pdstDXCoolCoil2;
+    thread_local int pdchDXCoolCoilNetCapSIA;  // Standard Rated (Net) Cooling Capacity [W], Test A
+    thread_local int pdchDXCoolCoilElecPowerA; // Standard Rated Electric Power [W], Test A
+    thread_local int pdchDXCoolCoilNetCapSIB;  // Standard Rated (Net) Cooling Capacity [W], Test B
+    thread_local int pdchDXCoolCoilElecPowerB; // Standard Rated Electric Power [W], Test B
+    thread_local int pdchDXCoolCoilNetCapSIC;  // Standard Rated (Net) Cooling Capacity [W], Test C
+    thread_local int pdchDXCoolCoilElecPowerC; // Standard Rated Electric Power [W], Test C
+    thread_local int pdchDXCoolCoilNetCapSID;  // Standard Rated (Net) Cooling Capacity [W], Test D
+    thread_local int pdchDXCoolCoilElecPowerD; // Standard Rated Electric Power [W], Test D
 
     // VAV DX Cooling Ratings Details
-    int pdstVAVDXCoolCoil; // details for Packaged VAV rating under AHRI 340/360
-    int pdchVAVDXCoolCoilType;
-    int pdchVAVDXFanName;
-    int pdchVAVDXCoolCoilNetCapSI;
-    int pdchVAVDXCoolCoilCOP;
-    int pdchVAVDXCoolCoilIEERIP;
-    int pdchVAVDXCoolCoilEERIP;
-    int pdchVAVDXCoolCoilMdotA;
-    int pdchVAVDXCoolCoilCOP_B;
-    int pdchVAVDXCoolCoilEER_B_IP;
-    int pdchVAVDXCoolCoilMdotB;
-    int pdchVAVDXCoolCoilCOP_C;
-    int pdchVAVDXCoolCoilEER_C_IP;
-    int pdchVAVDXCoolCoilMdotC;
-    int pdchVAVDXCoolCoilCOP_D;
-    int pdchVAVDXCoolCoilEER_D_IP;
-    int pdchVAVDXCoolCoilMdotD;
+    thread_local int pdstVAVDXCoolCoil; // details for Packaged VAV rating under AHRI 340/360
+    thread_local int pdchVAVDXCoolCoilType;
+    thread_local int pdchVAVDXFanName;
+    thread_local int pdchVAVDXCoolCoilNetCapSI;
+    thread_local int pdchVAVDXCoolCoilCOP;
+    thread_local int pdchVAVDXCoolCoilIEERIP;
+    thread_local int pdchVAVDXCoolCoilEERIP;
+    thread_local int pdchVAVDXCoolCoilMdotA;
+    thread_local int pdchVAVDXCoolCoilCOP_B;
+    thread_local int pdchVAVDXCoolCoilEER_B_IP;
+    thread_local int pdchVAVDXCoolCoilMdotB;
+    thread_local int pdchVAVDXCoolCoilCOP_C;
+    thread_local int pdchVAVDXCoolCoilEER_C_IP;
+    thread_local int pdchVAVDXCoolCoilMdotC;
+    thread_local int pdchVAVDXCoolCoilCOP_D;
+    thread_local int pdchVAVDXCoolCoilEER_D_IP;
+    thread_local int pdchVAVDXCoolCoilMdotD;
 
     // DX Heating Coil subtable
-    int pdstDXHeatCoil;
-    int pdchDXHeatCoilType; // DX Heating coil type
-    int pdchDXHeatCoilHighCap;
-    int pdchDXHeatCoilLowCap;
-    int pdchDXHeatCoilHSPFSI;    // HSPF value in SI unit at AHRI std. 340/360 conditions [W/W]
-    int pdchDXHeatCoilHSPFIP;    // HSPF value in IP unit at AHRI std. 340/360 conditions [Btu/W-hr]
-    int pdchDXHeatCoilRegionNum; // Region number for which HSPF is calculated
+    thread_local int pdstDXHeatCoil;
+    thread_local int pdchDXHeatCoilType; // DX Heating coil type
+    thread_local int pdchDXHeatCoilHighCap;
+    thread_local int pdchDXHeatCoilLowCap;
+    thread_local int pdchDXHeatCoilHSPFSI;    // HSPF value in SI unit at AHRI std. 340/360 conditions [W/W]
+    thread_local int pdchDXHeatCoilHSPFIP;    // HSPF value in IP unit at AHRI std. 340/360 conditions [Btu/W-hr]
+    thread_local int pdchDXHeatCoilRegionNum; // Region number for which HSPF is calculated
 
     // Heating Coil subtable
-    int pdstHeatCoil;
-    int pdchHeatCoilType;
-    int pdchHeatCoilDesCap;
-    int pdchHeatCoilNomCap;
-    int pdchHeatCoilNomEff;
+    thread_local int pdstHeatCoil;
+    thread_local int pdchHeatCoilType;
+    thread_local int pdchHeatCoilDesCap;
+    thread_local int pdchHeatCoilNomCap;
+    thread_local int pdchHeatCoilNomEff;
     // SWH subtable
-    int pdstSWH;
-    int pdchSWHType;
-    int pdchSWHVol;
-    int pdchSWHHeatIn;
-    int pdchSWHThEff;
-    int pdchSWHRecEff;
-    int pdchSWHEnFac;
+    thread_local int pdstSWH;
+    thread_local int pdchSWHType;
+    thread_local int pdchSWHVol;
+    thread_local int pdchSWHHeatIn;
+    thread_local int pdchSWHThEff;
+    thread_local int pdchSWHRecEff;
+    thread_local int pdchSWHEnFac;
 
     // Envelope Report
-    int pdrEnvelope;
-    int pdstOpaque;
-    int pdchOpCons;
-    int pdchOpRefl;
-    int pdchOpUfactFilm;
-    int pdchOpUfactNoFilm;
-    int pdchOpGrArea;
-    int pdchOpNetArea;
-    int pdchOpAzimuth;
-    int pdchOpTilt;
-    int pdchOpDir;
-    int pdstFen;
-    int pdchFenCons;
-    int pdchFenAreaOf1;
-    int pdchFenGlassAreaOf1;
-    int pdchFenFrameAreaOf1;
-    int pdchFenDividerAreaOf1;
-    int pdchFenArea;
-    int pdchFenUfact;
-    int pdchFenSHGC;
-    int pdchFenVisTr;
-    int pdchFenFrameConductance;
-    int pdchFenDividerConductance;
-    int pdchFenSwitchable;
-    int pdchFenParent;
-    int pdchFenAzimuth;
-    int pdchFenTilt;
-    int pdchFenDir;
-    int pdstDoor;
-    int pdchDrCons;
-    int pdchDrUfactFilm;
-    int pdchDrUfactNoFilm;
-    int pdchDrGrArea;
-    int pdchDrParent;
-    int pdstIntFen;
-    int pdchIntFenCons;
-    int pdchIntFenAreaOf1;
+    thread_local int pdrEnvelope;
+    thread_local int pdstOpaque;
+    thread_local int pdchOpCons;
+    thread_local int pdchOpRefl;
+    thread_local int pdchOpUfactFilm;
+    thread_local int pdchOpUfactNoFilm;
+    thread_local int pdchOpGrArea;
+    thread_local int pdchOpNetArea;
+    thread_local int pdchOpAzimuth;
+    thread_local int pdchOpTilt;
+    thread_local int pdchOpDir;
+    thread_local int pdstFen;
+    thread_local int pdchFenCons;
+    thread_local int pdchFenAreaOf1;
+    thread_local int pdchFenGlassAreaOf1;
+    thread_local int pdchFenFrameAreaOf1;
+    thread_local int pdchFenDividerAreaOf1;
+    thread_local int pdchFenArea;
+    thread_local int pdchFenUfact;
+    thread_local int pdchFenSHGC;
+    thread_local int pdchFenVisTr;
+    thread_local int pdchFenFrameConductance;
+    thread_local int pdchFenDividerConductance;
+    thread_local int pdchFenSwitchable;
+    thread_local int pdchFenParent;
+    thread_local int pdchFenAzimuth;
+    thread_local int pdchFenTilt;
+    thread_local int pdchFenDir;
+    thread_local int pdstDoor;
+    thread_local int pdchDrCons;
+    thread_local int pdchDrUfactFilm;
+    thread_local int pdchDrUfactNoFilm;
+    thread_local int pdchDrGrArea;
+    thread_local int pdchDrParent;
+    thread_local int pdstIntFen;
+    thread_local int pdchIntFenCons;
+    thread_local int pdchIntFenAreaOf1;
     // Include these if interzone windows ever get frame and dividers
     // INTEGER :: pdchIntFenGlassAreaOf1
     // INTEGER :: pdchIntFenFrameAreaOf1
     // INTEGER :: pdchIntFenDividerAreaOf1
     // INTEGER :: pdchIntFenFrameConductance
     // INTEGER :: pdchIntFenDividerConductance
-    int pdchIntFenArea;
-    int pdchIntFenUfact;
-    int pdchIntFenSHGC;
-    int pdchIntFenVisTr;
-    int pdchIntFenParent;
+    thread_local int pdchIntFenArea;
+    thread_local int pdchIntFenUfact;
+    thread_local int pdchIntFenSHGC;
+    thread_local int pdchIntFenVisTr;
+    thread_local int pdchIntFenParent;
 
     // Shading Report
-    int pdrShading;
-    int pdstSunlitFrac;
-    int pdchSlfMar21_9;
-    int pdchSlfMar21_12;
-    int pdchSlfMar21_15;
-    int pdchSlfJun21_9;
-    int pdchSlfJun21_12;
-    int pdchSlfJun21_15;
-    int pdchSlfDec21_9;
-    int pdchSlfDec21_12;
-    int pdchSlfDec21_15;
-    int pdstWindowControl;
-    int pdchWscName;
-    int pdchWscShading;
-    int pdchWscShadCons;
-    int pdchWscControl;
-    int pdchWscGlare;
+    thread_local int pdrShading;
+    thread_local int pdstSunlitFrac;
+    thread_local int pdchSlfMar21_9;
+    thread_local int pdchSlfMar21_12;
+    thread_local int pdchSlfMar21_15;
+    thread_local int pdchSlfJun21_9;
+    thread_local int pdchSlfJun21_12;
+    thread_local int pdchSlfJun21_15;
+    thread_local int pdchSlfDec21_9;
+    thread_local int pdchSlfDec21_12;
+    thread_local int pdchSlfDec21_15;
+    thread_local int pdstWindowControl;
+    thread_local int pdchWscName;
+    thread_local int pdchWscShading;
+    thread_local int pdchWscShadCons;
+    thread_local int pdchWscControl;
+    thread_local int pdchWscGlare;
 
     // Lighting Report
-    int pdrLighting;
-    int pdstInLite;
-    int pdchInLtZone;
-    int pdchInLtDens;
-    int pdchInLtArea;
-    int pdchInLtPower;
-    int pdchInLtEndUse;
-    int pdchInLtSchd;
-    int pdchInLtAvgHrSchd;
-    int pdchInLtAvgHrOper;
-    int pdchInLtFullLoadHrs;
-    int pdchInLtRetAir;
-    int pdchInLtCond;
-    int pdchInLtConsump;
-    int pdstExtLite;
-    int pdchExLtPower;
-    int pdchExLtClock;
-    int pdchExLtSchd;
-    int pdchExLtAvgHrSchd;
-    int pdchExLtAvgHrOper;
-    int pdchExLtFullLoadHrs;
-    int pdchExLtConsump;
-    int pdstDaylight;
-    int pdchDyLtZone;
-    int pdchDyLtCtrlName;
-    int pdchDyLtKind;
-    int pdchDyLtCtrlType;
-    int pdchDyLtFrac;
-    int pdchDyLtWInst;
-    int pdchDyLtWCtrl;
+    thread_local int pdrLighting;
+    thread_local int pdstInLite;
+    thread_local int pdchInLtZone;
+    thread_local int pdchInLtDens;
+    thread_local int pdchInLtArea;
+    thread_local int pdchInLtPower;
+    thread_local int pdchInLtEndUse;
+    thread_local int pdchInLtSchd;
+    thread_local int pdchInLtAvgHrSchd;
+    thread_local int pdchInLtAvgHrOper;
+    thread_local int pdchInLtFullLoadHrs;
+    thread_local int pdchInLtRetAir;
+    thread_local int pdchInLtCond;
+    thread_local int pdchInLtConsump;
+    thread_local int pdstExtLite;
+    thread_local int pdchExLtPower;
+    thread_local int pdchExLtClock;
+    thread_local int pdchExLtSchd;
+    thread_local int pdchExLtAvgHrSchd;
+    thread_local int pdchExLtAvgHrOper;
+    thread_local int pdchExLtFullLoadHrs;
+    thread_local int pdchExLtConsump;
+    thread_local int pdstDaylight;
+    thread_local int pdchDyLtZone;
+    thread_local int pdchDyLtCtrlName;
+    thread_local int pdchDyLtKind;
+    thread_local int pdchDyLtCtrlType;
+    thread_local int pdchDyLtFrac;
+    thread_local int pdchDyLtWInst;
+    thread_local int pdchDyLtWCtrl;
 
     // Sizing Report
-    int pdrSizing;
-    int pdstZoneClSize;
-    int pdchZnClCalcDesLd;
-    int pdchZnClUserDesLd;
-    int pdchZnClUserDesLdPerArea;
-    int pdchZnClCalcDesAirFlow;
-    int pdchZnClUserDesAirFlow;
-    int pdchZnClDesDay;
-    int pdchZnClPkTime;
-    int pdchZnClPkTstatTemp;
-    int pdchZnClPkIndTemp;
-    int pdchZnClPkIndHum;
-    int pdchZnClPkOATemp;
-    int pdchZnClPkOAHum;
-    int pdchZnClPkOAMinFlow;
-    int pdchZnClPkDOASHeatGain;
-    int pdstZoneHtSize;
-    int pdchZnHtCalcDesLd;
-    int pdchZnHtUserDesLd;
-    int pdchZnHtUserDesLdPerArea;
-    int pdchZnHtCalcDesAirFlow;
-    int pdchZnHtUserDesAirFlow;
-    int pdchZnHtDesDay;
-    int pdchZnHtPkTime;
-    int pdchZnHtPkTstatTemp;
-    int pdchZnHtPkIndTemp;
-    int pdchZnHtPkIndHum;
-    int pdchZnHtPkOATemp;
-    int pdchZnHtPkOAHum;
-    int pdchZnHtPkOAMinFlow;
-    int pdchZnHtPkDOASHeatGain;
-    int pdstSystemSize;
-    int pdchSysSizCalcClAir;
-    int pdchSysSizUserClAir;
-    int pdchSysSizCalcHtAir;
-    int pdchSysSizUserHtAir;
-    int pdchSysSizAdjustedClAir;
-    int pdchSysSizAdjustedHtAir;
-    int pdchSysSizAdjustedMainAir;
-    int pdchSysSizCalcHeatFlowRatio;
-    int pdchSysSizUserHeatFlowRatio;
-    int pdstPlantSize;
-    int pdchPlantSizCalcVdot;
-    int pdchPlantSizMeasVdot;
-    int pdchPlantSizPrevVdot;
+    thread_local int pdrSizing;
+    thread_local int pdstZoneClSize;
+    thread_local int pdchZnClCalcDesLd;
+    thread_local int pdchZnClUserDesLd;
+    thread_local int pdchZnClUserDesLdPerArea;
+    thread_local int pdchZnClCalcDesAirFlow;
+    thread_local int pdchZnClUserDesAirFlow;
+    thread_local int pdchZnClDesDay;
+    thread_local int pdchZnClPkTime;
+    thread_local int pdchZnClPkTstatTemp;
+    thread_local int pdchZnClPkIndTemp;
+    thread_local int pdchZnClPkIndHum;
+    thread_local int pdchZnClPkOATemp;
+    thread_local int pdchZnClPkOAHum;
+    thread_local int pdchZnClPkOAMinFlow;
+    thread_local int pdchZnClPkDOASHeatGain;
+    thread_local int pdstZoneHtSize;
+    thread_local int pdchZnHtCalcDesLd;
+    thread_local int pdchZnHtUserDesLd;
+    thread_local int pdchZnHtUserDesLdPerArea;
+    thread_local int pdchZnHtCalcDesAirFlow;
+    thread_local int pdchZnHtUserDesAirFlow;
+    thread_local int pdchZnHtDesDay;
+    thread_local int pdchZnHtPkTime;
+    thread_local int pdchZnHtPkTstatTemp;
+    thread_local int pdchZnHtPkIndTemp;
+    thread_local int pdchZnHtPkIndHum;
+    thread_local int pdchZnHtPkOATemp;
+    thread_local int pdchZnHtPkOAHum;
+    thread_local int pdchZnHtPkOAMinFlow;
+    thread_local int pdchZnHtPkDOASHeatGain;
+    thread_local int pdstSystemSize;
+    thread_local int pdchSysSizCalcClAir;
+    thread_local int pdchSysSizUserClAir;
+    thread_local int pdchSysSizCalcHtAir;
+    thread_local int pdchSysSizUserHtAir;
+    thread_local int pdchSysSizAdjustedClAir;
+    thread_local int pdchSysSizAdjustedHtAir;
+    thread_local int pdchSysSizAdjustedMainAir;
+    thread_local int pdchSysSizCalcHeatFlowRatio;
+    thread_local int pdchSysSizUserHeatFlowRatio;
+    thread_local int pdstPlantSize;
+    thread_local int pdchPlantSizCalcVdot;
+    thread_local int pdchPlantSizMeasVdot;
+    thread_local int pdchPlantSizPrevVdot;
     //	int pdchPlantSizPass;
-    int pdchPlantSizCoincYesNo;
-    int pdchPlantSizDesDay;
-    int pdchPlantSizPkTimeHour;
-    int pdchPlantSizPkTimeDayOfSim;
-    int pdchPlantSizPkTimeMin;
+    thread_local int pdchPlantSizCoincYesNo;
+    thread_local int pdchPlantSizDesDay;
+    thread_local int pdchPlantSizPkTimeHour;
+    thread_local int pdchPlantSizPkTimeDayOfSim;
+    thread_local int pdchPlantSizPkTimeMin;
 
     // Coil Selection Table
-    int pdrCoilSizingDetailsTable;
-    int pdstCoilSummaryCoilSelection;
-    int pdchCoilLocation;
-    int pdchCoilHVACType;
-    int pdchCoilHVACName;
-    int pdchCoilZoneName;
-    int pdchCoilName;
-    int pdchCoilType;
-    int pdchSysSizingMethCoinc;
-    int pdchSysSizingMethCap;
-    int pdchSysSizingMethAir;
+    thread_local int pdrCoilSizingDetailsTable;
+    thread_local int pdstCoilSummaryCoilSelection;
+    thread_local int pdchCoilLocation;
+    thread_local int pdchCoilHVACType;
+    thread_local int pdchCoilHVACName;
+    thread_local int pdchCoilZoneName;
+    thread_local int pdchCoilName;
+    thread_local int pdchCoilType;
+    thread_local int pdchSysSizingMethCoinc;
+    thread_local int pdchSysSizingMethCap;
+    thread_local int pdchSysSizingMethAir;
 
-    int pdchCoilIsCapAutosized;
-    int pdchCoilIsAirFlowAutosized;
-    int pdchCoilIsWaterFlowAutosized;
-    int pdchCoilIsOATreated;
-    int pdchCoilFinalTotalCap;
-    int pdchCoilFinalSensCap;
-    int pdchCoilFinalAirVolFlowRate;
-    int pdchCoilFinalPlantVolFlowRate;
+    thread_local int pdchCoilIsCapAutosized;
+    thread_local int pdchCoilIsAirFlowAutosized;
+    thread_local int pdchCoilIsWaterFlowAutosized;
+    thread_local int pdchCoilIsOATreated;
+    thread_local int pdchCoilFinalTotalCap;
+    thread_local int pdchCoilFinalSensCap;
+    thread_local int pdchCoilFinalAirVolFlowRate;
+    thread_local int pdchCoilFinalPlantVolFlowRate;
 
-    int pdchCoilDDnameSensIdealPeak;
-    int pdchCoilDateTimeSensIdealPeak;
-    int pdchCoilDDnameTotIdealPeak;
-    int pdchCoilDateTimeTotIdealPeak;
-    int pdchCoilDDnameAirFlowIdealPeak;
-    int pdchCoilDateTimeAirFlowIdealPeak;
-    int pdchCoilTotalCapIdealPeak;
-    int pdchCoilSensCapIdealPeak;
-    int pdchCoilAirMassFlowIdealPeak;
-    int pdchCoilAirVolumeFlowIdealPeak;
-    int pdchCoilEntDryBulbIdealPeak;
-    int pdchCoilEntWetBulbIdealPeak;
-    int pdchCoilEntHumRatIdealPeak;
-    int pdchCoilEntEnthalpyIdealPeak;
-    int pdchCoilLvgDryBulbIdealPeak;
-    int pdchCoilLvgWetBulbIdealPeak;
-    int pdchCoilLvgHumRatIdealPeak;
-    int pdchCoilLvgEnthalpyIdealPeak;
-    int pdchCoilWaterMassFlowIdealPeak;
-    int pdchCoilEntWaterTempIdealPeak;
-    int pdchCoilLvgWaterTempIdealPeak;
-    int pdchCoilWaterDeltaTempIdealPeak;
-    int pdchCoilRatedTotalCap;
-    int pdchCoilRatedSensCap;
-    int pdchCoilOffRatingCapacityModifierIdealPeak;
-    int pdchCoilOffRatingCapacityModifierSimPeak;
-    int pdchCoilRatedAirMass;
-    int pdchCoilRatedEntDryBulb;
-    int pdchCoilRatedEntWetBulb;
-    int pdchCoilRatedEntHumRat;
-    int pdchCoilRatedEntEnthalpy;
-    int pdchCoilRatedLvgDryBulb;
-    int pdchCoilRatedLvgWetBulb;
-    int pdchCoilRatedLvgHumRat;
-    int pdchCoilRatedLvgEnthalpy;
-    int pdchCoilRatedWaterMass;
-    int pdchCoilRatedEntWaterTemp;
-    int pdchCoilRatedLvgWaterTemp;
-    int pdchCoilRatedWaterDeltaTemp;
+    thread_local int pdchCoilDDnameSensIdealPeak;
+    thread_local int pdchCoilDateTimeSensIdealPeak;
+    thread_local int pdchCoilDDnameTotIdealPeak;
+    thread_local int pdchCoilDateTimeTotIdealPeak;
+    thread_local int pdchCoilDDnameAirFlowIdealPeak;
+    thread_local int pdchCoilDateTimeAirFlowIdealPeak;
+    thread_local int pdchCoilTotalCapIdealPeak;
+    thread_local int pdchCoilSensCapIdealPeak;
+    thread_local int pdchCoilAirMassFlowIdealPeak;
+    thread_local int pdchCoilAirVolumeFlowIdealPeak;
+    thread_local int pdchCoilEntDryBulbIdealPeak;
+    thread_local int pdchCoilEntWetBulbIdealPeak;
+    thread_local int pdchCoilEntHumRatIdealPeak;
+    thread_local int pdchCoilEntEnthalpyIdealPeak;
+    thread_local int pdchCoilLvgDryBulbIdealPeak;
+    thread_local int pdchCoilLvgWetBulbIdealPeak;
+    thread_local int pdchCoilLvgHumRatIdealPeak;
+    thread_local int pdchCoilLvgEnthalpyIdealPeak;
+    thread_local int pdchCoilWaterMassFlowIdealPeak;
+    thread_local int pdchCoilEntWaterTempIdealPeak;
+    thread_local int pdchCoilLvgWaterTempIdealPeak;
+    thread_local int pdchCoilWaterDeltaTempIdealPeak;
+    thread_local int pdchCoilRatedTotalCap;
+    thread_local int pdchCoilRatedSensCap;
+    thread_local int pdchCoilOffRatingCapacityModifierIdealPeak;
+    thread_local int pdchCoilOffRatingCapacityModifierSimPeak;
+    thread_local int pdchCoilRatedAirMass;
+    thread_local int pdchCoilRatedEntDryBulb;
+    thread_local int pdchCoilRatedEntWetBulb;
+    thread_local int pdchCoilRatedEntHumRat;
+    thread_local int pdchCoilRatedEntEnthalpy;
+    thread_local int pdchCoilRatedLvgDryBulb;
+    thread_local int pdchCoilRatedLvgWetBulb;
+    thread_local int pdchCoilRatedLvgHumRat;
+    thread_local int pdchCoilRatedLvgEnthalpy;
+    thread_local int pdchCoilRatedWaterMass;
+    thread_local int pdchCoilRatedEntWaterTemp;
+    thread_local int pdchCoilRatedLvgWaterTemp;
+    thread_local int pdchCoilRatedWaterDeltaTemp;
 
-    int pdchFanAssociatedWithCoilName;
-    int pdchFanAssociatedWithCoilType;
-    int pdchFanAssociatedVdotSize;
-    int pdchFanAssociatedMdotSize;
+    thread_local int pdchFanAssociatedWithCoilName;
+    thread_local int pdchFanAssociatedWithCoilType;
+    thread_local int pdchFanAssociatedVdotSize;
+    thread_local int pdchFanAssociatedMdotSize;
 
-    int pdchFanHeatGainIdealPeak;
-    int pdchCoilNetTotalCapacityIdealPeak;
+    thread_local int pdchFanHeatGainIdealPeak;
+    thread_local int pdchCoilNetTotalCapacityIdealPeak;
 
-    int pdchCoilPlantLoopName;
+    thread_local int pdchCoilPlantLoopName;
 
-    int pdchPlantMassFlowMaximum;
-    int pdchPlantRetTempDesign;
-    int pdchPlantSupTempDesign;
-    int pdchPlantDeltaTempDesign;
-    int pdchPlantCapacity;
-    int pdchCoilCapPrcntPlantCapacity;
-    int pdchCoilFlowPrcntPlantFlow;
-    int pdchOADryBulbIdealPeak;
-    int pdchOAHumRatIdealPeak;
-    int pdchOAWetBulbatIdealPeak;
-    int pdchOAVolFlowIdealPeak;
-    int pdchOAFlowPrcntIdealPeak;
-    int pdchOABarometricPressureIdealPeak;
+    thread_local int pdchPlantMassFlowMaximum;
+    thread_local int pdchPlantRetTempDesign;
+    thread_local int pdchPlantSupTempDesign;
+    thread_local int pdchPlantDeltaTempDesign;
+    thread_local int pdchPlantCapacity;
+    thread_local int pdchCoilCapPrcntPlantCapacity;
+    thread_local int pdchCoilFlowPrcntPlantFlow;
+    thread_local int pdchOADryBulbIdealPeak;
+    thread_local int pdchOAHumRatIdealPeak;
+    thread_local int pdchOAWetBulbatIdealPeak;
+    thread_local int pdchOAVolFlowIdealPeak;
+    thread_local int pdchOAFlowPrcntIdealPeak;
+    thread_local int pdchOABarometricPressureIdealPeak;
 
-    int pdchAirSysRADryBulbIdealPeak;
-    int pdchAirSysRAHumRatIdealPeak;
-    int pdchZoneAirDryBulbIdealPeak;
-    int pdchZoneAirHumRatIdealPeak;
-    int pdchZoneAirRelHumIdealPeak;
-    int pdchCoilUA;
-    int pdchZoneSensibleLoadIdealPeak;
-    int pdchZoneLatentLoadIdealPeak;
-    int pdchCoilIdealSizCapOverSimPeak;
-    int pdchCoilIdealSizCapUnderSimPeak;
-    int pdchReheatCoilMultiplier;
-    int pdchFlowCapRatioLowCapIncreaseRatio;
-    int pdchFlowCapRatioHiCapDecreaseRatio;
-    int pdchPlantFluidSpecificHeat;
-    int pdchPlantFluidDensity;
-    int pdchMoistAirSpecificHeat;
-    int pdchDryAirSpecificHeat;
-    int pdchStandRhoAir;
+    thread_local int pdchAirSysRADryBulbIdealPeak;
+    thread_local int pdchAirSysRAHumRatIdealPeak;
+    thread_local int pdchZoneAirDryBulbIdealPeak;
+    thread_local int pdchZoneAirHumRatIdealPeak;
+    thread_local int pdchZoneAirRelHumIdealPeak;
+    thread_local int pdchCoilUA;
+    thread_local int pdchZoneSensibleLoadIdealPeak;
+    thread_local int pdchZoneLatentLoadIdealPeak;
+    thread_local int pdchCoilIdealSizCapOverSimPeak;
+    thread_local int pdchCoilIdealSizCapUnderSimPeak;
+    thread_local int pdchReheatCoilMultiplier;
+    thread_local int pdchFlowCapRatioLowCapIncreaseRatio;
+    thread_local int pdchFlowCapRatioHiCapDecreaseRatio;
+    thread_local int pdchPlantFluidSpecificHeat;
+    thread_local int pdchPlantFluidDensity;
+    thread_local int pdchMoistAirSpecificHeat;
+    thread_local int pdchDryAirSpecificHeat;
+    thread_local int pdchStandRhoAir;
 
     // Coil Sizing Summary (subset of Coil Selection Table)
-    int pdst2CoilSummaryCoilSelection;
-    int pdch2CoilName;
-    int pdch2CoilType;
-    int pdch2CoilHVACType;
-    int pdch2CoilHVACName;
+    thread_local int pdst2CoilSummaryCoilSelection;
+    thread_local int pdch2CoilName;
+    thread_local int pdch2CoilType;
+    thread_local int pdch2CoilHVACType;
+    thread_local int pdch2CoilHVACName;
 
-    int pdch2CoilFinalTotalCap;
-    int pdch2CoilFinalSensCap;
-    int pdch2CoilFinalAirVolFlowRate;
-    int pdch2CoilFinalPlantVolFlowRate;
-    int pdch2CoilUA;
+    thread_local int pdch2CoilFinalTotalCap;
+    thread_local int pdch2CoilFinalSensCap;
+    thread_local int pdch2CoilFinalAirVolFlowRate;
+    thread_local int pdch2CoilFinalPlantVolFlowRate;
+    thread_local int pdch2CoilUA;
 
-    int pdch2CoilDDnameSensIdealPeak;
-    int pdch2CoilDateTimeSensIdealPeak;
-    int pdch2CoilDDnameAirFlowIdealPeak;
-    int pdch2CoilDateTimeAirFlowIdealPeak;
-    int pdch2CoilTotalCapIdealPeak;
-    int pdch2CoilSensCapIdealPeak;
-    int pdch2CoilAirVolumeFlowIdealPeak;
-    int pdch2CoilEntDryBulbIdealPeak;
-    int pdch2CoilEntWetBulbIdealPeak;
-    int pdch2CoilEntHumRatIdealPeak;
-    int pdch2CoilLvgDryBulbIdealPeak;
-    int pdch2CoilLvgWetBulbIdealPeak;
-    int pdch2CoilLvgHumRatIdealPeak;
-    int pdch2CoilRatedTotalCap;
-    int pdch2CoilRatedSensCap;
+    thread_local int pdch2CoilDDnameSensIdealPeak;
+    thread_local int pdch2CoilDateTimeSensIdealPeak;
+    thread_local int pdch2CoilDDnameAirFlowIdealPeak;
+    thread_local int pdch2CoilDateTimeAirFlowIdealPeak;
+    thread_local int pdch2CoilTotalCapIdealPeak;
+    thread_local int pdch2CoilSensCapIdealPeak;
+    thread_local int pdch2CoilAirVolumeFlowIdealPeak;
+    thread_local int pdch2CoilEntDryBulbIdealPeak;
+    thread_local int pdch2CoilEntWetBulbIdealPeak;
+    thread_local int pdch2CoilEntHumRatIdealPeak;
+    thread_local int pdch2CoilLvgDryBulbIdealPeak;
+    thread_local int pdch2CoilLvgWetBulbIdealPeak;
+    thread_local int pdch2CoilLvgHumRatIdealPeak;
+    thread_local int pdch2CoilRatedTotalCap;
+    thread_local int pdch2CoilRatedSensCap;
 
-    int pdch2OADryBulbIdealPeak;
-    int pdch2OAHumRatIdealPeak;
-    int pdch2OAWetBulbatIdealPeak;
-    int pdch2OAFlowPrcntIdealPeak;
-    int pdch2ZoneAirDryBulbIdealPeak;
-    int pdch2ZoneAirHumRatIdealPeak;
-    int pdch2ZoneAirRelHumIdealPeak;
-    int pdch2ZoneSensibleLoadIdealPeak;
-    int pdch2ZoneLatentLoadIdealPeak;
+    thread_local int pdch2OADryBulbIdealPeak;
+    thread_local int pdch2OAHumRatIdealPeak;
+    thread_local int pdch2OAWetBulbatIdealPeak;
+    thread_local int pdch2OAFlowPrcntIdealPeak;
+    thread_local int pdch2ZoneAirDryBulbIdealPeak;
+    thread_local int pdch2ZoneAirHumRatIdealPeak;
+    thread_local int pdch2ZoneAirRelHumIdealPeak;
+    thread_local int pdch2ZoneSensibleLoadIdealPeak;
+    thread_local int pdch2ZoneLatentLoadIdealPeak;
 
     // System summary
-    int pdrSystem;
-    int pdstEconomizer;
-    int pdchEcoKind;
-    int pdchEcoMinOA;
-    int pdchEcoMaxOA;
-    int pdchEcoRetTemp;
-    int pdchEcoRetEnth;
-    int pdchEcoOATempLim;
-    int pdchEcoOAEnthLim;
-    int pdstDemCntlVent;
-    int pdchDCVventMechName;
-    int pdchDCVperPerson;
-    int pdchDCVperArea;
-    int pdchDCVperZone;
-    int pdchDCVperACH;
-    int pdchDCVMethod;
-    int pdchDCVOASchName;
+    thread_local int pdrSystem;
+    thread_local int pdstEconomizer;
+    thread_local int pdchEcoKind;
+    thread_local int pdchEcoMinOA;
+    thread_local int pdchEcoMaxOA;
+    thread_local int pdchEcoRetTemp;
+    thread_local int pdchEcoRetEnth;
+    thread_local int pdchEcoOATempLim;
+    thread_local int pdchEcoOAEnthLim;
+    thread_local int pdstDemCntlVent;
+    thread_local int pdchDCVventMechName;
+    thread_local int pdchDCVperPerson;
+    thread_local int pdchDCVperArea;
+    thread_local int pdchDCVperZone;
+    thread_local int pdchDCVperACH;
+    thread_local int pdchDCVMethod;
+    thread_local int pdchDCVOASchName;
 
     // added for new DCV
-    int pdchDCVZoneADEffCooling;
-    int pdchDCVZoneADEffHeating;
-    int pdchDCVZoneADEffSchName;
+    thread_local int pdchDCVZoneADEffCooling;
+    thread_local int pdchDCVZoneADEffHeating;
+    thread_local int pdchDCVZoneADEffSchName;
 
-    int pdstSimpleComfort;
-    int pdchSCwinterClothes;
-    int pdchSCsummerClothes;
-    int pdchSCeitherClothes;
-    int pdstUnmetLoads;
-    int pdchULnotMetHeat;
-    int pdchULnotMetCool;
-    int pdchULnotMetHeatOcc;
-    int pdchULnotMetCoolOcc;
+    thread_local int pdstSimpleComfort;
+    thread_local int pdchSCwinterClothes;
+    thread_local int pdchSCsummerClothes;
+    thread_local int pdchSCeitherClothes;
+    thread_local int pdstUnmetLoads;
+    thread_local int pdchULnotMetHeat;
+    thread_local int pdchULnotMetCool;
+    thread_local int pdchULnotMetHeatOcc;
+    thread_local int pdchULnotMetCoolOcc;
 
     // Outside Air Report
-    int pdrOutsideAir;
-    int pdstOAavgOcc;
-    int pdchOaoAvgNumOcc1;
-    int pdchOaoNomNumOcc1;
-    int pdchOaoZoneVol1;
-    int pdchOaoAvgMechVent;
-    int pdchOaoAvgInfil;
-    int pdchOaoAvgAFNInfil;
-    int pdchOaoAvgSimpVent;
-    int pdchOaoAvgTotVent;
-    int pdstOAminOcc;
-    int pdchOaoAvgNumOcc2;
-    int pdchOaoNomNumOcc2;
-    int pdchOaoZoneVol2;
-    int pdchOaoMinMechVent;
-    int pdchOaoMinInfil;
-    int pdchOaoMinAFNInfil;
-    int pdchOaoMinSimpVent;
-    int pdchOaoMinTotVent;
+    thread_local int pdrOutsideAir;
+    thread_local int pdstOAavgOcc;
+    thread_local int pdchOaoAvgNumOcc1;
+    thread_local int pdchOaoNomNumOcc1;
+    thread_local int pdchOaoZoneVol1;
+    thread_local int pdchOaoAvgMechVent;
+    thread_local int pdchOaoAvgInfil;
+    thread_local int pdchOaoAvgAFNInfil;
+    thread_local int pdchOaoAvgSimpVent;
+    thread_local int pdchOaoAvgTotVent;
+    thread_local int pdstOAminOcc;
+    thread_local int pdchOaoAvgNumOcc2;
+    thread_local int pdchOaoNomNumOcc2;
+    thread_local int pdchOaoZoneVol2;
+    thread_local int pdchOaoMinMechVent;
+    thread_local int pdchOaoMinInfil;
+    thread_local int pdchOaoMinAFNInfil;
+    thread_local int pdchOaoMinSimpVent;
+    thread_local int pdchOaoMinTotVent;
 
     // Object Count Report
-    int pdrObjCnt;
-    int pdstSurfCnt;
-    int pdchSurfCntTot;
-    int pdchSurfCntExt;
-    int pdstHVACcnt;
-    int pdchHVACcntVal;
-    int pdstFieldCnt;
-    int pdchFieldCntVal;
+    thread_local int pdrObjCnt;
+    thread_local int pdstSurfCnt;
+    thread_local int pdchSurfCntTot;
+    thread_local int pdchSurfCntExt;
+    thread_local int pdstHVACcnt;
+    thread_local int pdchHVACcntVal;
+    thread_local int pdstFieldCnt;
+    thread_local int pdchFieldCntVal;
 
     // Energy Meters Report
-    int pdrEnergyMeters;
+    thread_local int pdrEnergyMeters;
 
-    int pdstEMelecvalues;
-    int pdchEMelecannual;
-    int pdchEMelecminvalue;
-    int pdchEMelecminvaluetime;
-    int pdchEMelecmaxvalue;
-    int pdchEMelecmaxvaluetime;
+    thread_local int pdstEMelecvalues;
+    thread_local int pdchEMelecannual;
+    thread_local int pdchEMelecminvalue;
+    thread_local int pdchEMelecminvaluetime;
+    thread_local int pdchEMelecmaxvalue;
+    thread_local int pdchEMelecmaxvaluetime;
 
-    int pdstEMgasvalues;
-    int pdchEMgasannual;
-    int pdchEMgasminvalue;
-    int pdchEMgasminvaluetime;
-    int pdchEMgasmaxvalue;
-    int pdchEMgasmaxvaluetime;
+    thread_local int pdstEMgasvalues;
+    thread_local int pdchEMgasannual;
+    thread_local int pdchEMgasminvalue;
+    thread_local int pdchEMgasminvaluetime;
+    thread_local int pdchEMgasmaxvalue;
+    thread_local int pdchEMgasmaxvaluetime;
 
-    int pdstEMcoolvalues;
-    int pdchEMcoolannual;
-    int pdchEMcoolminvalue;
-    int pdchEMcoolminvaluetime;
-    int pdchEMcoolmaxvalue;
-    int pdchEMcoolmaxvaluetime;
+    thread_local int pdstEMcoolvalues;
+    thread_local int pdchEMcoolannual;
+    thread_local int pdchEMcoolminvalue;
+    thread_local int pdchEMcoolminvaluetime;
+    thread_local int pdchEMcoolmaxvalue;
+    thread_local int pdchEMcoolmaxvaluetime;
 
-    int pdstEMwatervalues;
-    int pdchEMwaterannual;
-    int pdchEMwaterminvalue;
-    int pdchEMwaterminvaluetime;
-    int pdchEMwatermaxvalue;
-    int pdchEMwatermaxvaluetime;
+    thread_local int pdstEMwatervalues;
+    thread_local int pdchEMwaterannual;
+    thread_local int pdchEMwaterminvalue;
+    thread_local int pdchEMwaterminvaluetime;
+    thread_local int pdchEMwatermaxvalue;
+    thread_local int pdchEMwatermaxvaluetime;
 
-    int pdstEMotherJvalues;
-    int pdchEMotherJannual;
-    int pdchEMotherJminvalue;
-    int pdchEMotherJminvaluetime;
-    int pdchEMotherJmaxvalue;
-    int pdchEMotherJmaxvaluetime;
+    thread_local int pdstEMotherJvalues;
+    thread_local int pdchEMotherJannual;
+    thread_local int pdchEMotherJminvalue;
+    thread_local int pdchEMotherJminvaluetime;
+    thread_local int pdchEMotherJmaxvalue;
+    thread_local int pdchEMotherJmaxvaluetime;
 
-    int pdstEMotherKGvalues;
-    int pdchEMotherKGannual;
-    int pdchEMotherKGminvalue;
-    int pdchEMotherKGminvaluetime;
-    int pdchEMotherKGmaxvalue;
-    int pdchEMotherKGmaxvaluetime;
+    thread_local int pdstEMotherKGvalues;
+    thread_local int pdchEMotherKGannual;
+    thread_local int pdchEMotherKGminvalue;
+    thread_local int pdchEMotherKGminvaluetime;
+    thread_local int pdchEMotherKGmaxvalue;
+    thread_local int pdchEMotherKGmaxvaluetime;
 
-    int pdstEMotherM3values;
-    int pdchEMotherM3annual;
-    int pdchEMotherM3minvalue;
-    int pdchEMotherM3minvaluetime;
-    int pdchEMotherM3maxvalue;
-    int pdchEMotherM3maxvaluetime;
+    thread_local int pdstEMotherM3values;
+    thread_local int pdchEMotherM3annual;
+    thread_local int pdchEMotherM3minvalue;
+    thread_local int pdchEMotherM3minvaluetime;
+    thread_local int pdchEMotherM3maxvalue;
+    thread_local int pdchEMotherM3maxvaluetime;
 
-    int pdstEMotherLvalues;
-    int pdchEMotherLannual;
-    int pdchEMotherLminvalue;
-    int pdchEMotherLminvaluetime;
-    int pdchEMotherLmaxvalue;
-    int pdchEMotherLmaxvaluetime;
+    thread_local int pdstEMotherLvalues;
+    thread_local int pdchEMotherLannual;
+    thread_local int pdchEMotherLminvalue;
+    thread_local int pdchEMotherLminvaluetime;
+    thread_local int pdchEMotherLmaxvalue;
+    thread_local int pdchEMotherLmaxvaluetime;
 
     // Sensible Heat Gas Component Report
-    int pdrSensibleGain;
+    thread_local int pdrSensibleGain;
     // annual
-    int pdstSHGSannual;
-    int pdchSHGSAnHvacHt;
-    int pdchSHGSAnHvacCl;
-    int pdchSHGSAnHvacATUHt;
-    int pdchSHGSAnHvacATUCl;
-    int pdchSHGSAnSurfHt;
-    int pdchSHGSAnSurfCl;
-    int pdchSHGSAnPeoplAdd;
-    int pdchSHGSAnLiteAdd;
-    int pdchSHGSAnEquipAdd;
-    int pdchSHGSAnWindAdd;
-    int pdchSHGSAnIzaAdd;
-    int pdchSHGSAnInfilAdd;
-    int pdchSHGSAnOtherAdd;
-    int pdchSHGSAnEquipRem;
-    int pdchSHGSAnWindRem;
-    int pdchSHGSAnIzaRem;
-    int pdchSHGSAnInfilRem;
-    int pdchSHGSAnOtherRem;
+    thread_local int pdstSHGSannual;
+    thread_local int pdchSHGSAnHvacHt;
+    thread_local int pdchSHGSAnHvacCl;
+    thread_local int pdchSHGSAnHvacATUHt;
+    thread_local int pdchSHGSAnHvacATUCl;
+    thread_local int pdchSHGSAnSurfHt;
+    thread_local int pdchSHGSAnSurfCl;
+    thread_local int pdchSHGSAnPeoplAdd;
+    thread_local int pdchSHGSAnLiteAdd;
+    thread_local int pdchSHGSAnEquipAdd;
+    thread_local int pdchSHGSAnWindAdd;
+    thread_local int pdchSHGSAnIzaAdd;
+    thread_local int pdchSHGSAnInfilAdd;
+    thread_local int pdchSHGSAnOtherAdd;
+    thread_local int pdchSHGSAnEquipRem;
+    thread_local int pdchSHGSAnWindRem;
+    thread_local int pdchSHGSAnIzaRem;
+    thread_local int pdchSHGSAnInfilRem;
+    thread_local int pdchSHGSAnOtherRem;
     // peak cooling
-    int pdstSHGSpkCl;
-    int pdchSHGSClTimePeak;
-    int pdchSHGSClHvacHt;
-    int pdchSHGSClHvacCl;
-    int pdchSHGSClHvacATUHt;
-    int pdchSHGSClHvacATUCl;
-    int pdchSHGSClSurfHt;
-    int pdchSHGSClSurfCl;
-    int pdchSHGSClPeoplAdd;
-    int pdchSHGSClLiteAdd;
-    int pdchSHGSClEquipAdd;
-    int pdchSHGSClWindAdd;
-    int pdchSHGSClIzaAdd;
-    int pdchSHGSClInfilAdd;
-    int pdchSHGSClOtherAdd;
-    int pdchSHGSClEquipRem;
-    int pdchSHGSClWindRem;
-    int pdchSHGSClIzaRem;
-    int pdchSHGSClInfilRem;
-    int pdchSHGSClOtherRem;
+    thread_local int pdstSHGSpkCl;
+    thread_local int pdchSHGSClTimePeak;
+    thread_local int pdchSHGSClHvacHt;
+    thread_local int pdchSHGSClHvacCl;
+    thread_local int pdchSHGSClHvacATUHt;
+    thread_local int pdchSHGSClHvacATUCl;
+    thread_local int pdchSHGSClSurfHt;
+    thread_local int pdchSHGSClSurfCl;
+    thread_local int pdchSHGSClPeoplAdd;
+    thread_local int pdchSHGSClLiteAdd;
+    thread_local int pdchSHGSClEquipAdd;
+    thread_local int pdchSHGSClWindAdd;
+    thread_local int pdchSHGSClIzaAdd;
+    thread_local int pdchSHGSClInfilAdd;
+    thread_local int pdchSHGSClOtherAdd;
+    thread_local int pdchSHGSClEquipRem;
+    thread_local int pdchSHGSClWindRem;
+    thread_local int pdchSHGSClIzaRem;
+    thread_local int pdchSHGSClInfilRem;
+    thread_local int pdchSHGSClOtherRem;
     // peak heating
-    int pdstSHGSpkHt;
-    int pdchSHGSHtTimePeak;
-    int pdchSHGSHtHvacHt;
-    int pdchSHGSHtHvacCl;
-    int pdchSHGSHtHvacATUHt;
-    int pdchSHGSHtHvacATUCl;
-    int pdchSHGSHtSurfHt;
-    int pdchSHGSHtSurfCl;
-    int pdchSHGSHtPeoplAdd;
-    int pdchSHGSHtLiteAdd;
-    int pdchSHGSHtEquipAdd;
-    int pdchSHGSHtWindAdd;
-    int pdchSHGSHtIzaAdd;
-    int pdchSHGSHtInfilAdd;
-    int pdchSHGSHtOtherAdd;
-    int pdchSHGSHtEquipRem;
-    int pdchSHGSHtWindRem;
-    int pdchSHGSHtIzaRem;
-    int pdchSHGSHtInfilRem;
-    int pdchSHGSHtOtherRem;
+    thread_local int pdstSHGSpkHt;
+    thread_local int pdchSHGSHtTimePeak;
+    thread_local int pdchSHGSHtHvacHt;
+    thread_local int pdchSHGSHtHvacCl;
+    thread_local int pdchSHGSHtHvacATUHt;
+    thread_local int pdchSHGSHtHvacATUCl;
+    thread_local int pdchSHGSHtSurfHt;
+    thread_local int pdchSHGSHtSurfCl;
+    thread_local int pdchSHGSHtPeoplAdd;
+    thread_local int pdchSHGSHtLiteAdd;
+    thread_local int pdchSHGSHtEquipAdd;
+    thread_local int pdchSHGSHtWindAdd;
+    thread_local int pdchSHGSHtIzaAdd;
+    thread_local int pdchSHGSHtInfilAdd;
+    thread_local int pdchSHGSHtOtherAdd;
+    thread_local int pdchSHGSHtEquipRem;
+    thread_local int pdchSHGSHtWindRem;
+    thread_local int pdchSHGSHtIzaRem;
+    thread_local int pdchSHGSHtInfilRem;
+    thread_local int pdchSHGSHtOtherRem;
     // Standard62Report
-    int pdrStd62;
-    int pdstS62sysVentReqCool;
-    int pdchS62svrClSumVpz;
-    int pdchS62svrClPs;
-    int pdchS62svrClSumPz;
-    int pdchS62svrClD;
-    int pdchS62svrClVou;
-    int pdchS62svrClVps;
-    int pdchS62svrClXs;
-    int pdchS62svrClEv;
-    int pdchS62svrClVot;
-    int pdchS62svrClPercOA;
-    int pdchS62svrClEnvironmentOfPs;
-    int pdchS62svrClTimeOfPs;
+    thread_local int pdrStd62;
+    thread_local int pdstS62sysVentReqCool;
+    thread_local int pdchS62svrClSumVpz;
+    thread_local int pdchS62svrClPs;
+    thread_local int pdchS62svrClSumPz;
+    thread_local int pdchS62svrClD;
+    thread_local int pdchS62svrClVou;
+    thread_local int pdchS62svrClVps;
+    thread_local int pdchS62svrClXs;
+    thread_local int pdchS62svrClEv;
+    thread_local int pdchS62svrClVot;
+    thread_local int pdchS62svrClPercOA;
+    thread_local int pdchS62svrClEnvironmentOfPs;
+    thread_local int pdchS62svrClTimeOfPs;
 
-    int pdstS62sysVentReqHeat;
-    int pdchS62svrHtSumVpz;
-    int pdchS62svrHtPs;
-    int pdchS62svrHtSumPz;
-    int pdchS62svrHtD;
-    int pdchS62svrHtVou;
-    int pdchS62svrHtVps;
-    int pdchS62svrHtXs;
-    int pdchS62svrHtEv;
-    int pdchS62svrHtVot;
-    int pdchS62svrHtPercOA;
-    int pdchS62svrHtEnvironmentOfPs;
-    int pdchS62svrHtTimeOfPs;
+    thread_local int pdstS62sysVentReqHeat;
+    thread_local int pdchS62svrHtSumVpz;
+    thread_local int pdchS62svrHtPs;
+    thread_local int pdchS62svrHtSumPz;
+    thread_local int pdchS62svrHtD;
+    thread_local int pdchS62svrHtVou;
+    thread_local int pdchS62svrHtVps;
+    thread_local int pdchS62svrHtXs;
+    thread_local int pdchS62svrHtEv;
+    thread_local int pdchS62svrHtVot;
+    thread_local int pdchS62svrHtPercOA;
+    thread_local int pdchS62svrHtEnvironmentOfPs;
+    thread_local int pdchS62svrHtTimeOfPs;
 
-    int pdstS62znVentPar;
-    int pdchS62zvpAlN;
-    int pdchS62zvpRp;
-    int pdchS62zvpPz;
-    int pdchS62zvpRa;
-    int pdchS62zvpAz;
-    int pdchS62zvpVbz;
-    int pdchS62zvpClEz;
-    int pdchS62zvpClVoz;
-    int pdchS62zvpHtEz;
-    int pdchS62zvpHtVoz;
+    thread_local int pdstS62znVentPar;
+    thread_local int pdchS62zvpAlN;
+    thread_local int pdchS62zvpRp;
+    thread_local int pdchS62zvpPz;
+    thread_local int pdchS62zvpRa;
+    thread_local int pdchS62zvpAz;
+    thread_local int pdchS62zvpVbz;
+    thread_local int pdchS62zvpClEz;
+    thread_local int pdchS62zvpClVoz;
+    thread_local int pdchS62zvpHtEz;
+    thread_local int pdchS62zvpHtVoz;
 
-    int pdstS62sysVentPar;
-    int pdchS62svpRp;
-    int pdchS62svpPz;
-    int pdchS62svpRa;
-    int pdchS62svpAz;
-    int pdchS62svpVbz;
-    int pdchS62svpClVoz;
-    int pdchS62svpHtVoz;
+    thread_local int pdstS62sysVentPar;
+    thread_local int pdchS62svpRp;
+    thread_local int pdchS62svpPz;
+    thread_local int pdchS62svpRa;
+    thread_local int pdchS62svpAz;
+    thread_local int pdchS62svpVbz;
+    thread_local int pdchS62svpClVoz;
+    thread_local int pdchS62svpHtVoz;
 
-    int pdstS62znCoolDes;
-    int pdchS62zcdAlN;
-    int pdchS62zcdBox;
-    int pdchS62zcdVpz;
-    int pdchS62zcdVps;
-    int pdchS62zcdVsec;
-    int pdchS62zcdVdz;
-    int pdchS62zcdVpzmin;
-    int pdchS62zcdVozclg;
-    int pdchS62zcdZpz;
-    int pdchS62zcdEp;
-    int pdchS62zcdEr;
-    int pdchS62zcdFa;
-    int pdchS62zcdFb;
-    int pdchS62zcdFc;
-    int pdchS62zcdEvz;
+    thread_local int pdstS62znCoolDes;
+    thread_local int pdchS62zcdAlN;
+    thread_local int pdchS62zcdBox;
+    thread_local int pdchS62zcdVpz;
+    thread_local int pdchS62zcdVps;
+    thread_local int pdchS62zcdVsec;
+    thread_local int pdchS62zcdVdz;
+    thread_local int pdchS62zcdVpzmin;
+    thread_local int pdchS62zcdVozclg;
+    thread_local int pdchS62zcdZpz;
+    thread_local int pdchS62zcdEp;
+    thread_local int pdchS62zcdEr;
+    thread_local int pdchS62zcdFa;
+    thread_local int pdchS62zcdFb;
+    thread_local int pdchS62zcdFc;
+    thread_local int pdchS62zcdEvz;
 
-    int pdstS62sysCoolDes;
-    int pdchS62scdVpz;
-    int pdchS62scdVps;
-    int pdchS62scdVsec;
-    int pdchS62scdVdz;
-    int pdchS62scdVpzmin;
-    int pdchS62scdVozclg;
-    int pdchS62scdEvz;
+    thread_local int pdstS62sysCoolDes;
+    thread_local int pdchS62scdVpz;
+    thread_local int pdchS62scdVps;
+    thread_local int pdchS62scdVsec;
+    thread_local int pdchS62scdVdz;
+    thread_local int pdchS62scdVpzmin;
+    thread_local int pdchS62scdVozclg;
+    thread_local int pdchS62scdEvz;
 
-    int pdstS62znHeatDes;
-    int pdchS62zhdAlN;
-    int pdchS62zhdBox;
-    int pdchS62zhdVpz;
-    int pdchS62zhdVps;
-    int pdchS62zhdVsec;
-    int pdchS62zhdVdz;
-    int pdchS62zhdVpzmin;
-    int pdchS62zhdVozhtg;
-    int pdchS62zhdZpz;
-    int pdchS62zhdEp;
-    int pdchS62zhdEr;
-    int pdchS62zhdFa;
-    int pdchS62zhdFb;
-    int pdchS62zhdFc;
-    int pdchS62zhdEvz;
+    thread_local int pdstS62znHeatDes;
+    thread_local int pdchS62zhdAlN;
+    thread_local int pdchS62zhdBox;
+    thread_local int pdchS62zhdVpz;
+    thread_local int pdchS62zhdVps;
+    thread_local int pdchS62zhdVsec;
+    thread_local int pdchS62zhdVdz;
+    thread_local int pdchS62zhdVpzmin;
+    thread_local int pdchS62zhdVozhtg;
+    thread_local int pdchS62zhdZpz;
+    thread_local int pdchS62zhdEp;
+    thread_local int pdchS62zhdEr;
+    thread_local int pdchS62zhdFa;
+    thread_local int pdchS62zhdFb;
+    thread_local int pdchS62zhdFc;
+    thread_local int pdchS62zhdEvz;
 
-    int pdstS62sysHeatDes;
-    int pdchS62shdVpz;
-    int pdchS62shdVps;
-    int pdchS62shdVsec;
-    int pdchS62shdVdz;
-    int pdchS62shdVpzmin;
-    int pdchS62shdVozhtg;
-    int pdchS62shdEvz;
+    thread_local int pdstS62sysHeatDes;
+    thread_local int pdchS62shdVpz;
+    thread_local int pdchS62shdVps;
+    thread_local int pdchS62shdVsec;
+    thread_local int pdchS62shdVdz;
+    thread_local int pdchS62shdVpzmin;
+    thread_local int pdchS62shdVozhtg;
+    thread_local int pdchS62shdEvz;
 
     //  LEED Summary
-    int pdrLeed;
-    int pdstLeedGenInfo;
-    int pdchLeedGenData;
+    thread_local int pdrLeed;
+    thread_local int pdstLeedGenInfo;
+    thread_local int pdchLeedGenData;
 
-    int pdstLeedSpaceUsageType;
-    int pdchLeedSutName;
-    int pdchLeedSutSpArea;
-    int pdchLeedSutOcArea;
-    int pdchLeedSutUnArea;
-    int pdchLeedSutHrsWeek;
+    thread_local int pdstLeedSpaceUsageType;
+    thread_local int pdchLeedSutName;
+    thread_local int pdchLeedSutSpArea;
+    thread_local int pdchLeedSutOcArea;
+    thread_local int pdchLeedSutUnArea;
+    thread_local int pdchLeedSutHrsWeek;
 
-    int pdstLeedAdvsMsg;
-    int pdchLeedAmData;
+    thread_local int pdstLeedAdvsMsg;
+    thread_local int pdchLeedAmData;
 
-    int pdstLeedEneTypSum;
-    int pdchLeedEtsType;
-    int pdchLeedEtsRtNm;
-    int pdchLeedEtsVirt;
-    int pdchLeedEtsEneUnt;
-    int pdchLeedEtsDemUnt;
+    thread_local int pdstLeedEneTypSum;
+    thread_local int pdchLeedEtsType;
+    thread_local int pdchLeedEtsRtNm;
+    thread_local int pdchLeedEtsVirt;
+    thread_local int pdchLeedEtsEneUnt;
+    thread_local int pdchLeedEtsDemUnt;
 
-    int pdstLeedPerf;
-    int pdchLeedPerfRot;
-    int pdchLeedPerfElEneUse;
-    int pdchLeedPerfElDem;
-    int pdchLeedPerfGasEneUse;
-    int pdchLeedPerfGasDem;
-    int pdchLeedPerfAddFuelEneUse;
-    int pdchLeedPerfAddFuelDem;
-    int pdchLeedPerfDisClEneUse;
-    int pdchLeedPerfDisClDem;
-    int pdchLeedPerfDisHtEneUse;
-    int pdchLeedPerfDisHtDem;
+    thread_local int pdstLeedPerf;
+    thread_local int pdchLeedPerfRot;
+    thread_local int pdchLeedPerfElEneUse;
+    thread_local int pdchLeedPerfElDem;
+    thread_local int pdchLeedPerfGasEneUse;
+    thread_local int pdchLeedPerfGasDem;
+    thread_local int pdchLeedPerfAddFuelEneUse;
+    thread_local int pdchLeedPerfAddFuelDem;
+    thread_local int pdchLeedPerfDisClEneUse;
+    thread_local int pdchLeedPerfDisClDem;
+    thread_local int pdchLeedPerfDisHtEneUse;
+    thread_local int pdchLeedPerfDisHtDem;
 
-    int pdstLeedEneUseSum;
-    int pdchLeedEusUnt;
-    int pdchLeedEusProc;
-    int pdchLeedEusTotal;
+    thread_local int pdstLeedEneUseSum;
+    thread_local int pdchLeedEusUnt;
+    thread_local int pdchLeedEusProc;
+    thread_local int pdchLeedEusTotal;
 
-    int pdstLeedEneCostSum;
-    int pdchLeedEcUnt;
-    int pdchLeedEcsProc;
-    int pdchLeedEcsTotal;
-    Real64 LEEDelecCostTotal;
-    Real64 LEEDgasCostTotal;
-    Real64 LEEDothrCostTotal;
+    thread_local int pdstLeedEneCostSum;
+    thread_local int pdchLeedEcUnt;
+    thread_local int pdchLeedEcsProc;
+    thread_local int pdchLeedEcsTotal;
+    thread_local Real64 LEEDelecCostTotal;
+    thread_local Real64 LEEDgasCostTotal;
+    thread_local Real64 LEEDothrCostTotal;
 
-    int pdstLeedRenewSum;
-    int pdchLeedRenRatCap;
-    int pdchLeedRenAnGen;
+    thread_local int pdstLeedRenewSum;
+    thread_local int pdchLeedRenRatCap;
+    thread_local int pdchLeedRenAnGen;
 
-    int pdstLeedEneUseIntEl;
-    int pdchLeedEuiElec;
-    int pdstLeedEneUseIntNatG;
-    int pdchLeedEuiNatG;
-    int pdstLeedEneUseIntOthr;
-    int pdchLeedEuiOthr;
+    thread_local int pdstLeedEneUseIntEl;
+    thread_local int pdchLeedEuiElec;
+    thread_local int pdstLeedEneUseIntNatG;
+    thread_local int pdchLeedEuiNatG;
+    thread_local int pdstLeedEneUseIntOthr;
+    thread_local int pdchLeedEuiOthr;
 
-    int pdstLeedEneUsePerc;
-    int pdchLeedEupPerc;
+    thread_local int pdstLeedEneUsePerc;
+    thread_local int pdchLeedEupPerc;
 
-    int pdstLeedEqFlLdHrs;
-    int pdchLeedEflhEflh;
-    int pdchLeedEflhNonZerHrs;
+    thread_local int pdstLeedEqFlLdHrs;
+    thread_local int pdchLeedEflhEflh;
+    thread_local int pdchLeedEflhNonZerHrs;
 
-    int pdstLeedSchedSetPts;
-    int pdChLeedSchStPtFirstObjUsed;
-    int pdChLeedSchStPtMonthUsed;
-    int pdchLeedSchStPt11amWednesday;
-    int pdchLeedSchStPt11amWedCnt;
-    int pdchLeedSchStPt11pmWednesday;
-    int pdchLeedSchStPt11pmWedCnt;
+    thread_local int pdstLeedSchedSetPts;
+    thread_local int pdChLeedSchStPtFirstObjUsed;
+    thread_local int pdChLeedSchStPtMonthUsed;
+    thread_local int pdchLeedSchStPt11amWednesday;
+    thread_local int pdchLeedSchStPt11amWedCnt;
+    thread_local int pdchLeedSchStPt11pmWednesday;
+    thread_local int pdchLeedSchStPt11pmWedCnt;
 
     // Internal data structures to store information provided by calls
 
-    int const sizeIncrement(100);
+    thread_local int const sizeIncrement(100);
 
-    int sizeReportName;
-    int numReportName;
+    thread_local int sizeReportName;
+    thread_local int numReportName;
 
-    int sizeSubTable;
-    int numSubTable;
+    thread_local int sizeSubTable;
+    thread_local int numSubTable;
 
-    int sizeColumnTag;
-    int numColumnTag;
+    thread_local int sizeColumnTag;
+    thread_local int numColumnTag;
 
-    int sizeTableEntry;
-    int numTableEntry;
+    thread_local int sizeTableEntry;
+    thread_local int numTableEntry;
 
-    int sizeCompSizeTableEntry(0); // Autodesk Was used uninitialized in output to .audit files
-    int numCompSizeTableEntry(0);  // Autodesk Was used uninitialized in WriteComponentSizing
+    thread_local int sizeCompSizeTableEntry(0); // Autodesk Was used uninitialized in output to .audit files
+    thread_local int numCompSizeTableEntry(0);  // Autodesk Was used uninitialized in WriteComponentSizing
 
-    int sizeShadowRelate;
-    int numShadowRelate;
-    int const recKindSurface(1);
-    int const recKindSubsurface(2);
+    thread_local int sizeShadowRelate;
+    thread_local int numShadowRelate;
+    thread_local int const recKindSurface(1);
+    thread_local int const recKindSubsurface(2);
 
-    Real64 TotalNotMetHeatingOccupiedForABUPS(0.0);
-    Real64 TotalNotMetCoolingOccupiedForABUPS(0.0);
-    Real64 TotalNotMetOccupiedForABUPS(0.0);
-    Real64 TotalTimeNotSimpleASH55EitherForABUPS(0.0);
+    thread_local Real64 TotalNotMetHeatingOccupiedForABUPS(0.0);
+    thread_local Real64 TotalNotMetCoolingOccupiedForABUPS(0.0);
+    thread_local Real64 TotalNotMetOccupiedForABUPS(0.0);
+    thread_local Real64 TotalTimeNotSimpleASH55EitherForABUPS(0.0);
 
     // Object Data
-    Array1D<reportNameType> reportName;
-    Array1D<SubTableType> subTable;
-    Array1D<ColumnTagType> columnTag;
-    Array1D<TableEntryType> tableEntry;
-    Array1D<CompSizeTableEntryType> CompSizeTableEntry;
-    Array1D<ShadowRelateType> ShadowRelate;
+    thread_local Array1D<reportNameType> reportName;
+    thread_local Array1D<SubTableType> subTable;
+    thread_local Array1D<ColumnTagType> columnTag;
+    thread_local Array1D<TableEntryType> tableEntry;
+    thread_local Array1D<CompSizeTableEntryType> CompSizeTableEntry;
+    thread_local Array1D<ShadowRelateType> ShadowRelate;
 
     // Functions
     void clear_state()
@@ -2621,7 +2621,7 @@ namespace OutputReportPredefined {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtI1("(I1)");
+        thread_local static gio::Fmt fmtI1("(I1)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2733,7 +2733,7 @@ namespace OutputReportPredefined {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

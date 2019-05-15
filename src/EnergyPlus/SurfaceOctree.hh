@@ -613,8 +613,8 @@ private: // Static Methods
     static bool contains(Vertex const &l, Vertex const &u, Surface const &surface);
 
 private:                                 // Static Data
-    static std::uint8_t const maxDepth_; // Max tree depth
-    static size_type const maxSurfaces_; // Max surfaces in a cube before subdividing
+    thread_local static std::uint8_t const maxDepth_; // Max tree depth
+    thread_local static size_type const maxSurfaces_; // Max surfaces in a cube before subdividing
 
 private:                          // Data
     std::uint8_t d_;              // Depth in tree
@@ -630,7 +630,7 @@ private:                          // Data
 }; // SurfaceOctreeCube
 
 // Globals
-extern SurfaceOctreeCube surfaceOctree;
+thread_local extern SurfaceOctreeCube surfaceOctree;
 
 } // namespace EnergyPlus
 

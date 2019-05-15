@@ -136,55 +136,55 @@ namespace HeatBalanceHAMTManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const ittermax(150); // Maximum Number of itterations
-    int const adjmax(6);     // Maximum Number of Adjacent Cells
+    thread_local int const ittermax(150); // Maximum Number of itterations
+    thread_local int const adjmax(6);     // Maximum Number of Adjacent Cells
 
-    Real64 const wdensity(1000.0); // Density of water kg.m-3
-    Real64 const wspech(4180.0);   // Specific Heat Capacity of Water J.kg-1.K-1 (at 20C)
-    Real64 const whv(2489000.0);   // Evaporation enthalpy of water J.kg-1
-    Real64 const convt(0.002);     // Temperature convergence limit
-    Real64 const qvplim(100000.0); // Maximum latent heat W
-    Real64 const rhmax(1.01);      // Maximum RH value
+    thread_local Real64 const wdensity(1000.0); // Density of water kg.m-3
+    thread_local Real64 const wspech(4180.0);   // Specific Heat Capacity of Water J.kg-1.K-1 (at 20C)
+    thread_local Real64 const whv(2489000.0);   // Evaporation enthalpy of water J.kg-1
+    thread_local Real64 const convt(0.002);     // Temperature convergence limit
+    thread_local Real64 const qvplim(100000.0); // Maximum latent heat W
+    thread_local Real64 const rhmax(1.01);      // Maximum RH value
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    Array1D_int firstcell;
-    Array1D_int lastcell;
-    Array1D_int Extcell;
-    Array1D_int ExtRadcell;
-    Array1D_int ExtConcell;
-    Array1D_int ExtSkycell;
-    Array1D_int ExtGrncell;
-    Array1D_int Intcell;
-    Array1D_int IntConcell;
+    thread_local Array1D_int firstcell;
+    thread_local Array1D_int lastcell;
+    thread_local Array1D_int Extcell;
+    thread_local Array1D_int ExtRadcell;
+    thread_local Array1D_int ExtConcell;
+    thread_local Array1D_int ExtSkycell;
+    thread_local Array1D_int ExtGrncell;
+    thread_local Array1D_int Intcell;
+    thread_local Array1D_int IntConcell;
 
-    Array1D<Real64> watertot;
-    Array1D<Real64> surfrh;
-    Array1D<Real64> surfextrh;
-    Array1D<Real64> surftemp;
-    Array1D<Real64> surfexttemp;
-    Array1D<Real64> surfvp;
+    thread_local Array1D<Real64> watertot;
+    thread_local Array1D<Real64> surfrh;
+    thread_local Array1D<Real64> surfextrh;
+    thread_local Array1D<Real64> surftemp;
+    thread_local Array1D<Real64> surfexttemp;
+    thread_local Array1D<Real64> surfvp;
 
-    Array1D<Real64> extvtc;   // External Surface vapor transfer coefficient
-    Array1D<Real64> intvtc;   // Internal Surface Vapor Transfer Coefficient
-    Array1D_bool extvtcflag;  // External Surface vapor transfer coefficient flag
-    Array1D_bool intvtcflag;  // Internal Surface Vapor Transfer Coefficient flag
-    Array1D_bool MyEnvrnFlag; // Flag to reset surface properties.
+    thread_local Array1D<Real64> extvtc;   // External Surface vapor transfer coefficient
+    thread_local Array1D<Real64> intvtc;   // Internal Surface Vapor Transfer Coefficient
+    thread_local Array1D_bool extvtcflag;  // External Surface vapor transfer coefficient flag
+    thread_local Array1D_bool intvtcflag;  // Internal Surface Vapor Transfer Coefficient flag
+    thread_local Array1D_bool MyEnvrnFlag; // Flag to reset surface properties.
 
-    Real64 deltat(0.0); // time step in seconds
+    thread_local Real64 deltat(0.0); // time step in seconds
 
-    int TotCellsMax(0); // Maximum number of cells per material
+    thread_local int TotCellsMax(0); // Maximum number of cells per material
 
-    bool latswitch(false);  // latent heat switch,
-    bool rainswitch(false); // rain switch,
+    thread_local bool latswitch(false);  // latent heat switch,
+    thread_local bool rainswitch(false); // rain switch,
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HeatBalanceHAMTManager:
 
     // Object Data
-    Array1D<subcell> cells;
+    thread_local Array1D<subcell> cells;
 
     // Functions
 
@@ -223,7 +223,7 @@ namespace HeatBalanceHAMTManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static bool OneTimeFlag(true);
+        thread_local static bool OneTimeFlag(true);
 
         if (OneTimeFlag) {
             OneTimeFlag = false;
@@ -248,13 +248,13 @@ namespace HeatBalanceHAMTManager {
         // gets input for the HAMT model
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const cHAMTObject1("MaterialProperty:HeatAndMoistureTransfer:Settings");
-        static std::string const cHAMTObject2("MaterialProperty:HeatAndMoistureTransfer:SorptionIsotherm");
-        static std::string const cHAMTObject3("MaterialProperty:HeatAndMoistureTransfer:Suction");
-        static std::string const cHAMTObject4("MaterialProperty:HeatAndMoistureTransfer:Redistribution");
-        static std::string const cHAMTObject5("MaterialProperty:HeatAndMoistureTransfer:Diffusion");
-        static std::string const cHAMTObject6("MaterialProperty:HeatAndMoistureTransfer:ThermalConductivity");
-        static std::string const cHAMTObject7("SurfaceProperties:VaporCoefficients");
+        thread_local static std::string const cHAMTObject1("MaterialProperty:HeatAndMoistureTransfer:Settings");
+        thread_local static std::string const cHAMTObject2("MaterialProperty:HeatAndMoistureTransfer:SorptionIsotherm");
+        thread_local static std::string const cHAMTObject3("MaterialProperty:HeatAndMoistureTransfer:Suction");
+        thread_local static std::string const cHAMTObject4("MaterialProperty:HeatAndMoistureTransfer:Redistribution");
+        thread_local static std::string const cHAMTObject5("MaterialProperty:HeatAndMoistureTransfer:Diffusion");
+        thread_local static std::string const cHAMTObject6("MaterialProperty:HeatAndMoistureTransfer:ThermalConductivity");
+        thread_local static std::string const cHAMTObject7("SurfaceProperties:VaporCoefficients");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -720,7 +720,7 @@ namespace HeatBalanceHAMTManager {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const adjdist(0.00005); // Allowable distance between two cells, also used as limit on cell length
-        static std::string const RoutineName("InitCombinedHeatAndMoistureFiniteElement: ");
+        thread_local static std::string const RoutineName("InitCombinedHeatAndMoistureFiniteElement: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -752,12 +752,12 @@ namespace HeatBalanceHAMTManager {
         bool DoReport;
 
         // Formats
-        static gio::Fmt Format_1966("('! <HAMT cells>, Surface Name, Construction Name, Cell Numbers')");
-        static gio::Fmt Format_1965("('! <HAMT origins>, Surface Name, Construction Name, Cell origins (m) ')");
-        static gio::Fmt Format_1968("('HAMT cells, ',A,',',A,400(,:,',',i4))");
-        static gio::Fmt Format_1967("('HAMT origins,',A,',',A,400(,:,',',f10.7))");
-        static gio::Fmt Format_108("('! <Material Nominal Resistance>, Material Name,  Nominal R')");
-        static gio::Fmt Format_111("('Material Nominal Resistance's,2(',',A))");
+        thread_local static gio::Fmt Format_1966("('! <HAMT cells>, Surface Name, Construction Name, Cell Numbers')");
+        thread_local static gio::Fmt Format_1965("('! <HAMT origins>, Surface Name, Construction Name, Cell origins (m) ')");
+        thread_local static gio::Fmt Format_1968("('HAMT cells, ',A,',',A,400(,:,',',i4))");
+        thread_local static gio::Fmt Format_1967("('HAMT origins,',A,',',A,400(,:,',',f10.7))");
+        thread_local static gio::Fmt Format_108("('! <Material Nominal Resistance>, Material Name,  Nominal R')");
+        thread_local static gio::Fmt Format_111("('Material Nominal Resistance's,2(',',A))");
 
         deltat = TimeStepZone * 3600.0;
 
@@ -1104,8 +1104,8 @@ namespace HeatBalanceHAMTManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const HAMTExt("HAMT-Ext");
-        static std::string const HAMTInt("HAMT-Int");
+        thread_local static std::string const HAMTExt("HAMT-Ext");
+        thread_local static std::string const HAMTInt("HAMT-Int");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1146,9 +1146,9 @@ namespace HeatBalanceHAMTManager {
         int adjl;
 
         //    INTEGER, SAVE :: tempErrCount=0
-        static int qvpErrCount(0);
+        thread_local static int qvpErrCount(0);
         //    INTEGER, SAVE :: tempErrReport=0
-        static int qvpErrReport(0);
+        thread_local static int qvpErrReport(0);
         Real64 denominator;
 
         if (BeginEnvrnFlag && MyEnvrnFlag(sid)) {

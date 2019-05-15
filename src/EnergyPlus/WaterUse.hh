@@ -63,26 +63,26 @@ namespace WaterUse {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const HeatRecoveryHXIdeal;
-    extern int const HeatRecoveryHXCounterFlow;
-    extern int const HeatRecoveryHXCrossFlow;
+    thread_local extern int const HeatRecoveryHXIdeal;
+    thread_local extern int const HeatRecoveryHXCounterFlow;
+    thread_local extern int const HeatRecoveryHXCrossFlow;
 
-    extern int const HeatRecoveryConfigPlant;
-    extern int const HeatRecoveryConfigEquipment;
-    extern int const HeatRecoveryConfigPlantAndEquip;
+    thread_local extern int const HeatRecoveryConfigPlant;
+    thread_local extern int const HeatRecoveryConfigEquipment;
+    thread_local extern int const HeatRecoveryConfigPlantAndEquip;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumWaterEquipment;
-    extern int NumWaterConnections;
+    thread_local extern int NumWaterEquipment;
+    thread_local extern int NumWaterConnections;
     // INTEGER :: MaxIterationsErrorCount =0
-    extern bool GetWaterUseInputFlag;
+    thread_local extern bool GetWaterUseInputFlag;
 
-    extern Array1D_bool CheckEquipName;
-    extern Array1D_bool CheckPlantLoop;
+    thread_local extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckPlantLoop;
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -230,8 +230,8 @@ namespace WaterUse {
     };
 
     // Object Data
-    extern Array1D<WaterEquipmentType> WaterEquipment;
-    extern Array1D<WaterConnectionsType> WaterConnections;
+    thread_local extern Array1D<WaterEquipmentType> WaterEquipment;
+    thread_local extern Array1D<WaterConnectionsType> WaterConnections;
 
     // Functions
 

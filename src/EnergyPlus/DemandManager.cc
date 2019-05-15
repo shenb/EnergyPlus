@@ -96,49 +96,49 @@ namespace DemandManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const ManagerTypeExtLights(1);
-    int const ManagerTypeLights(2);
-    int const ManagerTypeElecEquip(3);
-    int const ManagerTypeThermostats(4);
-    int const ManagerTypeVentilation(5);
+    thread_local int const ManagerTypeExtLights(1);
+    thread_local int const ManagerTypeLights(2);
+    thread_local int const ManagerTypeElecEquip(3);
+    thread_local int const ManagerTypeThermostats(4);
+    thread_local int const ManagerTypeVentilation(5);
 
-    int const ManagerPrioritySequential(1);
-    int const ManagerPriorityOptimal(2);
-    int const ManagerPriorityAll(3);
+    thread_local int const ManagerPrioritySequential(1);
+    thread_local int const ManagerPriorityOptimal(2);
+    thread_local int const ManagerPriorityAll(3);
 
-    int const ManagerLimitOff(1);
-    int const ManagerLimitFixed(2);
-    int const ManagerLimitVariable(3);
-    int const ManagerLimitReductionRatio(4);
+    thread_local int const ManagerLimitOff(1);
+    thread_local int const ManagerLimitFixed(2);
+    thread_local int const ManagerLimitVariable(3);
+    thread_local int const ManagerLimitReductionRatio(4);
 
-    int const ManagerSelectionAll(1);
-    int const ManagerSelectionMany(2);
-    int const ManagerSelectionOne(3);
+    thread_local int const ManagerSelectionAll(1);
+    thread_local int const ManagerSelectionMany(2);
+    thread_local int const ManagerSelectionOne(3);
 
-    int const CheckCanReduce(1);
-    int const SetLimit(2);
-    int const ClearLimit(3);
+    thread_local int const CheckCanReduce(1);
+    thread_local int const SetLimit(2);
+    thread_local int const ClearLimit(3);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumDemandManagerList(0);
-    int NumDemandMgr(0);
-    int DemandManagerExtIterations(0);
-    int DemandManagerHBIterations(0);
-    int DemandManagerHVACIterations(0);
-    bool GetInput(true); // Flag to prevent input from being read multiple times
+    thread_local int NumDemandManagerList(0);
+    thread_local int NumDemandMgr(0);
+    thread_local int DemandManagerExtIterations(0);
+    thread_local int DemandManagerHBIterations(0);
+    thread_local int DemandManagerHVACIterations(0);
+    thread_local bool GetInput(true); // Flag to prevent input from being read multiple times
 
     // SUBROUTINE SPECIFICATIONS:
 
     // Object Data
-    Array1D<DemandManagerListData> DemandManagerList;
-    Array1D<DemandManagerData> DemandMgr;
-    std::unordered_map<std::string, std::string> UniqueDemandMgrNames;
+    thread_local Array1D<DemandManagerListData> DemandManagerList;
+    thread_local Array1D<DemandManagerData> DemandMgr;
+    thread_local std::unordered_map<std::string, std::string> UniqueDemandMgrNames;
 
     // MODULE SUBROUTINES:
 
@@ -180,12 +180,12 @@ namespace DemandManager {
         // Locals
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ListNum;
-        static bool firstTime;      // Flag to allow Demand Manager List to simulate at least once
-        static bool ResimExt;       // Flag to resimulate the exterior energy use simulation
-        static bool ResimHB;        // Flag to resimulate the heat balance simulation (including HVAC)
-        static bool ResimHVAC;      // Flag to resimulate the HVAC simulation
-        static bool BeginDemandSim; // TRUE in the first timestep after warmup of a new environment
-        static bool ClearHistory;   // TRUE in the first timestep during warmup of a new environment
+        thread_local static bool firstTime;      // Flag to allow Demand Manager List to simulate at least once
+        thread_local static bool ResimExt;       // Flag to resimulate the exterior energy use simulation
+        thread_local static bool ResimHB;        // Flag to resimulate the heat balance simulation (including HVAC)
+        thread_local static bool ResimHVAC;      // Flag to resimulate the HVAC simulation
+        thread_local static bool BeginDemandSim; // TRUE in the first timestep after warmup of a new environment
+        thread_local static bool ClearHistory;   // TRUE in the first timestep during warmup of a new environment
 
         // FLOW:
         if (GetInput && !DoingSizing) {
@@ -419,7 +419,7 @@ namespace DemandManager {
         Array1D_string AlphArray; // Character string data
         Array1D<Real64> NumArray; // Numeric data
         std::string Units;        // String for meter units
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         std::string CurrentModuleObject; // for ease in renaming.
 
         // FLOW:
@@ -690,7 +690,7 @@ namespace DemandManager {
         int IOStat;               // IO Status when calling get input subroutine
         Array1D_string AlphArray; // Character string data
         Array1D<Real64> NumArray; // Numeric data
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         std::string CurrentModuleObject; // for ease in renaming.
         int Item;
         int Item1;

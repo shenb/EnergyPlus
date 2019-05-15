@@ -123,70 +123,70 @@ namespace PlantChillers {
     using General::TrimSigDigits;
 
     // Parameters for use in Chillers
-    int const AirCooled(1);
-    int const WaterCooled(2);
-    int const EvapCooled(3);
-    Real64 const KJtoJ(1000.0); // convert Kjoules to joules
+    thread_local int const AirCooled(1);
+    thread_local int const WaterCooled(2);
+    thread_local int const EvapCooled(3);
+    thread_local Real64 const KJtoJ(1000.0); // convert Kjoules to joules
 
     // chiller flow modes
-    int const FlowModeNotSet(200);
-    int const ConstantFlow(201);
-    int const NotModulated(202);
-    int const LeavingSetPointModulated(203);
+    thread_local int const FlowModeNotSet(200);
+    thread_local int const ConstantFlow(201);
+    thread_local int const NotModulated(202);
+    thread_local int const LeavingSetPointModulated(203);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumElectricChillers(0);      // number of Electric chillers specified in input
-    Real64 CondMassFlowRate(0.0);    // Kg/s - condenser mass flow rate, water side
-    Real64 EvapMassFlowRate(0.0);    // Kg/s - evaporator mass flow rate, water side
-    Real64 CondOutletTemp(0.0);      // C - condenser outlet temperature, air or water side
-    Real64 CondOutletHumRat(0.0);    // kg/kg - condenser outlet humditiy ratio, air side
-    Real64 EvapOutletTemp(0.0);      // C - evaporator outlet temperature, water side
-    Real64 Power(0.0);               // W - rate of chiller energy use
-    Real64 QEvaporator(0.0);         // W - rate of heat transfer to the evaporator coil
-    Real64 QCondenser(0.0);          // W - rate of heat transfer to the condenser coil
-    Real64 Energy(0.0);              // J - chiller energy use
-    Real64 EvaporatorEnergy(0.0);    // J - rate of heat transfer to the evaporator coil
-    Real64 CondenserEnergy(0.0);     // J - rate of heat transfer to the condenser coil
-    Real64 QHeatRecovered(0.0);      // W - rate of heat transfer to the Heat Recovery coil
-    Real64 HeatRecOutletTemp(0.0);   // C - Heat Rec outlet temperature, water side
-    Real64 AvgCondSinkTemp(0.0);     // condenser temperature value for use in curves [C]
-    Real64 ChillerCyclingRatio(0.0); // Cycling ratio for chiller when load is below MinPLR
-    Real64 BasinHeaterPower(0.0);    // Basin heater power (W)
+    thread_local int NumElectricChillers(0);      // number of Electric chillers specified in input
+    thread_local Real64 CondMassFlowRate(0.0);    // Kg/s - condenser mass flow rate, water side
+    thread_local Real64 EvapMassFlowRate(0.0);    // Kg/s - evaporator mass flow rate, water side
+    thread_local Real64 CondOutletTemp(0.0);      // C - condenser outlet temperature, air or water side
+    thread_local Real64 CondOutletHumRat(0.0);    // kg/kg - condenser outlet humditiy ratio, air side
+    thread_local Real64 EvapOutletTemp(0.0);      // C - evaporator outlet temperature, water side
+    thread_local Real64 Power(0.0);               // W - rate of chiller energy use
+    thread_local Real64 QEvaporator(0.0);         // W - rate of heat transfer to the evaporator coil
+    thread_local Real64 QCondenser(0.0);          // W - rate of heat transfer to the condenser coil
+    thread_local Real64 Energy(0.0);              // J - chiller energy use
+    thread_local Real64 EvaporatorEnergy(0.0);    // J - rate of heat transfer to the evaporator coil
+    thread_local Real64 CondenserEnergy(0.0);     // J - rate of heat transfer to the condenser coil
+    thread_local Real64 QHeatRecovered(0.0);      // W - rate of heat transfer to the Heat Recovery coil
+    thread_local Real64 HeatRecOutletTemp(0.0);   // C - Heat Rec outlet temperature, water side
+    thread_local Real64 AvgCondSinkTemp(0.0);     // condenser temperature value for use in curves [C]
+    thread_local Real64 ChillerCyclingRatio(0.0); // Cycling ratio for chiller when load is below MinPLR
+    thread_local Real64 BasinHeaterPower(0.0);    // Basin heater power (W)
 
     // engine driven:
-    int NumEngineDrivenChillers(0); // number of EngineDriven chillers specified in input
-    Real64 HeatRecInletTemp(0.0);   // Inlet Temperature of the heat recovery fluid
-    Real64 HeatRecMdotActual(0.0);  // reporting: Heat Recovery Loop Mass flow rate
-    Real64 HeatRecMdotDesign(0.0);
-    Real64 QTotalHeatRecovered(0.0); // total heat recovered (W)
-    Real64 QJacketRecovered(0.0);    // heat recovered from jacket (W)
-    Real64 QLubeOilRecovered(0.0);   // heat recovered from lube (W)
-    Real64 QExhaustRecovered(0.0);   // exhaust gas heat recovered (W)
-    Real64 FuelEnergyUseRate(0.0);   // Fuel Energy used (W)
-    Real64 TotalHeatEnergyRec(0.0);  // total heat recovered (J)
-    Real64 JacketEnergyRec(0.0);     // heat recovered from jacket (J)
-    Real64 LubeOilEnergyRec(0.0);    // heat recovered from lube (J)
-    Real64 ExhaustEnergyRec(0.0);    // exhaust gas heat recovered (J)
-    Real64 FuelEnergy(0.0);          // Fuel Energy used (J)
-    Real64 FuelMdot(0.0);            // Fuel Amount used (Kg/s)
-    Real64 ExhaustStackTemp(0.0);    // Exhaust Stack Temperature (C)
+    thread_local int NumEngineDrivenChillers(0); // number of EngineDriven chillers specified in input
+    thread_local Real64 HeatRecInletTemp(0.0);   // Inlet Temperature of the heat recovery fluid
+    thread_local Real64 HeatRecMdotActual(0.0);  // reporting: Heat Recovery Loop Mass flow rate
+    thread_local Real64 HeatRecMdotDesign(0.0);
+    thread_local Real64 QTotalHeatRecovered(0.0); // total heat recovered (W)
+    thread_local Real64 QJacketRecovered(0.0);    // heat recovered from jacket (W)
+    thread_local Real64 QLubeOilRecovered(0.0);   // heat recovered from lube (W)
+    thread_local Real64 QExhaustRecovered(0.0);   // exhaust gas heat recovered (W)
+    thread_local Real64 FuelEnergyUseRate(0.0);   // Fuel Energy used (W)
+    thread_local Real64 TotalHeatEnergyRec(0.0);  // total heat recovered (J)
+    thread_local Real64 JacketEnergyRec(0.0);     // heat recovered from jacket (J)
+    thread_local Real64 LubeOilEnergyRec(0.0);    // heat recovered from lube (J)
+    thread_local Real64 ExhaustEnergyRec(0.0);    // exhaust gas heat recovered (J)
+    thread_local Real64 FuelEnergy(0.0);          // Fuel Energy used (J)
+    thread_local Real64 FuelMdot(0.0);            // Fuel Amount used (Kg/s)
+    thread_local Real64 ExhaustStackTemp(0.0);    // Exhaust Stack Temperature (C)
 
     // gas turbine
-    int NumGTChillers(0); // number of GT chillers specified in input
+    thread_local int NumGTChillers(0); // number of GT chillers specified in input
 
     // const COP
-    int NumConstCOPChillers(0);
-    Real64 EvapInletTemp(0.0);
-    Real64 CondInletTemp(0.0);
+    thread_local int NumConstCOPChillers(0);
+    thread_local Real64 EvapInletTemp(0.0);
+    thread_local Real64 CondInletTemp(0.0);
 
     // DERIVED TYPE DEFINITIONS
 
-    bool GetEngineDrivenInput(true); // then TRUE, calls subroutine to read input file.
-    bool GetElectricInput(true);     // then TRUE, calls subroutine to read input file.
-    bool GetGasTurbineInput(true);   // then TRUE, calls subroutine to read input file.
-    bool GetConstCOPInput(true);
+    thread_local bool GetEngineDrivenInput(true); // then TRUE, calls subroutine to read input file.
+    thread_local bool GetElectricInput(true);     // then TRUE, calls subroutine to read input file.
+    thread_local bool GetGasTurbineInput(true);   // then TRUE, calls subroutine to read input file.
+    thread_local bool GetConstCOPInput(true);
 
     // Merged routines
 
@@ -199,14 +199,14 @@ namespace PlantChillers {
     // Const COP
 
     // Object Data
-    Array1D<ElectricChillerSpecs> ElectricChiller; // dimension to number of machines
-    Array1D<ElectricReportVars> ElectricChillerReport;
-    Array1D<EngineDrivenChillerSpecs> EngineDrivenChiller; // dimension to number of machines
-    Array1D<EngineDrivenReportVars> EngineDrivenChillerReport;
-    Array1D<GTChillerSpecs> GTChiller; // dimension to number of machines
-    Array1D<GasTurbineReportVars> GTChillerReport;
-    Array1D<ConstCOPChillerSpecs> ConstCOPChiller; // dimension to number of machines
-    Array1D<ConstCOPReportVars> ConstCOPChillerReport;
+    thread_local Array1D<ElectricChillerSpecs> ElectricChiller; // dimension to number of machines
+    thread_local Array1D<ElectricReportVars> ElectricChillerReport;
+    thread_local Array1D<EngineDrivenChillerSpecs> EngineDrivenChiller; // dimension to number of machines
+    thread_local Array1D<EngineDrivenReportVars> EngineDrivenChillerReport;
+    thread_local Array1D<GTChillerSpecs> GTChiller; // dimension to number of machines
+    thread_local Array1D<GasTurbineReportVars> GTChillerReport;
+    thread_local Array1D<ConstCOPChillerSpecs> ConstCOPChiller; // dimension to number of machines
+    thread_local Array1D<ConstCOPReportVars> ConstCOPChillerReport;
 
     // MODULE SUBROUTINES:
 
@@ -652,7 +652,7 @@ namespace PlantChillers {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetElectricChillerInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetElectricChillerInput: "); // include trailing blank space
         // LOCAL VARIABLES
         int ChillerNum; // chiller counter
         int NumAlphas;  // Number of elements in the alpha array
@@ -660,7 +660,7 @@ namespace PlantChillers {
         int IOStat;     // IO Status when calling get input subroutine
         //  CHARACTER(len=MaxNameLength),DIMENSION(9)   :: AlphArray !character string data
         //  REAL(r64),                        DIMENSION(22)  :: NumArray  !numeric data
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;
         bool Okay;
         //  CHARACTER(len=MaxNameLength) :: cCurrentModuleObject  ! for ease in renaming.
@@ -1215,13 +1215,13 @@ namespace PlantChillers {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetEngineDrivenChillerInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetEngineDrivenChillerInput: "); // include trailing blank space
         // LOCAL VARIABLES
         int ChillerNum; // chiller counter
         int NumAlphas;  // Number of elements in the alpha array
         int NumNums;    // Number of elements in the numeric array
         int IOStat;     // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;
         bool Okay;
 
@@ -1908,13 +1908,13 @@ namespace PlantChillers {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetGTChillerInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetGTChillerInput: "); // include trailing blank space
         // LOCAL VARIABLES
         int ChillerNum; // chiller counter
         int NumAlphas;  // Number of elements in the alpha array
         int NumNums;    // Number of elements in the numeric array
         int IOStat;     // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;
         bool Okay;
 
@@ -2528,14 +2528,14 @@ namespace PlantChillers {
         using ScheduleManager::GetScheduleIndex;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetConstCOPChillerInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetConstCOPChillerInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ChillerNum;
         int NumAlphas; // Number of elements in the alpha array
         int NumNums;   // Number of elements in the numeric array
         int IOStat;    // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;
         bool Okay;
 
@@ -2938,12 +2938,12 @@ namespace PlantChillers {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitElectricChiller");
+        thread_local static std::string const RoutineName("InitElectricChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyFlag;
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyFlag;
+        thread_local static Array1D_bool MyEnvrnFlag;
         int CondInletNode;  // node number of water inlet node to the condenser
         int CondOutletNode; // node number of water outlet node from the condenser
         int EvapInletNode;
@@ -3337,12 +3337,12 @@ namespace PlantChillers {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitEngineDrivenChiller");
+        thread_local static std::string const RoutineName("InitEngineDrivenChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyFlag;
         int CondInletNode; // node number of water inlet node to the condenser
         int CondOutletNode;
         int EvapInletNode;
@@ -3681,12 +3681,12 @@ namespace PlantChillers {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitGTChiller");
+        thread_local static std::string const RoutineName("InitGTChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyFlag;
         int CondInletNode;  // node number of water inlet node to the condenser
         int CondOutletNode; // node number of water outlet node from the condenser
         int EvapInletNode;
@@ -4020,13 +4020,13 @@ namespace PlantChillers {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitConstCOPChiller");
+        thread_local static std::string const RoutineName("InitConstCOPChiller");
         Real64 const TempDesCondIn(25.0); // Design condenser inlet temp. C
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool OneTimeFlag(true);
-        static Array1D_bool MyFlag;
-        static Array1D_bool MyEnvironFlag;
+        thread_local static bool OneTimeFlag(true);
+        thread_local static Array1D_bool MyFlag;
+        thread_local static Array1D_bool MyEnvironFlag;
         int CondInletNode;  // node number of water inlet node to the condenser
         int CondOutletNode; // node number of water outlet node from the condenser
         int EvapInletNode;
@@ -4274,7 +4274,7 @@ namespace PlantChillers {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeElectricChiller");
+        thread_local static std::string const RoutineName("SizeElectricChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum(0);        // Plant Sizing index corresponding to CurLoopNum
@@ -4606,7 +4606,7 @@ namespace PlantChillers {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeEngineDrivenChiller");
+        thread_local static std::string const RoutineName("SizeEngineDrivenChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum;     // Plant Sizing index corresponding to CurLoopNum
@@ -4954,7 +4954,7 @@ namespace PlantChillers {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeGTChiller");
+        thread_local static std::string const RoutineName("SizeGTChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum;     // Plant Sizing index corresponding to CurLoopNum
@@ -5336,7 +5336,7 @@ namespace PlantChillers {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeConstCOPChiller");
+        thread_local static std::string const RoutineName("SizeConstCOPChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum;     // Plant Sizing index corresponding to CurLoopNum
@@ -5653,8 +5653,8 @@ namespace PlantChillers {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
 
-        static gio::Fmt OutputFormat("(F6.2)");
-        static std::string const RoutineName("CalcElectricChillerModel");
+        thread_local static gio::Fmt OutputFormat("(F6.2)");
+        thread_local static std::string const RoutineName("CalcElectricChillerModel");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5693,10 +5693,10 @@ namespace PlantChillers {
         int LoopSideNum;
         int BranchNum;
         int CompNum;
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
         Real64 CurrentEndTime;                 // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
-        static std::string OutputChar;         // character string for warning messages
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static std::string OutputChar;         // character string for warning messages
         Real64 Cp;                             // local for fluid specif heat, for evaporator
         Real64 CpCond;                         // local for fluid specif heat, for condenser
 
@@ -6367,8 +6367,8 @@ namespace PlantChillers {
         Real64 const ReferenceTemp(25.0); // Reference temperature by which lower heating
         // value is reported.  This should be subtracted
         // off of when calculated exhaust energies.
-        static gio::Fmt OutputFormat("(F6.2)");
-        static std::string const RoutineName("CalcEngineDrivenChillerModel");
+        thread_local static gio::Fmt OutputFormat("(F6.2)");
+        thread_local static std::string const RoutineName("CalcEngineDrivenChillerModel");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -6404,10 +6404,10 @@ namespace PlantChillers {
         Real64 FRAC;
         int LoopNum;
         int LoopSideNum;
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
         Real64 CurrentEndTime;                 // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
-        static std::string OutputChar;         // character string for warning messages
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static std::string OutputChar;         // character string for warning messages
         Real64 Cp;                             // local for fluid specif heat, for evaporator
         Real64 CpCond;                         // local for fluid specif heat, for condenser
 
@@ -7139,9 +7139,9 @@ namespace PlantChillers {
         // SUBROUTINE PARAMETER DEFINITIONS:
 
         Real64 const ExhaustCP(1.047); // Exhaust Gas Specific Heat
-        static gio::Fmt OutputFormat("(F6.2)");
-        static std::string const RoutineName("CalcGTChillerModel");
-        static std::string const RoutineNameHeatRecovery("ChillerHeatRecovery");
+        thread_local static gio::Fmt OutputFormat("(F6.2)");
+        thread_local static std::string const RoutineName("CalcGTChillerModel");
+        thread_local static std::string const RoutineNameHeatRecovery("ChillerHeatRecovery");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -7172,7 +7172,7 @@ namespace PlantChillers {
         int EvapOutletNode;                     // evaporator outlet node number, water side
         int CondInletNode;                      // condenser inlet node number, water side
         int CondOutletNode;                     // condenser outlet node number, water side
-        static Real64 EvapMassFlowRateMax(0.0); // Max Design Evaporator Mass Flow Rate converted from Volume Flow Rate
+        thread_local static Real64 EvapMassFlowRateMax(0.0); // Max Design Evaporator Mass Flow Rate converted from Volume Flow Rate
         Real64 TempLowLimitEout;                // C - Evaporator low temp. limit cut off
         // Special variables for GT Chiller
         Real64 RPLoad;
@@ -7189,10 +7189,10 @@ namespace PlantChillers {
         Real64 UAtoCapRat;                     // (UACGC) Heat Exchanger UA to Capacity
         Real64 AmbientDeltaT;                  // (ATAIR) Difference between ambient actual and ambient design temperatures
         Real64 DesignSteamSatTemp;             // Saturization Temperature of Steam in Stack
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
         Real64 CurrentEndTime;                 // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
-        static std::string OutputChar;         // character string for warning messages
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static std::string OutputChar;         // character string for warning messages
 
         int HeatRecInNode;          // Heat Recovery Fluid Inlet Node Num
         int HeatRecOutNode;         // Heat Recovery Fluid Outlet Node Num
@@ -7990,8 +7990,8 @@ namespace PlantChillers {
         // SUBROUTINE PARAMETER DEFINITIONS:
 
         Real64 const DeltaTempTol(0.0001); // C - minimum significant mass flow rate
-        static gio::Fmt OutputFormat("(F6.2)");
-        static std::string const RoutineName("CalcConstCOPChillerModel");
+        thread_local static gio::Fmt OutputFormat("(F6.2)");
+        thread_local static std::string const RoutineName("CalcConstCOPChillerModel");
 
         // DERIVED TYPE DEFINITIONS
         // na
@@ -8006,10 +8006,10 @@ namespace PlantChillers {
         //  LOGICAL,SAVE           :: PossibleSubcooling=.FALSE.
         int LoopNum;
         int LoopSideNum;
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
         Real64 CurrentEndTime;                 // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
-        static std::string OutputChar;         // character string for warning messages
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static std::string OutputChar;         // character string for warning messages
         Real64 COP;                            // coefficient of performance
         Real64 Cp;                             // local for fluid specif heat, for evaporator
         Real64 CpCond;                         // local for fluid specif heat, for condenser
@@ -8530,7 +8530,7 @@ namespace PlantChillers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ChillerHeatRecovery");
+        thread_local static std::string const RoutineName("ChillerHeatRecovery");
 
         // DERIVED TYPE DEFINITIONS
         // na
@@ -8649,7 +8649,7 @@ namespace PlantChillers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ChillerHeatRecovery");
+        thread_local static std::string const RoutineName("ChillerHeatRecovery");
 
         // DERIVED TYPE DEFINITIONS
         // na

@@ -140,7 +140,7 @@ namespace TARCOGCommon {
         Real64 LDSumMean;
 
         // Locals
-        static Real64 const Pi_squared(Pi * Pi);
+        thread_local static Real64 const Pi_squared(Pi * Pi);
         int i;
         int j;
 
@@ -329,8 +329,8 @@ namespace TARCOGCommon {
     {
 
         // Locals
-        static int const NMAX(500);
-        static Array1D<Real64> vv(NMAX);
+        thread_local static int const NMAX(500);
+        thread_local static Array1D<Real64> vv(NMAX);
 
         Real64 const TINY(1.0e-20);
 

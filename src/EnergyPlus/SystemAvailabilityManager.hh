@@ -64,77 +64,77 @@ namespace SystemAvailabilityManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const MaxDayTypes;
-    extern int const StayOff;
-    extern int const CycleOnAny;
-    extern int const CycleOnControlZone;
-    extern int const ZoneFansOnly;
+    thread_local extern int const MaxDayTypes;
+    thread_local extern int const StayOff;
+    thread_local extern int const CycleOnAny;
+    thread_local extern int const CycleOnControlZone;
+    thread_local extern int const ZoneFansOnly;
 
     // Cycling Run Time Control Type
-    extern int const FixedRunTime;
-    extern int const Thermostat;
-    extern int const ThermostatWithMinimumRunTime;
+    thread_local extern int const FixedRunTime;
+    thread_local extern int const Thermostat;
+    thread_local extern int const ThermostatWithMinimumRunTime;
 
     // Optimum start parameter definations
-    extern int const ControlZone;
-    extern int const MaximumOfZoneList;
+    thread_local extern int const ControlZone;
+    thread_local extern int const MaximumOfZoneList;
 
-    extern int const ConstantTemperatureGradient;
-    extern int const AdaptiveTemperatureGradient;
-    extern int const AdaptiveASHRAE;
-    extern int const ConstantStartTime;
+    thread_local extern int const ConstantTemperatureGradient;
+    thread_local extern int const AdaptiveTemperatureGradient;
+    thread_local extern int const AdaptiveASHRAE;
+    thread_local extern int const ConstantStartTime;
 
     // Hybrid Ventilation parameters
-    extern int const HybridVentMode_No;       // No hybrid ventilation control
-    extern int const HybridVentMode_Temp;     // Temperature control
-    extern int const HybridVentMode_Enth;     // Enthalpy control
-    extern int const HybridVentMode_DewPoint; // Dew point control
-    extern int const HybridVentMode_OA;       // Outdoor air control
-    extern int const HybridVentMode_OperT80;  // Operative temperature control with 80% acceptability limits
-    extern int const HybridVentMode_OperT90;  // Operative temperature control with 90% acceptability limits
-    extern int const HybridVentMode_CO2;      // CO2 control
+    thread_local extern int const HybridVentMode_No;       // No hybrid ventilation control
+    thread_local extern int const HybridVentMode_Temp;     // Temperature control
+    thread_local extern int const HybridVentMode_Enth;     // Enthalpy control
+    thread_local extern int const HybridVentMode_DewPoint; // Dew point control
+    thread_local extern int const HybridVentMode_OA;       // Outdoor air control
+    thread_local extern int const HybridVentMode_OperT80;  // Operative temperature control with 80% acceptability limits
+    thread_local extern int const HybridVentMode_OperT90;  // Operative temperature control with 90% acceptability limits
+    thread_local extern int const HybridVentMode_CO2;      // CO2 control
 
-    extern int const HybridVentCtrl_NoAction; // No hybrid ventilation control
-    extern int const HybridVentCtrl_Open;     // Open windows or doors
-    extern int const HybridVentCtrl_Close;    // Close windows or doors
+    thread_local extern int const HybridVentCtrl_NoAction; // No hybrid ventilation control
+    thread_local extern int const HybridVentCtrl_Open;     // Open windows or doors
+    thread_local extern int const HybridVentCtrl_Close;    // Close windows or doors
 
-    extern int const NumValidSysAvailManagerTypes;
-    extern Array1D_string const cValidSysAvailManagerTypes;
-    extern int const SysAvailMgr_Scheduled;
-    extern int const SysAvailMgr_ScheduledOn;
-    extern int const SysAvailMgr_ScheduledOff;
-    extern int const SysAvailMgr_NightCycle;
-    extern int const SysAvailMgr_DiffThermo;
-    extern int const SysAvailMgr_HiTempTOff;
-    extern int const SysAvailMgr_HiTempTOn;
-    extern int const SysAvailMgr_LoTempTOff;
-    extern int const SysAvailMgr_LoTempTOn;
-    extern int const SysAvailMgr_NightVent;
-    extern int const SysAvailMgr_HybridVent;
+    thread_local extern int const NumValidSysAvailManagerTypes;
+    thread_local extern Array1D_string const cValidSysAvailManagerTypes;
+    thread_local extern int const SysAvailMgr_Scheduled;
+    thread_local extern int const SysAvailMgr_ScheduledOn;
+    thread_local extern int const SysAvailMgr_ScheduledOff;
+    thread_local extern int const SysAvailMgr_NightCycle;
+    thread_local extern int const SysAvailMgr_DiffThermo;
+    thread_local extern int const SysAvailMgr_HiTempTOff;
+    thread_local extern int const SysAvailMgr_HiTempTOn;
+    thread_local extern int const SysAvailMgr_LoTempTOff;
+    thread_local extern int const SysAvailMgr_LoTempTOn;
+    thread_local extern int const SysAvailMgr_NightVent;
+    thread_local extern int const SysAvailMgr_HybridVent;
 
-    extern int const SysAvailMgr_OptimumStart;
-    extern Array1D_int const ValidSysAvailManagerTypes;
+    thread_local extern int const SysAvailMgr_OptimumStart;
+    thread_local extern Array1D_int const ValidSysAvailManagerTypes;
     // DERIVED TYPE DEFINITIONS
 
     // Not used yet
 
     // MODULE VARIABLE DECLARATIONS
 
-    extern int NumSchedSysAvailMgrs;
-    extern int NumSchedOnSysAvailMgrs;
-    extern int NumSchedOffSysAvailMgrs;
-    extern int NumNCycSysAvailMgrs;
-    extern int NumDiffTSysAvailMgrs;
-    extern int NumHiTurnOffSysAvailMgrs;
-    extern int NumHiTurnOnSysAvailMgrs;
-    extern int NumLoTurnOffSysAvailMgrs;
-    extern int NumLoTurnOnSysAvailMgrs;
-    extern int NumNVentSysAvailMgrs;
-    extern int NumAvailManagerLists;
-    extern bool GetAvailListsInput;
-    extern bool GetAvailMgrInputFlag; // First time, input is "gotten"
-    extern bool GetHybridInputFlag;   // Flag set to make sure you get input once
-    extern int NumOptStartSysAvailMgrs;
+    thread_local extern int NumSchedSysAvailMgrs;
+    thread_local extern int NumSchedOnSysAvailMgrs;
+    thread_local extern int NumSchedOffSysAvailMgrs;
+    thread_local extern int NumNCycSysAvailMgrs;
+    thread_local extern int NumDiffTSysAvailMgrs;
+    thread_local extern int NumHiTurnOffSysAvailMgrs;
+    thread_local extern int NumHiTurnOnSysAvailMgrs;
+    thread_local extern int NumLoTurnOffSysAvailMgrs;
+    thread_local extern int NumLoTurnOnSysAvailMgrs;
+    thread_local extern int NumNVentSysAvailMgrs;
+    thread_local extern int NumAvailManagerLists;
+    thread_local extern bool GetAvailListsInput;
+    thread_local extern bool GetAvailMgrInputFlag; // First time, input is "gotten"
+    thread_local extern bool GetHybridInputFlag;   // Flag set to make sure you get input once
+    thread_local extern int NumOptStartSysAvailMgrs;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -434,21 +434,21 @@ namespace SystemAvailabilityManager {
     };
 
     // Object Data
-    extern Array1D<DefineSchedSysAvailManager> SchedSysAvailMgrData;
-    extern Array1D<DefineSchedOnSysAvailManager> SchedOnSysAvailMgrData;
-    extern Array1D<DefineSchedOffSysAvailManager> SchedOffSysAvailMgrData;
-    extern Array1D<DefineNightCycSysAvailManager> NCycSysAvailMgrData;
-    extern Array1D<DefineDiffTSysAvailManager> DiffTSysAvailMgrData;
-    extern Array1D<DefineHiLoSysAvailManager> HiTurnOffSysAvailMgrData;
-    extern Array1D<DefineHiLoSysAvailManager> HiTurnOnSysAvailMgrData;
-    extern Array1D<DefineHiLoSysAvailManager> LoTurnOffSysAvailMgrData;
-    extern Array1D<DefineHiLoSysAvailManager> LoTurnOnSysAvailMgrData;
-    extern Array1D<DefineNightVentSysAvailManager> NVentSysAvailMgrData;
-    extern Array1D<DefineHybridVentSysAvailManager> HybridVentSysAvailMgrData;
-    extern Array1D<SysAvailManagerList> SysAvailMgrListData;
-    extern Array1D<DefineOptStartSysAvailManager> OptStartSysAvailMgrData;
-    extern Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffCooling;
-    extern Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffHeating;
+    thread_local extern Array1D<DefineSchedSysAvailManager> SchedSysAvailMgrData;
+    thread_local extern Array1D<DefineSchedOnSysAvailManager> SchedOnSysAvailMgrData;
+    thread_local extern Array1D<DefineSchedOffSysAvailManager> SchedOffSysAvailMgrData;
+    thread_local extern Array1D<DefineNightCycSysAvailManager> NCycSysAvailMgrData;
+    thread_local extern Array1D<DefineDiffTSysAvailManager> DiffTSysAvailMgrData;
+    thread_local extern Array1D<DefineHiLoSysAvailManager> HiTurnOffSysAvailMgrData;
+    thread_local extern Array1D<DefineHiLoSysAvailManager> HiTurnOnSysAvailMgrData;
+    thread_local extern Array1D<DefineHiLoSysAvailManager> LoTurnOffSysAvailMgrData;
+    thread_local extern Array1D<DefineHiLoSysAvailManager> LoTurnOnSysAvailMgrData;
+    thread_local extern Array1D<DefineNightVentSysAvailManager> NVentSysAvailMgrData;
+    thread_local extern Array1D<DefineHybridVentSysAvailManager> HybridVentSysAvailMgrData;
+    thread_local extern Array1D<SysAvailManagerList> SysAvailMgrListData;
+    thread_local extern Array1D<DefineOptStartSysAvailManager> OptStartSysAvailMgrData;
+    thread_local extern Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffCooling;
+    thread_local extern Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffHeating;
 
     // Functions
     void clear_state();

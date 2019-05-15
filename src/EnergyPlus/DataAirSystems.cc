@@ -94,14 +94,14 @@ namespace DataAirSystems {
     // Temporary arrays
 
     // Object Data
-    Array1D<DefinePrimaryAirSystem> PrimaryAirSystem;
-    Array1D<ConnectionPoint> DemandSideConnect;               // Connections between loops
-    Array1D<ConnectZoneComp> ZoneCompToPlant;                 // Connections between loops
-    Array1D<ConnectZoneSubComp> ZoneSubCompToPlant;           // Connections between loops
-    Array1D<ConnectZoneSubSubComp> ZoneSubSubCompToPlant;     // Connections between loops
-    Array1D<ConnectAirSysComp> AirSysCompToPlant;             // Connections between loops
-    Array1D<ConnectAirSysSubComp> AirSysSubCompToPlant;       // Connections between loops
-    Array1D<ConnectAirSysSubSubComp> AirSysSubSubCompToPlant; // Connections between loops
+    thread_local Array1D<DefinePrimaryAirSystem> PrimaryAirSystem;
+    thread_local Array1D<ConnectionPoint> DemandSideConnect;               // Connections between loops
+    thread_local Array1D<ConnectZoneComp> ZoneCompToPlant;                 // Connections between loops
+    thread_local Array1D<ConnectZoneSubComp> ZoneSubCompToPlant;           // Connections between loops
+    thread_local Array1D<ConnectZoneSubSubComp> ZoneSubSubCompToPlant;     // Connections between loops
+    thread_local Array1D<ConnectAirSysComp> AirSysCompToPlant;             // Connections between loops
+    thread_local Array1D<ConnectAirSysSubComp> AirSysSubCompToPlant;       // Connections between loops
+    thread_local Array1D<ConnectAirSysSubSubComp> AirSysSubSubCompToPlant; // Connections between loops
 
     // Functions
     void clear_state()

@@ -187,12 +187,12 @@ namespace HVACManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int HVACManageIteration(0); // counts iterations to enforce maximum iteration limit
-    int RepIterAir(0);
+    thread_local int HVACManageIteration(0); // counts iterations to enforce maximum iteration limit
+    thread_local int RepIterAir(0);
 
     // Array1D_bool CrossMixingReportFlag; // TRUE when Cross Mixing is active based on controls
     // Array1D_bool MixingReportFlag; // TRUE when Mixing is active based on controls
@@ -204,9 +204,9 @@ namespace HVACManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool SimHVACIterSetup(false);
-        bool TriggerGetAFN(true);
-        bool ReportAirHeatBalanceFirstTimeFlag(true);
+        thread_local bool SimHVACIterSetup(false);
+        thread_local bool TriggerGetAFN(true);
+        thread_local bool ReportAirHeatBalanceFirstTimeFlag(true);
     } // namespace
       // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
       // and zone equipment simulations
@@ -308,9 +308,9 @@ namespace HVACManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt EndOfHeaderFormat("('End of Data Dictionary')");          // End of data dictionary marker
-        static gio::Fmt EnvironmentStampFormat("(a,',',a,3(',',f7.2),',',f7.2)"); // Format descriptor for environ stamp
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt EndOfHeaderFormat("('End of Data Dictionary')");          // End of data dictionary marker
+        thread_local static gio::Fmt EnvironmentStampFormat("(a,',',a,3(',',f7.2),',',f7.2)"); // Format descriptor for environ stamp
+        thread_local static gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -326,23 +326,23 @@ namespace HVACManager {
         int NodeNum;
         bool ReportDebug;
         int ZoneNum;
-        static bool PrintedWarmup(false);
+        thread_local static bool PrintedWarmup(false);
         Real64 const SecondsPerHour(3600.0);
 
-        static bool MyEnvrnFlag(true);
-        static bool InitVentReportFlag(true);
-        static bool DebugNamesReported(false);
+        thread_local static bool MyEnvrnFlag(true);
+        thread_local static bool InitVentReportFlag(true);
+        thread_local static bool DebugNamesReported(false);
 
-        static int ZTempTrendsNumSysSteps(0);
-        static int SysTimestepLoop(0);
+        thread_local static int ZTempTrendsNumSysSteps(0);
+        thread_local static int SysTimestepLoop(0);
         bool DummyLogical;
 
         // Formats
-        static gio::Fmt Format_10("('node #   Temp   MassMinAv  MassMaxAv TempSP      MassFlow       MassMin       ','MassMax        MassSP    Press "
+        thread_local static gio::Fmt Format_10("('node #   Temp   MassMinAv  MassMaxAv TempSP      MassFlow       MassMin       ','MassMax        MassSP    Press "
                                   "       Enthal     HumRat Fluid Type')");
-        static gio::Fmt Format_11("('node #   Name')");
-        static gio::Fmt Format_20("(1x,I3,1x,F8.2,2(2x,F8.3),2x,F8.2,4(1x,F13.2),2x,F8.0,2x,F11.2,2x,F9.5,2x,A)");
-        static gio::Fmt Format_30("(1x,I3,5x,A)");
+        thread_local static gio::Fmt Format_11("('node #   Name')");
+        thread_local static gio::Fmt Format_20("(1x,I3,1x,F8.2,2(2x,F8.3),2x,F8.2,4(1x,F13.2),2x,F8.0,2x,F11.2,2x,F9.5,2x,A)");
+        thread_local static gio::Fmt Format_30("(1x,I3,5x,A)");
 
         // SYSTEM INITIALIZATION
         // if ( TriggerGetAFN ) {
@@ -688,11 +688,11 @@ namespace HVACManager {
         /////////// hoisted into namespace SimHVACIterSetup ////////////
         // static bool IterSetup( false ); // Set to TRUE after the variable is setup for Output Reporting
         /////////////////////////
-        static int ErrCount(0); // Number of times that the maximum iterations was exceeded
-        static bool MySetPointInit(true);
+        thread_local static int ErrCount(0); // Number of times that the maximum iterations was exceeded
+        thread_local static bool MySetPointInit(true);
         std::string CharErrOut; // a character string equivalent of ErrCount
-        static int MaxErrCount(0);
-        static std::string ErrEnvironmentName;
+        thread_local static int MaxErrCount(0);
+        thread_local static std::string ErrEnvironmentName;
         int LoopNum;
         int LoopSide;
         int ThisLoopSide;
@@ -1733,9 +1733,9 @@ namespace HVACManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int IterAir; // counts iterations to enforce maximum iteration limit
-        static bool MyEnvrnFlag(true);
-        static bool FlowMaxAvailAlreadyReset(false);
-        static bool FlowResolutionNeeded(false);
+        thread_local static bool MyEnvrnFlag(true);
+        thread_local static bool FlowMaxAvailAlreadyReset(false);
+        thread_local static bool FlowResolutionNeeded(false);
 
         // FLOW:
 
@@ -2337,7 +2337,7 @@ namespace HVACManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName3("ReportAirHeatBalance:3");
+        thread_local static std::string const RoutineName3("ReportAirHeatBalance:3");
         // na
 
         // INTERFACE BLOCK SPECIFICATIONS:
@@ -2357,8 +2357,8 @@ namespace HVACManager {
         Real64 H2OHtOfVap;                 // Heat of vaporization of air
         Real64 TotalLoad;                  // Total loss or gain
         int MixNum;                        // Counter for MIXING and Cross Mixing statements
-        static Array1D<Real64> MixSenLoad; // Mixing sensible loss or gain
-        static Array1D<Real64> MixLatLoad; // Mixing latent loss or gain
+        thread_local static Array1D<Real64> MixSenLoad; // Mixing sensible loss or gain
+        thread_local static Array1D<Real64> MixLatLoad; // Mixing latent loss or gain
         int j;                             // Index in a do-loop
         int VentZoneNum;                   // Number of ventilation object per zone
         Real64 VentZoneMassflow;           // Total mass flow rate per zone
@@ -2791,14 +2791,14 @@ namespace HVACManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int AirLoopNum(0); // the air loop index
+        thread_local static int AirLoopNum(0); // the air loop index
         int ControlledZoneNum;    // controlled zone index
-        static bool MyOneTimeFlag(true);
-        static bool CyclingFan(false);   // TRUE means air loop operates in cycling fan mode at some point
-        static int ZoneNum(0);           // zone index
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static bool CyclingFan(false);   // TRUE means air loop operates in cycling fan mode at some point
+        thread_local static int ZoneNum(0);           // zone index
         int LightNum;                    // Lights object index
         int SurfNum;                     // Surface index
-        static Real64 CycFanMaxVal(0.0); // max value of cycling fan schedule
+        thread_local static Real64 CycFanMaxVal(0.0); // max value of cycling fan schedule
 
         if (!AirLoopsSimOnce) return;
 

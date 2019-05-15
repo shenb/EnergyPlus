@@ -1992,7 +1992,7 @@ namespace RootFinder {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Real64 XNext(0.0);
+        thread_local static Real64 XNext(0.0);
 
         // FLOW:
 
@@ -2693,7 +2693,7 @@ namespace RootFinder {
         // If set to TRUE, ten always show the X value even if not defined
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string NoValue; // String used whenever the value is not available
+        thread_local static std::string NoValue; // String used whenever the value is not available
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2757,8 +2757,8 @@ namespace RootFinder {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtLD("*");
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2838,7 +2838,7 @@ namespace RootFinder {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

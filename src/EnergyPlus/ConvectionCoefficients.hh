@@ -67,118 +67,118 @@ namespace ConvectionCoefficients {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern Real64 const AdaptiveHcInsideLowLimit;  // W/m2-K
-    extern Real64 const AdaptiveHcOutsideLowLimit; // W/m2-K
+    thread_local extern Real64 const AdaptiveHcInsideLowLimit;  // W/m2-K
+    thread_local extern Real64 const AdaptiveHcOutsideLowLimit; // W/m2-K
 
-    extern Real64 const MinFlow; // Minimum mass flow rate
-    extern Real64 const MaxACH;  // Maximum ceiling diffuser correlation limit
+    thread_local extern Real64 const MinFlow; // Minimum mass flow rate
+    thread_local extern Real64 const MaxACH;  // Maximum ceiling diffuser correlation limit
 
-    extern Real64 const OneThird;   // 1/3 in highest precision
-    extern Real64 const OneFourth;  // 1/4 in highest precision
-    extern Real64 const OneFifth;   // 1/5 in highest precision
-    extern Real64 const OneSixth;   // 1/6 in highest precision
-    extern Real64 const FourFifths; // 4/5 in highest precision
+    thread_local extern Real64 const OneThird;   // 1/3 in highest precision
+    thread_local extern Real64 const OneFourth;  // 1/4 in highest precision
+    thread_local extern Real64 const OneFifth;   // 1/5 in highest precision
+    thread_local extern Real64 const OneSixth;   // 1/6 in highest precision
+    thread_local extern Real64 const FourFifths; // 4/5 in highest precision
 
     // Coefficients that modify the convection coeff based on surface roughness
-    extern Array1D<Real64> const RoughnessMultiplier;
+    thread_local extern Array1D<Real64> const RoughnessMultiplier;
 
     // parameters for identifying more specific hc model equations, inside face
-    extern int const HcInt_UserValue;
-    extern int const HcInt_UserSchedule;
-    extern int const HcInt_UserCurve;
-    extern int const HcInt_ASHRAEVerticalWall;
-    extern int const HcInt_WaltonUnstableHorizontalOrTilt;
-    extern int const HcInt_WaltonStableHorizontalOrTilt;
-    extern int const HcInt_FisherPedersenCeilDiffuserFloor;
-    extern int const HcInt_FisherPedersenCeilDiffuserCeiling;
-    extern int const HcInt_FisherPedersenCeilDiffuserWalls;
-    extern int const HcInt_AlamdariHammondStableHorizontal;
-    extern int const HcInt_AlamdariHammondVerticalWall;
-    extern int const HcInt_AlamdariHammondUnstableHorizontal;
-    extern int const HcInt_KhalifaEq3WallAwayFromHeat;
-    extern int const HcInt_KhalifaEq4CeilingAwayFromHeat;
-    extern int const HcInt_KhalifaEq5WallNearHeat;
-    extern int const HcInt_KhalifaEq6NonHeatedWalls;
-    extern int const HcInt_KhalifaEq7Ceiling;
-    extern int const HcInt_AwbiHattonHeatedFloor;
-    extern int const HcInt_AwbiHattonHeatedWall;
-    extern int const HcInt_BeausoleilMorrisonMixedAssistingWall;
-    extern int const HcInt_BeausoleilMorrisonMixedOppossingWall;
-    extern int const HcInt_BeausoleilMorrisonMixedStableCeiling;
-    extern int const HcInt_BeausoleilMorrisonMixedUnstableCeiling;
-    extern int const HcInt_BeausoleilMorrisonMixedStableFloor;
-    extern int const HcInt_BeausoleilMorrisonMixedUnstableFloor;
-    extern int const HcInt_FohannoPolidoriVerticalWall;
-    extern int const HcInt_KaradagChilledCeiling;
-    extern int const HcInt_ISO15099Windows;
-    extern int const HcInt_GoldsteinNovoselacCeilingDiffuserWindow;
-    extern int const HcInt_GoldsteinNovoselacCeilingDiffuserWalls;
-    extern int const HcInt_GoldsteinNovoselacCeilingDiffuserFloor;
+    thread_local extern int const HcInt_UserValue;
+    thread_local extern int const HcInt_UserSchedule;
+    thread_local extern int const HcInt_UserCurve;
+    thread_local extern int const HcInt_ASHRAEVerticalWall;
+    thread_local extern int const HcInt_WaltonUnstableHorizontalOrTilt;
+    thread_local extern int const HcInt_WaltonStableHorizontalOrTilt;
+    thread_local extern int const HcInt_FisherPedersenCeilDiffuserFloor;
+    thread_local extern int const HcInt_FisherPedersenCeilDiffuserCeiling;
+    thread_local extern int const HcInt_FisherPedersenCeilDiffuserWalls;
+    thread_local extern int const HcInt_AlamdariHammondStableHorizontal;
+    thread_local extern int const HcInt_AlamdariHammondVerticalWall;
+    thread_local extern int const HcInt_AlamdariHammondUnstableHorizontal;
+    thread_local extern int const HcInt_KhalifaEq3WallAwayFromHeat;
+    thread_local extern int const HcInt_KhalifaEq4CeilingAwayFromHeat;
+    thread_local extern int const HcInt_KhalifaEq5WallNearHeat;
+    thread_local extern int const HcInt_KhalifaEq6NonHeatedWalls;
+    thread_local extern int const HcInt_KhalifaEq7Ceiling;
+    thread_local extern int const HcInt_AwbiHattonHeatedFloor;
+    thread_local extern int const HcInt_AwbiHattonHeatedWall;
+    thread_local extern int const HcInt_BeausoleilMorrisonMixedAssistingWall;
+    thread_local extern int const HcInt_BeausoleilMorrisonMixedOppossingWall;
+    thread_local extern int const HcInt_BeausoleilMorrisonMixedStableCeiling;
+    thread_local extern int const HcInt_BeausoleilMorrisonMixedUnstableCeiling;
+    thread_local extern int const HcInt_BeausoleilMorrisonMixedStableFloor;
+    thread_local extern int const HcInt_BeausoleilMorrisonMixedUnstableFloor;
+    thread_local extern int const HcInt_FohannoPolidoriVerticalWall;
+    thread_local extern int const HcInt_KaradagChilledCeiling;
+    thread_local extern int const HcInt_ISO15099Windows;
+    thread_local extern int const HcInt_GoldsteinNovoselacCeilingDiffuserWindow;
+    thread_local extern int const HcInt_GoldsteinNovoselacCeilingDiffuserWalls;
+    thread_local extern int const HcInt_GoldsteinNovoselacCeilingDiffuserFloor;
 
     // parameters for identifying more specific hc model equations, outside face
-    extern int const HcExt_None; // none is allowed because Hn and Hf are split
-    extern int const HcExt_UserValue;
-    extern int const HcExt_UserSchedule;
-    extern int const HcExt_UserCurve;
-    extern int const HcExt_ASHRAESimpleCombined;
-    extern int const HcExt_NaturalASHRAEVerticalWall;
-    extern int const HcExt_NaturalWaltonUnstableHorizontalOrTilt;
-    extern int const HcExt_NaturalWaltonStableHorizontalOrTilt;
-    extern int const HcExt_SparrowWindward;
-    extern int const HcExt_SparrowLeeward;
-    extern int const HcExt_MoWiTTWindward;
-    extern int const HcExt_MoWiTTLeeward;
-    extern int const HcExt_DOE2Windward;
-    extern int const HcExt_DOE2Leeward;
-    extern int const HcExt_NusseltJurges;
-    extern int const HcExt_McAdams;
-    extern int const HcExt_Mitchell;
-    extern int const HcExt_ClearRoof;
-    extern int const HcExt_BlockenWindward;
-    extern int const HcExt_EmmelVertical;
-    extern int const HcExt_EmmelRoof;
-    extern int const HcExt_AlamdariHammondVerticalWall;
-    extern int const HcExt_FohannoPolidoriVerticalWall;
-    extern int const HcExt_ISO15099Windows;
-    extern int const HcExt_AlamdariHammondStableHorizontal;
-    extern int const HcExt_AlamdariHammondUnstableHorizontal;
+    thread_local extern int const HcExt_None; // none is allowed because Hn and Hf are split
+    thread_local extern int const HcExt_UserValue;
+    thread_local extern int const HcExt_UserSchedule;
+    thread_local extern int const HcExt_UserCurve;
+    thread_local extern int const HcExt_ASHRAESimpleCombined;
+    thread_local extern int const HcExt_NaturalASHRAEVerticalWall;
+    thread_local extern int const HcExt_NaturalWaltonUnstableHorizontalOrTilt;
+    thread_local extern int const HcExt_NaturalWaltonStableHorizontalOrTilt;
+    thread_local extern int const HcExt_SparrowWindward;
+    thread_local extern int const HcExt_SparrowLeeward;
+    thread_local extern int const HcExt_MoWiTTWindward;
+    thread_local extern int const HcExt_MoWiTTLeeward;
+    thread_local extern int const HcExt_DOE2Windward;
+    thread_local extern int const HcExt_DOE2Leeward;
+    thread_local extern int const HcExt_NusseltJurges;
+    thread_local extern int const HcExt_McAdams;
+    thread_local extern int const HcExt_Mitchell;
+    thread_local extern int const HcExt_ClearRoof;
+    thread_local extern int const HcExt_BlockenWindward;
+    thread_local extern int const HcExt_EmmelVertical;
+    thread_local extern int const HcExt_EmmelRoof;
+    thread_local extern int const HcExt_AlamdariHammondVerticalWall;
+    thread_local extern int const HcExt_FohannoPolidoriVerticalWall;
+    thread_local extern int const HcExt_ISO15099Windows;
+    thread_local extern int const HcExt_AlamdariHammondStableHorizontal;
+    thread_local extern int const HcExt_AlamdariHammondUnstableHorizontal;
 
     // parameters, by zone, for flow regimes for adaptive convection on inside face
-    extern int const InConvFlowRegime_A1; // In-floor heating or in-ceiling cooling
-    extern int const InConvFlowRegime_A2; // In-wall heating
-    extern int const InConvFlowRegime_A3; // no HVAC system, all bouyancy
-    extern int const InConvFlowRegime_B;  // Convective heater in zone
-    extern int const InConvFlowRegime_C;  // central mechanical air
-    extern int const InConvFlowRegime_D;  // zone mechanical air
-    extern int const InConvFlowRegime_E;  // mixed. mechancial air and bouyancy
+    thread_local extern int const InConvFlowRegime_A1; // In-floor heating or in-ceiling cooling
+    thread_local extern int const InConvFlowRegime_A2; // In-wall heating
+    thread_local extern int const InConvFlowRegime_A3; // no HVAC system, all bouyancy
+    thread_local extern int const InConvFlowRegime_B;  // Convective heater in zone
+    thread_local extern int const InConvFlowRegime_C;  // central mechanical air
+    thread_local extern int const InConvFlowRegime_D;  // zone mechanical air
+    thread_local extern int const InConvFlowRegime_E;  // mixed. mechancial air and bouyancy
 
     // params for reference temperature type
-    extern int const RefTempMeanAirTemp;
-    extern int const RefTempAdjacentAirTemp;
-    extern int const RefTempSupplyAirTemp;
-    extern int const RefTempOutDryBulbAtZ;
-    extern int const RefTempOutDryBulbEPW;
-    extern int const RefTempOutWetBulbAtZ;
-    extern int const RefTempOutWetBulbEPW;
+    thread_local extern int const RefTempMeanAirTemp;
+    thread_local extern int const RefTempAdjacentAirTemp;
+    thread_local extern int const RefTempSupplyAirTemp;
+    thread_local extern int const RefTempOutDryBulbAtZ;
+    thread_local extern int const RefTempOutDryBulbEPW;
+    thread_local extern int const RefTempOutWetBulbAtZ;
+    thread_local extern int const RefTempOutWetBulbEPW;
 
     // params for wind speed type
-    extern int const RefWindWeatherFile;
-    extern int const RefWindAtZ;
-    extern int const RefWindParallComp;
-    extern int const RefWindParallCompAtZ;
+    thread_local extern int const RefWindWeatherFile;
+    thread_local extern int const RefWindAtZ;
+    thread_local extern int const RefWindParallComp;
+    thread_local extern int const RefWindParallCompAtZ;
 
     // DERIVED TYPE DEFINITIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int TotOutsideHcUserCurves;
-    extern int TotInsideHcUserCurves;
-    extern bool GetUserSuppliedConvectionCoeffs; // Get user input first call for Init
+    thread_local extern int TotOutsideHcUserCurves;
+    thread_local extern int TotInsideHcUserCurves;
+    thread_local extern bool GetUserSuppliedConvectionCoeffs; // Get user input first call for Init
 
-    extern bool ConvectionGeometryMetaDataSetup;   // set to true once geometry meta data are setup
-    extern Real64 CubeRootOfOverallBuildingVolume; // building meta data. cube root of the volume of all the zones
-    extern Real64 RoofLongAxisOutwardAzimuth;      // roof surfaces meta data. outward normal azimuth for longest roof edge
+    thread_local extern bool ConvectionGeometryMetaDataSetup;   // set to true once geometry meta data are setup
+    thread_local extern Real64 CubeRootOfOverallBuildingVolume; // building meta data. cube root of the volume of all the zones
+    thread_local extern Real64 RoofLongAxisOutwardAzimuth;      // roof surfaces meta data. outward normal azimuth for longest roof edge
 
     // SUBROUTINE SPECIFICATIONS:
     // PRIVATE ApplyConvectionValue ! internal to GetUserConvectionCoefficients
@@ -436,11 +436,11 @@ namespace ConvectionCoefficients {
     };
 
     // Object Data
-    extern InsideFaceAdaptiveConvAlgoStruct InsideFaceAdaptiveConvectionAlgo; // stores rules for Hc model equations
-    extern OutsideFaceAdpativeConvAlgoStruct OutsideFaceAdaptiveConvectionAlgo;
-    extern Array1D<HcInsideFaceUserCurveStruct> HcInsideUserCurve;
-    extern Array1D<HcOutsideFaceUserCurveStruct> HcOutsideUserCurve;
-    extern RoofGeoCharactisticsStruct RoofGeo;
+    thread_local extern InsideFaceAdaptiveConvAlgoStruct InsideFaceAdaptiveConvectionAlgo; // stores rules for Hc model equations
+    thread_local extern OutsideFaceAdpativeConvAlgoStruct OutsideFaceAdaptiveConvectionAlgo;
+    thread_local extern Array1D<HcInsideFaceUserCurveStruct> HcInsideUserCurve;
+    thread_local extern Array1D<HcOutsideFaceUserCurveStruct> HcOutsideUserCurve;
+    thread_local extern RoofGeoCharactisticsStruct RoofGeo;
 
     // Functions
 

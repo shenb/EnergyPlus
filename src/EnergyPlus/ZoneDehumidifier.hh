@@ -65,20 +65,20 @@ namespace ZoneDehumidifier {
     // MODULE PARAMETER DEFINITIONS:
 
     // Unit type index
-    extern int const ZoneDehumidUnit; // 1 is the index for ZoneHVAC:Dehumidifier:DX
+    thread_local extern int const ZoneDehumidUnit; // 1 is the index for ZoneHVAC:Dehumidifier:DX
 
     // Water Systems
-    extern int const CondensateDiscarded; // Default mode where water is "lost"
-    extern int const CondensateToTank;    // Collect coil condensate from air and store in water storage tank
+    thread_local extern int const CondensateDiscarded; // Default mode where water is "lost"
+    thread_local extern int const CondensateToTank;    // Collect coil condensate from air and store in water storage tank
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumDehumidifiers; // Number of zone dehumidifier objects in the input file
+    thread_local extern int NumDehumidifiers; // Number of zone dehumidifier objects in the input file
 
-    extern bool GetInputFlag; // Set to FALSE after first time input is "gotten"
-    extern Array1D_bool CheckEquipName;
+    thread_local extern bool GetInputFlag; // Set to FALSE after first time input is "gotten"
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
     // Driver/Manager Routines
@@ -168,7 +168,7 @@ namespace ZoneDehumidifier {
     };
 
     // Object Data
-    extern Array1D<ZoneDehumidifierData> ZoneDehumid;
+    thread_local extern Array1D<ZoneDehumidifierData> ZoneDehumid;
 
     // Functions
 

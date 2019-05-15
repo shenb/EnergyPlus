@@ -119,24 +119,24 @@ namespace UserDefinedComponents {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumUserPlantComps(0);
-    int NumUserCoils(0);
-    int NumUserZoneAir(0);
-    int NumUserAirTerminals(0);
+    thread_local int NumUserPlantComps(0);
+    thread_local int NumUserCoils(0);
+    thread_local int NumUserZoneAir(0);
+    thread_local int NumUserAirTerminals(0);
 
-    Array1D_bool CheckUserPlantCompName;
-    Array1D_bool CheckUserCoilName;
-    Array1D_bool CheckUserZoneAirName;
-    Array1D_bool CheckUserAirTerminal;
-    bool GetInput(true);
+    thread_local Array1D_bool CheckUserPlantCompName;
+    thread_local Array1D_bool CheckUserCoilName;
+    thread_local Array1D_bool CheckUserZoneAirName;
+    thread_local Array1D_bool CheckUserAirTerminal;
+    thread_local bool GetInput(true);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
     // Object Data
-    Array1D<UserPlantComponentStruct> UserPlantComp;
-    Array1D<UserCoilComponentStruct> UserCoil;
-    Array1D<UserZoneHVACForcedAirComponentStruct> UserZoneAirHVAC;
-    Array1D<UserAirTerminalComponentStruct> UserAirTerminal;
+    thread_local Array1D<UserPlantComponentStruct> UserPlantComp;
+    thread_local Array1D<UserCoilComponentStruct> UserCoil;
+    thread_local Array1D<UserZoneHVACForcedAirComponentStruct> UserZoneAirHVAC;
+    thread_local Array1D<UserAirTerminalComponentStruct> UserAirTerminal;
 
     // Functions
 
@@ -587,16 +587,16 @@ namespace UserDefinedComponents {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtLD("*");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         int NumAlphas;               // Number of elements in the alpha array
         int NumNums;                 // Number of elements in the numeric array
         int IOStat;                  // IO Status when calling get input subroutine
-        static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
-        static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
-        static int TotalArgs(0);     // argument for call to GetObjectDefMaxArgs
+        thread_local static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
+        thread_local static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
+        thread_local static int TotalArgs(0);     // argument for call to GetObjectDefMaxArgs
         Array1D_string cAlphaFieldNames;
         Array1D_string cNumericFieldNames;
         Array1D_bool lNumericFieldBlanks;
@@ -611,7 +611,7 @@ namespace UserDefinedComponents {
         std::string LoopStr;
         int aArgCount;
         int StackMngrNum;
-        static bool lDummy; // Fix Changed to static: Passed to SetupEMSActuator as source of persistent Reference
+        thread_local static bool lDummy; // Fix Changed to static: Passed to SetupEMSActuator as source of persistent Reference
         //  INTEGER  :: alphaNum
         //  INTEGER  :: Loop
         int MgrCountTest;
@@ -2132,7 +2132,7 @@ namespace UserDefinedComponents {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitPlantUserComponent");
+        thread_local static std::string const RoutineName("InitPlantUserComponent");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2141,9 +2141,9 @@ namespace UserDefinedComponents {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true); // one time flag
-        static Array1D_bool MyEnvrnFlag; // environment flag
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true); // one time flag
+        thread_local static Array1D_bool MyEnvrnFlag; // environment flag
+        thread_local static Array1D_bool MyFlag;
         int ConnectionNum;
         bool errFlag;
         //  REAL(r64) :: rho
@@ -2247,7 +2247,7 @@ namespace UserDefinedComponents {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitCoilUserDefined");
+        thread_local static std::string const RoutineName("InitCoilUserDefined");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2256,8 +2256,8 @@ namespace UserDefinedComponents {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true); // one time flag
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true); // one time flag
+        thread_local static Array1D_bool MyFlag;
         bool errFlag;
         int Loop;
 
@@ -2354,7 +2354,7 @@ namespace UserDefinedComponents {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitZoneAirUserDefined");
+        thread_local static std::string const RoutineName("InitZoneAirUserDefined");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2363,8 +2363,8 @@ namespace UserDefinedComponents {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true); // one time flag
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true); // one time flag
+        thread_local static Array1D_bool MyFlag;
         bool errFlag;
         int Loop;
 
@@ -2479,7 +2479,7 @@ namespace UserDefinedComponents {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitAirTerminalUserDefined");
+        thread_local static std::string const RoutineName("InitAirTerminalUserDefined");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2488,8 +2488,8 @@ namespace UserDefinedComponents {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true); // one time flag
-        static Array1D_bool MyFlag;
+        thread_local static bool MyOneTimeFlag(true); // one time flag
+        thread_local static Array1D_bool MyFlag;
         bool errFlag;
         int Loop;
 

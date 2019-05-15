@@ -70,68 +70,68 @@ namespace DataConvergParams {
     // Note: Unless otherwise noted, the tolerance parameters listed below were chosen
     // to represent educated guesses at what the tolerances for individual physical
     // parameters should be.
-    extern Real64 const HVACEnthalpyToler;               // Tolerance for enthalpy comparisons (in kJ/kgK)
-    extern Real64 const HVACFlowRateToler;               // Tolerance for mass flow rate convergence (in kg/s) [~20 CFM]
-    extern Real64 const HVACFlowRateSlopeToler;          // Slope tolerance for mass flow, kg/s/iteration
-    extern Real64 const HVACFlowRateOscillationToler;    // tolerance for detecting duplicate flow rate in stack
-    extern Real64 const HVACHumRatToler;                 // Tolerance for humidity ratio comparisons (kg water/kg dryair)
-    extern Real64 const HVACHumRatSlopeToler;            // Slope tolerance for humidity ratio, kg water/kg-dryair/iteration
-    extern Real64 const HVACHumRatOscillationToler;      // tolerance for detecting duplicate humidity ratio in stack
-    extern Real64 const HVACQualityToler;                // Tolerance for fluid quality comparisons (dimensionless)
-    extern Real64 const HVACPressToler;                  // Tolerance for pressure comparisons (in Pascals)
-    extern Real64 const HVACTemperatureToler;            // Tolerance for temperature comparisons (in degrees C or K)
-    extern Real64 const HVACTemperatureSlopeToler;       // Slope tolerance for Temperature, Deg C/iteration
-    extern Real64 const HVACTemperatureOscillationToler; // tolerance for detecting duplicate temps in stack
-    extern Real64 const HVACEnergyToler;                 // Tolerance for Energy comparisons (in Watts W)
+    thread_local extern Real64 const HVACEnthalpyToler;               // Tolerance for enthalpy comparisons (in kJ/kgK)
+    thread_local extern Real64 const HVACFlowRateToler;               // Tolerance for mass flow rate convergence (in kg/s) [~20 CFM]
+    thread_local extern Real64 const HVACFlowRateSlopeToler;          // Slope tolerance for mass flow, kg/s/iteration
+    thread_local extern Real64 const HVACFlowRateOscillationToler;    // tolerance for detecting duplicate flow rate in stack
+    thread_local extern Real64 const HVACHumRatToler;                 // Tolerance for humidity ratio comparisons (kg water/kg dryair)
+    thread_local extern Real64 const HVACHumRatSlopeToler;            // Slope tolerance for humidity ratio, kg water/kg-dryair/iteration
+    thread_local extern Real64 const HVACHumRatOscillationToler;      // tolerance for detecting duplicate humidity ratio in stack
+    thread_local extern Real64 const HVACQualityToler;                // Tolerance for fluid quality comparisons (dimensionless)
+    thread_local extern Real64 const HVACPressToler;                  // Tolerance for pressure comparisons (in Pascals)
+    thread_local extern Real64 const HVACTemperatureToler;            // Tolerance for temperature comparisons (in degrees C or K)
+    thread_local extern Real64 const HVACTemperatureSlopeToler;       // Slope tolerance for Temperature, Deg C/iteration
+    thread_local extern Real64 const HVACTemperatureOscillationToler; // tolerance for detecting duplicate temps in stack
+    thread_local extern Real64 const HVACEnergyToler;                 // Tolerance for Energy comparisons (in Watts W)
     // to be consistent, should be 20.d0 (BG Aug 2012)
 
-    extern Real64 const HVACCpApprox; // Air Cp (20C,0.0Kg/Kg) Only for energy Tolerance Calculation
+    thread_local extern Real64 const HVACCpApprox; // Air Cp (20C,0.0Kg/Kg) Only for energy Tolerance Calculation
     // Only used to scale the answer for a more intuitive answer for comparison
 
-    extern Real64 const PlantEnthalpyToler;    // Tolerance for enthalpy comparisons (in kJ/kgK)
-    extern Real64 const PlantFlowRateToler;    // Tolerance for mass flow rate convergence (in kg/s) [~2 CFM]
-    extern Real64 const PlantLowFlowRateToler; // // Tolerance for low flow rate used for determining when
+    thread_local extern Real64 const PlantEnthalpyToler;    // Tolerance for enthalpy comparisons (in kJ/kgK)
+    thread_local extern Real64 const PlantFlowRateToler;    // Tolerance for mass flow rate convergence (in kg/s) [~2 CFM]
+    thread_local extern Real64 const PlantLowFlowRateToler; // // Tolerance for low flow rate used for determining when
     // plant pumps can be shut down
-    extern Real64 const PlantFlowRateOscillationToler;
-    extern Real64 const PlantFlowRateSlopeToler; // Slope tolerance for mass flow, kg/s/iteration
+    thread_local extern Real64 const PlantFlowRateOscillationToler;
+    thread_local extern Real64 const PlantFlowRateSlopeToler; // Slope tolerance for mass flow, kg/s/iteration
 
-    extern Real64 const PlantPressToler;                  // Tolerance for pressure comparisons (in Pascals)
-    extern Real64 const PlantTemperatureToler;            // Tolerance for temperature comparisons (in degrees C or K)
-    extern Real64 const PlantTemperatureSlopeToler;       // Slope tolerance for Temperature, Deg C/iteration
-    extern Real64 const PlantTemperatureOscillationToler; // tolerance for detecting duplicate temps in stack
+    thread_local extern Real64 const PlantPressToler;                  // Tolerance for pressure comparisons (in Pascals)
+    thread_local extern Real64 const PlantTemperatureToler;            // Tolerance for temperature comparisons (in degrees C or K)
+    thread_local extern Real64 const PlantTemperatureSlopeToler;       // Slope tolerance for Temperature, Deg C/iteration
+    thread_local extern Real64 const PlantTemperatureOscillationToler; // tolerance for detecting duplicate temps in stack
 
-    extern Real64 const PlantEnergyToler; // Tolerance for Energy comparisons (in Watts W)
+    thread_local extern Real64 const PlantEnergyToler; // Tolerance for Energy comparisons (in Watts W)
 
-    extern Real64 const PlantCpApprox; // Approximate Cp used in Interface manager for
+    thread_local extern Real64 const PlantCpApprox; // Approximate Cp used in Interface manager for
     // Energy Tolerance Calculation, used to scale the answer
     // for a more intuitive answer for comparison
-    extern Real64 const PlantFlowFlowRateToler; // Tolerance for mass flow rate convergence (in kg/s)
+    thread_local extern Real64 const PlantFlowFlowRateToler; // Tolerance for mass flow rate convergence (in kg/s)
 
-    extern int const ConvergLogStackDepth;
-    extern Array1D<Real64> const ConvergLogStackARR;
-    extern Real64 const sum_ConvergLogStackARR;
-    extern Real64 const square_sum_ConvergLogStackARR;
-    extern Real64 const sum_square_ConvergLogStackARR;
+    thread_local extern int const ConvergLogStackDepth;
+    thread_local extern Array1D<Real64> const ConvergLogStackARR;
+    thread_local extern Real64 const sum_ConvergLogStackARR;
+    thread_local extern Real64 const square_sum_ConvergLogStackARR;
+    thread_local extern Real64 const sum_square_ConvergLogStackARR;
 
-    extern int const CalledFromAirSystemDemandSide;
-    extern int const CalledFromAirSystemSupplySideDeck1;
-    extern int const CalledFromAirSystemSupplySideDeck2;
+    thread_local extern int const CalledFromAirSystemDemandSide;
+    thread_local extern int const CalledFromAirSystemSupplySideDeck1;
+    thread_local extern int const CalledFromAirSystemSupplySideDeck2;
     // DERIVED TYPE DEFINITIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int AirLoopConvergFail;
+    thread_local extern int AirLoopConvergFail;
 
-    extern Real64 MinTimeStepSys;  // =1 minute
-    extern Real64 MinTimeStepTol;  // = min allowable for ABS(1.-TimeStepSys/(MinTimeStepSys))
-    extern Real64 MaxZoneTempDiff; // 0.3 C = (1% OF 300 C) = max allowable difference between
+    thread_local extern Real64 MinTimeStepSys;  // =1 minute
+    thread_local extern Real64 MinTimeStepTol;  // = min allowable for ABS(1.-TimeStepSys/(MinTimeStepSys))
+    thread_local extern Real64 MaxZoneTempDiff; // 0.3 C = (1% OF 300 C) = max allowable difference between
     //   zone air temp at Time=T and Time=T-1
-    extern Real64 MinSysTimeRemaining; // = 1 second
-    extern int MaxIter;                // maximum number of iterations allowed
+    thread_local extern Real64 MinSysTimeRemaining; // = 1 second
+    thread_local extern int MaxIter;                // maximum number of iterations allowed
 
-    extern int MaxPlantSubIterations; // Iteration Max for Plant Simulation sub iterations
-    extern int MinPlantSubIterations; // Iteration Min for Plant Simulation sub iterations
+    thread_local extern int MaxPlantSubIterations; // Iteration Max for Plant Simulation sub iterations
+    thread_local extern int MinPlantSubIterations; // Iteration Min for Plant Simulation sub iterations
 
     // Types
 
@@ -235,9 +235,9 @@ namespace DataConvergParams {
     };
 
     // Object Data
-    extern Array1D<HVACZoneInletConvergenceStruct> ZoneInletConvergence;
-    extern Array1D<HVACAirLoopIterationConvergenceStruct> AirLoopConvergence;
-    extern Array1D<PlantIterationConvergenceStruct> PlantConvergence;
+    thread_local extern Array1D<HVACZoneInletConvergenceStruct> ZoneInletConvergence;
+    thread_local extern Array1D<HVACAirLoopIterationConvergenceStruct> AirLoopConvergence;
+    thread_local extern Array1D<PlantIterationConvergenceStruct> PlantConvergence;
 
     void clear_state();
 

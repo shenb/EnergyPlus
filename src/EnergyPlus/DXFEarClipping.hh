@@ -71,7 +71,7 @@ namespace DXFEarClipping {
 
     // Module variable declarations:
     // na
-    extern bool trackit;
+    thread_local extern bool trackit;
     // Subroutine specifications for module <module_name>:
 
     // Functions

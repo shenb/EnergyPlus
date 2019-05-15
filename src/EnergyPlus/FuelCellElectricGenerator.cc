@@ -124,8 +124,8 @@ namespace FuelCellElectricGenerator {
     using namespace GeneratorDynamicsManager;
 
     // MODULE VARIABLE DECLARATIONS:
-    bool GetFuelCellInput(true); // When TRUE, calls subroutine to read input file.
-    Array1D_bool CheckEquipName;
+    thread_local bool GetFuelCellInput(true); // When TRUE, calls subroutine to read input file.
+    thread_local Array1D_bool CheckEquipName;
 
     void SimFuelCellGenerator(int const EP_UNUSED(GeneratorType), // type of Generator
                               std::string const &GeneratorName,   // user specified name of Generator
@@ -223,7 +223,7 @@ namespace FuelCellElectricGenerator {
         Array1D_string AlphArray(25);  // character string data
         Array1D<Real64> NumArray(200); // numeric data TODO deal with allocatable for extensible
         Array1D_bool lAlphaBlanks(25);
-        static bool ErrorsFound(false); // error flag
+        thread_local static bool ErrorsFound(false); // error flag
         int NumFuelCellPMs;             // number of power subsystems in input file
         int NumFuelCellAirSups;         // number of air supply subsystems in input file
         //  INTEGER       :: NumFuelCellFuelSups      ! number of fuel supply subsystems in input file
@@ -248,7 +248,7 @@ namespace FuelCellElectricGenerator {
         int thisFuelCell;  // temporary index
         int otherFuelCell; // loop counter and temporary indexer
         int i;             // loop counter
-        static bool MyOneTimeFlag(true);
+        thread_local static bool MyOneTimeFlag(true);
         std::string thisName;
         int NumHardCodedConstituents;
         int thisConstituent;
@@ -1432,13 +1432,13 @@ namespace FuelCellElectricGenerator {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Real64 PpcuLosses; // losses in inverter [W]
+        thread_local static Real64 PpcuLosses; // losses in inverter [W]
         Real64 Pel;               // DC power generated in Fuel Cell Power Module
         Real64 Pdemand;
         Real64 Eel;
         Real64 Tavg;                        // working average temperature
-        static bool ConstrainedFCPM(false); // true if power prod is constrained for some reason
-        static bool ConstrainedFCPMTrans(false);
+        thread_local static bool ConstrainedFCPM(false); // true if power prod is constrained for some reason
+        thread_local static bool ConstrainedFCPMTrans(false);
         Real64 PelDiff;
         int iter;               // loop index over repeating set of inter dependent calculaitons
         Real64 NdotO2;          // molar rate coeff working varible
@@ -3616,7 +3616,7 @@ namespace FuelCellElectricGenerator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcFuelCellGenHeatRecovery");
+        thread_local static std::string const RoutineName("CalcFuelCellGenHeatRecovery");
 
         // DERIVED TYPE DEFINITIONS
         // na
@@ -3642,12 +3642,12 @@ namespace FuelCellElectricGenerator {
         Real64 TwaterOut(0.0);
         Real64 hgas;
         Real64 hwater;
-        static Real64 waterFract(0.0);
+        thread_local static Real64 waterFract(0.0);
         Real64 NdotWaterVapor;
         Real64 TcondThresh;
         Real64 hxl1;
         Real64 hxl2;
-        static Real64 NdotWaterCond(0.0);
+        thread_local static Real64 NdotWaterCond(0.0);
         Real64 hfpwater;
         int i;
 
@@ -4075,7 +4075,7 @@ namespace FuelCellElectricGenerator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitFuelCellGenerators");
+        thread_local static std::string const RoutineName("InitFuelCellGenerators");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -4084,13 +4084,13 @@ namespace FuelCellElectricGenerator {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool InitGeneratorOnce(true); // flag for 1 time initialization
-        static Array1D_bool MyEnvrnFlag;     // flag for init once at start of environment
-        static Array1D_bool MyWarmupFlag;    // flag for init after warmup complete
+        thread_local static bool InitGeneratorOnce(true); // flag for 1 time initialization
+        thread_local static Array1D_bool MyEnvrnFlag;     // flag for init once at start of environment
+        thread_local static Array1D_bool MyWarmupFlag;    // flag for init after warmup complete
         int inNode;                          // inlet index in Node array
         int outNode;                         // outlet, index in Node array
         Real64 TimeElapsed;                  // Fraction of the current hour that has elapsed (h)
-        static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
         Real64 mdot; // local temporary mass flow rate
         Real64 rho;  // local temporary fluid density
         bool errFlag;
@@ -4305,7 +4305,7 @@ namespace FuelCellElectricGenerator {
         Real64 TotalZoneHeatGain; // working variable for zone gain [w]
         //  INTEGER :: ZoneNum
         int FCnum; // number of fuel cell
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
 
         if (NumFuelCellGenerators == 0) return;
 

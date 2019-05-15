@@ -63,15 +63,15 @@ namespace MixerComponent {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern Real64 const MassFlowTol;
+    thread_local extern Real64 const MassFlowTol;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumMixers; // The Number of Mixers found in the Input
-    extern int LoopInletNode;
-    extern int LoopOutletNode;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumMixers; // The Number of Mixers found in the Input
+    thread_local extern int LoopInletNode;
+    thread_local extern int LoopOutletNode;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Mixers
 
@@ -109,7 +109,7 @@ namespace MixerComponent {
     };
 
     // Object Data
-    extern Array1D<MixerConditions> MixerCond;
+    thread_local extern Array1D<MixerConditions> MixerCond;
 
     // Functions
 

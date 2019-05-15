@@ -64,41 +64,41 @@ namespace HeatRecovery {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern Real64 const KELVZERO;
-    extern Real64 const SMALL;
+    thread_local extern Real64 const KELVZERO;
+    thread_local extern Real64 const SMALL;
 
     // Heat exchanger performance data type
-    extern int const BALANCEDHX_PERFDATATYPE1;
+    thread_local extern int const BALANCEDHX_PERFDATATYPE1;
 
     // Heat exchanger configurations
-    extern int const Counter_Flow;
-    extern int const Parallel_Flow;
-    extern int const Cross_Flow_Both_Unmixed;
-    extern int const Cross_Flow_Other;
+    thread_local extern int const Counter_Flow;
+    thread_local extern int const Parallel_Flow;
+    thread_local extern int const Cross_Flow_Both_Unmixed;
+    thread_local extern int const Cross_Flow_Other;
 
     // Heat exchanger configuration types
-    extern int const Plate;
-    extern int const Rotary;
+    thread_local extern int const Plate;
+    thread_local extern int const Rotary;
 
     // Economizer lockout operation
-    extern int const EconoLockOut_No;
-    extern int const EconoLockOut_Yes;
+    thread_local extern int const EconoLockOut_No;
+    thread_local extern int const EconoLockOut_Yes;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumHeatExchangers;           // number of heat exchangers
-    extern int NumAirToAirPlateExchs;       // number of air to air plate heat exchangers
-    extern int NumAirToAirGenericExchs;     // number of air to air generic heat exchangers
-    extern int NumDesiccantBalancedExchs;   // number of desiccant balanced heat exchangers
-    extern int NumDesBalExchsPerfDataType1; // number of desiccant balanced heat exchanger performance data maps
-    extern Real64 FullLoadOutAirTemp;       // Used with desiccant HX empirical model, water coils use inlet node condition
+    thread_local extern int NumHeatExchangers;           // number of heat exchangers
+    thread_local extern int NumAirToAirPlateExchs;       // number of air to air plate heat exchangers
+    thread_local extern int NumAirToAirGenericExchs;     // number of air to air generic heat exchangers
+    thread_local extern int NumDesiccantBalancedExchs;   // number of desiccant balanced heat exchangers
+    thread_local extern int NumDesBalExchsPerfDataType1; // number of desiccant balanced heat exchanger performance data maps
+    thread_local extern Real64 FullLoadOutAirTemp;       // Used with desiccant HX empirical model, water coils use inlet node condition
     // DX coils use DXCoilFullLoadOutAirTemp when coil is ON otherwise inlet node
-    extern Real64 FullLoadOutAirHumRat; // Used with desiccant HX empirical model, water coils use inlet node condition
+    thread_local extern Real64 FullLoadOutAirHumRat; // Used with desiccant HX empirical model, water coils use inlet node condition
     // DX coils use DXCoilFullLoadOutAirHumRat when coil is ON otherwise inlet node
-    extern bool GetInputFlag;           // First time, input is "gotten"
-    extern bool CalledFromParentObject; // Indicates that HX is called from parent object (this object is not on a branch)
-    extern Array1D_bool CheckEquipName;
+    thread_local extern bool GetInputFlag;           // First time, input is "gotten"
+    thread_local extern bool CalledFromParentObject; // Indicates that HX is called from parent object (this object is not on a branch)
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
 
@@ -510,10 +510,10 @@ namespace HeatRecovery {
     };
 
     // Object Data
-    extern Array1D<HeatExchCond> ExchCond;
-    extern Array1D<BalancedDesDehumPerfData> BalDesDehumPerfData;
-    extern Array1D<HeatExchCondNumericFieldData> HeatExchCondNumericFields;
-    extern Array1D<HeatExchCondNumericFieldData> BalDesDehumPerfNumericFields;
+    thread_local extern Array1D<HeatExchCond> ExchCond;
+    thread_local extern Array1D<BalancedDesDehumPerfData> BalDesDehumPerfData;
+    thread_local extern Array1D<HeatExchCondNumericFieldData> HeatExchCondNumericFields;
+    thread_local extern Array1D<HeatExchCondNumericFieldData> BalDesDehumPerfNumericFields;
 
     // Functions
 

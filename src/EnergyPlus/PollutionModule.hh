@@ -63,17 +63,17 @@ namespace PollutionModule {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const ElecPollFactor;
-    extern int const NatGasPollFactor;
-    extern int const FuelOil1PollFactor;
-    extern int const FuelOil2PollFactor;
-    extern int const CoalPollFactor;
-    extern int const GasolinePollFactor;
-    extern int const PropanePollFactor;
-    extern int const DieselPollFactor;
-    extern int const OtherFuel1PollFactor;
-    extern int const OtherFuel2PollFactor;
-    extern int const PollFactorNumTypes;
+    thread_local extern int const ElecPollFactor;
+    thread_local extern int const NatGasPollFactor;
+    thread_local extern int const FuelOil1PollFactor;
+    thread_local extern int const FuelOil2PollFactor;
+    thread_local extern int const CoalPollFactor;
+    thread_local extern int const GasolinePollFactor;
+    thread_local extern int const PropanePollFactor;
+    thread_local extern int const DieselPollFactor;
+    thread_local extern int const OtherFuel1PollFactor;
+    thread_local extern int const OtherFuel2PollFactor;
+    thread_local extern int const PollFactorNumTypes;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -88,10 +88,10 @@ namespace PollutionModule {
     // Facility Meter Indexes
     // Facility Meter Values used in Pollution Calcs
 
-    extern bool PollutionReportSetup;
-    extern bool GetInputFlagPollution;
-    extern int NumEnvImpactFactors;
-    extern int NumFuelFactors;
+    thread_local extern bool PollutionReportSetup;
+    thread_local extern bool GetInputFlagPollution;
+    thread_local extern int NumEnvImpactFactors;
+    thread_local extern int NumFuelFactors;
 
     //         Subroutine Specifications for the Module
 
@@ -417,8 +417,8 @@ namespace PollutionModule {
     };
 
     // Object Data
-    extern PollutionProps Pollution;
-    extern FuelTypeProps FuelType;
+    thread_local extern PollutionProps Pollution;
+    thread_local extern FuelTypeProps FuelType;
 
     // Functions
 

@@ -71,7 +71,7 @@ namespace HeatBalanceIntRadExchange {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int MaxNumOfZoneSurfaces; // Max saved to get large enough space for user input view factors
+    thread_local extern int MaxNumOfZoneSurfaces; // Max saved to get large enough space for user input view factors
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HeatBalanceIntRadExchange
 

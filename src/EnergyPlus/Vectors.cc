@@ -108,9 +108,9 @@ namespace Vectors {
     // MODULE PARAMETER DEFINITIONS
 
     // Object Data
-    Vector const XUnit(1.0, 0.0, 0.0);
-    Vector const YUnit(0.0, 1.0, 0.0);
-    Vector const ZUnit(0.0, 0.0, 1.0);
+    thread_local Vector const XUnit(1.0, 0.0, 0.0);
+    thread_local Vector const YUnit(0.0, 1.0, 0.0);
+    thread_local Vector const ZUnit(0.0, 0.0, 1.0);
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -826,7 +826,7 @@ namespace Vectors {
         Real64 PyramidVolume;
 
         // Object Data
-        static Vector p0(0.0, 0.0, 0.0);
+        thread_local static Vector p0(0.0, 0.0, 0.0);
         Vector p3FaceOrigin;
 
         Real64 Volume = 0.0;

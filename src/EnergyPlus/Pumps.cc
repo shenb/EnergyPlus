@@ -122,55 +122,55 @@ namespace Pumps {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const Continuous(1);   // Pump control type (pump always running)
-    int const Intermittent(2); // Pump control type (pump runs only when there is a demand)
+    thread_local int const Continuous(1);   // Pump control type (pump always running)
+    thread_local int const Intermittent(2); // Pump control type (pump runs only when there is a demand)
 
-    int const VFDManual(1);    // VFD control type (Scheduled RPM)
-    int const VFDAutomatic(2); // VFD control type (Variable RPM according to flow request)
+    thread_local int const VFDManual(1);    // VFD control type (Scheduled RPM)
+    thread_local int const VFDAutomatic(2); // VFD control type (Variable RPM according to flow request)
 
-    int const OptimalScheme(1);    // Control sequencing for pump bank
-    int const SequentialScheme(2); // Control sequencing for pump bank
-    int const UserDefined(3);      // Control sequencing for pump bank
+    thread_local int const OptimalScheme(1);    // Control sequencing for pump bank
+    thread_local int const SequentialScheme(2); // Control sequencing for pump bank
+    thread_local int const UserDefined(3);      // Control sequencing for pump bank
 
-    std::string const cPump_VarSpeed("Pump:VariableSpeed");
-    int const Pump_VarSpeed(101);
-    std::string const cPump_ConSpeed("Pump:ConstantSpeed");
-    int const Pump_ConSpeed(102);
-    std::string const cPump_Cond("Pump:VariableSpeed:Condensate");
-    int const Pump_Cond(103);
-    std::string const cPumpBank_VarSpeed("HeaderedPumps:VariableSpeed");
-    int const PumpBank_VarSpeed(104);
-    std::string const cPumpBank_ConSpeed("HeaderedPumps:ConstantSpeed");
-    int const PumpBank_ConSpeed(105);
-    Array1D_string const cPumpTypes({101, 105}, {cPump_VarSpeed, cPump_ConSpeed, cPump_Cond, cPumpBank_VarSpeed, cPumpBank_ConSpeed});
+    thread_local std::string const cPump_VarSpeed("Pump:VariableSpeed");
+    thread_local int const Pump_VarSpeed(101);
+    thread_local std::string const cPump_ConSpeed("Pump:ConstantSpeed");
+    thread_local int const Pump_ConSpeed(102);
+    thread_local std::string const cPump_Cond("Pump:VariableSpeed:Condensate");
+    thread_local int const Pump_Cond(103);
+    thread_local std::string const cPumpBank_VarSpeed("HeaderedPumps:VariableSpeed");
+    thread_local int const PumpBank_VarSpeed(104);
+    thread_local std::string const cPumpBank_ConSpeed("HeaderedPumps:ConstantSpeed");
+    thread_local int const PumpBank_ConSpeed(105);
+    thread_local Array1D_string const cPumpTypes({101, 105}, {cPump_VarSpeed, cPump_ConSpeed, cPump_Cond, cPumpBank_VarSpeed, cPumpBank_ConSpeed});
 
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumPumps(0);         // Num Pumps (used in pump bank)
-    int NumPumpsRunning(0);  // Num of pumps ON (used in pump bank)
-    int NumPumpsFullLoad(0); // Num pumps running at full load (used in pump bank)
-    bool GetInputFlag(true); // Get input once and once only
+    thread_local int NumPumps(0);         // Num Pumps (used in pump bank)
+    thread_local int NumPumpsRunning(0);  // Num of pumps ON (used in pump bank)
+    thread_local int NumPumpsFullLoad(0); // Num pumps running at full load (used in pump bank)
+    thread_local bool GetInputFlag(true); // Get input once and once only
     //  INTEGER       :: NumPumpsPartLoad                   = 0    !Num pumps running at part load (used in pump bank)
 
     // simulation and reporting variables
     //  REAL(r64)           :: OutletTemp                   = 0.0d0  ! pump outlet temperature
-    Real64 PumpMassFlowRate(0.0); // mass flow rate at pump inlet node
+    thread_local Real64 PumpMassFlowRate(0.0); // mass flow rate at pump inlet node
     //  REAL(r64)           :: PumpPress                    = 0.0d0  ! For Passing around the steam loops
     //  REAL(r64)           :: PumpQuality                  = 0.0d0  ! For Passing around the steam loops=0.0 here
-    Real64 PumpHeattoFluid(0.0); // Pump Power dissipated in fluid stream
-    Real64 Power(0.0);           // Pump Electric power
-    Real64 ShaftPower(0.0);      // Power passing through pump shaft
+    thread_local Real64 PumpHeattoFluid(0.0); // Pump Power dissipated in fluid stream
+    thread_local Real64 Power(0.0);           // Pump Electric power
+    thread_local Real64 ShaftPower(0.0);      // Power passing through pump shaft
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
 
     // Object Data
-    Array1D<PumpSpecs> PumpEquip;
-    std::unordered_map<std::string, std::string> PumpUniqueNames;
-    Array1D<ReportVars> PumpEquipReport;
+    thread_local Array1D<PumpSpecs> PumpEquip;
+    thread_local std::unordered_map<std::string, std::string> PumpUniqueNames;
+    thread_local Array1D<ReportVars> PumpEquipReport;
 
     //*************************************************************************!
 
@@ -327,8 +327,8 @@ namespace Pumps {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const StartTemp(100.0); // Standard Temperature across code to calculated Steam density
-        static std::string const RoutineName("GetPumpInput: ");
-        static std::string const RoutineNameNoColon("GetPumpInput");
+        thread_local static std::string const RoutineName("GetPumpInput: ");
+        thread_local static std::string const RoutineNameNoColon("GetPumpInput");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PumpNum;
@@ -350,7 +350,7 @@ namespace Pumps {
         int NumConstPumpBankSimple;
         Real64 SteamDensity;
         Real64 TempWaterDensity;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
 
         ErrorsFound = false;
 
@@ -1262,14 +1262,14 @@ namespace Pumps {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const StartTemp(100.0); // Standard Temperature across code to calculated Steam density
         Real64 const ZeroPowerTol(0.0000001);
-        static std::string const RoutineName("PlantPumps::InitializePumps ");
+        thread_local static std::string const RoutineName("PlantPumps::InitializePumps ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InletNode;  // pump inlet node number
         int OutletNode; // pump outlet node number
         Real64 TotalEffic;
         Real64 SteamDensity; // Density of working fluid
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         Real64 TempWaterDensity;
         bool errFlag;
         Real64 mdotMax; // local fluid mass flow rate maximum
@@ -1512,7 +1512,7 @@ namespace Pumps {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PlantPumps:SetupPumpMinMaxFlows: ");
+        thread_local static std::string const RoutineName("PlantPumps:SetupPumpMinMaxFlows: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InletNode;  // pump inlet node number
@@ -1704,7 +1704,7 @@ namespace Pumps {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PlantPumps:CalcPumps: ");
+        thread_local static std::string const RoutineName("PlantPumps:CalcPumps: ");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1978,8 +1978,8 @@ namespace Pumps {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const StartTemp(100.0); // Standard Temperature across code to calculated Steam density
-        static std::string const RoutineName("PlantPumps::InitSimVars ");
-        static std::string const RoutineNameSizePumps("SizePumps");
+        thread_local static std::string const RoutineName("PlantPumps::InitSimVars ");
+        thread_local static std::string const RoutineNameSizePumps("SizePumps");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1997,7 +1997,7 @@ namespace Pumps {
         Real64 PumpSizFac; // pump sizing factor
         Real64 SteamDensity;
         Real64 TempWaterDensity;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         Real64 DesVolFlowRatePerBranch; // local temporary for split of branch pumps
 
         // Calculate density at InitConvTemp once here, to remove RhoH2O calls littered throughout
@@ -2347,12 +2347,12 @@ namespace Pumps {
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
-        static Real64 PumpMassFlowRateMaxPress(0.0); // Maximum mass flow rate associated with maximum pressure limit
-        static Real64 PumpMassFlowRateMinPress(0.0); // Minimum mass flow rate associated with minimum pressure limit
-        static Real64 RotSpeed_Max(0.0);             // Maximum rotaional speed in rps
-        static Real64 RotSpeed_Min(0.0);             // Minimum rotaional speed in rps
-        static Real64 MinPress(0.0);                 // Minimum pressure
-        static Real64 MaxPress(0.0);                 // Maximum pressure
+        thread_local static Real64 PumpMassFlowRateMaxPress(0.0); // Maximum mass flow rate associated with maximum pressure limit
+        thread_local static Real64 PumpMassFlowRateMinPress(0.0); // Minimum mass flow rate associated with minimum pressure limit
+        thread_local static Real64 RotSpeed_Max(0.0);             // Maximum rotaional speed in rps
+        thread_local static Real64 RotSpeed_Min(0.0);             // Minimum rotaional speed in rps
+        thread_local static Real64 MinPress(0.0);                 // Minimum pressure
+        thread_local static Real64 MaxPress(0.0);                 // Maximum pressure
 
         RotSpeed_Min = GetCurrentScheduleValue(PumpEquip(PumpNum).VFD.MinRPMSchedIndex);
         RotSpeed_Max = GetCurrentScheduleValue(PumpEquip(PumpNum).VFD.MaxRPMSchedIndex);

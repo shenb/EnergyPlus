@@ -188,52 +188,52 @@ namespace Furnaces {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // Last mode of operation
-    int const CoolingMode(1); // last compressor operating mode was in cooling
-    int const HeatingMode(2); // last compressor operating mode was in heating
-    int const NoCoolHeat(3);  // last operating mode was coil off
+    thread_local int const CoolingMode(1); // last compressor operating mode was in cooling
+    thread_local int const HeatingMode(2); // last compressor operating mode was in heating
+    thread_local int const NoCoolHeat(3);  // last operating mode was coil off
     // Airflow control for contant fan mode
-    int const UseCompressorOnFlow(1);  // set compressor OFF air flow rate equal to compressor ON air flow rate
-    int const UseCompressorOffFlow(2); // set compressor OFF air flow rate equal to user defined value
+    thread_local int const UseCompressorOnFlow(1);  // set compressor OFF air flow rate equal to compressor ON air flow rate
+    thread_local int const UseCompressorOffFlow(2); // set compressor OFF air flow rate equal to user defined value
     // Compressor operation
-    int const On(1);  // normal compressor operation
-    int const Off(0); // signal DXCoil that compressor shouldn't run
+    thread_local int const On(1);  // normal compressor operation
+    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
 
     // Dehumidification control modes (DehumidControlMode)
-    int const DehumidControl_None(0);
-    int const DehumidControl_Multimode(1);
-    int const DehumidControl_CoolReheat(2);
+    thread_local int const DehumidControl_None(0);
+    thread_local int const DehumidControl_Multimode(1);
+    thread_local int const DehumidControl_CoolReheat(2);
 
-    static std::string const fluidNameSteam("STEAM");
-    bool GetFurnaceInputFlag(true); // Logical to allow "GetInput" only once per simulation
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local bool GetFurnaceInputFlag(true); // Logical to allow "GetInput" only once per simulation
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumFurnaces(0); // The number of furnaces found in the input data file
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
-    Real64 ModifiedHeatCoilLoad(0.0); // used to adjust heating coil capacity if outlet temp > DesignMaxOutletTemp,
+    thread_local int NumFurnaces(0); // The number of furnaces found in the input data file
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local Real64 ModifiedHeatCoilLoad(0.0); // used to adjust heating coil capacity if outlet temp > DesignMaxOutletTemp,
     // used for Coil:Gas:Heating and Coil:Electric:Heating coils only.
-    Real64 OnOffAirFlowRatioSave(0.0);        // Saves the OnOffAirFlowRatio calculated in RegulaFalsi CALLs.
-    Real64 OnOffFanPartLoadFractionSave(0.0); // Global part-load fraction passed to fan object
-    Real64 CompOnMassFlow(0.0);               // Supply air mass flow rate w/ compressor ON [kg/s]
-    Real64 CompOffMassFlow(0.0);              // Supply air mass flow rate w/ compressor OFF [kg/s]
-    Real64 CompOnFlowRatio(0.0);              // fan flow ratio when coil on
-    Real64 CompOffFlowRatio(0.0);             // fan flow ratio when coil off
-    Real64 FanSpeedRatio(0.0);                // ratio of air flow ratio passed to fan object
-    Real64 CoolHeatPLRRat(1.0);               // ratio of cooling to heating PLR, used for cycling fan RH control
-    bool HeatingLoad(false);
-    bool CoolingLoad(false);
-    bool EconomizerFlag(false);             // holds air loop economizer status
-    int AirLoopPass(0);                     // Number of air loop pass
-    bool HPDehumidificationLoadFlag(false); // true if there is dehumidification load (heat pumps only)
-    Real64 TempSteamIn(100.0);              // steam coil steam inlet temperature
+    thread_local Real64 OnOffAirFlowRatioSave(0.0);        // Saves the OnOffAirFlowRatio calculated in RegulaFalsi CALLs.
+    thread_local Real64 OnOffFanPartLoadFractionSave(0.0); // Global part-load fraction passed to fan object
+    thread_local Real64 CompOnMassFlow(0.0);               // Supply air mass flow rate w/ compressor ON [kg/s]
+    thread_local Real64 CompOffMassFlow(0.0);              // Supply air mass flow rate w/ compressor OFF [kg/s]
+    thread_local Real64 CompOnFlowRatio(0.0);              // fan flow ratio when coil on
+    thread_local Real64 CompOffFlowRatio(0.0);             // fan flow ratio when coil off
+    thread_local Real64 FanSpeedRatio(0.0);                // ratio of air flow ratio passed to fan object
+    thread_local Real64 CoolHeatPLRRat(1.0);               // ratio of cooling to heating PLR, used for cycling fan RH control
+    thread_local bool HeatingLoad(false);
+    thread_local bool CoolingLoad(false);
+    thread_local bool EconomizerFlag(false);             // holds air loop economizer status
+    thread_local int AirLoopPass(0);                     // Number of air loop pass
+    thread_local bool HPDehumidificationLoadFlag(false); // true if there is dehumidification load (heat pumps only)
+    thread_local Real64 TempSteamIn(100.0);              // steam coil steam inlet temperature
     // starting add variables for variable speed water source heat pump
-    Real64 SaveCompressorPLR(0.0);   // holds compressor PLR from active DX coil
-    std::string CurrentModuleObject; // Object type for getting and error messages
+    thread_local Real64 SaveCompressorPLR(0.0);   // holds compressor PLR from active DX coil
+    thread_local std::string CurrentModuleObject; // Object type for getting and error messages
     // ending varibles for variable speed water source heat pump
 
     // Subroutine Specifications for the Module
@@ -252,8 +252,8 @@ namespace Furnaces {
     // Reporting routines for module
 
     // Object Data
-    Array1D<FurnaceEquipConditions> Furnace;
-    std::unordered_map<std::string, std::string> UniqueFurnaceNames;
+    thread_local Array1D<FurnaceEquipConditions> Furnace;
+    thread_local std::unordered_map<std::string, std::string> UniqueFurnaceNames;
 
     // Utility routines for module
     // na
@@ -333,7 +333,7 @@ namespace Furnaces {
         Real64 H2OHtOfVap;        // Heat of vaporization of air
         int FurnaceInletNode;     // Inlet node to furnace or unitary system
         Real64 FurnaceSavMdot;    // saved furnace inlet air mass flow rate [m3/s]
-        static Real64 Dummy(0.0);
+        thread_local static Real64 Dummy(0.0);
         int CompOp;               // compressor operation; 1=on, 0=off
         Real64 OnOffAirFlowRatio; // Ratio of compressor ON air flow to AVERAGE air flow over time step
         int FanOpMode;            // Fan operating mode (1=CycFanCycCoil, 2=ContFanCycCoil)
@@ -897,8 +897,8 @@ namespace Furnaces {
         std::string CurrentModuleObject; // Object type for getting and error messages
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const getUnitaryHeatOnly("GetUnitaryHeatOnly");
-        static std::string const getAirLoopHVACHeatCoolInput("GetAirLoopHVACHeatCoolInput");
+        thread_local static std::string const getUnitaryHeatOnly("GetUnitaryHeatOnly");
+        thread_local static std::string const getAirLoopHVACHeatCoolInput("GetAirLoopHVACHeatCoolInput");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int FurnaceNum;                // The Furnace that you are currently loading input into
@@ -920,7 +920,7 @@ namespace Furnaces {
         std::string CompSetCoolInlet;
         std::string CompSetHeatInlet;
         std::string CompSetHeatOutlet;
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
         bool IsNotOK;                   // Flag to verify name
         int NumHeatOnly;                // Number of heat only furnaces
         int NumHeatCool;                // Number of heat/cool furnaces
@@ -4766,7 +4766,7 @@ namespace Furnaces {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const Small5WLoad(5.0);
-        static std::string const RoutineName("InitFurnace");
+        thread_local static std::string const RoutineName("InitFurnace");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -4775,14 +4775,14 @@ namespace Furnaces {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);             // one time allocation flag
-        static Array1D_bool MyEnvrnFlag;             // environment flag
-        static Array1D_bool MySecondOneTimeFlag;     // additional one time flag
-        static Array1D_bool MyFanFlag;               // used for sizing fan inputs one time
-        static Array1D_bool MyCheckFlag;             // Used to obtain the zone inlet node number in the controlled zone
-        static Array1D_bool MyFlowFracFlag;          // Used for calculatig flow fraction once
-        static Array1D_bool MyPlantScanFlag;         // used to initializa plant comp for water and steam heating coils
-        static Array1D_bool MySuppCoilPlantScanFlag; // used to initialize plant comp for water and steam heating coils
+        thread_local static bool MyOneTimeFlag(true);             // one time allocation flag
+        thread_local static Array1D_bool MyEnvrnFlag;             // environment flag
+        thread_local static Array1D_bool MySecondOneTimeFlag;     // additional one time flag
+        thread_local static Array1D_bool MyFanFlag;               // used for sizing fan inputs one time
+        thread_local static Array1D_bool MyCheckFlag;             // Used to obtain the zone inlet node number in the controlled zone
+        thread_local static Array1D_bool MyFlowFracFlag;          // Used for calculatig flow fraction once
+        thread_local static Array1D_bool MyPlantScanFlag;         // used to initializa plant comp for water and steam heating coils
+        thread_local static Array1D_bool MySuppCoilPlantScanFlag; // used to initialize plant comp for water and steam heating coils
         bool errFlag;                                // error flag for mining functions
         Real64 FanVolFlowRate;                       // fan volumetric flow rate (m3/s)
         Real64 QZnReq;                               // furnace load based on control zone frac (W)
@@ -4801,27 +4801,27 @@ namespace Furnaces {
         std::string FanType; // used in warning messages
         std::string FanName; // used in warning messages
 
-        static int ZoneInSysIndex(0);                            // number of zone inlet nodes counter in an airloop
-        static int NumAirLoopZones(0);                           // number of zone inlet nodes in an air loop
-        static int ZoneInletNodeNum(0);                          // zone inlet nodes node number
-        static bool FlowFracFlagReady(true);                     // one time flag for calculating flow fraction through controlled zone
-        static Real64 SumOfMassFlowRateMax(0.0);                 // the sum of mass flow rates at inlet to zones in an airloop
-        static Real64 CntrlZoneTerminalUnitMassFlowRateMax(0.0); // Maximum mass flow rate through controlled zone terminal unit
+        thread_local static int ZoneInSysIndex(0);                            // number of zone inlet nodes counter in an airloop
+        thread_local static int NumAirLoopZones(0);                           // number of zone inlet nodes in an air loop
+        thread_local static int ZoneInletNodeNum(0);                          // zone inlet nodes node number
+        thread_local static bool FlowFracFlagReady(true);                     // one time flag for calculating flow fraction through controlled zone
+        thread_local static Real64 SumOfMassFlowRateMax(0.0);                 // the sum of mass flow rates at inlet to zones in an airloop
+        thread_local static Real64 CntrlZoneTerminalUnitMassFlowRateMax(0.0); // Maximum mass flow rate through controlled zone terminal unit
 
-        static bool ErrorsFound(false);        // flag returned from mining call
-        static Real64 mdot(0.0);               // local temporary for mass flow rate (kg/s)
-        static Real64 rho(0.0);                // local for fluid density
-        static int SteamIndex(0);              // index of steam quality for steam heating coil
-        static Real64 SteamDensity(0.0);       // density of steam at 100C, used for steam heating coils
-        static Real64 CoilMaxVolFlowRate(0.0); // coil fluid maximum volume flow rate
-        static Real64 QActual(0.0);            // coil actual capacity
-        static Real64 SUPHEATERLOAD(0.0);      // SUPPLEMENTAL HEATER LOAD
+        thread_local static bool ErrorsFound(false);        // flag returned from mining call
+        thread_local static Real64 mdot(0.0);               // local temporary for mass flow rate (kg/s)
+        thread_local static Real64 rho(0.0);                // local for fluid density
+        thread_local static int SteamIndex(0);              // index of steam quality for steam heating coil
+        thread_local static Real64 SteamDensity(0.0);       // density of steam at 100C, used for steam heating coils
+        thread_local static Real64 CoilMaxVolFlowRate(0.0); // coil fluid maximum volume flow rate
+        thread_local static Real64 QActual(0.0);            // coil actual capacity
+        thread_local static Real64 SUPHEATERLOAD(0.0);      // SUPPLEMENTAL HEATER LOAD
         int NumOfSpeedCooling;                 // Number of speeds for cooling
         int NumOfSpeedHeating;                 // Number of speeds for heating
         int InNode;                            // Inlet node number in MSHP loop
         int OutNode;                           // Outlet node number in MSHP loop
         Real64 RhoAir;                         // Air density at InNode
-        static bool MyAirLoopPass(true);       // one time allocation flag
+        thread_local static bool MyAirLoopPass(true);       // one time allocation flag
         int IHPIndex(0);                       // coil id of IHP coil
         int OperatingMode;                     // track cooling, heating, and no cooling or heating modes
         int OperatingModeMinusOne;
@@ -6377,7 +6377,7 @@ namespace Furnaces {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 cpair;
-        static Real64 Error(1.0);
+        thread_local static Real64 Error(1.0);
         Real64 SystemSensibleLoad;   // Sensible load to be met by furnace (W)
         Real64 FullSensibleOutput;   // Full sensible output of furnace (W)
         Real64 FullLatentOutput;     // Full latent output of furnace = 0 (W)
@@ -6391,7 +6391,7 @@ namespace Furnaces {
         Real64 deltaT;               // Heater outlet temp minus design heater outlet temp
         //  CHARACTER(len=20) :: ErrNum = ' '         ! For displaying error message in cooling
         //  INTEGER,SAVE      :: ErrCount = 0
-        static int Iter(0);    // Iteration counter
+        thread_local static int Iter(0);    // Iteration counter
         int FurnaceInletNode;  // Node number of furnace inlet
         int FurnaceOutletNode; // Node number of furnace outlet
         int OpMode;            // Mode of Operation (fan cycling or fan continuous)
@@ -6675,8 +6675,8 @@ namespace Furnaces {
         int FurnaceInletNode;             // Inlet node to furnace or unitary system
         int FurnaceOutletNode;            // Outlet node of furnace or unitary system
         int OpMode;                       // Mode of Operation (fan cycling = 1 or fan continuous = 2)
-        static Real64 CoolCoilLoad;       // Negative value means cooling required
-        static Real64 SystemSensibleLoad; // Positive value means heating required
+        thread_local static Real64 CoolCoilLoad;       // Negative value means cooling required
+        thread_local static Real64 SystemSensibleLoad; // Positive value means heating required
         Real64 CoolErrorToler;            // Error tolerance in cooling mode
         Real64 HeatErrorToler;            // Error tolerance in heating mode
         Real64 ActualSensibleOutput;      // Actual furnace sensible capacity
@@ -6688,7 +6688,7 @@ namespace Furnaces {
         Real64 TempHeatOutput;      // Temporary Sensible output of heating coil while iterating on PLR (W)
         Real64 TempLatentOutput;    // Temporary Latent output of AC at increasing PLR (W)
         //                                           ! (Temp variables are used to find min PLR for positive latent removal)
-        static bool HumControl(false); // Logical flag signaling when dehumidification is required
+        thread_local static bool HumControl(false); // Logical flag signaling when dehumidification is required
         Array1D<Real64> Par(10);       // parameters passed to RegulaFalsi function
         int SolFlag;                   // return flag from RegulaFalsi
         Real64 TempMinPLR;             // Temporary min latent PLR when hum control is required and iter is exceeded
@@ -7976,9 +7976,9 @@ namespace Furnaces {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 OnOffAirFlowRatio;          // Ratio of compressor ON air mass flow to AVERAGE air mass flow over time step
-        static Real64 TotalZoneLatentLoad; // Total ZONE latent load (not including outside air)
+        thread_local static Real64 TotalZoneLatentLoad; // Total ZONE latent load (not including outside air)
         // to be removed by furnace/unitary system
-        static Real64 TotalZoneSensLoad; // Total ZONE heating load (not including outside air)
+        thread_local static Real64 TotalZoneSensLoad; // Total ZONE heating load (not including outside air)
         // to be removed by furnace/unitary system
         Real64 cpair;                       // Heat capacity of air
         Real64 ZoneSensLoadMet;             // Actual zone sensible load met by heat pump (W)
@@ -7997,9 +7997,9 @@ namespace Furnaces {
         int OASysInletNode;              // node number of return air inlet to OA sys
         int OASysOutletNode;             // node number of mixed air outlet of OA sys
         int OpMode;                      // Mode of Operation (fan cycling = 1 or fan continuous = 2)
-        static Real64 CoolPartLoadRatio; // Part load ratio (greater of sensible or latent part load ratio for cooling)
-        static Real64 HeatPartLoadRatio; // Part load ratio (greater of sensible or latent part load ratio for cooling)
-        static Real64 Dummy(0.0);        // Dummy var. for generic calc. furnace output arg. (n/a for heat pump)
+        thread_local static Real64 CoolPartLoadRatio; // Part load ratio (greater of sensible or latent part load ratio for cooling)
+        thread_local static Real64 HeatPartLoadRatio; // Part load ratio (greater of sensible or latent part load ratio for cooling)
+        thread_local static Real64 Dummy(0.0);        // Dummy var. for generic calc. furnace output arg. (n/a for heat pump)
         bool HumControl;                 // Logical flag signaling when dehumidification is required
         Real64 SuppHeatCoilLoad;         // Load passed to supplemental heater (W)
         Real64 CoolErrorToler;           // convergence tolerance used in cooling mode
@@ -9563,16 +9563,16 @@ namespace Furnaces {
         Real64 HotWaterMdot;    // actual hot water mass flow rate
         Array1D<Real64> Par(4);
         int SolFlag;
-        static std::string HeatingCoilName; // name of heating coil
-        static std::string HeatingCoilType; // type of heating coil
-        static int CoilTypeNum(0);          // heating coil type number
-        static int HeatingCoilIndex(0);     // heating coil index
-        static int CoilControlNode(0);      // control node for hot water and steam heating coils
-        static int CoilOutletNode(0);       // air outlet node of the heatiing coils
-        static int LoopNum(0);              // plant loop number
-        static int LoopSideNum(0);          // plant loop side number
-        static int BranchNum(0);            // plant branch number
-        static int CompNum(0);              // Numeric Equivalent for Supplemental Heat Coil Type
+        thread_local static std::string HeatingCoilName; // name of heating coil
+        thread_local static std::string HeatingCoilType; // type of heating coil
+        thread_local static int CoilTypeNum(0);          // heating coil type number
+        thread_local static int HeatingCoilIndex(0);     // heating coil index
+        thread_local static int CoilControlNode(0);      // control node for hot water and steam heating coils
+        thread_local static int CoilOutletNode(0);       // air outlet node of the heatiing coils
+        thread_local static int LoopNum(0);              // plant loop number
+        thread_local static int LoopSideNum(0);          // plant loop side number
+        thread_local static int BranchNum(0);            // plant branch number
+        thread_local static int CompNum(0);              // Numeric Equivalent for Supplemental Heat Coil Type
 
         QActual = 0.0;
 
@@ -9801,17 +9801,17 @@ namespace Furnaces {
         int OpMode;                          // operating mode (fan cycling or continious; DX coil always cycles)
         int ZoneNum;                         // Controlled zone number
         Real64 QTotUnitOut;                  // capacity output
-        static int SpeedNum(1);              // Speed number
-        static Real64 SupHeaterLoad(0.0);    // supplement heater load
+        thread_local static int SpeedNum(1);              // Speed number
+        thread_local static Real64 SupHeaterLoad(0.0);    // supplement heater load
         int CompOp;                          // compressor operation; 1=on, 0=off
         Real64 SaveMassFlowRate;             // saved inlet air mass flow rate [kg/s]
         Real64 QSensUnitOut;                 // sensible capacity output
         Real64 QLatUnitOut;                  // latent capacity output
-        static Real64 TotalZoneLatentLoad;   // Total ZONE latent load
-        static Real64 TotalZoneSensibleLoad; // Total ZONE sensible load
+        thread_local static Real64 TotalZoneLatentLoad;   // Total ZONE latent load
+        thread_local static Real64 TotalZoneSensibleLoad; // Total ZONE sensible load
         Real64 ActualSensibleOutput;         // Actual furnace sensible capacity
         Real64 ReheatCoilLoad;               // reheat coil load due to dehumidification
-        static Real64 SystemSensibleLoad;    // Positive value means heating required
+        thread_local static Real64 SystemSensibleLoad;    // Positive value means heating required
         Real64 QToHeatSetPt;                 // Load required to meet heating setpoint temp (>0 is a heating load)
         Real64 NoCompOutput;                 // output when no active compressor [W]
         int TotBranchNum;                    // total exit branch number
@@ -10151,8 +10151,8 @@ namespace Furnaces {
         Real64 CpAir;              // air specific heat
         Real64 QCoilActual;        // coil load actually delivered returned to calling component
         int i;                     // Speed index
-        static int ErrCountCyc(0); // Counter used to minimize the occurrence of output warnings
-        static int ErrCountVar(0); // Counter used to minimize the occurrence of output warnings
+        thread_local static int ErrCountCyc(0); // Counter used to minimize the occurrence of output warnings
+        thread_local static int ErrCountVar(0); // Counter used to minimize the occurrence of output warnings
         IHPOperationMode IHPMode(IHPOperationMode::IdleMode);
 
         // FLOW

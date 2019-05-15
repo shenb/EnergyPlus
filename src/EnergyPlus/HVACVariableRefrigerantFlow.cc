@@ -133,125 +133,125 @@ namespace HVACVariableRefrigerantFlow {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    int const On(1);  // normal compressor operation
-    int const Off(0); // signal DXCoil that compressor shouldn't run
+    thread_local int const On(1);  // normal compressor operation
+    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
 
     // Heat Recovery System used
-    int const No(1);  // Heat Pump mode only
-    int const Yes(2); // Heat Pump or Heat Recovery Mode (not available at this time)
+    thread_local int const No(1);  // Heat Pump mode only
+    thread_local int const Yes(2); // Heat Pump or Heat Recovery Mode (not available at this time)
 
     // Defrost strategy
-    int const ReverseCycle(1); // uses reverse cycle defrost strategy
-    int const Resistive(2);    // uses electric resistance heater for defrost
+    thread_local int const ReverseCycle(1); // uses reverse cycle defrost strategy
+    thread_local int const Resistive(2);    // uses electric resistance heater for defrost
 
     // Defrost control
-    int const Timed(1);    // defrost cycle is timed
-    int const OnDemand(2); // defrost cycle occurs only when required
+    thread_local int const Timed(1);    // defrost cycle is timed
+    thread_local int const OnDemand(2); // defrost cycle occurs only when required
 
     // Thermostat Priority Control Type
-    int const LoadPriority(1);             // total of zone loads dictate operation in cooling or heating
-    int const ZonePriority(2);             // # of zones requiring cooling or heating dictate operation in cooling or heating
-    int const ThermostatOffsetPriority(3); // zone with largest deviation from setpoint dictates operation
-    int const ScheduledPriority(4);        // cooling and heating modes are scheduled
-    int const MasterThermostatPriority(5); // Master zone thermostat dictates operation
-    int const FirstOnPriority(6);          // first unit to respond dictates operation (not used at this time)
+    thread_local int const LoadPriority(1);             // total of zone loads dictate operation in cooling or heating
+    thread_local int const ZonePriority(2);             // # of zones requiring cooling or heating dictate operation in cooling or heating
+    thread_local int const ThermostatOffsetPriority(3); // zone with largest deviation from setpoint dictates operation
+    thread_local int const ScheduledPriority(4);        // cooling and heating modes are scheduled
+    thread_local int const MasterThermostatPriority(5); // Master zone thermostat dictates operation
+    thread_local int const FirstOnPriority(6);          // first unit to respond dictates operation (not used at this time)
 
     // Water Systems
-    int const CondensateDiscarded(1001); // default mode where water is "lost"
-    int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
+    thread_local int const CondensateDiscarded(1001); // default mode where water is "lost"
+    thread_local int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
 
-    int const WaterSupplyFromMains(101); // mains water line used as water source
-    int const WaterSupplyFromTank(102);  // storage tank used as water source
+    thread_local int const WaterSupplyFromMains(101); // mains water line used as water source
+    thread_local int const WaterSupplyFromTank(102);  // storage tank used as water source
 
-    Real64 const MaxCap(1.0e+20); // limit of zone terminal unit capacity
+    thread_local Real64 const MaxCap(1.0e+20); // limit of zone terminal unit capacity
 
     // VRF System Types (strings used in integer conversions)
-    int const NumVRFSystemTypes(1);
-    int const VRF_HeatPump(1);
-    Array1D_string const cVRFTypes(NumVRFSystemTypes, std::string("AirConditioner:VariableRefrigerantFlow"));
+    thread_local int const NumVRFSystemTypes(1);
+    thread_local int const VRF_HeatPump(1);
+    thread_local Array1D_string const cVRFTypes(NumVRFSystemTypes, std::string("AirConditioner:VariableRefrigerantFlow"));
 
-    int const NumValidFuelTypes(9);
-    Array1D_string const
+    thread_local int const NumValidFuelTypes(9);
+    thread_local Array1D_string const
         cValidFuelTypes(NumValidFuelTypes,
                         {"Electric", "NaturalGas", "PropaneGas", "Diesel", "Gasoline", "FuelOil#1", "FuelOil#2", "OtherFuel1", "OtherFuel2"});
 
     // VRF Algorithm Type
-    int const AlgorithmTypeSysCurve(1);   // VRF model based on system curve
-    int const AlgorithmTypeFluidTCtrl(2); // VRF model based on physics, appreciable for Fluid Temperature Control
+    thread_local int const AlgorithmTypeSysCurve(1);   // VRF model based on system curve
+    thread_local int const AlgorithmTypeFluidTCtrl(2); // VRF model based on physics, appreciable for Fluid Temperature Control
 
     // Flag for hex operation
-    int const FlagCondMode(0); // Flag for the hex running as condenser [-]
-    int const FlagEvapMode(1); // Flag for the hex running as evaporator [-]
+    thread_local int const FlagCondMode(0); // Flag for the hex running as condenser [-]
+    thread_local int const FlagEvapMode(1); // Flag for the hex running as evaporator [-]
 
     // Flag for VRF operational mode
-    int const ModeCoolingOnly(1);       // Flag for Cooling Only Mode [-]
-    int const ModeHeatingOnly(2);       // Flag for Heating Only Mode [-]
-    int const ModeCoolingAndHeating(3); // Flag for Simultaneous Cooling and Heating Only Mode [-]
+    thread_local int const ModeCoolingOnly(1);       // Flag for Cooling Only Mode [-]
+    thread_local int const ModeHeatingOnly(2);       // Flag for Heating Only Mode [-]
+    thread_local int const ModeCoolingAndHeating(3); // Flag for Simultaneous Cooling and Heating Only Mode [-]
 
     // Fuel Types
-    int const FuelTypeElectric(1);   // Fuel type for electricity
-    int const FuelTypeNaturalGas(2); // Fuel type for natural gas
-    int const FuelTypePropaneGas(3); // Fuel type for propane gas
-    int const FuelTypeDiesel(4);     // Fuel type for diesel
-    int const FuelTypeGasoline(5);   // Fuel type for gasoline
-    int const FuelTypeFuelOil1(6);   // Fuel type for fuel oil #1
-    int const FuelTypeFuelOil2(7);   // Fuel type for fuel oil #2
-    int const FuelTypeOtherFuel1(8); // Fuel type for other fuel #1
-    int const FuelTypeOtherFuel2(9); // Fuel type for other fuel #2
+    thread_local int const FuelTypeElectric(1);   // Fuel type for electricity
+    thread_local int const FuelTypeNaturalGas(2); // Fuel type for natural gas
+    thread_local int const FuelTypePropaneGas(3); // Fuel type for propane gas
+    thread_local int const FuelTypeDiesel(4);     // Fuel type for diesel
+    thread_local int const FuelTypeGasoline(5);   // Fuel type for gasoline
+    thread_local int const FuelTypeFuelOil1(6);   // Fuel type for fuel oil #1
+    thread_local int const FuelTypeFuelOil2(7);   // Fuel type for fuel oil #2
+    thread_local int const FuelTypeOtherFuel1(8); // Fuel type for other fuel #1
+    thread_local int const FuelTypeOtherFuel2(9); // Fuel type for other fuel #2
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    bool GetVRFInputFlag(true);             // Flag set to make sure you get input once
-    bool MyOneTimeFlag(true);               // One time flag used to allocate MyEnvrnFlag and MySizeFlag
-    bool MyOneTimeSizeFlag(true);           // One time flag used to allocate MyEnvrnFlag and MySizeFlag
-    bool ZoneEquipmentListNotChecked(true); // False after the Zone Equipment List has been checked for items
-    int NumVRFCond(0);                      // total number of VRF condensers (All VRF Algorithm Types)
-    int NumVRFCond_SysCurve(0);             // total number of VRF condensers with VRF Algorithm Type 1
-    int NumVRFCond_FluidTCtrl_HP(0);        // total number of VRF condensers with VRF Algorithm Type 2 (HP)
-    int NumVRFCond_FluidTCtrl_HR(0);        // total number of VRF condensers with VRF Algorithm Type 2 (HR)
-    int NumVRFTU(0);                        // total number of VRF terminal units
-    int NumVRFTULists(0);                   // The number of VRF TU lists
-    Real64 CompOnMassFlow(0.0);             // Supply air mass flow rate w/ compressor ON
-    Real64 OACompOnMassFlow(0.0);           // OA mass flow rate w/ compressor ON
-    Real64 CompOffMassFlow(0.0);            // Supply air mass flow rate w/ compressor OFF
-    Real64 OACompOffMassFlow(0.0);          // OA mass flow rate w/ compressor OFF
-    Real64 CompOnFlowRatio(0.0);            // fan flow ratio when coil on
-    Real64 CompOffFlowRatio(0.0);           // fan flow ratio when coil off
-    Real64 FanSpeedRatio(0.0);              // ratio of air flow ratio passed to fan object
-    Real64 LoopDXCoolCoilRTF(0.0);          // holds value of DX cooling coil RTF
-    Real64 LoopDXHeatCoilRTF(0.0);          // holds value of DX heating coil RTF
-    Real64 CondenserWaterMassFlowRate(0.0); // VRF water-cooled condenser mass flow rate (kg/s)
-    Array1D_bool HeatingLoad;               // defines a heating load on VRFTerminalUnits
-    Array1D_bool CoolingLoad;               // defines a cooling load on VRFTerminalUnits
-    Array1D_bool LastModeHeating;           // defines last mode was heating mode
-    Array1D_bool LastModeCooling;           // defines last mode was cooling mode
-    Array1D_bool CheckEquipName;            // Flag set to check equipment connections once
-    Array1D_bool MyEnvrnFlag;               // Flag for initializing at beginning of each new environment
-    Array1D_bool MySizeFlag;                // False after TU has been sized
-    Array1D_bool MyBeginTimeStepFlag;       // Flag to sense beginning of time step
-    Array1D_bool MyVRFFlag;                 // used for sizing VRF inputs one time
-    Array1D_bool MyVRFCondFlag;             // used to reset timer counter
-    Array1D_bool MyZoneEqFlag;              // used to set up zone equipment availability managers
-    Array1D_int NumCoolingLoads;            // number of TU's requesting cooling
-    Array1D_int NumHeatingLoads;            // number of TU's requesting heating
-    Array1D<Real64> MaxCoolingCapacity;     // maximum capacity of any terminal unit
-    Array1D<Real64> MaxHeatingCapacity;     // maximum capacity of any terminal unit
-    Array1D<Real64> CoolCombinationRatio;   // ratio of terminal unit capacity to VRF condenser capacity
-    Array1D<Real64> HeatCombinationRatio;   // ratio of terminal unit capacity to VRF condenser capacity
-    Array1D<Real64> MaxDeltaT;              // maximum zone temperature difference from setpoint
-    Array1D<Real64> MinDeltaT;              // minimum zone temperature difference from setpoint
-    Array1D<Real64> SumCoolingLoads;        // sum of cooling loads
-    Array1D<Real64> SumHeatingLoads;        // sum of heating loads
+    thread_local bool GetVRFInputFlag(true);             // Flag set to make sure you get input once
+    thread_local bool MyOneTimeFlag(true);               // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+    thread_local bool MyOneTimeSizeFlag(true);           // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+    thread_local bool ZoneEquipmentListNotChecked(true); // False after the Zone Equipment List has been checked for items
+    thread_local int NumVRFCond(0);                      // total number of VRF condensers (All VRF Algorithm Types)
+    thread_local int NumVRFCond_SysCurve(0);             // total number of VRF condensers with VRF Algorithm Type 1
+    thread_local int NumVRFCond_FluidTCtrl_HP(0);        // total number of VRF condensers with VRF Algorithm Type 2 (HP)
+    thread_local int NumVRFCond_FluidTCtrl_HR(0);        // total number of VRF condensers with VRF Algorithm Type 2 (HR)
+    thread_local int NumVRFTU(0);                        // total number of VRF terminal units
+    thread_local int NumVRFTULists(0);                   // The number of VRF TU lists
+    thread_local Real64 CompOnMassFlow(0.0);             // Supply air mass flow rate w/ compressor ON
+    thread_local Real64 OACompOnMassFlow(0.0);           // OA mass flow rate w/ compressor ON
+    thread_local Real64 CompOffMassFlow(0.0);            // Supply air mass flow rate w/ compressor OFF
+    thread_local Real64 OACompOffMassFlow(0.0);          // OA mass flow rate w/ compressor OFF
+    thread_local Real64 CompOnFlowRatio(0.0);            // fan flow ratio when coil on
+    thread_local Real64 CompOffFlowRatio(0.0);           // fan flow ratio when coil off
+    thread_local Real64 FanSpeedRatio(0.0);              // ratio of air flow ratio passed to fan object
+    thread_local Real64 LoopDXCoolCoilRTF(0.0);          // holds value of DX cooling coil RTF
+    thread_local Real64 LoopDXHeatCoilRTF(0.0);          // holds value of DX heating coil RTF
+    thread_local Real64 CondenserWaterMassFlowRate(0.0); // VRF water-cooled condenser mass flow rate (kg/s)
+    thread_local Array1D_bool HeatingLoad;               // defines a heating load on VRFTerminalUnits
+    thread_local Array1D_bool CoolingLoad;               // defines a cooling load on VRFTerminalUnits
+    thread_local Array1D_bool LastModeHeating;           // defines last mode was heating mode
+    thread_local Array1D_bool LastModeCooling;           // defines last mode was cooling mode
+    thread_local Array1D_bool CheckEquipName;            // Flag set to check equipment connections once
+    thread_local Array1D_bool MyEnvrnFlag;               // Flag for initializing at beginning of each new environment
+    thread_local Array1D_bool MySizeFlag;                // False after TU has been sized
+    thread_local Array1D_bool MyBeginTimeStepFlag;       // Flag to sense beginning of time step
+    thread_local Array1D_bool MyVRFFlag;                 // used for sizing VRF inputs one time
+    thread_local Array1D_bool MyVRFCondFlag;             // used to reset timer counter
+    thread_local Array1D_bool MyZoneEqFlag;              // used to set up zone equipment availability managers
+    thread_local Array1D_int NumCoolingLoads;            // number of TU's requesting cooling
+    thread_local Array1D_int NumHeatingLoads;            // number of TU's requesting heating
+    thread_local Array1D<Real64> MaxCoolingCapacity;     // maximum capacity of any terminal unit
+    thread_local Array1D<Real64> MaxHeatingCapacity;     // maximum capacity of any terminal unit
+    thread_local Array1D<Real64> CoolCombinationRatio;   // ratio of terminal unit capacity to VRF condenser capacity
+    thread_local Array1D<Real64> HeatCombinationRatio;   // ratio of terminal unit capacity to VRF condenser capacity
+    thread_local Array1D<Real64> MaxDeltaT;              // maximum zone temperature difference from setpoint
+    thread_local Array1D<Real64> MinDeltaT;              // minimum zone temperature difference from setpoint
+    thread_local Array1D<Real64> SumCoolingLoads;        // sum of cooling loads
+    thread_local Array1D<Real64> SumHeatingLoads;        // sum of heating loads
 
     // Object Data
-    Array1D<VRFCondenserEquipment> VRF; // AirConditioner:VariableRefrigerantFlow object
-    std::unordered_map<std::string, std::string> VrfUniqueNames;
-    Array1D<VRFTerminalUnitEquipment> VRFTU;           // ZoneHVAC:TerminalUnit:VariableRefrigerantFlow object
-    Array1D<TerminalUnitListData> TerminalUnitList;    // zoneTerminalUnitList object
-    Array1D<VRFTUNumericFieldData> VRFTUNumericFields; // holds VRF TU numeric input fields character field name
+    thread_local Array1D<VRFCondenserEquipment> VRF; // AirConditioner:VariableRefrigerantFlow object
+    thread_local std::unordered_map<std::string, std::string> VrfUniqueNames;
+    thread_local Array1D<VRFTerminalUnitEquipment> VRFTU;           // ZoneHVAC:TerminalUnit:VariableRefrigerantFlow object
+    thread_local Array1D<TerminalUnitListData> TerminalUnitList;    // zoneTerminalUnitList object
+    thread_local Array1D<VRFTUNumericFieldData> VRFTUNumericFields; // holds VRF TU numeric input fields character field name
 
     // Utility routines for module
     // na
@@ -494,7 +494,7 @@ namespace HVACVariableRefrigerantFlow {
         using Psychrometrics::RhoH2O;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("VRFCondenser");
+        thread_local static std::string const RoutineName("VRFCondenser");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumTU;         // loop counter
@@ -541,9 +541,9 @@ namespace HVACVariableRefrigerantFlow {
         Real64 HREIRFTConst;              // stead-state EIR fraction
         Real64 HRInitialEIRFrac;          // Fractional cooling degradation at the start of heat recovery from cooling mode
         Real64 HREIRTC;                   // Time constant used to recover from initial degradation in cooling heat recovery
-        static Real64 CurrentEndTime;     // end time of current time step
-        static Real64 CurrentEndTimeLast; // end time of last time step
-        static Real64 TimeStepSysLast;    // system time step on last time step
+        thread_local static Real64 CurrentEndTime;     // end time of current time step
+        thread_local static Real64 CurrentEndTimeLast; // end time of last time step
+        thread_local static Real64 TimeStepSysLast;    // system time step on last time step
         Real64 SUMultiplier;              // multiplier for simulating mode changes
         Real64 CondPower;                 // condenser power [W]
         Real64 CondCapacity;              // condenser heat rejection [W]
@@ -1313,7 +1313,7 @@ namespace HVACVariableRefrigerantFlow {
         // Calls "Get" routines to read in data.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetVRFInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetVRFInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool ErrorsFound(false); // If errors detected in input
@@ -1382,7 +1382,7 @@ namespace HVACVariableRefrigerantFlow {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetVRFInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetVRFInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumVRFCTU; // The number of VRF constant volume TUs (anticipating different types of TU's)
@@ -4857,7 +4857,7 @@ namespace HVACVariableRefrigerantFlow {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitVRF");
+        thread_local static std::string const RoutineName("InitVRF");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InNode;                       // TU inlet node
@@ -4872,9 +4872,9 @@ namespace HVACVariableRefrigerantFlow {
         int TUListIndex;                  // pointer to TU list for this VRF system
         int IndexToTUInTUList;            // index to TU in TerminalUnilList
         Real64 RhoAir;                    // air density at InNode
-        static Real64 CurrentEndTime;     // end time of current time step
-        static Real64 CurrentEndTimeLast; // end time of last time step
-        static Real64 TimeStepSysLast;    // system time step on last time step
+        thread_local static Real64 CurrentEndTime;     // end time of current time step
+        thread_local static Real64 CurrentEndTimeLast; // end time of last time step
+        thread_local static Real64 TimeStepSysLast;    // system time step on last time step
         Real64 TempOutput;                // Sensible output of TU
         Real64 LoadToCoolingSP;           // thermostat load to cooling setpoint (W)
         Real64 LoadToHeatingSP;           // thermostat load to heating setpoint (W)
@@ -5942,10 +5942,10 @@ namespace HVACVariableRefrigerantFlow {
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
-        static std::string const RoutineName("SizeVRF: "); // include trailing blank space
+        thread_local static std::string const RoutineName("SizeVRF: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool CheckVRFCombinationRatio;
+        thread_local static Array1D_bool CheckVRFCombinationRatio;
         bool FoundAll;                      // temporary variable used to check all terminal units
         bool errFlag;                       // temporary variable used for error checking
         Real64 TUCoolingCapacity;           // total terminal unit cooling capacity
@@ -5954,7 +5954,7 @@ namespace HVACVariableRefrigerantFlow {
         int TUListNum;                      // index to terminal unit list
         int TUIndex;                        // index to terminal unit
         int NumTU;                          // DO Loop index counter
-        static bool MyOneTimeEIOFlag(true); // eio header flag reporting
+        thread_local static bool MyOneTimeEIOFlag(true); // eio header flag reporting
         Real64 OnOffAirFlowRat;             // temporary variable used when sizing coils
         Real64 DXCoilCap;                   // capacity of DX cooling coil (W)
         bool IsAutoSize;                    // Indicator to autosize
@@ -5998,10 +5998,10 @@ namespace HVACVariableRefrigerantFlow {
                                 // FractionOfAutosizedHeatingCapacity )
 
         // Formats
-        static gio::Fmt Format_990("('! <VRF System Information>, VRF System Type, VRF System Name, ','VRF System Cooling Combination Ratio, VRF "
+        thread_local static gio::Fmt Format_990("('! <VRF System Information>, VRF System Type, VRF System Name, ','VRF System Cooling Combination Ratio, VRF "
                                    "System Heating Combination Ratio, ','VRF System Cooling Piping Correction Factor, VRF System Heating Piping "
                                    "Correction Factor')");
-        static gio::Fmt Format_991("(' VRF System Information',6(', ',A))");
+        thread_local static gio::Fmt Format_991("(' VRF System Information',6(', ',A))");
 
         VRFCond = VRFTU(VRFTUNum).VRFSysNum;
         IsAutoSize = false;
@@ -6917,7 +6917,7 @@ namespace HVACVariableRefrigerantFlow {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeVRFCondenser");
+        thread_local static std::string const RoutineName("SizeVRFCondenser");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizCondNum;         // Plant Sizing index for condenser loop
@@ -7060,7 +7060,7 @@ namespace HVACVariableRefrigerantFlow {
         int const MaxIte(500);        // maximum number of iterations
         Real64 const MinPLF(0.0);     // minimum part load factor allowed
         Real64 const ErrorTol(0.001); // tolerance for RegulaFalsi iterations
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtLD("*");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 FullOutput;      // unit full output when compressor is operating [W]
@@ -7343,7 +7343,7 @@ namespace HVACVariableRefrigerantFlow {
         Real64 SpecHumIn;           // specific humidity ratio at inlet node
         int TUListIndex;            // index to TU list for this VRF system
         int IndexToTUInTUList;      // index to TU in specific list for the VRF system
-        static int ATMixOutNode(0); // terminal unit mixer outlet node
+        thread_local static int ATMixOutNode(0); // terminal unit mixer outlet node
         int ZoneNode;               // Zone node of VRFTU is serving
         // FLOW
 
@@ -8780,7 +8780,7 @@ namespace HVACVariableRefrigerantFlow {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcVRFCondenser_FluidTCtrl");
+        thread_local static std::string const RoutineName("CalcVRFCondenser_FluidTCtrl");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -8834,9 +8834,9 @@ namespace HVACVariableRefrigerantFlow {
         Real64 HRCapTC;                   // Time constant used to recover from initial degradation in cooling heat recovery
         Real64 HRInitialEIRFrac;          // Fractional cooling degradation at the start of heat recovery from cooling mode
         Real64 HREIRTC;                   // Time constant used to recover from initial degradation in cooling heat recovery
-        static Real64 CurrentEndTime;     // end time of current time step
-        static Real64 CurrentEndTimeLast; // end time of last time step
-        static Real64 TimeStepSysLast;    // system time step on last time step
+        thread_local static Real64 CurrentEndTime;     // end time of current time step
+        thread_local static Real64 CurrentEndTimeLast; // end time of last time step
+        thread_local static Real64 TimeStepSysLast;    // system time step on last time step
         Real64 SUMultiplier;              // multiplier for simulating mode changes
         Real64 CondPower;                 // condenser power [W]
         Real64 CondCapacity;              // condenser heat rejection [W]
@@ -10110,7 +10110,7 @@ namespace HVACVariableRefrigerantFlow {
         int const MaxIte(500);        // maximum number of iterations
         Real64 const MinPLF(0.0);     // minimum part load factor allowed
         Real64 const ErrorTol(0.001); // tolerance for RegulaFalsi iterations
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -10346,7 +10346,7 @@ namespace HVACVariableRefrigerantFlow {
         int IndexToTUInTUList;      // index to TU in specific list for the VRF system
         Real64 EvapTemp;            // evaporating temperature
         Real64 CondTemp;            // condensing temperature
-        static int ATMixOutNode(0); // outlet node of ATM Mixer
+        thread_local static int ATMixOutNode(0); // outlet node of ATM Mixer
         int ZoneNode;               // Zone node of VRFTU is serving
 
         // FLOW
@@ -11264,7 +11264,7 @@ namespace HVACVariableRefrigerantFlow {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static std::string const RoutineName("VRFOU_CapModFactor");
+        thread_local static std::string const RoutineName("VRFOU_CapModFactor");
 
         // variable initializations
         RefrigerantIndex = FindRefrigerant(this->RefrigerantName);
@@ -11365,7 +11365,7 @@ namespace HVACVariableRefrigerantFlow {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("VRFOU_TeModification");
+        thread_local static std::string const RoutineName("VRFOU_TeModification");
 
         // variable initializations
         TUListNum = this->ZoneTUListPtr;
@@ -11512,7 +11512,7 @@ namespace HVACVariableRefrigerantFlow {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("VRFOU_CompSpd");
+        thread_local static std::string const RoutineName("VRFOU_CompSpd");
 
         // variable initializations: component index
         TUListNum = this->ZoneTUListPtr;
@@ -11675,7 +11675,7 @@ namespace HVACVariableRefrigerantFlow {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("VRFOU_CompCap");
+        thread_local static std::string const RoutineName("VRFOU_CompCap");
 
         // variable initializations: component index
         TUListNum = this->ZoneTUListPtr;
@@ -11843,7 +11843,7 @@ namespace HVACVariableRefrigerantFlow {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("VRFOU_CalcCompC");
+        thread_local static std::string const RoutineName("VRFOU_CalcCompC");
 
         // variable initializations
         NumOfCompSpdInput = this->CompressorSpeed.size();
@@ -12186,7 +12186,7 @@ namespace HVACVariableRefrigerantFlow {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("VRFOU_CalcCompH");
+        thread_local static std::string const RoutineName("VRFOU_CalcCompH");
 
         // variable initializations
         NumOfCompSpdInput = this->CompressorSpeed.size();
@@ -12393,7 +12393,7 @@ namespace HVACVariableRefrigerantFlow {
         Real64 Tsuction_new;        // VRF compressor suction refrigerant temperature (new) [C]
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("VRFHR_OU_Mode");
+        thread_local static std::string const RoutineName("VRFHR_OU_Mode");
 
         // Initialization: operational parameters
         RhoAir = PsyRhoAirFnPbTdbW(OutBaroPress, OutDryBulbTemp, OutHumRat);
@@ -12796,7 +12796,7 @@ namespace HVACVariableRefrigerantFlow {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static std::string const RoutineName("VRFOU_PipeLossC");
+        thread_local static std::string const RoutineName("VRFOU_PipeLossC");
 
         // variable initializations
 
@@ -12963,7 +12963,7 @@ namespace HVACVariableRefrigerantFlow {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static std::string const RoutineName("VRFOU_PipeLossH");
+        thread_local static std::string const RoutineName("VRFOU_PipeLossH");
 
         // variable initializations
 

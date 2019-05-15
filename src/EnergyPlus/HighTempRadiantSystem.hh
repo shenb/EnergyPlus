@@ -63,39 +63,39 @@ namespace HighTempRadiantSystem {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern std::string const cGas;
-    extern std::string const cNaturalGas;
-    extern std::string const cElectric;
-    extern std::string const cElectricity;
-    extern int const Gas;
-    extern int const Electric;
-    extern std::string const cMATControl;         // Control for using mean air temperature
-    extern std::string const cMRTControl;         // Control for using mean radiant temperature
-    extern std::string const cOperativeControl;   // Control for using operative temperature
-    extern std::string const cMATSPControl;       // Control for to MAT setpoint
-    extern std::string const cMRTSPControl;       // Control for to MRT setpoint
-    extern std::string const cOperativeSPControl; // Control for operative temperature setpoint
-    extern int const MATControl;
-    extern int const MRTControl;
-    extern int const OperativeControl;
-    extern int const MATSPControl;
-    extern int const MRTSPControl;
-    extern int const OperativeSPControl;
+    thread_local extern std::string const cGas;
+    thread_local extern std::string const cNaturalGas;
+    thread_local extern std::string const cElectric;
+    thread_local extern std::string const cElectricity;
+    thread_local extern int const Gas;
+    thread_local extern int const Electric;
+    thread_local extern std::string const cMATControl;         // Control for using mean air temperature
+    thread_local extern std::string const cMRTControl;         // Control for using mean radiant temperature
+    thread_local extern std::string const cOperativeControl;   // Control for using operative temperature
+    thread_local extern std::string const cMATSPControl;       // Control for to MAT setpoint
+    thread_local extern std::string const cMRTSPControl;       // Control for to MRT setpoint
+    thread_local extern std::string const cOperativeSPControl; // Control for operative temperature setpoint
+    thread_local extern int const MATControl;
+    thread_local extern int const MRTControl;
+    thread_local extern int const OperativeControl;
+    thread_local extern int const MATSPControl;
+    thread_local extern int const MRTSPControl;
+    thread_local extern int const OperativeSPControl;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
     // Standard, run-of-the-mill variables...
-    extern int NumOfHighTempRadSys;              // Number of hydronic low tempererature radiant systems
-    extern Array1D<Real64> QHTRadSource;         // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> QHTRadSrcAvg;         // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    thread_local extern int NumOfHighTempRadSys;              // Number of hydronic low tempererature radiant systems
+    thread_local extern Array1D<Real64> QHTRadSource;         // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> QHTRadSrcAvg;         // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QHTRadSrcAvg locally
-    extern Array1D<Real64> LastQHTRadSrc;      // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    extern Array1D_bool MySizeFlag;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D<Real64> LastQHTRadSrc;      // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HighTempRadiantSystem
 
@@ -161,8 +161,8 @@ namespace HighTempRadiantSystem {
     };
 
     // Object Data
-    extern Array1D<HighTempRadiantSystemData> HighTempRadSys;
-    extern Array1D<HighTempRadSysNumericFieldData> HighTempRadSysNumericFields;
+    thread_local extern Array1D<HighTempRadiantSystemData> HighTempRadSys;
+    thread_local extern Array1D<HighTempRadSysNumericFieldData> HighTempRadSysNumericFields;
 
     // Functions
     void clear_state();

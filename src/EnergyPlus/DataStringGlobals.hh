@@ -62,70 +62,70 @@ namespace DataStringGlobals {
     // -only module should be available to other modules and routines.
     // Thus, all variables in this module must be PUBLIC.
 
-    extern std::string outputAuditFileName;
-    extern std::string outputBndFileName;
-    extern std::string outputDxfFileName;
-    extern std::string outputEioFileName;
-    extern std::string outputEndFileName;
-    extern std::string outputErrFileName;
-    extern std::string outputEsoFileName;
-    extern std::string outputMtdFileName;
-    extern std::string outputMddFileName;
-    extern std::string outputMtrFileName;
-    extern std::string outputRddFileName;
-    extern std::string outputShdFileName;
-    extern std::string outputTblCsvFileName;
-    extern std::string outputTblHtmFileName;
-    extern std::string outputTblTabFileName;
-    extern std::string outputTblTxtFileName;
-    extern std::string outputTblXmlFileName;
-    extern std::string inputFileName;
-    extern std::string inputIddFileName;
-    extern std::string inputEpJSONSchemaFileName;
-    extern std::string inputEpJSONSchemaFileName;
-    extern std::string inputWeatherFileName;
-    extern std::string outputAdsFileName;
-    extern std::string outputDfsFileName;
-    extern std::string outputGLHEFileName;
-    extern std::string outputDelightInFileName;
-    extern std::string outputDelightOutFileName;
-    extern std::string outputDelightEldmpFileName;
-    extern std::string outputDelightDfdmpFileName;
-    extern std::string outputMapTabFileName;
-    extern std::string outputMapCsvFileName;
-    extern std::string outputMapTxtFileName;
-    extern std::string outputEddFileName;
-    extern std::string outputIperrFileName;
-    extern std::string outputDbgFileName;
-    extern std::string outputSlnFileName;
-    extern std::string outputSciFileName;
-    extern std::string outputWrlFileName;
-    extern std::string outputZszCsvFileName;
-    extern std::string outputZszTabFileName;
-    extern std::string outputZszTxtFileName;
-    extern std::string outputSszCsvFileName;
-    extern std::string outputSszTabFileName;
-    extern std::string outputSszTxtFileName;
-    extern std::string outputScreenCsvFileName;
-    extern std::string outputSqlFileName;
-    extern std::string outputSqliteErrFileName;
-    extern std::string EnergyPlusIniFileName;
-    extern std::string inStatFileName;
-    extern std::string TarcogIterationsFileName;
-    extern std::string eplusADSFileName;
-    extern std::string outputCsvFileName;
-    extern std::string outputMtrCsvFileName;
-    extern std::string outputRvauditFileName;
-    extern std::string outputExtShdFracFileName;
+    thread_local extern std::string outputAuditFileName;
+    thread_local extern std::string outputBndFileName;
+    thread_local extern std::string outputDxfFileName;
+    thread_local extern std::string outputEioFileName;
+    thread_local extern std::string outputEndFileName;
+    thread_local extern std::string outputErrFileName;
+    thread_local extern std::string outputEsoFileName;
+    thread_local extern std::string outputMtdFileName;
+    thread_local extern std::string outputMddFileName;
+    thread_local extern std::string outputMtrFileName;
+    thread_local extern std::string outputRddFileName;
+    thread_local extern std::string outputShdFileName;
+    thread_local extern std::string outputTblCsvFileName;
+    thread_local extern std::string outputTblHtmFileName;
+    thread_local extern std::string outputTblTabFileName;
+    thread_local extern std::string outputTblTxtFileName;
+    thread_local extern std::string outputTblXmlFileName;
+    thread_local extern std::string inputFileName;
+    thread_local extern std::string inputIddFileName;
+    thread_local extern std::string inputEpJSONSchemaFileName;
+    thread_local extern std::string inputEpJSONSchemaFileName;
+    thread_local extern std::string inputWeatherFileName;
+    thread_local extern std::string outputAdsFileName;
+    thread_local extern std::string outputDfsFileName;
+    thread_local extern std::string outputGLHEFileName;
+    thread_local extern std::string outputDelightInFileName;
+    thread_local extern std::string outputDelightOutFileName;
+    thread_local extern std::string outputDelightEldmpFileName;
+    thread_local extern std::string outputDelightDfdmpFileName;
+    thread_local extern std::string outputMapTabFileName;
+    thread_local extern std::string outputMapCsvFileName;
+    thread_local extern std::string outputMapTxtFileName;
+    thread_local extern std::string outputEddFileName;
+    thread_local extern std::string outputIperrFileName;
+    thread_local extern std::string outputDbgFileName;
+    thread_local extern std::string outputSlnFileName;
+    thread_local extern std::string outputSciFileName;
+    thread_local extern std::string outputWrlFileName;
+    thread_local extern std::string outputZszCsvFileName;
+    thread_local extern std::string outputZszTabFileName;
+    thread_local extern std::string outputZszTxtFileName;
+    thread_local extern std::string outputSszCsvFileName;
+    thread_local extern std::string outputSszTabFileName;
+    thread_local extern std::string outputSszTxtFileName;
+    thread_local extern std::string outputScreenCsvFileName;
+    thread_local extern std::string outputSqlFileName;
+    thread_local extern std::string outputSqliteErrFileName;
+    thread_local extern std::string EnergyPlusIniFileName;
+    thread_local extern std::string inStatFileName;
+    thread_local extern std::string TarcogIterationsFileName;
+    thread_local extern std::string eplusADSFileName;
+    thread_local extern std::string outputCsvFileName;
+    thread_local extern std::string outputMtrCsvFileName;
+    thread_local extern std::string outputRvauditFileName;
+    thread_local extern std::string outputExtShdFracFileName;
 
-    extern std::string weatherFileNameOnly;
-    extern std::string idfDirPathName;
-    extern std::string outDirPathName;
-    extern std::string idfFileNameOnly;
-    extern std::string inputDirPathName;
-    extern std::string outputDirPathName;
-    extern std::string inputFileNameOnly;
-    extern std::string exeDirectory;
+    thread_local extern std::string weatherFileNameOnly;
+    thread_local extern std::string idfDirPathName;
+    thread_local extern std::string outDirPathName;
+    thread_local extern std::string idfFileNameOnly;
+    thread_local extern std::string inputDirPathName;
+    thread_local extern std::string outputDirPathName;
+    thread_local extern std::string inputFileNameOnly;
+    thread_local extern std::string exeDirectory;
 
     // MODULE PARAMETER DEFINITIONS:
     extern std::string const UpperCase;
@@ -148,13 +148,13 @@ namespace DataStringGlobals {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern std::string ProgramPath;          // Path for Program from INI file
-    extern std::string CurrentWorkingFolder; // Current working directory for run
-    extern std::string FullName;             // Full name of file to open, including path
-    extern std::string IDDVerString;         // Version information from the IDD (line 1)
-    extern std::string VerString;            // String that represents version information
-    extern std::string MatchVersion;         // String to be matched by Version object
-    extern std::string CurrentDateTime;      // For printing current date and time at start of run
+    thread_local extern std::string ProgramPath;          // Path for Program from INI file
+    thread_local extern std::string CurrentWorkingFolder; // Current working directory for run
+    thread_local extern std::string FullName;             // Full name of file to open, including path
+    thread_local extern std::string IDDVerString;         // Version information from the IDD (line 1)
+    thread_local extern std::string VerString;            // String that represents version information
+    thread_local extern std::string MatchVersion;         // String to be matched by Version object
+    thread_local extern std::string CurrentDateTime;      // For printing current date and time at start of run
 
 } // namespace DataStringGlobals
 

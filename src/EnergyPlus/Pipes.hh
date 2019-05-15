@@ -73,8 +73,8 @@ namespace Pipes {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumLocalPipes;
-    extern bool GetPipeInputFlag;
+    thread_local extern int NumLocalPipes;
+    thread_local extern bool GetPipeInputFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Pipe
 
@@ -114,7 +114,7 @@ namespace Pipes {
     };
 
     // Object Data
-    extern Array1D<LocalPipeData> LocalPipe; // dimension to number of pipes
+    thread_local extern Array1D<LocalPipeData> LocalPipe; // dimension to number of pipes
 
     // Functions
     void clear_state();

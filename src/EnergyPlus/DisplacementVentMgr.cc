@@ -111,22 +111,22 @@ namespace DisplacementVentMgr {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    Real64 HAT_MX;                       // HAT_MX Convection Coefficient times Area times Temperature for the upper subzone
-    Real64 HA_MX;                        // HA_MX Convection Coefficient times Area for the upper subzone
-    Real64 HAT_OC;                       // HAT_OC Convection Coefficient times Area times Temperature for the lower subzone
-    Real64 HA_OC;                        // HA_OC Convection Coefficient times Area for the lower subzone
-    Real64 HAT_FLOOR;                    // HAT_FLOOR Convection Coefficient times Area times Temperature for the floor(?) subzone
-    Real64 HA_FLOOR;                     // HA_FLOOR Convection Coefficient times Area for the floor(?) subzone
-    Real64 HeightFloorSubzoneTop(0.2);   // Assumed thickness of floor subzone
-    Real64 ThickOccupiedSubzoneMin(0.2); // Minimum thickness of occupied subzone
-    Real64 HeightIntMass(0.0);           // Height of internal mass surfaces, assumed vertical, cannot exceed ceiling height
-    Real64 HeightIntMassDefault(2.0);    // Default height of internal mass surfaces
+    thread_local Real64 HAT_MX;                       // HAT_MX Convection Coefficient times Area times Temperature for the upper subzone
+    thread_local Real64 HA_MX;                        // HA_MX Convection Coefficient times Area for the upper subzone
+    thread_local Real64 HAT_OC;                       // HAT_OC Convection Coefficient times Area times Temperature for the lower subzone
+    thread_local Real64 HA_OC;                        // HA_OC Convection Coefficient times Area for the lower subzone
+    thread_local Real64 HAT_FLOOR;                    // HAT_FLOOR Convection Coefficient times Area times Temperature for the floor(?) subzone
+    thread_local Real64 HA_FLOOR;                     // HA_FLOOR Convection Coefficient times Area for the floor(?) subzone
+    thread_local Real64 HeightFloorSubzoneTop(0.2);   // Assumed thickness of floor subzone
+    thread_local Real64 ThickOccupiedSubzoneMin(0.2); // Minimum thickness of occupied subzone
+    thread_local Real64 HeightIntMass(0.0);           // Height of internal mass surfaces, assumed vertical, cannot exceed ceiling height
+    thread_local Real64 HeightIntMassDefault(2.0);    // Default height of internal mass surfaces
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -221,8 +221,8 @@ namespace DisplacementVentMgr {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
 
         // Do the one time initializations
         if (MyOneTimeFlag) {
@@ -553,7 +553,7 @@ namespace DisplacementVentMgr {
                                                Real64 zoneMultiplier,
                                                Real64 airCap)
     {
-        static const Real64 elevenOverSix = 11.0 / 6.0;
+        thread_local static const Real64 elevenOverSix = 11.0 / 6.0;
         return (temperatureHistoryTerm + HAT_floor + MCpT_Total + 0.6 * occupiedTemp * MCp_Total + nonAirSystemResponse / zoneMultiplier) /
                (elevenOverSix * airCap + HA_floor + 1.6 * MCp_Total);
     }
@@ -593,8 +593,8 @@ namespace DisplacementVentMgr {
         using ScheduleManager::GetScheduleIndex;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 const OneThird(1.0 / 3.0);
-        static Real64 const MinFlow_pow_fac(std::pow(1.0 / 24.55 * 1.0, 1.0 / 0.6));
+        thread_local static Real64 const OneThird(1.0 / 3.0);
+        thread_local static Real64 const MinFlow_pow_fac(std::pow(1.0 / 24.55 * 1.0, 1.0 / 0.6));
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 HeightFrac;               // Fractional height of transition between occupied and mixed subzones
@@ -636,9 +636,9 @@ namespace DisplacementVentMgr {
         Real64 ZoneMult; // total zone multiplier
         int Loop;
         int FlagApertures;
-        static Real64 TempDepCoef(0.0); // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
-        static Real64 TempIndCoef(0.0); // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
-        static Array1D_int IntGainTypesOccupied(29,
+        thread_local static Real64 TempDepCoef(0.0); // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
+        thread_local static Real64 TempIndCoef(0.0); // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
+        thread_local static Array1D_int IntGainTypesOccupied(29,
                                                 {IntGainTypeOf_People,
                                                  IntGainTypeOf_WaterHeaterMixed,
                                                  IntGainTypeOf_WaterHeaterStratified,
@@ -669,7 +669,7 @@ namespace DisplacementVentMgr {
                                                  IntGainTypeOf_RefrigerationSecondaryPipe,
                                                  IntGainTypeOf_RefrigerationWalkIn});
 
-        static Array1D_int IntGainTypesMixedSubzone(2, {IntGainTypeOf_DaylightingDeviceTubular, IntGainTypeOf_Lights});
+        thread_local static Array1D_int IntGainTypesMixedSubzone(2, {IntGainTypeOf_DaylightingDeviceTubular, IntGainTypeOf_Lights});
         Real64 RetAirGain;
 
         // Exact solution or Euler method

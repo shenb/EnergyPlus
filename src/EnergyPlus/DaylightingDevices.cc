@@ -196,7 +196,7 @@ namespace DaylightingDevices {
     // MODULE VARIABLE TYPE DECLARATIONS: na
 
     // MODULE VARIABLE DECLARATIONS:
-    Array1D<Real64> COSAngle(NumOfAngles); // List of cosines of incident angle
+    thread_local Array1D<Real64> COSAngle(NumOfAngles); // List of cosines of incident angle
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -231,7 +231,7 @@ namespace DaylightingDevices {
 
         // DERIVED TYPE DEFINITIONS:
 
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PipeNum;   // TDD pipe object number
@@ -248,8 +248,8 @@ namespace DaylightingDevices {
         int ShelfSurf; // Daylighting shelf surface number
         int WinSurf;   // Window surface number
 
-        static int NumStored(0); // Counter for number of pipes stored as they are calculated
-        static bool ShelfReported(false);
+        thread_local static int NumStored(0); // Counter for number of pipes stored as they are calculated
+        thread_local static bool ShelfReported(false);
 
         struct TDDPipeStoredData
         {
@@ -489,7 +489,7 @@ namespace DaylightingDevices {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // unused1208  CHARACTER(len=MaxNameLength), &
         //                   DIMENSION(20) :: Alphas                ! Alpha items for object
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         // unused1208  REAL(r64), DIMENSION(9)             :: Numbers               ! Numeric items for object
         int NumAlphas;         // Number of Alphas for each GetObjectItem call
@@ -754,7 +754,7 @@ namespace DaylightingDevices {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
@@ -1608,7 +1608,7 @@ namespace DaylightingDevices {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
         int Loop;
 
         if (NumOfTDDPipes == 0) return;

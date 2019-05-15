@@ -134,7 +134,7 @@ namespace SizingManager {
     // INTERFACE BLOCK SPECIFICATIONS: none
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumAirLoops(0);
+    thread_local int NumAirLoops(0);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SimulationManager
 
@@ -189,24 +189,24 @@ namespace SizingManager {
         using OutputReportTabular::hasSizingPeriodsDays;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ManageSizing: ");
-        static gio::Fmt fmtLD("*");
+        thread_local static std::string const RoutineName("ManageSizing: ");
+        thread_local static gio::Fmt fmtLD("*");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool Available(false); // an environment is available to process
-        static bool ErrorsFound(false);
-        static bool SimAir(false);
-        static bool SimZoneEquip(false);
-        static int TimeStepInDay(0); // time step number
-        static int LastMonth(0);
-        static int LastDayOfMonth(0);
-        static int CtrlZoneNum(0);       // controlled zone index
-        static int ZoneNum(0);           // index into the Zone data array for the controlled zone
-        static Real64 TempAtPeak(0.0);   // Outside temperature at peak cooling/heating for reporting
-        static Real64 HumRatAtPeak(0.0); // Outside humidity ratio at peak cooling/heating for reporting
-        static int TimeStepAtPeak(0);    // time step number at heat or cool peak
-        static int DDNum(0);             // Design Day index
-        static int AirLoopNum(0);        // air loop index
+        thread_local static bool Available(false); // an environment is available to process
+        thread_local static bool ErrorsFound(false);
+        thread_local static bool SimAir(false);
+        thread_local static bool SimZoneEquip(false);
+        thread_local static int TimeStepInDay(0); // time step number
+        thread_local static int LastMonth(0);
+        thread_local static int LastDayOfMonth(0);
+        thread_local static int CtrlZoneNum(0);       // controlled zone index
+        thread_local static int ZoneNum(0);           // index into the Zone data array for the controlled zone
+        thread_local static Real64 TempAtPeak(0.0);   // Outside temperature at peak cooling/heating for reporting
+        thread_local static Real64 HumRatAtPeak(0.0); // Outside humidity ratio at peak cooling/heating for reporting
+        thread_local static int TimeStepAtPeak(0);    // time step number at heat or cool peak
+        thread_local static int DDNum(0);             // Design Day index
+        thread_local static int AirLoopNum(0);        // air loop index
         //  EXTERNAL            ReportZoneSizing
         //  EXTERNAL            ReportSysSizing
         std::string curName;
@@ -214,7 +214,7 @@ namespace SizingManager {
         int write_stat;
         int numZoneSizeIter; // number of times to repeat zone sizing calcs. 1 normal, 2 load component reporting
         int iZoneCalcIter;   // index for repeating the zone sizing calcs
-        static bool runZeroingOnce(true);
+        thread_local static bool runZeroingOnce(true);
         bool isUserReqCompLoadReport;
         Real64 DOASHeatGainRateAtHtPk(0.0); // zone heat gain rate from the DOAS at the heating peak [W]
         Real64 DOASHeatGainRateAtClPk(0.0); // zone heat gain rate from the DOAS at the cooling peak [W]
@@ -2028,7 +2028,7 @@ namespace SizingManager {
                                 int DayOfMonth(0);
                                 General::InvOrdinalDay(DayLoop, Month, DayOfMonth, 1);
                                 std::string MonthDayString;
-                                static gio::Fmt MnDyFmt("(I2.2,'/',I2.2)");
+                                thread_local static gio::Fmt MnDyFmt("(I2.2,'/',I2.2)");
                                 gio::write(MonthDayString, MnDyFmt) << Month << DayOfMonth;
                                 Real64 TimeHrsFraction = (double(hrOfDay) - 1.0) + double(TS) * TSfraction;
                                 int TimeHrsInt = int(TimeHrsFraction);
@@ -2037,7 +2037,7 @@ namespace SizingManager {
                                     ++TimeHrsInt;
                                     TimeMinsInt = 0;
                                 }
-                                static gio::Fmt TStmpFmti("(I2.2,':',I2.2)");
+                                thread_local static gio::Fmt TStmpFmti("(I2.2,':',I2.2)");
                                 std::string timeStamp;
                                 gio::write(timeStamp, TStmpFmti) << TimeHrsInt << TimeMinsInt;
                                 DataSizing::PeakPsOccurrenceDateTimeStringBySys(AirLoopNum) = MonthDayString + ' ' + timeStamp;
@@ -2091,7 +2091,7 @@ namespace SizingManager {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOARequirements: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOARequirements: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -2099,7 +2099,7 @@ namespace SizingManager {
         int TotalArgs;  // Total number of alpha and numeric arguments (max) for a
         int IOStatus;   // Used in GetObjectItem
         int OAIndex;
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
         //  REAL(r64) :: CalcAmt
 
         std::string CurrentModuleObject; // for ease in getting objects
@@ -2211,7 +2211,7 @@ namespace SizingManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOARequirements: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOARequirements: "); // include trailing blank space
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2358,7 +2358,7 @@ namespace SizingManager {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetZoneAirDistribution: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetZoneAirDistribution: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -2366,7 +2366,7 @@ namespace SizingManager {
         int TotalArgs;  // Total number of alpha and numeric arguments (max) for a
         int IOStatus;   // Used in GetObjectItem
         int ZADIndex;
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
 
         std::string CurrentModuleObject; // for ease in getting objects
         Array1D_string Alphas;           // Alpha input items for object
@@ -2494,7 +2494,7 @@ namespace SizingManager {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -2609,7 +2609,7 @@ namespace SizingManager {
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int NumDesDays;                 // Number of design days in input
         int NumSizingZoneStatements;
         int Item;
@@ -3332,7 +3332,7 @@ namespace SizingManager {
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int NumDesDays;                 // Number of design days in input
 
         NumAirLoops = inputProcessor->getNumObjectsFound("AirLoopHVAC");
@@ -3806,7 +3806,7 @@ namespace SizingManager {
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int NumDesDays;                 // Number of design days in input
 
         cCurrentModuleObject = "Sizing:Plant";
@@ -3936,7 +3936,7 @@ namespace SizingManager {
         using DataEnvironment::EndMonthFlag;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool Available(false); // an environment is available to process
+        thread_local static bool Available(false); // an environment is available to process
 
         //  return  ! remove comment to do "old way"
 
@@ -4055,14 +4055,14 @@ namespace SizingManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
+        thread_local static bool MyOneTimeFlag(true);
 
         // Formats
-        static gio::Fmt Format_990("('! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, ','Calc Des Air Flow "
+        thread_local static gio::Fmt Format_990("('! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, ','Calc Des Air Flow "
                                    "Rate {m3/s}, ','User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, "
                                    "','Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, "
                                    "Calc DOAS Heat Addition Rate {W}')");
-        static gio::Fmt Format_991("(' Zone Sizing Information',14(', ',A))");
+        thread_local static gio::Fmt Format_991("(' Zone Sizing Information',14(', ',A))");
 
         if (MyOneTimeFlag) {
             gio::write(OutputFileInits, Format_990);
@@ -4109,7 +4109,7 @@ namespace SizingManager {
         using DataGlobals::OutputFileInits;
         using General::RoundSigDigits;
 
-        static bool MyOneTimeFlag(true);
+        thread_local static bool MyOneTimeFlag(true);
 
         if (MyOneTimeFlag) {
             gio::write(OutputFileInits,
@@ -4164,7 +4164,7 @@ namespace SizingManager {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetZoneHVACSizing: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetZoneHVACSizing: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -4227,7 +4227,7 @@ namespace SizingManager {
         int TotalArgs;                  // Total number of alpha and numeric arguments (max) for a
         int IOStatus;                   // Used in GetObjectItem
         int zSIndex;                    // index of "DesignSpecification:ZoneHVAC:Sizing" objects
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
         //  REAL(r64) :: CalcAmt
 
         std::string CurrentModuleObject; // for ease in getting objects
@@ -4759,7 +4759,7 @@ namespace SizingManager {
         using General::RoundSigDigits;
         using General::TrimSigDigits;
 
-        static std::string const RoutineName("GetAirTerminalSizing: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetAirTerminalSizing: "); // include trailing blank space
 
         int NumAlphas;           // Number of Alphas for each GetObjectItem call
         int NumNumbers;          // Number of Numbers for each GetObjectItem call

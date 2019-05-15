@@ -58,10 +58,10 @@
 namespace EnergyPlus {
 namespace HeatBalanceKivaManager {
 
-    const int KIVAZONE_UNCONTROLLED = 0;
-    const int KIVAZONE_TEMPCONTROL = 1;
-    const int KIVAZONE_COMFORTCONTROL = 2;
-    const int KIVAZONE_STAGEDCONTROL = 3;
+    thread_local const int KIVAZONE_UNCONTROLLED = 0;
+    thread_local const int KIVAZONE_TEMPCONTROL = 1;
+    thread_local const int KIVAZONE_COMFORTCONTROL = 2;
+    thread_local const int KIVAZONE_STAGEDCONTROL = 3;
 
     class KivaWeatherData
     {

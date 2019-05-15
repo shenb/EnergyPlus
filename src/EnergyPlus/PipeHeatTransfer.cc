@@ -123,46 +123,46 @@ namespace PipeHeatTransfer {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
-    int const None(0);
-    int const ZoneEnv(1);
-    int const ScheduleEnv(2);
-    int const OutsideAirEnv(3);
-    int const GroundEnv(4);
+    thread_local int const None(0);
+    thread_local int const ZoneEnv(1);
+    thread_local int const ScheduleEnv(2);
+    thread_local int const OutsideAirEnv(3);
+    thread_local int const GroundEnv(4);
 
-    int const PreviousTimeIndex(1);
-    int const CurrentTimeIndex(2);
-    int const TentativeTimeIndex(3);
+    thread_local int const PreviousTimeIndex(1);
+    thread_local int const CurrentTimeIndex(2);
+    thread_local int const TentativeTimeIndex(3);
 
-    Real64 const InnerDeltaTime(60.0); // one minute time step in seconds
+    thread_local Real64 const InnerDeltaTime(60.0); // one minute time step in seconds
 
     // DERIVED TYPE DEFINITIONS
 
     // the model data structures
 
     // MODULE VARIABLE DECLARATIONS:
-    int nsvNumOfPipeHT(0);            // Number of Pipe Heat Transfer objects
-    int nsvInletNodeNum(0);           // module variable for inlet node number
-    int nsvOutletNodeNum(0);          // module variable for outlet node number
-    int nsvPipeHTNum(0);              // object index
-    Real64 nsvMassFlowRate(0.0);      // pipe mass flow rate
-    Real64 nsvVolumeFlowRate(0.0);    // pipe volumetric flow rate
-    Real64 nsvDeltaTime(0.0);         // time change from last update
-    Real64 nsvInletTemp(0.0);         // pipe inlet temperature
-    Real64 nsvOutletTemp(0.0);        // pipe outlet temperature
-    Real64 nsvEnvironmentTemp(0.0);   // environmental temperature (surrounding pipe)
-    Real64 nsvEnvHeatLossRate(0.0);   // heat loss rate from pipe to the environment
-    Real64 nsvFluidHeatLossRate(0.0); // overall heat loss from fluid to pipe
-    int nsvNumInnerTimeSteps(0);      // the number of "inner" time steps for our model
+    thread_local int nsvNumOfPipeHT(0);            // Number of Pipe Heat Transfer objects
+    thread_local int nsvInletNodeNum(0);           // module variable for inlet node number
+    thread_local int nsvOutletNodeNum(0);          // module variable for outlet node number
+    thread_local int nsvPipeHTNum(0);              // object index
+    thread_local Real64 nsvMassFlowRate(0.0);      // pipe mass flow rate
+    thread_local Real64 nsvVolumeFlowRate(0.0);    // pipe volumetric flow rate
+    thread_local Real64 nsvDeltaTime(0.0);         // time change from last update
+    thread_local Real64 nsvInletTemp(0.0);         // pipe inlet temperature
+    thread_local Real64 nsvOutletTemp(0.0);        // pipe outlet temperature
+    thread_local Real64 nsvEnvironmentTemp(0.0);   // environmental temperature (surrounding pipe)
+    thread_local Real64 nsvEnvHeatLossRate(0.0);   // heat loss rate from pipe to the environment
+    thread_local Real64 nsvFluidHeatLossRate(0.0); // overall heat loss from fluid to pipe
+    thread_local int nsvNumInnerTimeSteps(0);      // the number of "inner" time steps for our model
 
-    bool GetPipeInputFlag(true); // First time, input is "gotten"
+    thread_local bool GetPipeInputFlag(true); // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    Array1D<PipeHTData> PipeHT;
-    std::unordered_map<std::string, std::string> PipeHTUniqueNames;
+    thread_local Array1D<PipeHTData> PipeHT;
+    thread_local std::unordered_map<std::string, std::string> PipeHTUniqueNames;
 
     //==============================================================================
 
@@ -270,7 +270,7 @@ namespace PipeHeatTransfer {
         Real64 const HoursInDay(24.0);
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Set to true if errors in input,
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input,
 
         // fatal at end of routine
         int IOStatus; // Used in GetObjectItem
@@ -862,7 +862,7 @@ namespace PipeHeatTransfer {
         using ScheduleManager::GetCurrentScheduleValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitPipesHeatTransfer");
+        thread_local static std::string const RoutineName("InitPipesHeatTransfer");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -1104,23 +1104,23 @@ namespace PipeHeatTransfer {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         // fluid node heat balance (see engineering doc).
-        static Real64 A1(0.0); // sum of the heat balance terms
-        static Real64 A2(0.0); // mass flow term
-        static Real64 A3(0.0); // inside pipe wall convection term
-        static Real64 A4(0.0); // fluid node heat capacity term
+        thread_local static Real64 A1(0.0); // sum of the heat balance terms
+        thread_local static Real64 A2(0.0); // mass flow term
+        thread_local static Real64 A3(0.0); // inside pipe wall convection term
+        thread_local static Real64 A4(0.0); // fluid node heat capacity term
         // pipe wall node heat balance (see engineering doc).
-        static Real64 B1(0.0); // sum of the heat balance terms
-        static Real64 B2(0.0); // inside pipe wall convection term
-        static Real64 B3(0.0); // outside pipe wall convection term
-        static Real64 B4(0.0); // fluid node heat capacity term
+        thread_local static Real64 B1(0.0); // sum of the heat balance terms
+        thread_local static Real64 B2(0.0); // inside pipe wall convection term
+        thread_local static Real64 B3(0.0); // outside pipe wall convection term
+        thread_local static Real64 B4(0.0); // fluid node heat capacity term
 
-        static Real64 AirConvCoef(0.0);           // air-pipe convection coefficient
-        static Real64 FluidConvCoef(0.0);         // fluid-pipe convection coefficient
-        static Real64 EnvHeatTransCoef(0.0);      // external convection coefficient (outside pipe)
-        static Real64 FluidNodeHeatCapacity(0.0); // local var for MCp for single node of pipe
+        thread_local static Real64 AirConvCoef(0.0);           // air-pipe convection coefficient
+        thread_local static Real64 FluidConvCoef(0.0);         // fluid-pipe convection coefficient
+        thread_local static Real64 EnvHeatTransCoef(0.0);      // external convection coefficient (outside pipe)
+        thread_local static Real64 FluidNodeHeatCapacity(0.0); // local var for MCp for single node of pipe
 
-        static int PipeDepth(0);
-        static int PipeWidth(0);
+        thread_local static int PipeDepth(0);
+        thread_local static int PipeWidth(0);
         int curnode;
         Real64 TempBelow;
         Real64 TempBeside;
@@ -1293,33 +1293,33 @@ namespace PipeHeatTransfer {
         Real64 const StefBoltzmann(5.6697e-08); // Stefan-Boltzmann constant
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int IterationIndex(0);    // Index when stepping through equations
-        static int LengthIndex(0);       // Index for nodes along length of pipe
-        static int DepthIndex(0);        // Index for nodes in the depth direction
-        static int WidthIndex(0);        // Index for nodes in the width direction
-        static Real64 ConvCoef(0.0);     // Current convection coefficient = f(Wind Speed,Roughness)
-        static Real64 RadCoef(0.0);      // Current radiation coefficient
-        static Real64 QSolAbsorbed(0.0); // Current total solar energy absorbed
+        thread_local static int IterationIndex(0);    // Index when stepping through equations
+        thread_local static int LengthIndex(0);       // Index for nodes along length of pipe
+        thread_local static int DepthIndex(0);        // Index for nodes in the depth direction
+        thread_local static int WidthIndex(0);        // Index for nodes in the width direction
+        thread_local static Real64 ConvCoef(0.0);     // Current convection coefficient = f(Wind Speed,Roughness)
+        thread_local static Real64 RadCoef(0.0);      // Current radiation coefficient
+        thread_local static Real64 QSolAbsorbed(0.0); // Current total solar energy absorbed
         Array3D<Real64> T_O(this->PipeNodeWidth, this->NumDepthNodes, NumSections);
 
         // Local variable placeholders for code readability
-        static Real64 A1(0.0);              // Placeholder for CoefA1
-        static Real64 A2(0.0);              // Placeholder for CoefA2
-        static Real64 NodeBelow(0.0);       // Placeholder for Node temp below current node
-        static Real64 NodeAbove(0.0);       // Placeholder for Node temp above current node
-        static Real64 NodeRight(0.0);       // Placeholder for Node temp to the right of current node
-        static Real64 NodeLeft(0.0);        // Placeholder for Node temp to the left of current node
-        static Real64 NodePast(0.0);        // Placeholder for Node temp at current node but previous time step
-        static Real64 PastNodeTempAbs(0.0); // Placeholder for absolute temperature (K) version of NodePast
-        static Real64 Ttemp(0.0);           // Placeholder for a current temperature node in convergence check
-        static Real64 SkyTempAbs(0.0);      // Placeholder for current sky temperature in Kelvin
-        static int TopRoughness(0);         // Placeholder for soil surface roughness
-        static Real64 TopThermAbs(0.0);     // Placeholder for soil thermal radiation absorptivity
-        static Real64 TopSolarAbs(0.0);     // Placeholder for soil solar radiation absorptivity
-        static Real64 kSoil(0.0);           // Placeholder for soil conductivity
-        static Real64 dS(0.0);              // Placeholder for soil grid spacing
-        static Real64 rho(0.0);             // Placeholder for soil density
-        static Real64 Cp(0.0);              // Placeholder for soil specific heat
+        thread_local static Real64 A1(0.0);              // Placeholder for CoefA1
+        thread_local static Real64 A2(0.0);              // Placeholder for CoefA2
+        thread_local static Real64 NodeBelow(0.0);       // Placeholder for Node temp below current node
+        thread_local static Real64 NodeAbove(0.0);       // Placeholder for Node temp above current node
+        thread_local static Real64 NodeRight(0.0);       // Placeholder for Node temp to the right of current node
+        thread_local static Real64 NodeLeft(0.0);        // Placeholder for Node temp to the left of current node
+        thread_local static Real64 NodePast(0.0);        // Placeholder for Node temp at current node but previous time step
+        thread_local static Real64 PastNodeTempAbs(0.0); // Placeholder for absolute temperature (K) version of NodePast
+        thread_local static Real64 Ttemp(0.0);           // Placeholder for a current temperature node in convergence check
+        thread_local static Real64 SkyTempAbs(0.0);      // Placeholder for current sky temperature in Kelvin
+        thread_local static int TopRoughness(0);         // Placeholder for soil surface roughness
+        thread_local static Real64 TopThermAbs(0.0);     // Placeholder for soil thermal radiation absorptivity
+        thread_local static Real64 TopSolarAbs(0.0);     // Placeholder for soil solar radiation absorptivity
+        thread_local static Real64 kSoil(0.0);           // Placeholder for soil conductivity
+        thread_local static Real64 dS(0.0);              // Placeholder for soil grid spacing
+        thread_local static Real64 rho(0.0);             // Placeholder for soil density
+        thread_local static Real64 Cp(0.0);              // Placeholder for soil specific heat
 
         // There are a number of coefficients which change through the simulation, and they are updated here
         this->FourierDS = this->SoilDiffusivity * nsvDeltaTime / pow_2(this->dSregular); // Eq. D4
@@ -1613,7 +1613,7 @@ namespace PipeHeatTransfer {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         //  INTEGER :: PipeNum
         //  INTEGER :: ZoneNum
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
         //  REAL(r64) :: QLossToZone
 
         // FLOW:
@@ -1676,12 +1676,12 @@ namespace PipeHeatTransfer {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PipeHeatTransfer::CalcPipeHeatTransCoef: ");
+        thread_local static std::string const RoutineName("PipeHeatTransfer::CalcPipeHeatTransCoef: ");
         Real64 const MaxLaminarRe(2300.0); // Maximum Reynolds number for laminar flow
         int const NumOfPropDivisions(13);  // intervals in property correlation
-        static Array1D<Real64> const Temps(
+        thread_local static Array1D<Real64> const Temps(
             NumOfPropDivisions, {1.85, 6.85, 11.85, 16.85, 21.85, 26.85, 31.85, 36.85, 41.85, 46.85, 51.85, 56.85, 61.85}); // Temperature, in C
-        static Array1D<Real64> const Mu(NumOfPropDivisions,
+        thread_local static Array1D<Real64> const Mu(NumOfPropDivisions,
                                         {0.001652,
                                          0.001422,
                                          0.001225,
@@ -1695,9 +1695,9 @@ namespace PipeHeatTransfer {
                                          0.000528,
                                          0.000489,
                                          0.000453}); // Viscosity, in Ns/m2
-        static Array1D<Real64> const Conductivity(
+        thread_local static Array1D<Real64> const Conductivity(
             NumOfPropDivisions, {0.574, 0.582, 0.590, 0.598, 0.606, 0.613, 0.620, 0.628, 0.634, 0.640, 0.645, 0.650, 0.656}); // Conductivity, in W/mK
-        static Array1D<Real64> const Pr(
+        thread_local static Array1D<Real64> const Pr(
             NumOfPropDivisions, {12.22, 10.26, 8.81, 7.56, 6.62, 5.83, 5.20, 4.62, 4.16, 3.77, 3.42, 3.15, 2.88}); // Prandtl number (dimensionless)
 
         // INTERFACE BLOCK SPECIFICATIONS
@@ -1809,14 +1809,14 @@ namespace PipeHeatTransfer {
         int const NumOfParamDivisions(5); // intervals in property correlation
         int const NumOfPropDivisions(12); // intervals in property correlation
 
-        static Array1D<Real64> const CCoef(NumOfParamDivisions, {0.989, 0.911, 0.683, 0.193, 0.027});         // correlation coefficient
-        static Array1D<Real64> const mExp(NumOfParamDivisions, {0.33, 0.385, 0.466, 0.618, 0.805});           // exponent
-        static Array1D<Real64> const LowerBound(NumOfParamDivisions, {0.4, 4.0, 40.0, 4000.0, 40000.0});      // upper bound of correlation range
-        static Array1D<Real64> const UpperBound(NumOfParamDivisions, {4.0, 40.0, 4000.0, 40000.0, 400000.0}); // lower bound of correlation range
+        thread_local static Array1D<Real64> const CCoef(NumOfParamDivisions, {0.989, 0.911, 0.683, 0.193, 0.027});         // correlation coefficient
+        thread_local static Array1D<Real64> const mExp(NumOfParamDivisions, {0.33, 0.385, 0.466, 0.618, 0.805});           // exponent
+        thread_local static Array1D<Real64> const LowerBound(NumOfParamDivisions, {0.4, 4.0, 40.0, 4000.0, 40000.0});      // upper bound of correlation range
+        thread_local static Array1D<Real64> const UpperBound(NumOfParamDivisions, {4.0, 40.0, 4000.0, 40000.0, 400000.0}); // lower bound of correlation range
 
-        static Array1D<Real64> const Temperature(NumOfPropDivisions,
+        thread_local static Array1D<Real64> const Temperature(NumOfPropDivisions,
                                                  {-73.0, -23.0, -10.0, 0.0, 10.0, 20.0, 27.0, 30.0, 40.0, 50.0, 76.85, 126.85}); // temperature [C]
-        static Array1D<Real64> const DynVisc(
+        thread_local static Array1D<Real64> const DynVisc(
             NumOfPropDivisions,
             {75.52e-7, 11.37e-6, 12.44e-6, 13.3e-6, 14.18e-6, 15.08e-6, 15.75e-6, 16e-6, 16.95e-6, 17.91e-6, 20.92e-6, 26.41e-6}); // dynamic
                                                                                                                                    // viscosity

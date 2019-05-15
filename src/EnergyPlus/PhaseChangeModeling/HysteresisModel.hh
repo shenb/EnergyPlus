@@ -60,14 +60,14 @@ namespace HysteresisPhaseChange {
     struct PhaseChangeStates
     {
         // keeping these as ints to allow output variable reporting; could refine later into enum class
-        static const int LIQUID = -2;
-        static const int MELTING = -1;
-        static const int TRANSITION = 0;
-        static const int FREEZING = 1;
-        static const int CRYSTALLIZED = 2;
+        thread_local static const int LIQUID = -2;
+        thread_local static const int MELTING = -1;
+        thread_local static const int TRANSITION = 0;
+        thread_local static const int FREEZING = 1;
+        thread_local static const int CRYSTALLIZED = 2;
     };
 
-    extern int numHysteresisModels;
+    thread_local extern int numHysteresisModels;
 
     class HysteresisPhaseChange
     {
@@ -132,7 +132,7 @@ namespace HysteresisPhaseChange {
         }
     };
 
-    extern std::vector<HysteresisPhaseChange> hysteresisPhaseChangeModels;
+    thread_local extern std::vector<HysteresisPhaseChange> hysteresisPhaseChangeModels;
 
     void readAllHysteresisModels();
 

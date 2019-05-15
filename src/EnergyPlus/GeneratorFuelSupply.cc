@@ -152,9 +152,9 @@ namespace GeneratorFuelSupply {
         int IOStat;                     // IO Status when calling get input subroutine
         Array1D_string AlphArray(25);   // character string data
         Array1D<Real64> NumArray(200);  // numeric data TODO deal with allocatable for extensible
-        static bool ErrorsFound(false); // error flag
+        thread_local static bool ErrorsFound(false); // error flag
         int FuelSupNum;
-        static bool MyOneTimeFlag(true);
+        thread_local static bool MyOneTimeFlag(true);
         std::string ObjMSGName;
         int ConstitNum;
 
@@ -304,8 +304,8 @@ namespace GeneratorFuelSupply {
         // unused  REAL(r64) :: LHV
 
         // Formats
-        static gio::Fmt fmtA("(A)");
-        static gio::Fmt Format_501("(' Fuel Supply, ',A,',',G13.6E2,',',G13.6E2,',',G13.6E2,',',G13.6E2)");
+        thread_local static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt Format_501("(' Fuel Supply, ',A,',',G13.6E2,',',G13.6E2,',',G13.6E2,',',G13.6E2)");
 
         NumHardCodedConstituents = 14;
 

@@ -14,12 +14,13 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <list>
 
 using namespace std::placeholders;
 
 #define UNUSED(expr) do { (void)(expr); } while (0);
 
-std::vector<EPComponent> epComponents;
+std::list<EPComponent> epComponents;
 
 EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   fmi2Type fmuType,

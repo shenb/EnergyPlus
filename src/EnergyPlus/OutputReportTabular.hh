@@ -74,79 +74,79 @@ namespace OutputReportTabular {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    extern int const MaxHeaderLength;
-    extern int const MaxNoteLength;
+    thread_local extern int const MaxHeaderLength;
+    thread_local extern int const MaxNoteLength;
 
-    extern int const aggTypeSumOrAvg;
-    extern int const aggTypeMaximum;
-    extern int const aggTypeMinimum;
-    extern int const aggTypeValueWhenMaxMin;
-    extern int const aggTypeHoursZero;
-    extern int const aggTypeHoursNonZero;
-    extern int const aggTypeHoursPositive;
-    extern int const aggTypeHoursNonPositive;
-    extern int const aggTypeHoursNegative;
-    extern int const aggTypeHoursNonNegative;
-    extern int const aggTypeSumOrAverageHoursShown;
-    extern int const aggTypeMaximumDuringHoursShown;
-    extern int const aggTypeMinimumDuringHoursShown;
+    thread_local extern int const aggTypeSumOrAvg;
+    thread_local extern int const aggTypeMaximum;
+    thread_local extern int const aggTypeMinimum;
+    thread_local extern int const aggTypeValueWhenMaxMin;
+    thread_local extern int const aggTypeHoursZero;
+    thread_local extern int const aggTypeHoursNonZero;
+    thread_local extern int const aggTypeHoursPositive;
+    thread_local extern int const aggTypeHoursNonPositive;
+    thread_local extern int const aggTypeHoursNegative;
+    thread_local extern int const aggTypeHoursNonNegative;
+    thread_local extern int const aggTypeSumOrAverageHoursShown;
+    thread_local extern int const aggTypeMaximumDuringHoursShown;
+    thread_local extern int const aggTypeMinimumDuringHoursShown;
 
-    extern int const tableStyleComma;
-    extern int const tableStyleTab;
-    extern int const tableStyleFixed;
-    extern int const tableStyleHTML;
-    extern int const tableStyleXML;
+    thread_local extern int const tableStyleComma;
+    thread_local extern int const tableStyleTab;
+    thread_local extern int const tableStyleFixed;
+    thread_local extern int const tableStyleHTML;
+    thread_local extern int const tableStyleXML;
 
-    extern int const unitsStyleNone; // no change to any units
-    extern int const unitsStyleJtoKWH;
-    extern int const unitsStyleJtoMJ;
-    extern int const unitsStyleJtoGJ;
-    extern int const unitsStyleInchPound;
-    extern int const unitsStyleNotFound;
+    thread_local extern int const unitsStyleNone; // no change to any units
+    thread_local extern int const unitsStyleJtoKWH;
+    thread_local extern int const unitsStyleJtoMJ;
+    thread_local extern int const unitsStyleJtoGJ;
+    thread_local extern int const unitsStyleInchPound;
+    thread_local extern int const unitsStyleNotFound;
 
-    extern int const stepTypeZone;
-    extern int const stepTypeHVAC;
+    thread_local extern int const stepTypeZone;
+    thread_local extern int const stepTypeHVAC;
 
-    extern int const cSensInst;
-    extern int const cSensDelay;
-    extern int const cSensRA;
-    extern int const cLatent;
-    extern int const cTotal;
-    extern int const cPerc;
-    extern int const cArea;
-    extern int const cPerArea;
+    thread_local extern int const cSensInst;
+    thread_local extern int const cSensDelay;
+    thread_local extern int const cSensRA;
+    thread_local extern int const cLatent;
+    thread_local extern int const cTotal;
+    thread_local extern int const cPerc;
+    thread_local extern int const cArea;
+    thread_local extern int const cPerArea;
 
-    extern int const rPeople;
-    extern int const rLights;
-    extern int const rEquip;
-    extern int const rRefrig;
-    extern int const rWaterUse;
-    extern int const rHvacLoss;
-    extern int const rPowerGen;
-    extern int const rDOAS;
-    extern int const rInfil;
-    extern int const rZoneVent;
-    extern int const rIntZonMix;
-    extern int const rRoof;
-    extern int const rIntZonCeil;
-    extern int const rOtherRoof;
-    extern int const rExtWall;
-    extern int const rIntZonWall;
-    extern int const rGrdWall;
-    extern int const rOtherWall;
-    extern int const rExtFlr;
-    extern int const rIntZonFlr;
-    extern int const rGrdFlr;
-    extern int const rOtherFlr;
-    extern int const rFeneCond;
-    extern int const rFeneSolr;
-    extern int const rOpqDoor;
-    extern int const rGrdTot;
+    thread_local extern int const rPeople;
+    thread_local extern int const rLights;
+    thread_local extern int const rEquip;
+    thread_local extern int const rRefrig;
+    thread_local extern int const rWaterUse;
+    thread_local extern int const rHvacLoss;
+    thread_local extern int const rPowerGen;
+    thread_local extern int const rDOAS;
+    thread_local extern int const rInfil;
+    thread_local extern int const rZoneVent;
+    thread_local extern int const rIntZonMix;
+    thread_local extern int const rRoof;
+    thread_local extern int const rIntZonCeil;
+    thread_local extern int const rOtherRoof;
+    thread_local extern int const rExtWall;
+    thread_local extern int const rIntZonWall;
+    thread_local extern int const rGrdWall;
+    thread_local extern int const rOtherWall;
+    thread_local extern int const rExtFlr;
+    thread_local extern int const rIntZonFlr;
+    thread_local extern int const rGrdFlr;
+    thread_local extern int const rOtherFlr;
+    thread_local extern int const rFeneCond;
+    thread_local extern int const rFeneSolr;
+    thread_local extern int const rOpqDoor;
+    thread_local extern int const rGrdTot;
 
     // BEPS Report Related Variables
     // From Report:Table:Predefined - BEPS
-    extern int const numResourceTypes;
-    extern int const numSourceTypes;
+    thread_local extern int const numResourceTypes;
+    thread_local extern int const numSourceTypes;
 
     // MODULE VARIABLE DECLARATIONS:
 
@@ -155,161 +155,161 @@ namespace OutputReportTabular {
 
     // arrays for time binned results
 
-    extern int OutputTableBinnedCount;
-    extern int BinResultsTableCount;
-    extern int BinResultsIntervalCount;
+    thread_local extern int OutputTableBinnedCount;
+    thread_local extern int BinResultsTableCount;
+    thread_local extern int BinResultsIntervalCount;
 
-    extern int const numNamedMonthly;
+    thread_local extern int const numNamedMonthly;
     // These reports are detailed/named in routine InitializePredefinedMonthlyTitles
 
-    extern int MonthlyInputCount;
-    extern int sizeMonthlyInput;
-    extern int MonthlyFieldSetInputCount;
-    extern int sizeMonthlyFieldSetInput;
-    extern int MonthlyTablesCount;
-    extern int MonthlyColumnsCount;
-    extern Array1D_bool IsMonthGathered; // shown as true for any month used
+    thread_local extern int MonthlyInputCount;
+    thread_local extern int sizeMonthlyInput;
+    thread_local extern int MonthlyFieldSetInputCount;
+    thread_local extern int sizeMonthlyFieldSetInput;
+    thread_local extern int MonthlyTablesCount;
+    thread_local extern int MonthlyColumnsCount;
+    thread_local extern Array1D_bool IsMonthGathered; // shown as true for any month used
 
-    extern int TOCEntriesCount;
-    extern int TOCEntriesSize;
+    thread_local extern int TOCEntriesCount;
+    thread_local extern int TOCEntriesSize;
 
-    extern int UnitConvSize;
+    thread_local extern int UnitConvSize;
 
-    extern bool WriteTabularFiles;
+    thread_local extern bool WriteTabularFiles;
 
     // Allow up to five output files to be created
-    extern int const maxNumStyles;
+    thread_local extern int const maxNumStyles;
 
     // From Report:Table:Style
-    extern int unitsStyle; // see list of parameters
-    extern int numStyles;
-    extern std::ofstream csv_stream;                   // CSV table stream
-    extern std::ofstream tab_stream;                   // Tab table stream
-    extern std::ofstream fix_stream;                   // Fixed table stream
-    extern std::ofstream htm_stream;                   // HTML table stream
-    extern std::ofstream xml_stream;                   // XML table stream
-    extern Array1D<std::ofstream *> TabularOutputFile; // Table stream array
-    extern Array1D_string del;                         // the delimiter to use
-    extern Array1D_int TableStyle;                     // see list of parameters
+    thread_local extern int unitsStyle; // see list of parameters
+    thread_local extern int numStyles;
+    thread_local extern std::ofstream csv_stream;                   // CSV table stream
+    thread_local extern std::ofstream tab_stream;                   // Tab table stream
+    thread_local extern std::ofstream fix_stream;                   // Fixed table stream
+    thread_local extern std::ofstream htm_stream;                   // HTML table stream
+    thread_local extern std::ofstream xml_stream;                   // XML table stream
+    thread_local extern Array1D<std::ofstream *> TabularOutputFile; // Table stream array
+    thread_local extern Array1D_string del;                         // the delimiter to use
+    thread_local extern Array1D_int TableStyle;                     // see list of parameters
 
-    extern Real64 timeInYear;
+    thread_local extern Real64 timeInYear;
 
     // Flags for predefined tabular reports
-    extern bool displayTabularBEPS;
-    extern bool displayLEEDSummary;
-    extern bool displayTabularCompCosts; // added BTG 5/6/04 for component cost summary
-    extern bool displayTabularVeriSum;   // added JG 2006-06-28 for input verification and summary report
-    extern bool displayComponentSizing;
-    extern bool displaySurfaceShadowing;
-    extern bool displayDemandEndUse;
-    extern bool displayAdaptiveComfort;
-    extern bool displaySourceEnergyEndUseSummary;
-    extern bool displayZoneComponentLoadSummary;
-    extern bool displayAirLoopComponentLoadSummary;
-    extern bool displayFacilityComponentLoadSummary;
-    extern bool displayLifeCycleCostReport;
-    extern bool displayTariffReport;
-    extern bool displayEconomicResultSummary;
-    extern bool displayEioSummary;
+    thread_local extern bool displayTabularBEPS;
+    thread_local extern bool displayLEEDSummary;
+    thread_local extern bool displayTabularCompCosts; // added BTG 5/6/04 for component cost summary
+    thread_local extern bool displayTabularVeriSum;   // added JG 2006-06-28 for input verification and summary report
+    thread_local extern bool displayComponentSizing;
+    thread_local extern bool displaySurfaceShadowing;
+    thread_local extern bool displayDemandEndUse;
+    thread_local extern bool displayAdaptiveComfort;
+    thread_local extern bool displaySourceEnergyEndUseSummary;
+    thread_local extern bool displayZoneComponentLoadSummary;
+    thread_local extern bool displayAirLoopComponentLoadSummary;
+    thread_local extern bool displayFacilityComponentLoadSummary;
+    thread_local extern bool displayLifeCycleCostReport;
+    thread_local extern bool displayTariffReport;
+    thread_local extern bool displayEconomicResultSummary;
+    thread_local extern bool displayEioSummary;
 
     // BEPS Report Related Variables
     // From Report:Table:Predefined - BEPS
     // arrays that hold the meter numbers that are initialized at get input
-    extern Array1D_int meterNumTotalsBEPS;
-    extern Array1D_int meterNumTotalsSource;
-    extern Array1D_bool fuelfactorsused;
-    extern Array1D_bool ffUsed;
-    extern Array1D<Real64> SourceFactors;
-    extern Array1D_bool ffSchedUsed;
-    extern Array1D_int ffSchedIndex;
-    extern Array2D_int meterNumEndUseBEPS;
-    extern Array3D_int meterNumEndUseSubBEPS;
+    thread_local extern Array1D_int meterNumTotalsBEPS;
+    thread_local extern Array1D_int meterNumTotalsSource;
+    thread_local extern Array1D_bool fuelfactorsused;
+    thread_local extern Array1D_bool ffUsed;
+    thread_local extern Array1D<Real64> SourceFactors;
+    thread_local extern Array1D_bool ffSchedUsed;
+    thread_local extern Array1D_int ffSchedIndex;
+    thread_local extern Array2D_int meterNumEndUseBEPS;
+    thread_local extern Array3D_int meterNumEndUseSubBEPS;
     // arrays that hold the names of the resource and end uses
-    extern Array1D_string resourceTypeNames;
-    extern Array1D_string sourceTypeNames;
-    extern Array1D_string endUseNames;
+    thread_local extern Array1D_string resourceTypeNames;
+    thread_local extern Array1D_string sourceTypeNames;
+    thread_local extern Array1D_string endUseNames;
     // arrays that hold the actual values for the year
-    extern Array1D<Real64> gatherTotalsBEPS;
-    extern Array1D<Real64> gatherTotalsBySourceBEPS;
-    extern Array1D<Real64> gatherTotalsSource;
-    extern Array1D<Real64> gatherTotalsBySource;
-    extern Array2D<Real64> gatherEndUseBEPS;
-    extern Array2D<Real64> gatherEndUseBySourceBEPS;
-    extern Array3D<Real64> gatherEndUseSubBEPS;
+    thread_local extern Array1D<Real64> gatherTotalsBEPS;
+    thread_local extern Array1D<Real64> gatherTotalsBySourceBEPS;
+    thread_local extern Array1D<Real64> gatherTotalsSource;
+    thread_local extern Array1D<Real64> gatherTotalsBySource;
+    thread_local extern Array2D<Real64> gatherEndUseBEPS;
+    thread_local extern Array2D<Real64> gatherEndUseBySourceBEPS;
+    thread_local extern Array3D<Real64> gatherEndUseSubBEPS;
     // arrays the hold the demand values
-    extern Array1D<Real64> gatherDemandTotal;
-    extern Array2D<Real64> gatherDemandEndUse;
-    extern Array2D<Real64> gatherDemandIndEndUse;
-    extern Array3D<Real64> gatherDemandEndUseSub;
-    extern Array3D<Real64> gatherDemandIndEndUseSub;
-    extern Array1D_int gatherDemandTimeStamp;
+    thread_local extern Array1D<Real64> gatherDemandTotal;
+    thread_local extern Array2D<Real64> gatherDemandEndUse;
+    thread_local extern Array2D<Real64> gatherDemandIndEndUse;
+    thread_local extern Array3D<Real64> gatherDemandEndUseSub;
+    thread_local extern Array3D<Real64> gatherDemandIndEndUseSub;
+    thread_local extern Array1D_int gatherDemandTimeStamp;
     // to keep track of hours for the BEPS report gathering
-    extern Real64 gatherElapsedTimeBEPS;
+    thread_local extern Real64 gatherElapsedTimeBEPS;
     // for normalization of results
-    extern Real64 buildingGrossFloorArea;
-    extern Real64 buildingConditionedFloorArea;
+    thread_local extern Real64 buildingGrossFloorArea;
+    thread_local extern Real64 buildingConditionedFloorArea;
     // keep track if schedules are used in fuel factors
-    extern bool fuelFactorSchedulesUsed;
+    thread_local extern bool fuelFactorSchedulesUsed;
     // for electic load components on BEPS report
-    extern int meterNumPowerFuelFireGen;
-    extern Real64 gatherPowerFuelFireGen;
-    extern int meterNumPowerPV;
-    extern Real64 gatherPowerPV;
-    extern int meterNumPowerWind;
-    extern Real64 gatherPowerWind;
-    extern Real64 OverallNetEnergyFromStorage;
-    extern int meterNumPowerHTGeothermal;
-    extern Real64 gatherPowerHTGeothermal;
-    extern int meterNumElecProduced;
-    extern Real64 gatherElecProduced;
-    extern int meterNumElecPurchased;
-    extern Real64 gatherElecPurchased;
-    extern int meterNumElecSurplusSold;
-    extern Real64 gatherElecSurplusSold;
-    extern int meterNumElecStorage;
-    extern Real64 gatherElecStorage;
-    extern int meterNumPowerConversion;
-    extern Real64 gatherPowerConversion;
+    thread_local extern int meterNumPowerFuelFireGen;
+    thread_local extern Real64 gatherPowerFuelFireGen;
+    thread_local extern int meterNumPowerPV;
+    thread_local extern Real64 gatherPowerPV;
+    thread_local extern int meterNumPowerWind;
+    thread_local extern Real64 gatherPowerWind;
+    thread_local extern Real64 OverallNetEnergyFromStorage;
+    thread_local extern int meterNumPowerHTGeothermal;
+    thread_local extern Real64 gatherPowerHTGeothermal;
+    thread_local extern int meterNumElecProduced;
+    thread_local extern Real64 gatherElecProduced;
+    thread_local extern int meterNumElecPurchased;
+    thread_local extern Real64 gatherElecPurchased;
+    thread_local extern int meterNumElecSurplusSold;
+    thread_local extern Real64 gatherElecSurplusSold;
+    thread_local extern int meterNumElecStorage;
+    thread_local extern Real64 gatherElecStorage;
+    thread_local extern int meterNumPowerConversion;
+    thread_local extern Real64 gatherPowerConversion;
     // for on site thermal source components on BEPS report
-    extern int meterNumWaterHeatRecovery;
-    extern Real64 gatherWaterHeatRecovery;
-    extern int meterNumAirHeatRecoveryCool;
-    extern Real64 gatherAirHeatRecoveryCool;
-    extern int meterNumAirHeatRecoveryHeat;
-    extern Real64 gatherAirHeatRecoveryHeat;
-    extern int meterNumHeatHTGeothermal;
-    extern Real64 gatherHeatHTGeothermal;
-    extern int meterNumHeatSolarWater;
-    extern Real64 gatherHeatSolarWater;
-    extern int meterNumHeatSolarAir;
-    extern Real64 gatherHeatSolarAir;
+    thread_local extern int meterNumWaterHeatRecovery;
+    thread_local extern Real64 gatherWaterHeatRecovery;
+    thread_local extern int meterNumAirHeatRecoveryCool;
+    thread_local extern Real64 gatherAirHeatRecoveryCool;
+    thread_local extern int meterNumAirHeatRecoveryHeat;
+    thread_local extern Real64 gatherAirHeatRecoveryHeat;
+    thread_local extern int meterNumHeatHTGeothermal;
+    thread_local extern Real64 gatherHeatHTGeothermal;
+    thread_local extern int meterNumHeatSolarWater;
+    thread_local extern Real64 gatherHeatSolarWater;
+    thread_local extern int meterNumHeatSolarAir;
+    thread_local extern Real64 gatherHeatSolarAir;
     // for on site water components on BEPS report
-    extern int meterNumRainWater;
-    extern Real64 gatherRainWater;
-    extern int meterNumCondensate;
-    extern Real64 gatherCondensate;
-    extern int meterNumGroundwater;
-    extern Real64 gatherWellwater;
-    extern int meterNumMains;
-    extern Real64 gatherMains;
-    extern int meterNumWaterEndUseTotal;
-    extern Real64 gatherWaterEndUseTotal;
+    thread_local extern int meterNumRainWater;
+    thread_local extern Real64 gatherRainWater;
+    thread_local extern int meterNumCondensate;
+    thread_local extern Real64 gatherCondensate;
+    thread_local extern int meterNumGroundwater;
+    thread_local extern Real64 gatherWellwater;
+    thread_local extern int meterNumMains;
+    thread_local extern Real64 gatherMains;
+    thread_local extern int meterNumWaterEndUseTotal;
+    thread_local extern Real64 gatherWaterEndUseTotal;
     // for source energy conversion factors on BEPS report
-    extern Real64 sourceFactorElectric;
-    extern Real64 sourceFactorNaturalGas;
-    extern Real64 efficiencyDistrictCooling;
-    extern Real64 efficiencyDistrictHeating;
-    extern Real64 sourceFactorSteam;
-    extern Real64 sourceFactorGasoline;
-    extern Real64 sourceFactorDiesel;
-    extern Real64 sourceFactorCoal;
-    extern Real64 sourceFactorFuelOil1;
-    extern Real64 sourceFactorFuelOil2;
-    extern Real64 sourceFactorPropane;
-    extern Real64 sourceFactorOtherFuel1;
-    extern Real64 sourceFactorOtherFuel2;
+    thread_local extern Real64 sourceFactorElectric;
+    thread_local extern Real64 sourceFactorNaturalGas;
+    thread_local extern Real64 efficiencyDistrictCooling;
+    thread_local extern Real64 efficiencyDistrictHeating;
+    thread_local extern Real64 sourceFactorSteam;
+    thread_local extern Real64 sourceFactorGasoline;
+    thread_local extern Real64 sourceFactorDiesel;
+    thread_local extern Real64 sourceFactorCoal;
+    thread_local extern Real64 sourceFactorFuelOil1;
+    thread_local extern Real64 sourceFactorFuelOil2;
+    thread_local extern Real64 sourceFactorPropane;
+    thread_local extern Real64 sourceFactorOtherFuel1;
+    thread_local extern Real64 sourceFactorOtherFuel2;
 
-    extern Array1D_int td;
+    thread_local extern Array1D_int td;
     //(1)   Current year
     //(2)   Current month
     //(3)   Current day
@@ -320,76 +320,76 @@ namespace OutputReportTabular {
     //(8)   Milliseconds (0-999)
 
     // Design day name storage
-    extern Array1D_string DesignDayName;
-    extern int DesignDayCount;
+    thread_local extern Array1D_string DesignDayName;
+    thread_local extern int DesignDayCount;
 
     // arrays related to pulse and load component reporting
-    extern Array2D<Real64> radiantPulseUsed;
-    extern Array2D_int radiantPulseTimestep;
-    extern Array2D<Real64> radiantPulseReceived;
-    extern Array3D<Real64> loadConvectedNormal;
-    extern Array3D<Real64> loadConvectedWithPulse;
-    extern Array3D<Real64> netSurfRadSeq;
-    extern Array2D<Real64> decayCurveCool;
-    extern Array2D<Real64> decayCurveHeat;
-    extern Array3D<Real64> ITABSFseq; // used for determining the radiant fraction on each surface
-    extern Array3D<Real64> TMULTseq;  // used for determining the radiant fraction on each surface
+    thread_local extern Array2D<Real64> radiantPulseUsed;
+    thread_local extern Array2D_int radiantPulseTimestep;
+    thread_local extern Array2D<Real64> radiantPulseReceived;
+    thread_local extern Array3D<Real64> loadConvectedNormal;
+    thread_local extern Array3D<Real64> loadConvectedWithPulse;
+    thread_local extern Array3D<Real64> netSurfRadSeq;
+    thread_local extern Array2D<Real64> decayCurveCool;
+    thread_local extern Array2D<Real64> decayCurveHeat;
+    thread_local extern Array3D<Real64> ITABSFseq; // used for determining the radiant fraction on each surface
+    thread_local extern Array3D<Real64> TMULTseq;  // used for determining the radiant fraction on each surface
 
-    extern Array3D<Real64> peopleInstantSeq;
-    extern Array3D<Real64> peopleLatentSeq;
-    extern Array3D<Real64> peopleRadSeq;
-    extern Array3D<Real64> peopleDelaySeq;
+    thread_local extern Array3D<Real64> peopleInstantSeq;
+    thread_local extern Array3D<Real64> peopleLatentSeq;
+    thread_local extern Array3D<Real64> peopleRadSeq;
+    thread_local extern Array3D<Real64> peopleDelaySeq;
 
-    extern Array3D<Real64> lightInstantSeq;
-    extern Array3D<Real64> lightRetAirSeq;
-    extern Array3D<Real64> lightLWRadSeq; // long wave thermal radiation
-    extern Array3D<Real64> lightSWRadSeq; // short wave visible radiation
-    extern Array3D<Real64> lightDelaySeq;
+    thread_local extern Array3D<Real64> lightInstantSeq;
+    thread_local extern Array3D<Real64> lightRetAirSeq;
+    thread_local extern Array3D<Real64> lightLWRadSeq; // long wave thermal radiation
+    thread_local extern Array3D<Real64> lightSWRadSeq; // short wave visible radiation
+    thread_local extern Array3D<Real64> lightDelaySeq;
 
-    extern Array3D<Real64> equipInstantSeq;
-    extern Array3D<Real64> equipLatentSeq;
-    extern Array3D<Real64> equipRadSeq;
-    extern Array3D<Real64> equipDelaySeq;
+    thread_local extern Array3D<Real64> equipInstantSeq;
+    thread_local extern Array3D<Real64> equipLatentSeq;
+    thread_local extern Array3D<Real64> equipRadSeq;
+    thread_local extern Array3D<Real64> equipDelaySeq;
 
-    extern Array3D<Real64> refrigInstantSeq;
-    extern Array3D<Real64> refrigRetAirSeq;
-    extern Array3D<Real64> refrigLatentSeq;
+    thread_local extern Array3D<Real64> refrigInstantSeq;
+    thread_local extern Array3D<Real64> refrigRetAirSeq;
+    thread_local extern Array3D<Real64> refrigLatentSeq;
 
-    extern Array3D<Real64> waterUseInstantSeq;
-    extern Array3D<Real64> waterUseLatentSeq;
+    thread_local extern Array3D<Real64> waterUseInstantSeq;
+    thread_local extern Array3D<Real64> waterUseLatentSeq;
 
-    extern Array3D<Real64> hvacLossInstantSeq;
-    extern Array3D<Real64> hvacLossRadSeq;
-    extern Array3D<Real64> hvacLossDelaySeq;
+    thread_local extern Array3D<Real64> hvacLossInstantSeq;
+    thread_local extern Array3D<Real64> hvacLossRadSeq;
+    thread_local extern Array3D<Real64> hvacLossDelaySeq;
 
-    extern Array3D<Real64> powerGenInstantSeq;
-    extern Array3D<Real64> powerGenRadSeq;
-    extern Array3D<Real64> powerGenDelaySeq;
+    thread_local extern Array3D<Real64> powerGenInstantSeq;
+    thread_local extern Array3D<Real64> powerGenRadSeq;
+    thread_local extern Array3D<Real64> powerGenDelaySeq;
 
-    extern Array3D<Real64> infilInstantSeq;
-    extern Array3D<Real64> infilLatentSeq;
+    thread_local extern Array3D<Real64> infilInstantSeq;
+    thread_local extern Array3D<Real64> infilLatentSeq;
 
-    extern Array3D<Real64> zoneVentInstantSeq;
-    extern Array3D<Real64> zoneVentLatentSeq;
+    thread_local extern Array3D<Real64> zoneVentInstantSeq;
+    thread_local extern Array3D<Real64> zoneVentLatentSeq;
 
-    extern Array3D<Real64> interZoneMixInstantSeq;
-    extern Array3D<Real64> interZoneMixLatentSeq;
+    thread_local extern Array3D<Real64> interZoneMixInstantSeq;
+    thread_local extern Array3D<Real64> interZoneMixLatentSeq;
 
-    extern Array3D<Real64> feneCondInstantSeq;
+    thread_local extern Array3D<Real64> feneCondInstantSeq;
     // REAL(r64), DIMENSION(:,:,:),ALLOCATABLE,PUBLIC  :: feneSolarInstantSeq
-    extern Array3D<Real64> feneSolarRadSeq;
-    extern Array3D<Real64> feneSolarDelaySeq;
+    thread_local extern Array3D<Real64> feneSolarRadSeq;
+    thread_local extern Array3D<Real64> feneSolarDelaySeq;
 
-    extern Array3D<Real64> surfDelaySeq;
+    thread_local extern Array3D<Real64> surfDelaySeq;
 
-    extern int maxUniqueKeyCount;
+    thread_local extern int maxUniqueKeyCount;
 
     // for the XML report must keep track fo the active sub-table name and report set by other routines
-    extern std::string activeSubTableName;
-    extern std::string activeReportNameNoSpace;
-    extern std::string activeReportName;
-    extern std::string activeForName;
-    extern std::string prevReportName;
+    thread_local extern std::string activeSubTableName;
+    thread_local extern std::string activeReportNameNoSpace;
+    thread_local extern std::string activeReportName;
+    thread_local extern std::string activeForName;
+    thread_local extern std::string prevReportName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
     // PRIVATE      DateToStr
@@ -652,19 +652,19 @@ namespace OutputReportTabular {
     };
 
     // Object Data
-    extern Array1D<OutputTableBinnedType> OutputTableBinned;
-    extern Array2D<BinResultsType> BinResults;      // table number, number of intervals
-    extern Array1D<BinResultsType> BinResultsBelow; // time below the lowest defined bin
-    extern Array1D<BinResultsType> BinResultsAbove; // time above the highest defined bin
-    extern Array1D<BinObjVarIDType> BinObjVarID;
-    extern Array1D<BinStatisticsType> BinStatistics;
-    extern Array1D<NamedMonthlyType> namedMonthly; // for predefined monthly report titles
-    extern Array1D<MonthlyFieldSetInputType> MonthlyFieldSetInput;
-    extern Array1D<MonthlyInputType> MonthlyInput;
-    extern Array1D<MonthlyTablesType> MonthlyTables;
-    extern Array1D<MonthlyColumnsType> MonthlyColumns;
-    extern Array1D<TOCEntriesType> TOCEntries;
-    extern Array1D<UnitConvType> UnitConv;
+    thread_local extern Array1D<OutputTableBinnedType> OutputTableBinned;
+    thread_local extern Array2D<BinResultsType> BinResults;      // table number, number of intervals
+    thread_local extern Array1D<BinResultsType> BinResultsBelow; // time below the lowest defined bin
+    thread_local extern Array1D<BinResultsType> BinResultsAbove; // time above the highest defined bin
+    thread_local extern Array1D<BinObjVarIDType> BinObjVarID;
+    thread_local extern Array1D<BinStatisticsType> BinStatistics;
+    thread_local extern Array1D<NamedMonthlyType> namedMonthly; // for predefined monthly report titles
+    thread_local extern Array1D<MonthlyFieldSetInputType> MonthlyFieldSetInput;
+    thread_local extern Array1D<MonthlyInputType> MonthlyInput;
+    thread_local extern Array1D<MonthlyTablesType> MonthlyTables;
+    thread_local extern Array1D<MonthlyColumnsType> MonthlyColumns;
+    thread_local extern Array1D<TOCEntriesType> TOCEntries;
+    thread_local extern Array1D<UnitConvType> UnitConv;
 
     // Functions
     void clear_state();

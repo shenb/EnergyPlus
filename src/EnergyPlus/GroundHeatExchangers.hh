@@ -71,9 +71,9 @@ namespace GroundHeatExchangers {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE PARAMETER DEFINITIONS
-    extern Real64 const hrsPerDay;   // Number of hours in a day
-    extern Real64 const hrsPerMonth; // Number of hours in month
-    extern int const maxTSinHr;      // Max number of time step in a hour
+    thread_local extern Real64 const hrsPerDay;   // Number of hours in a day
+    thread_local extern Real64 const hrsPerMonth; // Number of hours in month
+    thread_local extern int const maxTSinHr;      // Max number of time step in a hour
 
     // MODULE VARIABLE DECLARATIONS:
     // na
@@ -467,12 +467,12 @@ namespace GroundHeatExchangers {
     std::vector<Real64> TDMA(std::vector<Real64> a, std::vector<Real64> b, std::vector<Real64> c, std::vector<Real64> d);
 
     // Object Data
-    extern std::vector<GLHEVert> verticalGLHE;                                            // Vertical GLHEs
-    extern std::vector<GLHESlinky> slinkyGLHE;                                            // Slinky GLHEs
-    extern std::vector<std::shared_ptr<GLHEVertArrayStruct>> vertArraysVector;            // Vertical Arrays
-    extern std::vector<std::shared_ptr<GLHEVertPropsStruct>> vertPropsVector;             // Vertical Properties
-    extern std::vector<std::shared_ptr<GLHEResponseFactorsStruct>> responseFactorsVector; // Vertical Response Factors
-    extern std::vector<std::shared_ptr<GLHEVertSingleStruct>> singleBoreholesVector;      // Vertical Single Boreholes
+    thread_local extern std::vector<GLHEVert> verticalGLHE;                                            // Vertical GLHEs
+    thread_local extern std::vector<GLHESlinky> slinkyGLHE;                                            // Slinky GLHEs
+    thread_local extern std::vector<std::shared_ptr<GLHEVertArrayStruct>> vertArraysVector;            // Vertical Arrays
+    thread_local extern std::vector<std::shared_ptr<GLHEVertPropsStruct>> vertPropsVector;             // Vertical Properties
+    thread_local extern std::vector<std::shared_ptr<GLHEResponseFactorsStruct>> responseFactorsVector; // Vertical Response Factors
+    thread_local extern std::vector<std::shared_ptr<GLHEVertSingleStruct>> singleBoreholesVector;      // Vertical Single Boreholes
 
 } // namespace GroundHeatExchangers
 

@@ -411,14 +411,14 @@ namespace DataAirSystems {
     };
 
     // Object Data
-    extern Array1D<DefinePrimaryAirSystem> PrimaryAirSystem;
-    extern Array1D<ConnectionPoint> DemandSideConnect;               // Connections between loops
-    extern Array1D<ConnectZoneComp> ZoneCompToPlant;                 // Connections between loops
-    extern Array1D<ConnectZoneSubComp> ZoneSubCompToPlant;           // Connections between loops
-    extern Array1D<ConnectZoneSubSubComp> ZoneSubSubCompToPlant;     // Connections between loops
-    extern Array1D<ConnectAirSysComp> AirSysCompToPlant;             // Connections between loops
-    extern Array1D<ConnectAirSysSubComp> AirSysSubCompToPlant;       // Connections between loops
-    extern Array1D<ConnectAirSysSubSubComp> AirSysSubSubCompToPlant; // Connections between loops
+    thread_local extern Array1D<DefinePrimaryAirSystem> PrimaryAirSystem;
+    thread_local extern Array1D<ConnectionPoint> DemandSideConnect;               // Connections between loops
+    thread_local extern Array1D<ConnectZoneComp> ZoneCompToPlant;                 // Connections between loops
+    thread_local extern Array1D<ConnectZoneSubComp> ZoneSubCompToPlant;           // Connections between loops
+    thread_local extern Array1D<ConnectZoneSubSubComp> ZoneSubSubCompToPlant;     // Connections between loops
+    thread_local extern Array1D<ConnectAirSysComp> AirSysCompToPlant;             // Connections between loops
+    thread_local extern Array1D<ConnectAirSysSubComp> AirSysSubCompToPlant;       // Connections between loops
+    thread_local extern Array1D<ConnectAirSysSubSubComp> AirSysSubSubCompToPlant; // Connections between loops
 
     // Functions
     void clear_state();

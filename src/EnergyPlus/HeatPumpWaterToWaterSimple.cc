@@ -114,22 +114,22 @@ namespace HeatPumpWaterToWaterSimple {
     using namespace DataLoopNode;
 
     // MODULE PARAMETER DEFINITIONS
-    std::string const HPEqFitHeating("HeatPump:WatertoWater:EquationFit:Heating");
-    std::string const HPEqFitHeatingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:HEATING");
-    std::string const HPEqFitCooling("HeatPump:WatertoWater:EquationFit:Cooling");
-    std::string const HPEqFitCoolingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:COOLING");
+    thread_local std::string const HPEqFitHeating("HeatPump:WatertoWater:EquationFit:Heating");
+    thread_local std::string const HPEqFitHeatingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:HEATING");
+    thread_local std::string const HPEqFitCooling("HeatPump:WatertoWater:EquationFit:Cooling");
+    thread_local std::string const HPEqFitCoolingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:COOLING");
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumGSHPs(0); // Number of GSHPs specified in input
+    thread_local int NumGSHPs(0); // Number of GSHPs specified in input
     namespace {
-        bool GetInputFlag(true); // then TRUE, calls subroutine to read input file.
-        bool InitWatertoWaterHPOneTimeFlag(true);
+        thread_local bool GetInputFlag(true); // then TRUE, calls subroutine to read input file.
+        thread_local bool InitWatertoWaterHPOneTimeFlag(true);
     } // namespace
 
     // Object Data
-    Array1D<GshpSpecs> GSHP;
-    Array1D<ReportVars> GSHPReport;
-    std::unordered_map<std::string, std::string> HeatPumpWaterUniqueNames;
+    thread_local Array1D<GshpSpecs> GSHP;
+    thread_local Array1D<ReportVars> GSHPReport;
+    thread_local std::unordered_map<std::string, std::string> HeatPumpWaterUniqueNames;
 
     void clear_state()
     {
@@ -304,7 +304,7 @@ namespace HeatPumpWaterToWaterSimple {
         int NumNums;     // Number of elements in the numeric array
         int IOStat;      // IO Status when calling get input subroutine
 
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;
 
         NumCoolCoil = inputProcessor->getNumObjectsFound(HPEqFitCoolingUC);
@@ -773,18 +773,18 @@ namespace HeatPumpWaterToWaterSimple {
         using PlantUtilities::SetComponentFlowRate;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitGshp");
+        thread_local static std::string const RoutineName("InitGshp");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int LoadSideInletNode;             // Load Side Inlet Node
         int LoadSideOutletNode;            // Load Side Outlet Node
         int SourceSideInletNode;           // Source Side Inlet Node
         int SourceSideOutletNode;          // Source Side Outlet Node
-        static Array1D_bool MyEnvrnFlag;   // Flag required to keep track of initialization
-        static bool OneTimeFlag(true);     // One Time Flag
-        static Real64 CurrentSimTime(0.0); // Current Simulation Time
-        static Real64 PrevSimTime(0.0);    // Previous Simulation Time
-        static Array1D_bool MyPlanScanFlag;
+        thread_local static Array1D_bool MyEnvrnFlag;   // Flag required to keep track of initialization
+        thread_local static bool OneTimeFlag(true);     // One Time Flag
+        thread_local static Real64 CurrentSimTime(0.0); // Current Simulation Time
+        thread_local static Real64 PrevSimTime(0.0);    // Previous Simulation Time
+        thread_local static Array1D_bool MyPlanScanFlag;
 
         int LoopNum;
         int LoopSideNum;
@@ -1012,7 +1012,7 @@ namespace HeatPumpWaterToWaterSimple {
     {
         // do sizing related calculations and reporting for cooling heat pumps
         bool errorsFound(false);
-        static std::string const RoutineName("sizeCoolingWaterToWaterHP");
+        thread_local static std::string const RoutineName("sizeCoolingWaterToWaterHP");
         Real64 tmpLoadSideVolFlowRate = GSHP(GSHPNum).RatedLoadVolFlowCool;
         Real64 tmpSourceSideVolFlowRate = GSHP(GSHPNum).RatedSourceVolFlowCool;
         Real64 tmpCoolingCap = GSHP(GSHPNum).RatedCapCool;
@@ -1351,7 +1351,7 @@ namespace HeatPumpWaterToWaterSimple {
     {
         // do sizing related calculations and reporting for heating heat pumps
         bool errorsFound(false);
-        static std::string const RoutineName("sizeHeatingWaterToWaterHP");
+        thread_local static std::string const RoutineName("sizeHeatingWaterToWaterHP");
         Real64 tmpLoadSideVolFlowRate = GSHP(GSHPNum).RatedLoadVolFlowHeat;
         Real64 tmpSourceSideVolFlowRate = GSHP(GSHPNum).RatedSourceVolFlowHeat;
         Real64 tmpHeatingCap = GSHP(GSHPNum).RatedCapHeat;
@@ -1716,7 +1716,7 @@ namespace HeatPumpWaterToWaterSimple {
 
         Real64 const CelsiustoKelvin(KelvinConv); // Conversion from Celsius to Kelvin
         Real64 const Tref(283.15);                // Reference Temperature for performance curves,10C [K]
-        static std::string const RoutineName("CalcWatertoWaterHPCooling");
+        thread_local static std::string const RoutineName("CalcWatertoWaterHPCooling");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1913,7 +1913,7 @@ namespace HeatPumpWaterToWaterSimple {
 
         Real64 const CelsiustoKelvin(KelvinConv); // Conversion from Celsius to Kelvin
         Real64 const Tref(283.15);                // Reference Temperature for performance curves,10C [K]
-        static std::string const RoutineName("CalcWatertoWaterHPHeating");
+        thread_local static std::string const RoutineName("CalcWatertoWaterHPHeating");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

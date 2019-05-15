@@ -66,49 +66,49 @@ namespace MixedAir {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const NoLockoutPossible;
-    extern int const LockoutWithHeatingPossible;
-    extern int const LockoutWithCompressorPossible;
+    thread_local extern int const NoLockoutPossible;
+    thread_local extern int const LockoutWithHeatingPossible;
+    thread_local extern int const LockoutWithCompressorPossible;
 
-    extern int const NoEconomizer;
+    thread_local extern int const NoEconomizer;
     // Changed by Amit as a part on New Feature Proposal
-    extern int const FixedDryBulb;
-    extern int const FixedEnthalpy;
-    extern int const DifferentialDryBulb;
-    extern int const DifferentialEnthalpy;
-    extern int const FixedDewPointAndDryBulb;
-    extern int const ElectronicEnthalpy;
-    extern int const DifferentialDryBulbAndEnthalpy;
+    thread_local extern int const FixedDryBulb;
+    thread_local extern int const FixedEnthalpy;
+    thread_local extern int const DifferentialDryBulb;
+    thread_local extern int const DifferentialEnthalpy;
+    thread_local extern int const FixedDewPointAndDryBulb;
+    thread_local extern int const ElectronicEnthalpy;
+    thread_local extern int const DifferentialDryBulbAndEnthalpy;
     // coil operation
-    extern int const On;  // normal coil operation
-    extern int const Off; // signal coil shouldn't run
+    thread_local extern int const On;  // normal coil operation
+    thread_local extern int const Off; // signal coil shouldn't run
     // component types addressed by this module
-    extern int const OAMixer_Num;
-    extern int const Fan_Simple_CV;
-    extern int const Fan_Simple_VAV;
-    extern int const Fan_System_Object;
-    extern int const WaterCoil_SimpleCool;
-    extern int const WaterCoil_Cooling;
-    extern int const WaterCoil_SimpleHeat;
-    extern int const SteamCoil_AirHeat;
-    extern int const WaterCoil_DetailedCool;
-    extern int const Coil_ElectricHeat;
-    extern int const Coil_GasHeat;
-    extern int const WaterCoil_CoolingHXAsst;
-    extern int const DXSystem;
-    extern int const HeatXchngr;
-    extern int const Desiccant;
-    extern int const Unglazed_SolarCollector;
-    extern int const EvapCooler;
-    extern int const PVT_AirBased;
-    extern int const Fan_ComponentModel; // cpw22Aug2010 (new)
-    extern int const DXHeatPumpSystem;
-    extern int const Coil_UserDefined;
-    extern int const UnitarySystem;
-    extern int const Humidifier;
+    thread_local extern int const OAMixer_Num;
+    thread_local extern int const Fan_Simple_CV;
+    thread_local extern int const Fan_Simple_VAV;
+    thread_local extern int const Fan_System_Object;
+    thread_local extern int const WaterCoil_SimpleCool;
+    thread_local extern int const WaterCoil_Cooling;
+    thread_local extern int const WaterCoil_SimpleHeat;
+    thread_local extern int const SteamCoil_AirHeat;
+    thread_local extern int const WaterCoil_DetailedCool;
+    thread_local extern int const Coil_ElectricHeat;
+    thread_local extern int const Coil_GasHeat;
+    thread_local extern int const WaterCoil_CoolingHXAsst;
+    thread_local extern int const DXSystem;
+    thread_local extern int const HeatXchngr;
+    thread_local extern int const Desiccant;
+    thread_local extern int const Unglazed_SolarCollector;
+    thread_local extern int const EvapCooler;
+    thread_local extern int const PVT_AirBased;
+    thread_local extern int const Fan_ComponentModel; // cpw22Aug2010 (new)
+    thread_local extern int const DXHeatPumpSystem;
+    thread_local extern int const Coil_UserDefined;
+    thread_local extern int const UnitarySystem;
+    thread_local extern int const Humidifier;
 
-    extern int const ControllerOutsideAir;
-    extern int const ControllerStandAloneERV;
+    thread_local extern int const ControllerOutsideAir;
+    thread_local extern int const ControllerStandAloneERV;
 
     // Zone Outdoor Air Method
     // INTEGER, PARAMETER :: ZOAM_FlowPerPerson = 1  ! set the outdoor air flow rate based on number of people in the zone
@@ -133,34 +133,34 @@ namespace MixedAir {
     // INTEGER, PARAMETER :: SOAM_ProportionalControlDesOcc = 7     ! Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
     //                                                       ! to calculate the system level outdoor air flow rates based on design occupancy
 
-    extern Array1D_string const CurrentModuleObjects;
+    thread_local extern Array1D_string const CurrentModuleObjects;
 
     // Parameters below (CMO - Current Module Object.  used primarily in Get Inputs)
     // Multiple Get Input routines in this module or these would be in individual routines.
-    extern int const CMO_OASystem;
-    extern int const CMO_AirLoopEqList;
-    extern int const CMO_ControllerList;
-    extern int const CMO_SysAvailMgrList;
-    extern int const CMO_OAController;
-    extern int const CMO_ERVController;
-    extern int const CMO_MechVentilation;
-    extern int const CMO_OAMixer;
+    thread_local extern int const CMO_OASystem;
+    thread_local extern int const CMO_AirLoopEqList;
+    thread_local extern int const CMO_ControllerList;
+    thread_local extern int const CMO_SysAvailMgrList;
+    thread_local extern int const CMO_OAController;
+    thread_local extern int const CMO_ERVController;
+    thread_local extern int const CMO_MechVentilation;
+    thread_local extern int const CMO_OAMixer;
 
     // Type declarations in MixedAir module
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumControllerLists;     // Number of Controller Lists
-    extern int NumOAControllers;       // Number of OA Controllers (includes ERV controllers)
-    extern int NumERVControllers;      // Number of ERV Controllers
-    extern int NumOAMixers;            // Number of Outdoor Air Mixers
-    extern int NumVentMechControllers; // Number of Controller:MechanicalVentilation objects in input deck
+    thread_local extern int NumControllerLists;     // Number of Controller Lists
+    thread_local extern int NumOAControllers;       // Number of OA Controllers (includes ERV controllers)
+    thread_local extern int NumERVControllers;      // Number of ERV Controllers
+    thread_local extern int NumOAMixers;            // Number of Outdoor Air Mixers
+    thread_local extern int NumVentMechControllers; // Number of Controller:MechanicalVentilation objects in input deck
 
-    extern Array1D_bool MyOneTimeErrorFlag;
-    extern Array1D_bool MyOneTimeCheckUnitarySysFlag;
-    extern Array1D_bool initOASysFlag;
-    extern bool GetOASysInputFlag;        // Flag set to make sure you get input once
-    extern bool GetOAMixerInputFlag;      // Flag set to make sure you get input once
-    extern bool GetOAControllerInputFlag; // Flag set to make sure you get input once
+    thread_local extern Array1D_bool MyOneTimeErrorFlag;
+    thread_local extern Array1D_bool MyOneTimeCheckUnitarySysFlag;
+    thread_local extern Array1D_bool initOASysFlag;
+    thread_local extern bool GetOASysInputFlag;        // Flag set to make sure you get input once
+    thread_local extern bool GetOAMixerInputFlag;      // Flag set to make sure you get input once
+    thread_local extern bool GetOAControllerInputFlag; // Flag set to make sure you get input once
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE MixedAir
     // Driver/Manager Routines
@@ -402,10 +402,10 @@ namespace MixedAir {
     };
 
     // Object Data
-    extern Array1D<ControllerListProps> ControllerLists;
-    extern Array1D<OAControllerProps> OAController;
-    extern Array1D<OAMixerProps> OAMixer;
-    extern Array1D<VentilationMechanicalProps> VentilationMechanical;
+    thread_local extern Array1D<ControllerListProps> ControllerLists;
+    thread_local extern Array1D<OAControllerProps> OAController;
+    thread_local extern Array1D<OAMixerProps> OAMixer;
+    thread_local extern Array1D<VentilationMechanicalProps> VentilationMechanical;
 
     // Functions
 

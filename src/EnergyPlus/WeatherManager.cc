@@ -131,53 +131,53 @@ namespace WeatherManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Following are Date Types read in from EPW file or IDF
-    int const InvalidDate(-1);
-    int const MonthDay(1);
-    int const NthDayInMonth(2);
-    int const LastDayInMonth(3);
+    thread_local int const InvalidDate(-1);
+    thread_local int const MonthDay(1);
+    thread_local int const NthDayInMonth(2);
+    thread_local int const LastDayInMonth(3);
 
-    int const ScheduleMethod(1);                   // Constant for water mains temperatures calculation methods
-    int const CorrelationMethod(2);                // Constant for water mains temperatures calculation methods
-    int const CorrelationFromWeatherFileMethod(3); // Constant for water mains temperatures calculation methods
+    thread_local int const ScheduleMethod(1);                   // Constant for water mains temperatures calculation methods
+    thread_local int const CorrelationMethod(2);                // Constant for water mains temperatures calculation methods
+    thread_local int const CorrelationFromWeatherFileMethod(3); // Constant for water mains temperatures calculation methods
 
-    int const InvalidWeatherFile(0);
-    int const EPlusWeatherFile(1);
+    thread_local int const InvalidWeatherFile(0);
+    thread_local int const EPlusWeatherFile(1);
 
-    int const ASHRAE_ClearSky(0);     // Design Day solar model ASHRAE ClearSky (default)
-    int const Zhang_Huang(1);         // Design Day solar model Zhang Huang
-    int const SolarModel_Schedule(2); // Design Day solar model (beam and diffuse) from user entered schedule
-    int const ASHRAE_Tau(3);          // Design Day solar model ASHRAE tau (per 2009 HOF)
-    int const ASHRAE_Tau2017(4);      // Design Day solar model ASHRAE tau (per 2013 and 2017 HOF)
+    thread_local int const ASHRAE_ClearSky(0);     // Design Day solar model ASHRAE ClearSky (default)
+    thread_local int const Zhang_Huang(1);         // Design Day solar model Zhang Huang
+    thread_local int const SolarModel_Schedule(2); // Design Day solar model (beam and diffuse) from user entered schedule
+    thread_local int const ASHRAE_Tau(3);          // Design Day solar model ASHRAE tau (per 2009 HOF)
+    thread_local int const ASHRAE_Tau2017(4);      // Design Day solar model ASHRAE tau (per 2013 and 2017 HOF)
 
-    int const DDHumIndType_WetBulb(0);   // Design Day Humidity Indicating Type = Wetbulb (default)
-    int const DDHumIndType_DewPoint(1);  // Design Day Humidity Indicating Type = Dewpoint
-    int const DDHumIndType_Enthalpy(2);  // Design Day Humidity Indicating Type = Enthalpy
-    int const DDHumIndType_HumRatio(3);  // Design Day Humidity Indicating Type = Humidity Ratio
-    int const DDHumIndType_RelHumSch(4); // Design Day Humidity Indicating Type = relhum schedule
-    int const DDHumIndType_WBProfDef(5); // Design Day Humidity Indicating Type = Wetbulb default profile
-    int const DDHumIndType_WBProfDif(6); // Design Day Humidity Indicating Type = Wetbulb difference profile
-    int const DDHumIndType_WBProfMul(7); // Design Day Humidity Indicating Type = Wetbulb multiplier profile
-    int const DDHumIndType_Count(8);     // # of DDHumIndTypes
+    thread_local int const DDHumIndType_WetBulb(0);   // Design Day Humidity Indicating Type = Wetbulb (default)
+    thread_local int const DDHumIndType_DewPoint(1);  // Design Day Humidity Indicating Type = Dewpoint
+    thread_local int const DDHumIndType_Enthalpy(2);  // Design Day Humidity Indicating Type = Enthalpy
+    thread_local int const DDHumIndType_HumRatio(3);  // Design Day Humidity Indicating Type = Humidity Ratio
+    thread_local int const DDHumIndType_RelHumSch(4); // Design Day Humidity Indicating Type = relhum schedule
+    thread_local int const DDHumIndType_WBProfDef(5); // Design Day Humidity Indicating Type = Wetbulb default profile
+    thread_local int const DDHumIndType_WBProfDif(6); // Design Day Humidity Indicating Type = Wetbulb difference profile
+    thread_local int const DDHumIndType_WBProfMul(7); // Design Day Humidity Indicating Type = Wetbulb multiplier profile
+    thread_local int const DDHumIndType_Count(8);     // # of DDHumIndTypes
 
-    int const DDDBRangeType_Default(0);    // Design Day DryBulb Range Type = Default Multipliers
-    int const DDDBRangeType_Multiplier(1); // Design Day DryBulb Range Type = Multiplier Schedule
-    int const DDDBRangeType_Difference(2); // Design Day DryBulb Range Type = Difference Schedule
-    int const DDDBRangeType_Profile(3);    // Design Day DryBulb Range Type = Temperature Profile
+    thread_local int const DDDBRangeType_Default(0);    // Design Day DryBulb Range Type = Default Multipliers
+    thread_local int const DDDBRangeType_Multiplier(1); // Design Day DryBulb Range Type = Multiplier Schedule
+    thread_local int const DDDBRangeType_Difference(2); // Design Day DryBulb Range Type = Difference Schedule
+    thread_local int const DDDBRangeType_Profile(3);    // Design Day DryBulb Range Type = Temperature Profile
 
-    int const WP_ScheduleValue(1);  // User entered Schedule value for Weather Property
-    int const WP_DryBulbDelta(2);   // User entered DryBulb difference Schedule value for Weather Property
-    int const WP_DewPointDelta(3);  // User entered Dewpoint difference Schedule value for Weather Property
-    int const WP_SkyTAlgorithmA(4); // place holder
+    thread_local int const WP_ScheduleValue(1);  // User entered Schedule value for Weather Property
+    thread_local int const WP_DryBulbDelta(2);   // User entered DryBulb difference Schedule value for Weather Property
+    thread_local int const WP_DewPointDelta(3);  // User entered Dewpoint difference Schedule value for Weather Property
+    thread_local int const WP_SkyTAlgorithmA(4); // place holder
 
-    int const GregorianToJulian(1); // JGDate argument for Gregorian to Julian Date conversion
-    int const JulianToGregorian(2); // JGDate argument for Julian to Gregorian Date conversion
+    thread_local int const GregorianToJulian(1); // JGDate argument for Gregorian to Julian Date conversion
+    thread_local int const JulianToGregorian(2); // JGDate argument for Julian to Gregorian Date conversion
 
-    Real64 const Sigma(5.6697e-8);    // Stefan-Boltzmann constant
-    Real64 const TKelvin(KelvinConv); // conversion from Kelvin to Celsius
+    thread_local Real64 const Sigma(5.6697e-8);    // Stefan-Boltzmann constant
+    thread_local Real64 const TKelvin(KelvinConv); // conversion from Kelvin to Celsius
 
-    static std::string const BlankString;
-    Array1D_string const DaysOfWeek(7, {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"});
-    std::map<std::string, WeekDay> weekDayLookUp{{"SUNDAY", WeekDay::Sunday},
+    thread_local static std::string const BlankString;
+    thread_local Array1D_string const DaysOfWeek(7, {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"});
+    thread_local std::map<std::string, WeekDay> weekDayLookUp{{"SUNDAY", WeekDay::Sunday},
                                                  {"MONDAY", WeekDay::Monday},
                                                  {"TUESDAY", WeekDay::Tuesday},
                                                  {"WEDNESDAY", WeekDay::Wednesday},
@@ -185,7 +185,7 @@ namespace WeatherManager {
                                                  {"FRIDAY", WeekDay::Friday},
                                                  {"SATURDAY", WeekDay::Saturday}};
 
-    bool Debugout(false);
+    thread_local bool Debugout(false);
 
     // Real64 CalcWaterMainsTempCurrent( 0 );
 
@@ -196,16 +196,16 @@ namespace WeatherManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int YearOfSim(1); // The Present year of Simulation.
-    int const NumDaysInYear(365);
-    int EnvironmentReportNbr(0);      // Report number for the environment stamp
-    std::string EnvironmentReportChr; // Report number for the environment stamp (character -- for printing)
-    int TimeStampReportNbr(0);        // Report number for the time stamp
-    std::string TimeStampReportChr;   // Report number for the time stamp (character -- for printing)
-    int WeatherDataReport(0);         // Report number for the weather data
-    bool WeatherFileExists(false);    // Set to true if a weather file exists
-    std::string LocationTitle;        // Location Title from input File
-    bool LocationGathered(false);     // flag to show if Location exists on Input File (we assume one is there and
+    thread_local int YearOfSim(1); // The Present year of Simulation.
+    thread_local int const NumDaysInYear(365);
+    thread_local int EnvironmentReportNbr(0);      // Report number for the environment stamp
+    thread_local std::string EnvironmentReportChr; // Report number for the environment stamp (character -- for printing)
+    thread_local int TimeStampReportNbr(0);        // Report number for the time stamp
+    thread_local std::string TimeStampReportChr;   // Report number for the time stamp (character -- for printing)
+    thread_local int WeatherDataReport(0);         // Report number for the weather data
+    thread_local bool WeatherFileExists(false);    // Set to true if a weather file exists
+    thread_local std::string LocationTitle;        // Location Title from input File
+    thread_local bool LocationGathered(false);     // flag to show if Location exists on Input File (we assume one is there and
     // correct on weather file)
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -213,174 +213,174 @@ namespace WeatherManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool GetBranchInputOneTimeFlag(true);
-        bool GetEnvironmentFirstCall(true);
-        bool PrntEnvHeaders(true);
+        thread_local bool GetBranchInputOneTimeFlag(true);
+        thread_local bool GetEnvironmentFirstCall(true);
+        thread_local bool PrntEnvHeaders(true);
     } // namespace
-    Real64 WeatherFileLatitude(0.0);
-    Real64 WeatherFileLongitude(0.0);
-    Real64 WeatherFileTimeZone(0.0);
-    Real64 WeatherFileElevation(0.0);
-    int WeatherFileUnitNumber;                           // File unit number for the weather file
-    Array1D<Real64> GroundTempsFCFromEPWHeader(12, 0.0); // F or C factor method
-    Array1D<Real64> GroundReflectances(12, 0.2);         // User Specified Ground Reflectances !EPTeam: Using DP causes big diffs
-    Real64 SnowGndRefModifier(1.0);                      // Modifier to ground reflectance during snow
-    Real64 SnowGndRefModifierForDayltg(1.0);             // Modifier to ground reflectance during snow for daylighting
-    int WaterMainsTempsMethod(0);                        // Water mains temperature calculation method
-    int WaterMainsTempsSchedule(0);                      // Water mains temperature schedule
-    Real64 WaterMainsTempsAnnualAvgAirTemp(0.0);         // Annual average outdoor air temperature (C)
-    Real64 WaterMainsTempsMaxDiffAirTemp(0.0);           // Maximum difference in monthly average outdoor air temperatures (deltaC)
-    std::string WaterMainsTempsScheduleName;             // water mains tempeature schedule name
-    bool wthFCGroundTemps(false);
-    Real64 RainAmount(0.0);
-    Real64 SnowAmount(0.0);
+    thread_local Real64 WeatherFileLatitude(0.0);
+    thread_local Real64 WeatherFileLongitude(0.0);
+    thread_local Real64 WeatherFileTimeZone(0.0);
+    thread_local Real64 WeatherFileElevation(0.0);
+    thread_local int WeatherFileUnitNumber;                           // File unit number for the weather file
+    thread_local Array1D<Real64> GroundTempsFCFromEPWHeader(12, 0.0); // F or C factor method
+    thread_local Array1D<Real64> GroundReflectances(12, 0.2);         // User Specified Ground Reflectances !EPTeam: Using DP causes big diffs
+    thread_local Real64 SnowGndRefModifier(1.0);                      // Modifier to ground reflectance during snow
+    thread_local Real64 SnowGndRefModifierForDayltg(1.0);             // Modifier to ground reflectance during snow for daylighting
+    thread_local int WaterMainsTempsMethod(0);                        // Water mains temperature calculation method
+    thread_local int WaterMainsTempsSchedule(0);                      // Water mains temperature schedule
+    thread_local Real64 WaterMainsTempsAnnualAvgAirTemp(0.0);         // Annual average outdoor air temperature (C)
+    thread_local Real64 WaterMainsTempsMaxDiffAirTemp(0.0);           // Maximum difference in monthly average outdoor air temperatures (deltaC)
+    thread_local std::string WaterMainsTempsScheduleName;             // water mains tempeature schedule name
+    thread_local bool wthFCGroundTemps(false);
+    thread_local Real64 RainAmount(0.0);
+    thread_local Real64 SnowAmount(0.0);
 
-    int TotRunPers(0);    // Total number of Run Periods (Weather data) to Setup
-    int TotRunDesPers(0); // Total number of Run Design Periods (Weather data) to Setup
+    thread_local int TotRunPers(0);    // Total number of Run Periods (Weather data) to Setup
+    thread_local int TotRunDesPers(0); // Total number of Run Design Periods (Weather data) to Setup
 
-    int NumSpecialDays(0);
-    Array1D_int SpecialDayTypes(366, 0); // To hold holiday types given in input file
-    Array1D_int WeekDayTypes(366, 0);    // To hold Week day types using specified first day
-    Array1D_int DSTIndex(366, 0);        // To hold DST Index based on weather file or input
+    thread_local int NumSpecialDays(0);
+    thread_local Array1D_int SpecialDayTypes(366, 0); // To hold holiday types given in input file
+    thread_local Array1D_int WeekDayTypes(366, 0);    // To hold Week day types using specified first day
+    thread_local Array1D_int DSTIndex(366, 0);        // To hold DST Index based on weather file or input
 
-    int NumDataPeriods(0);
+    thread_local int NumDataPeriods(0);
 
-    int NumIntervalsPerHour(1);
+    thread_local int NumIntervalsPerHour(1);
 
-    bool UseDaylightSaving(true);       // True if user says to use Weather File specified DaylightSaving Period
-    bool UseSpecialDays(true);          // True if user says to use Weather File specified Special Days for current RunPeriod
-    bool UseRainValues(true);           // True if rain values from weather file are to be used
-    bool UseSnowValues(true);           // True if snow values from weather file are to be used
-    bool EPWDaylightSaving(false);      // True if a DaylightSaving Time Period is input (EPW files)
-    bool IDFDaylightSaving(false);      // True if a DaylightSaving Time Period is input (IDF files)
-    bool DaylightSavingIsActive(false); // True if a DaylightSavingPeriod should be used for Environment
-    bool WFAllowsLeapYears(false);      // True if the Weather File (WF) header has "Yes" for Leap Years
-    int WFLeapYearInd(0);               // Indicator for current Weather file "Leap Year", used in DayOfYear calculations and others.
-    int curSimDayForEndOfRunPeriod(0);  // normal=number days in sim, but different when repeating runperiods or multi-year files
-    int Envrn(0);                       // Counter for environments
-    int NumOfEnvrn(0);                  // Number of environments to be simulated
-    int NumEPWTypExtSets(0);            // Number of Typical/Extreme on weather file.
-    int NumWPSkyTemperatures(0);        // Number of WeatherProperty:SkyTemperature items in input file
+    thread_local bool UseDaylightSaving(true);       // True if user says to use Weather File specified DaylightSaving Period
+    thread_local bool UseSpecialDays(true);          // True if user says to use Weather File specified Special Days for current RunPeriod
+    thread_local bool UseRainValues(true);           // True if rain values from weather file are to be used
+    thread_local bool UseSnowValues(true);           // True if snow values from weather file are to be used
+    thread_local bool EPWDaylightSaving(false);      // True if a DaylightSaving Time Period is input (EPW files)
+    thread_local bool IDFDaylightSaving(false);      // True if a DaylightSaving Time Period is input (IDF files)
+    thread_local bool DaylightSavingIsActive(false); // True if a DaylightSavingPeriod should be used for Environment
+    thread_local bool WFAllowsLeapYears(false);      // True if the Weather File (WF) header has "Yes" for Leap Years
+    thread_local int WFLeapYearInd(0);               // Indicator for current Weather file "Leap Year", used in DayOfYear calculations and others.
+    thread_local int curSimDayForEndOfRunPeriod(0);  // normal=number days in sim, but different when repeating runperiods or multi-year files
+    thread_local int Envrn(0);                       // Counter for environments
+    thread_local int NumOfEnvrn(0);                  // Number of environments to be simulated
+    thread_local int NumEPWTypExtSets(0);            // Number of Typical/Extreme on weather file.
+    thread_local int NumWPSkyTemperatures(0);        // Number of WeatherProperty:SkyTemperature items in input file
 
-    Array2D_bool TodayIsRain;             // Rain indicator, true=rain
-    Array2D_bool TodayIsSnow;             // Snow indicator, true=snow
-    Array2D<Real64> TodayRainAmount;      // ficitious indicator of Rain
-    Array2D<Real64> TodaySnowAmount;      // ficitious indicator of Snow
-    Array2D<Real64> TodayOutDryBulbTemp;  // Dry bulb temperature of outside air
-    Array2D<Real64> TodayOutWetBulbTemp;  // Wet bulb temperature of outside air
-    Array2D<Real64> TodayOutDewPointTemp; // Dew Point Temperature of outside air
-    Array2D<Real64> TodayOutBaroPress;    // Barometric pressure of outside air
-    Array2D<Real64> TodayOutHumRat;       // Humidity ratio of outside air
-    Array2D<Real64> TodayOutRelHum;       // Relative Humidity of outside air
-    Array2D<Real64> TodayWindSpeed;       // Wind speed of outside air
-    Array2D<Real64> TodayWindDir;         // Wind direction of outside air
-    Array2D<Real64> TodaySkyTemp;         // Sky temperature
-    Array2D<Real64> TodayHorizIRSky;      // Horizontal IR from Sky
-    Array2D<Real64> TodayBeamSolarRad;    // Direct normal solar irradiance
-    Array2D<Real64> TodayDifSolarRad;     // Sky diffuse horizontal solar irradiance
-    Array2D<Real64> TodayAlbedo;          // Albedo
-    Array2D<Real64> TodayLiquidPrecip;    // Liquid Precipitation Depth (mm)
+    thread_local Array2D_bool TodayIsRain;             // Rain indicator, true=rain
+    thread_local Array2D_bool TodayIsSnow;             // Snow indicator, true=snow
+    thread_local Array2D<Real64> TodayRainAmount;      // ficitious indicator of Rain
+    thread_local Array2D<Real64> TodaySnowAmount;      // ficitious indicator of Snow
+    thread_local Array2D<Real64> TodayOutDryBulbTemp;  // Dry bulb temperature of outside air
+    thread_local Array2D<Real64> TodayOutWetBulbTemp;  // Wet bulb temperature of outside air
+    thread_local Array2D<Real64> TodayOutDewPointTemp; // Dew Point Temperature of outside air
+    thread_local Array2D<Real64> TodayOutBaroPress;    // Barometric pressure of outside air
+    thread_local Array2D<Real64> TodayOutHumRat;       // Humidity ratio of outside air
+    thread_local Array2D<Real64> TodayOutRelHum;       // Relative Humidity of outside air
+    thread_local Array2D<Real64> TodayWindSpeed;       // Wind speed of outside air
+    thread_local Array2D<Real64> TodayWindDir;         // Wind direction of outside air
+    thread_local Array2D<Real64> TodaySkyTemp;         // Sky temperature
+    thread_local Array2D<Real64> TodayHorizIRSky;      // Horizontal IR from Sky
+    thread_local Array2D<Real64> TodayBeamSolarRad;    // Direct normal solar irradiance
+    thread_local Array2D<Real64> TodayDifSolarRad;     // Sky diffuse horizontal solar irradiance
+    thread_local Array2D<Real64> TodayAlbedo;          // Albedo
+    thread_local Array2D<Real64> TodayLiquidPrecip;    // Liquid Precipitation Depth (mm)
 
-    Array2D_bool TomorrowIsRain;             // Rain indicator, true=rain
-    Array2D_bool TomorrowIsSnow;             // Snow indicator, true=snow
-    Array2D<Real64> TomorrowRainAmount;      // ficitious indicator of Rain
-    Array2D<Real64> TomorrowSnowAmount;      // ficitious indicator of Snow
-    Array2D<Real64> TomorrowOutDryBulbTemp;  // Dry bulb temperature of outside air
-    Array2D<Real64> TomorrowOutDewPointTemp; // Dew Point Temperature of outside air
-    Array2D<Real64> TomorrowOutBaroPress;    // Barometric pressure of outside air
-    Array2D<Real64> TomorrowOutRelHum;       // Relative Humidity of outside air
-    Array2D<Real64> TomorrowWindSpeed;       // Wind speed of outside air
-    Array2D<Real64> TomorrowWindDir;         // Wind direction of outside air
-    Array2D<Real64> TomorrowSkyTemp;         // Sky temperature
-    Array2D<Real64> TomorrowHorizIRSky;      // Horizontal IR from Sky
-    Array2D<Real64> TomorrowBeamSolarRad;    // Direct normal solar irradiance
-    Array2D<Real64> TomorrowDifSolarRad;     // Sky diffuse horizontal solar irradiance
-    Array2D<Real64> TomorrowAlbedo;          // Albedo
-    Array2D<Real64> TomorrowLiquidPrecip;    // Liquid Precipitation Depth
+    thread_local Array2D_bool TomorrowIsRain;             // Rain indicator, true=rain
+    thread_local Array2D_bool TomorrowIsSnow;             // Snow indicator, true=snow
+    thread_local Array2D<Real64> TomorrowRainAmount;      // ficitious indicator of Rain
+    thread_local Array2D<Real64> TomorrowSnowAmount;      // ficitious indicator of Snow
+    thread_local Array2D<Real64> TomorrowOutDryBulbTemp;  // Dry bulb temperature of outside air
+    thread_local Array2D<Real64> TomorrowOutDewPointTemp; // Dew Point Temperature of outside air
+    thread_local Array2D<Real64> TomorrowOutBaroPress;    // Barometric pressure of outside air
+    thread_local Array2D<Real64> TomorrowOutRelHum;       // Relative Humidity of outside air
+    thread_local Array2D<Real64> TomorrowWindSpeed;       // Wind speed of outside air
+    thread_local Array2D<Real64> TomorrowWindDir;         // Wind direction of outside air
+    thread_local Array2D<Real64> TomorrowSkyTemp;         // Sky temperature
+    thread_local Array2D<Real64> TomorrowHorizIRSky;      // Horizontal IR from Sky
+    thread_local Array2D<Real64> TomorrowBeamSolarRad;    // Direct normal solar irradiance
+    thread_local Array2D<Real64> TomorrowDifSolarRad;     // Sky diffuse horizontal solar irradiance
+    thread_local Array2D<Real64> TomorrowAlbedo;          // Albedo
+    thread_local Array2D<Real64> TomorrowLiquidPrecip;    // Liquid Precipitation Depth
 
-    Array3D<Real64> DDDBRngModifier;  // Design Day Dry-bulb Temperature Range Modifier
-    Array3D<Real64> DDHumIndModifier; // Design Day relative humidity values
+    thread_local Array3D<Real64> DDDBRngModifier;  // Design Day Dry-bulb Temperature Range Modifier
+    thread_local Array3D<Real64> DDHumIndModifier; // Design Day relative humidity values
     //   or wet-bulb modifiers (per HumIndType)
-    Array3D<Real64> DDBeamSolarValues;    // Design Day Beam Solar Values
-    Array3D<Real64> DDDiffuseSolarValues; // Design Day Relative Humidity Values
+    thread_local Array3D<Real64> DDBeamSolarValues;    // Design Day Beam Solar Values
+    thread_local Array3D<Real64> DDDiffuseSolarValues; // Design Day Relative Humidity Values
 
-    Array3D<Real64> DDSkyTempScheduleValues; // Sky temperature - DesignDay input
+    thread_local Array3D<Real64> DDSkyTempScheduleValues; // Sky temperature - DesignDay input
 
-    int RptIsRain(0);  // Rain Report Value
-    int RptIsSnow(0);  // Snow Report Value
-    int RptDayType(0); // DayType Report Value
+    thread_local int RptIsRain(0);  // Rain Report Value
+    thread_local int RptIsSnow(0);  // Snow Report Value
+    thread_local int RptDayType(0); // DayType Report Value
 
-    Real64 HrAngle(0.0);                                  // Current Hour Angle
-    Real64 SolarAltitudeAngle(0.0);                       // Angle of Solar Altitude (degrees)
-    Real64 SolarAzimuthAngle(0.0);                        // Angle of Solar Azimuth (degrees)
-    Real64 HorizIRSky(0.0);                               // Horizontal Infrared Radiation Intensity (W/m2)
-    Real64 TimeStepFraction(0.0);                         // Fraction of hour each time step represents
-    Array1D<Real64> SPSiteDryBulbRangeModScheduleValue;   // reporting Drybulb Temperature Range Modifier Schedule Value
-    Array1D<Real64> SPSiteHumidityConditionScheduleValue; // reporting Humidity Condition Schedule Value
-    Array1D<Real64> SPSiteBeamSolarScheduleValue;         // reporting Beam Solar Schedule Value
-    Array1D<Real64> SPSiteDiffuseSolarScheduleValue;      // reporting Diffuse Solar Schedule Value
-    Array1D<Real64> SPSiteSkyTemperatureScheduleValue;    // reporting SkyTemperature Modifier Schedule Value
-    Array1D_int SPSiteScheduleNamePtr;                    // SP Site Schedule Name Ptrs
-    Array1D_string SPSiteScheduleUnits;                   // SP Site Schedule Units
-    int NumSPSiteScheduleNamePtrs(0);                     // Number of SP Site Schedules (DesignDay only)
-    int NumMissing(0);                                    // Number of hours of missing data
-    Array1D<Real64> Interpolation;                        // Interpolation values based on Number of Time Steps in Hour
-    Array1D<Real64> SolarInterpolation;                   // Solar Interpolation values based on
+    thread_local Real64 HrAngle(0.0);                                  // Current Hour Angle
+    thread_local Real64 SolarAltitudeAngle(0.0);                       // Angle of Solar Altitude (degrees)
+    thread_local Real64 SolarAzimuthAngle(0.0);                        // Angle of Solar Azimuth (degrees)
+    thread_local Real64 HorizIRSky(0.0);                               // Horizontal Infrared Radiation Intensity (W/m2)
+    thread_local Real64 TimeStepFraction(0.0);                         // Fraction of hour each time step represents
+    thread_local Array1D<Real64> SPSiteDryBulbRangeModScheduleValue;   // reporting Drybulb Temperature Range Modifier Schedule Value
+    thread_local Array1D<Real64> SPSiteHumidityConditionScheduleValue; // reporting Humidity Condition Schedule Value
+    thread_local Array1D<Real64> SPSiteBeamSolarScheduleValue;         // reporting Beam Solar Schedule Value
+    thread_local Array1D<Real64> SPSiteDiffuseSolarScheduleValue;      // reporting Diffuse Solar Schedule Value
+    thread_local Array1D<Real64> SPSiteSkyTemperatureScheduleValue;    // reporting SkyTemperature Modifier Schedule Value
+    thread_local Array1D_int SPSiteScheduleNamePtr;                    // SP Site Schedule Name Ptrs
+    thread_local Array1D_string SPSiteScheduleUnits;                   // SP Site Schedule Units
+    thread_local int NumSPSiteScheduleNamePtrs(0);                     // Number of SP Site Schedules (DesignDay only)
+    thread_local int NumMissing(0);                                    // Number of hours of missing data
+    thread_local Array1D<Real64> Interpolation;                        // Interpolation values based on Number of Time Steps in Hour
+    thread_local Array1D<Real64> SolarInterpolation;                   // Solar Interpolation values based on
     //      Number of Time Steps in Hour
-    Array1D_int EndDayOfMonth(12, {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31});
-    bool ErrorInWeatherFile(false);           // Set to TRUE when there is a problem with dates
-    int LeapYearAdd(0);                       // Set during environment if leap year is active (adds 1 to number days in Feb)
-    bool DatesShouldBeReset(false);           // True when weekdays should be reset
-    bool StartDatesCycleShouldBeReset(false); // True when start dates on repeat should be reset
-    bool Jan1DatesShouldBeReset(false);       // True if Jan 1 should signal reset of dates
-    bool RPReadAllWeatherData(false);         // True if need to read all weather data prior to simulation
+    thread_local Array1D_int EndDayOfMonth(12, {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31});
+    thread_local bool ErrorInWeatherFile(false);           // Set to TRUE when there is a problem with dates
+    thread_local int LeapYearAdd(0);                       // Set during environment if leap year is active (adds 1 to number days in Feb)
+    thread_local bool DatesShouldBeReset(false);           // True when weekdays should be reset
+    thread_local bool StartDatesCycleShouldBeReset(false); // True when start dates on repeat should be reset
+    thread_local bool Jan1DatesShouldBeReset(false);       // True if Jan 1 should signal reset of dates
+    thread_local bool RPReadAllWeatherData(false);         // True if need to read all weather data prior to simulation
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE WeatherManager
     // PUBLIC  ProcessDateString
     // Get Input from Input File
 
     // Object Data
-    DayWeatherVariables TodayVariables; // Today's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year for weather
+    thread_local DayWeatherVariables TodayVariables; // Today's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year for weather
                                         // data | Year of weather data | Month of weather data | Day of month for weather data | Day of week for
                                         // weather data | Daylight Saving Time Period indicator (0=no,1=yes) | Holiday indicator (0=no holiday,
                                         // non-zero=holiday type) | Sine of the solar declination angle | Cosine of the solar declination angle |
                                         // Value of the equation of time formula
-    DayWeatherVariables TomorrowVariables;  // Tomorrow's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year for
+    thread_local DayWeatherVariables TomorrowVariables;  // Tomorrow's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year for
                                             // weather data | Year of weather data | Month of weather data | Day of month for weather data | Day of
                                             // week for weather data | Daylight Saving Time Period indicator (0=no,1=yes) | Holiday indicator (0=no
                                             // holiday, non-zero=holiday type) | Sine of the solar declination angle | Cosine of the solar declination
                                             // angle | Value of the equation of time formula
-    Array1D<DayWeatherVariables> DesignDay; // Design day environments
-    MissingData Missing; // Dry Bulb Temperature (C) | Dew Point Temperature (C) | Relative Humidity (%) | Atmospheric Pressure (Pa) | Wind Direction
+    thread_local Array1D<DayWeatherVariables> DesignDay; // Design day environments
+    thread_local MissingData Missing; // Dry Bulb Temperature (C) | Dew Point Temperature (C) | Relative Humidity (%) | Atmospheric Pressure (Pa) | Wind Direction
                          // (deg) | Wind Speed/Velocity (m/s) | Total Sky Cover (tenths) | Opaque Sky Cover (tenths) | Visibility (km) | Ceiling
                          // Height (m) | Precipitable Water (mm) | Aerosol Optical Depth | Snow Depth (cm) | Number of Days since last snow | Albedo |
                          // Rain/Liquid Precipitation (mm)
-    MissingDataCounts Missed;
-    RangeDataCounts OutOfRange;
-    Array1D<DesignDayData> DesDayInput;   // Design day Input Data
-    Array1D<EnvironmentData> Environment; // Environment data
-    Array1D<RunPeriodData> RunPeriodInput;
-    std::unordered_map<std::string, std::string> RunPeriodInputUniqueNames;
-    Array1D<RunPeriodData> RunPeriodDesignInput;
-    std::unordered_map<std::string, std::string> RunPeriodDesignInputUniqueNames;
-    Array1D<TypicalExtremeData> TypicalExtremePeriods;
-    DaylightSavingPeriodData EPWDST; // Daylight Saving Period Data from EPW file
-    DaylightSavingPeriodData IDFDST; // Daylight Saving Period Data from IDF file
-    DaylightSavingPeriodData DST;    // Daylight Saving Period Data, if active
-    Array1D<WeatherProperties> WPSkyTemperature;
-    Array1D<SpecialDayData> SpecialDays;
-    Array1D<DataPeriodData> DataPeriods;
+    thread_local MissingDataCounts Missed;
+    thread_local RangeDataCounts OutOfRange;
+    thread_local Array1D<DesignDayData> DesDayInput;   // Design day Input Data
+    thread_local Array1D<EnvironmentData> Environment; // Environment data
+    thread_local Array1D<RunPeriodData> RunPeriodInput;
+    thread_local std::unordered_map<std::string, std::string> RunPeriodInputUniqueNames;
+    thread_local Array1D<RunPeriodData> RunPeriodDesignInput;
+    thread_local std::unordered_map<std::string, std::string> RunPeriodDesignInputUniqueNames;
+    thread_local Array1D<TypicalExtremeData> TypicalExtremePeriods;
+    thread_local DaylightSavingPeriodData EPWDST; // Daylight Saving Period Data from EPW file
+    thread_local DaylightSavingPeriodData IDFDST; // Daylight Saving Period Data from IDF file
+    thread_local DaylightSavingPeriodData DST;    // Daylight Saving Period Data, if active
+    thread_local Array1D<WeatherProperties> WPSkyTemperature;
+    thread_local Array1D<SpecialDayData> SpecialDays;
+    thread_local Array1D<DataPeriodData> DataPeriods;
 
-    std::shared_ptr<BaseGroundTempsModel> siteShallowGroundTempsPtr;
-    std::shared_ptr<BaseGroundTempsModel> siteBuildingSurfaceGroundTempsPtr;
-    std::shared_ptr<BaseGroundTempsModel> siteFCFactorMethodGroundTempsPtr;
-    std::shared_ptr<BaseGroundTempsModel> siteDeepGroundTempsPtr;
+    thread_local std::shared_ptr<BaseGroundTempsModel> siteShallowGroundTempsPtr;
+    thread_local std::shared_ptr<BaseGroundTempsModel> siteBuildingSurfaceGroundTempsPtr;
+    thread_local std::shared_ptr<BaseGroundTempsModel> siteFCFactorMethodGroundTempsPtr;
+    thread_local std::shared_ptr<BaseGroundTempsModel> siteDeepGroundTempsPtr;
 
-    static gio::Fmt fmtA("(A)");
-    static gio::Fmt fmtAN("(A,$)");
+    thread_local static gio::Fmt fmtA("(A)");
+    thread_local static gio::Fmt fmtAN("(A,$)");
 
-    std::vector<UnderwaterBoundary> underwaterBoundaries;
-    AnnualMonthlyDryBulbWeatherData OADryBulbAverage; // processes outside air drybulb temperature
+    thread_local std::vector<UnderwaterBoundary> underwaterBoundaries;
+    thread_local AnnualMonthlyDryBulbWeatherData OADryBulbAverage; // processes outside air drybulb temperature
 
     // MODULE SUBROUTINES:
 
@@ -598,7 +598,7 @@ namespace WeatherManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static bool PrintEnvrnStamp(false); // Set to true when the environment header should be printed
+        thread_local static bool PrintEnvrnStamp(false); // Set to true when the environment header should be printed
 
         // FLOW:
 
@@ -811,21 +811,21 @@ namespace WeatherManager {
         using ThermalComfort::CalcThermalComfortAdaptiveCEN15251;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetNextEnvironment: ");
-        static gio::Fmt EnvironFormat("('! <Environment>,Environment Name,Environment Type, Start Date, End Date,',    ' Start DayOfWeek, Duration "
+        thread_local static std::string const RoutineName("GetNextEnvironment: ");
+        thread_local static gio::Fmt EnvironFormat("('! <Environment>,Environment Name,Environment Type, Start Date, End Date,',    ' Start DayOfWeek, Duration "
                                       "{#days}, Source:Start DayOfWeek, ',        ' Use Daylight Saving, Use Holidays, Apply Weekend Holiday Rule, "
                                       "',    ' Use Rain Values, Use Snow Values',/,                                 '! <Environment:Special Days>, "
                                       "Special Day Name, Special Day Type, Source, ',  'Start Date, Duration {#days}',/,                             "
                                       "         '! <Environment:Daylight Saving>, Daylight Saving Indicator, Source,',           ' Start Date, End "
                                       "Date',/,                                           '! <Environment:WarmupDays>, NumberofWarmupDays')");
-        static gio::Fmt EnvNameFormat("('Environment',12(',',A))");
-        static gio::Fmt EnvDSTNFormat("('Environment:Daylight Saving,No,',A)");
-        static gio::Fmt EnvDSTYFormat("('Environment:Daylight Saving,Yes',3(',',A))");
-        static gio::Fmt EnvSpDyFormat("('Environment:Special Days',4(',',A),',',I3)");
-        static gio::Fmt DateFormat("(I2.2,'/',I2.2)");
-        static gio::Fmt DateFormatwithYear("(I2.2,'/',I2.2,'/',I4.4)");
-        static Array1D_string const SpecialDayNames(5, {"Holiday", "SummerDesignDay", "WinterDesignDay", "CustomDay1", "CustomDay2"});
-        static Array1D_string const ValidDayNames(12,
+        thread_local static gio::Fmt EnvNameFormat("('Environment',12(',',A))");
+        thread_local static gio::Fmt EnvDSTNFormat("('Environment:Daylight Saving,No,',A)");
+        thread_local static gio::Fmt EnvDSTYFormat("('Environment:Daylight Saving,Yes',3(',',A))");
+        thread_local static gio::Fmt EnvSpDyFormat("('Environment:Special Days',4(',',A),',',I3)");
+        thread_local static gio::Fmt DateFormat("(I2.2,'/',I2.2)");
+        thread_local static gio::Fmt DateFormatwithYear("(I2.2,'/',I2.2,'/',I4.4)");
+        thread_local static Array1D_string const SpecialDayNames(5, {"Holiday", "SummerDesignDay", "WinterDesignDay", "CustomDay1", "CustomDay2"});
+        thread_local static Array1D_string const ValidDayNames(12,
                                                   {"Sunday",
                                                    "Monday",
                                                    "Tuesday",
@@ -1811,7 +1811,7 @@ namespace WeatherManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SetDSTDateRanges: ");
+        thread_local static std::string const RoutineName("SetDSTDateRanges: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1935,7 +1935,7 @@ namespace WeatherManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SetSpecialDayDates: ");
+        thread_local static std::string const RoutineName("SetSpecialDayDates: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2059,8 +2059,8 @@ namespace WeatherManager {
         int Loop;
         int FirstSimDayofYear; // Variable which tells when to skip the day in a multi year simulation.
 
-        static bool FirstCall(true);                 // Some things should only be done once
-        static bool WaterMainsParameterReport(true); // should only be done once
+        thread_local static bool FirstCall(true);                 // Some things should only be done once
+        thread_local static bool WaterMainsParameterReport(true); // should only be done once
         //  LOGICAL, SAVE :: SetYear=.TRUE.
         int JDay5Start;
         int JDay5End;
@@ -2464,13 +2464,13 @@ namespace WeatherManager {
         using namespace GroundTemperatureManager;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static char time_stamp[10];
-        static char day_stamp[6];
-        static char day_year_stamp[11];
-        static std::string const RoutineName("SetCurrentWeather");
+        thread_local static char time_stamp[10];
+        thread_local static char day_stamp[6];
+        thread_local static char day_year_stamp[11];
+        thread_local static std::string const RoutineName("SetCurrentWeather");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int NextHour;
+        thread_local static int NextHour;
         Real64 TempVal;
         Real64 TempDPVal;
 
@@ -2707,9 +2707,9 @@ namespace WeatherManager {
         using ScheduleManager::GetScheduleValuesForDay;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtLD("*");
-        static gio::Fmt YMDHFmt("(I4.4,2('/',I2.2),1X,I2.2,':',I2.2)");
-        static gio::Fmt YMDHFmt1("(I4.4,2('/',I2.2),1X,'hour=',I2.2,' - expected hour=',I2.2)");
+        thread_local static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt YMDHFmt("(I4.4,2('/',I2.2),1X,I2.2,':',I2.2)");
+        thread_local static gio::Fmt YMDHFmt1("(I4.4,2('/',I2.2),1X,'hour=',I2.2,' - expected hour=',I2.2)");
 
         // DERIVED TYPE DEFINITIONS:
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
@@ -2758,43 +2758,43 @@ namespace WeatherManager {
         Real64 C;
         Real64 AVSC;
         Real64 SkyTemp;
-        static int CurDayOfWeek;
-        static bool UseDayOfWeek;
+        thread_local static int CurDayOfWeek;
+        thread_local static bool UseDayOfWeek;
         bool SkipThisDay; // Used when LeapYear is/is not in effect
         bool TryAgain;
         int ReadStatus;
         int NumRewinds;
         std::string BadRecord;
         bool ErrorsFound;
-        static Real64 CurTime;
+        thread_local static Real64 CurTime;
         Real64 HourRep;
         int OSky;
         Real64 TDewK;
         Real64 ESky;
         bool ErrorFound;
         std::string ErrOut;
-        static bool LastHourSet; // for Interpolation
+        thread_local static bool LastHourSet; // for Interpolation
         int NxtHour;
         Real64 WtNow;
         Real64 WtPrevHour;
         Real64 WgtHourNow;
         Real64 WgtPrevHour;
         Real64 WgtNextHour;
-        static Real64 LastHrOutDryBulbTemp;
-        static Real64 LastHrOutDewPointTemp;
-        static Real64 LastHrOutBaroPress;
-        static Real64 LastHrOutRelHum;
-        static Real64 LastHrWindSpeed;
-        static Real64 LastHrWindDir;
-        static Real64 LastHrSkyTemp;
-        static Real64 LastHrHorizIRSky;
-        static Real64 LastHrBeamSolarRad;
-        static Real64 LastHrDifSolarRad;
-        static Real64 LastHrAlbedo;
-        static Real64 LastHrLiquidPrecip;
-        static Real64 NextHrBeamSolarRad;
-        static Real64 NextHrDifSolarRad;
-        static Real64 NextHrLiquidPrecip;
+        thread_local static Real64 LastHrOutDryBulbTemp;
+        thread_local static Real64 LastHrOutDewPointTemp;
+        thread_local static Real64 LastHrOutBaroPress;
+        thread_local static Real64 LastHrOutRelHum;
+        thread_local static Real64 LastHrWindSpeed;
+        thread_local static Real64 LastHrWindDir;
+        thread_local static Real64 LastHrSkyTemp;
+        thread_local static Real64 LastHrHorizIRSky;
+        thread_local static Real64 LastHrBeamSolarRad;
+        thread_local static Real64 LastHrDifSolarRad;
+        thread_local static Real64 LastHrAlbedo;
+        thread_local static Real64 LastHrLiquidPrecip;
+        thread_local static Real64 NextHrBeamSolarRad;
+        thread_local static Real64 NextHrDifSolarRad;
+        thread_local static Real64 NextHrLiquidPrecip;
         bool RecordDateMatch;
 
         struct HourlyWeatherData
@@ -3823,9 +3823,9 @@ namespace WeatherManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const ValidDigits("0123456789");
-        static gio::Fmt fmtLD("*");
-        static gio::Fmt fmt9I1("(9I1)");
+        thread_local static std::string const ValidDigits("0123456789");
+        thread_local static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmt9I1("(9I1)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -3844,7 +3844,7 @@ namespace WeatherManager {
         std::string DateError;
         Real64 RField21;
         int Count;
-        static int LCount(0);
+        thread_local static int LCount(0);
         bool DateInError;
 
         ++LCount;
@@ -4127,14 +4127,14 @@ namespace WeatherManager {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const GlobalSolarConstant(1367.0);
         Real64 const ZHGlobalSolarConstant(1355.0);
-        static gio::Fmt EnvDDHdFormat("('! <Environment:Design Day Data>, Max Dry-Bulb Temp {C}, ',   'Temp Range {dC}, Temp Range Ind Type, ',   "
+        thread_local static gio::Fmt EnvDDHdFormat("('! <Environment:Design Day Data>, Max Dry-Bulb Temp {C}, ',   'Temp Range {dC}, Temp Range Ind Type, ',   "
                                       "'Hum Ind Value at Max Temp, Hum Ind Type,Pressure {Pa}, ',   'Wind Direction {deg CW from N}, ',    'Wind "
                                       "Speed {m/s}, Clearness, Rain, Snow')");
-        static gio::Fmt EnvDDayFormat("('Environment:Design Day Data,')");
-        static gio::Fmt DDayMiscHdFormat("('! <Environment:Design Day Misc>,DayOfYear,ASHRAE A Coeff,',   'ASHRAE B Coeff,ASHRAE C Coeff,Solar "
+        thread_local static gio::Fmt EnvDDayFormat("('Environment:Design Day Data,')");
+        thread_local static gio::Fmt DDayMiscHdFormat("('! <Environment:Design Day Misc>,DayOfYear,ASHRAE A Coeff,',   'ASHRAE B Coeff,ASHRAE C Coeff,Solar "
                                          "Constant-Annual Variation,',   'Eq of Time {minutes}, Solar Declination Angle {deg}, Solar Model')");
-        static gio::Fmt DDayMiscFormat("('Environment:Design Day Misc,',I3,',')");
-        static gio::Fmt MnDyFmt("(I2.2,'/',I2.2)");
+        thread_local static gio::Fmt DDayMiscFormat("('Environment:Design Day Misc,',I3,',')");
+        thread_local static gio::Fmt MnDyFmt("(I2.2,'/',I2.2)");
         Real64 const ZhangHuangModCoeff_C0(0.5598);   // 37.6865d0
         Real64 const ZhangHuangModCoeff_C1(0.4982);   // 13.9263d0
         Real64 const ZhangHuangModCoeff_C2(-0.6762);  // -20.2354d0
@@ -4143,11 +4143,11 @@ namespace WeatherManager {
         Real64 const ZhangHuangModCoeff_C5(0.014);    // -0.0980d0
         Real64 const ZhangHuangModCoeff_D(-17.853);   // -10.8568d0
         Real64 const ZhangHuangModCoeff_K(0.843);     // 49.3112d0
-        static std::string const RoutineNamePsyWFnTdbTwbPb("SetUpDesignDay:PsyWFnTdbTwbPb");
-        static std::string const RoutineNamePsyWFnTdpPb("SetUpDesignDay:PsyWFnTdpPb");
-        static std::string const RoutineNamePsyWFnTdbH("SetUpDesignDay:PsyWFnTdbH");
-        static std::string const WeatherManager("WeatherManager");
-        static std::string const RoutineNameLong("WeatherManager.cc subroutine SetUpDesignDay");
+        thread_local static std::string const RoutineNamePsyWFnTdbTwbPb("SetUpDesignDay:PsyWFnTdbTwbPb");
+        thread_local static std::string const RoutineNamePsyWFnTdpPb("SetUpDesignDay:PsyWFnTdpPb");
+        thread_local static std::string const RoutineNamePsyWFnTdbH("SetUpDesignDay:PsyWFnTdbH");
+        thread_local static std::string const WeatherManager("WeatherManager");
+        thread_local static std::string const RoutineNameLong("WeatherManager.cc subroutine SetUpDesignDay");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Hour;
@@ -4174,7 +4174,7 @@ namespace WeatherManager {
         Real64 WBRange;       // working copy of wet-bulb daily range. C (or 1 if input is difference)
 
         Array1D_int Date0(8);
-        static bool PrintDDHeader;
+        thread_local static bool PrintDDHeader;
         std::string AlpUseRain;
         std::string AlpUseSnow;
         bool ConstantHumidityRatio;
@@ -4989,29 +4989,29 @@ namespace WeatherManager {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const DayCorrection(Pi * 2.0 / 366.0);
 
-        static Array1D<Real64> const SineSolDeclCoef(
+        thread_local static Array1D<Real64> const SineSolDeclCoef(
             9, {0.00561800, 0.0657911, -0.392779, 0.00064440, -0.00618495, -0.00010101, -0.00007951, -0.00011691, 0.00002096}); // Fitted coefficients
                                                                                                                                 // of Fourier series |
                                                                                                                                 // Sine of declination
                                                                                                                                 // coefficients
-        static Array1D<Real64> const EqOfTimeCoef(
+        thread_local static Array1D<Real64> const EqOfTimeCoef(
             9, {0.00021971, -0.122649, 0.00762856, -0.156308, -0.0530028, -0.00388702, -0.00123978, -0.00270502, -0.00167992}); // Fitted coefficients
                                                                                                                                 // of Fourier Series |
                                                                                                                                 // Equation of Time
                                                                                                                                 // coefficients
-        static Array1D<Real64> const ASHRAE_A_Coef(
+        thread_local static Array1D<Real64> const ASHRAE_A_Coef(
             9, {1161.6685, 1.1554, 77.3575, -0.5359, -3.7622, 0.9875, -3.3924, -1.7445, 1.1198}); // Fitted coefficients of Fourier Series | ASHRAE A
                                                                                                   // Factor coefficients
                                                                                                   // English (original) units:
         //              368.49341,.366502,24.538624,-.169983,-1.193417,            &
         //              .313261,-1.076093,-.543376,.355197 ,                       &
 
-        static Array1D<Real64> const ASHRAE_B_Coef(
+        thread_local static Array1D<Real64> const ASHRAE_B_Coef(
             9, {0.171631, -0.00400448, -0.0344923, 0.00000209, 0.00325428, -0.00085429, 0.00229562, 0.0009034, -0.0011867}); // Fitted coefficients of
                                                                                                                              // Fourier Series |
                                                                                                                              // ASHRAE B Factor
                                                                                                                              // coefficients
-        static Array1D<Real64> const ASHRAE_C_Coef(
+        thread_local static Array1D<Real64> const ASHRAE_C_Coef(
             9, {0.0905151, -0.00322522, -0.0407966, 0.000104164, 0.00745899, -0.00086461, 0.0013111, 0.000808275, -0.00170515}); // Fitted
                                                                                                                                  // coefficients of
                                                                                                                                  // Fourier Series |
@@ -5299,7 +5299,7 @@ namespace WeatherManager {
         // List directed reads, as possible.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const Header(8,
+        thread_local static Array1D_string const Header(8,
                                            {"LOCATION",
                                             "DESIGN CONDITIONS",
                                             "TYPICAL/EXTREME PERIODS",
@@ -5456,9 +5456,9 @@ namespace WeatherManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt LocHdFormat("('! <Site:Location>, Location Name, Latitude {N+/S- Deg}, Longitude {E+/W- Deg}, ',   ' Time Zone Number "
+        thread_local static gio::Fmt LocHdFormat("('! <Site:Location>, Location Name, Latitude {N+/S- Deg}, Longitude {E+/W- Deg}, ',   ' Time Zone Number "
                                     "{GMT+/-}, Elevation {m}, ',   ' Standard Pressure at Elevation {Pa}, Standard RhoAir at Elevation')");
-        static gio::Fmt LocFormat("('Site:Location',7(',',A))");
+        thread_local static gio::Fmt LocFormat("('Site:Location',7(',',A))");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -5728,14 +5728,14 @@ namespace WeatherManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         // Format descriptor for the environment title
-        static gio::Fmt A("(a)");
-        static std::string EnvironmentString(",5,Environment Title[],Latitude[deg],Longitude[deg],Time Zone[],Elevation[m]");
-        static std::string TimeStepString(
+        thread_local static gio::Fmt A("(a)");
+        thread_local static std::string EnvironmentString(",5,Environment Title[],Latitude[deg],Longitude[deg],Time Zone[],Elevation[m]");
+        thread_local static std::string TimeStepString(
             ",8,Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],Hour[],StartMinute[],EndMinute[],DayType");
-        static std::string DailyString(",5,Cumulative Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],DayType  ! When Daily ");
-        static std::string MonthlyString(",2,Cumulative Days of Simulation[],Month[]  ! When Monthly ");
-        static std::string RunPeriodString(",1,Cumulative Days of Simulation[] ! When Run Period ");
-        static std::string YearlyString(",1,Calendar Year of Simulation[] ! When Annual ");
+        thread_local static std::string DailyString(",5,Cumulative Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],DayType  ! When Daily ");
+        thread_local static std::string MonthlyString(",2,Cumulative Days of Simulation[],Month[]  ! When Monthly ");
+        thread_local static std::string RunPeriodString(",1,Cumulative Days of Simulation[] ! When Run Period ");
+        thread_local static std::string YearlyString(",1,Calendar Year of Simulation[] ! When Annual ");
 
         AssignReportNumber(EnvironmentReportNbr);
         if (EnvironmentReportNbr != 1) { //  problem
@@ -5808,8 +5808,8 @@ namespace WeatherManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt EndOfHeaderFormat("('End of Data Dictionary')");          // End of data dictionary marker
-        static gio::Fmt EnvironmentStampFormat("(a,',',a,3(',',f7.2),',',f7.2)"); // Format descriptor for environ stamp
+        thread_local static gio::Fmt EndOfHeaderFormat("('End of Data Dictionary')");          // End of data dictionary marker
+        thread_local static gio::Fmt EnvironmentStampFormat("(a,',',a,3(',',f7.2),',',f7.2)"); // Format descriptor for environ stamp
         //  CHARACTER(len=*), PARAMETER :: TimeStampFormat = "(i3,',',i4,',',i2,',',i2,',',i2)" ! Format descriptor for the date/time stamp
 
         // INTERFACE BLOCK SPECIFICATIONS:
@@ -5874,7 +5874,7 @@ namespace WeatherManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Env; // Environment Loop Counter
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         int RPD1;
         int RPD2;
 
@@ -5978,7 +5978,7 @@ namespace WeatherManager {
         // the date with the weekday specified.
 
         // Tu, W, Th, F, Sa, Su, M, Tu, W, Th, F, Sa, Su
-        static std::array<int, 13> defaultYear{{2013, 2014, 2015, 2010, 2011, 2017, 2007, 2013, 2014, 2015, 2010, 2011, 2017}};
+        thread_local static std::array<int, 13> defaultYear{{2013, 2014, 2015, 2010, 2011, 2017, 2007, 2013, 2014, 2015, 2010, 2011, 2017}};
 
         int rem = calculateDayOfYear(month, day) % 7;
         return defaultYear[static_cast<int>(weekday) - rem + 5]; // static_cast<int>(weekday) - rem + 1 + 4
@@ -5990,7 +5990,7 @@ namespace WeatherManager {
         // the date with the weekday specified.
 
         // Tu, W, Th, F, Sa, Su, M, Tu, W, Th, F, Sa, Su
-        static std::array<int, 13> defaultLeapYear{{2008, 1992, 2004, 2016, 2000, 2012, 1996, 2008, 1992, 2004, 2016, 2000, 2012}};
+        thread_local static std::array<int, 13> defaultLeapYear{{2008, 1992, 2004, 2016, 2000, 2012, 1996, 2008, 1992, 2004, 2016, 2000, 2012}};
 
         int rem = calculateDayOfYear(month, day, true) % 7;
         return defaultLeapYear[static_cast<int>(weekday) - rem + 5]; // static_cast<int>(weekday) - rem + 1 + 4
@@ -6364,7 +6364,7 @@ namespace WeatherManager {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const ValidNames(12,
+        thread_local static Array1D_string const ValidNames(12,
                                                {"SUNDAY",
                                                 "MONDAY",
                                                 "TUESDAY",
@@ -6661,7 +6661,7 @@ namespace WeatherManager {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const ValidDayTypes(5, {"HOLIDAY", "SUMMERDESIGNDAY", "WINTERDESIGNDAY", "CUSTOMDAY1", "CUSTOMDAY2"});
+        thread_local static Array1D_string const ValidDayTypes(5, {"HOLIDAY", "SUMMERDESIGNDAY", "WINTERDESIGNDAY", "CUSTOMDAY1", "CUSTOMDAY2"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Array1D_string AlphArray(3);
@@ -6937,7 +6937,7 @@ namespace WeatherManager {
         using namespace OutputReportPredefined;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const ValidNames(12,
+        thread_local static Array1D_string const ValidNames(12,
                                                {"SUNDAY",
                                                 "MONDAY",
                                                 "TUESDAY",
@@ -6950,7 +6950,7 @@ namespace WeatherManager {
                                                 "WINTERDESIGNDAY",
                                                 "CUSTOMDAY1",
                                                 "CUSTOMDAY2"});
-        static Array1D_string const HumidityIndicatingType({0, DDHumIndType_Count - 1},
+        thread_local static Array1D_string const HumidityIndicatingType({0, DDHumIndType_Count - 1},
                                                            {"Wetbulb [C]",
                                                             "Dewpoint [C]",
                                                             "Enthalpy [J/kg]",
@@ -6963,7 +6963,7 @@ namespace WeatherManager {
         //  REAL(r64), PARAMETER, DIMENSION(24) :: DefaultTempRangeMult=(/ .87d0,.92d0,.96d0,.99d0,1.0d0,.98d0,.93d0,  &
         //                   .84d0,.71d0,.56d0,.39d0,.23d0, .11d0,.03d0,.00d0,.03d0,.10d0,.21d0,.34d0,.47d0,.58d0,.68d0,.76d0,.82d0 /)
         // Below are the 2009 fractions, HOF, Chap 14, Table 6
-        static Array1D<Real64> const DefaultTempRangeMult(24, {0.88, 0.92, 0.95, 0.98, 1.0,  0.98, 0.91, 0.74, 0.55, 0.38, 0.23, 0.13,
+        thread_local static Array1D<Real64> const DefaultTempRangeMult(24, {0.88, 0.92, 0.95, 0.98, 1.0,  0.98, 0.91, 0.74, 0.55, 0.38, 0.23, 0.13,
                                                                0.05, 0.00, 0.00, 0.06, 0.14, 0.24, 0.39, 0.50, 0.59, 0.68, 0.75, 0.82});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
@@ -7812,7 +7812,7 @@ namespace WeatherManager {
         using General::FindNumberInList;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetWeatherProperties:");
+        thread_local static std::string const RoutineName("GetWeatherProperties:");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Item;
@@ -7998,7 +7998,7 @@ namespace WeatherManager {
         using namespace GroundTemperatureManager;
 
         // Formats
-        static gio::Fmt Format_720("(' ',A,12(', ',F6.2))");
+        thread_local static gio::Fmt Format_720("(' ',A,12(', ',F6.2))");
 
         // FLOW:
         // Initialize Site:GroundTemperature:BuildingSurface object
@@ -8052,7 +8052,7 @@ namespace WeatherManager {
         Array1D<Real64> GndProps; // Temporary array to transfer ground reflectances
 
         // Formats
-        static gio::Fmt Format_720("(' Site:GroundReflectance',12(', ',F5.2))");
+        thread_local static gio::Fmt Format_720("(' Site:GroundReflectance',12(', ',F5.2))");
 
         // FLOW:
         cCurrentModuleObject = "Site:GroundReflectance";
@@ -8118,8 +8118,8 @@ namespace WeatherManager {
         Array1D<Real64> GndProps; // Temporary array to transfer ground reflectances
 
         // Formats
-        static gio::Fmt Format_720("(' Site:GroundReflectance:SnowModifier',2(', ',F7.3))");
-        static gio::Fmt Format_721("(A,12(', ',F5.2))");
+        thread_local static gio::Fmt Format_720("(' Site:GroundReflectance:SnowModifier',2(', ',F7.3))");
+        thread_local static gio::Fmt Format_721("(A,12(', ',F5.2))");
 
         // FLOW:
         cCurrentModuleObject = "Site:GroundReflectance:SnowModifier";
@@ -8374,7 +8374,7 @@ namespace WeatherManager {
         Real64 WeatherFileTempSensorHeight; // Height of the air temperature sensor at the weather station (m)
 
         // Formats
-        static gio::Fmt Format_720("('Environment:Weather Station',6(',',A))");
+        thread_local static gio::Fmt Format_720("('Environment:Weather Station',6(',',A))");
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         // na
@@ -8519,17 +8519,17 @@ namespace WeatherManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D<Real64> const ADiffLumEff(
+        thread_local static Array1D<Real64> const ADiffLumEff(
             8, {97.24, 107.22, 104.97, 102.39, 100.71, 106.42, 141.88, 152.23}); // Diffuse luminous efficacy coefficients
-        static Array1D<Real64> const BDiffLumEff(8, {-0.46, 1.15, 2.96, 5.59, 5.94, 3.83, 1.90, 0.35});
-        static Array1D<Real64> const CDiffLumEff(8, {12.00, 0.59, -5.53, -13.95, -22.75, -36.15, -53.24, -45.27});
-        static Array1D<Real64> const DDiffLumEff(8, {-8.91, -3.95, -8.77, -13.90, -23.74, -28.83, -14.03, -7.98});
-        static Array1D<Real64> const ADirLumEff(
+        thread_local static Array1D<Real64> const BDiffLumEff(8, {-0.46, 1.15, 2.96, 5.59, 5.94, 3.83, 1.90, 0.35});
+        thread_local static Array1D<Real64> const CDiffLumEff(8, {12.00, 0.59, -5.53, -13.95, -22.75, -36.15, -53.24, -45.27});
+        thread_local static Array1D<Real64> const DDiffLumEff(8, {-8.91, -3.95, -8.77, -13.90, -23.74, -28.83, -14.03, -7.98});
+        thread_local static Array1D<Real64> const ADirLumEff(
             8, {57.20, 98.99, 109.83, 110.34, 106.36, 107.19, 105.75, 101.18}); // Direct luminous efficacy coefficients
-        static Array1D<Real64> const BDirLumEff(8, {-4.55, -3.46, -4.90, -5.84, -3.97, -1.25, 0.77, 1.58});
-        static Array1D<Real64> const CDirLumEff(8, {-2.98, -1.21, -1.71, -1.99, -1.75, -1.51, -1.26, -1.10});
-        static Array1D<Real64> const DDirLumEff(8, {117.12, 12.38, -8.81, -4.56, -6.16, -26.73, -34.44, -8.29});
-        static Array1D<Real64> const ExtraDirNormIll(12,
+        thread_local static Array1D<Real64> const BDirLumEff(8, {-4.55, -3.46, -4.90, -5.84, -3.97, -1.25, 0.77, 1.58});
+        thread_local static Array1D<Real64> const CDirLumEff(8, {-2.98, -1.21, -1.71, -1.99, -1.75, -1.51, -1.26, -1.10});
+        thread_local static Array1D<Real64> const DDirLumEff(8, {117.12, 12.38, -8.81, -4.56, -6.16, -26.73, -34.44, -8.29});
+        thread_local static Array1D<Real64> const ExtraDirNormIll(12,
                                                      {131153.0,
                                                       130613.0,
                                                       128992.0,
@@ -8699,10 +8699,10 @@ namespace WeatherManager {
         // Using/Aliasing
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtLD("*");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string Title;
+        thread_local static std::string Title;
         int Count;
         std::string WMO;
         std::string::size_type Pos;
@@ -9405,7 +9405,7 @@ namespace WeatherManager {
         // List directed reads, as possible.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const Header("DATA PERIODS");
+        thread_local static std::string const Header("DATA PERIODS");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         std::string::size_type Pos;
@@ -9529,12 +9529,12 @@ namespace WeatherManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const MissString("Missing Data Found on Weather Data File");
-        static gio::Fmt msFmt("('Missing ',A,', Number of items=',I5)");
-        static std::string const InvString("Invalid Data Found on Weather Data File");
-        static gio::Fmt ivFmt("('Invalid ',A,', Number of items=',I5)");
-        static std::string const RangeString("Out of Range Data Found on Weather Data File");
-        static gio::Fmt rgFmt("('Out of Range ',A,' [',A,',',A,'], Number of items=',I5)");
+        thread_local static std::string const MissString("Missing Data Found on Weather Data File");
+        thread_local static gio::Fmt msFmt("('Missing ',A,', Number of items=',I5)");
+        thread_local static std::string const InvString("Invalid Data Found on Weather Data File");
+        thread_local static gio::Fmt ivFmt("('Invalid ',A,', Number of items=',I5)");
+        thread_local static std::string const RangeString("Out of Range Data Found on Weather Data File");
+        thread_local static gio::Fmt rgFmt("('Out of Range ',A,' [',A,',',A,'], Number of items=',I5)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -10351,7 +10351,7 @@ namespace WeatherManager {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        static std::array<int, 12> daysbefore{{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}};
+        thread_local static std::array<int, 12> daysbefore{{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}};
 
         // Could probably do some bounds checking here, but for now assume the month is in [1, 12]
         return daysbefore[Month - 1] + Day;
@@ -10379,8 +10379,8 @@ namespace WeatherManager {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        static std::array<int, 12> daysbefore{{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}};
-        static std::array<int, 12> daysbeforeleap{{0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335}};
+        thread_local static std::array<int, 12> daysbefore{{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}};
+        thread_local static std::array<int, 12> daysbeforeleap{{0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335}};
 
         // Could probably do some bounds checking here, but for now assume the month is in [1, 12]
         if (leapYear) {
@@ -10465,7 +10465,7 @@ namespace WeatherManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -10480,9 +10480,9 @@ namespace WeatherManager {
         Real64 MonthlyDailyDryBulbMax(-200.0);                     // monthly-daily maximum outside air dry-bulb temperature
         Real64 MonthlyDailyDryBulbAvg(0.0);                        // monthly-daily average outside air dry-bulb temperature
         Real64 AnnualDailyAverageDryBulbTempSum(0.0);              // annual sum of daily average outside air dry-bulb temperature
-        static Real64 DailyAverageDryBulbTemp(0.0);                // daily average outside air dry-bulb temperature
-        static Array1D<Real64> MonthlyAverageDryBulbTemp(12, 0.0); // monthly-daily average outside air temperature
-        static Array1D<int> EndDayOfMonthLocal(12, 0);             // number of days in each month
+        thread_local static Real64 DailyAverageDryBulbTemp(0.0);                // daily average outside air dry-bulb temperature
+        thread_local static Array1D<Real64> MonthlyAverageDryBulbTemp(12, 0.0); // monthly-daily average outside air temperature
+        thread_local static Array1D<int> EndDayOfMonthLocal(12, 0);             // number of days in each month
         std::string lineIn;
         std::string lineAvg;
         std::string epwLine;

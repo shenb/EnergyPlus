@@ -110,29 +110,29 @@ namespace Psychrometrics {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
     // call for recurring errors
-    int const iPsyTdpFnTdbTwbPb(1);
-    int const iPsyRhFnTdbWPb(2);
-    int const iPsyTwbFnTdbWPb(3);
-    int const iPsyTwbFnTdbWPb2(14);
-    int const iPsyTwbFnTdbWPb3(15); // convergence
-    int const iPsyVFnTdbWPb(4);
-    int const iPsyWFnTdpPb(5);
-    int const iPsyWFnTdbH(6);
-    int const iPsyWFnTdbTwbPb(7);
-    int const iPsyWFnTdbTwbPb2(16);
-    int const iPsyWFnTdbRhPb(8);
-    int const iPsyPsatFnTemp(9);
-    int const iPsyTsatFnHPb(10);
-    int const iPsyTsatFnPb(11);
-    int const iPsyTsatFnPb2(17); // iterations
-    int const iPsyRhFnTdbRhov(12);
-    int const iPsyRhFnTdbRhovLBnd0C(13);
-    int const iPsyTwbFnTdbWPb_cache(18);
-    int const iPsyPsatFnTemp_cache(19);
-    int const NumPsychMonitors(19); // Parameterization of Number of psychrometric routines that
-    std::string const blank_string;
+    thread_local int const iPsyTdpFnTdbTwbPb(1);
+    thread_local int const iPsyRhFnTdbWPb(2);
+    thread_local int const iPsyTwbFnTdbWPb(3);
+    thread_local int const iPsyTwbFnTdbWPb2(14);
+    thread_local int const iPsyTwbFnTdbWPb3(15); // convergence
+    thread_local int const iPsyVFnTdbWPb(4);
+    thread_local int const iPsyWFnTdpPb(5);
+    thread_local int const iPsyWFnTdbH(6);
+    thread_local int const iPsyWFnTdbTwbPb(7);
+    thread_local int const iPsyWFnTdbTwbPb2(16);
+    thread_local int const iPsyWFnTdbRhPb(8);
+    thread_local int const iPsyPsatFnTemp(9);
+    thread_local int const iPsyTsatFnHPb(10);
+    thread_local int const iPsyTsatFnPb(11);
+    thread_local int const iPsyTsatFnPb2(17); // iterations
+    thread_local int const iPsyRhFnTdbRhov(12);
+    thread_local int const iPsyRhFnTdbRhovLBnd0C(13);
+    thread_local int const iPsyTwbFnTdbWPb_cache(18);
+    thread_local int const iPsyPsatFnTemp_cache(19);
+    thread_local int const NumPsychMonitors(19); // Parameterization of Number of psychrometric routines that
+    thread_local std::string const blank_string;
 #ifdef EP_psych_stats
     Array1D_string const PsyRoutineNames(NumPsychMonitors,
                                          {"PsyTdpFnTdbTwbPb",
@@ -190,22 +190,22 @@ namespace Psychrometrics {
 #endif
 
 #ifdef EP_cache_PsyTwbFnTdbWPb
-    int const twbcache_size(1024 * 1024);
-    int const twbprecision_bits(20);
+    thread_local int const twbcache_size(1024 * 1024);
+    thread_local int const twbprecision_bits(20);
 #endif
 #ifdef EP_cache_PsyPsatFnTemp
-    int const psatcache_size(1024 * 1024);
-    int const psatprecision_bits(24); // 28  // 24  // 32
-    Int64 const psatcache_mask(psatcache_size - 1);
+    thread_local int const psatcache_size(1024 * 1024);
+    thread_local int const psatprecision_bits(24); // 28  // 24  // 32
+    thread_local Int64 const psatcache_mask(psatcache_size - 1);
 #endif
 
     // MODULE VARIABLE DECLARATIONS:
     // na
 
     // MODULE VARIABLE DEFINITIONS:
-    std::string String;
-    bool ReportErrors(true);
-    Array1D_int iPsyErrIndex(NumPsychMonitors, 0); // Number of times error occurred
+    thread_local std::string String;
+    thread_local bool ReportErrors(true);
+    thread_local Array1D_int iPsyErrIndex(NumPsychMonitors, 0); // Number of times error occurred
 #ifdef EP_psych_stats
     Array1D<Int64> NumTimesCalled(NumPsychMonitors, 0);
     Array1D_int NumIterations(NumPsychMonitors, 0);
@@ -213,10 +213,10 @@ namespace Psychrometrics {
 
     // Object Data
 #ifdef EP_cache_PsyTwbFnTdbWPb
-    Array1D<cached_twb_t> cached_Twb; // DIMENSION(0:twbcache_size)
+    thread_local Array1D<cached_twb_t> cached_Twb; // DIMENSION(0:twbcache_size)
 #endif
 #ifdef EP_cache_PsyPsatFnTemp
-    Array1D<cached_psat_t> cached_Psat; // DIMENSION(0:psatcache_size)
+    thread_local Array1D<cached_psat_t> cached_Psat; // DIMENSION(0:psatcache_size)
 #endif
 
     // Subroutine Specifications for the Module
@@ -311,8 +311,8 @@ namespace Psychrometrics {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtLD("*");
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtLD("*");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -553,9 +553,9 @@ namespace Psychrometrics {
 
         // FUNCTION PARAMETER DEFINITIONS:
         int const itmax(100); // Maximum No of Iterations
-        static Real64 convTol(0.0001);
-        static std::string const RoutineName("PsyTwbFnTdbWPb");
-        static gio::Fmt fmtLD("*");
+        thread_local static Real64 convTol(0.0001);
+        thread_local static std::string const RoutineName("PsyTwbFnTdbWPb");
+        thread_local static gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -565,8 +565,8 @@ namespace Psychrometrics {
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
         Real64 tBoil;                       // Boiling temperature of water at given pressure
-        static Real64 last_Patm(-99999.0);  // barometric pressure {Pascals}  (last)
-        static Real64 last_tBoil(-99999.0); // Boiling temperature of water at given pressure (last)
+        thread_local static Real64 last_Patm(-99999.0);  // barometric pressure {Pascals}  (last)
+        thread_local static Real64 last_tBoil(-99999.0); // Boiling temperature of water at given pressure (last)
         Real64 newW;                        // Humidity ratio calculated with wet bulb guess
         Real64 W;                           // Humidity ratio entered and corrected as necessary
         Real64 ResultX;                     // ResultX is the final Iteration result passed back to the calling routine
@@ -1383,7 +1383,7 @@ namespace Psychrometrics {
         // FUNCTION PARAMETER DEFINITIONS:
         int const itmax(50); // Maximum number of iterations
         Real64 const convTol(0.0001);
-        static std::string const RoutineName("PsyTsatFnPb");
+        thread_local static std::string const RoutineName("PsyTsatFnPb");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1393,8 +1393,8 @@ namespace Psychrometrics {
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
         bool FlagError; // set when errors should be flagged
-        static Real64 Press_Save(-99999.0);
-        static Real64 tSat_Save(-99999.0);
+        thread_local static Real64 Press_Save(-99999.0);
+        thread_local static Real64 tSat_Save(-99999.0);
         Real64 tSat; // Water temperature guess
         int iter;    // Iteration counter
 

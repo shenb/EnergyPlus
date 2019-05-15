@@ -66,37 +66,37 @@ namespace WaterToAirHeatPumpSimple {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern Real64 const CelsiustoKelvin; // Conversion from Celsius to Kelvin
+    thread_local extern Real64 const CelsiustoKelvin; // Conversion from Celsius to Kelvin
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumWatertoAirHPs; // The Number of Water to Air Heat Pumps found in the Input
+    thread_local extern int NumWatertoAirHPs; // The Number of Water to Air Heat Pumps found in the Input
     // INTEGER        :: WaterIndex = 0                   ! Water index
     // INTEGER        :: Count = 0
-    extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
-    extern Array1D_bool MySizeFlag;
-    extern Array1D_bool SimpleHPTimeStepFlag; // determines whether the previous operating mode for the coil and it's partner has been initialized
+    thread_local extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern Array1D_bool SimpleHPTimeStepFlag; // determines whether the previous operating mode for the coil and it's partner has been initialized
 
-    extern Real64 SourceSideMassFlowRate; // Source Side Mass flow rate [Kg/s]
-    extern Real64 SourceSideInletTemp;    // Source Side Inlet Temperature [C]
-    extern Real64 SourceSideInletEnth;    // Source Side Inlet Enthalpy [J/kg]
-    extern Real64 LoadSideMassFlowRate;   // Load Side Mass flow rate [Kg/s]
-    extern Real64 LoadSideInletDBTemp;    // Load Side Inlet Dry Bulb Temp [C]
-    extern Real64 LoadSideInletWBTemp;    // Load Side Inlet Wet Bulb Temp [C]
-    extern Real64 LoadSideInletHumRat;    // Load Side Outlet Humidity ratio
-    extern Real64 LoadSideInletEnth;      // Load Side Inlet Enthalpy [J/kg]
-    extern Real64 LoadSideOutletDBTemp;   // Load Side Outlet Dry Bulb Temp [C]
-    extern Real64 LoadSideOutletHumRat;   // Load Side Outlet Humidity ratio
-    extern Real64 LoadSideOutletEnth;     // Load Side Outlet Enthalpy [J/kg]
-    extern Real64 QSensible;              // Load side sensible heat transfer rate [W]
-    extern Real64 QLoadTotal;             // Load side total heat transfer rate [W]
-    extern Real64 QLatRated;              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
-    extern Real64 QLatActual;             // Actual Latent Capacity [W]
-    extern Real64 QSource;                // Source side heat transfer rate [W]
-    extern Real64 Winput;                 // Power Consumption [W]
-    extern Real64 PLRCorrLoadSideMdot;    // Load Side Mdot corrected for Part Load Ratio of the unit
+    thread_local extern Real64 SourceSideMassFlowRate; // Source Side Mass flow rate [Kg/s]
+    thread_local extern Real64 SourceSideInletTemp;    // Source Side Inlet Temperature [C]
+    thread_local extern Real64 SourceSideInletEnth;    // Source Side Inlet Enthalpy [J/kg]
+    thread_local extern Real64 LoadSideMassFlowRate;   // Load Side Mass flow rate [Kg/s]
+    thread_local extern Real64 LoadSideInletDBTemp;    // Load Side Inlet Dry Bulb Temp [C]
+    thread_local extern Real64 LoadSideInletWBTemp;    // Load Side Inlet Wet Bulb Temp [C]
+    thread_local extern Real64 LoadSideInletHumRat;    // Load Side Outlet Humidity ratio
+    thread_local extern Real64 LoadSideInletEnth;      // Load Side Inlet Enthalpy [J/kg]
+    thread_local extern Real64 LoadSideOutletDBTemp;   // Load Side Outlet Dry Bulb Temp [C]
+    thread_local extern Real64 LoadSideOutletHumRat;   // Load Side Outlet Humidity ratio
+    thread_local extern Real64 LoadSideOutletEnth;     // Load Side Outlet Enthalpy [J/kg]
+    thread_local extern Real64 QSensible;              // Load side sensible heat transfer rate [W]
+    thread_local extern Real64 QLoadTotal;             // Load side total heat transfer rate [W]
+    thread_local extern Real64 QLatRated;              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
+    thread_local extern Real64 QLatActual;             // Actual Latent Capacity [W]
+    thread_local extern Real64 QSource;                // Source side heat transfer rate [W]
+    thread_local extern Real64 Winput;                 // Power Consumption [W]
+    thread_local extern Real64 PLRCorrLoadSideMdot;    // Load Side Mdot corrected for Part Load Ratio of the unit
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -230,7 +230,7 @@ namespace WaterToAirHeatPumpSimple {
     };
 
     // Object Data
-    extern Array1D<SimpleWatertoAirHPConditions> SimpleWatertoAirHP;
+    thread_local extern Array1D<SimpleWatertoAirHPConditions> SimpleWatertoAirHP;
 
     // Functions
     void clear_state();

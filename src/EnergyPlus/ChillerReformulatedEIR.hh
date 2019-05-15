@@ -64,39 +64,39 @@ namespace ChillerReformulatedEIR {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Chiller type parameters
-    extern int const AirCooled;   // Air-cooled condenser currently not allowed
-    extern int const WaterCooled; // Only water-cooled condensers are currently allowed
-    extern int const EvapCooled;  // Evap-cooled condenser currently not allowed
+    thread_local extern int const AirCooled;   // Air-cooled condenser currently not allowed
+    thread_local extern int const WaterCooled; // Only water-cooled condensers are currently allowed
+    thread_local extern int const EvapCooled;  // Evap-cooled condenser currently not allowed
     // Performance curve variable parameters
-    extern int const LeavingCondenser;
+    thread_local extern int const LeavingCondenser;
 
     // chiller flow modes
-    extern int const FlowModeNotSet;
-    extern int const ConstantFlow;
-    extern int const NotModulated;
-    extern int const LeavingSetPointModulated;
+    thread_local extern int const FlowModeNotSet;
+    thread_local extern int const ConstantFlow;
+    thread_local extern int const NotModulated;
+    thread_local extern int const LeavingSetPointModulated;
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumElecReformEIRChillers; // Number of electric reformulated EIR chillers specified in input
-    extern Real64 CondMassFlowRate;      // Condenser mass flow rate [kg/s]
-    extern Real64 EvapMassFlowRate;      // Evaporator mass flow rate [kg/s]
-    extern Real64 CondOutletTemp;        // Condenser outlet temperature [C]
-    extern Real64 EvapOutletTemp;        // Evaporator outlet temperature [C]
-    extern Real64 Power;                 // Rate of chiller electric energy use [W]
-    extern Real64 QEvaporator;           // Rate of heat transfer to the evaporator coil [W]
-    extern Real64 QCondenser;            // Rate of heat transfer to the condenser coil [W]
-    extern Real64 QHeatRecovered;        // Rate of heat transfer to the heat recovery coil [W]
-    extern Real64 HeatRecOutletTemp;     // Heat recovery outlet temperature [C]
+    thread_local extern int NumElecReformEIRChillers; // Number of electric reformulated EIR chillers specified in input
+    thread_local extern Real64 CondMassFlowRate;      // Condenser mass flow rate [kg/s]
+    thread_local extern Real64 EvapMassFlowRate;      // Evaporator mass flow rate [kg/s]
+    thread_local extern Real64 CondOutletTemp;        // Condenser outlet temperature [C]
+    thread_local extern Real64 EvapOutletTemp;        // Evaporator outlet temperature [C]
+    thread_local extern Real64 Power;                 // Rate of chiller electric energy use [W]
+    thread_local extern Real64 QEvaporator;           // Rate of heat transfer to the evaporator coil [W]
+    thread_local extern Real64 QCondenser;            // Rate of heat transfer to the condenser coil [W]
+    thread_local extern Real64 QHeatRecovered;        // Rate of heat transfer to the heat recovery coil [W]
+    thread_local extern Real64 HeatRecOutletTemp;     // Heat recovery outlet temperature [C]
     // REAL(r64)      :: CondenserFanPower       =0.0d0 ! Condenser Fan Power (fan cycles with compressor) [W]
-    extern Real64 ChillerCapFT;         // Chiller capacity fraction (evaluated as a function of temperature)
-    extern Real64 ChillerEIRFT;         // Chiller electric input ratio (EIR = 1 / COP) as a function of temperature
-    extern Real64 ChillerEIRFPLR;       // Chiller EIR as a function of part-load ratio (PLR)
-    extern Real64 ChillerPartLoadRatio; // Chiller part-load ratio (PLR)
-    extern Real64 ChillerCyclingRatio;  // Chiller cycling ratio
-    extern Real64 ChillerFalseLoadRate; // Chiller false load over and above the water-side load [W]
-    extern Real64 AvgCondSinkTemp;      // condenser temperature value for use in curves [C]
+    thread_local extern Real64 ChillerCapFT;         // Chiller capacity fraction (evaluated as a function of temperature)
+    thread_local extern Real64 ChillerEIRFT;         // Chiller electric input ratio (EIR = 1 / COP) as a function of temperature
+    thread_local extern Real64 ChillerEIRFPLR;       // Chiller EIR as a function of part-load ratio (PLR)
+    thread_local extern Real64 ChillerPartLoadRatio; // Chiller part-load ratio (PLR)
+    thread_local extern Real64 ChillerCyclingRatio;  // Chiller cycling ratio
+    thread_local extern Real64 ChillerFalseLoadRate; // Chiller false load over and above the water-side load [W]
+    thread_local extern Real64 AvgCondSinkTemp;      // condenser temperature value for use in curves [C]
 
-    extern bool GetInputREIR; // When TRUE, calls subroutine to read input file
+    thread_local extern bool GetInputREIR; // When TRUE, calls subroutine to read input file
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ChillerReformulatedEIR
 
@@ -296,8 +296,8 @@ namespace ChillerReformulatedEIR {
     };
 
     // Object Data
-    extern Array1D<ReformulatedEIRChillerSpecs> ElecReformEIRChiller; // dimension to number of machines
-    extern Array1D<ReportVars> ElecReformEIRChillerReport;
+    thread_local extern Array1D<ReformulatedEIRChillerSpecs> ElecReformEIRChiller; // dimension to number of machines
+    thread_local extern Array1D<ReportVars> ElecReformEIRChillerReport;
 
     // Functions
 

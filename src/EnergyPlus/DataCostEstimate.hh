@@ -78,11 +78,11 @@ namespace DataCostEstimate {
     // CurntBldg holds results for current bldg. cost estimate
     // RefrnceBldg holds user input for comparison.
 
-    extern int NumLineItems;    // number of cost estimate line items
-    extern bool DoCostEstimate; // set to true if any cost estimating needed
+    thread_local extern int NumLineItems;    // number of cost estimate line items
+    thread_local extern bool DoCostEstimate; // set to true if any cost estimating needed
 
-    extern int numMonetaryUnit;
-    extern int selectedMonetaryUnit;
+    thread_local extern int numMonetaryUnit;
+    thread_local extern int selectedMonetaryUnit;
 
     // Types
 
@@ -173,18 +173,18 @@ namespace DataCostEstimate {
     };
 
     // Object Data
-    extern Array1D<CostLineItemStruct> CostLineItem;
-    extern CostAdjustmentStruct CurntBldg;  // holds total from line item cost calculations | holds user-defined constant cost model | holds
+    thread_local extern Array1D<CostLineItemStruct> CostLineItem;
+    thread_local extern CostAdjustmentStruct CurntBldg;  // holds total from line item cost calculations | holds user-defined constant cost model | holds
                                             // user-defined fraction for design fees | holds user-defined fraction for contractor fees | holds
                                             // user-defined fraction for contingencies | holds user-defined fraction for bonding costs | holds
                                             // user-defined fraction for commissioning costs | holds user-defined multiplier to account for regional
                                             // diffs | the Grand Total of all line items plus all other costs
-    extern CostAdjustmentStruct RefrncBldg; // holds total from line item cost calculations | holds user-defined constant cost model | holds
+    thread_local extern CostAdjustmentStruct RefrncBldg; // holds total from line item cost calculations | holds user-defined constant cost model | holds
                                             // user-defined fraction for design fees | holds user-defined fraction for contractor fees | holds
                                             // user-defined fraction for contingencies | holds user-defined fraction for bonding costs | holds
                                             // user-defined fraction for commissioning costs | holds user-defined multiplier to account for regional
                                             // diffs | the Grand Total of all line items plus all other costs
-    extern Array1D<monetaryUnitType> monetaryUnit;
+    thread_local extern Array1D<monetaryUnitType> monetaryUnit;
 
 } // namespace DataCostEstimate
 

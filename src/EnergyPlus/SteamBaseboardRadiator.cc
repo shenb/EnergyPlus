@@ -133,33 +133,33 @@ namespace SteamBaseboardRadiator {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    std::string const cCMO_BBRadiator_Steam("ZoneHVAC:Baseboard:RadiantConvective:Steam");
-    static std::string const fluidNameSteam("STEAM");
+    thread_local std::string const cCMO_BBRadiator_Steam("ZoneHVAC:Baseboard:RadiantConvective:Steam");
+    thread_local static std::string const fluidNameSteam("STEAM");
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumSteamBaseboards(0);
-    int SteamIndex(0);
+    thread_local int NumSteamBaseboards(0);
+    thread_local int SteamIndex(0);
 
-    Array1D<Real64> QBBSteamRadSource;    // Need to keep the last value in case we are still iterating
-    Array1D<Real64> QBBSteamRadSrcAvg;    // Need to keep the last value in case we are still iterating
-    Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone
+    thread_local Array1D<Real64> QBBSteamRadSource;    // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> QBBSteamRadSrcAvg;    // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone
     // with no source
 
     // Record keeping variables used to calculate QBBRadSrcAvg locally
-    Array1D<Real64> LastQBBSteamRadSrc; // Need to keep the last value in case we are still iterating
-    Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
-    Array1D_bool SetLoopIndexFlag; // get loop number flag
+    thread_local Array1D<Real64> LastQBBSteamRadSrc; // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local Array1D_bool SetLoopIndexFlag; // get loop number flag
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
     // Object Data
-    Array1D<SteamBaseboardParams> SteamBaseboard;
-    Array1D<SteamBaseboardNumericFieldData> SteamBaseboardNumericFields;
+    thread_local Array1D<SteamBaseboardParams> SteamBaseboard;
+    thread_local Array1D<SteamBaseboardNumericFieldData> SteamBaseboardNumericFields;
 
     // Functions
 
@@ -189,11 +189,11 @@ namespace SteamBaseboardRadiator {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int BaseboardNum;               // index of unit in baseboard array
-        static bool GetInputFlag(true); // one time get input flag
+        thread_local static bool GetInputFlag(true); // one time get input flag
         Real64 QZnReq;                  // zone load not yet satisfied
         Real64 MaxSteamFlow;
         Real64 MinSteamFlow;
-        static Real64 mdot(0.0);
+        thread_local static Real64 mdot(0.0);
 
         if (GetInputFlag) {
             GetSteamBaseboardInput();
@@ -327,7 +327,7 @@ namespace SteamBaseboardRadiator {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetSteamBaseboardInput:");
+        thread_local static std::string const RoutineName("GetSteamBaseboardInput:");
         Real64 const MaxFraction(1.0);       // Maximum limit of fractional values
         Real64 const MinFraction(0.0);       // Minimum limit of fractional values
         Real64 const MaxSteamFlowRate(10.0); // Maximum limit of steam volume flow rate in m3/s
@@ -348,7 +348,7 @@ namespace SteamBaseboardRadiator {
         int NumNumbers;        // Number of Numbers for each GetobjectItem call
         int SurfNum;           // Surface number Do loop counter
         int IOStat;
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
         bool SteamMessageNeeded;
 
         SteamMessageNeeded = true;
@@ -738,7 +738,7 @@ namespace SteamBaseboardRadiator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitSteamCoil");
+        thread_local static std::string const RoutineName("InitSteamCoil");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -747,9 +747,9 @@ namespace SteamBaseboardRadiator {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static bool ZoneEquipmentListChecked(false);
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static bool ZoneEquipmentListChecked(false);
+        thread_local static Array1D_bool MyEnvrnFlag;
         int Loop;
         int SteamInletNode;
         int ZoneNode;
@@ -917,7 +917,7 @@ namespace SteamBaseboardRadiator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeSteamBaseboard");
+        thread_local static std::string const RoutineName("SizeSteamBaseboard");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1113,7 +1113,7 @@ namespace SteamBaseboardRadiator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcSteamBaseboard");
+        thread_local static std::string const RoutineName("CalcSteamBaseboard");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1235,8 +1235,8 @@ namespace SteamBaseboardRadiator {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int SteamInletNode;
         int SteamOutletNode;
-        static int Iter(0);
-        static bool MyEnvrnFlag(true);
+        thread_local static int Iter(0);
+        thread_local static bool MyEnvrnFlag(true);
 
         if (BeginEnvrnFlag && MyEnvrnFlag) {
             Iter = 0;

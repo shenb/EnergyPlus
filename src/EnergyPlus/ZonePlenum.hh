@@ -65,11 +65,11 @@ namespace ZonePlenum {
     // Data
     // DERIVED TYPE DEFINITIONS
 
-    extern int NumZonePlenums;       // The Number of ZonePlenums found in the Input
-    extern int NumZoneReturnPlenums; // The Number of ZoneReturnPlenums found in the Input
-    extern int NumZoneSupplyPlenums; // The Number of ZoneSupplyPlenums found in the Input
-    extern Array1D_bool CheckRetEquipName;
-    extern Array1D_bool CheckSupEquipName;
+    thread_local extern int NumZonePlenums;       // The Number of ZonePlenums found in the Input
+    thread_local extern int NumZoneReturnPlenums; // The Number of ZoneReturnPlenums found in the Input
+    thread_local extern int NumZoneSupplyPlenums; // The Number of ZoneSupplyPlenums found in the Input
+    thread_local extern Array1D_bool CheckRetEquipName;
+    thread_local extern Array1D_bool CheckSupEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ZONEPLENUM
 
@@ -168,8 +168,8 @@ namespace ZonePlenum {
     };
 
     // Object Data
-    extern Array1D<ZoneReturnPlenumConditions> ZoneRetPlenCond;
-    extern Array1D<ZoneSupplyPlenumConditions> ZoneSupPlenCond;
+    thread_local extern Array1D<ZoneReturnPlenumConditions> ZoneRetPlenCond;
+    thread_local extern Array1D<ZoneSupplyPlenumConditions> ZoneSupPlenCond;
 
     // Functions
 

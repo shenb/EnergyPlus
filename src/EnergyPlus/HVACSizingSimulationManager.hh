@@ -100,7 +100,7 @@ private:
     void CreateNewCoincidentPlantAnalysisObject(std::string const &PlantLoopName, int const PlantSizingIndex);
 };
 
-extern std::unique_ptr<HVACSizingSimulationManager> hvacSizingSimulationManager;
+thread_local extern std::unique_ptr<HVACSizingSimulationManager> hvacSizingSimulationManager;
 
 void ManageHVACSizingSimulation(bool &ErrorsFound);
 

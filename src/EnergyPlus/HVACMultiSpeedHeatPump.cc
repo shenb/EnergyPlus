@@ -164,57 +164,57 @@ namespace HVACMultiSpeedHeatPump {
     // MODULE PARAMETER DEFINITIONS
 
     // Heating coil types
-    int const MultiSpeedHeatingCoil(1); // COIL:DX:MultiSpeed:Heating
+    thread_local int const MultiSpeedHeatingCoil(1); // COIL:DX:MultiSpeed:Heating
     // Cooling coil types
-    int const MultiSpeedCoolingCoil(2); // COIL:DX:MultiSpeed:Cooling
+    thread_local int const MultiSpeedCoolingCoil(2); // COIL:DX:MultiSpeed:Cooling
     // Supplymental heating coil types
-    int const SuppHeatingCoilGas(1);  // Supplymental heating coil type: COIL:GAS:HEATING
-    int const SuppHeatingCoilElec(2); // Supplymental heating coil type: COIL:ELECTRIC:HEATING
-    int const SuppHeatingCoilRec(3);  // Supplymental heating coil type: COIL:ENGINEHEATRECOVERY:HEATING
+    thread_local int const SuppHeatingCoilGas(1);  // Supplymental heating coil type: COIL:GAS:HEATING
+    thread_local int const SuppHeatingCoilElec(2); // Supplymental heating coil type: COIL:ELECTRIC:HEATING
+    thread_local int const SuppHeatingCoilRec(3);  // Supplymental heating coil type: COIL:ENGINEHEATRECOVERY:HEATING
 
     // Curve Types
-    int const Linear(1);      // Linear curve type
-    int const BiLinear(2);    // Bi-linear curve type
-    int const Quadratic(3);   // Quadratic curve type
-    int const BiQuadratic(4); // Bi-quadratic curve type
-    int const Cubic(5);       // Cubic curve type
+    thread_local int const Linear(1);      // Linear curve type
+    thread_local int const BiLinear(2);    // Bi-linear curve type
+    thread_local int const Quadratic(3);   // Quadratic curve type
+    thread_local int const BiQuadratic(4); // Bi-quadratic curve type
+    thread_local int const Cubic(5);       // Cubic curve type
 
     // Mode of operation
-    int const CoolingMode(1); // System operating mode is cooling
-    int const HeatingMode(2); // System operating mode is heating
+    thread_local int const CoolingMode(1); // System operating mode is cooling
+    thread_local int const HeatingMode(2); // System operating mode is heating
 
     // Airflow control for contant fan mode
-    int const UseCompressorOnFlow(1);  // set compressor OFF air flow rate equal to compressor ON air flow rate
-    int const UseCompressorOffFlow(2); // set compressor OFF air flow rate equal to user defined value
+    thread_local int const UseCompressorOnFlow(1);  // set compressor OFF air flow rate equal to compressor ON air flow rate
+    thread_local int const UseCompressorOffFlow(2); // set compressor OFF air flow rate equal to user defined value
     // Compressor operation
-    int const On(1);  // normal compressor operation
-    int const Off(0); // signal DXCoil that compressor shouldn't run
+    thread_local int const On(1);  // normal compressor operation
+    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
 
-    static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameSteam("STEAM");
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumMSHeatPumps(0);     // Number of multi speed heat pumps
-    int AirLoopPass(0);        // Number of air loop pass
-    Real64 TempSteamIn(100.0); // steam coil steam inlet temperature
+    thread_local int NumMSHeatPumps(0);     // Number of multi speed heat pumps
+    thread_local int AirLoopPass(0);        // Number of air loop pass
+    thread_local Real64 TempSteamIn(100.0); // steam coil steam inlet temperature
 
-    std::string CurrentModuleObject; // Object type for getting and error messages
-    Real64 CompOnMassFlow(0.0);      // System air mass flow rate w/ compressor ON
-    Real64 CompOffMassFlow(0.0);     // System air mass flow rate w/ compressor OFF
-    Real64 CompOnFlowRatio(0.0);     // fan flow ratio when coil on
-    Real64 CompOffFlowRatio(0.0);    // fan flow ratio when coil off
-    Real64 FanSpeedRatio(0.0);       // fan speed ratio passed to on/off fan object
-    Real64 SupHeaterLoad(0.0);       // load to be met by supplemental heater [W]
-    Real64 SaveLoadResidual(0.0);    // Saved load residual used to check convergence
-    Real64 SaveCompressorPLR(0.0);   // holds compressor PLR from active DX coil
-    Array1D_bool CheckEquipName;
+    thread_local std::string CurrentModuleObject; // Object type for getting and error messages
+    thread_local Real64 CompOnMassFlow(0.0);      // System air mass flow rate w/ compressor ON
+    thread_local Real64 CompOffMassFlow(0.0);     // System air mass flow rate w/ compressor OFF
+    thread_local Real64 CompOnFlowRatio(0.0);     // fan flow ratio when coil on
+    thread_local Real64 CompOffFlowRatio(0.0);    // fan flow ratio when coil off
+    thread_local Real64 FanSpeedRatio(0.0);       // fan speed ratio passed to on/off fan object
+    thread_local Real64 SupHeaterLoad(0.0);       // load to be met by supplemental heater [W]
+    thread_local Real64 SaveLoadResidual(0.0);    // Saved load residual used to check convergence
+    thread_local Real64 SaveCompressorPLR(0.0);   // holds compressor PLR from active DX coil
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    Array1D<MSHeatPumpData> MSHeatPump;
-    Array1D<MSHeatPumpReportData> MSHeatPumpReport;
+    thread_local Array1D<MSHeatPumpData> MSHeatPump;
+    thread_local Array1D<MSHeatPumpReportData> MSHeatPumpReport;
 
     // Functions
 
@@ -239,7 +239,7 @@ namespace HVACMultiSpeedHeatPump {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int MSHeatPumpNum;              // index of fan coil unit being simulated
-        static bool GetInputFlag(true); // Get input flag
+        thread_local static bool GetInputFlag(true); // Get input flag
         Real64 OnOffAirFlowRatio;       // Ratio of compressor ON airflow to average airflow over timestep
         Real64 QZnLoad;                 // Zone load required by all zones served by this air loop system
         Real64 QSensUnitOut;            // MSHP sensible capacity output [W]
@@ -571,17 +571,17 @@ namespace HVACMultiSpeedHeatPump {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetMSHeatPumpInput: "); // include trailing blank space
-        static std::string const RoutineNameNoColon("GetMSHeatPumpInput");
+        thread_local static std::string const RoutineName("GetMSHeatPumpInput: "); // include trailing blank space
+        thread_local static std::string const RoutineNameNoColon("GetMSHeatPumpInput");
 
         // LOCAL VARIABLES
         int MSHPNum;                      // Engine driven heat pump count
         int NumAlphas;                    // Number of elements in the alpha array
         int NumNumbers;                   // Number of Numbers for each GetObjectItem call
         int IOStatus;                     // Used in GetObjectItem
-        static bool ErrorsFound(false);   // True when input errors found
+        thread_local static bool ErrorsFound(false);   // True when input errors found
         bool IsNotOK;                     // Flag to verify name
-        static bool AllocatedFlag(false); // True when arrays are allocated
+        thread_local static bool AllocatedFlag(false); // True when arrays are allocated
         bool AirNodeFound;                // True when an air node is found
         bool AirLoopFound;                // True when an air loop is found
         int ControlledZoneNum;            // Controlled zone number
@@ -605,9 +605,9 @@ namespace HVACMultiSpeedHeatPump {
         Array1D<Real64> Numbers;          // Numeric input items for object
         Array1D_bool lAlphaBlanks;        // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;      // Logical array, numeric field input BLANK = .TRUE.
-        static int MaxNums(0);            // Maximum number of numeric input fields
-        static int MaxAlphas(0);          // Maximum number of alpha input fields
-        static int TotalArgs(0);          // Total number of alpha and numeric arguments (max) for a
+        thread_local static int MaxNums(0);            // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0);          // Maximum number of alpha input fields
+        thread_local static int TotalArgs(0);          // Total number of alpha and numeric arguments (max) for a
         //  certain object in the input file
         bool errFlag;
         int SteamIndex;      // steam coil steam inlet density
@@ -1770,18 +1770,18 @@ namespace HVACMultiSpeedHeatPump {
         using WaterCoils::SimulateWaterCoilComponents;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("InitMSHeatPump");
+        thread_local static std::string const RoutineName("InitMSHeatPump");
         int InNode;                           // Inlet node number in MSHP loop
         int OutNode;                          // Outlet node number in MSHP loop
         int ZoneInNode;                       // Zone inlet node number in the controlled zone for MSHP
         Real64 RhoAir;                        // Air density at InNode
-        static bool MyOneTimeFlag(true);      // Initialization flag
-        static Array1D_bool MyEnvrnFlag;      // Used for initializations each begin environment flag
-        static Array1D_bool MySizeFlag;       // Used for sizing MSHP inputs one time
-        static Array1D_bool MyCheckFlag;      // Used to obtain the zone inlet node number in the controlled zone
-        static Array1D_bool MyFlowFracFlag;   // Used for calculatig flow fraction once
-        static Array1D_bool MyPlantScantFlag; // used for finding on heat recovery plant loop
-        static Array1D_bool MyStagedFlag;     // used for finding on staged thermostat
+        thread_local static bool MyOneTimeFlag(true);      // Initialization flag
+        thread_local static Array1D_bool MyEnvrnFlag;      // Used for initializations each begin environment flag
+        thread_local static Array1D_bool MySizeFlag;       // Used for sizing MSHP inputs one time
+        thread_local static Array1D_bool MyCheckFlag;      // Used to obtain the zone inlet node number in the controlled zone
+        thread_local static Array1D_bool MyFlowFracFlag;   // Used for calculatig flow fraction once
+        thread_local static Array1D_bool MyPlantScantFlag; // used for finding on heat recovery plant loop
+        thread_local static Array1D_bool MyStagedFlag;     // used for finding on staged thermostat
 
         Real64 QSensUnitOut; // Output of MSHP system with coils off
         Real64 PartLoadFrac; // Part-load ratio
@@ -1792,25 +1792,25 @@ namespace HVACMultiSpeedHeatPump {
         Real64 MinHumRat;      // Minimum humidity ratio for sensible capacity calculation (kg/kg)
         Real64 DeltaMassRate;  // Difference of mass flow rate between inlet node and system outlet node
 
-        static int ZoneInSysIndex(0);                            // number of zone inlet nodes counter in an airloop
-        static int NumAirLoopZones(0);                           // number of zone inlet nodes in an air loop
-        static int ZoneInletNodeNum(0);                          // zone inlet nodes node number
-        static bool FlowFracFlagReady(true);                     // one time flag for calculating flow fraction through controlled zone
-        static Real64 SumOfMassFlowRateMax(0.0);                 // the sum of mass flow rates at inlet to zones in an airloop
-        static Real64 CntrlZoneTerminalUnitMassFlowRateMax(0.0); // Maximum mass flow rate through controlled zone terminal unit
+        thread_local static int ZoneInSysIndex(0);                            // number of zone inlet nodes counter in an airloop
+        thread_local static int NumAirLoopZones(0);                           // number of zone inlet nodes in an air loop
+        thread_local static int ZoneInletNodeNum(0);                          // zone inlet nodes node number
+        thread_local static bool FlowFracFlagReady(true);                     // one time flag for calculating flow fraction through controlled zone
+        thread_local static Real64 SumOfMassFlowRateMax(0.0);                 // the sum of mass flow rates at inlet to zones in an airloop
+        thread_local static Real64 CntrlZoneTerminalUnitMassFlowRateMax(0.0); // Maximum mass flow rate through controlled zone terminal unit
         bool errFlag;
         Real64 rho;    // local fluid density
         Real64 MdotHR; // local temporary for heat recovery fluid mass flow rate (kg/s)
         Real64 ZoneLoadToCoolSPSequenced;
         Real64 ZoneLoadToHeatSPSequenced;
 
-        static bool ErrorsFound(false);        // flag returned from mining call
-        static int SteamIndex(0);              // index of steam quality for steam heating coil
-        static Real64 mdot(0.0);               // local temporary for mass flow rate (kg/s)
-        static Real64 SteamDensity(0.0);       // density of steam at 100C, used for steam heating coils
-        static Real64 CoilMaxVolFlowRate(0.0); // coil fluid maximum volume flow rate
-        static Real64 QActual(0.0);            // coil actual capacity
-        static int CoilAvailSchPtr(0);         // DX coil availability schedule pointer
+        thread_local static bool ErrorsFound(false);        // flag returned from mining call
+        thread_local static int SteamIndex(0);              // index of steam quality for steam heating coil
+        thread_local static Real64 mdot(0.0);               // local temporary for mass flow rate (kg/s)
+        thread_local static Real64 SteamDensity(0.0);       // density of steam at 100C, used for steam heating coils
+        thread_local static Real64 CoilMaxVolFlowRate(0.0); // coil fluid maximum volume flow rate
+        thread_local static Real64 QActual(0.0);            // coil actual capacity
+        thread_local static int CoilAvailSchPtr(0);         // DX coil availability schedule pointer
 
         // FLOW
         InNode = MSHeatPump(MSHeatPumpNum).AirInletNodeNum;
@@ -2862,8 +2862,8 @@ namespace HVACMultiSpeedHeatPump {
         Real64 OutsideDryBulbTemp; // Outside air temperature at external node height
         Real64 QCoilActual;        // coil load actually delivered returned to calling component
         int i;                     // Speed index
-        static int ErrCountCyc(0); // Counter used to minimize the occurrence of output warnings
-        static int ErrCountVar(0); // Counter used to minimize the occurrence of output warnings
+        thread_local static int ErrCountCyc(0); // Counter used to minimize the occurrence of output warnings
+        thread_local static int ErrCountVar(0); // Counter used to minimize the occurrence of output warnings
 
         // FLOW
         SupHeaterLoad = 0.0;
@@ -3841,7 +3841,7 @@ namespace HVACMultiSpeedHeatPump {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("MSHPHeatRecovery");
+        thread_local static std::string const RoutineName("MSHPHeatRecovery");
 
         // DERIVMS TYPE DEFINITIONS:
         //  na
@@ -4061,7 +4061,7 @@ namespace HVACMultiSpeedHeatPump {
         using WaterCoils::SimulateWaterCoilComponents;
 
         // Locals
-        static std::string const CurrentModuleObject("AirLoopHVAC:UnitaryHeatPump:AirToAir:MultiSpeed");
+        thread_local static std::string const CurrentModuleObject("AirLoopHVAC:UnitaryHeatPump:AirToAir:MultiSpeed");
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
@@ -4084,7 +4084,7 @@ namespace HVACMultiSpeedHeatPump {
         Array1D<Real64> Par(3);
         int SolFlag;
 
-        static std::string HeatCoilName;
+        thread_local static std::string HeatCoilName;
         int HeatCoilType;
         int HeatCoilNum;
         Real64 MaxCoilFluidFlow;

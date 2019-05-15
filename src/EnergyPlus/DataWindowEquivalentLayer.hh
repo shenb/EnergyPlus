@@ -63,7 +63,7 @@ namespace DataWindowEquivalentLayer {
 
     // Data
     // CFSTY: Complex Fenestration System
-    extern int const CFSMAXNL; // max # of glaze or shade layers
+    thread_local extern int const CFSMAXNL; // max # of glaze or shade layers
     // Long-wave (aka LW or thermal) layer properties
     // Short wave (aka SW or solar) layer properties
     // "black" room (no reflection)
@@ -73,20 +73,20 @@ namespace DataWindowEquivalentLayer {
     // Gap information
     // Equivalent Layer Window Constructon
     // CFSLAYER: layer types
-    extern int const ltyNONE;   // unused / empty layer
-    extern int const ltyGLAZE;  // glazing layer i.e, purely specular
-    extern int const ltyDRAPE;  // pleated drapes/curtains
-    extern int const ltyROLLB;  // roller blind
-    extern int const ltyVBHOR;  // venetian blinds - horizontal
-    extern int const ltyVBVER;  // venetian blinds - vertical
-    extern int const ltyINSCRN; // insect screen
-    extern int const ltyROOM;   // indoor space and/or make no adjustment
-    extern int const ltyGZS;    // glazing with spectral data (read from aux file)
+    thread_local extern int const ltyNONE;   // unused / empty layer
+    thread_local extern int const ltyGLAZE;  // glazing layer i.e, purely specular
+    thread_local extern int const ltyDRAPE;  // pleated drapes/curtains
+    thread_local extern int const ltyROLLB;  // roller blind
+    thread_local extern int const ltyVBHOR;  // venetian blinds - horizontal
+    thread_local extern int const ltyVBVER;  // venetian blinds - vertical
+    thread_local extern int const ltyINSCRN; // insect screen
+    thread_local extern int const ltyROOM;   // indoor space and/or make no adjustment
+    thread_local extern int const ltyGZS;    // glazing with spectral data (read from aux file)
     // index for solar arrays
-    extern int const isDIFF;
-    extern int const isBEAM;
+    thread_local extern int const isDIFF;
+    thread_local extern int const isBEAM;
     // Defined CFSLayers and CFSs
-    extern int TotWinEquivLayerConstructs; // Number of constructions with Window equivalent Layer
+    thread_local extern int TotWinEquivLayerConstructs; // Number of constructions with Window equivalent Layer
 
     // Types
 
@@ -246,13 +246,13 @@ namespace DataWindowEquivalentLayer {
     };
 
     // Object Data
-    extern CFSSWP SWP_ROOMBLK; // Solar reflectance, BEAM-BEAM, front | Solar reflectance, BEAM-BEAM, back | Solar transmittance, BEAM-BEAM, front |
+    thread_local extern CFSSWP SWP_ROOMBLK; // Solar reflectance, BEAM-BEAM, front | Solar reflectance, BEAM-BEAM, back | Solar transmittance, BEAM-BEAM, front |
                                // Solar transmittance, BEAM-BEAM, back | Solar reflectance, BEAM-DIFFUSE, front | Solar reflectance, BEAM-DIFFUSE,
                                // back | Solar transmittance, BEAM-DIFFUSE, front | Solar transmittance, BEAM-DIFFUSE, back | Solar reflectance,
                                // DIFFUSE-DIFFUSE, front | Solar reflectance, DIFFUSE-DIFFUSE, back | Solar transmittance, DIFFUSE-DIFFUSE
-    extern Array1D<CFSLAYER> CFSLayers;
-    extern Array1D<CFSTY> CFS;
-    extern Array1D<CFSGAP> CFSGaps;
+    thread_local extern Array1D<CFSLAYER> CFSLayers;
+    thread_local extern Array1D<CFSTY> CFS;
+    thread_local extern Array1D<CFSGAP> CFSGaps;
 
 } // namespace DataWindowEquivalentLayer
 

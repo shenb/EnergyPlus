@@ -104,15 +104,15 @@ namespace HVACDuct {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumDucts(0);
-    Array1D_bool CheckEquipName;
+    thread_local int NumDucts(0);
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HVACDuct:
 
     // <name Public routines, optionally name Private routines within this module>
 
     // Object Data
-    Array1D<DuctData> Duct;
+    thread_local Array1D<DuctData> Duct;
 
     // Functions
 
@@ -135,7 +135,7 @@ namespace HVACDuct {
         using General::TrimSigDigits;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool GetInputFlag(true); // First time, input is "gotten"
+        thread_local static bool GetInputFlag(true); // First time, input is "gotten"
         int DuctNum;                    // index of duct being simulated
 
         if (GetInputFlag) {
@@ -196,11 +196,11 @@ namespace HVACDuct {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int DuctNum; // duct index
-        static std::string const RoutineName("GetDuctInput:");
+        thread_local static std::string const RoutineName("GetDuctInput:");
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
 
         cCurrentModuleObject = "Duct";
         NumDucts = inputProcessor->getNumObjectsFound(cCurrentModuleObject);
@@ -270,8 +270,8 @@ namespace HVACDuct {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
 
         // do one time initializations
         if (MyOneTimeFlag) {

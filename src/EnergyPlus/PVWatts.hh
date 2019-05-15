@@ -214,7 +214,7 @@ namespace PVWatts {
         DCPowerOutput powerout(Real64 &shad_beam, Real64 shad_diff, Real64 dni, Real64 alb, Real64 wspd, Real64 tdry, IrradianceOutput &irr_st);
     };
 
-    extern std::map<int, PVWattsGenerator> PVWattsGenerators;
+    thread_local extern std::map<int, PVWattsGenerator> PVWattsGenerators;
 
     PVWattsGenerator &GetOrCreatePVWattsGenerator(std::string const &GeneratorName);
 

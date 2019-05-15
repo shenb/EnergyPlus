@@ -84,14 +84,14 @@ namespace HybridModel {
     using DataGlobals::ScheduleAlwaysOn;
     using General::CheckCreatedZoneItemName;
 
-    bool FlagHybridModel(false);     // True if hybrid model is activated
-    int NumOfHybridModelZones(0);    // Number of hybrid model zones in the model
-    std::string CurrentModuleObject; // to assist in getting input
+    thread_local bool FlagHybridModel(false);     // True if hybrid model is activated
+    thread_local int NumOfHybridModelZones(0);    // Number of hybrid model zones in the model
+    thread_local std::string CurrentModuleObject; // to assist in getting input
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
     // Object Data
-    Array1D<HybridModelProperties> HybridModelZone;
+    thread_local Array1D<HybridModelProperties> HybridModelZone;
 
     // Functions
 

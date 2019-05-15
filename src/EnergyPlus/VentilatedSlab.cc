@@ -132,75 +132,75 @@ namespace VentilatedSlab {
     using namespace FluidProperties;
 
     // Module Object
-    std::string const cMO_VentilatedSlab("ZoneHVAC:VentilatedSlab");
-    static std::string const BlankString;
+    thread_local std::string const cMO_VentilatedSlab("ZoneHVAC:VentilatedSlab");
+    thread_local static std::string const BlankString;
 
     // Parameters for outside air control types:
-    int const Heating_ElectricCoilType(1);
-    int const Heating_GasCoilType(2);
-    int const Heating_WaterCoilType(3);
-    int const Heating_SteamCoilType(4);
-    int const Cooling_CoilWaterCooling(1);
-    int const Cooling_CoilDetailedCooling(2);
-    int const Cooling_CoilHXAssisted(3);
-    int const VariablePercent(1);
-    int const FixedTemperature(2);
-    int const FixedOAControl(3);
-    int const NotOperating(0); // Parameter for use with OperatingMode variable, set for no heating/cooling
-    int const HeatingMode(1);  // Parameter for use with OperatingMode variable, set for heating
-    int const CoolingMode(2);  // Parameter for use with OperatingMode variable, set for cooling
+    thread_local int const Heating_ElectricCoilType(1);
+    thread_local int const Heating_GasCoilType(2);
+    thread_local int const Heating_WaterCoilType(3);
+    thread_local int const Heating_SteamCoilType(4);
+    thread_local int const Cooling_CoilWaterCooling(1);
+    thread_local int const Cooling_CoilDetailedCooling(2);
+    thread_local int const Cooling_CoilHXAssisted(3);
+    thread_local int const VariablePercent(1);
+    thread_local int const FixedTemperature(2);
+    thread_local int const FixedOAControl(3);
+    thread_local int const NotOperating(0); // Parameter for use with OperatingMode variable, set for no heating/cooling
+    thread_local int const HeatingMode(1);  // Parameter for use with OperatingMode variable, set for heating
+    thread_local int const CoolingMode(2);  // Parameter for use with OperatingMode variable, set for cooling
     // Ventilated Slab Configurations
-    int const SlabOnly(1);    // Air circulate through cores of slab only
-    int const SlabAndZone(2); // Circulated Air is introduced to zone
-    int const SeriesSlabs(3);
+    thread_local int const SlabOnly(1);    // Air circulate through cores of slab only
+    thread_local int const SlabAndZone(2); // Circulated Air is introduced to zone
+    thread_local int const SeriesSlabs(3);
     //  Control Types
-    int const MATControl(1);  // Controls system using mean air temperature
-    int const MRTControl(2);  // Controls system using mean radiant temperature
-    int const OPTControl(3);  // Controls system using operative temperature
-    int const ODBControl(4);  // Controls system using outside air dry-bulb temperature
-    int const OWBControl(5);  // Controls system using outside air wet-bulb temperature
-    int const SURControl(6);  // Controls system using surface temperature !Phase2-A
-    int const DPTZControl(7); // Controls system using dew-point temperature of zone!Phase2-A
+    thread_local int const MATControl(1);  // Controls system using mean air temperature
+    thread_local int const MRTControl(2);  // Controls system using mean radiant temperature
+    thread_local int const OPTControl(3);  // Controls system using operative temperature
+    thread_local int const ODBControl(4);  // Controls system using outside air dry-bulb temperature
+    thread_local int const OWBControl(5);  // Controls system using outside air wet-bulb temperature
+    thread_local int const SURControl(6);  // Controls system using surface temperature !Phase2-A
+    thread_local int const DPTZControl(7); // Controls system using dew-point temperature of zone!Phase2-A
 
     // coil operation
-    int const On(1);  // normal coil operation
-    int const Off(0); // signal coil shouldn't run
-    int const NoneOption(0);
-    int const BothOption(1);
-    int const HeatingOption(2);
-    int const CoolingOption(3);
-    int OperatingMode(0); // Used to keep track of whether system is in heating or cooling mode
+    thread_local int const On(1);  // normal coil operation
+    thread_local int const Off(0); // signal coil shouldn't run
+    thread_local int const NoneOption(0);
+    thread_local int const BothOption(1);
+    thread_local int const HeatingOption(2);
+    thread_local int const CoolingOption(3);
+    thread_local int OperatingMode(0); // Used to keep track of whether system is in heating or cooling mode
 
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    bool HCoilOn(false);                  // TRUE if the heating coil (gas or electric especially) should be running
-    int NumOfVentSlabs(0);                // Number of ventilated slab in the input file
-    Real64 OAMassFlowRate(0.0);           // Outside air mass flow rate for the ventilated slab
-    Array1D_double QRadSysSrcAvg;         // Average source over the time step for a particular radiant surfaceD
-    Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
-    int MaxCloNumOfSurfaces(0);           // Used to set allocate size in CalcClo routine
-    Real64 QZnReq(0.0);                   // heating or cooling needed by system [watts]
+    thread_local bool HCoilOn(false);                  // TRUE if the heating coil (gas or electric especially) should be running
+    thread_local int NumOfVentSlabs(0);                // Number of ventilated slab in the input file
+    thread_local Real64 OAMassFlowRate(0.0);           // Outside air mass flow rate for the ventilated slab
+    thread_local Array1D_double QRadSysSrcAvg;         // Average source over the time step for a particular radiant surfaceD
+    thread_local Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
+    thread_local int MaxCloNumOfSurfaces(0);           // Used to set allocate size in CalcClo routine
+    thread_local Real64 QZnReq(0.0);                   // heating or cooling needed by system [watts]
 
     // Record keeping variables used to calculate QRadSysSrcAvg locally
 
-    Array1D_double LastQRadSysSrc;      // Need to keep the last value in case we are still iterating
-    Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    Array1D_bool CheckEquipName;
+    thread_local Array1D_double LastQRadSysSrc;      // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    thread_local Array1D_bool CheckEquipName;
 
     // Autosizing variables
-    Array1D_bool MySizeFlag;
+    thread_local Array1D_bool MySizeFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE VentilatedSlab
     // PRIVATE UpdateVentilatedSlabValAvg
 
     // Object Data
-    Array1D<VentilatedSlabData> VentSlab;
-    Array1D<VentSlabNumericFieldData> VentSlabNumericFields;
+    thread_local Array1D<VentilatedSlabData> VentSlab;
+    thread_local Array1D<VentSlabNumericFieldData> VentSlabNumericFields;
 
     // Functions
 
@@ -249,7 +249,7 @@ namespace VentilatedSlab {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Item;                       // index of ventilated slab being simulated
-        static bool GetInputFlag(true); // First time, input is "gotten"
+        thread_local static bool GetInputFlag(true); // First time, input is "gotten"
 
         // FLOW:
         if (GetInputFlag) {
@@ -335,17 +335,17 @@ namespace VentilatedSlab {
         using OutAirNodeManager::CheckAndAddAirNodeNumber;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const MeanAirTemperature("MeanAirTemperature");
-        static std::string const MeanRadiantTemperature("MeanRadiantTemperature");
-        static std::string const OperativeTemperature("OperativeTemperature");
-        static std::string const OutsideAirDryBulbTemperature("OutdoorDryBulbTemperature");
-        static std::string const OutsideAirWetBulbTemperature("OutdoorWetBulbTemperature");
-        static std::string const SlabSurfaceTemperature("SurfaceTemperature");
-        static std::string const SlabSurfaceDewPointTemperature("ZoneAirDewPointTemperature");
-        static std::string const CurrentModuleObject("ZoneHVAC:VentilatedSlab");
+        thread_local static std::string const MeanAirTemperature("MeanAirTemperature");
+        thread_local static std::string const MeanRadiantTemperature("MeanRadiantTemperature");
+        thread_local static std::string const OperativeTemperature("OperativeTemperature");
+        thread_local static std::string const OutsideAirDryBulbTemperature("OutdoorDryBulbTemperature");
+        thread_local static std::string const OutsideAirWetBulbTemperature("OutdoorWetBulbTemperature");
+        thread_local static std::string const SlabSurfaceTemperature("SurfaceTemperature");
+        thread_local static std::string const SlabSurfaceDewPointTemperature("ZoneAirDewPointTemperature");
+        thread_local static std::string const CurrentModuleObject("ZoneHVAC:VentilatedSlab");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         bool IsNotOK;                   // TRUE if there was a problem with a list name
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
@@ -1397,7 +1397,7 @@ namespace VentilatedSlab {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitVentilatedSlab");
+        thread_local static std::string const RoutineName("InitVentilatedSlab");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1414,11 +1414,11 @@ namespace VentilatedSlab {
 
         int AirRelNode;  // relief air node number in Ventilated Slab loop
         int ColdConNode; // cold water control node number in Ventilated Slab loop
-        static bool MyOneTimeFlag(true);
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         int HotConNode;                   // hot water control node number in Ventilated Slab loop
         int InNode;                       // inlet node number in Ventilated Slab loop
         int OutNode;                      // outlet node number in Ventilated Slab loop
@@ -1752,7 +1752,7 @@ namespace VentilatedSlab {
         using WaterCoils::WaterCoil;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeVentilatedSlab");
+        thread_local static std::string const RoutineName("SizeVentilatedSlab");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum; // index of plant sizing object for 1st heating loop
@@ -1764,15 +1764,15 @@ namespace VentilatedSlab {
         Real64 EnthSteamOutWet;
         Real64 LatentHeatSteam;
         Real64 SteamDensity;
-        static int CoilWaterInletNode(0);
-        static int CoilWaterOutletNode(0);
-        static int CoilSteamInletNode(0);
-        static int CoilSteamOutletNode(0);
+        thread_local static int CoilWaterInletNode(0);
+        thread_local static int CoilWaterOutletNode(0);
+        thread_local static int CoilSteamInletNode(0);
+        thread_local static int CoilSteamOutletNode(0);
         std::string CoolingCoilName;
         std::string CoolingCoilType;
         Real64 rho;
         Real64 Cp;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         bool IsAutoSize;                // Indicator to autosize
         Real64 MaxAirVolFlowDes;        // Autosized maximum air flow for reporting
         Real64 MaxAirVolFlowUser;       // Hardsized maximum air flow for reporting
@@ -2545,8 +2545,8 @@ namespace VentilatedSlab {
         std::string SlabName;
         int MSlabInletNode;
         int MSlabOutletNode;
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
-        static std::string const CurrentModuleObject("ZoneHVAC:VentilatedSlab");
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static std::string const CurrentModuleObject("ZoneHVAC:VentilatedSlab");
 
         {
             auto const SELECT_CASE_var(VentSlab(Item).CoilOption);
@@ -3504,7 +3504,7 @@ namespace VentilatedSlab {
         // of a space before the radiant cooling system shuts off the flow.
         Real64 const ZeroSystemResp(0.1); // Response below which the system response is really zero
         Real64 const TempCheckLimit(0.1); // Maximum allowed temperature difference between outlet temperature calculations
-        static std::string const CurrentModuleObject("ZoneHVAC:VentilatedSlab");
+        thread_local static std::string const CurrentModuleObject("ZoneHVAC:VentilatedSlab");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ConstrNum;         // Index for construction number in Construct derived type
@@ -3541,9 +3541,9 @@ namespace VentilatedSlab {
         Real64 Cl;
         // For more info on Ca through Cl, refer Constant Flow Radiant System
         // unused0309  REAL(r64):: CoreNumber
-        static Real64 Ckj; // Coefficients for individual surfaces within a radiant system
-        static Real64 Cmj;
-        static Array1D<Real64> AirTempOut; // Array of outlet air temperatures for each surface in the radiant system
+        thread_local static Real64 Ckj; // Coefficients for individual surfaces within a radiant system
+        thread_local static Real64 Cmj;
+        thread_local static Array1D<Real64> AirTempOut; // Array of outlet air temperatures for each surface in the radiant system
         int FanOutletNode;                 // unit air outlet node
         int OAInletNode;                   // unit air outlet node
         int MixoutNode;                    // unit air outlet node
@@ -3556,16 +3556,16 @@ namespace VentilatedSlab {
         Real64 FlowFrac;
         // unused0309  REAL(r64)  :: SlabAirOutTemp
         Real64 MSlabAirInTemp;
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
 
         std::string MSlabIn;
         std::string MSlabOut;
         std::string SlabName;
         int MSlabInletNode;
         int MSlabOutletNode;
-        static int CondensationErrorCount(0);    // Counts for # times the radiant systems are shutdown due to condensation
-        static int EnergyImbalanceErrorCount(0); // Counts for # times a temperature mismatch is found in the energy balance check
-        static bool FirstTimeFlag(true);         // for setting size of Ckj, Cmj, AirTempOut arrays
+        thread_local static int CondensationErrorCount(0);    // Counts for # times the radiant systems are shutdown due to condensation
+        thread_local static int EnergyImbalanceErrorCount(0); // Counts for # times a temperature mismatch is found in the energy balance check
+        thread_local static bool FirstTimeFlag(true);         // for setting size of Ckj, Cmj, AirTempOut arrays
 
         // FLOW:
 
@@ -4447,9 +4447,9 @@ namespace VentilatedSlab {
         Real64 const MaxLaminarRe(2300.0); // Maximum Reynolds number for laminar flow
         int const NumOfPropDivisions(13);
         Real64 const MaxExpPower(50.0); // Maximum power after which EXP argument would be zero for DP variables
-        static Array1D<Real64> const Temps(
+        thread_local static Array1D<Real64> const Temps(
             NumOfPropDivisions, {1.85, 6.85, 11.85, 16.85, 21.85, 26.85, 31.85, 36.85, 41.85, 46.85, 51.85, 56.85, 61.85}); // Temperature, in C
-        static Array1D<Real64> const Mu(NumOfPropDivisions,
+        thread_local static Array1D<Real64> const Mu(NumOfPropDivisions,
                                         {0.0000088,
                                          0.0000176,
                                          0.00001781,
@@ -4463,10 +4463,10 @@ namespace VentilatedSlab {
                                          0.0000195,
                                          0.00001971,
                                          0.00001992}); // Viscosity, in Ns/m2
-        static Array1D<Real64> const Conductivity(
+        thread_local static Array1D<Real64> const Conductivity(
             NumOfPropDivisions,
             {0.01275, 0.0255, 0.0258, 0.0261, 0.0264, 0.0267, 0.02705, 0.0274, 0.02775, 0.0281, 0.0284, 0.0287, 0.01435}); // Conductivity, in W/mK
-        static Array1D<Real64> const Pr(NumOfPropDivisions, 0.69); // Prandtl number (dimensionless)
+        thread_local static Array1D<Real64> const Pr(NumOfPropDivisions, 0.69); // Prandtl number (dimensionless)
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

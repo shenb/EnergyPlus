@@ -70,11 +70,11 @@ namespace EnergyPlus {
 
 using DataGlobals::SecsInDay;
 using WeatherManager::NumDaysInYear;
-int simDay = 0;
-int numIterYears = 0;
-int const maxYearsToIterate = 10;
-Real64 finalTempConvergenceCriteria = 0.05;
-Real64 iterationTempConvergenceCriteria = 0.00001;
+thread_local int simDay = 0;
+thread_local int numIterYears = 0;
+thread_local int const maxYearsToIterate = 10;
+thread_local Real64 finalTempConvergenceCriteria = 0.05;
+thread_local Real64 iterationTempConvergenceCriteria = 0.00001;
 
 //******************************************************************************
 
@@ -1139,19 +1139,19 @@ void FiniteDiffGroundTempsModel::evaluateSoilRhoCp(Optional<int const> cell, Opt
     // Evaluates the soil properties
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-    static Real64 Theta_ice;
-    static Real64 Theta_liq;
-    static Real64 Theta_sat;
-    static Real64 rho_ice;
-    static Real64 rho_liq;
-    static Real64 rhoCp_soil_liq_1;
-    static Real64 CP_liq;
-    static Real64 CP_ice;
-    static Real64 Lat_fus;
-    static Real64 Cp_transient;
-    static Real64 rhoCP_soil_liq;
-    static Real64 rhoCP_soil_transient;
-    static Real64 rhoCP_soil_ice;
+    thread_local static Real64 Theta_ice;
+    thread_local static Real64 Theta_liq;
+    thread_local static Real64 Theta_sat;
+    thread_local static Real64 rho_ice;
+    thread_local static Real64 rho_liq;
+    thread_local static Real64 rhoCp_soil_liq_1;
+    thread_local static Real64 CP_liq;
+    thread_local static Real64 CP_ice;
+    thread_local static Real64 Lat_fus;
+    thread_local static Real64 Cp_transient;
+    thread_local static Real64 rhoCP_soil_liq;
+    thread_local static Real64 rhoCP_soil_transient;
+    thread_local static Real64 rhoCP_soil_ice;
     // other variables
     Real64 frzAllIce;
     Real64 frzIceTrans;

@@ -110,43 +110,43 @@ namespace Boilers {
     using PlantUtilities::ScanPlantLoopsForObject;
 
     // Boiler normalized efficiency curve types
-    int const Linear(1);
-    int const BiLinear(2);
-    int const Quadratic(3);
-    int const BiQuadratic(4);
-    int const Cubic(5);
-    int const QuadraticLinear(6);
-    int const BiCubic(7);
-    int const TriQuadratic(8);
+    thread_local int const Linear(1);
+    thread_local int const BiLinear(2);
+    thread_local int const Quadratic(3);
+    thread_local int const BiQuadratic(4);
+    thread_local int const Cubic(5);
+    thread_local int const QuadraticLinear(6);
+    thread_local int const BiCubic(7);
+    thread_local int const TriQuadratic(8);
 
     // water temperature evaluation method
-    int const BoilerTempModeNotSet(100);
-    int const EnteringBoilerTemp(101);
-    int const LeavingBoilerTemp(102);
+    thread_local int const BoilerTempModeNotSet(100);
+    thread_local int const EnteringBoilerTemp(101);
+    thread_local int const LeavingBoilerTemp(102);
 
     // Boiler flow modes
-    int const FlowModeNotSet(200);
-    int const ConstantFlow(201);
-    int const NotModulated(202);
-    int const LeavingSetPointModulated(203);
+    thread_local int const FlowModeNotSet(200);
+    thread_local int const ConstantFlow(201);
+    thread_local int const NotModulated(202);
+    thread_local int const LeavingSetPointModulated(203);
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumBoilers(0);              // Number of boilers
-    Real64 FuelUsed(0.0);           // W - Boiler fuel used
-    Real64 ParasiticElecPower(0.0); // W - Parasitic electrical power (e.g. forced draft fan)
-    Real64 BoilerLoad(0.0);         // W - Boiler Load
-    Real64 BoilerMassFlowRate(0.0); // kg/s - Boiler mass flow rate
-    Real64 BoilerOutletTemp(0.0);   // W - Boiler outlet temperature
-    Real64 BoilerPLR(0.0);          // Boiler operating part-load ratio
-    bool GetBoilerInputFlag(true);
-    bool BoilerOneTimeFlag(true);
-    Array1D_bool CheckEquipName;
+    thread_local int NumBoilers(0);              // Number of boilers
+    thread_local Real64 FuelUsed(0.0);           // W - Boiler fuel used
+    thread_local Real64 ParasiticElecPower(0.0); // W - Parasitic electrical power (e.g. forced draft fan)
+    thread_local Real64 BoilerLoad(0.0);         // W - Boiler Load
+    thread_local Real64 BoilerMassFlowRate(0.0); // kg/s - Boiler mass flow rate
+    thread_local Real64 BoilerOutletTemp(0.0);   // W - Boiler outlet temperature
+    thread_local Real64 BoilerPLR(0.0);          // Boiler operating part-load ratio
+    thread_local bool GetBoilerInputFlag(true);
+    thread_local bool BoilerOneTimeFlag(true);
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Boilers
 
     // Object Data
-    Array1D<BoilerSpecs> Boiler;      // boiler data - dimension to number of machines
-    Array1D<ReportVars> BoilerReport; // report vars - dimension to number of machines
+    thread_local Array1D<BoilerSpecs> Boiler;      // boiler data - dimension to number of machines
+    thread_local Array1D<ReportVars> BoilerReport; // report vars - dimension to number of machines
 
     // MODULE SUBROUTINES:
 
@@ -277,14 +277,14 @@ namespace Boilers {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetBoilerInput: ");
+        thread_local static std::string const RoutineName("GetBoilerInput: ");
 
         // LOCAL VARIABLES
         int BoilerNum;                                  // boiler identifier
         int NumAlphas;                                  // Number of elements in the alpha array
         int NumNums;                                    // Number of elements in the numeric array
         int IOStat;                                     // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);                 // Flag to show errors were found during GetInput
+        thread_local static bool ErrorsFound(false);                 // Flag to show errors were found during GetInput
         bool errFlag;                                   // Flag to show errors were found during function call
         Array1D_string BoilerFuelTypeForOutputVariable; // used to set up report variables
 
@@ -623,11 +623,11 @@ namespace Boilers {
         using PlantUtilities::InitComponentNodes;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitBoiler");
+        thread_local static std::string const RoutineName("InitBoiler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyEnvrnFlag; // environment flag
-        static Array1D_bool MyFlag;
+        thread_local static Array1D_bool MyEnvrnFlag; // environment flag
+        thread_local static Array1D_bool MyFlag;
         Real64 rho;
         bool FatalError;
         bool errFlag;
@@ -776,7 +776,7 @@ namespace Boilers {
         using namespace OutputReportPredefined;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeBoiler");
+        thread_local static std::string const RoutineName("SizeBoiler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum(0);        // Plant Sizing index corresponding to CurLoopNum
@@ -968,7 +968,7 @@ namespace Boilers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcBoilerModel");
+        thread_local static std::string const RoutineName("CalcBoilerModel");
 
         // DERIVED TYPE DEFINITIONS
         // na

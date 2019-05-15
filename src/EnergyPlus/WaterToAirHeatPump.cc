@@ -113,24 +113,24 @@ namespace WaterToAirHeatPump {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    int const CompressorType_Reciprocating(1);
-    int const CompressorType_Rotary(2);
-    int const CompressorType_Scroll(3);
+    thread_local int const CompressorType_Reciprocating(1);
+    thread_local int const CompressorType_Rotary(2);
+    thread_local int const CompressorType_Scroll(3);
 
-    static std::string const fluidNameWater("WATER");
-    static std::string const BlankString;
+    thread_local static std::string const fluidNameWater("WATER");
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // Output Variables Type definition
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumWatertoAirHPs(0); // The Number of Water to Air Heat Pumps found in the Input
-    Array1D_bool CheckEquipName;
+    thread_local int NumWatertoAirHPs(0); // The Number of Water to Air Heat Pumps found in the Input
+    thread_local Array1D_bool CheckEquipName;
 
-    int RefrigIndex(0);           // Refrigerant index
-    int WaterIndex(0);            // Water index
-    bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
+    thread_local int RefrigIndex(0);           // Refrigerant index
+    thread_local int WaterIndex(0);            // Water index
+    thread_local bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
 
@@ -145,7 +145,7 @@ namespace WaterToAirHeatPump {
     // Utility routines
 
     // Object Data
-    Array1D<WatertoAirHPEquipConditions> WatertoAirHP;
+    thread_local Array1D<WatertoAirHPEquipConditions> WatertoAirHP;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -265,7 +265,7 @@ namespace WaterToAirHeatPump {
         using namespace OutputReportPredefined;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetWatertoAirHPInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetWatertoAirHPInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int HPNum; // The Water to Air HP that you are currently loading input into
@@ -275,10 +275,10 @@ namespace WaterToAirHeatPump {
         int NumAlphas;
         int NumParams;
         int NumNums;
-        static int MaxNums(0);   // Maximum number of numeric input fields
-        static int MaxAlphas(0); // Maximum number of alpha input fields
+        thread_local static int MaxNums(0);   // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0); // Maximum number of alpha input fields
         int IOStat;
-        static bool ErrorsFound(false);  // If errors detected in input
+        thread_local static bool ErrorsFound(false);  // If errors detected in input
         std::string CurrentModuleObject; // for ease in getting objects
         Array1D_string AlphArray;        // Alpha input items for object
         Array1D_string cAlphaFields;     // Alpha field names
@@ -855,7 +855,7 @@ namespace WaterToAirHeatPump {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         // REAL(r64), PARAMETER        :: CpWater=4210.d0          ! Specific heat of water J/kg_C
-        static std::string const RoutineName("InitWatertoAirHP");
+        thread_local static std::string const RoutineName("InitWatertoAirHP");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -868,9 +868,9 @@ namespace WaterToAirHeatPump {
         int AirInletNode;   // air inlet node number
         int WaterInletNode; // water inlet node number
         int PlantOutletNode;
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyEnvrnFlag;
         Real64 rho; // local fluid density
         Real64 Cp;  // local fluid specific heat
         bool errFlag;
@@ -1129,15 +1129,15 @@ namespace WaterToAirHeatPump {
         int const STOP2(1000); // Iteration stopper2
         int const STOP3(1000); // Iteration stopper3
 
-        static std::string const RoutineNameSourceSideInletTemp("CalcWatertoAirHPCooling:SourceSideInletTemp");
-        static std::string const RoutineNameSourceSideTemp("CalcWatertoAirHPCooling:SourceSideTemp");
-        static std::string const RoutineNameLoadSideTemp("CalcWatertoAirHPCooling:LoadSideTemp");
-        static std::string const RoutineNameLoadSideSurfaceTemp("CalcWatertoAirHPCooling:LoadSideSurfaceTemp");
-        static std::string const RoutineNameLoadSideEvapTemp("CalcWatertoAirHPCooling:LoadSideEvapTemp");
-        static std::string const RoutineNameLoadSideOutletEnthalpy("CalcWatertoAirHPCooling:LoadSideOutletEnthalpy");
-        static std::string const RoutineNameCompressInletTemp("CalcWatertoAirHPCooling:CompressInletTemp");
-        static std::string const RoutineNameSuctionPr("CalcWatertoAirHPCooling:SuctionPr");
-        static std::string const RoutineNameCompSuctionTemp("CalcWatertoAirHPCooling:CompSuctionTemp");
+        thread_local static std::string const RoutineNameSourceSideInletTemp("CalcWatertoAirHPCooling:SourceSideInletTemp");
+        thread_local static std::string const RoutineNameSourceSideTemp("CalcWatertoAirHPCooling:SourceSideTemp");
+        thread_local static std::string const RoutineNameLoadSideTemp("CalcWatertoAirHPCooling:LoadSideTemp");
+        thread_local static std::string const RoutineNameLoadSideSurfaceTemp("CalcWatertoAirHPCooling:LoadSideSurfaceTemp");
+        thread_local static std::string const RoutineNameLoadSideEvapTemp("CalcWatertoAirHPCooling:LoadSideEvapTemp");
+        thread_local static std::string const RoutineNameLoadSideOutletEnthalpy("CalcWatertoAirHPCooling:LoadSideOutletEnthalpy");
+        thread_local static std::string const RoutineNameCompressInletTemp("CalcWatertoAirHPCooling:CompressInletTemp");
+        thread_local static std::string const RoutineNameSuctionPr("CalcWatertoAirHPCooling:SuctionPr");
+        thread_local static std::string const RoutineNameCompSuctionTemp("CalcWatertoAirHPCooling:CompSuctionTemp");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         //      INTEGER                :: NumIteration1            ! Number of Iteration1
@@ -1187,7 +1187,7 @@ namespace WaterToAirHeatPump {
         Real64 LoadSideAirOutletEnth;    // Load Side Outlet Enthalpy [J/kg]
         //      REAL(r64)        :: EffectiveSurfaceTemp1    ! Effective Surface Temperature Guess #1 [C]
         //      REAL(r64)        :: EffectiveSurfaceTemp2    ! Effective Surface Temperature Guess #2 [C]
-        static Real64 EffectiveSurfaceTemp; // Effective Surface Temperature [C]
+        thread_local static Real64 EffectiveSurfaceTemp; // Effective Surface Temperature [C]
         Real64 EffectiveSatEnth;            // Saturated Enthalpy of Air Corresponding to the Effective Surface
         // Temperature [J/kg]
         //      REAL(r64)        :: EffectiveSatEnth1        ! Guess of the Saturated Enthalpy of Air Corresponding to the
@@ -1198,7 +1198,7 @@ namespace WaterToAirHeatPump {
         Real64 Power;      // Power Consumption [W]
         //      REAL(r64)        :: EvapTemp1                ! Evaporating Temperature Guess #1 [C]
         //      REAL(r64)        :: EvapTemp2                ! Evaporating Temperature Guess #2 [C]
-        static Real64 EvapTemp; // Evaporating Temperature [C]
+        thread_local static Real64 EvapTemp; // Evaporating Temperature [C]
         Real64 ANTUWET;         // Number of Transfer Unit for Wet Condition
         Real64 EffectWET;       // Load Side Heat Exchanger Effectiveness
         Real64 EvapSatEnth;     // Saturated Enthalpy of Air Corresponding to the Evaporating
@@ -1217,14 +1217,14 @@ namespace WaterToAirHeatPump {
         Real64 SourceSideOutletEnth;     // Enthalpy of Refrigerant leaving the Source Side Heat Exchanger [J/kg]
         Real64 LoadSideOutletEnth;       // Enthalpy of Refrigerant leaving the Load Side Heat Exchanger [J/kg]
         Real64 CpAir;                    // Specific Heat of Air [J/kg_C]
-        static Real64 initialQSource;    // Guess Source Side Heat Transfer Rate [W]
-        static Real64 initialQLoadTotal; // Guess Load Side Heat Transfer rate [W]
+        thread_local static Real64 initialQSource;    // Guess Source Side Heat Transfer Rate [W]
+        thread_local static Real64 initialQLoadTotal; // Guess Load Side Heat Transfer rate [W]
         Real64 SuperHeatEnth;            // Enthalpy of the Superheated Refrigerant [J/kg]
         Real64 CompSuctionTemp1;         // Guess of the Temperature of the Refrigerant Entering the
         // Compressor #1 [C]
         Real64 CompSuctionTemp2; // Guess of the Temperature of the Refrigerant Entering the
         // Compressor #2 [C]
-        static Real64 CompSuctionTemp; // Temperature of the Refrigerant Entering the Compressor [C]
+        thread_local static Real64 CompSuctionTemp; // Temperature of the Refrigerant Entering the Compressor [C]
         Real64 CompSuctionEnth;        // Enthalpy of the Refrigerant Entering the Compressor [J/kg]
         Real64 CompSuctionDensity;     // Density of the Refrigerant Entering the Compressorkg/m3
         Real64 CompSuctionSatTemp;     // Temperature of Saturated Refrigerant at Compressor Suction Pressure [C]
@@ -1240,10 +1240,10 @@ namespace WaterToAirHeatPump {
         Real64 SHReff;          // Effective sensible heat ratio at part-load condition
         Array1D<Real64> Par(4); // Parameter array passed to RegulaFalsi function
         int SolFlag;            // Solution flag returned from RegulaFalsi function
-        static bool firstTime(true);
-        static Real64 LoadSideInletDBTemp_Init;  // rated conditions
-        static Real64 LoadSideInletHumRat_Init;  // rated conditions
-        static Real64 LoadSideAirInletEnth_Init; // rated conditions
+        thread_local static bool firstTime(true);
+        thread_local static Real64 LoadSideInletDBTemp_Init;  // rated conditions
+        thread_local static Real64 LoadSideInletHumRat_Init;  // rated conditions
+        thread_local static Real64 LoadSideAirInletEnth_Init; // rated conditions
         Real64 LoadSideInletDBTemp_Unit;         // calc conditions for unit
         Real64 LoadSideInletHumRat_Unit;         // calc conditions for unit
         Real64 LoadSideAirInletEnth_Unit;        // calc conditions for unit
@@ -1729,7 +1729,7 @@ namespace WaterToAirHeatPump {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcWaterToAirHPHeating:CalcCompSuctionTemp");
+        thread_local static std::string const RoutineName("CalcWaterToAirHPHeating:CalcCompSuctionTemp");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1801,13 +1801,13 @@ namespace WaterToAirHeatPump {
         int const STOP2(1000);                // Iteration stopper2
         int const STOP3(1000);                // Iteration stopper3
 
-        static std::string const RoutineNameSourceSideInletTemp("CalcWatertoAirHPHeating:SourceSideInletTemp");
-        static std::string const RoutineNameSourceSideTemp("CalcWatertoAirHPHeating:SourceSideTemp");
-        static std::string const RoutineNameLoadSideTemp("CalcWatertoAirHPHeating:LoadSideTemp");
-        static std::string const RoutineNameLoadSideOutletEnthalpy("CalcWatertoAirHPHeating:LoadSideOutletEnthalpy");
-        static std::string const RoutineNameCompressInletTemp("CalcWatertoAirHPHeating:CompressInletTemp");
-        static std::string const RoutineNameSuctionPr("CalcWatertoAirHPHeating:SuctionPr");
-        static std::string const RoutineNameCompSuctionTemp("CalcWatertoAirHPHeating:CompSuctionTemp");
+        thread_local static std::string const RoutineNameSourceSideInletTemp("CalcWatertoAirHPHeating:SourceSideInletTemp");
+        thread_local static std::string const RoutineNameSourceSideTemp("CalcWatertoAirHPHeating:SourceSideTemp");
+        thread_local static std::string const RoutineNameLoadSideTemp("CalcWatertoAirHPHeating:LoadSideTemp");
+        thread_local static std::string const RoutineNameLoadSideOutletEnthalpy("CalcWatertoAirHPHeating:LoadSideOutletEnthalpy");
+        thread_local static std::string const RoutineNameCompressInletTemp("CalcWatertoAirHPHeating:CompressInletTemp");
+        thread_local static std::string const RoutineNameSuctionPr("CalcWatertoAirHPHeating:SuctionPr");
+        thread_local static std::string const RoutineNameCompSuctionTemp("CalcWatertoAirHPHeating:CompSuctionTemp");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1874,8 +1874,8 @@ namespace WaterToAirHeatPump {
         Real64 MassRef;               // Mass Flow Rate of Refrigerant [kg/s]
         Real64 SourceSideOutletEnth;  // Enthalpy of Refrigerant leaving the Source Side Heat Exchanger [J/kg]
         Real64 LoadSideOutletEnth;    // Enthalpy of Refrigerant leaving the Load Side Heat Exchanger [J/kg]
-        static Real64 initialQSource; // Guess Source Side Heat Transfer Rate [W]
-        static Real64 initialQLoad;   // Guess Load Side Heat Transfer rate [W]
+        thread_local static Real64 initialQSource; // Guess Source Side Heat Transfer Rate [W]
+        thread_local static Real64 initialQLoad;   // Guess Load Side Heat Transfer rate [W]
         Real64 SuperHeatEnth;         // Enthalpy of the Superheated Refrigerant [J/kg]
         Real64 CompSuctionTemp1;      // Guess of the Temperature of the Refrigerant Entering the
         // Compressor #1 [C]
@@ -2514,7 +2514,7 @@ namespace WaterToAirHeatPump {
 
         // Locals
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const CalledFrom("HVACWaterToAir:DegradF");
+        thread_local static std::string const CalledFrom("HVACWaterToAir:DegradF");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

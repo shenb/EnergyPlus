@@ -60,83 +60,83 @@ namespace EnergyPlus {
 namespace StandardRatings {
 
     // Data
-    extern Real64 const IndoorCoilInletAirWetBulbTempRated;   // 19.44C (67F)  Tests A2, B2, B1, and F1
-    extern Real64 const OutdoorCoilInletAirDryBulbTempRated;  // 35.00C (95F)  Tests A2, B2, B1, and F1
-    extern Real64 const OutdoorCoilInletAirDryBulbTempTestA2; // 35.00C (95F)  Test A2 (high speed)
-    extern Real64 const OutdoorCoilInletAirDryBulbTempTestB2; // 27.78C (82F)  Test B2 (high speed)
-    extern Real64 const OutdoorCoilInletAirDryBulbTempTestB1; // 27.78C (82F)  Test B1 (Low speed)
-    extern Real64 const OutdoorCoilInletAirDryBulbTempTestF1; // 19.44C (67F)  Test B1 (Low speed)
+    thread_local extern Real64 const IndoorCoilInletAirWetBulbTempRated;   // 19.44C (67F)  Tests A2, B2, B1, and F1
+    thread_local extern Real64 const OutdoorCoilInletAirDryBulbTempRated;  // 35.00C (95F)  Tests A2, B2, B1, and F1
+    thread_local extern Real64 const OutdoorCoilInletAirDryBulbTempTestA2; // 35.00C (95F)  Test A2 (high speed)
+    thread_local extern Real64 const OutdoorCoilInletAirDryBulbTempTestB2; // 27.78C (82F)  Test B2 (high speed)
+    thread_local extern Real64 const OutdoorCoilInletAirDryBulbTempTestB1; // 27.78C (82F)  Test B1 (Low speed)
+    thread_local extern Real64 const OutdoorCoilInletAirDryBulbTempTestF1; // 19.44C (67F)  Test B1 (Low speed)
 
     // AHRI Standard 210/240-2008 Performance Test Conditions for Unitary Air-to-Air Air-Conditioning and Heat Pump Equipment
-    extern Real64 const CoolingCoilInletAirWetBulbTempRated; // 19.44C (67F)  Tests A and B
-    extern Real64 const OutdoorUnitInletAirDryBulbTemp;      // 27.78C (82F)  Test B (for SEER)
-    extern Real64 const OutdoorUnitInletAirDryBulbTempRated; // 35.00C (95F)  Test A (rated capacity)
-    extern Real64 const AirMassFlowRatioRated;               // AHRI test is at the design flow rate
+    thread_local extern Real64 const CoolingCoilInletAirWetBulbTempRated; // 19.44C (67F)  Tests A and B
+    thread_local extern Real64 const OutdoorUnitInletAirDryBulbTemp;      // 27.78C (82F)  Test B (for SEER)
+    thread_local extern Real64 const OutdoorUnitInletAirDryBulbTempRated; // 35.00C (95F)  Test A (rated capacity)
+    thread_local extern Real64 const AirMassFlowRatioRated;               // AHRI test is at the design flow rate
     // and hence AirMassFlowRatio is 1.0
-    extern Real64 const ConvFromSIToIP;                    // Conversion from SI to IP [3.412 Btu/hr-W]
-    extern Real64 const DefaultFanPowerPerEvapAirFlowRate; // 365 W/1000 scfm or 773.3 W/(m3/s). The AHRI standard
+    thread_local extern Real64 const ConvFromSIToIP;                    // Conversion from SI to IP [3.412 Btu/hr-W]
+    thread_local extern Real64 const DefaultFanPowerPerEvapAirFlowRate; // 365 W/1000 scfm or 773.3 W/(m3/s). The AHRI standard
     // specifies a nominal/default fan electric power consumption per rated air
     // volume flow rate to account for indoor fan electric power consumption
     // when the standard tests are conducted on units that do not have an
     // indoor air circulting fan. Used if user doesn't enter a specific value.
-    extern Real64 const PLRforSEER;                     // Part-load ratio for SEER calculation (single speed DX cooling coils)
-    extern Array1D<Real64> const ReducedPLR;            // Reduced Capacity part-load conditions
-    extern Array1D<Real64> const IEERWeightingFactor;   // EER Weighting factors (IEER)
-    extern Real64 const OADBTempLowReducedCapacityTest; // Outdoor air dry-bulb temp in degrees C (65F)
+    thread_local extern Real64 const PLRforSEER;                     // Part-load ratio for SEER calculation (single speed DX cooling coils)
+    thread_local extern Array1D<Real64> const ReducedPLR;            // Reduced Capacity part-load conditions
+    thread_local extern Array1D<Real64> const IEERWeightingFactor;   // EER Weighting factors (IEER)
+    thread_local extern Real64 const OADBTempLowReducedCapacityTest; // Outdoor air dry-bulb temp in degrees C (65F)
     // Std. AHRI AHRI 340/360 Dry-bulb Temp at reduced capacity, <= 0.444
 
     // Defrost control  (heat pump only)
-    extern int const Timed;                             // defrost cycle is timed
-    extern int const OnDemand;                          // defrost cycle occurs only when required
-    extern int const TotalNumOfStandardDHRs;            // Total number of standard design heating requirements
-    extern Array1D_int const TotalNumOfTemperatureBins; // Total number of temperature
+    thread_local extern int const Timed;                             // defrost cycle is timed
+    thread_local extern int const OnDemand;                          // defrost cycle occurs only when required
+    thread_local extern int const TotalNumOfStandardDHRs;            // Total number of standard design heating requirements
+    thread_local extern Array1D_int const TotalNumOfTemperatureBins; // Total number of temperature
     // bins for a region
-    extern Array1D<Real64> const StandardDesignHeatingRequirement;
+    thread_local extern Array1D<Real64> const StandardDesignHeatingRequirement;
     // Standardized DHRs from ANSI/AHRI 210/240
-    extern Real64 const CorrectionFactor; // A correction factor which tends to improve the agreement
+    thread_local extern Real64 const CorrectionFactor; // A correction factor which tends to improve the agreement
     // between calculated and measured building loads, dimensionless.
-    extern Real64 const CyclicDegradationCoeff;
-    extern Array1D<Real64> const OutdoorDesignTemperature;
+    thread_local extern Real64 const CyclicDegradationCoeff;
+    thread_local extern Array1D<Real64> const OutdoorDesignTemperature;
     // Outdoor design temperature for a region from ANSI/AHRI 210/240
-    extern Array1D<Real64> const OutdoorBinTemperature;
+    thread_local extern Array1D<Real64> const OutdoorBinTemperature;
     // Fractional bin hours for different bin temperatures for region one, from ANSI/AHRI 210/240
-    extern Array1D<Real64> const RegionOneFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const RegionOneFracBinHoursAtOutdoorBinTemp;
     // Fractional bin hours for different bin temperatures for region two, from ANSI/AHRI 210/240
-    extern Array1D<Real64> const RegionTwoFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const RegionTwoFracBinHoursAtOutdoorBinTemp;
     // Fractional bin hours for different bin temperatures for region three, from ANSI/AHRI 210/240
-    extern Array1D<Real64> const RegionThreeFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const RegionThreeFracBinHoursAtOutdoorBinTemp;
     // Fractional bin hours for different bin temperatures for region four, from ANSI/AHRI 210/240
-    extern Array1D<Real64> const RegionFourFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const RegionFourFracBinHoursAtOutdoorBinTemp;
     // Fractional bin hours for different bin temperatures for region five, from ANSI/AHRI 210/240
-    extern Array1D<Real64> const RegionFiveFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const RegionFiveFracBinHoursAtOutdoorBinTemp;
     // Fractional bin hours for different bin temperatures for region six, from ANSI/AHRI 210/240
-    extern Array1D<Real64> const RegionSixFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const RegionSixFracBinHoursAtOutdoorBinTemp;
 
     // Representative cooling season Outdoor air temperature bin from ANSI/AHRI 210/240-2008
-    extern int const NumOfOATempBins; // number of outdoor temperature bins for cooling season
-    extern Array1D<Real64> const OutdoorBinTemperatureSEER;
+    thread_local extern int const NumOfOATempBins; // number of outdoor temperature bins for cooling season
+    thread_local extern Array1D<Real64> const OutdoorBinTemperatureSEER;
     // Fractional bin hours for different bin temperatures for cooling, from ANSI/AHRI 210/240 - 2008
-    extern Array1D<Real64> const CoolFracBinHoursAtOutdoorBinTemp;
+    thread_local extern Array1D<Real64> const CoolFracBinHoursAtOutdoorBinTemp;
 
-    extern Real64 const HeatingIndoorCoilInletAirDBTempRated; // Heating coil entering air dry-bulb temperature in
+    thread_local extern Real64 const HeatingIndoorCoilInletAirDBTempRated; // Heating coil entering air dry-bulb temperature in
     // degrees C (70F) Test H1, H2 and H3
     // (low and High Speed) Std. AHRI 210/240
-    extern Real64 const HeatingOutdoorCoilInletAirDBTempH0Test; // Outdoor air dry-bulb temp in degrees C (47F)
+    thread_local extern Real64 const HeatingOutdoorCoilInletAirDBTempH0Test; // Outdoor air dry-bulb temp in degrees C (47F)
     // Test H0 (low and High Speed) Std. AHRI 210/240
-    extern Real64 const HeatingOutdoorCoilInletAirDBTempRated; // Outdoor air dry-bulb temp in degrees C (47F)
+    thread_local extern Real64 const HeatingOutdoorCoilInletAirDBTempRated; // Outdoor air dry-bulb temp in degrees C (47F)
     // Test H1 or rated (low and High Speed) Std. AHRI 210/240
-    extern Real64 const HeatingOutdoorCoilInletAirDBTempH2Test; // Outdoor air dry-bulb temp in degrees C (35F)
+    thread_local extern Real64 const HeatingOutdoorCoilInletAirDBTempH2Test; // Outdoor air dry-bulb temp in degrees C (35F)
     // Test H2 (low and High Speed) Std. AHRI 210/240
-    extern Real64 const HeatingOutdoorCoilInletAirDBTempH3Test; // Outdoor air dry-bulb temp in degrees C (17F)
+    thread_local extern Real64 const HeatingOutdoorCoilInletAirDBTempH3Test; // Outdoor air dry-bulb temp in degrees C (17F)
     // Test H3 (low and High Speed) Std. AHRI 210/240
 
     // ANSI/ASHRAE Standard 127-2012 -Method of Testing for Rating Computer and Data Processing Room Unitary Air Conditioners
     // indoor dry bulb temperatures for tests A, B, C and D and Classes I, II, III, and IV
-    extern Array1D<Real64> const IndoorDBTempClassI2IV;
+    thread_local extern Array1D<Real64> const IndoorDBTempClassI2IV;
     // indoor dew point temperature
-    extern Real64 const IndoorTDPA2D;
+    thread_local extern Real64 const IndoorTDPA2D;
     // outdoor dry bulb temperatures for tests A, B, C and D
-    extern Array1D<Real64> const OutdoorDBTempAllClassA2D;
+    thread_local extern Array1D<Real64> const OutdoorDBTempAllClassA2D;
 
     // Functions
 

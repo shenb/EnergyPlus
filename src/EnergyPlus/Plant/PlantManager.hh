@@ -66,16 +66,16 @@ namespace PlantManager {
     using DataPlant::SplitterData;
 
     // MODULE PARAMETER DEFINITIONS
-    extern int const Plant;
-    extern int const Condenser;
-    extern int const TempSetPt;
-    extern int const FlowSetPt;
-    extern bool InitLoopEquip;
-    extern bool GetCompSizFac;
+    thread_local extern int const Plant;
+    thread_local extern int const Condenser;
+    thread_local extern int const TempSetPt;
+    thread_local extern int const FlowSetPt;
+    thread_local extern bool InitLoopEquip;
+    thread_local extern bool GetCompSizFac;
 
-    extern Array1D_int SupplySideInletNode;  // Node number for the supply side inlet
-    extern Array1D_int SupplySideOutletNode; // Node number for the supply side outlet
-    extern Array1D_int DemandSideInletNode;  // Inlet node on the demand side
+    thread_local extern Array1D_int SupplySideInletNode;  // Node number for the supply side inlet
+    thread_local extern Array1D_int SupplySideOutletNode; // Node number for the supply side outlet
+    thread_local extern Array1D_int DemandSideInletNode;  // Inlet node on the demand side
 
     struct TempLoopData
     {
@@ -100,7 +100,7 @@ namespace PlantManager {
     };
 
     // Object Data
-    extern TempLoopData TempLoop; // =(' ',' ',' ',0, , , ,.FALSE.,.FALSE.,.FALSE.,.FALSE.,.FALSE.)
+    thread_local extern TempLoopData TempLoop; // =(' ',' ',' ',0, , , ,.FALSE.,.FALSE.,.FALSE.,.FALSE.,.FALSE.)
 
     void clear_state();
 

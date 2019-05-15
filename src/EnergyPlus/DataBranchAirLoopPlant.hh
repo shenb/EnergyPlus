@@ -64,26 +64,26 @@ namespace DataBranchAirLoopPlant {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Parameters for tolerance
-    extern Real64 const MassFlowTolerance; // minimum significant mass flow rate (kg/s)
+    thread_local extern Real64 const MassFlowTolerance; // minimum significant mass flow rate (kg/s)
 
     // Pressure Curve Type: None, pressure, or generic curve (if generic it will be a postive value which is the curve manager index)
-    extern int const PressureCurve_Error;
-    extern int const PressureCurve_None;
-    extern int const PressureCurve_Pressure;
-    extern int const PressureCurve_Generic;
+    thread_local extern int const PressureCurve_Error;
+    thread_local extern int const PressureCurve_None;
+    thread_local extern int const PressureCurve_Pressure;
+    thread_local extern int const PressureCurve_Generic;
 
     // Parameters for flow Control Types for branch flow resolution inside splitter/mixers
-    extern int const ControlType_Unknown;
-    extern int const ControlType_Active;       // 'Active'
-    extern int const ControlType_Passive;      // 'Passive'
-    extern int const ControlType_SeriesActive; // 'SeriesActive'
-    extern int const ControlType_Bypass;       // 'Bypass
-    extern Array1D_string const cControlType;
+    thread_local extern int const ControlType_Unknown;
+    thread_local extern int const ControlType_Active;       // 'Active'
+    thread_local extern int const ControlType_Passive;      // 'Passive'
+    thread_local extern int const ControlType_SeriesActive; // 'SeriesActive'
+    thread_local extern int const ControlType_Bypass;       // 'Bypass
+    thread_local extern Array1D_string const cControlType;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumPressureCurves;
+    thread_local extern int NumPressureCurves;
 
     // Types
 
@@ -114,7 +114,7 @@ namespace DataBranchAirLoopPlant {
     };
 
     // Object Data
-    extern Array1D<PlantPressureCurveData> PressureCurve;
+    thread_local extern Array1D<PlantPressureCurveData> PressureCurve;
 
     void clear_state();
 

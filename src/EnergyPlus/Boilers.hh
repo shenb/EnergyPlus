@@ -65,39 +65,39 @@ namespace Boilers {
     // MODULE PARAMETER DEFINITIONS
 
     // Boiler normalized efficiency curve types
-    extern int const Linear;
-    extern int const BiLinear;
-    extern int const Quadratic;
-    extern int const BiQuadratic;
-    extern int const Cubic;
-    extern int const QuadraticLinear;
-    extern int const BiCubic;
-    extern int const TriQuadratic;
+    thread_local extern int const Linear;
+    thread_local extern int const BiLinear;
+    thread_local extern int const Quadratic;
+    thread_local extern int const BiQuadratic;
+    thread_local extern int const Cubic;
+    thread_local extern int const QuadraticLinear;
+    thread_local extern int const BiCubic;
+    thread_local extern int const TriQuadratic;
 
     // water temperature evaluation method
-    extern int const BoilerTempModeNotSet;
-    extern int const EnteringBoilerTemp;
-    extern int const LeavingBoilerTemp;
+    thread_local extern int const BoilerTempModeNotSet;
+    thread_local extern int const EnteringBoilerTemp;
+    thread_local extern int const LeavingBoilerTemp;
 
     // Boiler flow modes
-    extern int const FlowModeNotSet;
-    extern int const ConstantFlow;
-    extern int const NotModulated;
-    extern int const LeavingSetPointModulated;
+    thread_local extern int const FlowModeNotSet;
+    thread_local extern int const ConstantFlow;
+    thread_local extern int const NotModulated;
+    thread_local extern int const LeavingSetPointModulated;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumBoilers;            // Number of boilers
-    extern Real64 FuelUsed;           // W - Boiler fuel used
-    extern Real64 ParasiticElecPower; // W - Parasitic electrical power (e.g. forced draft fan)
-    extern Real64 BoilerLoad;         // W - Boiler Load
-    extern Real64 BoilerMassFlowRate; // kg/s - Boiler mass flow rate
-    extern Real64 BoilerOutletTemp;   // W - Boiler outlet temperature
-    extern Real64 BoilerPLR;          // Boiler operating part-load ratio
-    extern bool GetBoilerInputFlag;   // Boiler input flag, false if input is processed
+    thread_local extern int NumBoilers;            // Number of boilers
+    thread_local extern Real64 FuelUsed;           // W - Boiler fuel used
+    thread_local extern Real64 ParasiticElecPower; // W - Parasitic electrical power (e.g. forced draft fan)
+    thread_local extern Real64 BoilerLoad;         // W - Boiler Load
+    thread_local extern Real64 BoilerMassFlowRate; // kg/s - Boiler mass flow rate
+    thread_local extern Real64 BoilerOutletTemp;   // W - Boiler outlet temperature
+    thread_local extern Real64 BoilerPLR;          // Boiler operating part-load ratio
+    thread_local extern bool GetBoilerInputFlag;   // Boiler input flag, false if input is processed
 
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Boilers
 
@@ -184,8 +184,8 @@ namespace Boilers {
     };
 
     // Object Data
-    extern Array1D<BoilerSpecs> Boiler;      // boiler data - dimension to number of machines
-    extern Array1D<ReportVars> BoilerReport; // report vars - dimension to number of machines
+    thread_local extern Array1D<BoilerSpecs> Boiler;      // boiler data - dimension to number of machines
+    thread_local extern Array1D<ReportVars> BoilerReport; // report vars - dimension to number of machines
 
     // Functions
 

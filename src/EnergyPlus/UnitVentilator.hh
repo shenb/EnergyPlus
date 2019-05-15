@@ -66,38 +66,38 @@ namespace UnitVentilator {
     // MODULE PARAMETER DEFINITIONS
 
     // Currrent Module Unit type
-    extern std::string const cMO_UnitVentilator;
+    thread_local extern std::string const cMO_UnitVentilator;
 
     // Parameters for outside air control types:
-    extern int const Heating_ElectricCoilType;
-    extern int const Heating_GasCoilType;
-    extern int const Heating_WaterCoilType;
-    extern int const Heating_SteamCoilType;
-    extern int const Cooling_CoilWaterCooling;
-    extern int const Cooling_CoilDetailedCooling;
-    extern int const Cooling_CoilHXAssisted;
+    thread_local extern int const Heating_ElectricCoilType;
+    thread_local extern int const Heating_GasCoilType;
+    thread_local extern int const Heating_WaterCoilType;
+    thread_local extern int const Heating_SteamCoilType;
+    thread_local extern int const Cooling_CoilWaterCooling;
+    thread_local extern int const Cooling_CoilDetailedCooling;
+    thread_local extern int const Cooling_CoilHXAssisted;
     // OA operation modes
-    extern int const VariablePercent;
-    extern int const FixedTemperature;
-    extern int const FixedOAControl;
+    thread_local extern int const VariablePercent;
+    thread_local extern int const FixedTemperature;
+    thread_local extern int const FixedOAControl;
     // coil operation
-    extern int const On;  // normal coil operation
-    extern int const Off; // signal coil shouldn't run
-    extern int const NoneOption;
-    extern int const BothOption;
-    extern int const HeatingOption;
-    extern int const CoolingOption;
+    thread_local extern int const On;  // normal coil operation
+    thread_local extern int const Off; // signal coil shouldn't run
+    thread_local extern int const NoneOption;
+    thread_local extern int const BothOption;
+    thread_local extern int const HeatingOption;
+    thread_local extern int const CoolingOption;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern bool HCoilOn;          // TRUE if the heating coil (gas or electric especially) should be running
-    extern int NumOfUnitVents;    // Number of unit ventilators in the input file
-    extern Real64 OAMassFlowRate; // Outside air mass flow rate for the unit ventilator
-    extern Real64 QZnReq;         // heating or cooling needed by zone [watts]
-    extern Array1D_bool MySizeFlag;
-    extern bool GetUnitVentilatorInputFlag; // First time, input is "gotten"
-    extern Array1D_bool CheckEquipName;
+    thread_local extern bool HCoilOn;          // TRUE if the heating coil (gas or electric especially) should be running
+    thread_local extern int NumOfUnitVents;    // Number of unit ventilators in the input file
+    thread_local extern Real64 OAMassFlowRate; // Outside air mass flow rate for the unit ventilator
+    thread_local extern Real64 QZnReq;         // heating or cooling needed by zone [watts]
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern bool GetUnitVentilatorInputFlag; // First time, input is "gotten"
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE UnitVentilator
     // PRIVATE UpdateUnitVentilator
@@ -247,8 +247,8 @@ namespace UnitVentilator {
     };
 
     // Object Data
-    extern Array1D<UnitVentilatorData> UnitVent;
-    extern Array1D<UnitVentNumericFieldData> UnitVentNumericFields;
+    thread_local extern Array1D<UnitVentilatorData> UnitVent;
+    thread_local extern Array1D<UnitVentNumericFieldData> UnitVentNumericFields;
 
     // Functions
 

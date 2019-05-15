@@ -142,106 +142,106 @@ namespace WaterThermalTanks {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    std::string const cMixedWHModuleObj("WaterHeater:Mixed");
-    std::string const cStratifiedWHModuleObj("WaterHeater:Stratified");
-    std::string const cMixedCWTankModuleObj("ThermalStorage:ChilledWater:Mixed");
-    std::string const cStratifiedCWTankModuleObj("ThermalStorage:ChilledWater:Stratified");
-    std::string const cHPWHPumpedCondenser("WaterHeater:HeatPump:PumpedCondenser");
-    std::string const cHPWHWrappedCondenser("WaterHeater:HeatPump:WrappedCondenser");
-    static std::string const BlankString;
+    thread_local std::string const cMixedWHModuleObj("WaterHeater:Mixed");
+    thread_local std::string const cStratifiedWHModuleObj("WaterHeater:Stratified");
+    thread_local std::string const cMixedCWTankModuleObj("ThermalStorage:ChilledWater:Mixed");
+    thread_local std::string const cStratifiedCWTankModuleObj("ThermalStorage:ChilledWater:Stratified");
+    thread_local std::string const cHPWHPumpedCondenser("WaterHeater:HeatPump:PumpedCondenser");
+    thread_local std::string const cHPWHWrappedCondenser("WaterHeater:HeatPump:WrappedCondenser");
+    thread_local static std::string const BlankString;
 
-    int const HeatMode(1);  // heating source is on, source will not turn off until setpoint temp is reached
-    int const FloatMode(0); // heating source is off, source will not turn on until cutin temp is reached
-    int const VentMode(-1); // tank temp is above maximum temperature and water is venting
-    int const CoolMode(2);  // cooling source is on, source will not turn off until setpoint temp is reached
+    thread_local int const HeatMode(1);  // heating source is on, source will not turn off until setpoint temp is reached
+    thread_local int const FloatMode(0); // heating source is off, source will not turn on until cutin temp is reached
+    thread_local int const VentMode(-1); // tank temp is above maximum temperature and water is venting
+    thread_local int const CoolMode(2);  // cooling source is on, source will not turn off until setpoint temp is reached
 
-    int const AmbientTempSchedule(1);   // ambient temperature around tank (or HPWH inlet air) is scheduled
-    int const AmbientTempZone(2);       // tank is located in a zone or HPWH inlet air is zone air only
-    int const AmbientTempOutsideAir(3); // tank is located outdoors or HPWH inlet air is outdoor air only
-    int const AmbientTempZoneAndOA(4);  // applicable to HPWH only, inlet air is mixture of OA and zone air
+    thread_local int const AmbientTempSchedule(1);   // ambient temperature around tank (or HPWH inlet air) is scheduled
+    thread_local int const AmbientTempZone(2);       // tank is located in a zone or HPWH inlet air is zone air only
+    thread_local int const AmbientTempOutsideAir(3); // tank is located outdoors or HPWH inlet air is outdoor air only
+    thread_local int const AmbientTempZoneAndOA(4);  // applicable to HPWH only, inlet air is mixture of OA and zone air
 
-    int const CrankcaseTempSchedule(1); // temperature controlling compressor crankcase heater is scheduled
-    int const CrankcaseTempZone(2);     // temperature controlling compressor crankcase heater is zone air
-    int const CrankcaseTempExterior(3); // temperature controlling compressor crankcase heater is outdoor air
+    thread_local int const CrankcaseTempSchedule(1); // temperature controlling compressor crankcase heater is scheduled
+    thread_local int const CrankcaseTempZone(2);     // temperature controlling compressor crankcase heater is zone air
+    thread_local int const CrankcaseTempExterior(3); // temperature controlling compressor crankcase heater is outdoor air
 
-    int const ControlTypeCycle(1);    // water heater only, cycling heating source control
-    int const ControlTypeModulate(2); // water heater only, modulating heating source control
+    thread_local int const ControlTypeCycle(1);    // water heater only, cycling heating source control
+    thread_local int const ControlTypeModulate(2); // water heater only, modulating heating source control
 
-    int const TankShapeVertCylinder(1);  // tank shape is a vertical cylinder
-    int const TankShapeHorizCylinder(2); // tank shape is a horizontal cylinder
-    int const TankShapeOther(3);         // tank shape has an arbitrary perimeter shape
+    thread_local int const TankShapeVertCylinder(1);  // tank shape is a vertical cylinder
+    thread_local int const TankShapeHorizCylinder(2); // tank shape is a horizontal cylinder
+    thread_local int const TankShapeOther(3);         // tank shape has an arbitrary perimeter shape
 
-    int const PriorityMasterSlave(1);  // water heater only, master-slave priority control of heater elements
-    int const PrioritySimultaneous(2); // water heater only, simultaneous control of heater elements
+    thread_local int const PriorityMasterSlave(1);  // water heater only, master-slave priority control of heater elements
+    thread_local int const PrioritySimultaneous(2); // water heater only, simultaneous control of heater elements
 
-    int const InletModeFixed(1);   // water heater only, inlet water always enters at the user-specified height
-    int const InletModeSeeking(2); // water heater only, inlet water seeks out the node with the closest temperature
+    thread_local int const InletModeFixed(1);   // water heater only, inlet water always enters at the user-specified height
+    thread_local int const InletModeSeeking(2); // water heater only, inlet water seeks out the node with the closest temperature
 
     // integer parameter for water heater
-    int const MixedWaterHeater(TypeOf_WtrHeaterMixed);           // WaterHeater:Mixed
-    int const StratifiedWaterHeater(TypeOf_WtrHeaterStratified); // WaterHeater:Stratified
+    thread_local int const MixedWaterHeater(TypeOf_WtrHeaterMixed);           // WaterHeater:Mixed
+    thread_local int const StratifiedWaterHeater(TypeOf_WtrHeaterStratified); // WaterHeater:Stratified
     // stovall, next line never used because all desuperheater coils used in mixed water heater types
-    int const CoilWaterDesuperHeater(4);                                        // Coil:WaterHeating:Desuperheater
-    int const MixedChilledWaterStorage(TypeOf_ChilledWaterTankMixed);           // 'ThermalStorage:ChilledWater:Mixed'
-    int const StratifiedChilledWaterStorage(TypeOf_ChilledWaterTankStratified); // 'ThermalStorage:ChilledWater:Stratified'
+    thread_local int const CoilWaterDesuperHeater(4);                                        // Coil:WaterHeating:Desuperheater
+    thread_local int const MixedChilledWaterStorage(TypeOf_ChilledWaterTankMixed);           // 'ThermalStorage:ChilledWater:Mixed'
+    thread_local int const StratifiedChilledWaterStorage(TypeOf_ChilledWaterTankStratified); // 'ThermalStorage:ChilledWater:Stratified'
 
     // reclaim heat object types for Coil:WaterHeating:Desuperheater object
-    int const COMPRESSORRACK_REFRIGERATEDCASE(1); // reclaim heating source is refrigerated case compressor rack
-    int const COIL_DX_COOLING(2);                 // reclaim heating source is DX cooling coil
-    int const COIL_DX_MULTISPEED(3);              // reclaim heating source is DX multispeed coil
-    int const COIL_DX_MULTIMODE(4);               // reclaim heating source is DX multimode coil
-    int const CONDENSER_REFRIGERATION(5);         // reclaim heating source is detailed refrigeration system condenser
-    int const COIL_DX_VARIABLE_COOLING(6);        // reclaim heating source is Variable Speed DX cooling coil
+    thread_local int const COMPRESSORRACK_REFRIGERATEDCASE(1); // reclaim heating source is refrigerated case compressor rack
+    thread_local int const COIL_DX_COOLING(2);                 // reclaim heating source is DX cooling coil
+    thread_local int const COIL_DX_MULTISPEED(3);              // reclaim heating source is DX multispeed coil
+    thread_local int const COIL_DX_MULTIMODE(4);               // reclaim heating source is DX multimode coil
+    thread_local int const CONDENSER_REFRIGERATION(5);         // reclaim heating source is detailed refrigeration system condenser
+    thread_local int const COIL_DX_VARIABLE_COOLING(6);        // reclaim heating source is Variable Speed DX cooling coil
 
-    int const UseSide(101);    // Indicates Use side of water heater
-    int const SourceSide(102); // Indicates Source side of water heater
+    thread_local int const UseSide(101);    // Indicates Use side of water heater
+    thread_local int const SourceSide(102); // Indicates Source side of water heater
 
-    int const SizeNotSet(200);
-    int const SizePeakDraw(201);
-    int const SizeResidentialMin(202);
-    int const SizePerPerson(203);
-    int const SizePerFloorArea(204);
-    int const SizePerUnit(205);
-    int const SizePerSolarColArea(206);
+    thread_local int const SizeNotSet(200);
+    thread_local int const SizePeakDraw(201);
+    thread_local int const SizeResidentialMin(202);
+    thread_local int const SizePerPerson(203);
+    thread_local int const SizePerFloorArea(204);
+    thread_local int const SizePerUnit(205);
+    thread_local int const SizePerSolarColArea(206);
 
-    int const HPWHControlNotSet(500);
-    int const Heater1HPWHControl(501);
-    int const Heater2HPWHControl(502);
-    int const SourceInletHPWHControl(503);
-    int const SourceOutletHPWHControl(504);
-    int const UseInletHPWHControl(505);
-    int const UseOutletHPWHControl(506);
+    thread_local int const HPWHControlNotSet(500);
+    thread_local int const Heater1HPWHControl(501);
+    thread_local int const Heater2HPWHControl(502);
+    thread_local int const SourceInletHPWHControl(503);
+    thread_local int const SourceOutletHPWHControl(504);
+    thread_local int const UseInletHPWHControl(505);
+    thread_local int const UseOutletHPWHControl(506);
 
-    int const SourceSideStorageTank(600);
-    int const SourceSideIndirectHeatPrimarySetpoint(601);
-    int const SourceSideIndirectHeatAltSetpoint(602);
+    thread_local int const SourceSideStorageTank(600);
+    thread_local int const SourceSideIndirectHeatPrimarySetpoint(601);
+    thread_local int const SourceSideIndirectHeatAltSetpoint(602);
 
-    static std::string const fluidNameWater("WATER");
+    thread_local static std::string const fluidNameWater("WATER");
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
-    Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
-    Array1D_bool MyHPSizeFlag;    // Used to report autosize info in Init
-    Array1D_bool CheckWTTEquipName;
-    Array1D_bool CheckHPWHEquipName;
+    thread_local Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
+    thread_local Array1D_bool MyHPSizeFlag;    // Used to report autosize info in Init
+    thread_local Array1D_bool CheckWTTEquipName;
+    thread_local Array1D_bool CheckHPWHEquipName;
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumChilledWaterMixed(0);        // number of mixed chilled water tanks
-    int NumChilledWaterStratified(0);   // number of stratified chilled water tanks
-    int NumWaterHeaterMixed(0);         // number of mixed water heaters
-    int NumWaterHeaterStratified(0);    // number of stratified water heaters
-    int NumWaterThermalTank(0);         // total number of water thermal tanks, hot and cold (MIXED + STRATIFIED)
-    int NumWaterHeaterDesuperheater(0); // number of desuperheater heating coils
-    int NumHeatPumpWaterHeater(0);      // number of heat pump water heaters
+    thread_local int NumChilledWaterMixed(0);        // number of mixed chilled water tanks
+    thread_local int NumChilledWaterStratified(0);   // number of stratified chilled water tanks
+    thread_local int NumWaterHeaterMixed(0);         // number of mixed water heaters
+    thread_local int NumWaterHeaterStratified(0);    // number of stratified water heaters
+    thread_local int NumWaterThermalTank(0);         // total number of water thermal tanks, hot and cold (MIXED + STRATIFIED)
+    thread_local int NumWaterHeaterDesuperheater(0); // number of desuperheater heating coils
+    thread_local int NumHeatPumpWaterHeater(0);      // number of heat pump water heaters
     // INTEGER :: MaxCyclesErrorCount           =0 ! error counter for water heater that cycles more than max during time step
 
-    Real64 HPPartLoadRatio(0.0);             // part load ratio of HPWH
-    bool GetWaterThermalTankInputFlag(true); // Calls to Water Heater from multiple places in code
-    Real64 MixerInletAirSchedule(0.0);       // output of inlet air mixer node schedule
-    Real64 MdotAir(0.0);                     // mass flow rate of evaporator air, kg/s
-    int NumWaterHeaterSizing(0);             // Number of sizing/design objects for water heaters.
-    Array1D_bool AlreadyRated;               // control so we don't repeat again
+    thread_local Real64 HPPartLoadRatio(0.0);             // part load ratio of HPWH
+    thread_local bool GetWaterThermalTankInputFlag(true); // Calls to Water Heater from multiple places in code
+    thread_local Real64 MixerInletAirSchedule(0.0);       // output of inlet air mixer node schedule
+    thread_local Real64 MdotAir(0.0);                     // mass flow rate of evaporator air, kg/s
+    thread_local int NumWaterHeaterSizing(0);             // Number of sizing/design objects for water heaters.
+    thread_local Array1D_bool AlreadyRated;               // control so we don't repeat again
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -249,20 +249,20 @@ namespace WaterThermalTanks {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool InitWaterThermalTanksOnce(true); // flag for 1 time initialization
-        bool SimWaterThermalTank_OneTimeSetupFlag(true);
-        bool CalcWaterThermalTankZoneGains_MyEnvrnFlag(true);
+        thread_local bool InitWaterThermalTanksOnce(true); // flag for 1 time initialization
+        thread_local bool SimWaterThermalTank_OneTimeSetupFlag(true);
+        thread_local bool CalcWaterThermalTankZoneGains_MyEnvrnFlag(true);
     } // namespace
 
     // SUBROUTINE SPECIFICATIONS:
 
     // Object Data
-    Array1D<WaterThermalTankData> WaterThermalTank;
-    std::unordered_map<std::string, std::string> UniqueWaterThermalTankNames;
-    Array1D<HeatPumpWaterHeaterData> HPWaterHeater;
-    Array1D<WaterHeaterDesuperheaterData> WaterHeaterDesuperheater;
+    thread_local Array1D<WaterThermalTankData> WaterThermalTank;
+    thread_local std::unordered_map<std::string, std::string> UniqueWaterThermalTankNames;
+    thread_local Array1D<HeatPumpWaterHeaterData> HPWaterHeater;
+    thread_local Array1D<WaterHeaterDesuperheaterData> WaterHeaterDesuperheater;
 
-    static gio::Fmt fmtLD("*");
+    thread_local static gio::Fmt fmtLD("*");
 
     // MODULE SUBROUTINES:
 
@@ -334,10 +334,10 @@ namespace WaterThermalTanks {
         using VariableSpeedCoils::GetCoilOutletNodeVariableSpeed;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyOneTimeFlagWH; // first pass log
-        static Array1D_bool MyTwoTimeFlagWH; // second pass do input check
-        static Array1D_bool MyOneTimeFlagHP; // first pass log
-        static Array1D_bool MyTwoTimeFlagHP; // second pass do input check
+        thread_local static Array1D_bool MyOneTimeFlagWH; // first pass log
+        thread_local static Array1D_bool MyTwoTimeFlagWH; // second pass do input check
+        thread_local static Array1D_bool MyOneTimeFlagHP; // first pass log
+        thread_local static Array1D_bool MyTwoTimeFlagHP; // second pass do input check
         int tmpLoopNum;
         int tmpLoopSideNum;
         int CompNum;
@@ -940,8 +940,8 @@ namespace WaterThermalTanks {
         // PURPOSE OF THIS SUBROUTINE:
         // Manages GetInput processing and program termination
 
-        static std::string const RoutineName("GetWaterThermalTankInput: "); // include trailing blank space
-        static bool ErrorsFound(false);                                     // true if errors detected in GetUnitarySystemInputData
+        thread_local static std::string const RoutineName("GetWaterThermalTankInput: "); // include trailing blank space
+        thread_local static bool ErrorsFound(false);                                     // true if errors detected in GetUnitarySystemInputData
 
         GetWaterThermalTankInputData(ErrorsFound);
 
@@ -1039,8 +1039,8 @@ namespace WaterThermalTanks {
         using VariableSpeedCoils::GetVSCoilPLFFPLR;
         using VariableSpeedCoils::VarSpeedCoil;
 
-        static std::string const RoutineName("GetWaterThermalTankInput: ");
-        static std::string const RoutineNameNoColon("GetWaterThermalTankInput");
+        thread_local static std::string const RoutineName("GetWaterThermalTankInput: ");
+        thread_local static std::string const RoutineNameNoColon("GetWaterThermalTankInput");
 
         int WaterThermalTankNum; // Index to WATER HEATER:*
         int WHsizingNum;         // Index to Water Heater:Sizing, for the IDF objects--not data storage
@@ -1057,27 +1057,27 @@ namespace WaterThermalTanks {
         int DXCoilNum;                            // Index to DX coils
         int IOStat;                               // IO Status when calling get input subroutine
         bool IsValid;                             // Flag for validating PLF curve, OutsideAirNode
-        static std::string FanInletNode;          // Used to set up comp set
-        static std::string FanOutletNode;         // Used to set up comp set
-        static std::string CoilInletNode;         // Used to set up comp set
-        static std::string CoilOutletNode;        // Used to set up comp set
-        static int SupAirIn(0);                   // Used for error checking HPWHs
-        static int ExhAirOut(0);                  // Used for error checking HPWHs
-        static bool FoundInletNode(false);        // Used for error checking HPWHs
-        static bool FoundOutletNode(false);       // Used for error checking HPWHs
-        static int ZoneNum(0);                    // Used for error checking HPWHs
-        static bool ValidScheduleValue(false);    // Used for error checking HPWH's inlet air mixer schedule
-        static int ZoneEquipConfigNum(0);         // Used to determine if HPWH tank is in a Zone Equipment List (ZEL)
-        static int ZoneEquipListNum(0);           // Used to determine if HPWH tank is in a Zone Equipment List
-        static int EquipmentTypeNum(0);           // Used to determine if HPWH tank is in a Zone Equipment List
-        static bool FoundTankInList(false);       // Used to determine if HPWH tank is listed in a Zone Equipment List
-        static bool TankNotLowestPriority(false); // Used to determine if HPWH tank is prioritized correctly in ZEL
-        static int TankCoolingPriority(0);        // Used to determine if a HPWH tank is prioritized correctly in ZEL
-        static int TankHeatingPriority(0);        // Used to determine if a HPWH tank is prioritized correctly in ZEL
-        static bool DXCoilErrFlag(false);         // Used for error checking DX coils used with HPWHs
-        static Real64 FanVolFlow(0.0);            // Used for error checking fans used with HPWHs
-        static bool errFlag(false);               // Used for error checking used with HPWHs
-        static Real64 HEffFTemp(0.0);             // Used for error checking desuperheater heating coils
+        thread_local static std::string FanInletNode;          // Used to set up comp set
+        thread_local static std::string FanOutletNode;         // Used to set up comp set
+        thread_local static std::string CoilInletNode;         // Used to set up comp set
+        thread_local static std::string CoilOutletNode;        // Used to set up comp set
+        thread_local static int SupAirIn(0);                   // Used for error checking HPWHs
+        thread_local static int ExhAirOut(0);                  // Used for error checking HPWHs
+        thread_local static bool FoundInletNode(false);        // Used for error checking HPWHs
+        thread_local static bool FoundOutletNode(false);       // Used for error checking HPWHs
+        thread_local static int ZoneNum(0);                    // Used for error checking HPWHs
+        thread_local static bool ValidScheduleValue(false);    // Used for error checking HPWH's inlet air mixer schedule
+        thread_local static int ZoneEquipConfigNum(0);         // Used to determine if HPWH tank is in a Zone Equipment List (ZEL)
+        thread_local static int ZoneEquipListNum(0);           // Used to determine if HPWH tank is in a Zone Equipment List
+        thread_local static int EquipmentTypeNum(0);           // Used to determine if HPWH tank is in a Zone Equipment List
+        thread_local static bool FoundTankInList(false);       // Used to determine if HPWH tank is listed in a Zone Equipment List
+        thread_local static bool TankNotLowestPriority(false); // Used to determine if HPWH tank is prioritized correctly in ZEL
+        thread_local static int TankCoolingPriority(0);        // Used to determine if a HPWH tank is prioritized correctly in ZEL
+        thread_local static int TankHeatingPriority(0);        // Used to determine if a HPWH tank is prioritized correctly in ZEL
+        thread_local static bool DXCoilErrFlag(false);         // Used for error checking DX coils used with HPWHs
+        thread_local static Real64 FanVolFlow(0.0);            // Used for error checking fans used with HPWHs
+        thread_local static bool errFlag(false);               // Used for error checking used with HPWHs
+        thread_local static Real64 HEffFTemp(0.0);             // Used for error checking desuperheater heating coils
         bool Okay;
         bool bIsVScoil(false); // indicate if the heat pump WH coil is a variable-speed coil
         int IHPIndex(0);       // coil No for integrated heat pump
@@ -1085,7 +1085,7 @@ namespace WaterThermalTanks {
 
         // Following allow for temporary storage of character strings but not saved in main structure
         Real64 rho; // local fluid density
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
 
         struct WaterHeaterSaveNodes
         {
@@ -1107,18 +1107,18 @@ namespace WaterThermalTanks {
         Array1D<WaterHeaterSaveNodes> CoilSaveNodeNames; // temporary for coil node names used in later checks
 
         // Formats
-        static gio::Fmt Format_720("('! <Water Heater Information>,Type,Name,Volume {m3},Maximum Capacity {W},Standard Rated Recovery Efficiency, "
+        thread_local static gio::Fmt Format_720("('! <Water Heater Information>,Type,Name,Volume {m3},Maximum Capacity {W},Standard Rated Recovery Efficiency, "
                                    "','Standard Rated Energy Factor')");
-        static gio::Fmt Format_721("('! <Heat Pump Water Heater Information>,Type,Name,Volume {m3},Maximum Capacity {W},','Standard Rated Recovery "
+        thread_local static gio::Fmt Format_721("('! <Heat Pump Water Heater Information>,Type,Name,Volume {m3},Maximum Capacity {W},','Standard Rated Recovery "
                                    "Efficiency,Standard Rated Energy Factor,\"DX Coil Total Cooling Rate {W, HPWH Only}\"')");
-        static gio::Fmt Format_722("('! <Water Heater Stratified Node Information>,Node Number,Height {m},Volume {m3},Maximum Capacity "
+        thread_local static gio::Fmt Format_722("('! <Water Heater Stratified Node Information>,Node Number,Height {m},Volume {m3},Maximum Capacity "
                                    "{W},','Off-Cycle UA {W/K},On-Cycle UA {W/K},Number Of Inlets,Number Of Outlets')");
-        static gio::Fmt Format_725(
+        thread_local static gio::Fmt Format_725(
             "('! <Chilled Water Tank Information>,Type,Name,Volume {m3},Use Side Design Flow Rate {m3/s}, ','Source Side Design Flow Rate {m3/s}')");
-        static gio::Fmt Format_726("('! <Chilled Water Tank Stratified Node Information>,Node Number,Height {m},Volume {m3},','UA {W/K},Number Of "
+        thread_local static gio::Fmt Format_726("('! <Chilled Water Tank Stratified Node Information>,Node Number,Height {m},Volume {m3},','UA {W/K},Number Of "
                                    "Inlets,Number Of Outlets')");
-        static gio::Fmt Format_723("('Water Heater Stratified Node Information',8(',',A))");
-        static gio::Fmt Format_724("('Chilled Water Tank Stratified Node Information',6(',',A))");
+        thread_local static gio::Fmt Format_723("('Water Heater Stratified Node Information',8(',',A))");
+        thread_local static gio::Fmt Format_724("('Chilled Water Tank Stratified Node Information',6(',',A))");
 
         // FLOW:
 
@@ -5837,9 +5837,9 @@ namespace WaterThermalTanks {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 Tolerance(1.0e-8); // Tolerance for Newton-Raphson solution
-        static Real64 FluidCond(0.6);    // Conductivity of water (W/m-K)
-        static std::string const RoutineName("GetWaterThermalTankInput");
+        thread_local static Real64 Tolerance(1.0e-8); // Tolerance for Newton-Raphson solution
+        thread_local static Real64 FluidCond(0.6);    // Conductivity of water (W/m-K)
+        thread_local static std::string const RoutineName("GetWaterThermalTankInput");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumNodes;         // Number of stratified nodes
@@ -5868,7 +5868,7 @@ namespace WaterThermalTanks {
         Real64 c0;
         Real64 G;   // Function that should converge to zero for the Newton-Raphson solution
         Real64 rho; // local fluid density (kg/m3)
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
 
         WaterThermalTankData &Tank = WaterThermalTank(WaterThermalTankNum);
 
@@ -6149,14 +6149,14 @@ namespace WaterThermalTanks {
         Real64 FanVolFlow(0.0);                 // Used for error checking fans used with HPWHs
         //  LOGICAL,SAVE        :: ZoneEquipmentListChecked = .FALSE.  ! True after the Zone Equipment List has been checked for items
         //  Integer             :: Loop
-        static Array1D_bool MyEnvrnFlag;      // flag for init once at start of environment
-        static Array1D_bool MyWarmupFlag;     // flag for init after warmup complete
-        static Array1D_bool SetLoopIndexFlag; // get loop number flag
+        thread_local static Array1D_bool MyEnvrnFlag;      // flag for init once at start of environment
+        thread_local static Array1D_bool MyWarmupFlag;     // flag for init after warmup complete
+        thread_local static Array1D_bool SetLoopIndexFlag; // get loop number flag
                                               //		static Array1D_bool MySizingDoneFlag; // true if sizing is finished
 
-        static std::string const RoutineName("InitWaterThermalTank");
-        static std::string const GetWaterThermalTankInput("GetWaterThermalTankInput");
-        static std::string const SizeTankForDemand("SizeTankForDemandSide");
+        thread_local static std::string const RoutineName("InitWaterThermalTank");
+        thread_local static std::string const GetWaterThermalTankInput("GetWaterThermalTankInput");
+        thread_local static std::string const SizeTankForDemand("SizeTankForDemandSide");
 
         Real64 sensedTemp;
         int tmpNodeNum;
@@ -6164,9 +6164,9 @@ namespace WaterThermalTanks {
         Real64 mdotSource; // local temporary for source side mass flow
         bool errFlag;
         Real64 rho; // local fluid density
-        static int DummyWaterIndex(1);
-        static Real64 TankChangeRateScale(0.0); // local temporary for nominal tank change rate
-        static Real64 MaxSideVolFlow(0.0);      // local temporary for largest connection design flow
+        thread_local static int DummyWaterIndex(1);
+        thread_local static Real64 TankChangeRateScale(0.0); // local temporary for nominal tank change rate
+        thread_local static Real64 MaxSideVolFlow(0.0);      // local temporary for largest connection design flow
         int VSCoilID(0);                        // id of variable-speed HPWH coil
 
         // FLOW:
@@ -7003,7 +7003,7 @@ namespace WaterThermalTanks {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcWaterThermalTankMixed");
+        thread_local static std::string const RoutineName("CalcWaterThermalTankMixed");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 TimeElapsed;  // Fraction of the current hour that has elapsed (h)
@@ -7069,7 +7069,7 @@ namespace WaterThermalTanks {
         bool SetPointRecovered;    // Flag to indicate when setpoint is recovered for the first time
         Real64 rho;
         Real64 HPWHCondenserDeltaT(0.0); // Temperature difference across the condenser for a heat pump water heater
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
 
         // Reference to objects
         WaterThermalTankData &Tank = WaterThermalTank(WaterThermalTankNum); // Reference to the tank object to save typing
@@ -7951,7 +7951,7 @@ namespace WaterThermalTanks {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const dt(1.0); // Sub time step interval (s)
-        static std::string const RoutineName("CalcWaterThermalTankStratified");
+        thread_local static std::string const RoutineName("CalcWaterThermalTankStratified");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 TimeElapsed;         // Fraction of the current hour that has elapsed (h)
@@ -8019,7 +8019,7 @@ namespace WaterThermalTanks {
         Real64 Efuel;               // Energy change for fuel consumed over the timestep (J)
         int HPWHCondenserConfig(0); // Condenser configuration of HPWH
         bool SetPointRecovered;     // Flag to indicate when set point is recovered for the first time
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
 
         // References
         WaterThermalTankData &Tank = WaterThermalTank(WaterThermalTankNum); // Tank object
@@ -8638,7 +8638,7 @@ namespace WaterThermalTanks {
         int SolFla;                 // Flag of RegulaFalsi solver
         int SourceID;               // Waste Heat Source ID number
         Array1D<Real64> Par(5);     // Parameters passed to RegulaFalsi
-        static Real64 MinTemp(0.0); // used for error messages, C
+        thread_local static Real64 MinTemp(0.0); // used for error messages, C
         std::string IterNum;        // Max number of iterations for warning message
 
         // FLOW:
@@ -11062,7 +11062,7 @@ namespace WaterThermalTanks {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeSupplySidePlantConnections");
+        thread_local static std::string const RoutineName("SizeSupplySidePlantConnections");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -11073,7 +11073,7 @@ namespace WaterThermalTanks {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum;    // Plant Sizing index corresponding to CurLoopNum
         bool ErrorsFound; // If errors detected in input
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         Real64 rho; // temporary fluid density
         int tmpLoopNum;
         int tmpLoopSideNum;
@@ -11272,7 +11272,7 @@ namespace WaterThermalTanks {
         using DataPlant::PlantFirstSizesOkayToReport;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeTankForDemandSide");
+        thread_local static std::string const RoutineName("SizeTankForDemandSide");
         Real64 const GalTocubicMeters(0.0037854);
         Real64 const kBtuPerHrToWatts(293.1);
 
@@ -11286,10 +11286,10 @@ namespace WaterThermalTanks {
         //		static bool SizeMaxCapacity( false );
         Real64 rho;
         Real64 Cp;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         Real64 tmpTankVolume;  // local temporary for tank volume m3
         Real64 tmpMaxCapacity; // local temporary for heating capacity W
-        static bool FuelTypeIsLikeGas(false);
+        thread_local static bool FuelTypeIsLikeGas(false);
 
         // local inits
         Tstart = 14.44;
@@ -11698,7 +11698,7 @@ namespace WaterThermalTanks {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeTankForSupplySide");
+        thread_local static std::string const RoutineName("SizeTankForSupplySide");
         // INTERFACE BLOCK SPECIFICATIONS
         // na
 
@@ -11711,7 +11711,7 @@ namespace WaterThermalTanks {
         int CollectorNum;
         Real64 rho;
         Real64 Cp;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         Real64 tmpTankVolume;  // local temporary for tank volume m3
         Real64 tmpMaxCapacity; // local temporary for heating capacity W
 
@@ -11888,7 +11888,7 @@ namespace WaterThermalTanks {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeDemandSidePlantConnections");
+        thread_local static std::string const RoutineName("SizeDemandSidePlantConnections");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -11907,7 +11907,7 @@ namespace WaterThermalTanks {
 
         Real64 eff; // temporary effectiveness value for heat exchanger inside tank
 
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         Real64 rho;
         Real64 tmpUseDesignVolFlowRate;    // local use side design flow rate
         Real64 tmpSourceDesignVolFlowRate; // local use side design flow rate
@@ -12146,15 +12146,15 @@ namespace WaterThermalTanks {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const GalTocubicMeters(0.0037854);
         Real64 const kBtuPerHrToWatts(293.1);
-        static std::string const RoutineName("SizeStandAloneWaterHeater");
+        thread_local static std::string const RoutineName("SizeStandAloneWaterHeater");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 tmpTankVolume;  // local temporary for tank volume m3
         Real64 tmpMaxCapacity; // local temporary for heating capacity W
         Real64 Tstart;         // initial tank temp for sizing.
         Real64 Tfinish;        // final target temp for sizing
-        static bool FuelTypeIsLikeGas(false);
-        static int DummyWaterIndex(1);
+        thread_local static bool FuelTypeIsLikeGas(false);
+        thread_local static int DummyWaterIndex(1);
         Real64 rho;
         Real64 Cp;
         Real64 DrawDesignVolFlowRate;
@@ -12653,8 +12653,8 @@ namespace WaterThermalTanks {
         std::string VSCoilName = "";
 
         // Formats
-        static gio::Fmt Format_720("('Water Heater Information',6(',',A))");
-        static gio::Fmt Format_721("('Heat Pump Water Heater Information',7(',',A))");
+        thread_local static gio::Fmt Format_720("('Water Heater Information',6(',',A))");
+        thread_local static gio::Fmt Format_721("('Heat Pump Water Heater Information',7(',',A))");
 
         if (AlreadyRated(WaterThermalTankNum)) { // bail we already did this one
             return;
@@ -13075,11 +13075,11 @@ namespace WaterThermalTanks {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeSetupFlag(true); // one time setup flag
-        static Array1D_bool AlreadyReported;  // control so we don't repeat again
+        thread_local static bool MyOneTimeSetupFlag(true); // one time setup flag
+        thread_local static Array1D_bool AlreadyReported;  // control so we don't repeat again
 
         // Formats
-        static gio::Fmt Format_728("('Chilled Water Tank Information',5(',',A))");
+        thread_local static gio::Fmt Format_728("('Chilled Water Tank Information',5(',',A))");
 
         if (MyOneTimeSetupFlag) {
             AlreadyReported.dimension(NumWaterThermalTank, false);

@@ -97,33 +97,33 @@ namespace RuntimeLanguageProcessor {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const MaxErrors(20);
+    thread_local int const MaxErrors(20);
 
     // keyword parameters for types of Erl statements
-    int const KeywordNone(0);      // statement type not set
-    int const KeywordReturn(1);    // Return statement, as in leave program
-    int const KeywordGoto(2);      // Goto statement, used in parsing to manage IF-ElseIf-Else-EndIf and nesting
-    int const KeywordSet(3);       // Set statement, as in assign RHS to LHS
-    int const KeywordRun(4);       // Run statement, used to call a subroutine from a main program
-    int const KeywordIf(5);        // If statement, begins an IF-ElseIf-Else-EndIf logic block
-    int const KeywordElseIf(6);    // ElseIf statement, begins an ElseIf block
-    int const KeywordElse(7);      // Else statement, begins an Else block
-    int const KeywordEndIf(8);     // EndIf statement, terminates an IF-ElseIf-Else-EndIf logic block
-    int const KeywordWhile(9);     // While statement, begins a While block
-    int const KeywordEndWhile(10); // EndWhile statement, terminates a While block
+    thread_local int const KeywordNone(0);      // statement type not set
+    thread_local int const KeywordReturn(1);    // Return statement, as in leave program
+    thread_local int const KeywordGoto(2);      // Goto statement, used in parsing to manage IF-ElseIf-Else-EndIf and nesting
+    thread_local int const KeywordSet(3);       // Set statement, as in assign RHS to LHS
+    thread_local int const KeywordRun(4);       // Run statement, used to call a subroutine from a main program
+    thread_local int const KeywordIf(5);        // If statement, begins an IF-ElseIf-Else-EndIf logic block
+    thread_local int const KeywordElseIf(6);    // ElseIf statement, begins an ElseIf block
+    thread_local int const KeywordElse(7);      // Else statement, begins an Else block
+    thread_local int const KeywordEndIf(8);     // EndIf statement, terminates an IF-ElseIf-Else-EndIf logic block
+    thread_local int const KeywordWhile(9);     // While statement, begins a While block
+    thread_local int const KeywordEndWhile(10); // EndWhile statement, terminates a While block
 
     // token type parameters for Erl code parsing
-    int const TokenNumber(1);     // matches the ValueNumber
-    int const TokenVariable(4);   // matches the ValueVariable
-    int const TokenExpression(5); // matches the ValueExpression
-    int const TokenOperator(7);   // includes basic operators and built-in functions.
+    thread_local int const TokenNumber(1);     // matches the ValueNumber
+    thread_local int const TokenVariable(4);   // matches the ValueVariable
+    thread_local int const TokenExpression(5); // matches the ValueExpression
+    thread_local int const TokenOperator(7);   // includes basic operators and built-in functions.
 
-    int const TokenParenthesis(9); // parenthesis token
+    thread_local int const TokenParenthesis(9); // parenthesis token
 
-    int const ParenthesisLeft(10);  // indicates left side parenthesis found in parsing
-    int const ParenthesisRight(11); // indicates right side parenthesis found in parsing
+    thread_local int const ParenthesisLeft(10);  // indicates left side parenthesis found in parsing
+    thread_local int const ParenthesisRight(11); // indicates right side parenthesis found in parsing
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -133,48 +133,48 @@ namespace RuntimeLanguageProcessor {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    bool GetInput(true);
-    bool InitializeOnce(true);
-    bool MyEnvrnFlag(true);
-    bool AlreadyDidOnce(false);
+    thread_local bool GetInput(true);
+    thread_local bool InitializeOnce(true);
+    thread_local bool MyEnvrnFlag(true);
+    thread_local bool AlreadyDidOnce(false);
 
     // index pointer references to dynamic built-in variables
-    int NullVariableNum(0);
-    int FalseVariableNum(0);
-    int TrueVariableNum(0);
-    int OffVariableNum(0);
-    int OnVariableNum(0);
-    int PiVariableNum(0);
-    Array1D_int CurveIndexVariableNums;
-    Array1D_int ConstructionIndexVariableNums;
-    int YearVariableNum(0);
-    int MonthVariableNum(0);
-    int DayOfMonthVariableNum(0);
-    int DayOfWeekVariableNum(0);
-    int DayOfYearVariableNum(0);
-    int HourVariableNum(0);
-    int MinuteVariableNum(0);
-    int HolidayVariableNum(0);
-    int DSTVariableNum(0);
-    int CurrentTimeVariableNum(0);
-    int SunIsUpVariableNum(0);
-    int IsRainingVariableNum(0);
-    int SystemTimeStepVariableNum(0);
-    int ZoneTimeStepVariableNum(0);
-    int CurrentEnvironmentPeriodNum(0);
-    int ActualDateAndTimeNum(0);
-    int ActualTimeNum(0);
-    int WarmUpFlagNum(0);
+    thread_local int NullVariableNum(0);
+    thread_local int FalseVariableNum(0);
+    thread_local int TrueVariableNum(0);
+    thread_local int OffVariableNum(0);
+    thread_local int OnVariableNum(0);
+    thread_local int PiVariableNum(0);
+    thread_local Array1D_int CurveIndexVariableNums;
+    thread_local Array1D_int ConstructionIndexVariableNums;
+    thread_local int YearVariableNum(0);
+    thread_local int MonthVariableNum(0);
+    thread_local int DayOfMonthVariableNum(0);
+    thread_local int DayOfWeekVariableNum(0);
+    thread_local int DayOfYearVariableNum(0);
+    thread_local int HourVariableNum(0);
+    thread_local int MinuteVariableNum(0);
+    thread_local int HolidayVariableNum(0);
+    thread_local int DSTVariableNum(0);
+    thread_local int CurrentTimeVariableNum(0);
+    thread_local int SunIsUpVariableNum(0);
+    thread_local int IsRainingVariableNum(0);
+    thread_local int SystemTimeStepVariableNum(0);
+    thread_local int ZoneTimeStepVariableNum(0);
+    thread_local int CurrentEnvironmentPeriodNum(0);
+    thread_local int ActualDateAndTimeNum(0);
+    thread_local int ActualTimeNum(0);
+    thread_local int WarmUpFlagNum(0);
 
-    static gio::Fmt fmtLD("*");
-    static gio::Fmt fmtA("(A)");
+    thread_local static gio::Fmt fmtLD("*");
+    thread_local static gio::Fmt fmtA("(A)");
 
     // SUBROUTINE SPECIFICATIONS:
 
     // Object Data
-    Array1D<RuntimeReportVarType> RuntimeReportVar;
-    std::unordered_map<std::string, std::string> ErlStackUniqueNames;
-    std::unordered_map<std::string, std::string> RuntimeReportVarUniqueNames;
+    thread_local Array1D<RuntimeReportVarType> RuntimeReportVar;
+    thread_local std::unordered_map<std::string, std::string> ErlStackUniqueNames;
+    thread_local std::unordered_map<std::string, std::string> RuntimeReportVarUniqueNames;
 
     // MODULE SUBROUTINES:
 
@@ -252,10 +252,10 @@ namespace RuntimeLanguageProcessor {
         // Locals
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static Real64 tmpCurrentTime(0.0);
-        static Real64 tmpMinutes(0.0);
-        static Real64 tmpHours(0.0);
-        static Real64 tmpCurEnvirNum(0.0);
+        thread_local static Real64 tmpCurrentTime(0.0);
+        thread_local static Real64 tmpMinutes(0.0);
+        thread_local static Real64 tmpHours(0.0);
+        thread_local static Real64 tmpCurEnvirNum(0.0);
         Array1D_int datevalues(8);
         // value(1)   Current year
         // value(2)   Current month
@@ -899,7 +899,7 @@ namespace RuntimeLanguageProcessor {
         int InstructionNum;
         int InstructionNum2;
         int ExpressionNum;
-        static int VariableNum;
+        thread_local static int VariableNum;
         int WhileLoopExitCounter;      // to avoid infinite loop in While loop
         bool seriousErrorFound(false); // once it gets set true (inside EvaluateExpresssion) it will trigger a fatal (in WriteTrace)
 
@@ -1050,7 +1050,7 @@ namespace RuntimeLanguageProcessor {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(false);
+        thread_local static bool MyOneTimeFlag(false);
         int LineNum;
         std::string NameString;
         std::string LineNumString;
@@ -1162,7 +1162,7 @@ namespace RuntimeLanguageProcessor {
         bool LastED; // last character in a numeric was an E or D
 
         // Object Data
-        static Array1D<TokenType> Token;
+        thread_local static Array1D<TokenType> Token;
 
         // FLOW:
         CountDoLooping = 0;
@@ -2089,7 +2089,7 @@ namespace RuntimeLanguageProcessor {
         // Object Data
         Array1D<ErlValueType> Operand;
 
-        static std::string const EMSBuiltInFunction("EMS Built-In Function");
+        thread_local static std::string const EMSBuiltInFunction("EMS Built-In Function");
 
         // FLOW:
 
@@ -2723,7 +2723,7 @@ namespace RuntimeLanguageProcessor {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetRuntimeLanguageUserInput: ");
+        thread_local static std::string const RoutineName("GetRuntimeLanguageUserInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int GlobalNum;
@@ -2734,27 +2734,27 @@ namespace RuntimeLanguageProcessor {
         int NumAlphas; // Number of elements in the alpha array
         int NumNums;   // Number of elements in the numeric array
         int IOStat;    // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         int VariableNum(0); // temporary
         int RuntimeReportVarNum;
         // unused0909  INTEGER    :: Pos
         // unused0909  CHARACTER(len=MaxNameLength) :: VariableName
         bool Found;
-        static std::string FreqString;    // temporary
-        static std::string VarTypeString; // temporary
-        static std::string ResourceTypeString;
-        static std::string GroupTypeString;
-        static std::string EndUseTypeString;
-        static std::string EndUseSubCatString;
+        thread_local static std::string FreqString;    // temporary
+        thread_local static std::string VarTypeString; // temporary
+        thread_local static std::string ResourceTypeString;
+        thread_local static std::string GroupTypeString;
+        thread_local static std::string EndUseTypeString;
+        thread_local static std::string EndUseSubCatString;
 
         int TrendNum;
         int NumTrendSteps;
         int loop;
         int ErlVarLoop;
         int CurveIndexNum;
-        static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
-        static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
-        static int TotalArgs(0);     // argument for call to GetObjectDefMaxArgs
+        thread_local static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
+        thread_local static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
+        thread_local static int TotalArgs(0);     // argument for call to GetObjectDefMaxArgs
         Array1D_string cAlphaFieldNames;
         Array1D_string cNumericFieldNames;
         Array1D_bool lNumericFieldBlanks;

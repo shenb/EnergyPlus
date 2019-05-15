@@ -143,99 +143,99 @@ namespace DXCoils {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Defrost strategy (heat pump only)
-    int const ReverseCycle(1); // uses reverse cycle defrost strategy
-    int const Resistive(2);    // uses electric resistance heater for defrost
+    thread_local int const ReverseCycle(1); // uses reverse cycle defrost strategy
+    thread_local int const Resistive(2);    // uses electric resistance heater for defrost
     // Defrost control  (heat pump only)
-    int const Timed(1);    // defrost cycle is timed
-    int const OnDemand(2); // defrost cycle occurs only when required
+    thread_local int const Timed(1);    // defrost cycle is timed
+    thread_local int const OnDemand(2); // defrost cycle occurs only when required
     // Compressor operation
-    int const On(1);  // normal compressor operation
-    int const Off(0); // signal DXCoil that compressor shouldn't run
+    thread_local int const On(1);  // normal compressor operation
+    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
 
-    Real64 const RatedInletAirTemp(26.6667);        // 26.6667C or 80F
-    Real64 const RatedInletWetBulbTemp(19.44);      // 19.44 or 67F
-    Real64 const RatedInletAirHumRat(0.01125);      // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
-    Real64 const RatedOutdoorAirTemp(35.0);         // 35 C or 95F
-    Real64 const RatedInletAirTempHeat(21.11);      // 21.11C or 70F
-    Real64 const RatedOutdoorAirTempHeat(8.33);     // 8.33 C or 47F
-    Real64 const RatedOutdoorWetBulbTempHeat(6.11); // 6.11 C or 43F
-    Real64 const RatedInletWetBulbTempHeat(15.55);  // 15.55 or 60F
+    thread_local Real64 const RatedInletAirTemp(26.6667);        // 26.6667C or 80F
+    thread_local Real64 const RatedInletWetBulbTemp(19.44);      // 19.44 or 67F
+    thread_local Real64 const RatedInletAirHumRat(0.01125);      // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
+    thread_local Real64 const RatedOutdoorAirTemp(35.0);         // 35 C or 95F
+    thread_local Real64 const RatedInletAirTempHeat(21.11);      // 21.11C or 70F
+    thread_local Real64 const RatedOutdoorAirTempHeat(8.33);     // 8.33 C or 47F
+    thread_local Real64 const RatedOutdoorWetBulbTempHeat(6.11); // 6.11 C or 43F
+    thread_local Real64 const RatedInletWetBulbTempHeat(15.55);  // 15.55 or 60F
 
-    Real64 const DryCoilOutletHumRatioMin(0.00001); // dry coil outlet minimum hum ratio kgH2O/kgdry air
+    thread_local Real64 const DryCoilOutletHumRatioMin(0.00001); // dry coil outlet minimum hum ratio kgH2O/kgdry air
 
     // Curve Types
-    int const Linear(1);
-    int const BiLinear(2);
-    int const Quadratic(3);
-    int const BiQuadratic(4);
-    int const Cubic(5);
+    thread_local int const Linear(1);
+    thread_local int const BiLinear(2);
+    thread_local int const Quadratic(3);
+    thread_local int const BiQuadratic(4);
+    thread_local int const Cubic(5);
 
     // Multimode DX Coil
-    int const MaxCapacityStages(2);                               // Maximum number of capacity stages supported
-    int const MaxDehumidModes(1);                                 // Maximum number of enhanced dehumidification modes supported
-    int const MaxModes(MaxCapacityStages *(MaxDehumidModes + 1)); // Maximum number of performance modes
+    thread_local int const MaxCapacityStages(2);                               // Maximum number of capacity stages supported
+    thread_local int const MaxDehumidModes(1);                                 // Maximum number of enhanced dehumidification modes supported
+    thread_local int const MaxModes(MaxCapacityStages *(MaxDehumidModes + 1)); // Maximum number of performance modes
 
     // Water Systems
-    int const CondensateDiscarded(1001); // default mode where water is "lost"
-    int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
+    thread_local int const CondensateDiscarded(1001); // default mode where water is "lost"
+    thread_local int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
 
-    int const WaterSupplyFromMains(101);
-    int const WaterSupplyFromTank(102);
+    thread_local int const WaterSupplyFromMains(101);
+    thread_local int const WaterSupplyFromTank(102);
 
-    int const NumValidOutputFuelTypes(9);
-    Array1D_string const
+    thread_local int const NumValidOutputFuelTypes(9);
+    thread_local Array1D_string const
         cValidOutputFuelTypes(NumValidOutputFuelTypes,
                               {"Electricity", "Gas", "Propane", "Diesel", "Gasoline", "FuelOil#1", "FuelOil#2", "OtherFuel1", "OtherFuel2"});
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // Fuel Types
-    int const FuelTypeElectricity(1); // Fuel type for electricity
-    int const FuelTypeNaturalGas(2);  // Fuel type for natural gas
-    int const FuelTypePropaneGas(3);  // Fuel type for propane gas
-    int const FuelTypeDiesel(4);      // Fuel type for diesel
-    int const FuelTypeGasoline(5);    // Fuel type for gasoline
-    int const FuelTypeFuelOil1(6);    // Fuel type for fuel oil #1
-    int const FuelTypeFuelOil2(7);    // Fuel type for fuel oil #2
-    int const FuelTypeOtherFuel1(8);  // Fuel type for other fuel #1
-    int const FuelTypeOtherFuel2(9);  // Fuel type for other fuel #2
+    thread_local int const FuelTypeElectricity(1); // Fuel type for electricity
+    thread_local int const FuelTypeNaturalGas(2);  // Fuel type for natural gas
+    thread_local int const FuelTypePropaneGas(3);  // Fuel type for propane gas
+    thread_local int const FuelTypeDiesel(4);      // Fuel type for diesel
+    thread_local int const FuelTypeGasoline(5);    // Fuel type for gasoline
+    thread_local int const FuelTypeFuelOil1(6);    // Fuel type for fuel oil #1
+    thread_local int const FuelTypeFuelOil2(7);    // Fuel type for fuel oil #2
+    thread_local int const FuelTypeOtherFuel1(8);  // Fuel type for other fuel #1
+    thread_local int const FuelTypeOtherFuel2(9);  // Fuel type for other fuel #2
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    Array1D<Real64> DXCoilOutletTemp;           // DX coil outlet dry bulb temperature [C]
-    Array1D<Real64> DXCoilOutletHumRat;         // DX coil outlet humidity ratio [kgWater/kgDryAir]
-    Array1D<Real64> DXCoilPartLoadRatio;        // DX coil part-load ratio
-    Array1D_int DXCoilFanOpMode;                // supply air fan operating mode
-    Array1D<Real64> DXCoilFullLoadOutAirTemp;   // DX coil full load outlet dry bulb temperature [C]
-    Array1D<Real64> DXCoilFullLoadOutAirHumRat; // DX coil full load outlet humidity ratio [kgWater/kgDryAir]
-    Array1D<Real64> DXCoilTotalCooling;         // DX cooling coil total cooling output [W]
-    Array1D<Real64> DXCoilTotalHeating;         // DX heating coil total heating output [W]
-    Array1D<Real64> DXCoilCoolInletAirWBTemp;   // DX cooling coil inlet air wet-bulb temp [C]
-    Array1D<Real64> DXCoilHeatInletAirDBTemp;   // DX heating coil inlet air dry-bulb temp [C]
-    Array1D<Real64> DXCoilHeatInletAirWBTemp;   // DX heating coil inlet air wet-bulb temp [C]
+    thread_local Array1D<Real64> DXCoilOutletTemp;           // DX coil outlet dry bulb temperature [C]
+    thread_local Array1D<Real64> DXCoilOutletHumRat;         // DX coil outlet humidity ratio [kgWater/kgDryAir]
+    thread_local Array1D<Real64> DXCoilPartLoadRatio;        // DX coil part-load ratio
+    thread_local Array1D_int DXCoilFanOpMode;                // supply air fan operating mode
+    thread_local Array1D<Real64> DXCoilFullLoadOutAirTemp;   // DX coil full load outlet dry bulb temperature [C]
+    thread_local Array1D<Real64> DXCoilFullLoadOutAirHumRat; // DX coil full load outlet humidity ratio [kgWater/kgDryAir]
+    thread_local Array1D<Real64> DXCoilTotalCooling;         // DX cooling coil total cooling output [W]
+    thread_local Array1D<Real64> DXCoilTotalHeating;         // DX heating coil total heating output [W]
+    thread_local Array1D<Real64> DXCoilCoolInletAirWBTemp;   // DX cooling coil inlet air wet-bulb temp [C]
+    thread_local Array1D<Real64> DXCoilHeatInletAirDBTemp;   // DX heating coil inlet air dry-bulb temp [C]
+    thread_local Array1D<Real64> DXCoilHeatInletAirWBTemp;   // DX heating coil inlet air wet-bulb temp [C]
 
-    int CurDXCoilNum(0);
+    thread_local int CurDXCoilNum(0);
 
-    int NumDXCoils(0);                           // Total number of DX coils
-    Real64 HPWHHeatingCapacity(0.0);             // Used by Heat Pump:Water Heater object as total water heating capacity [W]
-    Real64 HPWHHeatingCOP(0.0);                  // Used by Heat Pump:Water Heater object as water heating COP [W/W]
-    bool GetCoilsInputFlag(true);                // First time, input is "gotten"
-    bool MyOneTimeFlag(true);                    // One time flag used to allocate MyEnvrnFlag and MySizeFlag
-    int NumVRFHeatingCoils(0);                   // number of VRF heat pump heating coils
-    int NumVRFCoolingCoils(0);                   // number of VRF heat pump cooling coils
-    int NumVRFHeatingFluidTCtrlCoils(0);         // number of VRF heat pump heating coils for FluidTCtrl Model
-    int NumVRFCoolingFluidTCtrlCoils(0);         // number of VRF heat pump cooling coils for FluidTCtrl Model
-    int NumDXHeatingCoils(0);                    // number of DX heat pump heating coils
-    int NumDoe2DXCoils(0);                       // number of doe2 DX  coils
-    int NumDXHeatPumpWaterHeaterPumpedCoils(0);  // number of DX  water heater coils, pumped
-    int NumDXHeatPumpWaterHeaterWrappedCoils(0); // number of DX  water heater coils, pumped
-    int NumDXMulSpeedCoils(0);                   // number of DX coils with multi-speed compressor
-    int NumDXMulModeCoils(0);                    // number of DX coils with multi-mode performance
+    thread_local int NumDXCoils(0);                           // Total number of DX coils
+    thread_local Real64 HPWHHeatingCapacity(0.0);             // Used by Heat Pump:Water Heater object as total water heating capacity [W]
+    thread_local Real64 HPWHHeatingCOP(0.0);                  // Used by Heat Pump:Water Heater object as water heating COP [W/W]
+    thread_local bool GetCoilsInputFlag(true);                // First time, input is "gotten"
+    thread_local bool MyOneTimeFlag(true);                    // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+    thread_local int NumVRFHeatingCoils(0);                   // number of VRF heat pump heating coils
+    thread_local int NumVRFCoolingCoils(0);                   // number of VRF heat pump cooling coils
+    thread_local int NumVRFHeatingFluidTCtrlCoils(0);         // number of VRF heat pump heating coils for FluidTCtrl Model
+    thread_local int NumVRFCoolingFluidTCtrlCoils(0);         // number of VRF heat pump cooling coils for FluidTCtrl Model
+    thread_local int NumDXHeatingCoils(0);                    // number of DX heat pump heating coils
+    thread_local int NumDoe2DXCoils(0);                       // number of doe2 DX  coils
+    thread_local int NumDXHeatPumpWaterHeaterPumpedCoils(0);  // number of DX  water heater coils, pumped
+    thread_local int NumDXHeatPumpWaterHeaterWrappedCoils(0); // number of DX  water heater coils, pumped
+    thread_local int NumDXMulSpeedCoils(0);                   // number of DX coils with multi-speed compressor
+    thread_local int NumDXMulModeCoils(0);                    // number of DX coils with multi-mode performance
 
-    int NumDXMulSpeedCoolCoils(0); // number of multispeed DX cooling coils
-    int NumDXMulSpeedHeatCoils(0); // number of multispeed DX heating coils
-    Array1D_bool CheckEquipName;
+    thread_local int NumDXMulSpeedCoolCoils(0); // number of multispeed DX cooling coils
+    thread_local int NumDXMulSpeedHeatCoils(0); // number of multispeed DX heating coils
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -252,8 +252,8 @@ namespace DXCoils {
     // External function calls
 
     // Object Data
-    Array1D<DXCoilData> DXCoil;
-    Array1D<DXCoilNumericFieldData> DXCoilNumericFields;
+    thread_local Array1D<DXCoilData> DXCoil;
+    thread_local Array1D<DXCoilNumericFieldData> DXCoilNumericFields;
 
     // bool CrankcaseHeaterReportVarFlag( true ); // One time flag used to report crankcase heater power for non-HP coils
     namespace {
@@ -262,7 +262,7 @@ namespace DXCoils {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool CrankcaseHeaterReportVarFlag(true);
+        thread_local bool CrankcaseHeaterReportVarFlag(true);
     } // namespace
     // Functions
 
@@ -531,7 +531,7 @@ namespace DXCoils {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SimDXCoilMultiMode");
+        thread_local static std::string const RoutineName("SimDXCoilMultiMode");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int DXCoilNum; // index of coil being simulated
@@ -549,7 +549,7 @@ namespace DXCoils {
         Real64 S1SensCoolingEnergyRate;       // Stage 1   Sensible cooling rate [W]
         Real64 S1LatCoolingEnergyRate;        // Stage 1   Latent cooling rate [W]
         Real64 S1ElecCoolingPower;            // Stage 1   Electric power input [W]
-        static Real64 S1RuntimeFraction(0.0); // Stage 1   Run time fraction (overlaps with stage1&2 run time)
+        thread_local static Real64 S1RuntimeFraction(0.0); // Stage 1   Run time fraction (overlaps with stage1&2 run time)
         Real64 S1EvapCondPumpElecPower;       // Stage 1   Evaporative condenser pump electric power input [W]
         Real64 S1EvapWaterConsumpRate;        // Stage 1   Evap condenser water consumption rate [m3/s]
         Real64 S1CrankcaseHeaterPower;        // Stage 1   Report variable for average crankcase heater power [W]
@@ -565,13 +565,13 @@ namespace DXCoils {
         Real64 S12LatCoolingEnergyRate;        // Stage 1&2 Latent cooling rate [W]
         Real64 S12ElecCoolingPower;            // Stage 1&2 Electric power input [W]
         Real64 S12ElecCoolFullLoadPower;       // Stage 1&2 Electric power input at full load (PLR=1) [W]
-        static Real64 S12RuntimeFraction(0.0); // Stage 1&2 Run time fraction (overlaps with stage1 run time)
+        thread_local static Real64 S12RuntimeFraction(0.0); // Stage 1&2 Run time fraction (overlaps with stage1 run time)
         Real64 S12EvapCondPumpElecPower;       // Stage 1&2 Evaporative condenser pump electric power input [W]
         Real64 S12EvapWaterConsumpRate;        // Stage 1&2 Evap condenser water consumption rate [m3/s]
         Real64 S12CrankcaseHeaterPower;        // Stage 1&2 Report variable for average crankcase heater power [W]
         Real64 S2PLR;                          // Stage 2   Ratio of actual sensible cooling load to
         //           steady-state sensible cooling capacity
-        static Real64 MinAirHumRat(0.0); // minimum of the inlet air humidity ratio and the outlet air humidity ratio
+        thread_local static Real64 MinAirHumRat(0.0); // minimum of the inlet air humidity ratio and the outlet air humidity ratio
         Real64 TSat;                     // calculation to avoid calling psych routines twice
         Real64 NodePress;                // Pressure at condenser inlet node (Pa)
         // FLOW
@@ -885,8 +885,8 @@ namespace DXCoils {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetDXCoils: "); // include trailing blank space
-        static Real64 const minOATCompDXCooling = -25.0;      // min OAT for compressor operation for DX cooling coils
+        thread_local static std::string const RoutineName("GetDXCoils: "); // include trailing blank space
+        thread_local static Real64 const minOATCompDXCooling = -25.0;      // min OAT for compressor operation for DX cooling coils
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int DXCoilIndex;                 // loop index
@@ -902,7 +902,7 @@ namespace DXCoils {
         int NumAlphas2;                  // Number of alphas in input for performance object
         int NumNumbers2;                 // Number of numeric items in input for performance object
         int IOStatus;                    // Input status returned from GetObjectItem
-        static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
         int DXHPWaterHeaterCoilNum;      // Loop index for 1,NumDXHeatPumpWaterHeaterCoils
         int CapacityStageNum;            // Loop index for 1,Number of capacity stages
         int DehumidModeNum;              // Loop index for 1,Number of enhanced dehumidification modes
@@ -922,9 +922,9 @@ namespace DXCoils {
         Array1D<Real64> Numbers;         // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        static int MaxNumbers(0);        // Maximum number of numeric input fields
-        static int MaxAlphas(0);         // Maximum number of alpha input fields
-        static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        thread_local static int MaxNumbers(0);        // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0);         // Maximum number of alpha input fields
+        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //   certain object in the input file
         Real64 MinCurveVal; // used for testing PLF curve output
         Real64 MinCurvePLR; // used for testing PLF curve output
@@ -6057,17 +6057,17 @@ namespace DXCoils {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 SmallDifferenceTest(0.00000001);
-        static std::string const RoutineName("InitDXCoil");
+        thread_local static Real64 SmallDifferenceTest(0.00000001);
+        thread_local static std::string const RoutineName("InitDXCoil");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyEnvrnFlag;   // One time environment flag
-        static Array1D_bool MySizeFlag;    // One time sizing flag
+        thread_local static Array1D_bool MyEnvrnFlag;   // One time environment flag
+        thread_local static Array1D_bool MySizeFlag;    // One time sizing flag
         Real64 RatedHeatPumpIndoorAirTemp; // Indoor dry-bulb temperature to heat pump evaporator at rated conditions [C]
         Real64 RatedHeatPumpIndoorHumRat;  // Inlet humidity ratio to heat pump evaporator at rated conditions [kgWater/kgDryAir]
         Real64 RatedVolFlowPerRatedTotCap; // Rated Air Volume Flow Rate divided by Rated Total Capacity [m3/s-W)
         Real64 HPInletAirHumRat;           // Rated inlet air humidity ratio for heat pump water heater [kgWater/kgDryAir]
-        static bool ErrorsFound(false);    // TRUE when errors found
+        thread_local static bool ErrorsFound(false);    // TRUE when errors found
         int CapacityStageNum;              // Loop index for 1,Number of capacity stages
         int DehumidModeNum;                // Loop index for 1,Number of enhanced dehumidification modes
         int Mode;                          // Performance mode for MultiMode DX coil; Always 1 for other coil types
@@ -6661,7 +6661,7 @@ namespace DXCoils {
         using StandardRatings::CalcDXCoilStandardRating;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeDXCoil");
+        thread_local static std::string const RoutineName("SizeDXCoil");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 rhoair;
@@ -8210,7 +8210,7 @@ namespace DXCoils {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcHPWHDXCoil");
+        thread_local static std::string const RoutineName("CalcHPWHDXCoil");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 RatedHeatingCapacity;     // Water heating rated capacity with or without condenser water pump heat (W)
@@ -8601,8 +8601,8 @@ namespace DXCoils {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcDoe2DXCoil: ");
-        static std::string const calcDoe2DXCoil("CalcDoe2DXCoil");
+        thread_local static std::string const RoutineName("CalcDoe2DXCoil: ");
+        thread_local static std::string const calcDoe2DXCoil("CalcDoe2DXCoil");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;       // dry air mass flow rate through coil [kg/s] (adjusted for bypass if any)
@@ -8654,7 +8654,7 @@ namespace DXCoils {
         Real64 RhoAir;                  // Density of air [kg/m3]
         Real64 RhoWater;                // Density of water [kg/m3]
         Real64 CrankcaseHeatingPower;   // power due to crankcase heater
-        static Real64 CompAmbTemp(0.0); // Ambient temperature at compressor
+        thread_local static Real64 CompAmbTemp(0.0); // Ambient temperature at compressor
         Real64 AirFlowRatio;            // ratio of compressor on airflow to average timestep airflow
         // used when constant fan mode yields different air flow rates when compressor is ON and OFF
         // (e.g. Packaged Terminal Heat Pump)
@@ -8663,8 +8663,8 @@ namespace DXCoils {
         Real64 OutdoorHumRat;   // Outdoor humidity ratio at condenser (kg/kg)
         Real64 OutdoorPressure; // Outdoor barometric pressure at condenser (Pa)
 
-        static Real64 CurrentEndTime(0.0); // end time of time step for current simulation time step
-        static Real64 MinAirHumRat(0.0);   // minimum of the inlet air humidity ratio and the outlet air humidity ratio
+        thread_local static Real64 CurrentEndTime(0.0); // end time of time step for current simulation time step
+        thread_local static Real64 MinAirHumRat(0.0);   // minimum of the inlet air humidity ratio and the outlet air humidity ratio
         int Mode;                          // Performance mode for Multimode DX coil; Always 1 for other coil types
         Real64 OutletAirTemp;              // Supply air temperature (average value if constant fan, full output if cycling fan)
         Real64 OutletAirHumRat;            // Supply air humidity ratio (average value if constant fan, full output if cycling fan)
@@ -9589,7 +9589,7 @@ namespace DXCoils {
         //  REAL(r64), INTENT(IN), OPTIONAL :: CoolingHeatingPLR   ! used for cycling fan RH control
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcVRFCoolingCoil");
+        thread_local static std::string const RoutineName("CalcVRFCoolingCoil");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;       // dry air mass flow rate through coil [kg/s] (adjusted for bypass if any)
@@ -9636,7 +9636,7 @@ namespace DXCoils {
         Real64 CondAirMassFlow;         // Condenser air mass flow rate [kg/s]
         Real64 RhoAir;                  // Density of air [kg/m3]
         Real64 CrankcaseHeatingPower;   // power due to crankcase heater
-        static Real64 CompAmbTemp(0.0); // Ambient temperature at compressor
+        thread_local static Real64 CompAmbTemp(0.0); // Ambient temperature at compressor
         Real64 AirFlowRatio;            // ratio of compressor on airflow to average timestep airflow
         // used when constant fan mode yields different air flow rates when compressor is ON and OFF
         // (e.g. Packaged Terminal Heat Pump)
@@ -9645,8 +9645,8 @@ namespace DXCoils {
         Real64 OutdoorHumRat;   // Outdoor humidity ratio at condenser (kg/kg)
         Real64 OutdoorPressure; // Outdoor barometric pressure at condenser (Pa)
 
-        static Real64 CurrentEndTime(0.0); // end time of time step for current simulation time step
-        static Real64 MinAirHumRat(0.0);   // minimum of the inlet air humidity ratio and the outlet air humidity ratio
+        thread_local static Real64 CurrentEndTime(0.0); // end time of time step for current simulation time step
+        thread_local static Real64 MinAirHumRat(0.0);   // minimum of the inlet air humidity ratio and the outlet air humidity ratio
         int Mode;                          // Performance mode for Multimode DX coil; Always 1 for other coil types
         Real64 OutletAirTemp;              // Supply air temperature (average value if constant fan, full output if cycling fan)
         Real64 OutletAirHumRat;            // Supply air humidity ratio (average value if constant fan, full output if cycling fan)
@@ -10236,8 +10236,8 @@ namespace DXCoils {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcDXHeatingCoil");
-        static std::string const RoutineNameFullLoad("CalcDXHeatingCoil:fullload");
+        thread_local static std::string const RoutineName("CalcDXHeatingCoil");
+        thread_local static std::string const RoutineNameFullLoad("CalcDXHeatingCoil:fullload");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;           // dry air mass flow rate through coil [kg/s]
@@ -10277,7 +10277,7 @@ namespace DXCoils {
         Real64 OutdoorWetBulb;            // Outdoor wet-bulb temperature at condenser (C)
         Real64 OutdoorHumRat;             // Outdoor humidity ratio at condenser (kg/kg)
         Real64 OutdoorPressure;           // Outdoor barometric pressure at condenser (Pa)
-        static int Mode(1);               // Performance mode for MultiMode DX coil; Always 1 for other coil types
+        thread_local static int Mode(1);               // Performance mode for MultiMode DX coil; Always 1 for other coil types
         Real64 AirFlowRatio;              // Ratio of compressor on airflow to average timestep airflow
         Real64 OutletAirTemp;             // Supply air temperature (average value if constant fan, full output if cycling fan)
         Real64 OutletAirHumRat;           // Supply air humidity ratio (average value if constant fan, full output if cycling fan)
@@ -10684,10 +10684,10 @@ namespace DXCoils {
         // SpeedRatio varies between 1.0 (maximum speed) and 0.0 (minimum speed)
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcMultiSpeedDXCoil");
-        static std::string const RoutineNameHighSpeedOutlet("CalcMultiSpeedDXCoil:highspeedoutlet");
-        static std::string const RoutineNameLowSpeedOutlet("CalcMultiSpeedDXCoil:lowspeedoutlet");
-        static std::string const RoutineNameNewDewPointConditions("CalcMultiSpeedDXCoil:newdewpointconditions");
+        thread_local static std::string const RoutineName("CalcMultiSpeedDXCoil");
+        thread_local static std::string const RoutineNameHighSpeedOutlet("CalcMultiSpeedDXCoil:highspeedoutlet");
+        thread_local static std::string const RoutineNameLowSpeedOutlet("CalcMultiSpeedDXCoil:lowspeedoutlet");
+        thread_local static std::string const RoutineNameNewDewPointConditions("CalcMultiSpeedDXCoil:newdewpointconditions");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;         // dry air mass flow rate through coil [kg/s]
@@ -10738,8 +10738,8 @@ namespace DXCoils {
         Real64 RhoWater;                 // Density of water [kg/m3]
         Real64 CondAirMassFlow;          // Condenser air mass flow rate [kg/s]
         Real64 EvapCondPumpElecPower;    // Evaporative condenser electric pump power [W]
-        static Real64 MinAirHumRat(0.0); // minimum of the inlet air humidity ratio and the outlet air humidity ratio
-        static int Mode(1);              // Performance mode for MultiMode DX coil; Always 1 for other coil types
+        thread_local static Real64 MinAirHumRat(0.0); // minimum of the inlet air humidity ratio and the outlet air humidity ratio
+        thread_local static int Mode(1);              // Performance mode for MultiMode DX coil; Always 1 for other coil types
         Real64 OutdoorDryBulb;           // Outdoor dry-bulb temperature at condenser (C)
         Real64 OutdoorWetBulb;           // Outdoor wet-bulb temperature at condenser (C)
         Real64 OutdoorHumRat;            // Outdoor humidity ratio at condenser (kg/kg)
@@ -11270,8 +11270,8 @@ namespace DXCoils {
         Real64 CBF(0.0); // the result - the coil bypass factor
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcCBF");
-        static Real64 SmallDifferenceTest(0.00000001);
+        thread_local static std::string const RoutineName("CalcCBF");
+        thread_local static Real64 SmallDifferenceTest(0.00000001);
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
         Real64 InletAirEnthalpy;                // Enthalpy of inlet air to evaporator at given conditions [J/kg]
@@ -11297,7 +11297,7 @@ namespace DXCoils {
         Real64 HTinHumRatOut;                   // Air enthalpy at inlet air temp and outlet air humidity ratio [J/kg]
         Real64 AirMassFlowRate;                 // the standard air mass flow rate at the given capacity [kg/s]
         Real64 adjustedSHR;                     // SHR calculated using adjusted outlet air properties []
-        static bool CBFErrors(false);           // Set to true if errors in CBF calculation, fatal at end of routine
+        thread_local static bool CBFErrors(false);           // Set to true if errors in CBF calculation, fatal at end of routine
 
         AirMassFlowRate = AirVolFlowRate * PsyRhoAirFnPbTdbW(StdPressureSeaLevel, InletAirTemp, InletAirHumRat, RoutineName);
         DeltaH = TotCap / AirMassFlowRate;
@@ -11761,7 +11761,7 @@ namespace DXCoils {
         // and outside drybulb
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcTotCapSHR");
+        thread_local static std::string const RoutineName("CalcTotCapSHR");
         int const MaxIter(30);               // Maximum number of iterations for dry evaporator calculations
         Real64 const RF(0.4);                // Relaxation factor for dry evaporator iterations
         Real64 const Tolerance(0.01);        // Error tolerance for dry evaporator iterations
@@ -11888,11 +11888,11 @@ namespace DXCoils {
         // SpeedRatio varies between 1.0 (maximum speed) and 0.0 (minimum speed)
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcMultiSpeedDXCoilCooling");
-        static std::string const RoutineNameHighSpeed("CalcMultiSpeedDXCoilCooling:highspeed");
-        static std::string const RoutineNameHighSpeedAlt("CalcMultiSpeedDXCoilCooling highspeed");
-        static std::string const RoutineNameHighSpeedOutlet("CalcMultiSpeedDXCoilCooling:highspeedoutlet");
-        static std::string const RoutineNameLowSpeedOutlet("CalcMultiSpeedDXCoilCooling:lowspeedoutlet");
+        thread_local static std::string const RoutineName("CalcMultiSpeedDXCoilCooling");
+        thread_local static std::string const RoutineNameHighSpeed("CalcMultiSpeedDXCoilCooling:highspeed");
+        thread_local static std::string const RoutineNameHighSpeedAlt("CalcMultiSpeedDXCoilCooling highspeed");
+        thread_local static std::string const RoutineNameHighSpeedOutlet("CalcMultiSpeedDXCoilCooling:highspeedoutlet");
+        thread_local static std::string const RoutineNameLowSpeedOutlet("CalcMultiSpeedDXCoilCooling:lowspeedoutlet");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;         // dry air mass flow rate through coil [kg/s]
@@ -11945,8 +11945,8 @@ namespace DXCoils {
         Real64 RhoWater;                 // Density of water [kg/m3]
         Real64 CondAirMassFlow;          // Condenser air mass flow rate [kg/s]
         Real64 EvapCondPumpElecPower;    // Evaporative condenser electric pump power [W]
-        static Real64 MinAirHumRat(0.0); // minimum of the inlet air humidity ratio and the outlet air humidity ratio
-        static int DXMode(1);            // Performance mode for MultiMode DX coil; Always 1 for other coil types
+        thread_local static Real64 MinAirHumRat(0.0); // minimum of the inlet air humidity ratio and the outlet air humidity ratio
+        thread_local static int DXMode(1);            // Performance mode for MultiMode DX coil; Always 1 for other coil types
         Real64 OutdoorDryBulb;           // Outdoor dry-bulb temperature at condenser (C)
         Real64 OutdoorWetBulb;           // Outdoor wet-bulb temperature at condenser (C)
         Real64 OutdoorHumRat;            // Outdoor humidity ratio at condenser (kg/kg)
@@ -12695,9 +12695,9 @@ namespace DXCoils {
         // SpeedRatio varies between 1.0 (maximum speed) and 0.0 (minimum speed)
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcMultiSpeedDXCoilHeating");
-        static std::string const RoutineNameAverageLoad("CalcMultiSpeedDXCoilHeating:Averageload");
-        static std::string const RoutineNameFullLoad("CalcMultiSpeedDXCoilHeating:fullload");
+        thread_local static std::string const RoutineName("CalcMultiSpeedDXCoilHeating");
+        thread_local static std::string const RoutineNameAverageLoad("CalcMultiSpeedDXCoilHeating:Averageload");
+        thread_local static std::string const RoutineNameFullLoad("CalcMultiSpeedDXCoilHeating:fullload");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;         // dry air mass flow rate through coil [kg/s]
@@ -13565,8 +13565,8 @@ namespace DXCoils {
         Real64 const CoolingCoilInletAirWetBulbTempRated(19.4); // 19.44C (67F)
         Real64 const CoolingCoilInletAirDryBulbTempRated(26.7);
         Real64 const OutdoorUnitInletAirDryBulbTempRated(35.0); // 35.00C (95F)
-        static Array1D<Real64> const OutdoorUnitInletAirDryBulbTempPLTestPoint(3, {27.5, 20.0, 18.3});
-        static Array1D<Real64> const NetCapacityFactorPLTestPoint(3, {0.75, 0.50, 0.25});
+        thread_local static Array1D<Real64> const OutdoorUnitInletAirDryBulbTempPLTestPoint(3, {27.5, 20.0, 18.3});
+        thread_local static Array1D<Real64> const NetCapacityFactorPLTestPoint(3, {0.75, 0.50, 0.25});
         Real64 const ConvFromSIToIP(3.412141633); // Conversion from SI to IP [3.412 Btu/hr-W]
 
         Real64 const AirMassFlowRatioRated(1.0); // AHRI test is at the design flow rate
@@ -13579,15 +13579,15 @@ namespace DXCoils {
         // indoor air circulting fan. Used if user doesn't enter a specific value.
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("CalcTwoSpeedDXCoilStandardRating");
+        thread_local static std::string const RoutineName("CalcTwoSpeedDXCoilStandardRating");
 
-        static Real64 NetCoolingCapRated(0.0); // Net Cooling Coil capacity at Rated conditions, accounting for supply fan heat [W]
-        static Real64 EER(0.0);                // Energy Efficiency Ratio in SI [W/W]
-        static Real64 IEER(0.0);               // Integerated Energy Efficiency Ratio in SI [W/W]
-        static Real64 TotCapTempModFac(0.0);   // Total capacity modifier (function of entering wetbulb, outside drybulb) [-]
-        static Real64 TotCapFlowModFac(0.0);   // Total capacity modifier (function of actual supply air flow vs rated flow) [-]
-        static Real64 EIRTempModFac(0.0);      // EIR modifier (function of entering wetbulb, outside drybulb) [-]
-        static Real64 EIRFlowModFac(0.0);      // EIR modifier (function of actual supply air flow vs rated flow) [-]
+        thread_local static Real64 NetCoolingCapRated(0.0); // Net Cooling Coil capacity at Rated conditions, accounting for supply fan heat [W]
+        thread_local static Real64 EER(0.0);                // Energy Efficiency Ratio in SI [W/W]
+        thread_local static Real64 IEER(0.0);               // Integerated Energy Efficiency Ratio in SI [W/W]
+        thread_local static Real64 TotCapTempModFac(0.0);   // Total capacity modifier (function of entering wetbulb, outside drybulb) [-]
+        thread_local static Real64 TotCapFlowModFac(0.0);   // Total capacity modifier (function of actual supply air flow vs rated flow) [-]
+        thread_local static Real64 EIRTempModFac(0.0);      // EIR modifier (function of entering wetbulb, outside drybulb) [-]
+        thread_local static Real64 EIRFlowModFac(0.0);      // EIR modifier (function of actual supply air flow vs rated flow) [-]
         Real64 EIR;
         Real64 TotalElecPowerRated;
         Array1D<Real64> EER_TestPoint_SI(4);      // 1 = A, 2 = B, 3= C, 4= D
@@ -13596,15 +13596,15 @@ namespace DXCoils {
         Array1D<Real64> NetPower_TestPoint(4);    // 1 = A, 2 = B, 3= C, 4= D
         Array1D<Real64> SupAirMdot_TestPoint(4);  // 1 = A, 2 = B, 3= C, 4= D
 
-        static Real64 TempDryBulb_Leaving_Apoint(0.0);
+        thread_local static Real64 TempDryBulb_Leaving_Apoint(0.0);
 
         Real64 HighSpeedNetCoolingCap;
         Real64 LowSpeedNetCoolingCap;
 
         Real64 PartLoadAirMassFlowRate;
         Real64 AirMassFlowRatio;
-        static Real64 AccuracyTolerance(0.2); // tolerance in AHRI 340/360 Table 6 note 1
-        static int MaximumIterations(1000);
+        thread_local static Real64 AccuracyTolerance(0.2); // tolerance in AHRI 340/360 Table 6 note 1
+        thread_local static int MaximumIterations(1000);
         int SolverFlag;
         Array1D<Real64> Par(12); // Parameter array passed to solver
         Real64 EIR_HighSpeed;
@@ -13614,7 +13614,7 @@ namespace DXCoils {
         int Iter;
         Real64 ExternalStatic;
         Real64 FanStaticPressureRise;
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         Real64 FanHeatCorrection;
         Real64 FanPowerCorrection;
         Real64 FanPowerPerEvapAirFlowRate;
@@ -13631,18 +13631,18 @@ namespace DXCoils {
         Real64 PLF;
         Real64 RunTimeFraction;
         Real64 LowerBoundMassFlowRate;
-        static bool OneTimeEIOHeaderWrite(true);
+        thread_local static bool OneTimeEIOHeaderWrite(true);
         int PartLoadTestPoint;
         int countStaticInputs;
         int index;
 
         // Formats
-        static gio::Fmt Format_890("('! <VAV DX Cooling Coil Standard Rating Information>, DX Coil Type, DX Coil Name, Fan Type, Fan Name, "
+        thread_local static gio::Fmt Format_890("('! <VAV DX Cooling Coil Standard Rating Information>, DX Coil Type, DX Coil Name, Fan Type, Fan Name, "
                                    "','Standard Net Cooling Capacity {W}, Standard Net Cooling Capacity {Btu/h}, IEER {Btu/W-h}, ','COP 100% "
                                    "Capacity {W/W}, COP 75% Capacity {W/W}, COP 50% Capacity {W/W}, COP 25% Capacity {W/W}, ','EER 100% Capacity "
                                    "{Btu/W-h}, EER 75% Capacity {Btu/W-h}, EER 50% Capacity {Btu/W-h}, EER 25% Capacity {Btu/W-h}, ','Supply Air "
                                    "Flow 100% {kg/s}, Supply Air Flow 75% {kg/s},Supply Air Flow 50% {kg/s},Supply Air Flow 25% {kg/s}')");
-        static gio::Fmt Format_891("(' VAV DX Cooling Coil Standard Rating Information, "
+        thread_local static gio::Fmt Format_891("(' VAV DX Cooling Coil Standard Rating Information, "
                                    "',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,',',A,'"
                                    ",',A)");
 
@@ -14041,7 +14041,7 @@ namespace DXCoils {
         int AirSysNum;
         int BranchNum;
         int CompNum;
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
 
         FoundBranch = 0;
         FoundAirSysNum = 0;
@@ -14127,7 +14127,7 @@ namespace DXCoils {
         // par(5) = supply air fan operating mode (ContFanCycCoil)
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("CalcTwoSpeedDXCoilIEERResidual");
+        thread_local static std::string const RoutineName("CalcTwoSpeedDXCoilIEERResidual");
         int DXCoilNum;        // index of this coil
         Real64 OutletAirTemp; // outlet air temperature [C]
         Real64 TargetCoilLeavingDryBulb;
@@ -15253,7 +15253,7 @@ namespace DXCoils {
 
         // Locals
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcSHRUserDefinedCurves");
+        thread_local static std::string const RoutineName("CalcSHRUserDefinedCurves");
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
         Real64 SHRTempModFac; // Sensible Heat Ratio modifier (function of entering wetbulb, entering drybulb)
@@ -15341,7 +15341,7 @@ namespace DXCoils {
         using DataLoopNode::Node;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcSecondaryDXCoils");
+        thread_local static std::string const RoutineName("CalcSecondaryDXCoils");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CondInletDryBulb;       // condenser entering air dry-bulb temperature (C)
@@ -15618,7 +15618,7 @@ namespace DXCoils {
         Real64 const RelaxationFactor(0.4);
         Real64 const Tolerance(0.1);
         Real64 const DryCoilTestEvapInletHumRatReset(0.00001);
-        static std::string const RoutineName("CalcSecondaryDXCoilsSHR");
+        thread_local static std::string const RoutineName("CalcSecondaryDXCoilsSHR");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 DryCoilTestEvapInletHumRat;  // evaporator coil inlet humidity ratio test for dry coil
@@ -15723,7 +15723,7 @@ namespace DXCoils {
         using namespace HVACVariableRefrigerantFlow;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcVRFCoolingCoil_FluidTCtrl");
+        thread_local static std::string const RoutineName("CalcVRFCoolingCoil_FluidTCtrl");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -15752,7 +15752,7 @@ namespace DXCoils {
         Real64 CondAirMassFlow;         // Condenser air mass flow rate [kg/s]
         Real64 RhoAir;                  // Density of air [kg/m3]
         Real64 CrankcaseHeatingPower;   // power due to crankcase heater
-        static Real64 CompAmbTemp(0.0); // Ambient temperature at compressor
+        thread_local static Real64 CompAmbTemp(0.0); // Ambient temperature at compressor
         Real64 AirFlowRatio;            // ratio of compressor on airflow to average timestep airflow
         // used when constant fan mode yields different air flow rates when compressor is ON and OFF
         // (e.g. Packaged Terminal Heat Pump)
@@ -15763,8 +15763,8 @@ namespace DXCoils {
         Real64 tADP;            // Apparatus dew point temperature [C]
         Real64 wADP;            // Apparatus dew point humidity ratio [kg/kg]
 
-        static Real64 CurrentEndTime(0.0); // end time of time step for current simulation time step
-        static Real64 MinAirHumRat(0.0);   // minimum of the inlet air humidity ratio and the outlet air humidity ratio
+        thread_local static Real64 CurrentEndTime(0.0); // end time of time step for current simulation time step
+        thread_local static Real64 MinAirHumRat(0.0);   // minimum of the inlet air humidity ratio and the outlet air humidity ratio
         int Mode;                          // Performance mode for Multimode DX coil; Always 1 for other coil types
         Real64 OutletAirTemp;              // Supply air temperature (average value if constant fan, full output if cycling fan)
         Real64 OutletAirHumRat;            // Supply air humidity ratio (average value if constant fan, full output if cycling fan)
@@ -16174,7 +16174,7 @@ namespace DXCoils {
         using namespace HVACVariableRefrigerantFlow;
 
         // INTERFACE BLOCK SPECIFICATIONS
-        static std::string const RoutineNameFullLoad("CalcVRFHeatingCoil_FluidTCtrl:fullload");
+        thread_local static std::string const RoutineNameFullLoad("CalcVRFHeatingCoil_FluidTCtrl:fullload");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AirMassFlow;           // dry air mass flow rate through coil [kg/s]
@@ -16211,7 +16211,7 @@ namespace DXCoils {
         Real64 OutdoorWetBulb;            // Outdoor wet-bulb temperature at condenser (C)
         Real64 OutdoorHumRat;             // Outdoor humidity ratio at condenser (kg/kg)
         Real64 OutdoorPressure;           // Outdoor barometric pressure at condenser (Pa)
-        static int Mode(1);               // Performance mode for MultiMode DX coil. Always 1 for other coil types
+        thread_local static int Mode(1);               // Performance mode for MultiMode DX coil. Always 1 for other coil types
         Real64 AirFlowRatio;              // Ratio of compressor on airflow to average timestep airflow
         Real64 OutletAirTemp;             // Supply air temperature (average value if constant fan, full output if cycling fan)
         Real64 OutletAirHumRat;           // Supply air humidity ratio (average value if constant fan, full output if cycling fan)

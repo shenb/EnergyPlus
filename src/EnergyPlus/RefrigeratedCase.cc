@@ -227,265 +227,265 @@ namespace RefrigeratedCase {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // Anti-sweat heater control type
-    int const ASNone(0);
-    int const ASConstant(1);
-    int const ASLinear(2);
-    int const ASDewPoint(3);
-    int const ASHeatBalance(4);
+    thread_local int const ASNone(0);
+    thread_local int const ASConstant(1);
+    thread_local int const ASLinear(2);
+    thread_local int const ASDewPoint(3);
+    thread_local int const ASHeatBalance(4);
     // Refrigerated display case defrost type
-    int const DefNone(0);
-    int const DefOffCycle(1);
-    int const DefHotFluid(2);
-    int const DefHotFluidOnDemand(3);
-    int const DefHotFluidTerm(4);
-    int const DefElectric(5);
-    int const DefElectricOnDemand(6);
-    int const DefElectricTerm(7);
+    thread_local int const DefNone(0);
+    thread_local int const DefOffCycle(1);
+    thread_local int const DefHotFluid(2);
+    thread_local int const DefHotFluidOnDemand(3);
+    thread_local int const DefHotFluidTerm(4);
+    thread_local int const DefElectric(5);
+    thread_local int const DefElectricOnDemand(6);
+    thread_local int const DefElectricTerm(7);
 
     // Refrigerated display case rack heat rejection location
-    int const LocationOutdoors(1);
-    int const LocationZone(2);
+    thread_local int const LocationOutdoors(1);
+    thread_local int const LocationZone(2);
     // Condenser cooling type -- See DataHeatBalance - RefrigxxxTypexxx
     // INTEGER, PARAMETER :: CondenserCoolingAir   = 1
     // INTEGER, PARAMETER :: CondenserCoolingEvap  = 2
     // INTEGER, PARAMETER :: CondenserCoolingWater = 3
     // INTEGER, PARAMETER :: CondenserCascade      = 4
     // Air- and evap-cooled condenser fan speed control types
-    int const FanVariableSpeed(1);
-    int const FanConstantSpeedLinear(2);
-    int const FanTwoSpeed(3);
-    int const FanConstantSpeed(4);
+    thread_local int const FanVariableSpeed(1);
+    thread_local int const FanConstantSpeedLinear(2);
+    thread_local int const FanTwoSpeed(3);
+    thread_local int const FanConstantSpeed(4);
     // Water-cooled condenser loop flow type
-    int const VariableFlow(1);
-    int const ConstantFlow(2);
+    thread_local int const VariableFlow(1);
+    thread_local int const ConstantFlow(2);
     // Condenser evap cooling water supply
-    int const WaterSupplyFromMains(101);
-    int const WaterSupplyFromTank(102);
+    thread_local int const WaterSupplyFromMains(101);
+    thread_local int const WaterSupplyFromTank(102);
     // Cascade condenser temperature control types
-    int const CascadeTempSet(1);
-    int const CascadeTempFloat(2);
+    thread_local int const CascadeTempSet(1);
+    thread_local int const CascadeTempFloat(2);
     // Refrigerated display case energy equation form
-    int const None(0);
-    int const CaseTemperatureMethod(1);
-    int const RHCubic(2);
-    int const DPCubic(3);
+    thread_local int const None(0);
+    thread_local int const CaseTemperatureMethod(1);
+    thread_local int const RHCubic(2);
+    thread_local int const DPCubic(3);
     // Secondary loop parameters
-    int const SecFluidTypeAlwaysLiquid(1);
-    int const SecFluidTypePhaseChange(2);
-    int const SecPumpControlConstant(1);
-    int const SecPumpControlVariable(2);
+    thread_local int const SecFluidTypeAlwaysLiquid(1);
+    thread_local int const SecFluidTypePhaseChange(2);
+    thread_local int const SecPumpControlConstant(1);
+    thread_local int const SecPumpControlVariable(2);
     // Walk In Cooler Defrost type
-    int const WalkInDefrostFluid(1);
-    int const WalkInDefrostElec(2);
-    int const WalkInDefrostNone(3);
-    int const WalkInDefrostOffCycle(4);
+    thread_local int const WalkInDefrostFluid(1);
+    thread_local int const WalkInDefrostElec(2);
+    thread_local int const WalkInDefrostNone(3);
+    thread_local int const WalkInDefrostOffCycle(4);
     // Walk In Cooler Defrost Control type
-    int const DefrostControlSched(1);
-    int const DefrostContTempTerm(2);
+    thread_local int const DefrostControlSched(1);
+    thread_local int const DefrostContTempTerm(2);
     // Walk In Cooler Stock Door Protection types
-    int const WIStockDoorNone(1);
-    int const WIStockDoorAirCurtain(2);
-    int const WIStockDoorStripCurtain(3);
+    thread_local int const WIStockDoorNone(1);
+    thread_local int const WIStockDoorAirCurtain(2);
+    thread_local int const WIStockDoorStripCurtain(3);
     // Subcooler type
-    int const LiquidSuction(1);
-    int const Mechanical(2);
+    thread_local int const LiquidSuction(1);
+    thread_local int const Mechanical(2);
     // Compressor suction pressure control
-    int const FloatSuctionTemperature(1);
-    int const ConstantSuctionTemperature(2);
+    thread_local int const FloatSuctionTemperature(1);
+    thread_local int const ConstantSuctionTemperature(2);
     // Compressor rating types
-    int const RatedSuperheat(1);
-    int const RatedReturnGasTemperature(2);
-    int const RatedSubcooling(1);
-    int const RatedLiquidTemperature(2);
+    thread_local int const RatedSuperheat(1);
+    thread_local int const RatedReturnGasTemperature(2);
+    thread_local int const RatedSubcooling(1);
+    thread_local int const RatedLiquidTemperature(2);
     // System service types (applies to system, cascade condenser, and secondary loops)
     // INTEGER, PARAMETER :: SupermarketService =1
     // INTEGER, PARAMETER :: WarehouseService   =2
     // Warehouse coil Defrost type
-    int const DefrostFluid(1);
-    int const DefrostElec(2);
-    int const DefrostNone(3);
-    int const DefrostOffCycle(4);
+    thread_local int const DefrostFluid(1);
+    thread_local int const DefrostElec(2);
+    thread_local int const DefrostNone(3);
+    thread_local int const DefrostOffCycle(4);
 
-    int const RatedCapacityTotal(1);
-    int const EuropeanSC1Std(2);
-    int const EuropeanSC1Nom(3);
-    int const EuropeanSC2Std(4);
-    int const EuropeanSC2Nom(5);
-    int const EuropeanSC3Std(6);
-    int const EuropeanSC3Nom(7);
-    int const EuropeanSC4Std(8);
-    int const EuropeanSC4Nom(9);
-    int const EuropeanSC5Std(10);
-    int const EuropeanSC5Nom(11);
-    int const UnitLoadFactorSens(12);
-    int const SHR60(1);
-    int const QuadraticSHR(2);
-    int const European(3);
-    int const TabularRH_DT1_TRoom(4);
-    int const Ceiling(1);
-    int const Middle(2);
-    int const Floor(3);
-    int const DetailedSystem(1);
-    int const SecondarySystem(2);
+    thread_local int const RatedCapacityTotal(1);
+    thread_local int const EuropeanSC1Std(2);
+    thread_local int const EuropeanSC1Nom(3);
+    thread_local int const EuropeanSC2Std(4);
+    thread_local int const EuropeanSC2Nom(5);
+    thread_local int const EuropeanSC3Std(6);
+    thread_local int const EuropeanSC3Nom(7);
+    thread_local int const EuropeanSC4Std(8);
+    thread_local int const EuropeanSC4Nom(9);
+    thread_local int const EuropeanSC5Std(10);
+    thread_local int const EuropeanSC5Nom(11);
+    thread_local int const UnitLoadFactorSens(12);
+    thread_local int const SHR60(1);
+    thread_local int const QuadraticSHR(2);
+    thread_local int const European(3);
+    thread_local int const TabularRH_DT1_TRoom(4);
+    thread_local int const Ceiling(1);
+    thread_local int const Middle(2);
+    thread_local int const Floor(3);
+    thread_local int const DetailedSystem(1);
+    thread_local int const SecondarySystem(2);
 
     // Following constant approp for R22, future may make f(refrigerant)
-    Real64 const CaseSuperheat(4.0);       // case superheat used to control thermal expansion valve, ASHRAE 2006 p 44.6 (C)
-    Real64 const TransCaseSuperheat(10.0); // case superheat for transcritical CO2 systems (C)
+    thread_local Real64 const CaseSuperheat(4.0);       // case superheat used to control thermal expansion valve, ASHRAE 2006 p 44.6 (C)
+    thread_local Real64 const TransCaseSuperheat(10.0); // case superheat for transcritical CO2 systems (C)
     // Next two constants used to autosize evap condenser
-    Real64 const CondPumpRatePower(0.004266);  // evap condenser pump rated, Wpump/Wcapacity (15 W/ton)
-    Real64 const AirVolRateEvapCond(0.000144); // evap cond air flow rate for autosize, equiv 850 cfm/ton (m3/W-s)
-    Real64 const EvapCutOutTdb(4.0);           // shut off evap water flow if outdoor drybulb < evapcutOutTdb (C)
+    thread_local Real64 const CondPumpRatePower(0.004266);  // evap condenser pump rated, Wpump/Wcapacity (15 W/ton)
+    thread_local Real64 const AirVolRateEvapCond(0.000144); // evap cond air flow rate for autosize, equiv 850 cfm/ton (m3/W-s)
+    thread_local Real64 const EvapCutOutTdb(4.0);           // shut off evap water flow if outdoor drybulb < evapcutOutTdb (C)
     // Miscellaneous constants
-    Real64 const MyLargeNumber(1.0e9);
-    Real64 const MySmallNumber(1.0e-9);
-    Real64 const Rair(0.3169);                  // Air resistance used with Heat Balance anti-sweat (AS) heater
-    Real64 const IceMeltEnthalpy(335000.0);     // heat of fusion of water J/kg
-    Real64 const TempTooHotToFrost(5.0);        // C, used to check for frosting conditions on evaporator coils
-    Real64 const IcetoVaporEnthalpy(2833000.0); // J/kg to freeze water vapor to ice
-    Real64 const WatertoVaporEnthalpy(2.5e6);   // at 0C
-    Real64 const SpecificHeatIce(2000.0);       // in the likely range (2040 at 0C and 1950 at -20C) (J/kg-C)
-    Real64 const CondAirVolExponentDry(1.58);   // exponent for forced air over a cylinder, = 1/.633
+    thread_local Real64 const MyLargeNumber(1.0e9);
+    thread_local Real64 const MySmallNumber(1.0e-9);
+    thread_local Real64 const Rair(0.3169);                  // Air resistance used with Heat Balance anti-sweat (AS) heater
+    thread_local Real64 const IceMeltEnthalpy(335000.0);     // heat of fusion of water J/kg
+    thread_local Real64 const TempTooHotToFrost(5.0);        // C, used to check for frosting conditions on evaporator coils
+    thread_local Real64 const IcetoVaporEnthalpy(2833000.0); // J/kg to freeze water vapor to ice
+    thread_local Real64 const WatertoVaporEnthalpy(2.5e6);   // at 0C
+    thread_local Real64 const SpecificHeatIce(2000.0);       // in the likely range (2040 at 0C and 1950 at -20C) (J/kg-C)
+    thread_local Real64 const CondAirVolExponentDry(1.58);   // exponent for forced air over a cylinder, = 1/.633
     // per ASHRAE 2005 (page 3.15)
-    Real64 const CondAirVolExponentEvap(1.32); // exponent for evap condenser air vol flow, = 1/.76
+    thread_local Real64 const CondAirVolExponentEvap(1.32); // exponent for evap condenser air vol flow, = 1/.76
     // per Manske, 1999
-    Real64 const EvaporatorAirVolExponent(1.54); // exponent for evapaporator air vol flow, = 1/.65
+    thread_local Real64 const EvaporatorAirVolExponent(1.54); // exponent for evapaporator air vol flow, = 1/.65
     // per Manske, 1999, page 35
 
-    Real64 const FanHalfSpeedRatio(0.1768); // = 1/(2**2.5) for power step for two speed fan
-    Real64 const CapFac60Percent(0.60);     // = 60%, load served by half power 2-speed fan
+    thread_local Real64 const FanHalfSpeedRatio(0.1768); // = 1/(2**2.5) for power step for two speed fan
+    thread_local Real64 const CapFac60Percent(0.60);     // = 60%, load served by half power 2-speed fan
 
-    Array1D<Real64> const EuropeanWetCoilFactor(5, {1.35, 1.15, 1.05, 1.01, 1.0});
-    Array1D<Real64> const EuropeanAirInletTemp(5, {10.0, 0.0, -18.0, -25.0, -34.0});
-    Array1D<Real64> const EuropeanEvapTemp(5, {0.0, -8.0, -25.0, -31.0, -40.0});
-    Array1D<Real64> const EuropeanDT1(5, {10.0, 8.0, 7.0, 7.0, 6.0});
+    thread_local Array1D<Real64> const EuropeanWetCoilFactor(5, {1.35, 1.15, 1.05, 1.01, 1.0});
+    thread_local Array1D<Real64> const EuropeanAirInletTemp(5, {10.0, 0.0, -18.0, -25.0, -34.0});
+    thread_local Array1D<Real64> const EuropeanEvapTemp(5, {0.0, -8.0, -25.0, -31.0, -40.0});
+    thread_local Array1D<Real64> const EuropeanDT1(5, {10.0, 8.0, 7.0, 7.0, 6.0});
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumSimulationCondAir(0);            // Number of air-cooled condensers in simulation
-    int NumSimulationCondEvap(0);           // Number of evaporative condensers in simulation
-    int NumSimulationCondWater(0);          // Number of water-cooled condensers in simulation
-    int NumSimulationCascadeCondensers(0);  // Total number of Cascade condensers in IDF
-    int NumSimulationGasCooler(0);          // Number of gas coolers in simulation
-    int NumSimulationSharedGasCoolers(0);   // Total number of gas coolers that serve more than one system
-    int NumTransRefrigSystems(0);           // Total number of transcritical CO2 refrigeration systems
-    int NumSimulationSharedCondensers(0);   // Total number of condensers that serve more than one system
-    int NumSimulationCases(0);              // Number of refrigerated cases in simulation
-    int NumSimulationCaseAndWalkInLists(0); // Total number of CaseAndWalkIn Lists in IDF
-    int NumSimulationWalkIns(0);            // Number of walk in coolers in simulation
-    int NumSimulationCompressors(0);        // Number of refrigeration compressors in simulation
-    int NumSimulationSubcoolers(0);         // Number of refrigeration subcoolers in simulation
-    int NumSimulationMechSubcoolers(0);     // Number of mechanical subcoolers in simulation
-    int NumSimulationRefrigAirChillers(0);  // Number of individual Air Chillers/coils in simulation
-    int NumSimulationSecondarySystems(0);   // Number of Secondary loops in simulation
-    int NumSimulationTransferLoadLists(0);  // Number of Secondary Lists in simulation
-    int NumUnusedRefrigCases(0);            // Number of refrigerated cases not connected to a rack or system
-    int NumUnusedCoils(0);                  // Number of refrigeration air coils not connected to a rack or system
-    int NumUnusedCondensers(0);             // Number of refrigeration condensors not connected to a system
-    int NumUnusedGasCoolers(0);             // Number of refrigeration gas coolers not connected to a system
-    int NumUnusedCompressors(0);            // Number of refrigeration compressors not connected to a system
-    int NumUnusedSecondarys(0);             // Number of refrigeration secondarys not connected to a system
-    int NumUnusedWalkIns(0);                // Number of refrigeration compressors not connected to a system
-    bool MyReferPlantScanFlag(true);
+    thread_local int NumSimulationCondAir(0);            // Number of air-cooled condensers in simulation
+    thread_local int NumSimulationCondEvap(0);           // Number of evaporative condensers in simulation
+    thread_local int NumSimulationCondWater(0);          // Number of water-cooled condensers in simulation
+    thread_local int NumSimulationCascadeCondensers(0);  // Total number of Cascade condensers in IDF
+    thread_local int NumSimulationGasCooler(0);          // Number of gas coolers in simulation
+    thread_local int NumSimulationSharedGasCoolers(0);   // Total number of gas coolers that serve more than one system
+    thread_local int NumTransRefrigSystems(0);           // Total number of transcritical CO2 refrigeration systems
+    thread_local int NumSimulationSharedCondensers(0);   // Total number of condensers that serve more than one system
+    thread_local int NumSimulationCases(0);              // Number of refrigerated cases in simulation
+    thread_local int NumSimulationCaseAndWalkInLists(0); // Total number of CaseAndWalkIn Lists in IDF
+    thread_local int NumSimulationWalkIns(0);            // Number of walk in coolers in simulation
+    thread_local int NumSimulationCompressors(0);        // Number of refrigeration compressors in simulation
+    thread_local int NumSimulationSubcoolers(0);         // Number of refrigeration subcoolers in simulation
+    thread_local int NumSimulationMechSubcoolers(0);     // Number of mechanical subcoolers in simulation
+    thread_local int NumSimulationRefrigAirChillers(0);  // Number of individual Air Chillers/coils in simulation
+    thread_local int NumSimulationSecondarySystems(0);   // Number of Secondary loops in simulation
+    thread_local int NumSimulationTransferLoadLists(0);  // Number of Secondary Lists in simulation
+    thread_local int NumUnusedRefrigCases(0);            // Number of refrigerated cases not connected to a rack or system
+    thread_local int NumUnusedCoils(0);                  // Number of refrigeration air coils not connected to a rack or system
+    thread_local int NumUnusedCondensers(0);             // Number of refrigeration condensors not connected to a system
+    thread_local int NumUnusedGasCoolers(0);             // Number of refrigeration gas coolers not connected to a system
+    thread_local int NumUnusedCompressors(0);            // Number of refrigeration compressors not connected to a system
+    thread_local int NumUnusedSecondarys(0);             // Number of refrigeration secondarys not connected to a system
+    thread_local int NumUnusedWalkIns(0);                // Number of refrigeration compressors not connected to a system
+    thread_local bool MyReferPlantScanFlag(true);
 
     // Refrigerated case variables
-    Real64 CaseRAFactor(0.0);         // Factor determining case credit allocation (e.g. % to zone or HVAC)
-    Array1D_bool ShowStockingWarning; // Used for one-time warning message for possible case
+    thread_local Real64 CaseRAFactor(0.0);         // Factor determining case credit allocation (e.g. % to zone or HVAC)
+    thread_local Array1D_bool ShowStockingWarning; // Used for one-time warning message for possible case
     // input error regarding stocking
-    Array1D_bool ShowFrostWarning; // Used for one-time warning message for possible case
+    thread_local Array1D_bool ShowFrostWarning; // Used for one-time warning message for possible case
     // input error regarding frost
-    Array1D_bool ShowStoreEnergyWarning; // Used for one-time warning message for possible case
+    thread_local Array1D_bool ShowStoreEnergyWarning; // Used for one-time warning message for possible case
     // input error regarding defrost or stocking
     //  Walk In variables
-    Array1D_bool ShowUnmetWIEnergyWarning; // Used for one-time warning message
-    Array1D_bool ShowWIFrostWarning;       // Used for one-time warning message
+    thread_local Array1D_bool ShowUnmetWIEnergyWarning; // Used for one-time warning message
+    thread_local Array1D_bool ShowWIFrostWarning;       // Used for one-time warning message
 
     // Refrigeration compressor rack variables
-    Real64 TotalRackDeliveredCapacity(0.0); // Total capacity of all refrigerated cases attached to rack (W)
-    Real64 TotalCompressorPower(0.0);       // Total compressor electric power (W)
-    Real64 CompressorCOPactual(0.0);        // Compressor coefficient of performance at specific operating conditions (W/W)
-    Real64 RackSenCreditToZone(0.0);        // Amount of condenser heat applied to zone load (W)
-    Real64 RackSenCreditToHVAC(0.0);        // Amount of condenser heat applied to HVAC RA duct (W)
-    int InletNode(0);                       // Water-cooled condenser inlet node number
-    int OutletNode(0);                      // Water-cooled condenser outlet node number
-    Array1D_bool ShowCOPWarning;            // Used for one-time warning message for possible rack
+    thread_local Real64 TotalRackDeliveredCapacity(0.0); // Total capacity of all refrigerated cases attached to rack (W)
+    thread_local Real64 TotalCompressorPower(0.0);       // Total compressor electric power (W)
+    thread_local Real64 CompressorCOPactual(0.0);        // Compressor coefficient of performance at specific operating conditions (W/W)
+    thread_local Real64 RackSenCreditToZone(0.0);        // Amount of condenser heat applied to zone load (W)
+    thread_local Real64 RackSenCreditToHVAC(0.0);        // Amount of condenser heat applied to HVAC RA duct (W)
+    thread_local int InletNode(0);                       // Water-cooled condenser inlet node number
+    thread_local int OutletNode(0);                      // Water-cooled condenser outlet node number
+    thread_local Array1D_bool ShowCOPWarning;            // Used for one-time warning message for possible rack
     // input error regarding COP
     // Refrigeration condenser variables (used for both racks and detailed systems)
-    Real64 TotalCondenserFanPower(0.0);  // Total condenser fan electric power (W)
-    Real64 TotalCondenserPumpPower(0.0); // Total condenser pump electric power (W)
-    Real64 TotalCondenserHeat(0.0);      // Total condenser heat from compressor rack (W)
-    Real64 TotalBasinHeatPower(0.0);     // Total condenser basin water heater power (W)
-    Real64 TotalEvapWaterUseRate(0.0);   // Total condenser water use rate (m3/s)
+    thread_local Real64 TotalCondenserFanPower(0.0);  // Total condenser fan electric power (W)
+    thread_local Real64 TotalCondenserPumpPower(0.0); // Total condenser pump electric power (W)
+    thread_local Real64 TotalCondenserHeat(0.0);      // Total condenser heat from compressor rack (W)
+    thread_local Real64 TotalBasinHeatPower(0.0);     // Total condenser basin water heater power (W)
+    thread_local Real64 TotalEvapWaterUseRate(0.0);   // Total condenser water use rate (m3/s)
 
     // Refrigeration system variables
-    Array1D_bool ShowUnmetEnergyWarning; // Used for one-time warning message for possible
+    thread_local Array1D_bool ShowUnmetEnergyWarning; // Used for one-time warning message for possible
     // compressor input error regarding total system compressor capacity
-    Array1D_bool ShowHiStageUnmetEnergyWarning; // Used for one-time warning message for possible
+    thread_local Array1D_bool ShowHiStageUnmetEnergyWarning; // Used for one-time warning message for possible
     // high-stage compressor input error regarding high-stage compressor capacity
 
     // Transcritical refrigeration system variables
-    bool TransCritSysFlag(false);             // Used to indicate whether or not a transcritical refrigeration system has been defined.
-    Array1D_bool ShowUnmetEnergyWarningTrans; // Used for one-time warning message for possible
+    thread_local bool TransCritSysFlag(false);             // Used to indicate whether or not a transcritical refrigeration system has been defined.
+    thread_local Array1D_bool ShowUnmetEnergyWarningTrans; // Used for one-time warning message for possible
     // compressor input error regarding total system compressor capacity
 
     // Refrigeration Secondary Loop variables
-    Array1D_bool ShowUnmetSecondEnergyWarning; // Used for one-time warning message for possible
+    thread_local Array1D_bool ShowUnmetSecondEnergyWarning; // Used for one-time warning message for possible
     // compressor input error regarding secondary loop heat exchanger capacity
     // Refrigerated warehouse coil variables
-    Array1D_bool CheckChillerName; // used when simrefrigcoil called for a zone
+    thread_local Array1D_bool CheckChillerName; // used when simrefrigcoil called for a zone
     // LOGICAL, ALLOCATABLE,DIMENSION(:) :: CheckZoneNum  !used when simrefrigcoil called for a zone
-    Array1D_bool ShowCoilFrostWarning; // Used for one-time warning message if defrost cycles insufficient to melt ice
+    thread_local Array1D_bool ShowCoilFrostWarning; // Used for one-time warning message if defrost cycles insufficient to melt ice
 
     // Refrigeration Plant connections checks
-    Array1D_bool CheckEquipNameRackWaterCondenser;
-    Array1D_bool CheckEquipNameWaterCondenser;
+    thread_local Array1D_bool CheckEquipNameRackWaterCondenser;
+    thread_local Array1D_bool CheckEquipNameWaterCondenser;
 
     // Control variables
-    Array1D_bool RefrigPresentInZone; // Used when translating rate to energy for reporting
+    thread_local Array1D_bool RefrigPresentInZone; // Used when translating rate to energy for reporting
     //  total refrigeration impact on a zone
-    Array1D_bool CheckChillerSetName; // used when sim chiller set called form zone equip manager
+    thread_local Array1D_bool CheckChillerSetName; // used when sim chiller set called form zone equip manager
 
-    bool GetRefrigerationInputFlag(true); // Flag to show case input should be read
-    bool HaveRefrigRacks(true);           // Is initialized as TRUE and remains true when
+    thread_local bool GetRefrigerationInputFlag(true); // Flag to show case input should be read
+    thread_local bool HaveRefrigRacks(true);           // Is initialized as TRUE and remains true when
     // refrigerated racks exist in the input deck
-    bool HaveDetailedRefrig(true); // Is initialized as TRUE and remains true when
+    thread_local bool HaveDetailedRefrig(true); // Is initialized as TRUE and remains true when
     // detailed refrigeration systems exist in the input deck
-    bool HaveDetailedTransRefrig(true); // Is initialized as TRUE and remains true when
+    thread_local bool HaveDetailedTransRefrig(true); // Is initialized as TRUE and remains true when
     // detailed transcritical CO2 refrigeration systems exist in the input deck
-    bool ManageRefrigeration(true); // Is initialized as TRUE and remains true when
+    thread_local bool ManageRefrigeration(true); // Is initialized as TRUE and remains true when
     // refrigerated racks or detailed systems exist in the input deck
-    bool UseSysTimeStep(false); // Flag is true IF working on a system that includes a coil cooling a controlled zone on the system time step,
+    thread_local bool UseSysTimeStep(false); // Flag is true IF working on a system that includes a coil cooling a controlled zone on the system time step,
     // All other refrigeration calculations for case and walkin systems done on the load time step
-    bool HaveCasesOrWalkins(true); // Is initialized as TRUE and remains true when
+    thread_local bool HaveCasesOrWalkins(true); // Is initialized as TRUE and remains true when
     // refrigerated cases or walkins exist in the input deck
-    bool HaveChillers(true); // Is initialized as TRUE and remains true when
+    thread_local bool HaveChillers(true); // Is initialized as TRUE and remains true when
     // chillers exist in the input deck
     // SUBROUTINE SPECIFICATIONS FOR MODULE RefrigeratedCase:
 
     // Object Data
-    Array1D<RefrigCaseData> RefrigCase;
-    Array1D<RefrigRackData> RefrigRack;
-    Array1D<CaseRAFractionData> CaseRAFraction;
-    Array1D<RefrigSystemData> System;
-    Array1D<TransRefrigSystemData> TransSystem;
-    Array1D<RefrigCondenserData> Condenser;
-    std::unordered_map<std::string, std::string> UniqueCondenserNames;
-    Array1D<RefrigCompressorData> Compressor;
-    Array1D<RefrigGasCoolerData> GasCooler;
-    Array1D<SubcoolerData> Subcooler;
-    Array1D<CaseAndWalkInListDef> CaseAndWalkInList;
-    Array1D<CompressorListDef> CompressorLists;
-    Array1D<SecondaryLoopData> Secondary;
-    Array1D<TransferLoadListDef> TransferLoadList;
-    Array1D<WalkInData> WalkIn;
-    Array1D<WarehouseCoilData> WarehouseCoil;
-    Array1D<AirChillerSetData> AirChillerSet;
-    Array1D<CoilCreditData> CoilSysCredit;
-    Array1D<CaseWIZoneReportData> CaseWIZoneReport;
+    thread_local Array1D<RefrigCaseData> RefrigCase;
+    thread_local Array1D<RefrigRackData> RefrigRack;
+    thread_local Array1D<CaseRAFractionData> CaseRAFraction;
+    thread_local Array1D<RefrigSystemData> System;
+    thread_local Array1D<TransRefrigSystemData> TransSystem;
+    thread_local Array1D<RefrigCondenserData> Condenser;
+    thread_local std::unordered_map<std::string, std::string> UniqueCondenserNames;
+    thread_local Array1D<RefrigCompressorData> Compressor;
+    thread_local Array1D<RefrigGasCoolerData> GasCooler;
+    thread_local Array1D<SubcoolerData> Subcooler;
+    thread_local Array1D<CaseAndWalkInListDef> CaseAndWalkInList;
+    thread_local Array1D<CompressorListDef> CompressorLists;
+    thread_local Array1D<SecondaryLoopData> Secondary;
+    thread_local Array1D<TransferLoadListDef> TransferLoadList;
+    thread_local Array1D<WalkInData> WalkIn;
+    thread_local Array1D<WarehouseCoilData> WarehouseCoil;
+    thread_local Array1D<AirChillerSetData> AirChillerSet;
+    thread_local Array1D<CoilCreditData> CoilSysCredit;
+    thread_local Array1D<CaseWIZoneReportData> CaseWIZoneReport;
 
     // Functions
 
@@ -539,7 +539,7 @@ namespace RefrigeratedCase {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         int RackNum;                     // Index to the refrigerated compressor rack being modeled
-        static bool MyOneTimeFlag(true); // flag to skip first pass on next begin environment flag
+        thread_local static bool MyOneTimeFlag(true); // flag to skip first pass on next begin environment flag
 
         if (!ManageRefrigeration) return;
 
@@ -619,10 +619,10 @@ namespace RefrigeratedCase {
         using WaterManager::SetupTankDemandComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const TrackMessage("from refrigerated case");
-        static std::string const RoutineName("GetRefrigerationInput: ");
-        static std::string const TrackMessageAlt("GetInput in RefrigeratedCase");
-        static std::string const RoutineNameNoColon("GetRefrigerationInput");
+        thread_local static std::string const TrackMessage("from refrigerated case");
+        thread_local static std::string const RoutineName("GetRefrigerationInput: ");
+        thread_local static std::string const TrackMessageAlt("GetInput in RefrigeratedCase");
+        thread_local static std::string const RoutineNameNoColon("GetRefrigerationInput");
 
         int const AlwaysOn(-1); // -1 pointer sent to schedule manager returns a value of 1.0
         // unused INTEGER, Parameter   ::  InputTypeSecond = 1  ! Indicator that flow used to specify capacity of secondary heat exchanger
@@ -658,190 +658,190 @@ namespace RefrigeratedCase {
         Array1D_string Alphas;                  // Alpha items for object
         Array1D_string cAlphaFieldNames;        // Alpha field names (from input processor)
         Array1D_string cNumericFieldNames;      // Numeric field names (from input processor)
-        static std::string CurrentModuleObject; // Object type for getting and error messages
+        thread_local static std::string CurrentModuleObject; // Object type for getting and error messages
 
         Array1D_bool lAlphaBlanks;      // Logic array, alpha input blank = .TRUE.
         Array1D_bool lNumericBlanks;    // Logic array, numeric input blank = .TRUE.
-        static bool CaseLoads(false);   // Flag to help verify load type with loads served by systems cooled by cascade condensers
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
-        static bool StartCycle(false);  // Flag for counting defrost cycles
+        thread_local static bool CaseLoads(false);   // Flag to help verify load type with loads served by systems cooled by cascade condensers
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool StartCycle(false);  // Flag for counting defrost cycles
 
-        static int AlphaListNum(0); // Index of Names in Case, Compressor et al Lists
-        static int AlphaNum(0);     // Used to cycle through input
-        static int AlphaStartList(0);
-        static int AStart(0); // Used to cycle through zones on input for walk in coolers
+        thread_local static int AlphaListNum(0); // Index of Names in Case, Compressor et al Lists
+        thread_local static int AlphaNum(0);     // Used to cycle through input
+        thread_local static int AlphaStartList(0);
+        thread_local static int AStart(0); // Used to cycle through zones on input for walk in coolers
         // INTEGER    :: CascadeCondenserID= 0       ! Used to match load on system to Condenser absolute index
-        static int CascadeLoadNum(0);       // counters while associating cascade loads with systems
-        static int CascadeLoadIndex(0);     // Counters while inputting cascade loads
-        static int CaseID(0);               // ID of refrigerated case in rack
-        static int CaseIndex(0);            // Index of refrigerated case attached to a system
-        static int CaseNum(0);              // Index of refrigerated case
-        static int CaseAndWalkInListNum(0); // ID of refrigerated CaseAndWalkInList
-        static int ChillerIndex(0);
-        static int CoilID(0);    // Index of warehouse coil attached to a system
-        static int CoilIndex(0); // Index of warehouse coil attached to a system
-        static int CoilNum(0);   // Index of warehouse coil
-        static int CompIndex(0); // Index  of refrigeration compressor attached to a system
-        static int CompNum(0);   // Index of refrigeration compressor
-        static int CondID(0);    // Condenser ID used when associating condenser as a cascade load
-        static int CondIndex(0); // Index  of refrigeration condenser attached to a system
-        static int CondNum(0);   // Index of refrigeration condenser
-        static int DefType(0);   // Local value for case defrost type
+        thread_local static int CascadeLoadNum(0);       // counters while associating cascade loads with systems
+        thread_local static int CascadeLoadIndex(0);     // Counters while inputting cascade loads
+        thread_local static int CaseID(0);               // ID of refrigerated case in rack
+        thread_local static int CaseIndex(0);            // Index of refrigerated case attached to a system
+        thread_local static int CaseNum(0);              // Index of refrigerated case
+        thread_local static int CaseAndWalkInListNum(0); // ID of refrigerated CaseAndWalkInList
+        thread_local static int ChillerIndex(0);
+        thread_local static int CoilID(0);    // Index of warehouse coil attached to a system
+        thread_local static int CoilIndex(0); // Index of warehouse coil attached to a system
+        thread_local static int CoilNum(0);   // Index of warehouse coil
+        thread_local static int CompIndex(0); // Index  of refrigeration compressor attached to a system
+        thread_local static int CompNum(0);   // Index of refrigeration compressor
+        thread_local static int CondID(0);    // Condenser ID used when associating condenser as a cascade load
+        thread_local static int CondIndex(0); // Index  of refrigeration condenser attached to a system
+        thread_local static int CondNum(0);   // Index of refrigeration condenser
+        thread_local static int DefType(0);   // Local value for case defrost type
         // INTEGER    :: FlowIndex         = 0       ! Index of pump flow numeric field
-        static int GCNum(0);                         // Index of refrigeration gas cooler
-        static int HRNum(0);                         // Counter for hours in day
-        static int IOStatus(0);                      // Used in GetObjectItem
-        static int ListNum(0);                       // Index of Lists of cases, compressors, and subcoolers
-        static int LoadCascadeNum(0);                // Used to read transfer load list
-        static int LoadCount(0);                     // check for blank case and walkin names in caseand alkinlist
-        static int LoadSecondaryNum(0);              // Used to read transfer load list
-        static int LoadWalkInNum(0);                 // Used to read CaseAndWalkInList
-        static int LoadCaseNum(0);                   // Used to read CaseAndWalkInList
-        static int LoadCoilNum(0);                   // Used to read CaseAndWalkInList
-        static int MaxNumAlphasRack(0);              // Maximum number of alphas for rack object
-        static int MaxNumAlphasAirChiller(0);        // Maximum number of alphas for air chiller
-        static int MaxNumAlphasAll(0);               // Maximum number of alphas for all objects
-        static int MaxNumAlphasSys(0);               // Maximum number of alphas for system object
-        static int MaxNumAlphasTransSys(0);          // Maximum number of alphas for transcritical system object
-        static int MaxNumAlphasChillerSet(0);        // Maximum number of alphas for chiller set
-        static int MaxNumAlphasConda(0);             // Maximum number of alphas for air-cooled condenser object
-        static int MaxNumAlphasConde(0);             // Maximum number of alphas for evap-cooled condenser object
-        static int MaxNumAlphasCondw(0);             // Maximum number of alphas for water-cooled condenser object
-        static int MaxNumAlphasGasCoolera(0);        // Maximum number of alphas for air-cooled gas cooler object
-        static int MaxNumAlphasComp(0);              // Maximum number of alphas for compressor object
-        static int MaxNumAlphasCompressorList(0);    // Maximum number of alphas for compressor list objects
-        static int MaxNumAlphasCase(0);              // Maximum number of alphas for case object
-        static int MaxNumAlphasCaseAndWalkInList(0); // Maximum number of alphas in CaseAndWalkInList
-        static int MaxNumAlphasWalkIn(0);            // Maximum number of alphas for walkin object
+        thread_local static int GCNum(0);                         // Index of refrigeration gas cooler
+        thread_local static int HRNum(0);                         // Counter for hours in day
+        thread_local static int IOStatus(0);                      // Used in GetObjectItem
+        thread_local static int ListNum(0);                       // Index of Lists of cases, compressors, and subcoolers
+        thread_local static int LoadCascadeNum(0);                // Used to read transfer load list
+        thread_local static int LoadCount(0);                     // check for blank case and walkin names in caseand alkinlist
+        thread_local static int LoadSecondaryNum(0);              // Used to read transfer load list
+        thread_local static int LoadWalkInNum(0);                 // Used to read CaseAndWalkInList
+        thread_local static int LoadCaseNum(0);                   // Used to read CaseAndWalkInList
+        thread_local static int LoadCoilNum(0);                   // Used to read CaseAndWalkInList
+        thread_local static int MaxNumAlphasRack(0);              // Maximum number of alphas for rack object
+        thread_local static int MaxNumAlphasAirChiller(0);        // Maximum number of alphas for air chiller
+        thread_local static int MaxNumAlphasAll(0);               // Maximum number of alphas for all objects
+        thread_local static int MaxNumAlphasSys(0);               // Maximum number of alphas for system object
+        thread_local static int MaxNumAlphasTransSys(0);          // Maximum number of alphas for transcritical system object
+        thread_local static int MaxNumAlphasChillerSet(0);        // Maximum number of alphas for chiller set
+        thread_local static int MaxNumAlphasConda(0);             // Maximum number of alphas for air-cooled condenser object
+        thread_local static int MaxNumAlphasConde(0);             // Maximum number of alphas for evap-cooled condenser object
+        thread_local static int MaxNumAlphasCondw(0);             // Maximum number of alphas for water-cooled condenser object
+        thread_local static int MaxNumAlphasGasCoolera(0);        // Maximum number of alphas for air-cooled gas cooler object
+        thread_local static int MaxNumAlphasComp(0);              // Maximum number of alphas for compressor object
+        thread_local static int MaxNumAlphasCompressorList(0);    // Maximum number of alphas for compressor list objects
+        thread_local static int MaxNumAlphasCase(0);              // Maximum number of alphas for case object
+        thread_local static int MaxNumAlphasCaseAndWalkInList(0); // Maximum number of alphas in CaseAndWalkInList
+        thread_local static int MaxNumAlphasWalkIn(0);            // Maximum number of alphas for walkin object
         // INTEGER    :: MaxNumAlphasWalkInList  = 0 ! Maximum number of alphas for walkin list object
-        static int MaxNumAlphasSecond(0);             // Maximum number of alphas for air chiller object
-        static int MaxNumNumbersAirChiller(0);        // Maximum number of numbers for air chiller object
-        static int MaxNumNumbersSecond(0);            // Maximum number of numbers for secondary system object
-        static int MaxNumNumbersWalkIn(0);            // Maximum number of numbers for walkin object
-        static int MaxNumNumbersCase(0);              // Maximum number of numbers for case object
-        static int MaxNumNumbersCaseAndWalkInList(0); // Maximum number of numbers in CaseAndWalkInList
-        static int MaxNumNumbersRack(0);              // Maximum number of numbers for rack object
-        static int MaxNumNumbersAll(0);               // Maximum number of numeric inputs for all objects
-        static int MaxNumNumbersSys(0);               // Maximum number of numbers for system object
-        static int MaxNumNumbersTransSys(0);          // Maximum number of numbers for transcritical system object
-        static int MaxNumNumbersChillerSet(0);        // Maximum number of numbers for chiller set object
-        static int MaxNumNumbersConda(0);             // Maximum number of numbers for air-cooled condenser object
-        static int MaxNumNumbersConde(0);             // Maximum number of numbers for evap-cooled condenser object
-        static int MaxNumNumbersCondw(0);             // Maximum number of numbers for water-cooled condenser object
-        static int MaxNumNumbersGasCoolera(0);        // Maximum number of numbers for air-cooled gas cooler object
-        static int MaxNumNumbersComp(0);              // Maximum number of numbers for compressor object
-        static int MaxNumNumbersCompressorList(0);    // Maximum number of numbers
-        static int MaxNumArgs(0);                     // Max number of alphas and numbers (arguments) for rack object
-        static int NStart(0);                         // Used to cycle through zones on input for walk in coolers
-        static int NumAlphas(0);                      // Number of Alphas for each GetObjectItem call
-        static int NumCascadeLoad(0);                 // Number of Cascade Loads on current system
-        static int NumCompressorsSys(0);              // Number of compressors on current system
-        static int NumHiStageCompressorsSys(0);       // Number of high-stage compressors on current system
-        static int NumCondensers(0);                  // Counter for condensers in GETInput do loop
-        static int NumGasCoolers(0);                  // Counter for gas coolers in GetInput do loop
-        static int NumDefCycles(0);                   // Number of defrost cycles per day
-        static int NumPumps(0);                       // Number of pumps on a secondary loop
-        static int NumCases(0);                       // Number of refrigerated cases for single system
-        static int NumCasesMT(0);                     // Number of medium temperature cases on a single transcritical system
-        static int NumCasesLT(0);                     // Number of low temperature cases on a single transcritical system
-        static int NumCoils(0);                       // Number of warehouse coils for single system
-        static int NumSubcooler(0);                   // Number of subcoolers on current system
-        static int NumNameMatches(0);                 // Used to check for uniqueness of name for transfer loads
-        static int NumNum(0);                         // Used to cycle through input
-        static int NumNumbers(0);                     // Number of Numbers for each GetObjectItem call
-        static int NumCompressorLists(0);             // Total number of Compressor Lists in IDF
-        static int NumDisplayCases(0);                // Counter for refrigerated cases in GetInput do loop
-        static int NumSecondary(0);                   // Number of secondary loops
-        static int NumWalkIns(0);                     // Number of walk ins
-        static int NumWalkInsMT(0);                   // Number of medium temperature walk-ins on a single transcritical system
-        static int NumWalkInsLT(0);                   // Number of low temperature walk-ins on a single transcritical system
-        static int NumWIFieldsPerZone(0);             // Used to calculate number of zones exposed to each walkin
-        static int NumWIFieldsTotal(0);               // Used to calculate number of zones exposed to each walkin
-        static int NumZones(0);                       // Used to cycle through zones on input for walk in coolers
-        static int NumTotalLoadsOnList(0);            // Used to read transfer load and caseandWalkIn lists
-        static int NumSecondarysOnList(0);            // Used to read transfer load lists
-        static int NumCascadeLoadsChecked(0);         // Used when checking for consistency of coil loads/time steps
-        static int NumCascadeLoadsOnList(0);          // Used to read transfer load lists
-        static int NumLoad(0);                        // Used to read transfer loadand caseandWalkIn lists
-        static int NumCasesOnList(0);                 // Used to read caseandWalkIn lists
-        static int NumChillersInSet(0);
-        static int NumCoilsOnList(0);    // Used to read caseandWalkIn lists
-        static int NumWalkInsOnList(0);  // Used to read caseandWalkIn lists
-        static int RackNum(0);           // Index of refrigerated display case compressor rack
-        static int RefrigIndex(0);       // Index used in fluid property routines
-        static int RefrigSysNum(0);      // Index of refrigeration system
-        static int TransRefrigSysNum(0); // Index of transcritical CO2 refrigeration system
-        static int SecondaryIndex(0);    // Index of secondary loops
-        static int SecondaryID(0);       // Index of secondary loops
-        static int SetID(0);             // Index of refrigerated chilller SETS
-        static int SecondaryNum(0);      // Index of secondary loops
+        thread_local static int MaxNumAlphasSecond(0);             // Maximum number of alphas for air chiller object
+        thread_local static int MaxNumNumbersAirChiller(0);        // Maximum number of numbers for air chiller object
+        thread_local static int MaxNumNumbersSecond(0);            // Maximum number of numbers for secondary system object
+        thread_local static int MaxNumNumbersWalkIn(0);            // Maximum number of numbers for walkin object
+        thread_local static int MaxNumNumbersCase(0);              // Maximum number of numbers for case object
+        thread_local static int MaxNumNumbersCaseAndWalkInList(0); // Maximum number of numbers in CaseAndWalkInList
+        thread_local static int MaxNumNumbersRack(0);              // Maximum number of numbers for rack object
+        thread_local static int MaxNumNumbersAll(0);               // Maximum number of numeric inputs for all objects
+        thread_local static int MaxNumNumbersSys(0);               // Maximum number of numbers for system object
+        thread_local static int MaxNumNumbersTransSys(0);          // Maximum number of numbers for transcritical system object
+        thread_local static int MaxNumNumbersChillerSet(0);        // Maximum number of numbers for chiller set object
+        thread_local static int MaxNumNumbersConda(0);             // Maximum number of numbers for air-cooled condenser object
+        thread_local static int MaxNumNumbersConde(0);             // Maximum number of numbers for evap-cooled condenser object
+        thread_local static int MaxNumNumbersCondw(0);             // Maximum number of numbers for water-cooled condenser object
+        thread_local static int MaxNumNumbersGasCoolera(0);        // Maximum number of numbers for air-cooled gas cooler object
+        thread_local static int MaxNumNumbersComp(0);              // Maximum number of numbers for compressor object
+        thread_local static int MaxNumNumbersCompressorList(0);    // Maximum number of numbers
+        thread_local static int MaxNumArgs(0);                     // Max number of alphas and numbers (arguments) for rack object
+        thread_local static int NStart(0);                         // Used to cycle through zones on input for walk in coolers
+        thread_local static int NumAlphas(0);                      // Number of Alphas for each GetObjectItem call
+        thread_local static int NumCascadeLoad(0);                 // Number of Cascade Loads on current system
+        thread_local static int NumCompressorsSys(0);              // Number of compressors on current system
+        thread_local static int NumHiStageCompressorsSys(0);       // Number of high-stage compressors on current system
+        thread_local static int NumCondensers(0);                  // Counter for condensers in GETInput do loop
+        thread_local static int NumGasCoolers(0);                  // Counter for gas coolers in GetInput do loop
+        thread_local static int NumDefCycles(0);                   // Number of defrost cycles per day
+        thread_local static int NumPumps(0);                       // Number of pumps on a secondary loop
+        thread_local static int NumCases(0);                       // Number of refrigerated cases for single system
+        thread_local static int NumCasesMT(0);                     // Number of medium temperature cases on a single transcritical system
+        thread_local static int NumCasesLT(0);                     // Number of low temperature cases on a single transcritical system
+        thread_local static int NumCoils(0);                       // Number of warehouse coils for single system
+        thread_local static int NumSubcooler(0);                   // Number of subcoolers on current system
+        thread_local static int NumNameMatches(0);                 // Used to check for uniqueness of name for transfer loads
+        thread_local static int NumNum(0);                         // Used to cycle through input
+        thread_local static int NumNumbers(0);                     // Number of Numbers for each GetObjectItem call
+        thread_local static int NumCompressorLists(0);             // Total number of Compressor Lists in IDF
+        thread_local static int NumDisplayCases(0);                // Counter for refrigerated cases in GetInput do loop
+        thread_local static int NumSecondary(0);                   // Number of secondary loops
+        thread_local static int NumWalkIns(0);                     // Number of walk ins
+        thread_local static int NumWalkInsMT(0);                   // Number of medium temperature walk-ins on a single transcritical system
+        thread_local static int NumWalkInsLT(0);                   // Number of low temperature walk-ins on a single transcritical system
+        thread_local static int NumWIFieldsPerZone(0);             // Used to calculate number of zones exposed to each walkin
+        thread_local static int NumWIFieldsTotal(0);               // Used to calculate number of zones exposed to each walkin
+        thread_local static int NumZones(0);                       // Used to cycle through zones on input for walk in coolers
+        thread_local static int NumTotalLoadsOnList(0);            // Used to read transfer load and caseandWalkIn lists
+        thread_local static int NumSecondarysOnList(0);            // Used to read transfer load lists
+        thread_local static int NumCascadeLoadsChecked(0);         // Used when checking for consistency of coil loads/time steps
+        thread_local static int NumCascadeLoadsOnList(0);          // Used to read transfer load lists
+        thread_local static int NumLoad(0);                        // Used to read transfer loadand caseandWalkIn lists
+        thread_local static int NumCasesOnList(0);                 // Used to read caseandWalkIn lists
+        thread_local static int NumChillersInSet(0);
+        thread_local static int NumCoilsOnList(0);    // Used to read caseandWalkIn lists
+        thread_local static int NumWalkInsOnList(0);  // Used to read caseandWalkIn lists
+        thread_local static int RackNum(0);           // Index of refrigerated display case compressor rack
+        thread_local static int RefrigIndex(0);       // Index used in fluid property routines
+        thread_local static int RefrigSysNum(0);      // Index of refrigeration system
+        thread_local static int TransRefrigSysNum(0); // Index of transcritical CO2 refrigeration system
+        thread_local static int SecondaryIndex(0);    // Index of secondary loops
+        thread_local static int SecondaryID(0);       // Index of secondary loops
+        thread_local static int SetID(0);             // Index of refrigerated chilller SETS
+        thread_local static int SecondaryNum(0);      // Index of secondary loops
         // INTEGER    :: TransferLoadListIndex = 0      ! Index of TransferLoad lists
         // INTEGER    :: TransferLoadListID    = 0      ! Index of TransferLoad lists
-        static int TransferLoadListNum(0); // Index of TransferLoad lists
+        thread_local static int TransferLoadListNum(0); // Index of TransferLoad lists
         //  INTEGER    :: InputType         = 0       ! Type of inlet, capcity in W or brine flow rate in m3/s
-        static int SubcoolerNum(0);                  // Index of subcooler
-        static int TSNum(0);                         // Counter for time steps in hour
-        static int WalkInIndex(0);                   // Index of walk ins
-        static int WalkInID(0);                      // Index of walk ins
-        static int WalkInNum(0);                     // Index of walk ins
-        static int TotFields(0);                     // Used to calc number of zones on input for walk in coolers
-        static int ZoneID(0);                        // Index to zone
-        static int ZoneIndex(0);                     // Index to zone
-        static int ZoneNum(0);                       // Index to zone
-        static Real64 CalcCircRate(0.0);             // Calculted circ rate in secondary phase change loop, dimensionless
-        static Real64 CalcTotFlowVol(0.0);           // Secondary loop flow in phase change liquid overfeed system (m3/s)
-        static Real64 CaseHeatGain(0.0);             // Case sensible heat gain used for error messages
-        static Real64 CapacityAtMaxVolFlow(0.0);     // Secondary loop capacity (W)
-        static Real64 CpBrineRated(0.0);             // specific heat of circ fluid in secondary loop
-        static Real64 Capmin(0.0);                   // min heat rej for heat rej curve for air cooled condenser (W)
-        static Real64 Capmax(0.0);                   // max heat rej for heat rej curve for air cooled condenser (W)
-        static Real64 DeltaCap1(0.0);                // fraction dif in capacity for input error check
-        static Real64 DeltaCap2(0.0);                // fraction dif in capacity for input error check
-        static Real64 DeltaHPhaseChange(0.0);        // Secondary loop enthalpy change in condenser w overfeed system (J/g)
-        static Real64 DelTempMin(0.0);               // min temperature for heat rej curve for air cooled condenser (C)
-        static Real64 DelTempMax(0.0);               // max temperature for heat rej curve for air cooled condenser (C)
-        static Real64 DensityBrineRated(0.0);        // density of circ fluid in secondary loop
-        static Real64 DensityPhaseChange(0.0);       // Secondary loop density at condensing temperature w overfeed system (g/m3)
-        static Real64 DesignSensibleCap(0.0);        // Case sensible capacity used for error messages
-        static Real64 DiffCircRates(0.0);            // Difference between calculated and specified circ rates, fraction
-        static Real64 ErrSecondPumpPower(0.0);       // Used to check consistency when both head and power input
-        static Real64 FlowMassRated(0.0);            // Design mass flow rate of circ fluid in secondary loop(kg/s)
-        static Real64 GCOutletH(0.0);                // Gas cooler outlet enthalpy (J/kg)
-        static Real64 NominalSecondaryCapacity(0.0); // Rated Capacity from input data, W
-        static Real64 NominalSecondaryRefLoad(0.0);  // Load from all connected cases and walkins, W
-        static Real64 NominalTotalCascadeLoad(0.0);  // Load from all connected cascade condensers, W
-        static Real64 NominalTotalCaseCap(0.0);      // Total of nominal case capacities, used for rough input check (W)
-        static Real64 NominalTotalCoilCap(0.0);      // Total of nominal case capacities, used for rough input check (W)
-        static Real64 NominalTotalWalkInCap(0.0);    // Total of nominal walk-in capacities, used for rough input check (W)
-        static Real64 NominalTotalSecondaryCap(0.0); // Total of nominal secondary capacities, used for rough input check (W)
-        static Real64 NominalTotalCaseCapMT(
+        thread_local static int SubcoolerNum(0);                  // Index of subcooler
+        thread_local static int TSNum(0);                         // Counter for time steps in hour
+        thread_local static int WalkInIndex(0);                   // Index of walk ins
+        thread_local static int WalkInID(0);                      // Index of walk ins
+        thread_local static int WalkInNum(0);                     // Index of walk ins
+        thread_local static int TotFields(0);                     // Used to calc number of zones on input for walk in coolers
+        thread_local static int ZoneID(0);                        // Index to zone
+        thread_local static int ZoneIndex(0);                     // Index to zone
+        thread_local static int ZoneNum(0);                       // Index to zone
+        thread_local static Real64 CalcCircRate(0.0);             // Calculted circ rate in secondary phase change loop, dimensionless
+        thread_local static Real64 CalcTotFlowVol(0.0);           // Secondary loop flow in phase change liquid overfeed system (m3/s)
+        thread_local static Real64 CaseHeatGain(0.0);             // Case sensible heat gain used for error messages
+        thread_local static Real64 CapacityAtMaxVolFlow(0.0);     // Secondary loop capacity (W)
+        thread_local static Real64 CpBrineRated(0.0);             // specific heat of circ fluid in secondary loop
+        thread_local static Real64 Capmin(0.0);                   // min heat rej for heat rej curve for air cooled condenser (W)
+        thread_local static Real64 Capmax(0.0);                   // max heat rej for heat rej curve for air cooled condenser (W)
+        thread_local static Real64 DeltaCap1(0.0);                // fraction dif in capacity for input error check
+        thread_local static Real64 DeltaCap2(0.0);                // fraction dif in capacity for input error check
+        thread_local static Real64 DeltaHPhaseChange(0.0);        // Secondary loop enthalpy change in condenser w overfeed system (J/g)
+        thread_local static Real64 DelTempMin(0.0);               // min temperature for heat rej curve for air cooled condenser (C)
+        thread_local static Real64 DelTempMax(0.0);               // max temperature for heat rej curve for air cooled condenser (C)
+        thread_local static Real64 DensityBrineRated(0.0);        // density of circ fluid in secondary loop
+        thread_local static Real64 DensityPhaseChange(0.0);       // Secondary loop density at condensing temperature w overfeed system (g/m3)
+        thread_local static Real64 DesignSensibleCap(0.0);        // Case sensible capacity used for error messages
+        thread_local static Real64 DiffCircRates(0.0);            // Difference between calculated and specified circ rates, fraction
+        thread_local static Real64 ErrSecondPumpPower(0.0);       // Used to check consistency when both head and power input
+        thread_local static Real64 FlowMassRated(0.0);            // Design mass flow rate of circ fluid in secondary loop(kg/s)
+        thread_local static Real64 GCOutletH(0.0);                // Gas cooler outlet enthalpy (J/kg)
+        thread_local static Real64 NominalSecondaryCapacity(0.0); // Rated Capacity from input data, W
+        thread_local static Real64 NominalSecondaryRefLoad(0.0);  // Load from all connected cases and walkins, W
+        thread_local static Real64 NominalTotalCascadeLoad(0.0);  // Load from all connected cascade condensers, W
+        thread_local static Real64 NominalTotalCaseCap(0.0);      // Total of nominal case capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalCoilCap(0.0);      // Total of nominal case capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalWalkInCap(0.0);    // Total of nominal walk-in capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalSecondaryCap(0.0); // Total of nominal secondary capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalCaseCapMT(
             0.0); // Total of nominal medium temperature case capacities, used for rough input check (W) (Transcritical CO2)
-        static Real64 NominalTotalCaseCapLT(
+        thread_local static Real64 NominalTotalCaseCapLT(
             0.0); // Total of nominal low temperature case capacities, used for rough input check (W) (Transcritical CO2)
-        static Real64 NominalTotalWalkInCapMT(
+        thread_local static Real64 NominalTotalWalkInCapMT(
             0.0); // Total of nominal medium temperature walk-in capacities, used for rough input check (W) (Transcritical CO2)
-        static Real64 NominalTotalWalkInCapLT(
+        thread_local static Real64 NominalTotalWalkInCapLT(
             0.0); // Total of nominal low temperature walk-in capacities, used for rough input check (W) (Transcritical CO2)
-        static Real64 NominalTotalCoolingCap(0.0);     // Total of nominal load capacities, used for rough input check (W)
-        static Real64 NominalTotalCompCap(0.0);        // Total of nominal compressor capacities, used for rough input check (W)
-        static Real64 NominalTotalHiStageCompCap(0.0); // Total of nominal high-stage compressor capacities, used for rough input check (W)
-        static Real64 NominalTotalCompCapHP(
+        thread_local static Real64 NominalTotalCoolingCap(0.0);     // Total of nominal load capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalCompCap(0.0);        // Total of nominal compressor capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalHiStageCompCap(0.0); // Total of nominal high-stage compressor capacities, used for rough input check (W)
+        thread_local static Real64 NominalTotalCompCapHP(
             0.0); // Total of nominal high pressure compressor capacities, used for rough input check (W) (Transcritical CO2)
-        static Real64 NominalTotalCompCapLP(
+        thread_local static Real64 NominalTotalCompCapLP(
             0.0);                          // Total of nominal low pressure compressor capacities, used for rough input check (W) (Transcritical CO2)
-        static Real64 NominalCondCap(0.0); // Nominal Condenser capacity, used for rough input check (W)
-        static Real64 PCond(0.0);          // Condensing Pressure (Pa)
-        static Real64 PEvap(0.0);          // Evaporating Pressure (Pa)
-        static Real64 PumpTotRatedHead(0.0);      // Total pump rated head on secondary loop (Pa)
-        static Real64 PumpTotRatedFlowVol(0.0);   // Rated flow from input pump data, m3/s
-        static Real64 Rcase(0.0);                 // Case thermal resistance used with anti-sweat heater control
-        static Real64 RcaseDenom(0.0);            // Denominator of case thermal resistance calculation for anti-sweat
-        static Real64 SecondaryFlowVolRated(0.0); // Rated flow of secondary fluid, used to calculate capacity (m3/s)
-        static Real64 TBrineOutRated(0.0);        // Rated temperature of circ fluid LEAVING heat exchanger,C
-        static Real64 TBrineInRated(0.0);         // Rated temperature of circ fluid going INTO heat exchanger, C
-        static Real64 TBrineAverage(0.0);         // Rated average of inlet and outlet temps, used for property look up, C
-        static Real64 TempRAFraction(0.0);        // Temporary sum of Return Air fraction per zone for reporting
-        static Real64 TestDelta(0.0);             // Used to compare secondary loop rated capacity to calculated capacity, fraction
+        thread_local static Real64 NominalCondCap(0.0); // Nominal Condenser capacity, used for rough input check (W)
+        thread_local static Real64 PCond(0.0);          // Condensing Pressure (Pa)
+        thread_local static Real64 PEvap(0.0);          // Evaporating Pressure (Pa)
+        thread_local static Real64 PumpTotRatedHead(0.0);      // Total pump rated head on secondary loop (Pa)
+        thread_local static Real64 PumpTotRatedFlowVol(0.0);   // Rated flow from input pump data, m3/s
+        thread_local static Real64 Rcase(0.0);                 // Case thermal resistance used with anti-sweat heater control
+        thread_local static Real64 RcaseDenom(0.0);            // Denominator of case thermal resistance calculation for anti-sweat
+        thread_local static Real64 SecondaryFlowVolRated(0.0); // Rated flow of secondary fluid, used to calculate capacity (m3/s)
+        thread_local static Real64 TBrineOutRated(0.0);        // Rated temperature of circ fluid LEAVING heat exchanger,C
+        thread_local static Real64 TBrineInRated(0.0);         // Rated temperature of circ fluid going INTO heat exchanger, C
+        thread_local static Real64 TBrineAverage(0.0);         // Rated average of inlet and outlet temps, used for property look up, C
+        thread_local static Real64 TempRAFraction(0.0);        // Temporary sum of Return Air fraction per zone for reporting
+        thread_local static Real64 TestDelta(0.0);             // Used to compare secondary loop rated capacity to calculated capacity, fraction
         Array1D<Real64> Numbers;                  // Numeric items for object
         Array2D<Real64> DayValues;                // Array of schedule values
 
@@ -6515,19 +6515,19 @@ namespace RefrigeratedCase {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // LOGICAL, SAVE :: MyBeginEnvrnFlag = .TRUE.
         // INTEGER       :: SystemID
-        static int CaseNum(0);
-        static int CoilNum(0);
-        static int SecondNum(0);
-        static int WalkInNum(0);
-        static int RackNum(0);
-        static int RefrigSysNum(0);
-        static int CompNum(0);
-        static int CompIndex(0);
-        static int CondNum(0);
-        static int GCNum(0);
-        static int SubcoolNum(0);
-        static int ZoneID(0);
-        static std::string Walkin_and_zone_name; // concat name for walk-in/zone credit reporting
+        thread_local static int CaseNum(0);
+        thread_local static int CoilNum(0);
+        thread_local static int SecondNum(0);
+        thread_local static int WalkInNum(0);
+        thread_local static int RackNum(0);
+        thread_local static int RefrigSysNum(0);
+        thread_local static int CompNum(0);
+        thread_local static int CompIndex(0);
+        thread_local static int CondNum(0);
+        thread_local static int GCNum(0);
+        thread_local static int SubcoolNum(0);
+        thread_local static int ZoneID(0);
+        thread_local static std::string Walkin_and_zone_name; // concat name for walk-in/zone credit reporting
 
         if (NumSimulationCases > 0) {
             // Setup Report Variables for simulated Refrigerated Case (do not report unused cases)
@@ -9077,20 +9077,20 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyBeginEnvrnFlag(true);
-        static int SystemID(0);
-        static int CaseID(0);
-        static int WalkInID(0);
-        static int CoilID(0);
-        static int ICond(0);
-        static int IRack(0);
-        static int SecondID(0);
+        thread_local static bool MyBeginEnvrnFlag(true);
+        thread_local static int SystemID(0);
+        thread_local static int CaseID(0);
+        thread_local static int WalkInID(0);
+        thread_local static int CoilID(0);
+        thread_local static int ICond(0);
+        thread_local static int IRack(0);
+        thread_local static int SecondID(0);
         // Used to adjust accumulative variables when time step is repeated
-        static Real64 MyCurrentTime(0.0);        // Used to determine whether the zone time step is a repetition
-        static Real64 MyCurrentTimeSaved(0.0);   // Used to determine whether the zone time step is a repetition
-        static Real64 MyStepStartTime(0.0);      // Used to determine whether the system time step is a repetition
-        static Real64 MyStepStartTimeSaved(0.0); // Used to determine whether the system time step is a repetition
-        static Real64 TimeStepFraction(0.0);     // Used to calculate my current time
+        thread_local static Real64 MyCurrentTime(0.0);        // Used to determine whether the zone time step is a repetition
+        thread_local static Real64 MyCurrentTimeSaved(0.0);   // Used to determine whether the zone time step is a repetition
+        thread_local static Real64 MyStepStartTime(0.0);      // Used to determine whether the system time step is a repetition
+        thread_local static Real64 MyStepStartTimeSaved(0.0); // Used to determine whether the system time step is a repetition
+        thread_local static Real64 TimeStepFraction(0.0);     // Used to calculate my current time
 
         // Zero display case, air-coil, and walk-in cooler credits (summed by zone)
         // to 0 each zone or sys time step
@@ -9451,11 +9451,11 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("InitRefrigerationPlantConnections");
-        static bool MyBeginEnvrnFlag(true);
-        static bool errFlag(false);
-        static int RefCondLoop(0);     // loop over Condenser
-        static int RefCompRackLoop(0); // loop over RefrigRack
+        thread_local static std::string const RoutineName("InitRefrigerationPlantConnections");
+        thread_local static bool MyBeginEnvrnFlag(true);
+        thread_local static bool errFlag(false);
+        thread_local static int RefCondLoop(0);     // loop over Condenser
+        thread_local static int RefCompRackLoop(0); // loop over RefrigRack
         Real64 rho;                    // local fluid property for cooling water
 
         // initialize plant topology information, if applicable
@@ -9652,11 +9652,11 @@ namespace RefrigeratedCase {
         Real64 HumRatOut;                 // Humidity ratio of outlet air from condenser (assumed saturated) [kg/kg]
         Real64 BPress;                    // Barometric pressure at condenser air inlet node [Pa]
         bool EvapAvail;                   // Control for evap condenser availability
-        static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
-        static int CoilSetIndex(0);       // Index to set of coils in a single zone
-        static int CoilSetID(0);          // Index to set of coils in a single zone (shared inlet and outlet nodes)
-        static int CoilIndex(0);          // Index to a single air chiller/coil
-        static int CoilID(0);             // Index to a single air chiller/coil
+        thread_local static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
+        thread_local static int CoilSetIndex(0);       // Index to set of coils in a single zone
+        thread_local static int CoilSetID(0);          // Index to set of coils in a single zone (shared inlet and outlet nodes)
+        thread_local static int CoilIndex(0);          // Index to a single air chiller/coil
+        thread_local static int CoilID(0);             // Index to a single air chiller/coil
 
         NumCases = RefrigRack(RackNum).NumCases;
         TotalRackDeliveredCapacity = 0.0;
@@ -9927,9 +9927,9 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
-        static int DemandARRID(0);        // Index to water tank Demand used for evap condenser on rack
-        static int RackTankID(0);         // Index to water tank used for evap condenser on rack
+        thread_local static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
+        thread_local static int DemandARRID(0);        // Index to water tank Demand used for evap condenser on rack
+        thread_local static int RackTankID(0);         // Index to water tank used for evap condenser on rack
 
         LocalTimeStep = TimeStepZone;
         if (UseSysTimeStep) LocalTimeStep = TimeStepSys;
@@ -10017,7 +10017,7 @@ namespace RefrigeratedCase {
         using Psychrometrics::PsyTdpFnWPb;
 
         // Locals
-        static Real64 CaseRAFraction(0.0); // Fraction of case credits applied to return air
+        thread_local static Real64 CaseRAFraction(0.0); // Fraction of case credits applied to return air
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
@@ -10030,67 +10030,67 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int ActualZoneNum(0); // Index to zone
-        static int DefCapCurvePtr(0);
-        static int DefrostEnergyCurveType(0);
-        static int DefrostType(0);
-        static int ZoneNodeNum(0);                  // Zone node number
-        static Real64 CapAvail(0.0);                // capacity available to meet current and stored load (W)
-        static Real64 CaseCreditFraction(0.0);      // Reduction in case credits due to e.g., reduced door openings at night
-        static Real64 CaseSenCreditToZone(0.0);     // Amount of sensible case credit applied to zone load (W)
-        static Real64 CaseLatCreditToZone(0.0);     // Amount of latent case credit applied to zone load (W)
-        static Real64 CaseSenCreditToHVAC(0.0);     // Amount of sensible case credit applied to HVAC RA duct (W)
-        static Real64 CaseLatCreditToHVAC(0.0);     // Amount of latent case credit applied to HVAC RA duct (W)
-        static Real64 CaseSchedule(0.0);            // Current value of case operating (availability) schedule
-        static Real64 DefrostEnergy(0.0);           // Energy form of defrost capacity (J)
-        static Real64 DefrostSchedule(0.0);         // Display case defrost schedule
-        static Real64 DefrostDripDownSchedule(0.0); // Display case drip-down schedule (allows coil to drain after defrost)
-        static Real64 DefCapModFrac(0.0);           // Defrost capacity modifier curve based on case operating temperature
-        static Real64 DefrostRatio(0.0);            // ratio of defrost energy at current zone temp/humrat to defrost
+        thread_local static int ActualZoneNum(0); // Index to zone
+        thread_local static int DefCapCurvePtr(0);
+        thread_local static int DefrostEnergyCurveType(0);
+        thread_local static int DefrostType(0);
+        thread_local static int ZoneNodeNum(0);                  // Zone node number
+        thread_local static Real64 CapAvail(0.0);                // capacity available to meet current and stored load (W)
+        thread_local static Real64 CaseCreditFraction(0.0);      // Reduction in case credits due to e.g., reduced door openings at night
+        thread_local static Real64 CaseSenCreditToZone(0.0);     // Amount of sensible case credit applied to zone load (W)
+        thread_local static Real64 CaseLatCreditToZone(0.0);     // Amount of latent case credit applied to zone load (W)
+        thread_local static Real64 CaseSenCreditToHVAC(0.0);     // Amount of sensible case credit applied to HVAC RA duct (W)
+        thread_local static Real64 CaseLatCreditToHVAC(0.0);     // Amount of latent case credit applied to HVAC RA duct (W)
+        thread_local static Real64 CaseSchedule(0.0);            // Current value of case operating (availability) schedule
+        thread_local static Real64 DefrostEnergy(0.0);           // Energy form of defrost capacity (J)
+        thread_local static Real64 DefrostSchedule(0.0);         // Display case defrost schedule
+        thread_local static Real64 DefrostDripDownSchedule(0.0); // Display case drip-down schedule (allows coil to drain after defrost)
+        thread_local static Real64 DefCapModFrac(0.0);           // Defrost capacity modifier curve based on case operating temperature
+        thread_local static Real64 DefrostRatio(0.0);            // ratio of defrost energy at current zone temp/humrat to defrost
         //    capacity at design condition
-        static Real64 DefrostLoad_Actual(0.0);  // heat load on case due to defrost (W)
-        static Real64 DefrostCap_Actual(0.0);   // power used to defrost (W)
-        static Real64 DeltaFreezeKgFrost(0.0);  // change in frost on coils (kg)
-        static Real64 DeltaStockingEnergy(0.0); // Used to keep track of problems if sizing not consistent (J)
-        static Real64 DeltaWarmEnvEnergy(0.0);  // Used to keep track of problems if sizing not consistent (J)
-        static Real64 DesignRatedCap(0.0);      // Design rated capacity of display case (W)
-        static Real64 DesignDefrostCap(0.0);    // Design defrost capacity of display case (W)
-        static Real64 DesignLatentCap(0.0);     // Design latent capacity of display case (W)
-        static Real64 DesignLighting(0.0);      // Total design display case lighting power (W)
-        static Real64 FrostMeltedKg(0.0);       // Frost melted by defrost during a time step (kg)
-        static Real64 LatentLoad(0.0);          // Latent load placed on case at actual zone conditions (W)
-        static Real64 LatentRatio(0.0);         // ratio of latent capacity at current zone temp/humrat to
+        thread_local static Real64 DefrostLoad_Actual(0.0);  // heat load on case due to defrost (W)
+        thread_local static Real64 DefrostCap_Actual(0.0);   // power used to defrost (W)
+        thread_local static Real64 DeltaFreezeKgFrost(0.0);  // change in frost on coils (kg)
+        thread_local static Real64 DeltaStockingEnergy(0.0); // Used to keep track of problems if sizing not consistent (J)
+        thread_local static Real64 DeltaWarmEnvEnergy(0.0);  // Used to keep track of problems if sizing not consistent (J)
+        thread_local static Real64 DesignRatedCap(0.0);      // Design rated capacity of display case (W)
+        thread_local static Real64 DesignDefrostCap(0.0);    // Design defrost capacity of display case (W)
+        thread_local static Real64 DesignLatentCap(0.0);     // Design latent capacity of display case (W)
+        thread_local static Real64 DesignLighting(0.0);      // Total design display case lighting power (W)
+        thread_local static Real64 FrostMeltedKg(0.0);       // Frost melted by defrost during a time step (kg)
+        thread_local static Real64 LatentLoad(0.0);          // Latent load placed on case at actual zone conditions (W)
+        thread_local static Real64 LatentRatio(0.0);         // ratio of latent capacity at current zone temp/humrat to
         //    latent capacity at design condition
-        static Real64 LatentCap_Actual(0.0);   // Refrigerated case latent capacity at specific operating conditions
-        static Real64 LatentCaseCredit(0.0);   // Latent case credit delivered to zone (W)
-        static Real64 LatCapModFrac(0.0);      // Latent capacity modifier curve based on case operating temperature
-        static Real64 LightingSchedule(0.0);   // Display case lighting schedule
-        static Real64 Length(0.0);             // Length of display case (m)
-        static Real64 LoadRequested(0.0);      // TotalLoad_Actual  + StoredEnergyRate
-        static Real64 RatedAmbientRH(0.0);     // Local variable for the RH corresponding to case rating conditions
-        static Real64 SensibleCaseCredit(0.0); // Sensible case credit delivered to zone (W)
-        static Real64 SensibleCap_Actual(0.0); // Refrigerated case sensible capacity at specific operating conditions
+        thread_local static Real64 LatentCap_Actual(0.0);   // Refrigerated case latent capacity at specific operating conditions
+        thread_local static Real64 LatentCaseCredit(0.0);   // Latent case credit delivered to zone (W)
+        thread_local static Real64 LatCapModFrac(0.0);      // Latent capacity modifier curve based on case operating temperature
+        thread_local static Real64 LightingSchedule(0.0);   // Display case lighting schedule
+        thread_local static Real64 Length(0.0);             // Length of display case (m)
+        thread_local static Real64 LoadRequested(0.0);      // TotalLoad_Actual  + StoredEnergyRate
+        thread_local static Real64 RatedAmbientRH(0.0);     // Local variable for the RH corresponding to case rating conditions
+        thread_local static Real64 SensibleCaseCredit(0.0); // Sensible case credit delivered to zone (W)
+        thread_local static Real64 SensibleCap_Actual(0.0); // Refrigerated case sensible capacity at specific operating conditions
         // REAL(r64)    :: SensibleFraction        =0.0d0 ! Portion of total load due to sensible load
-        static Real64 SensibleLoadPrime(0.0);   // Sensible load due to cond, conv, rad, infil (W)
-        static Real64 SensibleLoadAux(0.0);     // Sensible load due to heaters, lighting (W)
-        static Real64 SensibleLoadTotal(0.0);   // Total sensible load on case, may not = capacity applied (W)
-        static Real64 StockingSchedule(0.0);    // Current value of product stocking schedule (W/m)
-        static Real64 StockingLoad(0.0);        // Total load due to stocking case product (W)
-        static Real64 StoredEnergyRate(0.0);    // Rate needed to serve all stored energy during single time step (W)
-        static Real64 TotalLoad_Actual(0.0);    // total load on case at zone conditions (W)
-        static Real64 StartFrostKg(0.0);        // frost load at start of time step (kg of ice)
-        static Real64 TotalCap_Actual(0.0);     // Refrigerated case total capacity at specific operating conditions
-        static Real64 TotalLightingLoad(0.0);   // Total lighting energy rate (W)
-        static Real64 TotalFan(0.0);            // Total fan energy rate (W)
-        static Real64 TotalAntiSweat(0.0);      // Total anti-sweat heater energy rate (W)
-        static Real64 TotalLightToCase(0.0);    // Lighting energy to case
-        static Real64 TotalASHeaterToCase(0.0); // Anti-sweat heater energy to case
-        static Real64 TotalLightToZone(0.0);    // Lighting energy to zone
-        static Real64 TotalASHeaterToZone(0.0); // Anti-sweat heater energy to zone
-        static Real64 TCase(0.0);               // Display case operating temperature
-        static Real64 ZoneRHPercent(0.0);       // Zone relative humidity (%)
-        static Real64 ZoneDewPoint(0.0);        // Zone dew point (C)
-        static Real64 ZoneTempFactor(0.0);      // used to look at extra sensible load due to excursions in zone T
+        thread_local static Real64 SensibleLoadPrime(0.0);   // Sensible load due to cond, conv, rad, infil (W)
+        thread_local static Real64 SensibleLoadAux(0.0);     // Sensible load due to heaters, lighting (W)
+        thread_local static Real64 SensibleLoadTotal(0.0);   // Total sensible load on case, may not = capacity applied (W)
+        thread_local static Real64 StockingSchedule(0.0);    // Current value of product stocking schedule (W/m)
+        thread_local static Real64 StockingLoad(0.0);        // Total load due to stocking case product (W)
+        thread_local static Real64 StoredEnergyRate(0.0);    // Rate needed to serve all stored energy during single time step (W)
+        thread_local static Real64 TotalLoad_Actual(0.0);    // total load on case at zone conditions (W)
+        thread_local static Real64 StartFrostKg(0.0);        // frost load at start of time step (kg of ice)
+        thread_local static Real64 TotalCap_Actual(0.0);     // Refrigerated case total capacity at specific operating conditions
+        thread_local static Real64 TotalLightingLoad(0.0);   // Total lighting energy rate (W)
+        thread_local static Real64 TotalFan(0.0);            // Total fan energy rate (W)
+        thread_local static Real64 TotalAntiSweat(0.0);      // Total anti-sweat heater energy rate (W)
+        thread_local static Real64 TotalLightToCase(0.0);    // Lighting energy to case
+        thread_local static Real64 TotalASHeaterToCase(0.0); // Anti-sweat heater energy to case
+        thread_local static Real64 TotalLightToZone(0.0);    // Lighting energy to zone
+        thread_local static Real64 TotalASHeaterToZone(0.0); // Anti-sweat heater energy to zone
+        thread_local static Real64 TCase(0.0);               // Display case operating temperature
+        thread_local static Real64 ZoneRHPercent(0.0);       // Zone relative humidity (%)
+        thread_local static Real64 ZoneDewPoint(0.0);        // Zone dew point (C)
+        thread_local static Real64 ZoneTempFactor(0.0);      // used to look at extra sensible load due to excursions in zone T
 
         // Refrigerated display case defrost type (parameters)
         // DefNone             = 0
@@ -10512,25 +10512,25 @@ namespace RefrigeratedCase {
         using PlantUtilities::SetComponentFlowRate;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("SimRefrigCondenser");
-        static Real64 DeltaT(0.0);
-        static Real64 InletTemp(0.0);
-        static Real64 DesVolFlowRate(0.0);
-        static Real64 MassFlowRate(0.0);
-        static Real64 MassFlowRateMax(0.0);
-        static Real64 OutletTempMax(0.0);
-        static Real64 VolFlowRate(0.0);
-        static Real64 OutletTemp(0.0);
-        static int FlowType(0);
+        thread_local static std::string const RoutineName("SimRefrigCondenser");
+        thread_local static Real64 DeltaT(0.0);
+        thread_local static Real64 InletTemp(0.0);
+        thread_local static Real64 DesVolFlowRate(0.0);
+        thread_local static Real64 MassFlowRate(0.0);
+        thread_local static Real64 MassFlowRateMax(0.0);
+        thread_local static Real64 OutletTempMax(0.0);
+        thread_local static Real64 VolFlowRate(0.0);
+        thread_local static Real64 OutletTemp(0.0);
+        thread_local static int FlowType(0);
         // INTEGER   :: HighFlowWarn = 0
         // INTEGER   :: HighTempWarn = 0
-        static int NoFlowWarnIndex(0);
-        static int HighFlowWarnIndex(0);
-        static int HighInletWarnIndex(0);
-        static int HighTempWarnIndex(0);
-        static std::string Name;
-        static std::string TypeName;
-        static std::string ErrIntro;
+        thread_local static int NoFlowWarnIndex(0);
+        thread_local static int HighFlowWarnIndex(0);
+        thread_local static int HighInletWarnIndex(0);
+        thread_local static int HighTempWarnIndex(0);
+        thread_local static std::string Name;
+        thread_local static std::string TypeName;
+        thread_local static std::string ErrIntro;
         int PlantInletNode(0); // Autodesk:Init
         int PlantOutletNode(0);
         int PlantLoopIndex(0); // Autodesk:Init
@@ -10872,38 +10872,38 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("SimulateDetailedRefrigerationSystems");
+        thread_local static std::string const RoutineName("SimulateDetailedRefrigerationSystems");
         int SysNum;                    // Index to the detailed refrigerated system being modeled
-        static bool DeRate(false);     // If true, need to derate aircoils because load can't be met by system
-        static bool FirstSCLoop(true); // Flag first time through multi-system loop used when mech subcoolers present
+        thread_local static bool DeRate(false);     // If true, need to derate aircoils because load can't be met by system
+        thread_local static bool FirstSCLoop(true); // Flag first time through multi-system loop used when mech subcoolers present
 
-        static int StartMechSubcoolLoop(3); // if no mechanical subcoolers transfer energy between system,
+        thread_local static int StartMechSubcoolLoop(3); // if no mechanical subcoolers transfer energy between system,
         //    don't loop
-        static int LoopNum(0);                  // Index to overall repeat necessary for mechanical subcoolers
-        static int SubcoolID(0);                // Subcooler ID number
-        static int SubcoolerIndex(0);           // Subcooler ID number
-        static int CaseID(0);                   // Absolute reference to case
-        static int CaseIndex(0);                // Index to case
-        static int CoilID(0);                   // Index to a single air chiller/coil
-        static int CoilIndex(0);                // Index to a single air chiller/coil
-        static int CoilSetID(0);                // Index to set of coils in a single zone (shared inlet and outlet nodes)
-        static int CoilSetIndex(0);             // Index to set of coils in a single zone
-        static int CondInletAirZoneNum(0);      // Index used to assign zone credits
-        static int SecondID(0);                 // Absolute reference to Secondary Loop
-        static int SecondIndex(0);              // Index to Secondary Loop
-        static int SuctionPipeActualZoneNum(0); // Index to zone exchanging heat with suction pipes
-        static int WalkInID(0);                 // Absolute reference to WalkIn
-        static int WalkInIndex(0);              // Index to WalkIn
-        static int ZoneNum(0);                  // counter when assigning zone case credits
-        static int CascadeLoadIndex(0);         // Index to Cascade Condenser Load
-        static int CascadeLoadID(0);            // Absolute reference to Cascade Condenser
-        static Real64 LoadFrac(1.0);            // case load/design case load
-        static Real64 LocalTimeStep(0.0);       // Set equal to either TimeStepSys or TimeStepZone
-        static Real64 CurrentLoads(0.0);        // current loads on compressor, exclusive of unmet loads from prev time steps
-        static Real64 CurrentHiStageLoads(0.0); // Current loads on high-stage compressor, exclusive of unmet loads from
+        thread_local static int LoopNum(0);                  // Index to overall repeat necessary for mechanical subcoolers
+        thread_local static int SubcoolID(0);                // Subcooler ID number
+        thread_local static int SubcoolerIndex(0);           // Subcooler ID number
+        thread_local static int CaseID(0);                   // Absolute reference to case
+        thread_local static int CaseIndex(0);                // Index to case
+        thread_local static int CoilID(0);                   // Index to a single air chiller/coil
+        thread_local static int CoilIndex(0);                // Index to a single air chiller/coil
+        thread_local static int CoilSetID(0);                // Index to set of coils in a single zone (shared inlet and outlet nodes)
+        thread_local static int CoilSetIndex(0);             // Index to set of coils in a single zone
+        thread_local static int CondInletAirZoneNum(0);      // Index used to assign zone credits
+        thread_local static int SecondID(0);                 // Absolute reference to Secondary Loop
+        thread_local static int SecondIndex(0);              // Index to Secondary Loop
+        thread_local static int SuctionPipeActualZoneNum(0); // Index to zone exchanging heat with suction pipes
+        thread_local static int WalkInID(0);                 // Absolute reference to WalkIn
+        thread_local static int WalkInIndex(0);              // Index to WalkIn
+        thread_local static int ZoneNum(0);                  // counter when assigning zone case credits
+        thread_local static int CascadeLoadIndex(0);         // Index to Cascade Condenser Load
+        thread_local static int CascadeLoadID(0);            // Absolute reference to Cascade Condenser
+        thread_local static Real64 LoadFrac(1.0);            // case load/design case load
+        thread_local static Real64 LocalTimeStep(0.0);       // Set equal to either TimeStepSys or TimeStepZone
+        thread_local static Real64 CurrentLoads(0.0);        // current loads on compressor, exclusive of unmet loads from prev time steps
+        thread_local static Real64 CurrentHiStageLoads(0.0); // Current loads on high-stage compressor, exclusive of unmet loads from
         // prev time steps (two-stage systems only)
-        static Real64 MaxTEvap(0.0);         // Maximum evaporating temperature that can still meet load
-        static Real64 MaxDelTFloatFrac(0.5); // max fraction allowed for difference between case and evaporator temperature
+        thread_local static Real64 MaxTEvap(0.0);         // Maximum evaporating temperature that can still meet load
+        thread_local static Real64 MaxDelTFloatFrac(0.5); // max fraction allowed for difference between case and evaporator temperature
         //    relative to design temperature difference
         Real64 SuctionPipeZoneTemp; // Temperature for zone identified as environment for suction pipe heat gains, C
 
@@ -11335,19 +11335,19 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("SimulateDetailedTransRefrigSystems");
+        thread_local static std::string const RoutineName("SimulateDetailedTransRefrigSystems");
         int SysNum;                             // Index to the detailed transcritical refrigeration system being modeled
-        static bool FirstSCLoop(true);          // Flag first time through multi-system loop used when mech subcoolers present
-        static int StartMechSubcoolLoop(3);     // if no mechanical subcoolers transfer energy between system, don't loop
-        static int LoopNum(0);                  // Index to overall repeat necessary for mechanical subcoolers
-        static int CaseID(0);                   // Absolute reference to case
-        static int CaseIndex(0);                // Index to case
-        static int CondInletAirZoneNum(0);      // Index used to assign zone credits
-        static int SuctionPipeActualZoneNum(0); // Index to zone exchanging heat with suction pipes
-        static int WalkInID(0);                 // Absolute reference to WalkIn
-        static int WalkInIndex(0);              // Index to WalkIn
-        static Real64 LocalTimeStep(0.0);       // Set equal to either TimeStepSys or TimeStepZone
-        static Real64 CurrentLoads(0.0);        // current loads on compressor, exclusive of unmet loads from prev time steps
+        thread_local static bool FirstSCLoop(true);          // Flag first time through multi-system loop used when mech subcoolers present
+        thread_local static int StartMechSubcoolLoop(3);     // if no mechanical subcoolers transfer energy between system, don't loop
+        thread_local static int LoopNum(0);                  // Index to overall repeat necessary for mechanical subcoolers
+        thread_local static int CaseID(0);                   // Absolute reference to case
+        thread_local static int CaseIndex(0);                // Index to case
+        thread_local static int CondInletAirZoneNum(0);      // Index used to assign zone credits
+        thread_local static int SuctionPipeActualZoneNum(0); // Index to zone exchanging heat with suction pipes
+        thread_local static int WalkInID(0);                 // Absolute reference to WalkIn
+        thread_local static int WalkInIndex(0);              // Index to WalkIn
+        thread_local static Real64 LocalTimeStep(0.0);       // Set equal to either TimeStepSys or TimeStepZone
+        thread_local static Real64 CurrentLoads(0.0);        // current loads on compressor, exclusive of unmet loads from prev time steps
         Real64 SuctionPipeZoneTemp;             // Temperature for zone identified as environment for suction pipe heat gains, C
 
         LocalTimeStep = TimeStepZone;
@@ -11610,10 +11610,10 @@ namespace RefrigeratedCase {
         int NumIter;
         bool NotBalanced;
         Real64 TCondStart;
-        static Real64 MassFlowCompsStart(0.0);        // Mass flow through (low-stage) compressors (single- or two-stage systems)
-        static Real64 MassFlowHiStageCompsStart(0.0); // Mass flow through high-stage comrpessors (two-stage systems only)
-        static Real64 ErrorMassFlowComps(0.0);        // Error in calculated (low stage) compressor mass flow (single- or two-stage systems)
-        static Real64 ErrorMassFlowHiStageComps(0.0); // Error in calculated high-stage compressor mass flow (two-stage systems only)
+        thread_local static Real64 MassFlowCompsStart(0.0);        // Mass flow through (low-stage) compressors (single- or two-stage systems)
+        thread_local static Real64 MassFlowHiStageCompsStart(0.0); // Mass flow through high-stage comrpessors (two-stage systems only)
+        thread_local static Real64 ErrorMassFlowComps(0.0);        // Error in calculated (low stage) compressor mass flow (single- or two-stage systems)
+        thread_local static Real64 ErrorMassFlowHiStageComps(0.0); // Error in calculated high-stage compressor mass flow (two-stage systems only)
 
         // Balance This Refrigeration System using calculated refrigerant flow
         NotBalanced = true;
@@ -12216,7 +12216,7 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("RefrigeratedCase:CalcGasCooler");
+        thread_local static std::string const RoutineName("RefrigeratedCase:CalcGasCooler");
 
         int GasCoolerCreditWarnIndex;     // Warning counter
         int GasCoolerID;                  // Gas cooler number
@@ -12411,7 +12411,7 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("RefrigeratedCase:CalculateCompressors");
+        thread_local static std::string const RoutineName("RefrigeratedCase:CalculateCompressors");
         int CompIndex;                    // Compressor index within system
         int CompID;                       // Compressor index within all compressors
         int CondID;                       // Condenser index for this refrigeration system
@@ -12425,7 +12425,7 @@ namespace RefrigeratedCase {
         Real64 HSatVapCondense;           // Enthalpy of saturated vapor at T condense, J/kg
         Real64 HsatVaporforTevapneeded;   // Enthalpy saturated vapor at temperature needed at evaporator
         Real64 LFLastComp;                // Load factor for last compressor dispatched
-        static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
+        thread_local static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
         Real64 MassCorrection;            // Mass flow at existing subcool/superheat over cap at rated conditions
         Real64 NeededCapacity;            // Sum of case loads and mech subcooler loads on suction group
         Real64 PSuction;                  // Suction Pressure
@@ -12789,13 +12789,13 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("RefrigeratedCase:CalculateTransCompressors");
+        thread_local static std::string const RoutineName("RefrigeratedCase:CalculateTransCompressors");
         int CompIndex;                      // Compressor index within system
         int CompID;                         // Compressor index within all compressors
         int GasCoolerID;                    // Gas cooler index for this refrigeration system
         int Iter;                           // Iteration counter
-        static Real64 AccumLoadMT(0.0);     // Load due to previously unmet medium temperature compressor loads (transcritical system)
-        static Real64 AccumLoadLT(0.0);     // Load due to previously unmet low temperature compressor loads (transcritical system)
+        thread_local static Real64 AccumLoadMT(0.0);     // Load due to previously unmet medium temperature compressor loads (transcritical system)
+        thread_local static Real64 AccumLoadLT(0.0);     // Load due to previously unmet low temperature compressor loads (transcritical system)
         Real64 CapacityCorrectionLT;        // Capacity at existing subcool/superheat over cap at rated conditions for LT loads
         Real64 CapacityCorrectionMT;        // Capacity at existing subcool/superheat over cap at rated conditions for MT loads
         Real64 CaseEnthalpyChangeRatedMT;   // Enthalpy change in medium temperature cases at compressor rated cond, J/kg
@@ -12806,18 +12806,18 @@ namespace RefrigeratedCase {
         Real64 DensityRatedLP;              // Density of low pressure compressor inlet gas at rated superheat, m3/kg
         Real64 HCaseInRatedLT;              // Enthalpy entering low temperature cases at rated subcooling, J/kg
         Real64 HCaseInRatedMT;              // Enthalpy entering medium temperature cases at rated subcooling, J/kg
-        static Real64 HCaseOutLTMT(0.0);    // Combined enthalpy from the outlets of the LP compressor and MT loads, J/kg
+        thread_local static Real64 HCaseOutLTMT(0.0);    // Combined enthalpy from the outlets of the LP compressor and MT loads, J/kg
         Real64 HCompInRatedHP;              // Enthalpy entering high pressure compressor at rated superheat, J/kg
         Real64 HCompInRatedLP;              // Enthalpy entering low pressure compressor at rated superheat, J/kg
         Real64 HGCOutlet;                   // Enthalpy at gas cooler outlet, J/kg
         Real64 HIdeal;                      // Ideal enthalpy at subcooler (for 100% effectiveness)
         Real64 Hnew;                        // Calucalted enthalpy, J/kg
-        static Real64 HReceiverBypass(0.0); // Enthalpy at the receiver bypass, J/kg
+        thread_local static Real64 HReceiverBypass(0.0); // Enthalpy at the receiver bypass, J/kg
         Real64 HsatLiqforTevapNeededMT;     // Enthalpy of saturated liquid at MT evaporator, J/kg
         Real64 HsatVaporforTevapneededMT;   // Enthlapy of saturated vapor at MT evaporator (transcritical cycle), J/kg
         Real64 HsatVaporforTevapneededLT;   // Enthlapy of saturated vapor at LT evaporator (transcritical cycle), J/kg
         Real64 LFLastComp;                  // Load factor for last compressor dispatched
-        static Real64 LocalTimeStep(0.0);   // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
+        thread_local static Real64 LocalTimeStep(0.0);   // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
         Real64 MassCorrectionLT;            // Mass flow at existing subcool/superheat over cap at rated conditions for LT loads
         Real64 MassCorrectionMT;            // Mass flow at existing subcool/superheat over cap at rated conditions for MT loads
         Real64 NeededCapacityLT;            // Sum of LT case loads and mech subcooler loads (transcritical cycle), W
@@ -13218,7 +13218,7 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("CalculateSubcoolers");
+        thread_local static std::string const RoutineName("CalculateSubcoolers");
         int SubcoolerIndex;               // Counter through number of subcoolers on this system
         int SubcoolerID;                  // ID number for each unique subcooler
         int SysProvideID;                 // ID number of system providing refrigeration effect (ie compressor work) for mech sc
@@ -13227,7 +13227,7 @@ namespace RefrigeratedCase {
         Real64 ControlTLiqOut;            // Controlled temperature of liquid leaving Mechanical subcooler
         Real64 DelTempActual;             // Actual subcooling, T liquid in - T liquid out
         Real64 DelTLiqDes;                // Design Temperature Change on liquid side of LSHX
-        static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
+        thread_local static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
         Real64 LSHXeffectiveness;         // EFfectiveness of liquid suction heat exchanger (LSHX)
         Real64 MechSCLoad;                // Mechanical subcooler load
         Real64 SubcoolLoad;               // energy transferred from warmer liquid to cool vapor
@@ -13452,61 +13452,61 @@ namespace RefrigeratedCase {
         std::string ChrOut2;
 
         // Formats
-        static gio::Fmt Format_101("(A)");
-        static gio::Fmt Format_102("(4X,A)");
-        static gio::Fmt Format_103("(2X,A)");
-        static gio::Fmt Format_104("('! <Refrigeration Compressor Rack>,Compressor Rack Name,',' # Refrigerated Cases Connected,# WalkIn Coolers "
+        thread_local static gio::Fmt Format_101("(A)");
+        thread_local static gio::Fmt Format_102("(4X,A)");
+        thread_local static gio::Fmt Format_103("(2X,A)");
+        thread_local static gio::Fmt Format_104("('! <Refrigeration Compressor Rack>,Compressor Rack Name,',' # Refrigerated Cases Connected,# WalkIn Coolers "
                                    "Connected, Heat Rejection Location, ','Condenser Type, COP')");
-        static gio::Fmt Format_105("('!',2x,'<Refrigeration Case>,Refrigeration Case Number, Refrigeration Case Name,Zone Name,','Zone Node #,Zone "
+        thread_local static gio::Fmt Format_105("('!',2x,'<Refrigeration Case>,Refrigeration Case Number, Refrigeration Case Name,Zone Name,','Zone Node #,Zone "
                                    "Node Name,Capacity (W/m),LHR,Temperature (C),Length (m),Fan (W/m),','Installed Lighting (W/m),Anti-Sweat "
                                    "(W/m),Defrost (W/m)')");
-        static gio::Fmt Format_108("('!',2x,'<Refrigeration Compressor>,Compressor Number,Compressor Name,Nominal Capacity (W)')");
-        static gio::Fmt Format_109("('! <#Refrigeration Compressor Racks>,Number of Refrigeration Compressor Racks')");
-        static gio::Fmt Format_114("(',',1X,F7.1)");
-        static gio::Fmt Format_117("('! <#Detailed Refrigeration Systems>,Number of Detailed Refrigeration Systems')");
-        static gio::Fmt Format_118("('! <Detailed Refrigeration System>,Refrigeration System Name,Refrigerant Used',', # Refrigerated Cases "
+        thread_local static gio::Fmt Format_108("('!',2x,'<Refrigeration Compressor>,Compressor Number,Compressor Name,Nominal Capacity (W)')");
+        thread_local static gio::Fmt Format_109("('! <#Refrigeration Compressor Racks>,Number of Refrigeration Compressor Racks')");
+        thread_local static gio::Fmt Format_114("(',',1X,F7.1)");
+        thread_local static gio::Fmt Format_117("('! <#Detailed Refrigeration Systems>,Number of Detailed Refrigeration Systems')");
+        thread_local static gio::Fmt Format_118("('! <Detailed Refrigeration System>,Refrigeration System Name,Refrigerant Used',', # Refrigerated Cases "
                                    "Connected, # WalkInCoolers Connected, #Air Chillers Connected',', # Secondary Loops Served, # Cascade Condensers "
                                    "Served',', # Mechanical Subcoolers Served, # Compressors Connected',', # Compression Stages, Intercooler Type, "
                                    "Intercooler Effectiveness',', # Subcoolers Connected, Minimum Condensing Temperature (C)')");
-        static gio::Fmt Format_119("('!',2x,'<Refrigeration Walk In Cooler>, Walk In Number, Walk In Name,','Capacity (W),Temperature (C),Coil Fan "
+        thread_local static gio::Fmt Format_119("('!',2x,'<Refrigeration Walk In Cooler>, Walk In Number, Walk In Name,','Capacity (W),Temperature (C),Coil Fan "
                                    "(W), Circulating Fan (W), ','Lighting (W),Heaters (W),Defrost (W), # Zones')");
-        static gio::Fmt Format_120("('! <#Detailed Transcritical Refrigeration Systems>,Number of Detailed Transcritical Refrigeration Systems')");
-        static gio::Fmt Format_121("('! <Detailed Transcritical Refrigeration System>,Transcritical Refrigeration System Name,Refrigerant Used',', # "
+        thread_local static gio::Fmt Format_120("('! <#Detailed Transcritical Refrigeration Systems>,Number of Detailed Transcritical Refrigeration Systems')");
+        thread_local static gio::Fmt Format_121("('! <Detailed Transcritical Refrigeration System>,Transcritical Refrigeration System Name,Refrigerant Used',', # "
                                    "Medium Temperature Refrigerated Cases Connected, # Low Temperature Refrigerated Cases Connected',', # Medium "
                                    "Temperature WalkInCoolers Connected, # Low Temperature WalkInCoolers Connected',', # High Pressure Compressors "
                                    "Connected, # Low Pressure Compressors Connected',', Minimum Condensing Temperature (C)')");
-        static gio::Fmt Format_123("('!',2x,'<Secondary Load>, Secondary System Served Name, Secondary Number')");
-        static gio::Fmt Format_126("('!',2x,'<Refrigeration Mechanical Subcooler>, Subcooler Number, Subcooler Name, ','Name of System Providing "
+        thread_local static gio::Fmt Format_123("('!',2x,'<Secondary Load>, Secondary System Served Name, Secondary Number')");
+        thread_local static gio::Fmt Format_126("('!',2x,'<Refrigeration Mechanical Subcooler>, Subcooler Number, Subcooler Name, ','Name of System Providing "
                                    "Cooling, Design Outlet Temperature (C)')");
-        static gio::Fmt Format_127("('!',2x,'<Refrigeration Liquid Suction Subcooler>, Subcooler Number, Subcooler Name, ','Design Subcooling "
+        thread_local static gio::Fmt Format_127("('!',2x,'<Refrigeration Liquid Suction Subcooler>, Subcooler Number, Subcooler Name, ','Design Subcooling "
                                    "(DeltaC),','Design liquid inlet temperature (C), Design vapor inlet temperature (C)')");
-        static gio::Fmt Format_128("('!',2x,'<Cascade Load>, System Name Connected, Condenser Number, Condenser Name')");
-        static gio::Fmt Format_129("('!',2x,'<Refrigeration Condenser:Air-Cooled>,Condenser Number,Condenser Name,Rated Condensing Temperature "
+        thread_local static gio::Fmt Format_128("('!',2x,'<Cascade Load>, System Name Connected, Condenser Number, Condenser Name')");
+        thread_local static gio::Fmt Format_129("('!',2x,'<Refrigeration Condenser:Air-Cooled>,Condenser Number,Condenser Name,Rated Condensing Temperature "
                                    "(C),','Rated Capacity (W), Rated Fan Power (W)')");
-        static gio::Fmt Format_130("('!',2x,'<Refrigeration Condenser:Water-Cooled>,Condenser Number,Condenser Name,Rated Condensing Temperature "
+        thread_local static gio::Fmt Format_130("('!',2x,'<Refrigeration Condenser:Water-Cooled>,Condenser Number,Condenser Name,Rated Condensing Temperature "
                                    "(C),','Rated Capacity (W), Rated Water Inlet Temperature (C), Rated Water Flow Rate (m3/s)')");
-        static gio::Fmt Format_131(
+        thread_local static gio::Fmt Format_131(
             "('!',2x,'<Refrigeration Condenser:Evaporative-Cooled>,Condenser Number,Condenser Name,','Rated Capacity (W), Rated Fan Power (W)')");
-        static gio::Fmt Format_132("('!',2x,'<Refrigeration Condenser:Cascade>, Condenser Number, Condenser Name,',' Condensing Temperature Control "
+        thread_local static gio::Fmt Format_132("('!',2x,'<Refrigeration Condenser:Cascade>, Condenser Number, Condenser Name,',' Condensing Temperature Control "
                                    "Type, Rated Condensing Temperature (C),',' Capacity (W), Approach Temperature Difference (DeltaC)')");
-        static gio::Fmt Format_133("('! <Secondary Refrigeration System: Fluid Always Liquid>, Secondary Number, Secondary Name,',' # Refrigerated "
+        thread_local static gio::Fmt Format_133("('! <Secondary Refrigeration System: Fluid Always Liquid>, Secondary Number, Secondary Name,',' # Refrigerated "
                                    "Cases Connected, # WalkIn Coolers Connected,',' Fluid Name, Capacity (W),Evap Temperature in Secondary "
                                    "Evaporator (C),',' Approach Temperature Difference (DeltaC), Temperature Range (DeltaC), TotalPumpPower (W)')");
-        static gio::Fmt Format_134("('!',6x,'<Walk-In Surfaces Facing Zone>, ZoneName,',' Wall/Ceiling Area (m2), UValue (W/m2-C), AreaStockDoors "
+        thread_local static gio::Fmt Format_134("('!',6x,'<Walk-In Surfaces Facing Zone>, ZoneName,',' Wall/Ceiling Area (m2), UValue (W/m2-C), AreaStockDoors "
                                    "(m2), HeightStockDoors,',' UValueStockDoors (W/m2-C), AreaGlassDoors (m2), HeightGlassDoors (m), ',' "
                                    "UValueGlassDoors (W/m2-C)')");
-        static gio::Fmt Format_141("('!',2x,'<Mechanical Subcooler Load>, Subcooler Number, Subcooler Name')");
-        static gio::Fmt Format_142("('! <#Secondary Refrigeration Systems>,Number of Secondary Refrigeration Systems')");
-        static gio::Fmt Format_146("('! <Secondary Refrigeration System: Liquid Overfeed>, Secondary Number, Secondary Name,',' # Refrigerated Cases "
+        thread_local static gio::Fmt Format_141("('!',2x,'<Mechanical Subcooler Load>, Subcooler Number, Subcooler Name')");
+        thread_local static gio::Fmt Format_142("('! <#Secondary Refrigeration Systems>,Number of Secondary Refrigeration Systems')");
+        thread_local static gio::Fmt Format_146("('! <Secondary Refrigeration System: Liquid Overfeed>, Secondary Number, Secondary Name,',' # Refrigerated Cases "
                                    "Connected, # WalkIn Coolers Connected, #Air Coils Connected',' Fluid Name, Capacity (W),Evap Temperature in "
                                    "Secondary Evaporator (C),',' Approach Temperature Difference (DeltaC), Circulating Rate, TotalPumpPower (W)')");
-        static gio::Fmt Format_148("('! <#ZoneHVAC/Refrigeration Air Chiller Sets>,Number of ZoneHVAC/Refrigeration Air Chiller Sets')");
-        static gio::Fmt Format_149("('! <ZoneHVAC/Refrigeration Air Chiller Set>,Chiller Set Name,',' # Air Chillers Connected, Zone Location')");
-        static gio::Fmt Format_151("('!',2x,'<Refrigeration Air Chiller>,Refrigeration Chiller Number, Refrigeration Chiller Name,Zone Name,','Zone "
+        thread_local static gio::Fmt Format_148("('! <#ZoneHVAC/Refrigeration Air Chiller Sets>,Number of ZoneHVAC/Refrigeration Air Chiller Sets')");
+        thread_local static gio::Fmt Format_149("('! <ZoneHVAC/Refrigeration Air Chiller Set>,Chiller Set Name,',' # Air Chillers Connected, Zone Location')");
+        thread_local static gio::Fmt Format_151("('!',2x,'<Refrigeration Air Chiller>,Refrigeration Chiller Number, Refrigeration Chiller Name,Zone Name,','Zone "
                                    "Node #,Zone Node Name,Sensible Capacity (W/C),Sensible Capacity (W),Evaporating Temperature (C),DT1 (C),','Fan "
                                    "Power (W),Heater (W),Defrost (W), Air Flow Rate (m3/s)')");
-        static gio::Fmt Format_152("('!',2x,'<Air Chiller Load>, Air Chiller Name, Air Chiller Number, Zone Name,')");
-        static gio::Fmt Format_160("('!',2x,'<Refrigeration GasCooler:Air-Cooled>,Gas Cooler Number, Gas Cooler Name, Rated Outlet Pressure "
+        thread_local static gio::Fmt Format_152("('!',2x,'<Air Chiller Load>, Air Chiller Name, Air Chiller Number, Zone Name,')");
+        thread_local static gio::Fmt Format_160("('!',2x,'<Refrigeration GasCooler:Air-Cooled>,Gas Cooler Number, Gas Cooler Name, Rated Outlet Pressure "
                                    "(Pa),','Rated Outlet Temperature (C), Rated Approach Temperature (C), Rated Capacity (W), Rated Fan Power (W)')");
 
         // 111 FORMAT(',',1X,F6.3) ! compressor rack output line
@@ -14075,78 +14075,78 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("CalculateWalkIn");
-        static int ZoneNodeNum(0);     // Zone node number
-        static int ZoneNum(0);         // Index to zone
-        static int ZoneID(0);          // Index to zone
-        static Real64 CapApplied(0.0); // Walk In total capacity at specific operating conditions
-        static Real64 CircFanSchedule(0.0);
-        static Real64 Conv(0.0);                    // conversion factor in gravity equation
-        static Real64 DefrostCap(0.0);              // Design defrost capacity of WalkIn (W)
-        static Real64 DefrostEnergy(0.0);           // (J)
-        static Real64 DefEnergyFraction(0.0);       // dimensionless
-        static Real64 AvailDefrostEnergy(0.0);      // available to melt ice with temp term control (J)
-        static Real64 DefrostLoad(0.0);             // (W)
-        static Real64 DefrostSchedule(0.0);         // WalkIn defrost schedule, between 0 and 1
-        static Real64 DefrostDripDownSchedule(0.0); // WalkIn drip-down schedule (allows coil to drain after defrost)
-        static Real64 DefrostEnergyNeeded(0.0);     // Energy needed to melt all ice, used with temperature termination (J)
-        static Real64 DensityAirWalkIn(0.0);        // Density at Walk in temperature and 90% assumed RH
-        static Real64 DensityZoneAir(0.0);          // Density of the air in a particular zone (kg/m3)
-        static Real64 DensityFactorFm(0.0);         // called Fm in ASHRAE 2010 eq 13 page 24.5 for door infiltration
-        static Real64 DensitySqRtFactor(0.0);       // from ASHRAE 2010 eq 12 page 24.4 for door infiltration
-        static Real64 DelTemp(0.0);                 // Difference between zone and walk in temperatures (C)
-        static Real64 DesignLighting(0.0);          // Total design display WalkIn lighting power (W)
-        static Real64 DesignRatedCap(0.0);          // Rated capacity of walk in cooler coil (W)
-        static Real64 DoorFlowFactor(0.0);          // Derate compared to fully developed flow through 100% open door
-        static Real64 DoorOpenFactor(0.0);          // Derate based upon fraction time door opened
-        static Real64 DoorProtectEff(0.0);          // Door protection effectiveness
-        static Real64 DrHeight(0.0);                // Door height (m)
-        static Real64 DrArea(0.0);                  // Door area (m2)
-        static Real64 EnthalpyAirWalkIn(0.0);       // Enthalpy of air corresponding to walk in temperatuer and 90% assumed RH (J/kg)
-        static Real64 EnthalpyZoneAir(0.0);         // Enthalpy of the air in a particular zone (J/kg)
-        static Real64 FanLoad(0.0);                 // Total fan energy rate (W)
-        static Real64 FloorLoad(0.0);               // Total floor energy rate (W)
-        static Real64 FrostChangekg(0.0);           // Amount of frost added or melted  (kg)
-        static Real64 FullFlowInfLoad(0.0);         // Total load (lat + sens) due to 100% open doors w/ fully developed flow (W)
-        static Real64 GlassDoorInfLoad(0.0);        // infiltration through glass reach-in doors in a particular zone (W)
-        static Real64 GlassDoorSensHeat(0.0);       // sensible heat gain through glass reach-in doors (UA*delta T) (W)
-        static Real64 GlassDoorArea(0.0);           // facing a particular zone (m2)
-        static Real64 Gravity(0.0);
-        static Real64 HeaterSchedule(0.0);     // zero to one
-        static Real64 HeaterLoad(0.0);         // Total heater (except defrost) energy rate (W)
-        static Real64 HumRatioAirWalkIn(0.0);  // corresponds to walk in temp and 90% assumed RH(kg water/kg dry air)
-        static Real64 HumRatioZoneAir(0.0);    // Humidity Ratio of the air in a particular zone (kg water/kg dry air)
-        static Real64 IceSensHeatNeeded(0.0);  // Energy to raise frost temperature to 0C, used w/ temp termination (J)
-        static Real64 LatentCapApplied(0.0);   // Walk In latent capacity at specific operating conditions
-        static Real64 LatentLoadTotal(0.0);    // total latent load on WalkIn over all zones (W)
-        static Real64 LightLoad(0.0);          // Total lighting energy rate (W)
-        static Real64 LightingSchedule(0.0);   // WalkIn lighting schedule
-        static Real64 LoadRequested(0.0);      // Load necessary to meet current and all stored energy needs (W)
-        static Real64 LoadTotal(0.0);          // total load in time step (W)
-        static Real64 MassDryAirRate(0.0);     // Mass dry air infiltrating into/out-of walkin through doors (kg/s)
-        static Real64 MaxCap(0.0);             // Design chilling capacity reduced according to drip-down schedule (W)
-        static Real64 SensibleCapApplied(0.0); // Walk In sensible capacity at specific operating conditions
-        static Real64 SensibleLoadTotal(0.0);  // Total sensible load on WalkIn over all zones (W)
-        static Real64 StoredEnergyRate(0.0);   // Rate needed to serve all stored energy during single time step (W)
-        static Real64 StartIceTemp(0.0);       // Frost temperature at start of time step [C]
-        static Real64 StartFrostKg(0.0);       // frost load at start of time step (kg of ice)
-        static Real64 StockDoorInfLoad(0.0);   // infiltration through stock doors in a particular zone (W)
-        static Real64 StockDoorSensHeat(0.0);  // sensible heat gain through stock doors (UA*delta T) (W)
-        static Real64 StockDoorArea(0.0);      // (m2)
-        static Real64 StockingLoad(0.0);       // Total load due to stocking WalkIn product (W)
-        static Real64 TWalkIn(0.0);            // WalkIn operating temperature (C)
-        static Real64 UAOtherSurfaces(0.0);    // UA for non-door surfaces facing a certain zone (W/C)
-        static Real64 WalkInSchedule(0.0);     // Current value of WalkIn operating (availability) schedule
-        static Real64 WalkInSensLoad(0.0);     // Walk in cooler sensible load facing particular zone (W)
-        static Real64 WalkInLatLoad(0.0);      // Walk in cooler latent load facing particular zone (W)
-        static Real64 WaterRemovRate(0.0);     // Walk in cooler removes water at this rate in this zone (kg/s)
-        static Real64 ZoneDryBulb(0.0);        // Dry Bulb Temperature of adjacent zone
-        static Real64 ZoneSensLoad(0.0);       // Sensible WalkIn credit delivered to a particular zone (W)
-        static Real64 ZoneLatentLoad(0.0);     // Latent WalkIn credit delivered to zone (W)
-        static Real64 ZoneRHFrac(0.0);         // Zone relative humidity fraction (decimal)
-        static Real64 ZoneInfilLoad(0.0);      // Walk in cooler infiltration load (sens + latent) in certain zone (W)
-        static Real64 ZInfilSensLoad(0.0);     // Sensible load due to infiltration in one zone
-        static Real64 ZdoorSensLoad(0.0);      // Sensible load due to UA delta T through closed door in one zone
+        thread_local static std::string const RoutineName("CalculateWalkIn");
+        thread_local static int ZoneNodeNum(0);     // Zone node number
+        thread_local static int ZoneNum(0);         // Index to zone
+        thread_local static int ZoneID(0);          // Index to zone
+        thread_local static Real64 CapApplied(0.0); // Walk In total capacity at specific operating conditions
+        thread_local static Real64 CircFanSchedule(0.0);
+        thread_local static Real64 Conv(0.0);                    // conversion factor in gravity equation
+        thread_local static Real64 DefrostCap(0.0);              // Design defrost capacity of WalkIn (W)
+        thread_local static Real64 DefrostEnergy(0.0);           // (J)
+        thread_local static Real64 DefEnergyFraction(0.0);       // dimensionless
+        thread_local static Real64 AvailDefrostEnergy(0.0);      // available to melt ice with temp term control (J)
+        thread_local static Real64 DefrostLoad(0.0);             // (W)
+        thread_local static Real64 DefrostSchedule(0.0);         // WalkIn defrost schedule, between 0 and 1
+        thread_local static Real64 DefrostDripDownSchedule(0.0); // WalkIn drip-down schedule (allows coil to drain after defrost)
+        thread_local static Real64 DefrostEnergyNeeded(0.0);     // Energy needed to melt all ice, used with temperature termination (J)
+        thread_local static Real64 DensityAirWalkIn(0.0);        // Density at Walk in temperature and 90% assumed RH
+        thread_local static Real64 DensityZoneAir(0.0);          // Density of the air in a particular zone (kg/m3)
+        thread_local static Real64 DensityFactorFm(0.0);         // called Fm in ASHRAE 2010 eq 13 page 24.5 for door infiltration
+        thread_local static Real64 DensitySqRtFactor(0.0);       // from ASHRAE 2010 eq 12 page 24.4 for door infiltration
+        thread_local static Real64 DelTemp(0.0);                 // Difference between zone and walk in temperatures (C)
+        thread_local static Real64 DesignLighting(0.0);          // Total design display WalkIn lighting power (W)
+        thread_local static Real64 DesignRatedCap(0.0);          // Rated capacity of walk in cooler coil (W)
+        thread_local static Real64 DoorFlowFactor(0.0);          // Derate compared to fully developed flow through 100% open door
+        thread_local static Real64 DoorOpenFactor(0.0);          // Derate based upon fraction time door opened
+        thread_local static Real64 DoorProtectEff(0.0);          // Door protection effectiveness
+        thread_local static Real64 DrHeight(0.0);                // Door height (m)
+        thread_local static Real64 DrArea(0.0);                  // Door area (m2)
+        thread_local static Real64 EnthalpyAirWalkIn(0.0);       // Enthalpy of air corresponding to walk in temperatuer and 90% assumed RH (J/kg)
+        thread_local static Real64 EnthalpyZoneAir(0.0);         // Enthalpy of the air in a particular zone (J/kg)
+        thread_local static Real64 FanLoad(0.0);                 // Total fan energy rate (W)
+        thread_local static Real64 FloorLoad(0.0);               // Total floor energy rate (W)
+        thread_local static Real64 FrostChangekg(0.0);           // Amount of frost added or melted  (kg)
+        thread_local static Real64 FullFlowInfLoad(0.0);         // Total load (lat + sens) due to 100% open doors w/ fully developed flow (W)
+        thread_local static Real64 GlassDoorInfLoad(0.0);        // infiltration through glass reach-in doors in a particular zone (W)
+        thread_local static Real64 GlassDoorSensHeat(0.0);       // sensible heat gain through glass reach-in doors (UA*delta T) (W)
+        thread_local static Real64 GlassDoorArea(0.0);           // facing a particular zone (m2)
+        thread_local static Real64 Gravity(0.0);
+        thread_local static Real64 HeaterSchedule(0.0);     // zero to one
+        thread_local static Real64 HeaterLoad(0.0);         // Total heater (except defrost) energy rate (W)
+        thread_local static Real64 HumRatioAirWalkIn(0.0);  // corresponds to walk in temp and 90% assumed RH(kg water/kg dry air)
+        thread_local static Real64 HumRatioZoneAir(0.0);    // Humidity Ratio of the air in a particular zone (kg water/kg dry air)
+        thread_local static Real64 IceSensHeatNeeded(0.0);  // Energy to raise frost temperature to 0C, used w/ temp termination (J)
+        thread_local static Real64 LatentCapApplied(0.0);   // Walk In latent capacity at specific operating conditions
+        thread_local static Real64 LatentLoadTotal(0.0);    // total latent load on WalkIn over all zones (W)
+        thread_local static Real64 LightLoad(0.0);          // Total lighting energy rate (W)
+        thread_local static Real64 LightingSchedule(0.0);   // WalkIn lighting schedule
+        thread_local static Real64 LoadRequested(0.0);      // Load necessary to meet current and all stored energy needs (W)
+        thread_local static Real64 LoadTotal(0.0);          // total load in time step (W)
+        thread_local static Real64 MassDryAirRate(0.0);     // Mass dry air infiltrating into/out-of walkin through doors (kg/s)
+        thread_local static Real64 MaxCap(0.0);             // Design chilling capacity reduced according to drip-down schedule (W)
+        thread_local static Real64 SensibleCapApplied(0.0); // Walk In sensible capacity at specific operating conditions
+        thread_local static Real64 SensibleLoadTotal(0.0);  // Total sensible load on WalkIn over all zones (W)
+        thread_local static Real64 StoredEnergyRate(0.0);   // Rate needed to serve all stored energy during single time step (W)
+        thread_local static Real64 StartIceTemp(0.0);       // Frost temperature at start of time step [C]
+        thread_local static Real64 StartFrostKg(0.0);       // frost load at start of time step (kg of ice)
+        thread_local static Real64 StockDoorInfLoad(0.0);   // infiltration through stock doors in a particular zone (W)
+        thread_local static Real64 StockDoorSensHeat(0.0);  // sensible heat gain through stock doors (UA*delta T) (W)
+        thread_local static Real64 StockDoorArea(0.0);      // (m2)
+        thread_local static Real64 StockingLoad(0.0);       // Total load due to stocking WalkIn product (W)
+        thread_local static Real64 TWalkIn(0.0);            // WalkIn operating temperature (C)
+        thread_local static Real64 UAOtherSurfaces(0.0);    // UA for non-door surfaces facing a certain zone (W/C)
+        thread_local static Real64 WalkInSchedule(0.0);     // Current value of WalkIn operating (availability) schedule
+        thread_local static Real64 WalkInSensLoad(0.0);     // Walk in cooler sensible load facing particular zone (W)
+        thread_local static Real64 WalkInLatLoad(0.0);      // Walk in cooler latent load facing particular zone (W)
+        thread_local static Real64 WaterRemovRate(0.0);     // Walk in cooler removes water at this rate in this zone (kg/s)
+        thread_local static Real64 ZoneDryBulb(0.0);        // Dry Bulb Temperature of adjacent zone
+        thread_local static Real64 ZoneSensLoad(0.0);       // Sensible WalkIn credit delivered to a particular zone (W)
+        thread_local static Real64 ZoneLatentLoad(0.0);     // Latent WalkIn credit delivered to zone (W)
+        thread_local static Real64 ZoneRHFrac(0.0);         // Zone relative humidity fraction (decimal)
+        thread_local static Real64 ZoneInfilLoad(0.0);      // Walk in cooler infiltration load (sens + latent) in certain zone (W)
+        thread_local static Real64 ZInfilSensLoad(0.0);     // Sensible load due to infiltration in one zone
+        thread_local static Real64 ZdoorSensLoad(0.0);      // Sensible load due to UA delta T through closed door in one zone
 
         WalkInSchedule = GetCurrentScheduleValue(WalkIn(WalkInID).SchedPtr);
         if (WalkInSchedule <= 0) return;
@@ -14563,8 +14563,8 @@ namespace RefrigeratedCase {
         Real64 Error;                     // Used in iterative soln for pumps needed to meet load (that has to include pump energy)
         Real64 Eta;                       // Secondary loop heat exchanger eta, dimensionless
         Real64 FlowVolNeeded;             // Flow rate needed to meet load (m3/s)
-        static Real64 LoadRequested(0.0); // Load necessary to meet current and all stored energy needs (W)
-        static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
+        thread_local static Real64 LoadRequested(0.0); // Load necessary to meet current and all stored energy needs (W)
+        thread_local static Real64 LocalTimeStep(0.0); // TimeStepZone for case/walkin systems, TimeStepSys for coil systems
         Real64 MaxLoad;                   // Secondary loop capacity can be limited by heat exchanger or pumps (W)
         Real64 MaxVolFlow;                // Flow can be limited by either total pump capacity or heat exchanger design (m3/s)
         Real64 PartLdFrac;                // Used to ratio pump power
@@ -14846,7 +14846,7 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int ZoneNum(0); // used calculating total refrigeration interactions for zone
+        thread_local static int ZoneNum(0); // used calculating total refrigeration interactions for zone
 
         if (UseSysTimeStep) { // air chillers
             for (ZoneNum = 1; ZoneNum <= NumOfZones; ++ZoneNum) {
@@ -15071,11 +15071,11 @@ namespace RefrigeratedCase {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int CoilID(0);                     // Index to coil
-        static int CoilIndex(0);                  // rank of coils within system
-        static Real64 AirChillerSetSchedule(0.0); // Schedule value for air chiller SET
-        static Real64 QZNReqSens(0.0);            // Amount of sensible heat needed by the zone, NEGATIVE when cooling needed [W]
-        static Real64 RemainQZNReqSens(0.0);      // Remaiing amount of sensible heat needed by the zone [W]
+        thread_local static int CoilID(0);                     // Index to coil
+        thread_local static int CoilIndex(0);                  // rank of coils within system
+        thread_local static Real64 AirChillerSetSchedule(0.0); // Schedule value for air chiller SET
+        thread_local static Real64 QZNReqSens(0.0);            // Amount of sensible heat needed by the zone, NEGATIVE when cooling needed [W]
+        thread_local static Real64 RemainQZNReqSens(0.0);      // Remaiing amount of sensible heat needed by the zone [W]
 
         // Note, all coils in a coil set are in the same zone
         // the coils may be served by different detailed systems
@@ -15139,13 +15139,13 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int NumCoils(0);                 // Number of coils on this system or secondary loop
-        static int CoilID(0);                   // Index to coil
-        static int CoilIndex(0);                // rank of coils within system
-        static Real64 DeRateFactor(0.0);        // Ratio of energy available from system or secondary loop
-        static Real64 InitLatCreditEnergy(0.0); // Latent credit energy before derate [W]
-        static Real64 InitKgFrost(0.0);         // Initial amount of frost on coils based on latent load before derate [kg]
-        static Real64 FrostReduction(0.0);      // Change in frost on coils based on derated latent load [kg]
+        thread_local static int NumCoils(0);                 // Number of coils on this system or secondary loop
+        thread_local static int CoilID(0);                   // Index to coil
+        thread_local static int CoilIndex(0);                // rank of coils within system
+        thread_local static Real64 DeRateFactor(0.0);        // Ratio of energy available from system or secondary loop
+        thread_local static Real64 InitLatCreditEnergy(0.0); // Latent credit energy before derate [W]
+        thread_local static Real64 InitKgFrost(0.0);         // Initial amount of frost on coils based on latent load before derate [kg]
+        thread_local static Real64 FrostReduction(0.0);      // Change in frost on coils based on derated latent load [kg]
 
         {
             auto const SELECT_CASE_var(SystemSourceType);
@@ -15258,13 +15258,13 @@ namespace RefrigeratedCase {
         using Psychrometrics::PsyWFnTdpPb;
 
         // Locals
-        static Real64 UnitLoadFactorSens(0.0); // Rated capacity divided by rated DT1 (T air in - Tevap) (W/delta C)
+        thread_local static Real64 UnitLoadFactorSens(0.0); // Rated capacity divided by rated DT1 (T air in - Tevap) (W/delta C)
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         // unused  REAL(r64), PARAMETER ::ErrorTol       = 0.001d0 !Iterative solution tolerance
-        static std::string const TrackMessage("from RefrigeratedCase:CalculateCoil");
+        thread_local static std::string const TrackMessage("from RefrigeratedCase:CalculateCoil");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -15274,78 +15274,78 @@ namespace RefrigeratedCase {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // INTEGER      :: Iter                    =0   ! counter for loop to solve for total coil capacity as a function of inlet air conditions
-        static int FanSpeedControlType(0);         // from input
-        static int SHRCorrectionCurvePtr(0);       // Points to curve entered by user to specify total/sensible capacity as a function of SHR
-        static int SHRCorrectionType(0);           // SHR60, QuadraticSHR, European, or TabularRH_DT1_TRoom
-        static int ZoneNodeNum(0);                 // Zone node number
-        static Real64 AirVolRatio(0.0);            // used when operating at part load
-        static Real64 AirVolumeFlowMax(0.0);       // Coil air flow limited by drip down schedule (m3/s)
-        static Real64 AirVolumeFlowRated(0.0);     // Coil rated air flow (m3/s)
-        static Real64 AvailDefrostEnergy(0.0);     // available to melt ice with temp term control (J)
-        static Real64 CapFac(0.0);                 // used to reduce fan power when don't need full coil capacity
-        static Real64 CoilCapTotal(0.0);           // Sensible plus latent load (W)
-        static Real64 CoilCapTotEstimate(0.0);     // Part of loop to solve for total coil capacity as a function of inlet air conditions (W)
-        static Real64 CoilInletCp(0.0);            // Coil air inlet specific heat (J/kg-deltaC)
-        static Real64 CoilInletDensity(0.0);       // Coil air inlet density (kg/m3)
-        static Real64 CoilInletDryAirCp(0.0);      // Dry air specific heat at coil inlet temperature (J/kg-C)
-        static Real64 CoilInletDryAirDensity(0.0); // Dry Air density at coil inlet temperature (kg/m3)
-        static Real64 CoilInletHumRatio(0.0);      // Coil air inlet humidity ratio (kg water/kg air)
-        static Real64 CoilInletTemp(0.0);     // Inlet temperature of air to coil, not mixed zone temperature unless "middle" location selected (C)
-        static Real64 CoilInletEnthalpy(0.0); // Coil inlet air enthalpy (J/kg)
-        static Real64 CoilInletRHFrac(0.0);   // Coil inlet air relative humidity expressed as a fraction (0 to 1)
-        static Real64 CoilSchedule(0.0);      // Current value of Coil operating (availability) schedule
-        static Real64 CoolingLoadNet(0.0);    // Cooling capacity of the coil minus fan, heater, and defrost loads (W)
-        static Real64 DefrostCap(0.0);        // Design defrost capacity of Coil (W)
-        static Real64 DefrostEnergy(0.0);     // (J)
-        static Real64 DefEnergyFraction(0.0); // dimensionless
-        static Real64 DefrostLoad(0.0);       // Part of the defrost that is a heat load on the zone (W)
-        static Real64 DefrostSchedule(0.0);   // Coil defrost schedule, between 0 and 1
-        static Real64 DefrostDripDownSchedule(0.0); // Coil drip-down schedule (allows coil to drain after defrost)
-        static Real64 DefrostEnergyNeeded(0.0);     // Energy needed to melt all ice, used with temperature termination (J)
-        static Real64 DefrostRateNeeded(0.0);       // Defrost load that actually goes to melting ice (W)
-        static Real64 DryAirMassFlowMax(0.0);       // Rated volume flow rate times dry air density adjusted for schedules (kg/s)
-        static Real64 DryAirMassFlowRated(0.0);     // Rated volume flow rate times dry air density
+        thread_local static int FanSpeedControlType(0);         // from input
+        thread_local static int SHRCorrectionCurvePtr(0);       // Points to curve entered by user to specify total/sensible capacity as a function of SHR
+        thread_local static int SHRCorrectionType(0);           // SHR60, QuadraticSHR, European, or TabularRH_DT1_TRoom
+        thread_local static int ZoneNodeNum(0);                 // Zone node number
+        thread_local static Real64 AirVolRatio(0.0);            // used when operating at part load
+        thread_local static Real64 AirVolumeFlowMax(0.0);       // Coil air flow limited by drip down schedule (m3/s)
+        thread_local static Real64 AirVolumeFlowRated(0.0);     // Coil rated air flow (m3/s)
+        thread_local static Real64 AvailDefrostEnergy(0.0);     // available to melt ice with temp term control (J)
+        thread_local static Real64 CapFac(0.0);                 // used to reduce fan power when don't need full coil capacity
+        thread_local static Real64 CoilCapTotal(0.0);           // Sensible plus latent load (W)
+        thread_local static Real64 CoilCapTotEstimate(0.0);     // Part of loop to solve for total coil capacity as a function of inlet air conditions (W)
+        thread_local static Real64 CoilInletCp(0.0);            // Coil air inlet specific heat (J/kg-deltaC)
+        thread_local static Real64 CoilInletDensity(0.0);       // Coil air inlet density (kg/m3)
+        thread_local static Real64 CoilInletDryAirCp(0.0);      // Dry air specific heat at coil inlet temperature (J/kg-C)
+        thread_local static Real64 CoilInletDryAirDensity(0.0); // Dry Air density at coil inlet temperature (kg/m3)
+        thread_local static Real64 CoilInletHumRatio(0.0);      // Coil air inlet humidity ratio (kg water/kg air)
+        thread_local static Real64 CoilInletTemp(0.0);     // Inlet temperature of air to coil, not mixed zone temperature unless "middle" location selected (C)
+        thread_local static Real64 CoilInletEnthalpy(0.0); // Coil inlet air enthalpy (J/kg)
+        thread_local static Real64 CoilInletRHFrac(0.0);   // Coil inlet air relative humidity expressed as a fraction (0 to 1)
+        thread_local static Real64 CoilSchedule(0.0);      // Current value of Coil operating (availability) schedule
+        thread_local static Real64 CoolingLoadNet(0.0);    // Cooling capacity of the coil minus fan, heater, and defrost loads (W)
+        thread_local static Real64 DefrostCap(0.0);        // Design defrost capacity of Coil (W)
+        thread_local static Real64 DefrostEnergy(0.0);     // (J)
+        thread_local static Real64 DefEnergyFraction(0.0); // dimensionless
+        thread_local static Real64 DefrostLoad(0.0);       // Part of the defrost that is a heat load on the zone (W)
+        thread_local static Real64 DefrostSchedule(0.0);   // Coil defrost schedule, between 0 and 1
+        thread_local static Real64 DefrostDripDownSchedule(0.0); // Coil drip-down schedule (allows coil to drain after defrost)
+        thread_local static Real64 DefrostEnergyNeeded(0.0);     // Energy needed to melt all ice, used with temperature termination (J)
+        thread_local static Real64 DefrostRateNeeded(0.0);       // Defrost load that actually goes to melting ice (W)
+        thread_local static Real64 DryAirMassFlowMax(0.0);       // Rated volume flow rate times dry air density adjusted for schedules (kg/s)
+        thread_local static Real64 DryAirMassFlowRated(0.0);     // Rated volume flow rate times dry air density
         // REAL(r64)    :: Error                   =0.0d0 ! Used in iterative solution for sensible heat ratio
-        static Real64 ExitHumRatio(0.0);            // kg water/kg air
-        static Real64 ExitTemperature(0.0);         // Air temperature leaving the coil (C)
-        static Real64 ExitTemperatureEstimate(0.0); // Estimated Air temperature leaving the coil (C)
-        static Real64 ExitEnthalpy(0.0);            // Air enthalpy leaving the coil (J/kg)
-        static Real64 ExitEnthalpyEstimate(0.0);    // Estimated Air enthalpy leaving the coil (J/kg)
-        static Real64 FanMinAirFlowRatio(0.0);      // From input
-        static Real64 FanPowerActual(0.0);          // (W)
-        static Real64 FanPowerRated(0.0);           // (W)
-        static Real64 FanPowerMax(0.0);             // Total fan energy rate, limited by dripdown period (W)
-        static Real64 FanPowerRatio(0.0);           // Used for variable speed fans, dimensionless
-        static Real64 FrostChangekg(0.0);           // Amount of frost added or melted  (kg)
-        static Real64 HeaterSchedule(0.0);          // zero to one
-        static Real64 HeaterLoad(0.0);              // Total heater (except defrost) energy rate (W)
-        static Real64 IceSensHeatNeeded(0.0);       // Energy to raise frost temperature to 0C, used w/ temp termination (J)
-        static Real64 LatLoadServed(0.0);           // Energy rate used to remove water from zone air (W)
-        static Real64 MaxTemperatureDif(0.0);       // Used to limit capacity during initial pulldown (deltaC)
-        static Real64 SensibleCapacityMax(0.0);     // Sensible capacity adjusted for any time in dripdown state (W)
+        thread_local static Real64 ExitHumRatio(0.0);            // kg water/kg air
+        thread_local static Real64 ExitTemperature(0.0);         // Air temperature leaving the coil (C)
+        thread_local static Real64 ExitTemperatureEstimate(0.0); // Estimated Air temperature leaving the coil (C)
+        thread_local static Real64 ExitEnthalpy(0.0);            // Air enthalpy leaving the coil (J/kg)
+        thread_local static Real64 ExitEnthalpyEstimate(0.0);    // Estimated Air enthalpy leaving the coil (J/kg)
+        thread_local static Real64 FanMinAirFlowRatio(0.0);      // From input
+        thread_local static Real64 FanPowerActual(0.0);          // (W)
+        thread_local static Real64 FanPowerRated(0.0);           // (W)
+        thread_local static Real64 FanPowerMax(0.0);             // Total fan energy rate, limited by dripdown period (W)
+        thread_local static Real64 FanPowerRatio(0.0);           // Used for variable speed fans, dimensionless
+        thread_local static Real64 FrostChangekg(0.0);           // Amount of frost added or melted  (kg)
+        thread_local static Real64 HeaterSchedule(0.0);          // zero to one
+        thread_local static Real64 HeaterLoad(0.0);              // Total heater (except defrost) energy rate (W)
+        thread_local static Real64 IceSensHeatNeeded(0.0);       // Energy to raise frost temperature to 0C, used w/ temp termination (J)
+        thread_local static Real64 LatLoadServed(0.0);           // Energy rate used to remove water from zone air (W)
+        thread_local static Real64 MaxTemperatureDif(0.0);       // Used to limit capacity during initial pulldown (deltaC)
+        thread_local static Real64 SensibleCapacityMax(0.0);     // Sensible capacity adjusted for any time in dripdown state (W)
         // REAL(r64)    :: SensibleLoad            =0.0d0 ! Sensible load provided by coil (W)
-        static Real64 SensLoadRequested(0.0);      // Sensible load requested by zone balance (W)
-        static Real64 SensLoadFromZone(0.0);       // Net sensible load removed from zone after accounting for heaters, fans, defrost [W]
-        static Real64 SensLoadRequestedGross(0.0); // Gross sensible load removed by coil
-        static Real64 SensLoadGross(0.0);          // Sensible load met by coil (W)
-        static Real64 SHR(0.0);                    // Sensible heat ratio, sensible load/total load
-        static Real64 SHRCorrection(0.0);          // Actual total/sensible load, NOT = Inverse SHR (unless coil efficiency = 1.0),
+        thread_local static Real64 SensLoadRequested(0.0);      // Sensible load requested by zone balance (W)
+        thread_local static Real64 SensLoadFromZone(0.0);       // Net sensible load removed from zone after accounting for heaters, fans, defrost [W]
+        thread_local static Real64 SensLoadRequestedGross(0.0); // Gross sensible load removed by coil
+        thread_local static Real64 SensLoadGross(0.0);          // Sensible load met by coil (W)
+        thread_local static Real64 SHR(0.0);                    // Sensible heat ratio, sensible load/total load
+        thread_local static Real64 SHRCorrection(0.0);          // Actual total/sensible load, NOT = Inverse SHR (unless coil efficiency = 1.0),
         // but function of SHR, which is why iteration needed
-        static Real64 SHRCorrection60(0.0);      // Total capacity as a fraction of sensible capacity at a SHR of 0.6, entered by user
-        static Real64 Slope(0.0);                // Part of linear SHR60 correction factor, dimensionless
-        static Real64 StartIceTemp(0.0);         // Frost temperature at start of time step [C]
-        static Real64 StartFrostKg(0.0);         // frost load at start of time step (kg of ice)
-        static Real64 TemperatureDif(0.0);       // difference between inlet air and evaporating temperature (deltaC)
-        static Real64 TEvap(0.0);                // Evaporating temperature in the coil (C)
-        static Real64 WaterRemovRate(0.0);       // Walk in cooler removes water at this rate in this zone (kg/s)
-        static Real64 Yint(0.0);                 // Part of linear SHR60 correction factor, dimensionless
-        static Real64 ZoneDryAirDensity(0.0);    // Dry air density at mixed zone conditions
-        static Real64 ZoneMixedAirCp(0.0);       // J/kg-deltaC
-        static Real64 ZoneMixedAirDensity(0.0);  // kg/m3
-        static Real64 ZoneMixedAirDryBulb(0.0);  // (C)
-        static Real64 ZoneMixedAirRHFrac(0.0);   // relative humidity of mixed air in the zone expressed as a fraction from 0 to 1
-        static Real64 ZoneMixedAirEnthalpy(0.0); // J/kg
-        static Real64 ZoneMixedAirHumRatio(0.0); // kg water/kg air in the zone mixed air
+        thread_local static Real64 SHRCorrection60(0.0);      // Total capacity as a fraction of sensible capacity at a SHR of 0.6, entered by user
+        thread_local static Real64 Slope(0.0);                // Part of linear SHR60 correction factor, dimensionless
+        thread_local static Real64 StartIceTemp(0.0);         // Frost temperature at start of time step [C]
+        thread_local static Real64 StartFrostKg(0.0);         // frost load at start of time step (kg of ice)
+        thread_local static Real64 TemperatureDif(0.0);       // difference between inlet air and evaporating temperature (deltaC)
+        thread_local static Real64 TEvap(0.0);                // Evaporating temperature in the coil (C)
+        thread_local static Real64 WaterRemovRate(0.0);       // Walk in cooler removes water at this rate in this zone (kg/s)
+        thread_local static Real64 Yint(0.0);                 // Part of linear SHR60 correction factor, dimensionless
+        thread_local static Real64 ZoneDryAirDensity(0.0);    // Dry air density at mixed zone conditions
+        thread_local static Real64 ZoneMixedAirCp(0.0);       // J/kg-deltaC
+        thread_local static Real64 ZoneMixedAirDensity(0.0);  // kg/m3
+        thread_local static Real64 ZoneMixedAirDryBulb(0.0);  // (C)
+        thread_local static Real64 ZoneMixedAirRHFrac(0.0);   // relative humidity of mixed air in the zone expressed as a fraction from 0 to 1
+        thread_local static Real64 ZoneMixedAirEnthalpy(0.0); // J/kg
+        thread_local static Real64 ZoneMixedAirHumRatio(0.0); // kg water/kg air in the zone mixed air
 
         // GET SCHEDULES
         auto &warehouse_coil(WarehouseCoil(CoilID));
@@ -15779,7 +15779,7 @@ namespace RefrigeratedCase {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
         int loop;
 
         CheckRefrigerationInput();
@@ -15882,17 +15882,17 @@ namespace RefrigeratedCase {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static int DemandARRID(0);        // Index to water tank Demand used for evap condenser
-        static int TankID(0);             // Index to water tank used for evap condenser
-        static int RackNum(0);            // Index to refrigerated rack
-        static int CondID(0);             // Index to condenser
-        static int PlantInletNode(0);     // Used to zero request for cooling water for condenser
-        static int PlantOutletNode(0);    // Used to zero request for cooling water for condenser
-        static int PlantLoopIndex(0);     // Used to zero request for cooling water for condenser
-        static int PlantLoopSideIndex(0); // Used to zero request for cooling water for condenser
-        static int PlantBranchIndex(0);   // Used to zero request for cooling water for condenser
-        static int PlantCompIndex(0);     // Used to zero request for cooling water for condenser
-        static Real64 MassFlowRate(0.0);  // Used to zero request for cooling water for condenser
+        thread_local static int DemandARRID(0);        // Index to water tank Demand used for evap condenser
+        thread_local static int TankID(0);             // Index to water tank used for evap condenser
+        thread_local static int RackNum(0);            // Index to refrigerated rack
+        thread_local static int CondID(0);             // Index to condenser
+        thread_local static int PlantInletNode(0);     // Used to zero request for cooling water for condenser
+        thread_local static int PlantOutletNode(0);    // Used to zero request for cooling water for condenser
+        thread_local static int PlantLoopIndex(0);     // Used to zero request for cooling water for condenser
+        thread_local static int PlantLoopSideIndex(0); // Used to zero request for cooling water for condenser
+        thread_local static int PlantBranchIndex(0);   // Used to zero request for cooling water for condenser
+        thread_local static int PlantCompIndex(0);     // Used to zero request for cooling water for condenser
+        thread_local static Real64 MassFlowRate(0.0);  // Used to zero request for cooling water for condenser
 
         if (HaveRefrigRacks) {
             // HaveRefrigRacks is TRUE when NumRefrigeratedRAcks > 0

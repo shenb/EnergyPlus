@@ -204,7 +204,7 @@ namespace WindowManager {
     ///////////////////////////////////////////////////////////////////////////////
     //   CWindowConstructionsSimplified
     ///////////////////////////////////////////////////////////////////////////////
-    std::unique_ptr<CWindowConstructionsSimplified> CWindowConstructionsSimplified::p_inst = nullptr;
+    thread_local std::unique_ptr<CWindowConstructionsSimplified> CWindowConstructionsSimplified::p_inst = nullptr;
 
     CWindowConstructionsSimplified &CWindowConstructionsSimplified::instance()
     {

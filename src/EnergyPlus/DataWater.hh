@@ -67,44 +67,44 @@ namespace DataWater {
 
     // MODULE PARAMETER DEFINITION
 
-    extern int const ScheduledTankTemp;      // tank water temperature is user input via schedule
-    extern int const TankZoneThermalCoupled; // tank water temperature is modeled using simple UA
+    thread_local extern int const ScheduledTankTemp;      // tank water temperature is user input via schedule
+    thread_local extern int const TankZoneThermalCoupled; // tank water temperature is modeled using simple UA
 
-    extern int const RainSchedDesign; // mode of Rainfall determination is Scheduled Design
-    extern int const IrrSchedDesign;  // mode of Irrigation determination is Scheduled Design (DJS -PSU)
-    extern int const IrrSmartSched;   // mode of irrigation DJS - PSU
+    thread_local extern int const RainSchedDesign; // mode of Rainfall determination is Scheduled Design
+    thread_local extern int const IrrSchedDesign;  // mode of Irrigation determination is Scheduled Design (DJS -PSU)
+    thread_local extern int const IrrSmartSched;   // mode of irrigation DJS - PSU
 
-    extern int const ConstantRainLossFactor;
-    extern int const ScheduledRainLossFactor;
+    thread_local extern int const ConstantRainLossFactor;
+    thread_local extern int const ScheduledRainLossFactor;
 
-    extern int const AmbientTempSchedule; // ambient temperature around tank (or HPWH inlet air) is scheduled
-    extern int const AmbientTempZone;     // tank is located in a zone or HPWH inlet air is zone air only
-    extern int const AmbientTempExterior; // tank is located outdoors or HPWH inlet air is outdoor air only
+    thread_local extern int const AmbientTempSchedule; // ambient temperature around tank (or HPWH inlet air) is scheduled
+    thread_local extern int const AmbientTempZone;     // tank is located in a zone or HPWH inlet air is zone air only
+    thread_local extern int const AmbientTempExterior; // tank is located outdoors or HPWH inlet air is outdoor air only
 
-    extern int const ConstantWaterTable;
-    extern int const ScheduledWaterTable;
+    thread_local extern int const ConstantWaterTable;
+    thread_local extern int const ScheduledWaterTable;
 
-    extern int const NoControlLevel;
-    extern int const MainsFloatValve;
-    extern int const WellFloatValve;
-    extern int const WellFloatMainsBackup;
-    extern int const OtherTankFloatValve;
-    extern int const TankMainsBackup;
+    thread_local extern int const NoControlLevel;
+    thread_local extern int const MainsFloatValve;
+    thread_local extern int const WellFloatValve;
+    thread_local extern int const WellFloatMainsBackup;
+    thread_local extern int const OtherTankFloatValve;
+    thread_local extern int const TankMainsBackup;
 
-    extern int const OverflowDiscarded;
-    extern int const OverflowToTank;
+    thread_local extern int const OverflowDiscarded;
+    thread_local extern int const OverflowToTank;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumWaterStorageTanks; // number of water Storage tanks in model
-    extern int NumRainCollectors;    // number of rainfall collectors in model
-    extern int NumGroundWaterWells;  // number of
-    extern int NumSiteRainFall;
-    extern int NumIrrigation;              // DJS PSU Dec 2006 number of irrigation descriptions (1 allowed)
-    extern bool AnyWaterSystemsInModel;    // control flag set true if any water systems
-    extern bool WaterSystemGetInputCalled; // set true once input data gotten.
-    extern bool AnyIrrigationInModel;      // control flag set true if irrigation input for ecoroof DJS PSU Dec 2006
+    thread_local extern int NumWaterStorageTanks; // number of water Storage tanks in model
+    thread_local extern int NumRainCollectors;    // number of rainfall collectors in model
+    thread_local extern int NumGroundWaterWells;  // number of
+    thread_local extern int NumSiteRainFall;
+    thread_local extern int NumIrrigation;              // DJS PSU Dec 2006 number of irrigation descriptions (1 allowed)
+    thread_local extern bool AnyWaterSystemsInModel;    // control flag set true if any water systems
+    thread_local extern bool WaterSystemGetInputCalled; // set true once input data gotten.
+    thread_local extern bool AnyIrrigationInModel;      // control flag set true if irrigation input for ecoroof DJS PSU Dec 2006
 
     // Types
 
@@ -280,13 +280,13 @@ namespace DataWater {
     };
 
     // Object Data
-    extern SiteRainFallDataStruct
+    thread_local extern SiteRainFallDataStruct
         RainFall; // type of rainfall modeling | design annual rain | rain sched id | nominal annual rain | current rate | current amount
-    extern IrrigationDataStruct
+    thread_local extern IrrigationDataStruct
         Irrigation; // type of irrigation modeling | Irrigation schedule id | scheduled amount | actual amount | irrigation threshold
-    extern Array1D<StorageTankDataStruct> WaterStorage;
-    extern Array1D<RainfallCollectorDataStruct> RainCollector;
-    extern Array1D<GroundwaterWellDataStruct> GroundwaterWell;
+    thread_local extern Array1D<StorageTankDataStruct> WaterStorage;
+    thread_local extern Array1D<RainfallCollectorDataStruct> RainCollector;
+    thread_local extern Array1D<GroundwaterWellDataStruct> GroundwaterWell;
 
 } // namespace DataWater
 

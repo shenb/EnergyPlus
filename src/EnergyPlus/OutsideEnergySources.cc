@@ -103,11 +103,11 @@ namespace OutsideEnergySources {
     using PlantUtilities::ScanPlantLoopsForObject;
 
     // MODULE PARAMETER DEFINITIONS
-    int const EnergyType_DistrictHeating(1);
-    int const EnergyType_DistrictCooling(2);
+    thread_local int const EnergyType_DistrictHeating(1);
+    thread_local int const EnergyType_DistrictCooling(2);
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumDistrictUnits(0);
+    thread_local int NumDistrictUnits(0);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OutsideEnergySources
     namespace {
@@ -116,12 +116,12 @@ namespace OutsideEnergySources {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool SimOutsideEnergyGetInputFlag(true);
+        thread_local bool SimOutsideEnergyGetInputFlag(true);
     } // namespace
     // Object Data
-    Array1D<OutsideEnergySourceSpecs> EnergySource;
-    Array1D<ReportVars> EnergySourceReport;
-    std::unordered_map<std::string, std::string> EnergySourceUniqueNames;
+    thread_local Array1D<OutsideEnergySourceSpecs> EnergySource;
+    thread_local Array1D<ReportVars> EnergySourceReport;
+    thread_local std::unordered_map<std::string, std::string> EnergySourceUniqueNames;
 
     // Functions
     void clear_state()
@@ -247,7 +247,7 @@ namespace OutsideEnergySources {
         int NumDistrictUnitsHeat;
         int NumDistrictUnitsCool;
         int IndexCounter;
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
 
         // GET NUMBER OF ALL EQUIPMENT TYPES
         cCurrentModuleObject = "DistrictHeating";
@@ -499,7 +499,7 @@ namespace OutsideEnergySources {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int TempTypeFlag(0);
-        static Real64 TempPlantMdot(0.0); // local copy of plant flow
+        thread_local static Real64 TempPlantMdot(0.0); // local copy of plant flow
         int LoopNum;
         int LoopSideNum;
         int BranchIndex;
@@ -721,7 +721,7 @@ namespace OutsideEnergySources {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SimDistrictEnergy");
+        thread_local static std::string const RoutineName("SimDistrictEnergy");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

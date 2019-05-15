@@ -63,39 +63,39 @@ namespace DemandManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const ManagerTypeExtLights;
-    extern int const ManagerTypeLights;
-    extern int const ManagerTypeElecEquip;
-    extern int const ManagerTypeThermostats;
-    extern int const ManagerTypeVentilation;
+    thread_local extern int const ManagerTypeExtLights;
+    thread_local extern int const ManagerTypeLights;
+    thread_local extern int const ManagerTypeElecEquip;
+    thread_local extern int const ManagerTypeThermostats;
+    thread_local extern int const ManagerTypeVentilation;
 
-    extern int const ManagerPrioritySequential;
-    extern int const ManagerPriorityOptimal;
-    extern int const ManagerPriorityAll;
+    thread_local extern int const ManagerPrioritySequential;
+    thread_local extern int const ManagerPriorityOptimal;
+    thread_local extern int const ManagerPriorityAll;
 
-    extern int const ManagerLimitOff;
-    extern int const ManagerLimitFixed;
-    extern int const ManagerLimitVariable;
+    thread_local extern int const ManagerLimitOff;
+    thread_local extern int const ManagerLimitFixed;
+    thread_local extern int const ManagerLimitVariable;
 
-    extern int const ManagerSelectionAll;
-    extern int const ManagerSelectionMany;
-    extern int const ManagerSelectionOne;
+    thread_local extern int const ManagerSelectionAll;
+    thread_local extern int const ManagerSelectionMany;
+    thread_local extern int const ManagerSelectionOne;
 
-    extern int const CheckCanReduce;
-    extern int const SetLimit;
-    extern int const ClearLimit;
+    thread_local extern int const CheckCanReduce;
+    thread_local extern int const SetLimit;
+    thread_local extern int const ClearLimit;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumDemandManagerList;
-    extern int NumDemandMgr;
-    extern int DemandManagerExtIterations;
-    extern int DemandManagerHBIterations;
-    extern int DemandManagerHVACIterations;
-    extern bool GetInput; // Flag to prevent input from being read multiple times
+    thread_local extern int NumDemandManagerList;
+    thread_local extern int NumDemandMgr;
+    thread_local extern int DemandManagerExtIterations;
+    thread_local extern int DemandManagerHBIterations;
+    thread_local extern int DemandManagerHVACIterations;
+    thread_local extern bool GetInput; // Flag to prevent input from being read multiple times
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -176,8 +176,8 @@ namespace DemandManager {
     };
 
     // Object Data
-    extern Array1D<DemandManagerListData> DemandManagerList;
-    extern Array1D<DemandManagerData> DemandMgr;
+    thread_local extern Array1D<DemandManagerListData> DemandManagerList;
+    thread_local extern Array1D<DemandManagerData> DemandMgr;
 
     // Functions
 

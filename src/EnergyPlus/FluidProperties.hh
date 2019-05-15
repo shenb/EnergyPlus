@@ -69,24 +69,24 @@ namespace FluidProperties {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern std::string const Refrig;
-    extern std::string const Glycol;
-    extern std::string const Pressure;
-    extern std::string const Enthalpy;
-    extern std::string const Density;
-    extern std::string const SpecificHeat;
-    extern std::string const Conductivity;
-    extern std::string const Viscosity;
-    extern std::string const Fluid;
-    extern std::string const GasFluid;
-    extern std::string const Water;
-    extern std::string const Steam;
-    extern std::string const EthyleneGlycol;
-    extern std::string const PropyleneGlycol;
-    extern int const EthyleneGlycolIndex;
-    extern int const PropyleneGlycolIndex;
-    extern int const iRefrig;
-    extern int const iGlycol;
+    thread_local extern std::string const Refrig;
+    thread_local extern std::string const Glycol;
+    thread_local extern std::string const Pressure;
+    thread_local extern std::string const Enthalpy;
+    thread_local extern std::string const Density;
+    thread_local extern std::string const SpecificHeat;
+    thread_local extern std::string const Conductivity;
+    thread_local extern std::string const Viscosity;
+    thread_local extern std::string const Fluid;
+    thread_local extern std::string const GasFluid;
+    thread_local extern std::string const Water;
+    thread_local extern std::string const Steam;
+    thread_local extern std::string const EthyleneGlycol;
+    thread_local extern std::string const PropyleneGlycol;
+    thread_local extern int const EthyleneGlycolIndex;
+    thread_local extern int const PropyleneGlycolIndex;
+    thread_local extern int const iRefrig;
+    thread_local extern int const iGlycol;
 
     // DERIVED TYPE DEFINITIONS
 
@@ -94,18 +94,18 @@ namespace FluidProperties {
     // na
 
     // MODULE VARIABLE DECLARATIONS
-    extern bool GetInput;         // Used to get the input once only
-    extern int NumOfRefrigerants; // Total number of refrigerants input by user
-    extern int NumOfGlycols;      // Total number of glycols input by user
-    extern bool DebugReportGlycols;
-    extern bool DebugReportRefrigerants;
-    extern int GlycolErrorLimitTest;      // how many times error is printed with details before recurring called
-    extern int RefrigerantErrorLimitTest; // how many times error is printed with details before recurring called
-    extern Array1D_bool RefrigUsed;
-    extern Array1D_bool GlycolUsed;
-    extern int FluidIndex_Water;
-    extern int FluidIndex_EthyleneGlycol;
-    extern int FluidIndex_PropoleneGlycol;
+    thread_local extern bool GetInput;         // Used to get the input once only
+    thread_local extern int NumOfRefrigerants; // Total number of refrigerants input by user
+    thread_local extern int NumOfGlycols;      // Total number of glycols input by user
+    thread_local extern bool DebugReportGlycols;
+    thread_local extern bool DebugReportRefrigerants;
+    thread_local extern int GlycolErrorLimitTest;      // how many times error is printed with details before recurring called
+    thread_local extern int RefrigerantErrorLimitTest; // how many times error is printed with details before recurring called
+    thread_local extern Array1D_bool RefrigUsed;
+    thread_local extern Array1D_bool GlycolUsed;
+    thread_local extern int FluidIndex_Water;
+    thread_local extern int FluidIndex_EthyleneGlycol;
+    thread_local extern int FluidIndex_PropoleneGlycol;
 
     // ACCESSIBLE SPECIFICATIONS OF MODULE SUBROUTINES OR FUNCTONS:
 
@@ -345,11 +345,11 @@ namespace FluidProperties {
     };
 
     // Object Data
-    extern Array1D<FluidPropsRefrigerantData> RefrigData;
-    extern Array1D<FluidPropsRefrigErrors> RefrigErrorTracking;
-    extern Array1D<FluidPropsGlycolRawData> GlyRawData;
-    extern Array1D<FluidPropsGlycolData> GlycolData;
-    extern Array1D<FluidPropsGlycolErrors> GlycolErrorTracking;
+    thread_local extern Array1D<FluidPropsRefrigerantData> RefrigData;
+    thread_local extern Array1D<FluidPropsRefrigErrors> RefrigErrorTracking;
+    thread_local extern Array1D<FluidPropsGlycolRawData> GlyRawData;
+    thread_local extern Array1D<FluidPropsGlycolData> GlycolData;
+    thread_local extern Array1D<FluidPropsGlycolErrors> GlycolErrorTracking;
 
     // Functions
 
@@ -545,7 +545,7 @@ namespace FluidProperties {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 const TempToler(0.001); // Some reasonable value for comparisons
+        thread_local static Real64 const TempToler(0.001); // Some reasonable value for comparisons
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

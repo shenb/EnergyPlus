@@ -176,10 +176,10 @@ namespace HeatBalanceManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    static std::string const BlankString;
-    static gio::Fmt fmtA("(A)");
+    thread_local static std::string const BlankString;
+    thread_local static gio::Fmt fmtA("(A)");
 
-    Array1D_string const PassFail(2, {"Fail", "Pass"});
+    thread_local Array1D_string const PassFail(2, {"Fail", "Pass"});
 
     // DERIVED TYPE DEFINITIONS
 
@@ -191,38 +191,38 @@ namespace HeatBalanceManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool ManageHeatBalanceGetInputFlag(true);
+        thread_local bool ManageHeatBalanceGetInputFlag(true);
     } // namespace
 
     // Real Variables for the Heat Balance Simulation
     // Variables used to determine warmup convergence
-    Array1D<Real64> MaxCoolLoadPrevDay; // Max cooling load from the previous day
-    Array1D<Real64> MaxCoolLoadZone;    // Maximum zone cooling load from the current day
-    Array1D<Real64> MaxHeatLoadPrevDay; // Max heating load from the previous day
-    Array1D<Real64> MaxHeatLoadZone;    // Maximum zone heating load from the current day
-    Array1D<Real64> MaxTempPrevDay;     // Max temperature from the previous day
-    Array1D<Real64> MaxTempZone;        // Maximum zone temperature from the current day
-    Array1D<Real64> MinTempPrevDay;     // Min temperature from the previous day
-    Array1D<Real64> MinTempZone;        // Minimum zone temperature from the current day
+    thread_local Array1D<Real64> MaxCoolLoadPrevDay; // Max cooling load from the previous day
+    thread_local Array1D<Real64> MaxCoolLoadZone;    // Maximum zone cooling load from the current day
+    thread_local Array1D<Real64> MaxHeatLoadPrevDay; // Max heating load from the previous day
+    thread_local Array1D<Real64> MaxHeatLoadZone;    // Maximum zone heating load from the current day
+    thread_local Array1D<Real64> MaxTempPrevDay;     // Max temperature from the previous day
+    thread_local Array1D<Real64> MaxTempZone;        // Maximum zone temperature from the current day
+    thread_local Array1D<Real64> MinTempPrevDay;     // Min temperature from the previous day
+    thread_local Array1D<Real64> MinTempZone;        // Minimum zone temperature from the current day
 
     // Variables used to report difference in temperature and load from the last two warmup days
-    Array1D<Real64> WarmupTempDiff;     // Temperature difference between the last two warmup days
-    Array1D<Real64> WarmupLoadDiff;     // Zone load differences between the last two warmup days
-    Array1D<Real64> TempZoneSecPrevDay; // Zone air temperature from the second last warmup day
-    Array1D<Real64> LoadZoneSecPrevDay; // Zone load from the second last warmup day
-    Array1D<Real64> TempZonePrevDay;    // Zone air temperature from the previous day
-    Array1D<Real64> LoadZonePrevDay;    // Zone load from the previuos day
-    Array1D<Real64> TempZone;           // Zone air temperature from the current warmup day
-    Array1D<Real64> LoadZone;           // Zone load from the current warmup day
+    thread_local Array1D<Real64> WarmupTempDiff;     // Temperature difference between the last two warmup days
+    thread_local Array1D<Real64> WarmupLoadDiff;     // Zone load differences between the last two warmup days
+    thread_local Array1D<Real64> TempZoneSecPrevDay; // Zone air temperature from the second last warmup day
+    thread_local Array1D<Real64> LoadZoneSecPrevDay; // Zone load from the second last warmup day
+    thread_local Array1D<Real64> TempZonePrevDay;    // Zone air temperature from the previous day
+    thread_local Array1D<Real64> LoadZonePrevDay;    // Zone load from the previuos day
+    thread_local Array1D<Real64> TempZone;           // Zone air temperature from the current warmup day
+    thread_local Array1D<Real64> LoadZone;           // Zone load from the current warmup day
 
-    Array2D<Real64> TempZoneRpt;       // Zone air temperature to report (average over all warmup days)
-    Array1D<Real64> TempZoneRptStdDev; // Zone air temperature to report (std dev over all warmup days)
-    Array2D<Real64> LoadZoneRpt;       // Zone load to report (average over all warmup days)
-    Array1D<Real64> LoadZoneRptStdDev; // Zone load to report (std dev over all warmup days)
-    Array2D<Real64> MaxLoadZoneRpt;    // Maximum zone load for reporting calcs
-    int CountWarmupDayPoints;          // Count of warmup timesteps (to achieve warmup)
+    thread_local Array2D<Real64> TempZoneRpt;       // Zone air temperature to report (average over all warmup days)
+    thread_local Array1D<Real64> TempZoneRptStdDev; // Zone air temperature to report (std dev over all warmup days)
+    thread_local Array2D<Real64> LoadZoneRpt;       // Zone load to report (average over all warmup days)
+    thread_local Array1D<Real64> LoadZoneRptStdDev; // Zone load to report (std dev over all warmup days)
+    thread_local Array2D<Real64> MaxLoadZoneRpt;    // Maximum zone load for reporting calcs
+    thread_local int CountWarmupDayPoints;          // Count of warmup timesteps (to achieve warmup)
 
-    std::string CurrentModuleObject; // to assist in getting input
+    thread_local std::string CurrentModuleObject; // to assist in getting input
 
     // Subroutine Specifications for the Heat Balance Module
     // Driver Routines
@@ -236,9 +236,9 @@ namespace HeatBalanceManager {
     // Reporting routines for module
 
     // Object Data
-    Array1D<WarmupConvergence> WarmupConvergenceValues;
-    std::unordered_map<std::string, std::string> UniqueMaterialNames;
-    std::unordered_map<std::string, std::string> UniqueConstructNames;
+    thread_local Array1D<WarmupConvergence> WarmupConvergenceValues;
+    thread_local std::unordered_map<std::string, std::string> UniqueMaterialNames;
+    thread_local std::unordered_map<std::string, std::string> UniqueConstructNames;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -430,7 +430,7 @@ namespace HeatBalanceManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // If errors detected in input
+        thread_local static bool ErrorsFound(false); // If errors detected in input
         bool ValidSimulationWithNoZones;
 
         std::cout << "get heat balance input" << std::endl;
@@ -494,7 +494,7 @@ namespace HeatBalanceManager {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const NumConstrObjects(6);
-        static Array1D_string const ConstrObjects(NumConstrObjects,
+        thread_local static Array1D_string const ConstrObjects(NumConstrObjects,
                                                   {"Pipe:Indoor",
                                                    "Pipe:Outdoor",
                                                    "Pipe:Underground",
@@ -682,7 +682,7 @@ namespace HeatBalanceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetProjectControlData: ");
+        thread_local static std::string const RoutineName("GetProjectControlData: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -700,27 +700,27 @@ namespace HeatBalanceManager {
         std::string::size_type TMP;
 
         // Formats
-        static gio::Fmt Format_721("('! <Building Information>, Building Name,North Axis {deg},Terrain, ',' Loads Convergence Tolerance "
+        thread_local static gio::Fmt Format_721("('! <Building Information>, Building Name,North Axis {deg},Terrain, ',' Loads Convergence Tolerance "
                                    "Value,Temperature Convergence Tolerance Value, ',' Solar Distribution,Maximum Number of Warmup Days,Minimum "
                                    "Number of Warmup Days')");
-        static gio::Fmt Format_720("(' Building Information',8(',',A))");
-        static gio::Fmt Format_722("('! <Inside Convection Algorithm>, Algorithm {Simple | TARP | CeilingDiffuser | "
+        thread_local static gio::Fmt Format_720("(' Building Information',8(',',A))");
+        thread_local static gio::Fmt Format_722("('! <Inside Convection Algorithm>, Algorithm {Simple | TARP | CeilingDiffuser | "
                                    "AdaptiveConvectionAlgorithm}',/,'Inside Convection Algorithm,',A)");
-        static gio::Fmt Format_723("('! <Outside Convection Algorithm>, ','Algorithm {SimpleCombined | TARP | MoWitt | DOE-2 | "
+        thread_local static gio::Fmt Format_723("('! <Outside Convection Algorithm>, ','Algorithm {SimpleCombined | TARP | MoWitt | DOE-2 | "
                                    "AdaptiveConvectionAlgorithm}',/,'Outside Convection Algorithm,',A)");
-        static gio::Fmt Format_724("('! <Sky Radiance Distribution>, Value {Anisotropic}',/,'Sky Radiance Distribution,Anisotropic')");
-        static gio::Fmt Format_726("('! <Zone Air Solution Algorithm>, Value {ThirdOrderBackwardDifference | AnalyticalSolution | EulerMethod}')");
-        static gio::Fmt Format_727("(' Zone Air Solution Algorithm, ',A)");
-        static gio::Fmt Format_728("('! <Zone Air Carbon Dioxide Balance Simulation>, Simulation {Yes/No}, Carbon Dioxide Concentration')");
-        static gio::Fmt Format_730("(' Zone Air Carbon Dioxide Balance Simulation, ',A,',',A)");
-        static gio::Fmt Format_729("('! <Zone Air Generic Contaminant Balance Simulation>, Simulation {Yes/No}, Generic Contaminant Concentration')");
-        static gio::Fmt Format_731("(' Zone Air Generic Contaminant Balance Simulation, ',A,',',A)");
-        static gio::Fmt Format_732("('! <Zone Air Mass Flow Balance Simulation>, Enforce Mass Balance, Adjust Zone Mixing, Adjust Zone Infiltration "
+        thread_local static gio::Fmt Format_724("('! <Sky Radiance Distribution>, Value {Anisotropic}',/,'Sky Radiance Distribution,Anisotropic')");
+        thread_local static gio::Fmt Format_726("('! <Zone Air Solution Algorithm>, Value {ThirdOrderBackwardDifference | AnalyticalSolution | EulerMethod}')");
+        thread_local static gio::Fmt Format_727("(' Zone Air Solution Algorithm, ',A)");
+        thread_local static gio::Fmt Format_728("('! <Zone Air Carbon Dioxide Balance Simulation>, Simulation {Yes/No}, Carbon Dioxide Concentration')");
+        thread_local static gio::Fmt Format_730("(' Zone Air Carbon Dioxide Balance Simulation, ',A,',',A)");
+        thread_local static gio::Fmt Format_729("('! <Zone Air Generic Contaminant Balance Simulation>, Simulation {Yes/No}, Generic Contaminant Concentration')");
+        thread_local static gio::Fmt Format_731("(' Zone Air Generic Contaminant Balance Simulation, ',A,',',A)");
+        thread_local static gio::Fmt Format_732("('! <Zone Air Mass Flow Balance Simulation>, Enforce Mass Balance, Adjust Zone Mixing, Adjust Zone Infiltration "
                                    "{AddInfiltration | AdjustInfiltration | None}, Infiltration Zones {MixingSourceZonesOnly | AllZones}')");
-        static gio::Fmt Format_733("(' Zone Air Mass Flow Balance Simulation, ',A,',',A,',',A,',',A)");
-        static gio::Fmt Format_734(
+        thread_local static gio::Fmt Format_733("(' Zone Air Mass Flow Balance Simulation, ',A,',',A,',',A,',',A)");
+        thread_local static gio::Fmt Format_734(
             "('! <HVACSystemRootFindingAlgorithm>, Value {RegulaFalsi | Bisection | BisectionThenRegulaFalsi | RegulaFalsiThenBisection}')");
-        static gio::Fmt Format_735("(' HVACSystemRootFindingAlgorithm, ',A)");
+        thread_local static gio::Fmt Format_735("(' HVACSystemRootFindingAlgorithm, ',A)");
 
         // Assign the values to the building data
 
@@ -1413,7 +1413,7 @@ namespace HeatBalanceManager {
         Array1D<Real64> NumArray(3); // Numeric data
 
         // Formats
-        static gio::Fmt Format_720("('Environment:Site Atmospheric Variation',3(',',A))");
+        thread_local static gio::Fmt Format_720("('Environment:Site Atmospheric Variation',3(',',A))");
 
         // FLOW:
         CurrentModuleObject = "Site:HeightVariation";
@@ -1536,7 +1536,7 @@ namespace HeatBalanceManager {
         Real64 ReflectivityVis;   // Glass reflectivity, visible
         Real64 TransmittivitySol; // Glass transmittivity, solar
         Real64 TransmittivityVis; // Glass transmittivity, visible
-        static bool DoReport(false);
+        thread_local static bool DoReport(false);
         Real64 DenomRGas;   // Denominator for WindowGas calculations of NominalR
         Real64 Openness;    // insect screen openness fraction = (1-d/s)^2
         Real64 minAngValue; // minimum value of angle
@@ -1545,16 +1545,16 @@ namespace HeatBalanceManager {
         Real64 maxLamValue; // maximum value of wavelength
 
         // Added TH 1/9/2009 to read the thermochromic glazings
-        static int iTC(0);
-        static int iMat(0);
+        thread_local static int iTC(0);
+        thread_local static int iMat(0);
 
         // Added TH 7/27/2009 for constructions defined with F or C factor method
         int TotFfactorConstructs; // Number of slabs-on-grade or underground floor constructions defined with F factors
         int TotCfactorConstructs; // Number of underground wall constructions defined with C factors
 
         // Formats
-        static gio::Fmt Format_701("(' Material Details',10(',',A))");
-        static gio::Fmt Format_702("(' Material:Air',2(',',A))");
+        thread_local static gio::Fmt Format_701("(' Material Details',10(',',A))");
+        thread_local static gio::Fmt Format_702("(' Material:Air',2(',',A))");
 
         // FLOW:
 
@@ -3948,7 +3948,7 @@ namespace HeatBalanceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetWindowGlassSpectralData: ");
+        thread_local static std::string const RoutineName("GetWindowGlassSpectralData: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -4189,7 +4189,7 @@ namespace HeatBalanceManager {
         bool ConstructionFound;   // True if input window construction name is found in the
         //  Window5 data file
         bool EOFonW5File; // True if EOF encountered reading Window5 data file
-        static bool NoRegularMaterialsUsed(true);
+        thread_local static bool NoRegularMaterialsUsed(true);
         int MaterialLayerGroup; // window construction layer material group index
 
         int iMatGlass; // number of glass layers
@@ -4658,7 +4658,7 @@ namespace HeatBalanceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetZoneData: ");
+        thread_local static std::string const RoutineName("GetZoneData: ");
         //  INTEGER, PARAMETER :: MaxZonesInList = 100 ! This is to allow DIMENSIONing below
 
         // INTERFACE BLOCK SPECIFICATIONS:
@@ -4905,7 +4905,7 @@ namespace HeatBalanceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetZoneLocalEnvData: ");
+        thread_local static std::string const RoutineName("GetZoneLocalEnvData: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:na
         // DERIVED TYPE DEFINITIONS:na
@@ -5029,7 +5029,7 @@ namespace HeatBalanceManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ProcessZoneData: ");
+        thread_local static std::string const RoutineName("ProcessZoneData: ");
         //  INTEGER, PARAMETER :: MaxZonesInList = 100 ! This is to allow DIMENSIONing below
 
         // INTERFACE BLOCK SPECIFICATIONS:
@@ -5205,7 +5205,7 @@ namespace HeatBalanceManager {
         int StormWinNum; // Number of StormWindow object
         int SurfNum;     // Surface number
         int ZoneNum;
-        static bool ChangeSet(true); // Toggle for checking storm windows
+        thread_local static bool ChangeSet(true); // Toggle for checking storm windows
 
         // FLOW:
 
@@ -5501,11 +5501,11 @@ namespace HeatBalanceManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum;
         int SurfNum;
-        static bool FirstWarmupWrite(true);
+        thread_local static bool FirstWarmupWrite(true);
 
         // Formats
-        static gio::Fmt Format_731("(' Warmup Convergence Information, ',A,',',A,',',A,',',A,',',A)");
-        static gio::Fmt Format_732("('! <Warmup Convergence Information>,Zone Name,Time Step,Hour of Day,Warmup Temperature Difference "
+        thread_local static gio::Fmt Format_731("(' Warmup Convergence Information, ',A,',',A,',',A,',',A,',',A)");
+        thread_local static gio::Fmt Format_732("('! <Warmup Convergence Information>,Zone Name,Time Step,Hour of Day,Warmup Temperature Difference "
                                    "{deltaC},','Warmup Load Difference {W}')");
 
         // FLOW:
@@ -5600,8 +5600,8 @@ namespace HeatBalanceManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum;
-        static bool WarmupConvergenceWarning(false);
-        static bool SizingWarmupConvergenceWarning(false);
+        thread_local static bool WarmupConvergenceWarning(false);
+        thread_local static bool SizingWarmupConvergenceWarning(false);
         bool ConvergenceChecksFailed;
 
         // Convergence criteria for warmup days:
@@ -5773,7 +5773,7 @@ namespace HeatBalanceManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum;
-        static bool FirstWarmupWrite(true);
+        thread_local static bool FirstWarmupWrite(true);
         Real64 AverageZoneTemp;
         Real64 AverageZoneLoad;
         Real64 StdDevZoneTemp;
@@ -5782,11 +5782,11 @@ namespace HeatBalanceManager {
         int Num; // loop control
 
         // Formats
-        static gio::Fmt Format_730("('! <Warmup Convergence Information>,Zone Name,Environment Type/Name,','Average Warmup Temperature Difference "
+        thread_local static gio::Fmt Format_730("('! <Warmup Convergence Information>,Zone Name,Environment Type/Name,','Average Warmup Temperature Difference "
                                    "{deltaC},','Std Dev Warmup Temperature Difference {deltaC},Max Temperature Pass/Fail Convergence,','Min "
                                    "Temperature Pass/Fail Convergence,Average Warmup Load Difference {W},Std Dev Warmup Load Difference "
                                    "{W},','Heating Load Pass/Fail Convergence,Cooling Load Pass/Fail Convergence')");
-        static gio::Fmt Format_731("(' Warmup Convergence Information',10(',',A))");
+        thread_local static gio::Fmt Format_731("(' Warmup Convergence Information',10(',',A))");
 
         if (!WarmupFlag) { // Report out average/std dev
             // Write Warmup Convervence Information to the initialization output file
@@ -5874,9 +5874,9 @@ namespace HeatBalanceManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt EndOfHeaderFormat("('End of Data Dictionary')");          // End of data dictionary marker
-        static gio::Fmt EnvironmentStampFormat("(a,',',a,3(',',f7.2),',',f7.2)"); // Format descriptor for environ stamp
-        static gio::Fmt EndOfDataFormat("(\"End of Data\")");                     // Signifies the end of the data block in the output file
+        thread_local static gio::Fmt EndOfHeaderFormat("('End of Data Dictionary')");          // End of data dictionary marker
+        thread_local static gio::Fmt EnvironmentStampFormat("(a,',',a,3(',',f7.2),',',f7.2)"); // Format descriptor for environ stamp
+        thread_local static gio::Fmt EndOfDataFormat("(\"End of Data\")");                     // Signifies the end of the data block in the output file
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -5962,8 +5962,8 @@ namespace HeatBalanceManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int write_stat;
         int SurfNum;
-        static gio::Fmt ShdFracFmtName("(A, A)");
-        static gio::Fmt fmtN("('\n')");
+        thread_local static gio::Fmt ShdFracFmtName("(A, A)");
+        thread_local static gio::Fmt fmtN("('\n')");
 
         OutputFileShadingFrac = GetNewUnitNumber();
         {
@@ -6161,10 +6161,10 @@ namespace HeatBalanceManager {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const NumName(5, {"1", "2", "3", "4", "5"});
+        thread_local static Array1D_string const NumName(5, {"1", "2", "3", "4", "5"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int W5DataFileNum;
+        thread_local static int W5DataFileNum;
         int FileLineCount;            // counter for number of lines read (used in some error messages)
         Array1D_string DataLine(100); // Array of data lines
         std::string NextLine;         // Line of data
@@ -7478,7 +7478,7 @@ namespace HeatBalanceManager {
         using ScheduleManager::GetScheduleIndex;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetScheduledSurfaceGains: ");
+        thread_local static std::string const RoutineName("GetScheduledSurfaceGains: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumArgs;
@@ -7808,10 +7808,10 @@ namespace HeatBalanceManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         int Loop;
-        static int iTC(0);
-        static int iMat(0);
-        static int NumNewConst(0);
-        static int iTCG(0);
+        thread_local static int iTC(0);
+        thread_local static int iMat(0);
+        thread_local static int NumNewConst(0);
+        thread_local static int iTCG(0);
 
         NumNewConst = 0;
         for (Loop = 1; Loop <= TotConstructs; ++Loop) {
@@ -7890,19 +7890,19 @@ namespace HeatBalanceManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Real64 Riw(0.0);            // thermal resistance of interior film coefficient under winter conditions (m2-K/W)
-        static Real64 Row(0.0);            // theraml resistance of exterior film coefficient under winter conditions (m2-K/W)
-        static Real64 Rlw(0.0);            // thermal resistance of block model layer (m2-K/W)
-        static Real64 Ris(0.0);            // thermal resistance of interior film coefficient under summer conditions (m2-K/W)
-        static Real64 Ros(0.0);            // theraml resistance of exterior film coefficient under summer conditions (m2-K/W)
-        static Real64 InflowFraction(0.0); // inward flowing fraction for SHGC, intermediate value non dimensional
-        static Real64 SolarAbsorb(0.0);    // solar aborptance
-        static bool ErrorsFound(false);
-        static Real64 TsolLowSide(0.0);      // intermediate solar transmission for interpolating
-        static Real64 TsolHiSide(0.0);       // intermediate solar transmission for interpolating
-        static Real64 DeltaSHGCandTsol(0.0); // intermediate difference
-        static Real64 RLowSide(0.0);
-        static Real64 RHiSide(0.0);
+        thread_local static Real64 Riw(0.0);            // thermal resistance of interior film coefficient under winter conditions (m2-K/W)
+        thread_local static Real64 Row(0.0);            // theraml resistance of exterior film coefficient under winter conditions (m2-K/W)
+        thread_local static Real64 Rlw(0.0);            // thermal resistance of block model layer (m2-K/W)
+        thread_local static Real64 Ris(0.0);            // thermal resistance of interior film coefficient under summer conditions (m2-K/W)
+        thread_local static Real64 Ros(0.0);            // theraml resistance of exterior film coefficient under summer conditions (m2-K/W)
+        thread_local static Real64 InflowFraction(0.0); // inward flowing fraction for SHGC, intermediate value non dimensional
+        thread_local static Real64 SolarAbsorb(0.0);    // solar aborptance
+        thread_local static bool ErrorsFound(false);
+        thread_local static Real64 TsolLowSide(0.0);      // intermediate solar transmission for interpolating
+        thread_local static Real64 TsolHiSide(0.0);       // intermediate solar transmission for interpolating
+        thread_local static Real64 DeltaSHGCandTsol(0.0); // intermediate difference
+        thread_local static Real64 RLowSide(0.0);
+        thread_local static Real64 RHiSide(0.0);
 
         // first fill out defaults
         Material(MaterNum).GlassSpectralDataPtr = 0;
@@ -8073,7 +8073,7 @@ namespace HeatBalanceManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS
-        static std::string const RoutineName("SetupComplexFenestrationMaterialInput: ");
+        thread_local static std::string const RoutineName("SetupComplexFenestrationMaterialInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Array1D_string MaterialNames(5);   // Number of Material Alpha names defined
@@ -8457,7 +8457,7 @@ namespace HeatBalanceManager {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SetupComlexFenestrationStateInput: ");
+        thread_local static std::string const RoutineName("SetupComlexFenestrationStateInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // The following moved to DataBSDFWindow module:

@@ -104,39 +104,39 @@ namespace DataHeatBalance {
     // MODULE PARAMETER DEFINITIONS:
 
     // Parameters for the definition and limitation of arrays:
-    int const MaxLayersInConstruct(11); // Maximum number of layers allowed in a single construction
-    int const MaxCTFTerms(
+    thread_local int const MaxLayersInConstruct(11); // Maximum number of layers allowed in a single construction
+    thread_local int const MaxCTFTerms(
         19); // Maximum number of CTF terms allowed to still allow stability //Note Sync with SurfaceGroundHeatExchanger::local::MaxCTFTerms
-    int MaxSolidWinLayers(0);               // Maximum number of solid layers in a window construction
+    thread_local int MaxSolidWinLayers(0);               // Maximum number of solid layers in a window construction
                                             // ** has to be big enough to hold no matter what window model
                                             //    each window model should validate layers individually
-    int const MaxSpectralDataElements(800); // Maximum number in Spectral Data arrays.
+    thread_local int const MaxSpectralDataElements(800); // Maximum number in Spectral Data arrays.
 
     // Parameters to indicate material group type for use with the Material
     // derived type (see below):
 
-    int const RegularMaterial(0);
-    int const Air(1);
-    int const Shade(2);
-    int const WindowGlass(3);
-    int const WindowGas(4);
-    int const WindowBlind(5);
-    int const WindowGasMixture(6);
-    int const Screen(7);
-    int const EcoRoof(8);
-    int const IRTMaterial(9);
-    int const WindowSimpleGlazing(10);
-    int const ComplexWindowShade(11);
-    int const ComplexWindowGap(12);
+    thread_local int const RegularMaterial(0);
+    thread_local int const Air(1);
+    thread_local int const Shade(2);
+    thread_local int const WindowGlass(3);
+    thread_local int const WindowGas(4);
+    thread_local int const WindowBlind(5);
+    thread_local int const WindowGasMixture(6);
+    thread_local int const Screen(7);
+    thread_local int const EcoRoof(8);
+    thread_local int const IRTMaterial(9);
+    thread_local int const WindowSimpleGlazing(10);
+    thread_local int const ComplexWindowShade(11);
+    thread_local int const ComplexWindowGap(12);
 
-    int const GlassEquivalentLayer(13);
-    int const ShadeEquivalentLayer(14);
-    int const DrapeEquivalentLayer(15);
-    int const BlindEquivalentLayer(16);
-    int const ScreenEquivalentLayer(17);
-    int const GapEquivalentLayer(18);
+    thread_local int const GlassEquivalentLayer(13);
+    thread_local int const ShadeEquivalentLayer(14);
+    thread_local int const DrapeEquivalentLayer(15);
+    thread_local int const BlindEquivalentLayer(16);
+    thread_local int const ScreenEquivalentLayer(17);
+    thread_local int const GapEquivalentLayer(18);
 
-    Array1D_string const cMaterialGroupType({-1, 18},
+    thread_local Array1D_string const cMaterialGroupType({-1, 18},
                                             {"invalid",
                                              "Material/Material:NoMass",
                                              "Material:AirGap",
@@ -161,32 +161,32 @@ namespace DataHeatBalance {
     // Parameters to indicate surface roughness for use with the Material
     // derived type (see below):
 
-    int const VeryRough(1);
-    int const Rough(2);
-    int const MediumRough(3);
-    int const MediumSmooth(4);
-    int const Smooth(5);
-    int const VerySmooth(6);
+    thread_local int const VeryRough(1);
+    thread_local int const Rough(2);
+    thread_local int const MediumRough(3);
+    thread_local int const MediumSmooth(4);
+    thread_local int const Smooth(5);
+    thread_local int const VerySmooth(6);
 
     // Parameters to indicate blind orientation for use with the Material
     // derived type (see below):
 
-    int const Horizontal(1);
-    int const Vertical(2);
-    int const FixedSlats(1);
-    int const VariableSlats(2);
+    thread_local int const Horizontal(1);
+    thread_local int const Vertical(2);
+    thread_local int const FixedSlats(1);
+    thread_local int const VariableSlats(2);
     // Parameters for Interior and Exterior Solar Distribution
 
-    int const MinimalShadowing(-1);            // all incoming solar hits floor, no exterior shadowing except reveals
-    int const FullExterior(0);                 // all incoming solar hits floor, full exterior shadowing
-    int const FullInteriorExterior(1);         // full interior solar distribution, full exterior solar shadowing
-    int const FullExteriorWithRefl(2);         // all incoming solar hits floor, full exterior shadowing and reflections
-    int const FullInteriorExteriorWithRefl(3); // full interior solar distribution,
+    thread_local int const MinimalShadowing(-1);            // all incoming solar hits floor, no exterior shadowing except reveals
+    thread_local int const FullExterior(0);                 // all incoming solar hits floor, full exterior shadowing
+    thread_local int const FullInteriorExterior(1);         // full interior solar distribution, full exterior solar shadowing
+    thread_local int const FullExteriorWithRefl(2);         // all incoming solar hits floor, full exterior shadowing and reflections
+    thread_local int const FullInteriorExteriorWithRefl(3); // full interior solar distribution,
     // full exterior shadowing and reflections
     // Parameters to indicate the zone type for use with the Zone derived
     // type (see below--Zone%OfType):
 
-    int const StandardZone(1);
+    thread_local int const StandardZone(1);
     // INTEGER, PARAMETER :: PlenumZone = 2
     // INTEGER, PARAMETER :: SolarWallZone = 11  ! from old ZTYP, OSENV
     // INTEGER, PARAMETER :: RoofPondZone = 12   ! from old ZTYP, OSENV
@@ -194,83 +194,83 @@ namespace DataHeatBalance {
     // Parameters to indicate the convection correlation being used for use with
     // InsideConvectionAlgo and OutsideConvectionAlgo
 
-    int const ASHRAESimple(1);
-    int const ASHRAETARP(2);
-    int const CeilingDiffuser(3); // Only valid for inside use
-    int const TrombeWall(4);      // Only valid for inside use
-    int const TarpHcOutside(5);   // Only valid for outside use
-    int const MoWiTTHcOutside(6); // Only valid for outside use
-    int const DOE2HcOutside(7);   // Only valid for outside use
-    int const BLASTHcOutside(8);  // Only valid for outside use
-    int const AdaptiveConvectionAlgorithm(9);
+    thread_local int const ASHRAESimple(1);
+    thread_local int const ASHRAETARP(2);
+    thread_local int const CeilingDiffuser(3); // Only valid for inside use
+    thread_local int const TrombeWall(4);      // Only valid for inside use
+    thread_local int const TarpHcOutside(5);   // Only valid for outside use
+    thread_local int const MoWiTTHcOutside(6); // Only valid for outside use
+    thread_local int const DOE2HcOutside(7);   // Only valid for outside use
+    thread_local int const BLASTHcOutside(8);  // Only valid for outside use
+    thread_local int const AdaptiveConvectionAlgorithm(9);
 
     // Parameters for WarmupDays
-    int const DefaultMaxNumberOfWarmupDays(25); // Default maximum number of warmup days allowed
-    int const DefaultMinNumberOfWarmupDays(6);  // Default minimum number of warmup days allowed
+    thread_local int const DefaultMaxNumberOfWarmupDays(25); // Default maximum number of warmup days allowed
+    thread_local int const DefaultMinNumberOfWarmupDays(6);  // Default minimum number of warmup days allowed
 
     // Parameters for Sky Radiance Distribution
-    int const Isotropic(0);
-    int const Anisotropic(1);
+    thread_local int const Isotropic(0);
+    thread_local int const Anisotropic(1);
 
     // Parameters for HeatTransferAlgosUsed
-    int const UseCTF(1);
-    int const UseEMPD(2);
-    int const UseCondFD(5);
-    int const UseHAMT(6);
+    thread_local int const UseCTF(1);
+    thread_local int const UseEMPD(2);
+    thread_local int const UseCondFD(5);
+    thread_local int const UseHAMT(6);
 
     // Parameters for ZoneAirSolutionAlgo
-    int const Use3rdOrder(0);
-    int const UseAnalyticalSolution(1);
-    int const UseEulerMethod(2);
+    thread_local int const Use3rdOrder(0);
+    thread_local int const UseAnalyticalSolution(1);
+    thread_local int const UseEulerMethod(2);
 
     // Parameter for MRT calculation type
-    int const ZoneAveraged(1);
-    int const SurfaceWeighted(2);
-    int const AngleFactor(3);
+    thread_local int const ZoneAveraged(1);
+    thread_local int const SurfaceWeighted(2);
+    thread_local int const AngleFactor(3);
 
     // Parameters for Ventilation
-    int const NaturalVentilation(0);
-    int const IntakeVentilation(1);
-    int const ExhaustVentilation(2);
-    int const BalancedVentilation(3);
+    thread_local int const NaturalVentilation(0);
+    thread_local int const IntakeVentilation(1);
+    thread_local int const ExhaustVentilation(2);
+    thread_local int const BalancedVentilation(3);
 
     // Parameters for hybrid ventilation using Ventilation and Mixing objects
-    int const HybridControlTypeIndiv(0);
-    int const HybridControlTypeClose(1);
-    int const HybridControlTypeGlobal(2);
+    thread_local int const HybridControlTypeIndiv(0);
+    thread_local int const HybridControlTypeClose(1);
+    thread_local int const HybridControlTypeGlobal(2);
 
     // System type, detailed refrigeration or refrigerated case rack
-    int const RefrigSystemTypeDetailed(1);
-    int const RefrigSystemTypeRack(2);
+    thread_local int const RefrigSystemTypeDetailed(1);
+    thread_local int const RefrigSystemTypeRack(2);
 
     // Refrigeration condenser type
-    int const RefrigCondenserTypeAir(1);
-    int const RefrigCondenserTypeEvap(2);
-    int const RefrigCondenserTypeWater(3);
-    int const RefrigCondenserTypeCascade(4);
+    thread_local int const RefrigCondenserTypeAir(1);
+    thread_local int const RefrigCondenserTypeEvap(2);
+    thread_local int const RefrigCondenserTypeWater(3);
+    thread_local int const RefrigCondenserTypeCascade(4);
 
     // Parameters for type of infiltration model
-    int const InfiltrationDesignFlowRate(1);
-    int const InfiltrationShermanGrimsrud(2);
-    int const InfiltrationAIM2(3);
+    thread_local int const InfiltrationDesignFlowRate(1);
+    thread_local int const InfiltrationShermanGrimsrud(2);
+    thread_local int const InfiltrationAIM2(3);
 
     // Parameters for type of ventilation model
-    int const VentilationDesignFlowRate(1);
-    int const VentilationWindAndStack(2);
+    thread_local int const VentilationDesignFlowRate(1);
+    thread_local int const VentilationWindAndStack(2);
 
     // Parameters for type of zone air balance model
-    int const AirBalanceNone(0);
-    int const AirBalanceQuadrature(1);
+    thread_local int const AirBalanceNone(0);
+    thread_local int const AirBalanceQuadrature(1);
 
     // Parameter for source zone air flow mass balance infiltration treatment
-    int const NoInfiltrationFlow(0);
-    int const AddInfiltrationFlow(1);
-    int const AdjustInfiltrationFlow(2);
-    int const MixingSourceZonesOnly(1);
-    int const AllZones(2);
+    thread_local int const NoInfiltrationFlow(0);
+    thread_local int const AddInfiltrationFlow(1);
+    thread_local int const AdjustInfiltrationFlow(2);
+    thread_local int const MixingSourceZonesOnly(1);
+    thread_local int const AllZones(2);
 
-    int const NumZoneIntGainDeviceTypes(53);
-    Array1D_string const ZoneIntGainDeviceTypes(NumZoneIntGainDeviceTypes,
+    thread_local int const NumZoneIntGainDeviceTypes(53);
+    thread_local Array1D_string const ZoneIntGainDeviceTypes(NumZoneIntGainDeviceTypes,
                                                 {"PEOPLE",
                                                  "LIGHTS",
                                                  "ELECTRICEQUIPMENT",
@@ -328,7 +328,7 @@ namespace DataHeatBalance {
                                                                       // 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47
                                                                       // | 48 | 49 | 50 | 51 | 52 | 53
 
-    Array1D_string const ccZoneIntGainDeviceTypes(NumZoneIntGainDeviceTypes,
+    thread_local Array1D_string const ccZoneIntGainDeviceTypes(NumZoneIntGainDeviceTypes,
                                                   {"People",
                                                    "Lights",
                                                    "ElectricEquipment",
@@ -386,63 +386,63 @@ namespace DataHeatBalance {
                                                                         // 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 |
                                                                         // 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53
 
-    int const IntGainTypeOf_People(1);
-    int const IntGainTypeOf_Lights(2);
-    int const IntGainTypeOf_ElectricEquipment(3);
-    int const IntGainTypeOf_GasEquipment(4);
-    int const IntGainTypeOf_HotWaterEquipment(5);
-    int const IntGainTypeOf_SteamEquipment(6);
-    int const IntGainTypeOf_OtherEquipment(7);
-    int const IntGainTypeOf_ZoneBaseboardOutdoorTemperatureControlled(8);
-    int const IntGainTypeOf_ZoneContaminantSourceAndSinkCarbonDioxide(9);
-    int const IntGainTypeOf_WaterUseEquipment(10);
-    int const IntGainTypeOf_DaylightingDeviceTubular(11);
-    int const IntGainTypeOf_WaterHeaterMixed(12);
-    int const IntGainTypeOf_WaterHeaterStratified(13);
-    int const IntGainTypeOf_ThermalStorageChilledWaterMixed(14);
-    int const IntGainTypeOf_ThermalStorageChilledWaterStratified(15);
-    int const IntGainTypeOf_GeneratorFuelCell(16);
-    int const IntGainTypeOf_GeneratorMicroCHP(17);
-    int const IntGainTypeOf_ElectricLoadCenterTransformer(18);
-    int const IntGainTypeOf_ElectricLoadCenterInverterSimple(19);
-    int const IntGainTypeOf_ElectricLoadCenterInverterFunctionOfPower(20);
-    int const IntGainTypeOf_ElectricLoadCenterInverterLookUpTable(21);
-    int const IntGainTypeOf_ElectricLoadCenterStorageBattery(22);
-    int const IntGainTypeOf_ElectricLoadCenterStorageSimple(23);
-    int const IntGainTypeOf_PipeIndoor(24);
-    int const IntGainTypeOf_RefrigerationCase(25);
-    int const IntGainTypeOf_RefrigerationCompressorRack(26);
-    int const IntGainTypeOf_RefrigerationSystemAirCooledCondenser(27);
-    int const IntGainTypeOf_RefrigerationTransSysAirCooledGasCooler(28);
-    int const IntGainTypeOf_RefrigerationSystemSuctionPipe(29);
-    int const IntGainTypeOf_RefrigerationTransSysSuctionPipeMT(30);
-    int const IntGainTypeOf_RefrigerationTransSysSuctionPipeLT(31);
-    int const IntGainTypeOf_RefrigerationSecondaryReceiver(32);
-    int const IntGainTypeOf_RefrigerationSecondaryPipe(33);
-    int const IntGainTypeOf_RefrigerationWalkIn(34);
-    int const IntGainTypeOf_Pump_VarSpeed(35);
-    int const IntGainTypeOf_Pump_ConSpeed(36);
-    int const IntGainTypeOf_Pump_Cond(37);
-    int const IntGainTypeOf_PumpBank_VarSpeed(38);
-    int const IntGainTypeOf_PumpBank_ConSpeed(39);
-    int const IntGainTypeOf_ZoneContaminantSourceAndSinkGenericContam(40);
-    int const IntGainTypeOf_PlantComponentUserDefined(41);
-    int const IntGainTypeOf_CoilUserDefined(42);
-    int const IntGainTypeOf_ZoneHVACForcedAirUserDefined(43);
-    int const IntGainTypeOf_AirTerminalUserDefined(44);
-    int const IntGainTypeOf_PackagedTESCoilTank(45);
-    int const IntGainTypeOf_ElectricEquipmentITEAirCooled(46);
-    int const IntGainTypeOf_SecCoolingDXCoilSingleSpeed(47);
-    int const IntGainTypeOf_SecHeatingDXCoilSingleSpeed(48);
-    int const IntGainTypeOf_SecCoolingDXCoilTwoSpeed(49);
-    int const IntGainTypeOf_SecCoolingDXCoilMultiSpeed(50);
-    int const IntGainTypeOf_SecHeatingDXCoilMultiSpeed(51);
-    int const IntGainTypeOf_ElectricLoadCenterConverter(52);
-    int const IntGainTypeOf_FanSystemModel(53);
+    thread_local int const IntGainTypeOf_People(1);
+    thread_local int const IntGainTypeOf_Lights(2);
+    thread_local int const IntGainTypeOf_ElectricEquipment(3);
+    thread_local int const IntGainTypeOf_GasEquipment(4);
+    thread_local int const IntGainTypeOf_HotWaterEquipment(5);
+    thread_local int const IntGainTypeOf_SteamEquipment(6);
+    thread_local int const IntGainTypeOf_OtherEquipment(7);
+    thread_local int const IntGainTypeOf_ZoneBaseboardOutdoorTemperatureControlled(8);
+    thread_local int const IntGainTypeOf_ZoneContaminantSourceAndSinkCarbonDioxide(9);
+    thread_local int const IntGainTypeOf_WaterUseEquipment(10);
+    thread_local int const IntGainTypeOf_DaylightingDeviceTubular(11);
+    thread_local int const IntGainTypeOf_WaterHeaterMixed(12);
+    thread_local int const IntGainTypeOf_WaterHeaterStratified(13);
+    thread_local int const IntGainTypeOf_ThermalStorageChilledWaterMixed(14);
+    thread_local int const IntGainTypeOf_ThermalStorageChilledWaterStratified(15);
+    thread_local int const IntGainTypeOf_GeneratorFuelCell(16);
+    thread_local int const IntGainTypeOf_GeneratorMicroCHP(17);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterTransformer(18);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterInverterSimple(19);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterInverterFunctionOfPower(20);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterInverterLookUpTable(21);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterStorageBattery(22);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterStorageSimple(23);
+    thread_local int const IntGainTypeOf_PipeIndoor(24);
+    thread_local int const IntGainTypeOf_RefrigerationCase(25);
+    thread_local int const IntGainTypeOf_RefrigerationCompressorRack(26);
+    thread_local int const IntGainTypeOf_RefrigerationSystemAirCooledCondenser(27);
+    thread_local int const IntGainTypeOf_RefrigerationTransSysAirCooledGasCooler(28);
+    thread_local int const IntGainTypeOf_RefrigerationSystemSuctionPipe(29);
+    thread_local int const IntGainTypeOf_RefrigerationTransSysSuctionPipeMT(30);
+    thread_local int const IntGainTypeOf_RefrigerationTransSysSuctionPipeLT(31);
+    thread_local int const IntGainTypeOf_RefrigerationSecondaryReceiver(32);
+    thread_local int const IntGainTypeOf_RefrigerationSecondaryPipe(33);
+    thread_local int const IntGainTypeOf_RefrigerationWalkIn(34);
+    thread_local int const IntGainTypeOf_Pump_VarSpeed(35);
+    thread_local int const IntGainTypeOf_Pump_ConSpeed(36);
+    thread_local int const IntGainTypeOf_Pump_Cond(37);
+    thread_local int const IntGainTypeOf_PumpBank_VarSpeed(38);
+    thread_local int const IntGainTypeOf_PumpBank_ConSpeed(39);
+    thread_local int const IntGainTypeOf_ZoneContaminantSourceAndSinkGenericContam(40);
+    thread_local int const IntGainTypeOf_PlantComponentUserDefined(41);
+    thread_local int const IntGainTypeOf_CoilUserDefined(42);
+    thread_local int const IntGainTypeOf_ZoneHVACForcedAirUserDefined(43);
+    thread_local int const IntGainTypeOf_AirTerminalUserDefined(44);
+    thread_local int const IntGainTypeOf_PackagedTESCoilTank(45);
+    thread_local int const IntGainTypeOf_ElectricEquipmentITEAirCooled(46);
+    thread_local int const IntGainTypeOf_SecCoolingDXCoilSingleSpeed(47);
+    thread_local int const IntGainTypeOf_SecHeatingDXCoilSingleSpeed(48);
+    thread_local int const IntGainTypeOf_SecCoolingDXCoilTwoSpeed(49);
+    thread_local int const IntGainTypeOf_SecCoolingDXCoilMultiSpeed(50);
+    thread_local int const IntGainTypeOf_SecHeatingDXCoilMultiSpeed(51);
+    thread_local int const IntGainTypeOf_ElectricLoadCenterConverter(52);
+    thread_local int const IntGainTypeOf_FanSystemModel(53);
 
     // Parameters for checking surface heat transfer models
-    Real64 const HighDiffusivityThreshold(1.e-5);   // used to check if Material properties are out of line.
-    Real64 const ThinMaterialLayerThreshold(0.003); // 3 mm lower limit to expected material layers
+    thread_local Real64 const HighDiffusivityThreshold(1.e-5);   // used to check if Material properties are out of line.
+    thread_local Real64 const ThinMaterialLayerThreshold(0.003); // 3 mm lower limit to expected material layers
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -462,7 +462,7 @@ namespace DataHeatBalance {
     // MODULE VARIABLE DECLARATIONS:
 
     // SiteData aka building data
-    Real64 LowHConvLimit(0.1); // Lowest allowed convection coefficient for detailed model
+    thread_local Real64 LowHConvLimit(0.1); // Lowest allowed convection coefficient for detailed model
     // before reverting to the simple model.  This avoids a
     // divide by zero elsewhere.  Not based on any physical
     // reasoning, just the number that was picked.  It corresponds
@@ -481,210 +481,210 @@ namespace DataHeatBalance {
     //                           !       Taking the still gas thermal conductivity for air at 0.0267 W/m-K (at 300K), then
     //                           !       this limit of 1.0 corresponds to a completely still layer of air that is around 0.025 m thick
     //                           !  5) The previous limit of 0.1 (before ver. 3.1) caused loads initialization problems in test files
-    Real64 HighHConvLimit(1000.0);         // upper limit for HConv, mostly used for user input limits in practics. !W/m2-K
-    Real64 MaxAllowedDelTempCondFD(0.002); // Convergence criteria for inside surface temperatures for CondFD
+    thread_local Real64 HighHConvLimit(1000.0);         // upper limit for HConv, mostly used for user input limits in practics. !W/m2-K
+    thread_local Real64 MaxAllowedDelTempCondFD(0.002); // Convergence criteria for inside surface temperatures for CondFD
 
-    std::string BuildingName;           // Name of building
-    Real64 BuildingAzimuth(0.0);        // North Axis of Building
-    Real64 LoadsConvergTol(0.0);        // Tolerance value for Loads Convergence
-    Real64 TempConvergTol(0.0);         // Tolerance value for Temperature Convergence
-    int DefaultInsideConvectionAlgo(1); // 1 = simple (ASHRAE); 2 = detailed (ASHRAE); 3 = ceiling diffuser;
+    thread_local std::string BuildingName;           // Name of building
+    thread_local Real64 BuildingAzimuth(0.0);        // North Axis of Building
+    thread_local Real64 LoadsConvergTol(0.0);        // Tolerance value for Loads Convergence
+    thread_local Real64 TempConvergTol(0.0);         // Tolerance value for Temperature Convergence
+    thread_local int DefaultInsideConvectionAlgo(1); // 1 = simple (ASHRAE); 2 = detailed (ASHRAE); 3 = ceiling diffuser;
     // 4 = trombe wall
-    int DefaultOutsideConvectionAlgo(1);         // 1 = simple (ASHRAE); 2 = detailed; etc (BLAST, TARP, MOWITT, DOE-2)
-    int SolarDistribution(0);                    // Solar Distribution Algorithm
-    int InsideSurfIterations(0);                 // Counts inside surface iterations
-    int OverallHeatTransferSolutionAlgo(UseCTF); // UseCTF Solution, UseEMPD moisture solution, UseCondFD solution
-    int NumberOfHeatTransferAlgosUsed(1);
-    Array1D_int HeatTransferAlgosUsed;
-    int MaxNumberOfWarmupDays(25);      // Maximum number of warmup days allowed
-    int MinNumberOfWarmupDays(6);       // Minimum number of warmup days allowed
-    Real64 CondFDRelaxFactor(1.0);      // Relaxation factor, for looping across all the surfaces.
-    Real64 CondFDRelaxFactorInput(1.0); // Relaxation factor, for looping across all the surfaces, user input value
+    thread_local int DefaultOutsideConvectionAlgo(1);         // 1 = simple (ASHRAE); 2 = detailed; etc (BLAST, TARP, MOWITT, DOE-2)
+    thread_local int SolarDistribution(0);                    // Solar Distribution Algorithm
+    thread_local int InsideSurfIterations(0);                 // Counts inside surface iterations
+    thread_local int OverallHeatTransferSolutionAlgo(UseCTF); // UseCTF Solution, UseEMPD moisture solution, UseCondFD solution
+    thread_local int NumberOfHeatTransferAlgosUsed(1);
+    thread_local Array1D_int HeatTransferAlgosUsed;
+    thread_local int MaxNumberOfWarmupDays(25);      // Maximum number of warmup days allowed
+    thread_local int MinNumberOfWarmupDays(6);       // Minimum number of warmup days allowed
+    thread_local Real64 CondFDRelaxFactor(1.0);      // Relaxation factor, for looping across all the surfaces.
+    thread_local Real64 CondFDRelaxFactorInput(1.0); // Relaxation factor, for looping across all the surfaces, user input value
     // LOGICAL ::  CondFDVariableProperties = .FALSE. ! if true, then variable conductivity or enthalpy in Cond FD.
 
-    int ZoneAirSolutionAlgo(Use3rdOrder);  // ThirdOrderBackwardDifference, AnalyticalSolution, and EulerMethod
-    Real64 BuildingRotationAppendixG(0.0); // Building Rotation for Appendix G
+    thread_local int ZoneAirSolutionAlgo(Use3rdOrder);  // ThirdOrderBackwardDifference, AnalyticalSolution, and EulerMethod
+    thread_local Real64 BuildingRotationAppendixG(0.0); // Building Rotation for Appendix G
 
     // END SiteData
 
-    int NumOfZoneLists(0);             // Total number of zone lists
-    int NumOfZoneGroups(0);            // Total number of zone groups
-    int NumPeopleStatements(0);        // Number of People objects in input - possibly global assignments
-    int NumLightsStatements(0);        // Number of Lights objects in input - possibly global assignments
-    int NumZoneElectricStatements(0);  // Number of ZoneElectric objects in input - possibly global assignments
-    int NumZoneGasStatements(0);       // Number of ZoneGas objects in input - possibly global assignments
-    int NumInfiltrationStatements(0);  // Number of Design Flow Infiltration objects in input - possibly global assignments
-    int NumVentilationStatements(0);   // Number of Design Flow Ventilation objects in input - possibly global assignments
-    int NumHotWaterEqStatements(0);    // number of Hot Water Equipment objects in input. - possibly global assignments
-    int NumSteamEqStatements(0);       // number of Steam Equipment objects in input. - possibly global assignments
-    int NumOtherEqStatements(0);       // number of Other Equipment objects in input. - possibly global assignments
-    int NumZoneITEqStatements(0);      // number of Other Equipment objects in input. - possibly global assignments
-    int TotPeople(0);                  // Total People Statements in input and extrapolated from global assignments
-    int TotLights(0);                  // Total Lights Statements in input and extrapolated from global assignments
-    int TotElecEquip(0);               // Total Electric Equipment Statements in input and extrapolated from global assignments
-    int TotGasEquip(0);                // Total Gas Equipment Statements in input
-    int TotOthEquip(0);                // Total Other Equipment Statements in input
-    int TotHWEquip(0);                 // Total Hot Water Equipment Statements in input
-    int TotStmEquip(0);                // Total Steam Equipment Statements in input
-    int TotInfiltration(0);            // Total Infiltration Statements in input and extrapolated from global assignments
-    int TotDesignFlowInfiltration(0);  // number of Design Flow rate ZoneInfiltration in input
-    int TotShermGrimsInfiltration(0);  // number of Sherman Grimsrud (ZoneInfiltration:ResidentialBasic) in input
-    int TotAIM2Infiltration(0);        // number of AIM2 (ZoneInfiltration:ResidentialEnhanced) in input
-    int TotVentilation(0);             // Total Ventilation Statements in input
-    int TotDesignFlowVentilation(0);   // number of Design Flow rate ZoneVentilation in input
-    int TotWindAndStackVentilation(0); // number of wind and stack open area ZoneVentilation in input
-    int TotMixing(0);                  // Total Mixing Statements in input
-    int TotCrossMixing(0);             // Total Cross Mixing Statements in input
-    int TotRefDoorMixing(0);           // Total RefrigerationDoor Mixing Statements in input
-    int TotBBHeat(0);                  // Total BBHeat Statements in input
-    int TotMaterials(0);               // Total number of unique materials (layers) in this simulation
-    int TotConstructs(0);              // Total number of unique constructions in this simulation
-    int TotSpectralData(0);            // Total window glass spectral data sets
-    int W5GlsMat(0);                   // Window5 Glass Materials, specified by transmittance and front and back reflectance
-    int W5GlsMatAlt(0);                // Window5 Glass Materials, specified by index of refraction and extinction coeff
-    int W5GasMat(0);                   // Window5 Single-Gas Materials
-    int W5GasMatMixture(0);            // Window5 Gas Mixtures
-    int W7SupportPillars(0);           // Complex fenestration support pillars
-    int W7DeflectionStates(0);         // Complex fenestration deflection states
-    int W7MaterialGaps(0);             // Complex fenestration material gaps
-    int TotBlinds(0);                  // Total number of blind materials
-    int TotScreens(0);                 // Total number of exterior window screen materials
-    int TotTCGlazings(0);              // Number of TC glazing object - WindowMaterial:Glazing:Thermochromic found in the idf file
-    int NumSurfaceScreens(0);          // Total number of screens on exterior windows
-    int TotShades(0);                  // Total number of shade materials
-    int TotComplexShades(0);           // Total number of shading materials for complex fenestrations
-    int TotComplexGaps(0);             // Total number of window gaps for complex fenestrations
-    int TotSimpleWindow;               // number of simple window systems.
+    thread_local int NumOfZoneLists(0);             // Total number of zone lists
+    thread_local int NumOfZoneGroups(0);            // Total number of zone groups
+    thread_local int NumPeopleStatements(0);        // Number of People objects in input - possibly global assignments
+    thread_local int NumLightsStatements(0);        // Number of Lights objects in input - possibly global assignments
+    thread_local int NumZoneElectricStatements(0);  // Number of ZoneElectric objects in input - possibly global assignments
+    thread_local int NumZoneGasStatements(0);       // Number of ZoneGas objects in input - possibly global assignments
+    thread_local int NumInfiltrationStatements(0);  // Number of Design Flow Infiltration objects in input - possibly global assignments
+    thread_local int NumVentilationStatements(0);   // Number of Design Flow Ventilation objects in input - possibly global assignments
+    thread_local int NumHotWaterEqStatements(0);    // number of Hot Water Equipment objects in input. - possibly global assignments
+    thread_local int NumSteamEqStatements(0);       // number of Steam Equipment objects in input. - possibly global assignments
+    thread_local int NumOtherEqStatements(0);       // number of Other Equipment objects in input. - possibly global assignments
+    thread_local int NumZoneITEqStatements(0);      // number of Other Equipment objects in input. - possibly global assignments
+    thread_local int TotPeople(0);                  // Total People Statements in input and extrapolated from global assignments
+    thread_local int TotLights(0);                  // Total Lights Statements in input and extrapolated from global assignments
+    thread_local int TotElecEquip(0);               // Total Electric Equipment Statements in input and extrapolated from global assignments
+    thread_local int TotGasEquip(0);                // Total Gas Equipment Statements in input
+    thread_local int TotOthEquip(0);                // Total Other Equipment Statements in input
+    thread_local int TotHWEquip(0);                 // Total Hot Water Equipment Statements in input
+    thread_local int TotStmEquip(0);                // Total Steam Equipment Statements in input
+    thread_local int TotInfiltration(0);            // Total Infiltration Statements in input and extrapolated from global assignments
+    thread_local int TotDesignFlowInfiltration(0);  // number of Design Flow rate ZoneInfiltration in input
+    thread_local int TotShermGrimsInfiltration(0);  // number of Sherman Grimsrud (ZoneInfiltration:ResidentialBasic) in input
+    thread_local int TotAIM2Infiltration(0);        // number of AIM2 (ZoneInfiltration:ResidentialEnhanced) in input
+    thread_local int TotVentilation(0);             // Total Ventilation Statements in input
+    thread_local int TotDesignFlowVentilation(0);   // number of Design Flow rate ZoneVentilation in input
+    thread_local int TotWindAndStackVentilation(0); // number of wind and stack open area ZoneVentilation in input
+    thread_local int TotMixing(0);                  // Total Mixing Statements in input
+    thread_local int TotCrossMixing(0);             // Total Cross Mixing Statements in input
+    thread_local int TotRefDoorMixing(0);           // Total RefrigerationDoor Mixing Statements in input
+    thread_local int TotBBHeat(0);                  // Total BBHeat Statements in input
+    thread_local int TotMaterials(0);               // Total number of unique materials (layers) in this simulation
+    thread_local int TotConstructs(0);              // Total number of unique constructions in this simulation
+    thread_local int TotSpectralData(0);            // Total window glass spectral data sets
+    thread_local int W5GlsMat(0);                   // Window5 Glass Materials, specified by transmittance and front and back reflectance
+    thread_local int W5GlsMatAlt(0);                // Window5 Glass Materials, specified by index of refraction and extinction coeff
+    thread_local int W5GasMat(0);                   // Window5 Single-Gas Materials
+    thread_local int W5GasMatMixture(0);            // Window5 Gas Mixtures
+    thread_local int W7SupportPillars(0);           // Complex fenestration support pillars
+    thread_local int W7DeflectionStates(0);         // Complex fenestration deflection states
+    thread_local int W7MaterialGaps(0);             // Complex fenestration material gaps
+    thread_local int TotBlinds(0);                  // Total number of blind materials
+    thread_local int TotScreens(0);                 // Total number of exterior window screen materials
+    thread_local int TotTCGlazings(0);              // Number of TC glazing object - WindowMaterial:Glazing:Thermochromic found in the idf file
+    thread_local int NumSurfaceScreens(0);          // Total number of screens on exterior windows
+    thread_local int TotShades(0);                  // Total number of shade materials
+    thread_local int TotComplexShades(0);           // Total number of shading materials for complex fenestrations
+    thread_local int TotComplexGaps(0);             // Total number of window gaps for complex fenestrations
+    thread_local int TotSimpleWindow;               // number of simple window systems.
 
-    int W5GlsMatEQL(0);   // Window5 Single-Gas Materials for Equivalent Layer window model
-    int TotShadesEQL(0);  // Total number of shade materials for Equivalent Layer window model
-    int TotDrapesEQL(0);  // Total number of drape materials for Equivalent Layer window model
-    int TotBlindsEQL(0);  // Total number of blind materials for Equivalent Layer window model
-    int TotScreensEQL(0); // Total number of exterior window screen materials for Equivalent Layer window model
-    int W5GapMatEQL(0);   // Window5 Equivalent Layer Single-Gas Materials
+    thread_local int W5GlsMatEQL(0);   // Window5 Single-Gas Materials for Equivalent Layer window model
+    thread_local int TotShadesEQL(0);  // Total number of shade materials for Equivalent Layer window model
+    thread_local int TotDrapesEQL(0);  // Total number of drape materials for Equivalent Layer window model
+    thread_local int TotBlindsEQL(0);  // Total number of blind materials for Equivalent Layer window model
+    thread_local int TotScreensEQL(0); // Total number of exterior window screen materials for Equivalent Layer window model
+    thread_local int W5GapMatEQL(0);   // Window5 Equivalent Layer Single-Gas Materials
 
-    int TotZoneAirBalance(0); // Total Zone Air Balance Statements in input
-    int TotFrameDivider(0);   // Total number of window frame/divider objects
-    int AirFlowFlag(0);
-    int TotCO2Gen(0);                       // Total CO2 source and sink statements in input
-    bool CalcWindowRevealReflection(false); // True if window reveal reflection is to be calculated
+    thread_local int TotZoneAirBalance(0); // Total Zone Air Balance Statements in input
+    thread_local int TotFrameDivider(0);   // Total number of window frame/divider objects
+    thread_local int AirFlowFlag(0);
+    thread_local int TotCO2Gen(0);                       // Total CO2 source and sink statements in input
+    thread_local bool CalcWindowRevealReflection(false); // True if window reveal reflection is to be calculated
     // for at least one exterior window
-    bool StormWinChangeThisDay(false); // True if a storm window has been added or removed from any
+    thread_local bool StormWinChangeThisDay(false); // True if a storm window has been added or removed from any
     // window during the current day; can only be true for first
     // time step of the day.
-    bool AnyConstructInternalSourceInInput(false); // true if the user has entered any constructions with internal sources
-    bool AdaptiveComfortRequested_CEN15251(false); // true if people objects have adaptive comfort requests. CEN15251
-    bool AdaptiveComfortRequested_ASH55(false);    // true if people objects have adaptive comfort requests. ASH55
+    thread_local bool AnyConstructInternalSourceInInput(false); // true if the user has entered any constructions with internal sources
+    thread_local bool AdaptiveComfortRequested_CEN15251(false); // true if people objects have adaptive comfort requests. CEN15251
+    thread_local bool AdaptiveComfortRequested_ASH55(false);    // true if people objects have adaptive comfort requests. ASH55
 
-    bool NoFfactorConstructionsUsed(true);
-    bool NoCfactorConstructionsUsed(true);
+    thread_local bool NoFfactorConstructionsUsed(true);
+    thread_local bool NoCfactorConstructionsUsed(true);
 
-    int NumRefrigeratedRacks(0); // Total number of refrigerated case compressor racks in input
-    int NumRefrigSystems(0);     // Total number of detailed refrigeration systems in input
-    int NumRefrigCondensers(0);  // Total number of detailed refrigeration condensers in input
-    int NumRefrigChillerSets(0); // Total number of refrigerated warehouse coils in input
-    Array1D<Real64> SNLoadHeatEnergy;
-    Array1D<Real64> SNLoadCoolEnergy;
-    Array1D<Real64> SNLoadHeatRate;
-    Array1D<Real64> SNLoadCoolRate;
-    Array1D<Real64> SNLoadPredictedRate;
-    Array1D<Real64> SNLoadPredictedHSPRate; // Predicted load to heating setpoint (unmultiplied)
-    Array1D<Real64> SNLoadPredictedCSPRate; // Predicted load to cooling setpoint (unmultiplied)
-    Array1D<Real64> MoisturePredictedRate;
+    thread_local int NumRefrigeratedRacks(0); // Total number of refrigerated case compressor racks in input
+    thread_local int NumRefrigSystems(0);     // Total number of detailed refrigeration systems in input
+    thread_local int NumRefrigCondensers(0);  // Total number of detailed refrigeration condensers in input
+    thread_local int NumRefrigChillerSets(0); // Total number of refrigerated warehouse coils in input
+    thread_local Array1D<Real64> SNLoadHeatEnergy;
+    thread_local Array1D<Real64> SNLoadCoolEnergy;
+    thread_local Array1D<Real64> SNLoadHeatRate;
+    thread_local Array1D<Real64> SNLoadCoolRate;
+    thread_local Array1D<Real64> SNLoadPredictedRate;
+    thread_local Array1D<Real64> SNLoadPredictedHSPRate; // Predicted load to heating setpoint (unmultiplied)
+    thread_local Array1D<Real64> SNLoadPredictedCSPRate; // Predicted load to cooling setpoint (unmultiplied)
+    thread_local Array1D<Real64> MoisturePredictedRate;
 
-    Array1D<Real64> ListSNLoadHeatEnergy;
-    Array1D<Real64> ListSNLoadCoolEnergy;
-    Array1D<Real64> ListSNLoadHeatRate;
-    Array1D<Real64> ListSNLoadCoolRate;
+    thread_local Array1D<Real64> ListSNLoadHeatEnergy;
+    thread_local Array1D<Real64> ListSNLoadCoolEnergy;
+    thread_local Array1D<Real64> ListSNLoadHeatRate;
+    thread_local Array1D<Real64> ListSNLoadCoolRate;
 
-    Array1D<Real64> GroupSNLoadHeatEnergy;
-    Array1D<Real64> GroupSNLoadCoolEnergy;
-    Array1D<Real64> GroupSNLoadHeatRate;
-    Array1D<Real64> GroupSNLoadCoolRate;
+    thread_local Array1D<Real64> GroupSNLoadHeatEnergy;
+    thread_local Array1D<Real64> GroupSNLoadCoolEnergy;
+    thread_local Array1D<Real64> GroupSNLoadHeatRate;
+    thread_local Array1D<Real64> GroupSNLoadCoolRate;
 
-    Array1D<Real64> MRT;            // MEAN RADIANT TEMPERATURE (C)
-    Array1D<Real64> SUMAI;          // 1 over the Sum of zone areas or 1/SumA
-    Array1D<Real64> ZoneTransSolar; // Exterior beam plus diffuse solar entering zone;
+    thread_local Array1D<Real64> MRT;            // MEAN RADIANT TEMPERATURE (C)
+    thread_local Array1D<Real64> SUMAI;          // 1 over the Sum of zone areas or 1/SumA
+    thread_local Array1D<Real64> ZoneTransSolar; // Exterior beam plus diffuse solar entering zone;
     //   sum of WinTransSolar for exterior windows in zone (W)
-    Array1D<Real64> ZoneWinHeatGain; // Heat gain to zone from all exterior windows (includes
+    thread_local Array1D<Real64> ZoneWinHeatGain; // Heat gain to zone from all exterior windows (includes
     //   ZoneTransSolar); sum of WinHeatGain for exterior
     //   windows in zone (W)
-    Array1D<Real64> ZoneWinHeatGainRep;     // = ZoneWinHeatGain when ZoneWinHeatGain >= 0
-    Array1D<Real64> ZoneWinHeatLossRep;     // = -ZoneWinHeatGain when ZoneWinHeatGain < 0
-    Array1D<Real64> ZoneBmSolFrExtWinsRep;  // Beam solar into zone from exterior windows [W]
-    Array1D<Real64> ZoneBmSolFrIntWinsRep;  // Beam solar into zone from interior windows [W]
-    Array1D<Real64> InitialZoneDifSolReflW; // Initial diffuse solar in zone from ext and int windows
+    thread_local Array1D<Real64> ZoneWinHeatGainRep;     // = ZoneWinHeatGain when ZoneWinHeatGain >= 0
+    thread_local Array1D<Real64> ZoneWinHeatLossRep;     // = -ZoneWinHeatGain when ZoneWinHeatGain < 0
+    thread_local Array1D<Real64> ZoneBmSolFrExtWinsRep;  // Beam solar into zone from exterior windows [W]
+    thread_local Array1D<Real64> ZoneBmSolFrIntWinsRep;  // Beam solar into zone from interior windows [W]
+    thread_local Array1D<Real64> InitialZoneDifSolReflW; // Initial diffuse solar in zone from ext and int windows
     // reflected from interior surfaces [W]
-    Array1D<Real64> ZoneDifSolFrExtWinsRep;         // Diffuse solar into zone from exterior windows [W]
-    Array1D<Real64> ZoneDifSolFrIntWinsRep;         // Diffuse solar into zone from interior windows [W]
-    Array1D<Real64> ZoneOpaqSurfInsFaceCond;        // Zone inside face opaque surface conduction (W)
-    Array1D<Real64> ZoneOpaqSurfInsFaceCondGainRep; // = Zone inside face opaque surface conduction when >= 0
-    Array1D<Real64> ZoneOpaqSurfInsFaceCondLossRep; // = -Zone inside face opaque surface conduction when < 0
-    Array1D<Real64> ZoneOpaqSurfExtFaceCond;        // Zone outside face opaque surface conduction (W)
-    Array1D<Real64> ZoneOpaqSurfExtFaceCondGainRep; // = Zone outside face opaque surface conduction when >= 0
-    Array1D<Real64> ZoneOpaqSurfExtFaceCondLossRep; // = -Zone outside face opaque surface conduction when < 0
-    Array1D<Real64> QRadThermInAbs;                 // Thermal radiation absorbed on inside surfaces
-    Array2D<Real64> QRadSWwinAbs;                   // Short wave radiation absorbed in window glass layers
-    Array2D<Real64> InitialDifSolwinAbs;            // Initial diffuse solar absorbed in window glass layers
+    thread_local Array1D<Real64> ZoneDifSolFrExtWinsRep;         // Diffuse solar into zone from exterior windows [W]
+    thread_local Array1D<Real64> ZoneDifSolFrIntWinsRep;         // Diffuse solar into zone from interior windows [W]
+    thread_local Array1D<Real64> ZoneOpaqSurfInsFaceCond;        // Zone inside face opaque surface conduction (W)
+    thread_local Array1D<Real64> ZoneOpaqSurfInsFaceCondGainRep; // = Zone inside face opaque surface conduction when >= 0
+    thread_local Array1D<Real64> ZoneOpaqSurfInsFaceCondLossRep; // = -Zone inside face opaque surface conduction when < 0
+    thread_local Array1D<Real64> ZoneOpaqSurfExtFaceCond;        // Zone outside face opaque surface conduction (W)
+    thread_local Array1D<Real64> ZoneOpaqSurfExtFaceCondGainRep; // = Zone outside face opaque surface conduction when >= 0
+    thread_local Array1D<Real64> ZoneOpaqSurfExtFaceCondLossRep; // = -Zone outside face opaque surface conduction when < 0
+    thread_local Array1D<Real64> QRadThermInAbs;                 // Thermal radiation absorbed on inside surfaces
+    thread_local Array2D<Real64> QRadSWwinAbs;                   // Short wave radiation absorbed in window glass layers
+    thread_local Array2D<Real64> InitialDifSolwinAbs;            // Initial diffuse solar absorbed in window glass layers
     // from inside(W/m2)
-    Array1D<Real64> QRadSWOutIncident;           // Exterior beam plus diffuse solar incident on surface (W/m2)
-    Array1D<Real64> QRadSWOutIncidentBeam;       // Exterior beam solar incident on surface (W/m2)
-    Array1D<Real64> BmIncInsSurfIntensRep;       // Beam sol irrad from ext wins on inside of surface (W/m2)
-    Array1D<Real64> BmIncInsSurfAmountRep;       // Beam sol amount from ext wins incident on inside of surface (W)
-    Array1D<Real64> IntBmIncInsSurfIntensRep;    // Beam sol irrad from int wins on inside of surface (W/m2)
-    Array1D<Real64> IntBmIncInsSurfAmountRep;    // Beam sol amount from int wins incident on inside of surface (W)
-    Array1D<Real64> QRadSWOutIncidentSkyDiffuse; // Exterior sky diffuse solar incident on surface (W/m2)
-    Array1D<Real64> QRadSWOutIncidentGndDiffuse; // Exterior ground diffuse solar incident on surface (W/m2)
-    Array1D<Real64> QRadSWOutIncBmToDiffReflGnd; // Exterior diffuse solar incident from beam to diffuse
+    thread_local Array1D<Real64> QRadSWOutIncident;           // Exterior beam plus diffuse solar incident on surface (W/m2)
+    thread_local Array1D<Real64> QRadSWOutIncidentBeam;       // Exterior beam solar incident on surface (W/m2)
+    thread_local Array1D<Real64> BmIncInsSurfIntensRep;       // Beam sol irrad from ext wins on inside of surface (W/m2)
+    thread_local Array1D<Real64> BmIncInsSurfAmountRep;       // Beam sol amount from ext wins incident on inside of surface (W)
+    thread_local Array1D<Real64> IntBmIncInsSurfIntensRep;    // Beam sol irrad from int wins on inside of surface (W/m2)
+    thread_local Array1D<Real64> IntBmIncInsSurfAmountRep;    // Beam sol amount from int wins incident on inside of surface (W)
+    thread_local Array1D<Real64> QRadSWOutIncidentSkyDiffuse; // Exterior sky diffuse solar incident on surface (W/m2)
+    thread_local Array1D<Real64> QRadSWOutIncidentGndDiffuse; // Exterior ground diffuse solar incident on surface (W/m2)
+    thread_local Array1D<Real64> QRadSWOutIncBmToDiffReflGnd; // Exterior diffuse solar incident from beam to diffuse
     // reflection from ground (W/m2)
-    Array1D<Real64> QRadSWOutIncSkyDiffReflGnd; // Exterior diffuse solar incident from sky diffuse
+    thread_local Array1D<Real64> QRadSWOutIncSkyDiffReflGnd; // Exterior diffuse solar incident from sky diffuse
     // reflection from ground (W/m2)
-    Array1D<Real64> QRadSWOutIncBmToBmReflObs; // Exterior beam solar incident from beam-to-beam
+    thread_local Array1D<Real64> QRadSWOutIncBmToBmReflObs; // Exterior beam solar incident from beam-to-beam
     // reflection from obstructions (W/m2)
-    Array1D<Real64> QRadSWOutIncBmToDiffReflObs; // Exterior diffuse solar incident from beam-to-diffuse
+    thread_local Array1D<Real64> QRadSWOutIncBmToDiffReflObs; // Exterior diffuse solar incident from beam-to-diffuse
     // reflection from obstructions (W/m2)
-    Array1D<Real64> QRadSWOutIncSkyDiffReflObs; // Exterior diffuse solar incident from sky diffuse
+    thread_local Array1D<Real64> QRadSWOutIncSkyDiffReflObs; // Exterior diffuse solar incident from sky diffuse
     // reflection from obstructions (W/m2)
-    Array1D<Real64> CosIncidenceAngle; // Cosine of beam solar incidence angle (for reporting)
-    Array1D_int BSDFBeamDirectionRep;  // BSDF beam direction number for given complex fenestration state (for reporting) []
-    Array1D<Real64> BSDFBeamThetaRep;  // BSDF beam Theta angle (for reporting) [rad]
-    Array1D<Real64> BSDFBeamPhiRep;    // BSDF beam Phi angle (for reporting) [rad]
+    thread_local Array1D<Real64> CosIncidenceAngle; // Cosine of beam solar incidence angle (for reporting)
+    thread_local Array1D_int BSDFBeamDirectionRep;  // BSDF beam direction number for given complex fenestration state (for reporting) []
+    thread_local Array1D<Real64> BSDFBeamThetaRep;  // BSDF beam Theta angle (for reporting) [rad]
+    thread_local Array1D<Real64> BSDFBeamPhiRep;    // BSDF beam Phi angle (for reporting) [rad]
 
-    Array1D<Real64> QRadSWwinAbsTot;   // Exterior beam plus diffuse solar absorbed in glass layers of window (W)
-    Array2D<Real64> QRadSWwinAbsLayer; // Exterior beam plus diffuse solar absorbed in glass layers of window (W)
+    thread_local Array1D<Real64> QRadSWwinAbsTot;   // Exterior beam plus diffuse solar absorbed in glass layers of window (W)
+    thread_local Array2D<Real64> QRadSWwinAbsLayer; // Exterior beam plus diffuse solar absorbed in glass layers of window (W)
 
-    Array2D<Real64> FenLaySurfTempFront;            // Front surface temperatures of fenestration layers
-    Array2D<Real64> FenLaySurfTempBack;             // Back surface temperatures of fenestration layers
-    Array1D<Real64> ZoneTransSolarEnergy;           // Energy of ZoneTransSolar [J]
-    Array1D<Real64> ZoneWinHeatGainRepEnergy;       // Energy of ZoneWinHeatGainRep [J]
-    Array1D<Real64> ZoneWinHeatLossRepEnergy;       // Energy of ZoneWinHeatLossRep [J]
-    Array1D<Real64> ZoneBmSolFrExtWinsRepEnergy;    // Energy of ZoneBmSolFrExtWinsRep [J]
-    Array1D<Real64> ZoneBmSolFrIntWinsRepEnergy;    // Energy of ZoneBmSolFrIntWinsRep [J]
-    Array1D<Real64> ZoneDifSolFrExtWinsRepEnergy;   // Energy of ZoneDifSolFrExtWinsRep [J]
-    Array1D<Real64> ZoneDifSolFrIntWinsRepEnergy;   // Energy of ZoneDifSolFrIntWinsRep [J]
-    Array1D<Real64> ZnOpqSurfInsFaceCondGnRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondGainRep [J]
-    Array1D<Real64> ZnOpqSurfInsFaceCondLsRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondLossRep [J]
-    Array1D<Real64> ZnOpqSurfExtFaceCondGnRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondGainRep [J]
-    Array1D<Real64> ZnOpqSurfExtFaceCondLsRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondLossRep [J]
-    Array1D<Real64> BmIncInsSurfAmountRepEnergy;    // energy of BmIncInsSurfAmountRep [J]
-    Array1D<Real64> IntBmIncInsSurfAmountRepEnergy; // energy of IntBmIncInsSurfAmountRep [J]
-    Array1D<Real64> QRadSWwinAbsTotEnergy;          // Energy of QRadSWwinAbsTot [J]
-    Array1D<Real64> SWwinAbsTotalReport;            // Report - Total interior/exterior shortwave
+    thread_local Array2D<Real64> FenLaySurfTempFront;            // Front surface temperatures of fenestration layers
+    thread_local Array2D<Real64> FenLaySurfTempBack;             // Back surface temperatures of fenestration layers
+    thread_local Array1D<Real64> ZoneTransSolarEnergy;           // Energy of ZoneTransSolar [J]
+    thread_local Array1D<Real64> ZoneWinHeatGainRepEnergy;       // Energy of ZoneWinHeatGainRep [J]
+    thread_local Array1D<Real64> ZoneWinHeatLossRepEnergy;       // Energy of ZoneWinHeatLossRep [J]
+    thread_local Array1D<Real64> ZoneBmSolFrExtWinsRepEnergy;    // Energy of ZoneBmSolFrExtWinsRep [J]
+    thread_local Array1D<Real64> ZoneBmSolFrIntWinsRepEnergy;    // Energy of ZoneBmSolFrIntWinsRep [J]
+    thread_local Array1D<Real64> ZoneDifSolFrExtWinsRepEnergy;   // Energy of ZoneDifSolFrExtWinsRep [J]
+    thread_local Array1D<Real64> ZoneDifSolFrIntWinsRepEnergy;   // Energy of ZoneDifSolFrIntWinsRep [J]
+    thread_local Array1D<Real64> ZnOpqSurfInsFaceCondGnRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondGainRep [J]
+    thread_local Array1D<Real64> ZnOpqSurfInsFaceCondLsRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondLossRep [J]
+    thread_local Array1D<Real64> ZnOpqSurfExtFaceCondGnRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondGainRep [J]
+    thread_local Array1D<Real64> ZnOpqSurfExtFaceCondLsRepEnrg;  // Energy of ZoneOpaqSurfInsFaceCondLossRep [J]
+    thread_local Array1D<Real64> BmIncInsSurfAmountRepEnergy;    // energy of BmIncInsSurfAmountRep [J]
+    thread_local Array1D<Real64> IntBmIncInsSurfAmountRepEnergy; // energy of IntBmIncInsSurfAmountRep [J]
+    thread_local Array1D<Real64> QRadSWwinAbsTotEnergy;          // Energy of QRadSWwinAbsTot [J]
+    thread_local Array1D<Real64> SWwinAbsTotalReport;            // Report - Total interior/exterior shortwave
     // absorbed in all glass layers of window (W)
-    Array1D<Real64> InitialDifSolInAbsReport; // Report - Initial transmitted diffuse solar
+    thread_local Array1D<Real64> InitialDifSolInAbsReport; // Report - Initial transmitted diffuse solar
     // absorbed on inside of surface (W)
-    Array1D<Real64> InitialDifSolInTransReport; // Report - Initial transmitted diffuse solar
+    thread_local Array1D<Real64> InitialDifSolInTransReport; // Report - Initial transmitted diffuse solar
     // transmitted out through inside of window surface (W)
-    Array1D<Real64> SWInAbsTotalReport; // Report - Total interior/exterior shortwave
+    thread_local Array1D<Real64> SWInAbsTotalReport; // Report - Total interior/exterior shortwave
     // absorbed on inside of surface (W)
-    Array1D<Real64> SWOutAbsTotalReport; // Report - Total exterior shortwave/solar
+    thread_local Array1D<Real64> SWOutAbsTotalReport; // Report - Total exterior shortwave/solar
     // absorbed on outside of surface (W)
-    Array1D<Real64> SWOutAbsEnergyReport; // Report - Total exterior shortwave/solar
+    thread_local Array1D<Real64> SWOutAbsEnergyReport; // Report - Total exterior shortwave/solar
     // absorbed on outside of surface (j)
 
-    Array1D<Real64> NominalR;                       // Nominal R value of each material -- used in matching interzone surfaces
-    Array1D<Real64> NominalRforNominalUCalculation; // Nominal R values are summed to calculate NominalU values for constructions
-    Array1D<Real64> NominalU;                       // Nominal U value for each construction -- used in matching interzone surfaces
+    thread_local Array1D<Real64> NominalR;                       // Nominal R value of each material -- used in matching interzone surfaces
+    thread_local Array1D<Real64> NominalRforNominalUCalculation; // Nominal R values are summed to calculate NominalU values for constructions
+    thread_local Array1D<Real64> NominalU;                       // Nominal U value for each construction -- used in matching interzone surfaces
 
     // removed variables (these were all arrays):
     // REAL(r64), ALLOCATABLE, :: DifIncInsSurfIntensRep    !Diffuse sol irradiance from ext wins on inside of surface (W/m2)
@@ -697,49 +697,49 @@ namespace DataHeatBalance {
     // Variables moved from HeatBalanceSurfaceManager and SolarShading
     // to avoid conflict with their use in WindowManager
 
-    Array1D<Real64> TempEffBulkAir; // air temperature adjacent to the surface used for
+    thread_local Array1D<Real64> TempEffBulkAir; // air temperature adjacent to the surface used for
     // inside surface heat balances
-    Array1D<Real64> HConvIn;      // INSIDE CONVECTION COEFFICIENT
-    Array1D<Real64> AnisoSkyMult; // Multiplier on exterior-surface sky view factor to
+    thread_local Array1D<Real64> HConvIn;      // INSIDE CONVECTION COEFFICIENT
+    thread_local Array1D<Real64> AnisoSkyMult; // Multiplier on exterior-surface sky view factor to
     // account for anisotropy of sky radiance; = 1.0 for
     // for isotropic sky
 
     // Moved from SolarShading to avoid conflicts in DaylightingDevices
-    Array1D<Real64> DifShdgRatioIsoSky;     // Diffuse shading ratio (WithShdgIsoSky/WoShdgIsoSky)
-    Array3D<Real64> DifShdgRatioIsoSkyHRTS; // Diffuse shading ratio (WithShdgIsoSky/WoShdgIsoSky)
-    Array1D<Real64> curDifShdgRatioIsoSky;  // Diffuse shading ratio (WithShdgIsoSky/WoShdgIsoSky)
-    Array1D<Real64> DifShdgRatioHoriz;      // Horizon shading ratio (WithShdgHoriz/WoShdgHoriz)
-    Array3D<Real64> DifShdgRatioHorizHRTS;  // Horizon shading ratio (WithShdgHoriz/WoShdgHoriz)
-    Array1D<Real64> WithShdgIsoSky;         // Diffuse solar irradiance from sky on surface, with shading
-    Array1D<Real64> WoShdgIsoSky;           // Diffuse solar from sky on surface, without shading
-    Array1D<Real64> WithShdgHoriz;          // Diffuse solar irradiance from horizon portion of sky on surface,
+    thread_local Array1D<Real64> DifShdgRatioIsoSky;     // Diffuse shading ratio (WithShdgIsoSky/WoShdgIsoSky)
+    thread_local Array3D<Real64> DifShdgRatioIsoSkyHRTS; // Diffuse shading ratio (WithShdgIsoSky/WoShdgIsoSky)
+    thread_local Array1D<Real64> curDifShdgRatioIsoSky;  // Diffuse shading ratio (WithShdgIsoSky/WoShdgIsoSky)
+    thread_local Array1D<Real64> DifShdgRatioHoriz;      // Horizon shading ratio (WithShdgHoriz/WoShdgHoriz)
+    thread_local Array3D<Real64> DifShdgRatioHorizHRTS;  // Horizon shading ratio (WithShdgHoriz/WoShdgHoriz)
+    thread_local Array1D<Real64> WithShdgIsoSky;         // Diffuse solar irradiance from sky on surface, with shading
+    thread_local Array1D<Real64> WoShdgIsoSky;           // Diffuse solar from sky on surface, without shading
+    thread_local Array1D<Real64> WithShdgHoriz;          // Diffuse solar irradiance from horizon portion of sky on surface,
     // with shading
-    Array1D<Real64> WoShdgHoriz; // Diffuse solar irradiance from horizon portion of sky on surface,
+    thread_local Array1D<Real64> WoShdgHoriz; // Diffuse solar irradiance from horizon portion of sky on surface,
     // without shading
-    Array1D<Real64> MultIsoSky;        // Contribution to eff sky view factor from isotropic sky
-    Array1D<Real64> MultCircumSolar;   // Contribution to eff sky view factor from circumsolar brightening
-    Array1D<Real64> MultHorizonZenith; // Contribution to eff sky view factor from horizon or zenith brightening
+    thread_local Array1D<Real64> MultIsoSky;        // Contribution to eff sky view factor from isotropic sky
+    thread_local Array1D<Real64> MultCircumSolar;   // Contribution to eff sky view factor from circumsolar brightening
+    thread_local Array1D<Real64> MultHorizonZenith; // Contribution to eff sky view factor from horizon or zenith brightening
 
-    Array1D<Real64> QS; // Zone short-wave flux density; used to calculate short-wave
+    thread_local Array1D<Real64> QS; // Zone short-wave flux density; used to calculate short-wave
     //     radiation absorbed on inside surfaces of zone
-    Array1D<Real64> QSLights; // Like QS, but Lights short-wave only.
+    thread_local Array1D<Real64> QSLights; // Like QS, but Lights short-wave only.
 
-    Array1D<Real64> QSDifSol;                // Like QS, but diffuse solar short-wave only.
-    Array1D<Real64> ITABSF;                  // FRACTION OF THERMAL FLUX ABSORBED (PER UNIT AREA)
-    Array1D<Real64> TMULT;                   // TMULT  - MULTIPLIER TO COMPUTE 'ITABSF'
-    Array1D<Real64> QL;                      // TOTAL THERMAL RADIATION ADDED TO ZONE
-    Array2D<Real64> SunlitFracHR;            // Hourly fraction of heat transfer surface that is sunlit
-    Array2D<Real64> CosIncAngHR;             // Hourly cosine of beam radiation incidence angle on surface
-    Array3D<Real64> SunlitFrac;              // TimeStep fraction of heat transfer surface that is sunlit
-    Array3D<Real64> SunlitFracWithoutReveal; // For a window with reveal, the sunlit fraction
+    thread_local Array1D<Real64> QSDifSol;                // Like QS, but diffuse solar short-wave only.
+    thread_local Array1D<Real64> ITABSF;                  // FRACTION OF THERMAL FLUX ABSORBED (PER UNIT AREA)
+    thread_local Array1D<Real64> TMULT;                   // TMULT  - MULTIPLIER TO COMPUTE 'ITABSF'
+    thread_local Array1D<Real64> QL;                      // TOTAL THERMAL RADIATION ADDED TO ZONE
+    thread_local Array2D<Real64> SunlitFracHR;            // Hourly fraction of heat transfer surface that is sunlit
+    thread_local Array2D<Real64> CosIncAngHR;             // Hourly cosine of beam radiation incidence angle on surface
+    thread_local Array3D<Real64> SunlitFrac;              // TimeStep fraction of heat transfer surface that is sunlit
+    thread_local Array3D<Real64> SunlitFracWithoutReveal; // For a window with reveal, the sunlit fraction
     // without shadowing by the reveal
-    Array3D<Real64> CosIncAng; // TimeStep cosine of beam radiation incidence angle on surface
-    Array4D_int BackSurfaces;  // For a given hour and timestep, a list of up to 20 surfaces receiving
+    thread_local Array3D<Real64> CosIncAng; // TimeStep cosine of beam radiation incidence angle on surface
+    thread_local Array4D_int BackSurfaces;  // For a given hour and timestep, a list of up to 20 surfaces receiving
     // beam solar radiation from a given exterior window
-    Array4D<Real64> OverlapAreas; // For a given hour and timestep, the areas of the exterior window sending
+    thread_local Array4D<Real64> OverlapAreas; // For a given hour and timestep, the areas of the exterior window sending
                                   // beam solar radiation to the surfaces listed in BackSurfaces
                                   //                       Air       Argon     Krypton   Xenon
-    Array2D<Real64> const GasCoeffsCon(
+    thread_local Array2D<Real64> const GasCoeffsCon(
         3,
         10,
         reshape2<Real64, int>(
@@ -748,7 +748,7 @@ namespace DataHeatBalance {
             {3, 10})); // Gas conductivity coefficients for gases in a mixture // Explicit reshape2 template args are work-around for VC++2013 bug
 
     //                       Air       Argon     Krypton   Xenon
-    Array2D<Real64> const GasCoeffsVis(
+    thread_local Array2D<Real64> const GasCoeffsVis(
         3,
         10,
         reshape2<Real64, int>(
@@ -757,7 +757,7 @@ namespace DataHeatBalance {
             {3, 10})); // Gas viscosity coefficients for gases in a mixture // Explicit reshape2 template args are work-around for VC++2013 bug
 
     //                     Air       Argon     Krypton   Xenon
-    Array2D<Real64> const GasCoeffsCp(
+    thread_local Array2D<Real64> const GasCoeffsCp(
         3,
         10,
         reshape2<Real64, int>(
@@ -766,70 +766,70 @@ namespace DataHeatBalance {
             {3, 10})); // Gas specific heat coefficients for gases in a mixture // Explicit reshape2 template args are work-around for VC++2013 bug
 
     //                       Air       Argon     Krypton   Xenon
-    Array1D<Real64> const GasWght(10, {28.97, 39.948, 83.8, 131.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}); // Gas molecular weights for gases in a mixture
+    thread_local Array1D<Real64> const GasWght(10, {28.97, 39.948, 83.8, 131.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}); // Gas molecular weights for gases in a mixture
 
-    Array1D<Real64> const
+    thread_local Array1D<Real64> const
         GasSpecificHeatRatio(10, {1.4, 1.67, 1.68, 1.66, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}); // Gas specific heat ratios.  Used for gasses in low pressure
 
-    Real64 ZeroPointerVal(0.0);
+    thread_local Real64 ZeroPointerVal(0.0);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE DataHeatBalance:
 
     // Object Data
-    Array1D<ZonePreDefRepType> ZonePreDefRep;
-    ZonePreDefRepType BuildingPreDefRep; // Autodesk:Note Removed explicit constructor that was missing some entries
-    Array1D<ZoneSimData> ZoneIntGain;
-    Array1D<MaterialProperties> Material;
-    Array1D<GapSupportPillar> SupportPillar;
-    Array1D<GapDeflectionState> DeflectionState;
-    Array1D<ConstructionData> Construct;
-    Array1D<SpectralDataProperties> SpectralData;
-    Array1D<ZoneData> Zone;
-    Array1D<ZoneListData> ZoneList;
-    Array1D<ZoneGroupData> ZoneGroup;
-    Array1D<PeopleData> People;
-    Array1D<LightsData> Lights;
-    Array1D<ZoneEquipData> ZoneElectric;
-    Array1D<ZoneEquipData> ZoneGas;
-    Array1D<ZoneEquipData> ZoneOtherEq;
-    Array1D<ZoneEquipData> ZoneHWEq;
-    Array1D<ZoneEquipData> ZoneSteamEq;
-    Array1D<ITEquipData> ZoneITEq;
-    Array1D<BBHeatData> ZoneBBHeat;
-    Array1D<InfiltrationData> Infiltration;
-    Array1D<VentilationData> Ventilation;
-    Array1D<ZoneAirBalanceData> ZoneAirBalance;
-    Array1D<MixingData> Mixing;
-    Array1D<MixingData> CrossMixing;
-    Array1D<MixingData> RefDoorMixing;
-    Array1D<WindowBlindProperties> Blind;
-    Array1D<WindowComplexShade> ComplexShade;
-    Array1D<WindowThermalModelParams> WindowThermalModel;
-    Array1D<SurfaceScreenProperties> SurfaceScreens;
-    Array1D<ScreenTransData> ScreenTrans;
-    Array1D<ZoneCatEUseData> ZoneIntEEuse;
-    Array1D<RefrigCaseCreditData> RefrigCaseCredit;
-    Array1D<HeatReclaimRefrigeratedRackData> HeatReclaimRefrigeratedRack;
-    Array1D<HeatReclaimRefrigCondenserData> HeatReclaimRefrigCondenser;
-    Array1D<HeatReclaimDXCoilData> HeatReclaimDXCoil;
-    Array1D<HeatReclaimDXCoilData> HeatReclaimVS_DXCoil;
-    Array1D<AirReportVars> ZnAirRpt;
-    Array1D<TCGlazingsType> TCGlazings;
-    Array1D<ZoneEquipData> ZoneCO2Gen;
-    Array1D<GlobalInternalGainMiscObject> PeopleObjects;
-    Array1D<GlobalInternalGainMiscObject> LightsObjects;
-    Array1D<GlobalInternalGainMiscObject> ZoneElectricObjects;
-    Array1D<GlobalInternalGainMiscObject> ZoneGasObjects;
-    Array1D<GlobalInternalGainMiscObject> HotWaterEqObjects;
-    Array1D<GlobalInternalGainMiscObject> SteamEqObjects;
-    Array1D<GlobalInternalGainMiscObject> OtherEqObjects;
-    Array1D<GlobalInternalGainMiscObject> InfiltrationObjects;
-    Array1D<GlobalInternalGainMiscObject> VentilationObjects;
-    Array1D<ZoneReportVars> ZnRpt;
-    Array1D<ZoneMassConservationData> MassConservation;
-    ZoneAirMassFlowConservation ZoneAirMassFlow;
+    thread_local Array1D<ZonePreDefRepType> ZonePreDefRep;
+    thread_local ZonePreDefRepType BuildingPreDefRep; // Autodesk:Note Removed explicit constructor that was missing some entries
+    thread_local Array1D<ZoneSimData> ZoneIntGain;
+    thread_local Array1D<MaterialProperties> Material;
+    thread_local Array1D<GapSupportPillar> SupportPillar;
+    thread_local Array1D<GapDeflectionState> DeflectionState;
+    thread_local Array1D<ConstructionData> Construct;
+    thread_local Array1D<SpectralDataProperties> SpectralData;
+    thread_local Array1D<ZoneData> Zone;
+    thread_local Array1D<ZoneListData> ZoneList;
+    thread_local Array1D<ZoneGroupData> ZoneGroup;
+    thread_local Array1D<PeopleData> People;
+    thread_local Array1D<LightsData> Lights;
+    thread_local Array1D<ZoneEquipData> ZoneElectric;
+    thread_local Array1D<ZoneEquipData> ZoneGas;
+    thread_local Array1D<ZoneEquipData> ZoneOtherEq;
+    thread_local Array1D<ZoneEquipData> ZoneHWEq;
+    thread_local Array1D<ZoneEquipData> ZoneSteamEq;
+    thread_local Array1D<ITEquipData> ZoneITEq;
+    thread_local Array1D<BBHeatData> ZoneBBHeat;
+    thread_local Array1D<InfiltrationData> Infiltration;
+    thread_local Array1D<VentilationData> Ventilation;
+    thread_local Array1D<ZoneAirBalanceData> ZoneAirBalance;
+    thread_local Array1D<MixingData> Mixing;
+    thread_local Array1D<MixingData> CrossMixing;
+    thread_local Array1D<MixingData> RefDoorMixing;
+    thread_local Array1D<WindowBlindProperties> Blind;
+    thread_local Array1D<WindowComplexShade> ComplexShade;
+    thread_local Array1D<WindowThermalModelParams> WindowThermalModel;
+    thread_local Array1D<SurfaceScreenProperties> SurfaceScreens;
+    thread_local Array1D<ScreenTransData> ScreenTrans;
+    thread_local Array1D<ZoneCatEUseData> ZoneIntEEuse;
+    thread_local Array1D<RefrigCaseCreditData> RefrigCaseCredit;
+    thread_local Array1D<HeatReclaimRefrigeratedRackData> HeatReclaimRefrigeratedRack;
+    thread_local Array1D<HeatReclaimRefrigCondenserData> HeatReclaimRefrigCondenser;
+    thread_local Array1D<HeatReclaimDXCoilData> HeatReclaimDXCoil;
+    thread_local Array1D<HeatReclaimDXCoilData> HeatReclaimVS_DXCoil;
+    thread_local Array1D<AirReportVars> ZnAirRpt;
+    thread_local Array1D<TCGlazingsType> TCGlazings;
+    thread_local Array1D<ZoneEquipData> ZoneCO2Gen;
+    thread_local Array1D<GlobalInternalGainMiscObject> PeopleObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> LightsObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> ZoneElectricObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> ZoneGasObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> HotWaterEqObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> SteamEqObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> OtherEqObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> InfiltrationObjects;
+    thread_local Array1D<GlobalInternalGainMiscObject> VentilationObjects;
+    thread_local Array1D<ZoneReportVars> ZnRpt;
+    thread_local Array1D<ZoneMassConservationData> MassConservation;
+    thread_local ZoneAirMassFlowConservation ZoneAirMassFlow;
 
-    Array1D<ZoneLocalEnvironmentData> ZoneLocalEnvironment;
+    thread_local Array1D<ZoneLocalEnvironmentData> ZoneLocalEnvironment;
 
     // Functions
 
@@ -1688,7 +1688,7 @@ namespace DataHeatBalance {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        static Array1D_int LayerPoint(MaxLayersInConstruct, 0); // Pointer array which refers back to
+        thread_local static Array1D_int LayerPoint(MaxLayersInConstruct, 0); // Pointer array which refers back to
         int nLayer;
         int Loop;
         bool Found;
@@ -2418,11 +2418,11 @@ namespace DataHeatBalance {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int loopSurfNum(0); // surface index
-        static int ConstrNum(0);   // construction index
-        static int NumLayers(0);   // number of material layers in a construction
-        static int Layer(0);       // construction material layer index
-        static int MaterNum(0);    // construction material index
+        thread_local static int loopSurfNum(0); // surface index
+        thread_local static int ConstrNum(0);   // construction index
+        thread_local static int NumLayers(0);   // number of material layers in a construction
+        thread_local static int Layer(0);       // construction material layer index
+        thread_local static int MaterNum(0);    // construction material index
 
         for (loopSurfNum = 1; loopSurfNum <= TotSurfaces; ++loopSurfNum) {
 

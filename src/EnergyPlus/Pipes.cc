@@ -107,14 +107,14 @@ namespace Pipes {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumLocalPipes(0);
-    bool GetPipeInputFlag(true);
+    thread_local int NumLocalPipes(0);
+    thread_local bool GetPipeInputFlag(true);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Pipe
 
     // Object Data
-    Array1D<LocalPipeData> LocalPipe; // dimension to number of pipes
-    std::unordered_map<std::string, std::string> LocalPipeUniqueNames;
+    thread_local Array1D<LocalPipeData> LocalPipe; // dimension to number of pipes
+    thread_local std::unordered_map<std::string, std::string> LocalPipeUniqueNames;
 
     // Functions
     void clear_state()
@@ -208,7 +208,7 @@ namespace Pipes {
         int NumAlphas; // Number of elements in the alpha array
         int NumNums;   // Number of elements in the numeric array
         int IOStat;    // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
 
         // GET NUMBER OF ALL EQUIPMENT TYPES
         NumWaterPipes = inputProcessor->getNumObjectsFound("Pipe:Adiabatic");

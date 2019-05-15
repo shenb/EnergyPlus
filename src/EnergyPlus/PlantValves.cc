@@ -106,13 +106,13 @@ namespace PlantValves {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumTemperingValves;
-    Array1D_bool CheckEquipName;
+    thread_local int NumTemperingValves;
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
     // Object Data
-    Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
+    thread_local Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
 
     // Functions
 
@@ -139,7 +139,7 @@ namespace PlantValves {
         // Simulation manager for Plant valves
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool GetInputFlag(true); // First time, input is "gotten"
+        thread_local static bool GetInputFlag(true); // First time, input is "gotten"
         int EqNum;
 
         if (GetInputFlag) {
@@ -212,7 +212,7 @@ namespace PlantValves {
         int NumAlphas;                   // Number of Alphas for each GetObjectItem call
         int NumNumbers;                  // Number of Numbers for each GetObjectItem call
         int IOStatus;                    // Used in GetObjectItem
-        static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
         std::string CurrentModuleObject; // for ease in renaming.
 
         CurrentModuleObject = "TemperingValve";
@@ -304,8 +304,8 @@ namespace PlantValves {
 
         int numLoopSides; // set to SIZE(PlantLoop(i)%LoopSide)
 
-        static bool MyOneTimeFlag(true);   // first pass log
-        static Array1D_bool MyTwoTimeFlag; // second pass do input check
+        thread_local static bool MyOneTimeFlag(true);   // first pass log
+        thread_local static Array1D_bool MyTwoTimeFlag; // second pass do input check
         bool errFlag;
 
         {

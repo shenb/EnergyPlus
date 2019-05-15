@@ -67,21 +67,21 @@ namespace DataOutputs {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const NumMonthlyReports;
-    extern Array1D_string const MonthlyNamedReports;
+    thread_local extern int const NumMonthlyReports;
+    thread_local extern Array1D_string const MonthlyNamedReports;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int MaxConsideredOutputVariables; // Max Array size for OutputVariable pre-scanned
-    extern int NumConsideredOutputVariables; // Number of variables - pre-scanned, allowed for output
-    extern int iNumberOfRecords;             // Number of records in input
-    extern int iNumberOfDefaultedFields;     // number of defaulted fields
-    extern int iTotalFieldsWithDefaults;     // number of fields that can be defaulted
-    extern int iNumberOfAutoSizedFields;     // number of autosized fields
-    extern int iTotalAutoSizableFields;      // number of fields that can be autosized
-    extern int iNumberOfAutoCalcedFields;    // number of autocalculated fields
-    extern int iTotalAutoCalculatableFields; // number of fields that can be autocalculated
+    thread_local extern int MaxConsideredOutputVariables; // Max Array size for OutputVariable pre-scanned
+    thread_local extern int NumConsideredOutputVariables; // Number of variables - pre-scanned, allowed for output
+    thread_local extern int iNumberOfRecords;             // Number of records in input
+    thread_local extern int iNumberOfDefaultedFields;     // number of defaulted fields
+    thread_local extern int iTotalFieldsWithDefaults;     // number of fields that can be defaulted
+    thread_local extern int iNumberOfAutoSizedFields;     // number of autosized fields
+    thread_local extern int iTotalAutoSizableFields;      // number of fields that can be autosized
+    thread_local extern int iNumberOfAutoCalcedFields;    // number of autocalculated fields
+    thread_local extern int iTotalAutoCalculatableFields; // number of fields that can be autocalculated
 
     // Types
     struct OutputReportingVariables
@@ -94,7 +94,7 @@ namespace DataOutputs {
         std::unique_ptr<RE2> pattern;
         std::unique_ptr<RE2> case_insensitive_pattern;
     };
-    extern std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables>> OutputVariablesForSimulation;
+    thread_local extern std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables>> OutputVariablesForSimulation;
 
     // Functions
 

@@ -82,27 +82,27 @@ namespace Psychrometrics {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // call for recurring errors
-    extern int const iPsyTdpFnTdbTwbPb;
-    extern int const iPsyRhFnTdbWPb;
-    extern int const iPsyTwbFnTdbWPb;
-    extern int const iPsyTwbFnTdbWPb2;
-    extern int const iPsyTwbFnTdbWPb3; // convergence
-    extern int const iPsyVFnTdbWPb;
-    extern int const iPsyWFnTdpPb;
-    extern int const iPsyWFnTdbH;
-    extern int const iPsyWFnTdbTwbPb;
-    extern int const iPsyWFnTdbTwbPb2;
-    extern int const iPsyWFnTdbRhPb;
-    extern int const iPsyPsatFnTemp;
-    extern int const iPsyTsatFnHPb;
-    extern int const iPsyTsatFnPb;
-    extern int const iPsyTsatFnPb2; // iterations
-    extern int const iPsyRhFnTdbRhov;
-    extern int const iPsyRhFnTdbRhovLBnd0C;
-    extern int const iPsyTwbFnTdbWPb_cache;
-    extern int const iPsyPsatFnTemp_cache;
-    extern int const NumPsychMonitors; // Parameterization of Number of psychrometric routines that
-    extern std::string const blank_string;
+    thread_local extern int const iPsyTdpFnTdbTwbPb;
+    thread_local extern int const iPsyRhFnTdbWPb;
+    thread_local extern int const iPsyTwbFnTdbWPb;
+    thread_local extern int const iPsyTwbFnTdbWPb2;
+    thread_local extern int const iPsyTwbFnTdbWPb3; // convergence
+    thread_local extern int const iPsyVFnTdbWPb;
+    thread_local extern int const iPsyWFnTdpPb;
+    thread_local extern int const iPsyWFnTdbH;
+    thread_local extern int const iPsyWFnTdbTwbPb;
+    thread_local extern int const iPsyWFnTdbTwbPb2;
+    thread_local extern int const iPsyWFnTdbRhPb;
+    thread_local extern int const iPsyPsatFnTemp;
+    thread_local extern int const iPsyTsatFnHPb;
+    thread_local extern int const iPsyTsatFnPb;
+    thread_local extern int const iPsyTsatFnPb2; // iterations
+    thread_local extern int const iPsyRhFnTdbRhov;
+    thread_local extern int const iPsyRhFnTdbRhovLBnd0C;
+    thread_local extern int const iPsyTwbFnTdbWPb_cache;
+    thread_local extern int const iPsyPsatFnTemp_cache;
+    thread_local extern int const NumPsychMonitors; // Parameterization of Number of psychrometric routines that
+    thread_local extern std::string const blank_string;
 #ifdef EP_psych_stats
     extern Array1D_string const PsyRoutineNames; // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 - HR | 15 - max iter | 16 - HR | 17 -
                                                  // max iter | 18 - PsyTwbFnTdbWPb_raw (raw calc) | 19 - PsyPsatFnTemp_raw (raw calc)
@@ -120,22 +120,22 @@ namespace Psychrometrics {
 #endif
 
 #ifdef EP_cache_PsyTwbFnTdbWPb
-    extern int const twbcache_size;
-    extern int const twbprecision_bits;
+    thread_local extern int const twbcache_size;
+    thread_local extern int const twbprecision_bits;
 #endif
 #ifdef EP_cache_PsyPsatFnTemp
-    extern int const psatcache_size;
-    extern int const psatprecision_bits; // 28  //24  //32
-    extern Int64 const psatcache_mask;
+    thread_local extern int const psatcache_size;
+    thread_local extern int const psatprecision_bits; // 28  //24  //32
+    thread_local extern Int64 const psatcache_mask;
 #endif
 
     // MODULE VARIABLE DECLARATIONS:
     // na
 
     // MODULE VARIABLE DEFINITIONS:
-    extern std::string String;
-    extern bool ReportErrors;
-    extern Array1D_int iPsyErrIndex; // Number of times error occurred
+    thread_local extern std::string String;
+    thread_local extern bool ReportErrors;
+    thread_local extern Array1D_int iPsyErrIndex; // Number of times error occurred
 #ifdef EP_psych_stats
     extern Array1D<Int64> NumTimesCalled;
     extern Array1D_int NumIterations;
@@ -177,10 +177,10 @@ namespace Psychrometrics {
 
     // Object Data
 #ifdef EP_cache_PsyTwbFnTdbWPb
-    extern Array1D<cached_twb_t> cached_Twb; // DIMENSION(0:twbcache_size)
+    thread_local extern Array1D<cached_twb_t> cached_Twb; // DIMENSION(0:twbcache_size)
 #endif
 #ifdef EP_cache_PsyPsatFnTemp
-    extern Array1D<cached_psat_t> cached_Psat; // DIMENSION(0:psatcache_size)
+    thread_local extern Array1D<cached_psat_t> cached_Psat; // DIMENSION(0:psatcache_size)
 #endif
 
     // Subroutine Specifications for the Module
@@ -355,9 +355,9 @@ namespace Psychrometrics {
         // USAGE:  cpa = PsyCpAirFnWTdb(w,T)
 
         // Static locals
-        static Real64 dwSave(-100.0);
-        static Real64 Tsave(-100.0);
-        static Real64 cpaSave(-100.0);
+        thread_local static Real64 dwSave(-100.0);
+        thread_local static Real64 Tsave(-100.0);
+        thread_local static Real64 cpaSave(-100.0);
 
         // check if last call had the same input and if it did just use the saved output
         if ((Tsave == T) && (dwSave == dw)) return cpaSave;
@@ -382,9 +382,9 @@ namespace Psychrometrics {
         assert(dw >= 1.0e-5);
 
         // Static locals
-        static Real64 dwSave(-100.0);
-        static Real64 Tsave(-100.0);
-        static Real64 cpaSave(-100.0);
+        thread_local static Real64 dwSave(-100.0);
+        thread_local static Real64 Tsave(-100.0);
+        thread_local static Real64 cpaSave(-100.0);
 
         // check if last call had the same input and if it did just use the saved output
         if ((Tsave == T) && (dwSave == dw)) return cpaSave;
@@ -771,7 +771,7 @@ namespace Psychrometrics {
         // values from PsyRhFnTdbWPb
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PsyRhFnTdbRhov");
+        thread_local static std::string const RoutineName("PsyRhFnTdbRhov");
 
 #ifdef EP_psych_stats
         ++NumTimesCalled(iPsyRhFnTdbRhov);
@@ -819,7 +819,7 @@ namespace Psychrometrics {
         // ASHRAE HANDBOOK FUNDAMENTALS 1985, P6.12, EQN 10,21,23
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PsyRhFnTdbWPb");
+        thread_local static std::string const RoutineName("PsyRhFnTdbWPb");
 
 #ifdef EP_psych_stats
         ++NumTimesCalled(iPsyRhFnTdbWPb);
@@ -874,7 +874,7 @@ namespace Psychrometrics {
         // ASHRAE HANDBOOK OF FUNDAMENTALS, 1972, P99, EQN 22
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PsyWFnTdpPb");
+        thread_local static std::string const RoutineName("PsyWFnTdpPb");
 
 #ifdef EP_psych_stats
         ++NumTimesCalled(iPsyWFnTdpPb);
@@ -924,7 +924,7 @@ namespace Psychrometrics {
         // ASHRAE HANDBOOK OF FUNDAMENTALS, 1972, P99, EQN 22
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PsyWFnTdbRhPb");
+        thread_local static std::string const RoutineName("PsyWFnTdbRhPb");
 
 #ifdef EP_psych_stats
         ++NumTimesCalled(iPsyWFnTdbRhPb);
@@ -986,7 +986,7 @@ namespace Psychrometrics {
         // ASHRAE HANDBOOK OF FUNDAMENTALS, 1972, P99, EQ 22,35
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PsyWFnTdbTwbPb");
+        thread_local static std::string const RoutineName("PsyWFnTdbTwbPb");
 
 #ifdef EP_psych_stats
         ++NumTimesCalled(iPsyWFnTdbTwbPb);

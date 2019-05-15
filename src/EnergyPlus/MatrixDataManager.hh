@@ -66,7 +66,7 @@ namespace MatrixDataManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // INTEGER, PARAMETER :: OneDimensional = 1
-    extern int const TwoDimensional;
+    thread_local extern int const TwoDimensional;
     // INTEGER, PARAMETER :: ThreeDimensional = 3
 
     // DERIVED TYPE DEFINITIONS:
@@ -74,7 +74,7 @@ namespace MatrixDataManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumMats; // number of matracies in input file
+    thread_local extern int NumMats; // number of matracies in input file
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -104,7 +104,7 @@ namespace MatrixDataManager {
     };
 
     // Object Data
-    extern Array1D<MatrixDataStruct> MatData;
+    thread_local extern Array1D<MatrixDataStruct> MatData;
 
     // Functions
 

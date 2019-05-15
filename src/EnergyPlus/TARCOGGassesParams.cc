@@ -78,21 +78,21 @@ namespace TARCOGGassesParams {
 
     // Data
     // Max number of gasses
-    int const maxgas(10);
+    thread_local int const maxgas(10);
 
     // Standards:
-    int const ISO15099(1);    // standard = ISO15099
-    int const EN673(2);       // standard = EN 673 / ISO 10292 Declared
-    int const EN673Design(3); // standard = EN 673 / ISO 10292 Design
+    thread_local int const ISO15099(1);    // standard = ISO15099
+    thread_local int const EN673(2);       // standard = EN 673 / ISO 10292 Declared
+    thread_local int const EN673Design(3); // standard = EN 673 / ISO 10292 Design
 
-    int const MinStandard(1); // minimum index for standard
-    int const MaxStandard(3); // maximum index for standard
+    thread_local int const MinStandard(1); // minimum index for standard
+    thread_local int const MaxStandard(3); // maximum index for standard
 
     // REAL(r64), parameter :: pi       = 3.14159265358979323846d0
     // REAL(r64), parameter :: UniversalGasConst = 8314.462175d0 !(J/mol*K)
-    Real64 const alpha1(0.5);                // accomodation coefficient for low pressure gas calculations
-    Real64 const alpha2(0.5);                // accomodation coefficient for low pressure gas calculations
-    Real64 const InputDataTolerance(1.0e-7); // coefficient used for input data tolerance in case for displaying error message
+    thread_local Real64 const alpha1(0.5);                // accomodation coefficient for low pressure gas calculations
+    thread_local Real64 const alpha2(0.5);                // accomodation coefficient for low pressure gas calculations
+    thread_local Real64 const InputDataTolerance(1.0e-7); // coefficient used for input data tolerance in case for displaying error message
 
     // REAL(r64) :: gcon(maxgas,3), gvis(maxgas,3), gcp(maxgas,3), grho(maxgas,3), wght(maxgas)
 

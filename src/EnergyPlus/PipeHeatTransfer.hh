@@ -72,38 +72,38 @@ namespace PipeHeatTransfer {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    extern int const None;
-    extern int const ZoneEnv;
-    extern int const ScheduleEnv;
-    extern int const OutsideAirEnv;
-    extern int const GroundEnv;
+    thread_local extern int const None;
+    thread_local extern int const ZoneEnv;
+    thread_local extern int const ScheduleEnv;
+    thread_local extern int const OutsideAirEnv;
+    thread_local extern int const GroundEnv;
 
-    extern int const PreviousTimeIndex;
-    extern int const CurrentTimeIndex;
-    extern int const TentativeTimeIndex;
+    thread_local extern int const PreviousTimeIndex;
+    thread_local extern int const CurrentTimeIndex;
+    thread_local extern int const TentativeTimeIndex;
 
-    extern Real64 const InnerDeltaTime; // one minute time step in seconds
+    thread_local extern Real64 const InnerDeltaTime; // one minute time step in seconds
 
     // DERIVED TYPE DEFINITIONS
 
     // the model data structures
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int nsvNumOfPipeHT;          // Number of Pipe Heat Transfer objects
-    extern int nsvInletNodeNum;         // module variable for inlet node number
-    extern int nsvOutletNodeNum;        // module variable for outlet node number
-    extern int nsvPipeHTNum;            // object index
-    extern Real64 nsvMassFlowRate;      // pipe mass flow rate
-    extern Real64 nsvVolumeFlowRate;    // pipe volumetric flow rate
-    extern Real64 nsvDeltaTime;         // time change from last update
-    extern Real64 nsvInletTemp;         // pipe inlet temperature
-    extern Real64 nsvOutletTemp;        // pipe outlet temperature
-    extern Real64 nsvEnvironmentTemp;   // environmental temperature (surrounding pipe)
-    extern Real64 nsvEnvHeatLossRate;   // heat loss rate from pipe to the environment
-    extern Real64 nsvFluidHeatLossRate; // overall heat loss from fluid to pipe
-    extern int nsvNumInnerTimeSteps;    // the number of "inner" time steps for our model
+    thread_local extern int nsvNumOfPipeHT;          // Number of Pipe Heat Transfer objects
+    thread_local extern int nsvInletNodeNum;         // module variable for inlet node number
+    thread_local extern int nsvOutletNodeNum;        // module variable for outlet node number
+    thread_local extern int nsvPipeHTNum;            // object index
+    thread_local extern Real64 nsvMassFlowRate;      // pipe mass flow rate
+    thread_local extern Real64 nsvVolumeFlowRate;    // pipe volumetric flow rate
+    thread_local extern Real64 nsvDeltaTime;         // time change from last update
+    thread_local extern Real64 nsvInletTemp;         // pipe inlet temperature
+    thread_local extern Real64 nsvOutletTemp;        // pipe outlet temperature
+    thread_local extern Real64 nsvEnvironmentTemp;   // environmental temperature (surrounding pipe)
+    thread_local extern Real64 nsvEnvHeatLossRate;   // heat loss rate from pipe to the environment
+    thread_local extern Real64 nsvFluidHeatLossRate; // overall heat loss from fluid to pipe
+    thread_local extern int nsvNumInnerTimeSteps;    // the number of "inner" time steps for our model
 
-    extern bool GetPipeInputFlag; // First time, input is "gotten"
+    thread_local extern bool GetPipeInputFlag; // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -278,7 +278,7 @@ namespace PipeHeatTransfer {
     };
 
     // Object Data
-    extern Array1D<PipeHTData> PipeHT;
+    thread_local extern Array1D<PipeHTData> PipeHT;
 
     void GetPipesHeatTransfer();
 

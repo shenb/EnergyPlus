@@ -98,11 +98,11 @@ namespace EnergyPlus {
 // input file and (2) the simulation input data file will be processed
 // with the data therein being supplied to the actual simulation routines.
 
-static std::string const BlankString;
+thread_local static std::string const BlankString;
 
 using json = nlohmann::json;
 
-std::unique_ptr<InputProcessor> inputProcessor = nullptr;
+thread_local std::unique_ptr<InputProcessor> inputProcessor = nullptr;
 
 InputProcessor::InputProcessor() : idf_parser(std::unique_ptr<IdfParser>(new IdfParser())), data(std::unique_ptr<DataStorage>(new DataStorage()))
 {
@@ -146,7 +146,7 @@ json const &InputProcessor::getFields(std::string const &objectType, std::string
 
 json const &InputProcessor::getFields(std::string const &objectType)
 {
-    static const std::string blankString;
+    thread_local static const std::string blankString;
     auto const it = epJSON.find(objectType);
     if (it == epJSON.end()) {
         ShowFatalError("ObjectType (" + objectType + ") requested was not found in input");
@@ -1342,16 +1342,16 @@ void InputProcessor::preScanReportingVariables()
     // EnergyManagementSystem:OutputVariable
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    static std::string const OutputVariable("Output:Variable");
-    static std::string const MeterCustom("Meter:Custom");
-    static std::string const MeterCustomDecrement("Meter:CustomDecrement");
+    thread_local static std::string const OutputVariable("Output:Variable");
+    thread_local static std::string const MeterCustom("Meter:Custom");
+    thread_local static std::string const MeterCustomDecrement("Meter:CustomDecrement");
     //		static std::string const MeterCustomDifference( "METER:CUSTOMDIFFERENCE" );
-    static std::string const OutputTableMonthly("Output:Table:Monthly");
-    static std::string const OutputTableAnnual("Output:Table:Annual");
-    static std::string const OutputTableTimeBins("Output:Table:TimeBins");
-    static std::string const OutputTableSummaries("Output:Table:SummaryReports");
-    static std::string const EMSSensor("EnergyManagementSystem:Sensor");
-    static std::string const EMSOutputVariable("EnergyManagementSystem:OutputVariable");
+    thread_local static std::string const OutputTableMonthly("Output:Table:Monthly");
+    thread_local static std::string const OutputTableAnnual("Output:Table:Annual");
+    thread_local static std::string const OutputTableTimeBins("Output:Table:TimeBins");
+    thread_local static std::string const OutputTableSummaries("Output:Table:SummaryReports");
+    thread_local static std::string const EMSSensor("EnergyManagementSystem:Sensor");
+    thread_local static std::string const EMSOutputVariable("EnergyManagementSystem:OutputVariable");
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
     std::string extension_key;

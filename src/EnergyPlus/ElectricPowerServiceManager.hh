@@ -759,7 +759,7 @@ private:                      // data
 
 }; // class ElectricPowerServiceManager
 
-extern std::unique_ptr<ElectricPowerServiceManager> facilityElectricServiceObj;
+thread_local extern std::unique_ptr<ElectricPowerServiceManager> facilityElectricServiceObj;
 
 void createFacilityElectricPowerServiceObject();
 

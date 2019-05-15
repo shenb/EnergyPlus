@@ -63,8 +63,8 @@
 
 namespace EnergyPlus {
 
-static gio::Fmt fmtA("(A)");
-static gio::Fmt fmtAN("(A,$)");
+thread_local static gio::Fmt fmtA("(A)");
+thread_local static gio::Fmt fmtAN("(A,$)");
 
 //******************************************************************************
 

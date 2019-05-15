@@ -61,13 +61,13 @@ namespace HVACInterfaceManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Common Pipe Recirc Flow Directions
-    extern int const NoRecircFlow;
-    extern int const PrimaryRecirc;   // flow from Supply-outlet/Demand-inlet to Supply-inlet/demand-outlet
-    extern int const SecondaryRecirc; // flow from Supply-inlet/Demand-oulet to Supply-outlet/demand-inlet
+    thread_local extern int const NoRecircFlow;
+    thread_local extern int const PrimaryRecirc;   // flow from Supply-outlet/Demand-inlet to Supply-inlet/demand-outlet
+    thread_local extern int const SecondaryRecirc; // flow from Supply-inlet/Demand-oulet to Supply-outlet/demand-inlet
 
-    extern int const FlowTypeNotSet;
-    extern int const ConstantFlow;
-    extern int const VariableFlow;
+    thread_local extern int const FlowTypeNotSet;
+    thread_local extern int const ConstantFlow;
+    thread_local extern int const VariableFlow;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -75,7 +75,7 @@ namespace HVACInterfaceManager {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern bool CommonPipeSetupFinished;
+    thread_local extern bool CommonPipeSetupFinished;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ConductionTransferFunctionCalc
 
@@ -116,7 +116,7 @@ namespace HVACInterfaceManager {
     };
 
     // Object Data
-    extern Array1D<CommonPipeData> PlantCommonPipe;
+    thread_local extern Array1D<CommonPipeData> PlantCommonPipe;
 
     // Functions
 

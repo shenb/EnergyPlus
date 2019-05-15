@@ -58,7 +58,7 @@ namespace EnergyPlus {
 
 namespace PVWatts {
 
-    static const int __nday[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    thread_local static const int __nday[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     static int julian(int yr, int month, int day) /* Calculates julian day of year */
     {
@@ -1550,7 +1550,7 @@ namespace PVWatts {
 
     // Begin modified DISC code
 
-    double cm[6][6][7][5] = {{{{0.385230, 0.385230, 0.385230, 0.462880, 0.317440},
+    thread_local double cm[6][6][7][5] = {{{{0.385230, 0.385230, 0.385230, 0.462880, 0.317440},
                                {0.338390, 0.338390, 0.221270, 0.316730, 0.503650},
                                {0.235680, 0.235680, 0.241280, 0.157830, 0.269440},
                                {0.830130, 0.830130, 0.171970, 0.841070, 0.457370},

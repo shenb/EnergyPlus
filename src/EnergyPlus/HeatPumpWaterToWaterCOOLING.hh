@@ -63,8 +63,8 @@ namespace HeatPumpWaterToWaterCOOLING {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern std::string const ModuleCompName;
-    extern std::string const ModuleCompNameUC;
+    thread_local extern std::string const ModuleCompName;
+    thread_local extern std::string const ModuleCompNameUC;
 
     // DERIVED TYPE DEFINITIONS
 
@@ -73,21 +73,21 @@ namespace HeatPumpWaterToWaterCOOLING {
     // Output Variables Type definition
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
-    extern std::string GSHPRefrigerant; // refrigerent name and index
-    extern int GSHPRefrigIndex;
+    thread_local extern std::string GSHPRefrigerant; // refrigerent name and index
+    thread_local extern int GSHPRefrigIndex;
 
-    extern int NumGSHPs;                       // number of Gshps specified in input
-    extern Real64 LoadSideWaterMassFlowRate;   // Load Side mass flow rate, water side kg/s
-    extern Real64 SourceSideWaterMassFlowRate; // Source Side mass flow rate, water side kg/s
-    extern Real64 Power;                       // power consumption Watts
-    extern Real64 QLoad;                       // heat rejection from Load Side coil Watts
-    extern Real64 QSource;                     // cooling capacity Watts
-    extern Real64 SourceSideWaterOutletTemp;   // Source Side outlet temperature °C
-    extern Real64 SourceSideWaterInletTemp;    // Source Side outlet temperature °C
-    extern Real64 LoadSideWaterOutletTemp;     // Source Side outlet temperature °C
-    extern Real64 LoadSideWaterInletTemp;      // Source Side outlet temperature °C
+    thread_local extern int NumGSHPs;                       // number of Gshps specified in input
+    thread_local extern Real64 LoadSideWaterMassFlowRate;   // Load Side mass flow rate, water side kg/s
+    thread_local extern Real64 SourceSideWaterMassFlowRate; // Source Side mass flow rate, water side kg/s
+    thread_local extern Real64 Power;                       // power consumption Watts
+    thread_local extern Real64 QLoad;                       // heat rejection from Load Side coil Watts
+    thread_local extern Real64 QSource;                     // cooling capacity Watts
+    thread_local extern Real64 SourceSideWaterOutletTemp;   // Source Side outlet temperature °C
+    thread_local extern Real64 SourceSideWaterInletTemp;    // Source Side outlet temperature °C
+    thread_local extern Real64 LoadSideWaterOutletTemp;     // Source Side outlet temperature °C
+    thread_local extern Real64 LoadSideWaterInletTemp;      // Source Side outlet temperature °C
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -180,8 +180,8 @@ namespace HeatPumpWaterToWaterCOOLING {
     };
 
     // Object Data
-    extern Array1D<GshpSpecs> GSHP; // dimension to number of machines
-    extern Array1D<ReportVars> GSHPReport;
+    thread_local extern Array1D<GshpSpecs> GSHP; // dimension to number of machines
+    thread_local extern Array1D<ReportVars> GSHPReport;
 
     // Functions
 

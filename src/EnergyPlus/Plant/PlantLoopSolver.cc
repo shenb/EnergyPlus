@@ -94,22 +94,22 @@ namespace PlantLoopSolver {
     // The procedural flow depends on the pump(s), loop side, and operation scheme at the time (and current flow lock?)
 
     // MODULE VARIABLE DEFINITIONS
-    Real64 InitialDemandToLoopSetPoint;
-    Real64 CurrentAlterationsToDemand;
-    Real64 UpdatedDemandToLoopSetPoint;
-    Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
-    Real64 InitialDemandToLoopSetPointSAVED;
-    bool CurrentLoopSideIsConstantSpeedBranchPumped;
-    int RefrigIndex(0); // Index denoting refrigerant used (possibly steam)
+    thread_local Real64 InitialDemandToLoopSetPoint;
+    thread_local Real64 CurrentAlterationsToDemand;
+    thread_local Real64 UpdatedDemandToLoopSetPoint;
+    thread_local Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
+    thread_local Real64 InitialDemandToLoopSetPointSAVED;
+    thread_local bool CurrentLoopSideIsConstantSpeedBranchPumped;
+    thread_local int RefrigIndex(0); // Index denoting refrigerant used (possibly steam)
 
-    static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameSteam("STEAM");
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
         // to facilitate easier unit testing of those functions.
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool EstablishedCompPumpIndeces(false);
+        thread_local bool EstablishedCompPumpIndeces(false);
     } // namespace
 
     // Functions
@@ -629,7 +629,7 @@ namespace PlantLoopSolver {
         Real64 ThisBranchFlowRequestNeedIfOn;
         Real64 InletBranchRequestNeedAndTurnOn;
         Real64 InletBranchRequestNeedIfOn;
-        static Array2D<Real64> NoLoadConstantSpeedBranchFlowRateSteps;
+        thread_local static Array2D<Real64> NoLoadConstantSpeedBranchFlowRateSteps;
         int ParallelBranchIndex;
         Real64 OutletBranchRequestNeedAndTurnOn;
         Real64 OutletBranchRequestNeedIfOn;
@@ -638,13 +638,13 @@ namespace PlantLoopSolver {
         bool ThisLoopHasCommonPipe(false);
 
         // Tuned Made static: Set before use
-        static Array1D_bool ThisLoopHasConstantSpeedBranchPumps(2);
-        static Array1D<Real64> EachSideFlowRequestNeedAndTurnOn(2); // 2 for SupplySide/DemandSide
-        static Array1D<Real64> EachSideFlowRequestNeedIfOn(2);      // 2 for SupplySide/DemandSide
-        static Array1D<Real64> EachSideFlowRequestFinal(2);         // 2 for SupplySide/DemandSide
+        thread_local static Array1D_bool ThisLoopHasConstantSpeedBranchPumps(2);
+        thread_local static Array1D<Real64> EachSideFlowRequestNeedAndTurnOn(2); // 2 for SupplySide/DemandSide
+        thread_local static Array1D<Real64> EachSideFlowRequestNeedIfOn(2);      // 2 for SupplySide/DemandSide
+        thread_local static Array1D<Real64> EachSideFlowRequestFinal(2);         // 2 for SupplySide/DemandSide
         CurrentLoopSideIsConstantSpeedBranchPumped = false;
 
-        static bool AllocatedParallelArray(false);
+        thread_local static bool AllocatedParallelArray(false);
         int MaxParallelBranchCount;
         int FlowPriorityStatus;
         Real64 tmpLoopFlow;
@@ -1135,10 +1135,10 @@ namespace PlantLoopSolver {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         //~ History values
-        static int LastLoopNum(-1);
-        static int LastLoopSideNum(-1);
-        static int LastFirstBranchNum(-1);
-        static int LastLastBranchNum(-1);
+        thread_local static int LastLoopNum(-1);
+        thread_local static int LastLoopSideNum(-1);
+        thread_local static int LastFirstBranchNum(-1);
+        thread_local static int LastLastBranchNum(-1);
 
         //~ Indexing variables
         int BranchCounter; // ~ This contains the index for the %Branch(:) structure
@@ -1152,10 +1152,10 @@ namespace PlantLoopSolver {
         bool LoadDistributionWasPerformed;
         bool DummyInit;
         bool const DoNotGetCompSizFac(false);
-        static Array1D_string const LoopSideNames(2, {"Demand", "Supply"});
+        thread_local static Array1D_string const LoopSideNames(2, {"Demand", "Supply"});
 
         //~ General variables
-        static Array1D_int LastComponentSimulated;
+        thread_local static Array1D_int LastComponentSimulated;
         Real64 LoadToLoopSetPoint;
 
         int curCompOpSchemePtr;
@@ -1533,7 +1533,7 @@ namespace PlantLoopSolver {
         //  the very beginning of this loop side, so that it is basically for the entire loop side
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static Array1D_int const InitCompArray(1, 0);
+        thread_local static Array1D_int const InitCompArray(1, 0);
 
         Real64 Demand = DataPlant::PlantLoop(LoopNum).loopSolver.EvaluateLoopSetPointLoad(LoopNum, ThisSide, 1, 1, ThisLoopSideFlow, InitCompArray);
 
@@ -1557,8 +1557,8 @@ namespace PlantLoopSolver {
         // Return value
         Real64 LoadToLoopSetPoint = 0.0; // function result
 
-        static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
-        static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
+        thread_local static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
+        thread_local static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
 
         //~ General variables
         Real64 SumMdotTimesTemp = 0.0;
@@ -1744,7 +1744,7 @@ namespace PlantLoopSolver {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PlantLoopSolver::UpdateAnyLoopDemandAlterations");
+        thread_local static std::string const RoutineName("PlantLoopSolver::UpdateAnyLoopDemandAlterations");
 
         // Init to zero, so that if we don't find anything, we exit early
         Real64 ComponentMassFlowRate(0.0);
@@ -1845,7 +1845,7 @@ namespace PlantLoopSolver {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const LoopSideName(2, {"Demand", "Supply"});
+        thread_local static Array1D_string const LoopSideName(2, {"Demand", "Supply"});
         int const SplitNum(1);             // Only one splitter/mixer combination is allowed
         int const LoopSideSingleBranch(1); // For readability
 
@@ -2552,8 +2552,8 @@ namespace PlantLoopSolver {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
-        static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
+        thread_local static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
+        thread_local static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
 
         //~ General variables
         Real64 MassFlowRate;

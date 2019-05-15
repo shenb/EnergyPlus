@@ -60,11 +60,11 @@ namespace DataDElight {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    extern Real64 const M2FT;   // Length:   Meters * M2FT = Feet
-    extern Real64 const FT22M2; // Area:     SquareFeet * FT22M2 = SquareMeter
-    extern Real64 const M22FT2; // Area:     SquareMeter * M22FT2 = SquareFeet
-    extern Real64 const M32FT3; // Volume:       CubicMeter * M32FT3 = CubicFeet
-    extern Real64 const LUX2FC; // Illuminance:  Lux * LUX2FC = Footcandles
+    thread_local extern Real64 const M2FT;   // Length:   Meters * M2FT = Feet
+    thread_local extern Real64 const FT22M2; // Area:     SquareFeet * FT22M2 = SquareMeter
+    thread_local extern Real64 const M22FT2; // Area:     SquareMeter * M22FT2 = SquareFeet
+    thread_local extern Real64 const M32FT3; // Volume:       CubicMeter * M32FT3 = CubicFeet
+    thread_local extern Real64 const LUX2FC; // Illuminance:  Lux * LUX2FC = Footcandles
 
 } // namespace DataDElight
 

@@ -63,41 +63,41 @@ namespace PlantHeatExchangerFluidToFluid {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const CrossFlowBothUnMixed;
-    extern int const CrossFlowBothMixed;
-    extern int const CrossFlowSupplyLoopMixedDemandLoopUnMixed;
-    extern int const CrossFlowSupplyLoopUnMixedDemandLoopMixed;
-    extern int const CounterFlow;
-    extern int const ParallelFlow;
-    extern int const Ideal;
+    thread_local extern int const CrossFlowBothUnMixed;
+    thread_local extern int const CrossFlowBothMixed;
+    thread_local extern int const CrossFlowSupplyLoopMixedDemandLoopUnMixed;
+    thread_local extern int const CrossFlowSupplyLoopUnMixedDemandLoopMixed;
+    thread_local extern int const CounterFlow;
+    thread_local extern int const ParallelFlow;
+    thread_local extern int const Ideal;
 
-    extern int const UncontrolledOn;
-    extern int const OperationSchemeModulated;
-    extern int const OperationSchemeOnOff;
-    extern int const HeatingSetPointModulated;
-    extern int const HeatingSetPointOnOff;
-    extern int const CoolingSetPointModulated;
-    extern int const CoolingSetPointOnOff;
-    extern int const DualDeadBandSetPointModulated;
-    extern int const DualDeadBandSetPointOnOff;
-    extern int const CoolingDifferentialOnOff;
-    extern int const CoolingSetPointOnOffWithComponentOverride;
-    extern int const TrackComponentOnOff;
+    thread_local extern int const UncontrolledOn;
+    thread_local extern int const OperationSchemeModulated;
+    thread_local extern int const OperationSchemeOnOff;
+    thread_local extern int const HeatingSetPointModulated;
+    thread_local extern int const HeatingSetPointOnOff;
+    thread_local extern int const CoolingSetPointModulated;
+    thread_local extern int const CoolingSetPointOnOff;
+    thread_local extern int const DualDeadBandSetPointModulated;
+    thread_local extern int const DualDeadBandSetPointOnOff;
+    thread_local extern int const CoolingDifferentialOnOff;
+    thread_local extern int const CoolingSetPointOnOffWithComponentOverride;
+    thread_local extern int const TrackComponentOnOff;
 
-    extern int const WetBulbTemperature;
-    extern int const DryBulbTemperature;
-    extern int const LoopTemperature;
+    thread_local extern int const WetBulbTemperature;
+    thread_local extern int const DryBulbTemperature;
+    thread_local extern int const LoopTemperature;
 
-    extern int const HeatingSupplySideLoop;
-    extern int const CoolingSupplySideLoop;
+    thread_local extern int const HeatingSupplySideLoop;
+    thread_local extern int const CoolingSupplySideLoop;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern std::string ComponentClassName;
-    extern int NumberOfPlantFluidHXs;
-    extern bool GetInput;
-    extern Array1D_bool CheckFluidHXs;
+    thread_local extern std::string ComponentClassName;
+    thread_local extern int NumberOfPlantFluidHXs;
+    thread_local extern bool GetInput;
+    thread_local extern Array1D_bool CheckFluidHXs;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -191,7 +191,7 @@ namespace PlantHeatExchangerFluidToFluid {
     };
 
     // Object Data
-    extern Array1D<HeatExchangerStruct> FluidHX;
+    thread_local extern Array1D<HeatExchangerStruct> FluidHX;
 
     // Functions
 

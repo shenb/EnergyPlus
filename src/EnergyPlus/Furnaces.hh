@@ -69,45 +69,45 @@ namespace Furnaces {
     // na
 
     // Last mode of operation
-    extern int const CoolingMode; // last compressor operating mode was in cooling
-    extern int const HeatingMode; // last compressor operating mode was in heating
+    thread_local extern int const CoolingMode; // last compressor operating mode was in cooling
+    thread_local extern int const HeatingMode; // last compressor operating mode was in heating
     // Airflow control for contant fan mode
-    extern int const UseCompressorOnFlow;  // set compressor OFF air flow rate equal to compressor ON air flow rate
-    extern int const UseCompressorOffFlow; // set compressor OFF air flow rate equal to user defined value
+    thread_local extern int const UseCompressorOnFlow;  // set compressor OFF air flow rate equal to compressor ON air flow rate
+    thread_local extern int const UseCompressorOffFlow; // set compressor OFF air flow rate equal to user defined value
     // Compressor operation
-    extern int const On;  // normal compressor operation
-    extern int const Off; // signal DXCoil that compressor shouldn't run
+    thread_local extern int const On;  // normal compressor operation
+    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // Dehumidification control modes (DehumidControlMode)
-    extern int const DehumidControl_None;
-    extern int const DehumidControl_Multimode;
-    extern int const DehumidControl_CoolReheat;
+    thread_local extern int const DehumidControl_None;
+    thread_local extern int const DehumidControl_Multimode;
+    thread_local extern int const DehumidControl_CoolReheat;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumFurnaces; // The number of furnaces found in the input data file
-    extern Array1D_bool MySizeFlag;
-    extern Array1D_bool CheckEquipName;
-    extern Real64 ModifiedHeatCoilLoad; // used to adjust heating coil capacity if outlet temp > DesignMaxOutletTemp,
+    thread_local extern int NumFurnaces; // The number of furnaces found in the input data file
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern Array1D_bool CheckEquipName;
+    thread_local extern Real64 ModifiedHeatCoilLoad; // used to adjust heating coil capacity if outlet temp > DesignMaxOutletTemp,
     // used for Coil:Gas:Heating and Coil:Electric:Heating coils only.
-    extern Real64 OnOffAirFlowRatioSave;        // Saves the OnOffAirFlowRatio calculated in RegulaFalsi CALLs.
-    extern Real64 OnOffFanPartLoadFractionSave; // Global part-load fraction passed to fan object
-    extern Real64 CompOnMassFlow;               // Supply air mass flow rate w/ compressor ON [kg/s]
-    extern Real64 CompOffMassFlow;              // Supply air mass flow rate w/ compressor OFF [kg/s]
-    extern Real64 CompOnFlowRatio;              // fan flow ratio when coil on
-    extern Real64 CompOffFlowRatio;             // fan flow ratio when coil off
-    extern Real64 FanSpeedRatio;                // ratio of air flow ratio passed to fan object
-    extern Real64 CoolHeatPLRRat;               // ratio of cooling to heating PLR, used for cycling fan RH control
-    extern bool HeatingLoad;
-    extern bool CoolingLoad;
-    extern bool EconomizerFlag;             // holds air loop economizer status
-    extern int AirLoopPass;                 // Number of air loop pass
-    extern bool HPDehumidificationLoadFlag; // true if there is dehumidification load (heat pumps only)
-    extern Real64 TempSteamIn;              // steam coil steam inlet temperature
+    thread_local extern Real64 OnOffAirFlowRatioSave;        // Saves the OnOffAirFlowRatio calculated in RegulaFalsi CALLs.
+    thread_local extern Real64 OnOffFanPartLoadFractionSave; // Global part-load fraction passed to fan object
+    thread_local extern Real64 CompOnMassFlow;               // Supply air mass flow rate w/ compressor ON [kg/s]
+    thread_local extern Real64 CompOffMassFlow;              // Supply air mass flow rate w/ compressor OFF [kg/s]
+    thread_local extern Real64 CompOnFlowRatio;              // fan flow ratio when coil on
+    thread_local extern Real64 CompOffFlowRatio;             // fan flow ratio when coil off
+    thread_local extern Real64 FanSpeedRatio;                // ratio of air flow ratio passed to fan object
+    thread_local extern Real64 CoolHeatPLRRat;               // ratio of cooling to heating PLR, used for cycling fan RH control
+    thread_local extern bool HeatingLoad;
+    thread_local extern bool CoolingLoad;
+    thread_local extern bool EconomizerFlag;             // holds air loop economizer status
+    thread_local extern int AirLoopPass;                 // Number of air loop pass
+    thread_local extern bool HPDehumidificationLoadFlag; // true if there is dehumidification load (heat pumps only)
+    thread_local extern Real64 TempSteamIn;              // steam coil steam inlet temperature
     // starting add variables for variable speed water source heat pump
-    extern Real64 SaveCompressorPLR;        // holds compressor PLR from active DX coil
-    extern std::string CurrentModuleObject; // Object type for getting and error messages
+    thread_local extern Real64 SaveCompressorPLR;        // holds compressor PLR from active DX coil
+    thread_local extern std::string CurrentModuleObject; // Object type for getting and error messages
     // ending varibles for variable speed water source heat pump
 
     // Subroutine Specifications for the Module
@@ -321,7 +321,7 @@ namespace Furnaces {
     };
 
     // Object Data
-    extern Array1D<FurnaceEquipConditions> Furnace;
+    thread_local extern Array1D<FurnaceEquipConditions> Furnace;
 
     // Functions
 

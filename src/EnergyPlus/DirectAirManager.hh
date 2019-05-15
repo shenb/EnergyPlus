@@ -67,8 +67,8 @@ namespace DirectAirManager {
     // Type declarations in DirectAir module
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumDirectAir;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumDirectAir;
+    thread_local extern Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE AirLoopSplitter
 
     // Types
@@ -119,7 +119,7 @@ namespace DirectAirManager {
     };
 
     // Object Data
-    extern Array1D<DirectAirProps> DirectAir;
+    thread_local extern Array1D<DirectAirProps> DirectAir;
 
     // Functions
 

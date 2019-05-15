@@ -118,47 +118,47 @@ namespace HighTempRadiantSystem {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    std::string const cGas("Gas");
-    std::string const cNaturalGas("NaturalGas");
-    std::string const cElectric("Electric");
-    std::string const cElectricity("Electricity");
-    int const Gas(1);
-    int const Electric(2);
-    std::string const cMATControl("MeanAirTemperature");                   // Control for using mean air temperature
-    std::string const cMRTControl("MeanRadiantTemperature");               // Control for using mean radiant temperature
-    std::string const cOperativeControl("OperativeTemperature");           // Control for using operative temperature
-    std::string const cMATSPControl("MeanAirTemperatureSetpoint");         // Control for to MAT setpoint
-    std::string const cMRTSPControl("MeanRadiantTemperatureSetpoint");     // Control for to MRT setpoint
-    std::string const cOperativeSPControl("OperativeTemperatureSetpoint"); // Control for operative temperature setpoint
-    int const MATControl(1001);
-    int const MRTControl(1002);
-    int const OperativeControl(1003);
-    int const MATSPControl(1004);
-    int const MRTSPControl(1005);
-    int const OperativeSPControl(1006);
+    thread_local std::string const cGas("Gas");
+    thread_local std::string const cNaturalGas("NaturalGas");
+    thread_local std::string const cElectric("Electric");
+    thread_local std::string const cElectricity("Electricity");
+    thread_local int const Gas(1);
+    thread_local int const Electric(2);
+    thread_local std::string const cMATControl("MeanAirTemperature");                   // Control for using mean air temperature
+    thread_local std::string const cMRTControl("MeanRadiantTemperature");               // Control for using mean radiant temperature
+    thread_local std::string const cOperativeControl("OperativeTemperature");           // Control for using operative temperature
+    thread_local std::string const cMATSPControl("MeanAirTemperatureSetpoint");         // Control for to MAT setpoint
+    thread_local std::string const cMRTSPControl("MeanRadiantTemperatureSetpoint");     // Control for to MRT setpoint
+    thread_local std::string const cOperativeSPControl("OperativeTemperatureSetpoint"); // Control for operative temperature setpoint
+    thread_local int const MATControl(1001);
+    thread_local int const MRTControl(1002);
+    thread_local int const OperativeControl(1003);
+    thread_local int const MATSPControl(1004);
+    thread_local int const MRTSPControl(1005);
+    thread_local int const OperativeSPControl(1006);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
     // Standard, run-of-the-mill variables...
-    int NumOfHighTempRadSys(0);           // Number of hydronic low tempererature radiant systems
-    Array1D<Real64> QHTRadSource;         // Need to keep the last value in case we are still iterating
-    Array1D<Real64> QHTRadSrcAvg;         // Need to keep the last value in case we are still iterating
-    Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    thread_local int NumOfHighTempRadSys(0);           // Number of hydronic low tempererature radiant systems
+    thread_local Array1D<Real64> QHTRadSource;         // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> QHTRadSrcAvg;         // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QHTRadSrcAvg locally
-    Array1D<Real64> LastQHTRadSrc;      // Need to keep the last value in case we are still iterating
-    Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
+    thread_local Array1D<Real64> LastQHTRadSrc;      // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    thread_local Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HighTempRadiantSystem
 
     // Object Data
-    Array1D<HighTempRadiantSystemData> HighTempRadSys;
-    Array1D<HighTempRadSysNumericFieldData> HighTempRadSysNumericFields;
+    thread_local Array1D<HighTempRadiantSystemData> HighTempRadSys;
+    thread_local Array1D<HighTempRadSysNumericFieldData> HighTempRadSysNumericFields;
 
     // Functions
     void clear_state()
@@ -200,7 +200,7 @@ namespace HighTempRadiantSystem {
         using General::TrimSigDigits;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool GetInputFlag(true); // First time, input is "gotten"
+        thread_local static bool GetInputFlag(true); // First time, input is "gotten"
         bool ErrorsFoundInGet;          // Set to true when there are severe errors during the Get routine
         int RadSysNum;                  // Radiant system number/index in local derived types
 
@@ -286,7 +286,7 @@ namespace HighTempRadiantSystem {
         Real64 const MinFraction(0.0);         // Limit the lowest allowed fraction for heat transfer parts
         Real64 const MinThrottlingRange(0.5);  // Smallest throttling range allowed in degrees Celsius
         //  INTEGER,          PARAMETER :: MaxDistribSurfaces = 20    ! Maximum number of surfaces that a radiant heater can radiate to
-        static std::string const RoutineName("GetHighTempRadiantSystem: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetHighTempRadiantSystem: "); // include trailing blank space
         int const iHeatCAPMAlphaNum(4);                   // get input index to High Temperature Radiant system heating capacity sizing method
         int const iHeatDesignCapacityNumericNum(1);       // get input index to High Temperature Radiant system heating capacity
         int const iHeatCapacityPerFloorAreaNumericNum(2); // get input index to High Temperature Radiant system heating capacity per floor area sizing
@@ -718,10 +718,10 @@ namespace HighTempRadiantSystem {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool firstTime(true); // For one-time initializations
+        thread_local static bool firstTime(true); // For one-time initializations
         int ZoneNum;                 // Intermediate variable for keeping track of the zone number
-        static bool MyEnvrnFlag(true);
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static bool MyEnvrnFlag(true);
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;
 
         // FLOW:
@@ -807,7 +807,7 @@ namespace HighTempRadiantSystem {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeHighTempRadiantSystem");
+        thread_local static std::string const RoutineName("SizeHighTempRadiantSystem");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1199,7 +1199,7 @@ namespace HighTempRadiantSystem {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum; // Zone index number for the current radiant system
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (BeginEnvrnFlag && MyEnvrnFlag) {

@@ -116,45 +116,45 @@ namespace IceThermalStorage {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
-    std::string const cIceStorageSimple("ThermalStorage:Ice:Simple");
-    std::string const cIceStorageDetailed("ThermalStorage:Ice:Detailed");
+    thread_local std::string const cIceStorageSimple("ThermalStorage:Ice:Simple");
+    thread_local std::string const cIceStorageDetailed("ThermalStorage:Ice:Detailed");
 
-    int const IceStorageType_Simple(1);
-    int const IceStorageType_Detailed(2);
+    thread_local int const IceStorageType_Simple(1);
+    thread_local int const IceStorageType_Detailed(2);
 
-    int const CurveQuadraticLinear(1);
-    int const CurveCubicLinear(2);
+    thread_local int const CurveQuadraticLinear(1);
+    thread_local int const CurveCubicLinear(2);
 
-    int const DetIceInsideMelt(1);  // Inside melt system--charge starting with bare coil
-    int const DetIceOutsideMelt(2); // Outside melt system--charge from existing ice layer on coil
+    thread_local int const DetIceInsideMelt(1);  // Inside melt system--charge starting with bare coil
+    thread_local int const DetIceOutsideMelt(2); // Outside melt system--charge from existing ice layer on coil
 
     // ITS parameter
-    Real64 const FreezTemp(0.0);       // Water freezing Temperature, 0[C]
-    Real64 const FreezTempIP(32.0);    // Water freezing Temperature, 32[F]
-    Real64 const TimeInterval(3600.0); // Time Interval (1 hr) [s]
-    int const ITSType_IceOnCoilInternal(1);
-    int const ITSType_IceOnCoilExternal(2);
+    thread_local Real64 const FreezTemp(0.0);       // Water freezing Temperature, 0[C]
+    thread_local Real64 const FreezTempIP(32.0);    // Water freezing Temperature, 32[F]
+    thread_local Real64 const TimeInterval(3600.0); // Time Interval (1 hr) [s]
+    thread_local int const ITSType_IceOnCoilInternal(1);
+    thread_local int const ITSType_IceOnCoilExternal(2);
     // Conversion parameter
-    Real64 const EpsLimitForX(0.0);         // 0.02  ! See Dion's code as eps1
-    Real64 const EpsLimitForDisCharge(0.0); // 0.20  ! See Dion's code as eps2
-    Real64 const EpsLimitForCharge(0.0);    // 0.20  ! See Dion's code as eps3
+    thread_local Real64 const EpsLimitForX(0.0);         // 0.02  ! See Dion's code as eps1
+    thread_local Real64 const EpsLimitForDisCharge(0.0); // 0.20  ! See Dion's code as eps2
+    thread_local Real64 const EpsLimitForCharge(0.0);    // 0.20  ! See Dion's code as eps3
 
     // variable used by simple model
-    Real64 const Delta(0.005);
-    Real64 const PLRmin(0.1);
-    Real64 const Pa(0.088065);
-    Real64 const Pb(1.137742);
-    Real64 const Pc(-0.225806);
-    Real64 const Tref(85.0);      // F
-    Real64 const Tcharge(1.0);    // F
-    Real64 const Tdischarge(5.0); // F
+    thread_local Real64 const Delta(0.005);
+    thread_local Real64 const PLRmin(0.1);
+    thread_local Real64 const Pa(0.088065);
+    thread_local Real64 const Pb(1.137742);
+    thread_local Real64 const Pc(-0.225806);
+    thread_local Real64 const Tref(85.0);      // F
+    thread_local Real64 const Tcharge(1.0);    // F
+    thread_local Real64 const Tdischarge(5.0); // F
 
     // Parameter used by the Detailed Ice Storage Model
-    Real64 const DeltaTofMin(0.5); // Minimum allowed outlet side temperature difference [C]
+    thread_local Real64 const DeltaTofMin(0.5); // Minimum allowed outlet side temperature difference [C]
     // This is (Tout - Tfreezing)
-    Real64 const DeltaTifMin(1.0); // Minimum allowed inlet side temperature difference [C]
+    thread_local Real64 const DeltaTifMin(1.0); // Minimum allowed inlet side temperature difference [C]
     // This is (Tin - Tfreezing)
 
     // DERIVED TYPE DEFINITIONS
@@ -169,45 +169,45 @@ namespace IceThermalStorage {
     // TYPE (ITSSetCapData), SAVE                   :: ITSSetCap=ITSSetCapData(.FALSE.,0,0,0)
 
     // MODULE VARIABLE DECLARATIONS:
-    bool ResetXForITSFlag(false);
+    thread_local bool ResetXForITSFlag(false);
 
     // Input data
-    Real64 ITSNomCap(0.0); // Design nominal capacity of Ice Thermal Storage [J] (user input in GJ)
-    int InletNodeNum(0);   // Node number on the inlet side of the plant
-    int OutletNodeNum(0);  // Node number on the inlet side of the plant
+    thread_local Real64 ITSNomCap(0.0); // Design nominal capacity of Ice Thermal Storage [J] (user input in GJ)
+    thread_local int InletNodeNum(0);   // Node number on the inlet side of the plant
+    thread_local int OutletNodeNum(0);  // Node number on the inlet side of the plant
 
     // ITS numbers and FoundOrNot
-    int IceNum(0);
-    int NumIceStorages(0);
-    bool IceStorageNotFound(false);
-    int NumDetIceStorages(0);
-    int TotalIceStorages(0);
+    thread_local int IceNum(0);
+    thread_local int NumIceStorages(0);
+    thread_local bool IceStorageNotFound(false);
+    thread_local int NumDetIceStorages(0);
+    thread_local int TotalIceStorages(0);
     // ITS UAice and HLoss
-    Real64 UAIceCh(0.0);    // Charging Ice Thermal Storage overall heat transfer coefficient [W/C]
-    Real64 UAIceDisCh(0.0); // Discharging Ice Thermal Storage overall heat transfer coefficient [W/C]
-    Real64 HLoss(0.0);      // ITS Heat Loss
+    thread_local Real64 UAIceCh(0.0);    // Charging Ice Thermal Storage overall heat transfer coefficient [W/C]
+    thread_local Real64 UAIceDisCh(0.0); // Discharging Ice Thermal Storage overall heat transfer coefficient [W/C]
+    thread_local Real64 HLoss(0.0);      // ITS Heat Loss
     // ITS State
-    Real64 XCurIceFrac(0.0); // Current Fraction of Ice Thermal Storage remaining [fraction]
-    Real64 U(0.0);           // Adjusted input U after reading U Schedule [fraction]
-    Real64 Urate(0.0);       // Final Urate adjusted Urate based on Error protection (I) [fraction] by HOUR
+    thread_local Real64 XCurIceFrac(0.0); // Current Fraction of Ice Thermal Storage remaining [fraction]
+    thread_local Real64 U(0.0);           // Adjusted input U after reading U Schedule [fraction]
+    thread_local Real64 Urate(0.0);       // Final Urate adjusted Urate based on Error protection (I) [fraction] by HOUR
     // ITS status information
-    Real64 ITSMassFlowRate(0.0);       // ITS water mass flow rate [kg/s]
-    Real64 ITSInletTemp(0.0);          // ITS inlet water temperature [C]
-    Real64 ITSOutletTemp(0.0);         // ITS outlet water temperature [C]
-    Real64 ITSOutletSetPointTemp(0.0); // ITS outlet water temperature setpoint [C]
-    Real64 ITSCoolingRate(0.0);        // ITS Discharge(-)/Charge(+) rate [W]
-    Real64 ITSCoolingEnergy(0.0);
-    Real64 ChillerOutletTemp(0.0); // Chiller outlet brine temperature [C]
-    Array1D_bool CheckEquipName;
+    thread_local Real64 ITSMassFlowRate(0.0);       // ITS water mass flow rate [kg/s]
+    thread_local Real64 ITSInletTemp(0.0);          // ITS inlet water temperature [C]
+    thread_local Real64 ITSOutletTemp(0.0);         // ITS outlet water temperature [C]
+    thread_local Real64 ITSOutletSetPointTemp(0.0); // ITS outlet water temperature setpoint [C]
+    thread_local Real64 ITSCoolingRate(0.0);        // ITS Discharge(-)/Charge(+) rate [W]
+    thread_local Real64 ITSCoolingEnergy(0.0);
+    thread_local Real64 ChillerOutletTemp(0.0); // Chiller outlet brine temperature [C]
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
     // General routine
 
     // Object Data
-    Array1D<IceStorageSpecs> IceStorage;        // dimension to number of machines
-    Array1D<ReportVars> IceStorageReport;       // dimension to number of machines
-    Array1D<DetailedIceStorageData> DetIceStor; // Derived type for detailed ice storage model
-    Array1D<IceStorageMapping> IceStorageTypeMap;
+    thread_local Array1D<IceStorageSpecs> IceStorage;        // dimension to number of machines
+    thread_local Array1D<ReportVars> IceStorageReport;       // dimension to number of machines
+    thread_local Array1D<DetailedIceStorageData> DetIceStor; // Derived type for detailed ice storage model
+    thread_local Array1D<IceStorageMapping> IceStorageTypeMap;
 
     //*************************************************************************
 
@@ -250,11 +250,11 @@ namespace IceThermalStorage {
         Real64 Cp; // local plant fluid specific heat
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SimIceStorage");
+        thread_local static std::string const RoutineName("SimIceStorage");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool firstTime(true);
-        static bool MyEnvrnFlag(true);
+        thread_local static bool firstTime(true);
+        thread_local static bool MyEnvrnFlag(true);
         int IceStorageNum;
 
         // FLOW
@@ -469,7 +469,7 @@ namespace IceThermalStorage {
         Real64 const SIEquiv100GPMinMassFlowRate(6.31); // Used to non-dimensionalize flow rate for use in CubicLinear charging equation
                                                         // Flow rate divided by nominal 100GPM used to non-dimensionalize volume flow rate
                                                         // Assumes approximate density of 1000 kg/m3 to get an estimate for mass flow rate
-        static std::string const RoutineName("SimDetailedIceStorage");
+        thread_local static std::string const RoutineName("SimDetailedIceStorage");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1399,9 +1399,9 @@ namespace IceThermalStorage {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyEnvrnFlag;
         int CompNum; // local do loop index
         // FLOW:
 
@@ -1523,9 +1523,9 @@ namespace IceThermalStorage {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyPlantScanFlag;
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
         bool errFlag;
         int CompNum; // local do loop counter
 
@@ -2048,7 +2048,7 @@ namespace IceThermalStorage {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcIceStorageDischarge");
+        thread_local static std::string const RoutineName("CalcIceStorageDischarge");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2060,13 +2060,13 @@ namespace IceThermalStorage {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // External function
         // Local
-        static Real64 Umax(0.0); // Max Urate adjusted Urate based on Error protection (I) [fraction]
-        static Real64 Umin(0.0); // Min Urate adjusted Urate based on Error protection (I) [fraction]
-        static Real64 Uact(0.0); // Acting between Usys and UsysLow Urate adjusted Urate based on Error protection (I) [fraction]
-        static Real64 Umyload(0.0);
+        thread_local static Real64 Umax(0.0); // Max Urate adjusted Urate based on Error protection (I) [fraction]
+        thread_local static Real64 Umin(0.0); // Min Urate adjusted Urate based on Error protection (I) [fraction]
+        thread_local static Real64 Uact(0.0); // Acting between Usys and UsysLow Urate adjusted Urate based on Error protection (I) [fraction]
+        thread_local static Real64 Umyload(0.0);
         // unused  REAL(r64)    :: QiceMin
-        static Real64 Qice(0.0);
-        static Real64 DeltaTemp(0.0);
+        thread_local static Real64 Qice(0.0);
+        thread_local static Real64 DeltaTemp(0.0);
 
         int LoopNum;
         int LoopSideNum;

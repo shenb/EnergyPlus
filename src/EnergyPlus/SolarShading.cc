@@ -156,22 +156,22 @@ namespace SolarShading {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // General Parameters...
-    Real64 const SmallIncrement(1.0e-10); // Small increment added for shading/sunlit area calculations.
-    Real64 const HCMULT(100000.0);        // Multiplier used to change meters to .01 millimeters for homogeneous coordinates.
+    thread_local Real64 const SmallIncrement(1.0e-10); // Small increment added for shading/sunlit area calculations.
+    thread_local Real64 const HCMULT(100000.0);        // Multiplier used to change meters to .01 millimeters for homogeneous coordinates.
     // Homogeneous Coordinates are represented in integers (64 bit). This changes the surface coordinates from meters
     // to .01 millimeters -- making that the resolution for shadowing, polygon clipping, etc.
-    Real64 const sqHCMULT(HCMULT *HCMULT);         // Square of HCMult used in Homogeneous coordinates
-    Real64 const sqHCMULT_fac(0.5 / sqHCMULT);     // ( 0.5 / sqHCMULT ) factor
-    Real64 const kHCMULT(1.0 / (HCMULT * HCMULT)); // half of inverse square of HCMult used in Homogeneous coordinates
+    thread_local Real64 const sqHCMULT(HCMULT *HCMULT);         // Square of HCMult used in Homogeneous coordinates
+    thread_local Real64 const sqHCMULT_fac(0.5 / sqHCMULT);     // ( 0.5 / sqHCMULT ) factor
+    thread_local Real64 const kHCMULT(1.0 / (HCMULT * HCMULT)); // half of inverse square of HCMult used in Homogeneous coordinates
 
     // Parameters for use with the variable OverlapStatus...
-    int const NoOverlap(1);
-    int const FirstSurfWithinSecond(2);
-    int const SecondSurfWithinFirst(3);
-    int const PartialOverlap(4);
-    int const TooManyVertices(5);
-    int const TooManyFigures(6);
-    Array1D_string const
+    thread_local int const NoOverlap(1);
+    thread_local int const FirstSurfWithinSecond(2);
+    thread_local int const SecondSurfWithinFirst(3);
+    thread_local int const PartialOverlap(4);
+    thread_local int const TooManyVertices(5);
+    thread_local int const TooManyFigures(6);
+    thread_local Array1D_string const
         cOverLapStatus(6, {"No-Overlap", "1st-Surf-within-2nd", "2nd-Surf-within-1st", "Partial-Overlap", "Too-Many-Vertices", "Too-Many-Figures"});
 
     // DERIVED TYPE DEFINITIONS:
@@ -179,109 +179,109 @@ namespace SolarShading {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    int MaxHCV(15); // Maximum number of HC vertices
+    thread_local int MaxHCV(15); // Maximum number of HC vertices
     // (needs to be based on maxnumvertices)
-    int MaxHCS(15000); // 200      ! Maximum number of HC surfaces (was 56)
+    thread_local int MaxHCS(15000); // 200      ! Maximum number of HC surfaces (was 56)
     // Following are initially set in AllocateModuleArrays
-    int MAXHCArrayBounds(0);    // Bounds based on Max Number of Vertices in surfaces
-    int MAXHCArrayIncrement(0); // Increment based on Max Number of Vertices in surfaces
+    thread_local int MAXHCArrayBounds(0);    // Bounds based on Max Number of Vertices in surfaces
+    thread_local int MAXHCArrayIncrement(0); // Increment based on Max Number of Vertices in surfaces
     // The following variable should be re-engineered to lower in module hierarchy but need more analysis
-    int NVS; // Number of vertices of the shadow/clipped surface
-    int NumVertInShadowOrClippedSurface;
-    int CurrentSurfaceBeingShadowed;
-    int CurrentShadowingSurface;
-    int OverlapStatus; // Results of overlap calculation:
+    thread_local int NVS; // Number of vertices of the shadow/clipped surface
+    thread_local int NumVertInShadowOrClippedSurface;
+    thread_local int CurrentSurfaceBeingShadowed;
+    thread_local int CurrentShadowingSurface;
+    thread_local int OverlapStatus; // Results of overlap calculation:
     // 1=No overlap; 2=NS1 completely within NS2
     // 3=NS2 completely within NS1; 4=Partial overlap
 
-    Array1D<Real64> CTHETA;        // Cosine of angle of incidence of sun's rays on surface NS
-    int FBKSHC;                    // HC location of first back surface
-    int FGSSHC;                    // HC location of first general shadowing surface
-    int FINSHC;                    // HC location of first back surface overlap
-    int FRVLHC;                    // HC location of first reveal surface
-    int FSBSHC;                    // HC location of first subsurface
-    int LOCHCA(0);                 // Location of highest data in the HC arrays
-    int NBKSHC;                    // Number of back surfaces in the HC arrays
-    int NGSSHC;                    // Number of general shadowing surfaces in the HC arrays
-    int NINSHC;                    // Number of back surface overlaps in the HC arrays
-    int NRVLHC;                    // Number of reveal surfaces in HC array
-    int NSBSHC;                    // Number of subsurfaces in the HC arrays
-    bool CalcSkyDifShading;        // True when sky diffuse solar shading is
-    int ShadowingCalcFrequency(0); // Frequency for Shadowing Calculations
-    int ShadowingDaysLeft(0);      // Days left in current shadowing period
-    bool debugging(false);
+    thread_local Array1D<Real64> CTHETA;        // Cosine of angle of incidence of sun's rays on surface NS
+    thread_local int FBKSHC;                    // HC location of first back surface
+    thread_local int FGSSHC;                    // HC location of first general shadowing surface
+    thread_local int FINSHC;                    // HC location of first back surface overlap
+    thread_local int FRVLHC;                    // HC location of first reveal surface
+    thread_local int FSBSHC;                    // HC location of first subsurface
+    thread_local int LOCHCA(0);                 // Location of highest data in the HC arrays
+    thread_local int NBKSHC;                    // Number of back surfaces in the HC arrays
+    thread_local int NGSSHC;                    // Number of general shadowing surfaces in the HC arrays
+    thread_local int NINSHC;                    // Number of back surface overlaps in the HC arrays
+    thread_local int NRVLHC;                    // Number of reveal surfaces in HC array
+    thread_local int NSBSHC;                    // Number of subsurfaces in the HC arrays
+    thread_local bool CalcSkyDifShading;        // True when sky diffuse solar shading is
+    thread_local int ShadowingCalcFrequency(0); // Frequency for Shadowing Calculations
+    thread_local int ShadowingDaysLeft(0);      // Days left in current shadowing period
+    thread_local bool debugging(false);
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
         // to facilitate easier unit testing of those functions.
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool MustAllocSolarShading(true);
-        bool GetInputFlag(true);
-        bool firstTime(true);
+        thread_local bool MustAllocSolarShading(true);
+        thread_local bool GetInputFlag(true);
+        thread_local bool firstTime(true);
     } // namespace
 
-    std::ofstream shd_stream; // Shading file stream
-    Array1D_int HCNS;         // Surface number of back surface HC figures
-    Array1D_int HCNV;         // Number of vertices of each HC figure
-    Array2D<Int64> HCA;       // 'A' homogeneous coordinates of sides
-    Array2D<Int64> HCB;       // 'B' homogeneous coordinates of sides
-    Array2D<Int64> HCC;       // 'C' homogeneous coordinates of sides
-    Array2D<Int64> HCX;       // 'X' homogeneous coordinates of vertices of figure.
-    Array2D<Int64> HCY;       // 'Y' homogeneous coordinates of vertices of figure.
-    Array3D_int WindowRevealStatus;
-    Array1D<Real64> HCAREA; // Area of each HC figure.  Sign Convention:  Base Surface
+    thread_local std::ofstream shd_stream; // Shading file stream
+    thread_local Array1D_int HCNS;         // Surface number of back surface HC figures
+    thread_local Array1D_int HCNV;         // Number of vertices of each HC figure
+    thread_local Array2D<Int64> HCA;       // 'A' homogeneous coordinates of sides
+    thread_local Array2D<Int64> HCB;       // 'B' homogeneous coordinates of sides
+    thread_local Array2D<Int64> HCC;       // 'C' homogeneous coordinates of sides
+    thread_local Array2D<Int64> HCX;       // 'X' homogeneous coordinates of vertices of figure.
+    thread_local Array2D<Int64> HCY;       // 'Y' homogeneous coordinates of vertices of figure.
+    thread_local Array3D_int WindowRevealStatus;
+    thread_local Array1D<Real64> HCAREA; // Area of each HC figure.  Sign Convention:  Base Surface
     // - Positive, Shadow - Negative, Overlap between two shadows
     // - positive, etc., so that sum of HC areas=base sunlit area
-    Array1D<Real64> HCT;    // Transmittance of each HC figure
-    Array1D<Real64> ISABSF; // For simple interior solar distribution (in which all beam
+    thread_local Array1D<Real64> HCT;    // Transmittance of each HC figure
+    thread_local Array1D<Real64> ISABSF; // For simple interior solar distribution (in which all beam
     // radiation entering zone is assumed to strike the floor),
     // fraction of beam radiation absorbed by each floor surface
-    Array1D<Real64> SAREA; // Sunlit area of heat transfer surface HTS
+    thread_local Array1D<Real64> SAREA; // Sunlit area of heat transfer surface HTS
     // Excludes multiplier for windows
     // Shadowing combinations data structure...See ShadowingCombinations type
-    int NumTooManyFigures(0);
-    int NumTooManyVertices(0);
-    int NumBaseSubSurround(0);
-    Array1D<Real64> SUNCOS(3); // Direction cosines of solar position
-    Real64 XShadowProjection;  // X projection of a shadow (formerly called C)
-    Real64 YShadowProjection;  // Y projection of a shadow (formerly called S)
-    Array1D<Real64> XTEMP;     // Temporary 'X' values for HC vertices of the overlap
-    Array1D<Real64> XVC;       // X-vertices of the clipped figure
-    Array1D<Real64> XVS;       // X-vertices of the shadow
-    Array1D<Real64> YTEMP;     // Temporary 'Y' values for HC vertices of the overlap
-    Array1D<Real64> YVC;       // Y-vertices of the clipped figure
-    Array1D<Real64> YVS;       // Y-vertices of the shadow
-    Array1D<Real64> ZVC;       // Z-vertices of the clipped figure
+    thread_local int NumTooManyFigures(0);
+    thread_local int NumTooManyVertices(0);
+    thread_local int NumBaseSubSurround(0);
+    thread_local Array1D<Real64> SUNCOS(3); // Direction cosines of solar position
+    thread_local Real64 XShadowProjection;  // X projection of a shadow (formerly called C)
+    thread_local Real64 YShadowProjection;  // Y projection of a shadow (formerly called S)
+    thread_local Array1D<Real64> XTEMP;     // Temporary 'X' values for HC vertices of the overlap
+    thread_local Array1D<Real64> XVC;       // X-vertices of the clipped figure
+    thread_local Array1D<Real64> XVS;       // X-vertices of the shadow
+    thread_local Array1D<Real64> YTEMP;     // Temporary 'Y' values for HC vertices of the overlap
+    thread_local Array1D<Real64> YVC;       // Y-vertices of the clipped figure
+    thread_local Array1D<Real64> YVS;       // Y-vertices of the shadow
+    thread_local Array1D<Real64> ZVC;       // Z-vertices of the clipped figure
     // Used in Sutherland Hodman poly clipping
-    Array1D<Real64> ATEMP;  // Temporary 'A' values for HC vertices of the overlap
-    Array1D<Real64> BTEMP;  // Temporary 'B' values for HC vertices of the overlap
-    Array1D<Real64> CTEMP;  // Temporary 'C' values for HC vertices of the overlap
-    Array1D<Real64> XTEMP1; // Temporary 'X' values for HC vertices of the overlap
-    Array1D<Real64> YTEMP1; // Temporary 'Y' values for HC vertices of the overlap
-    int maxNumberOfFigures(0);
+    thread_local Array1D<Real64> ATEMP;  // Temporary 'A' values for HC vertices of the overlap
+    thread_local Array1D<Real64> BTEMP;  // Temporary 'B' values for HC vertices of the overlap
+    thread_local Array1D<Real64> CTEMP;  // Temporary 'C' values for HC vertices of the overlap
+    thread_local Array1D<Real64> XTEMP1; // Temporary 'X' values for HC vertices of the overlap
+    thread_local Array1D<Real64> YTEMP1; // Temporary 'Y' values for HC vertices of the overlap
+    thread_local int maxNumberOfFigures(0);
 
-    int const NPhi = 6;                      // Number of altitude angle steps for sky integration
-    int const NTheta = 24;                   // Number of azimuth angle steps for sky integration
-    Real64 const Eps = 1.e-10;               // Small number
-    Real64 const DPhi = PiOvr2 / NPhi;       // Altitude step size
-    Real64 const DTheta = 2.0 * Pi / NTheta; // Azimuth step size
-    Real64 const DThetaDPhi = DTheta * DPhi; // Product of DTheta and DPhi
-    Real64 const PhiMin = 0.5 * DPhi;        // Minimum altitude
+    thread_local int const NPhi = 6;                      // Number of altitude angle steps for sky integration
+    thread_local int const NTheta = 24;                   // Number of azimuth angle steps for sky integration
+    thread_local Real64 const Eps = 1.e-10;               // Small number
+    thread_local Real64 const DPhi = PiOvr2 / NPhi;       // Altitude step size
+    thread_local Real64 const DTheta = 2.0 * Pi / NTheta; // Azimuth step size
+    thread_local Real64 const DThetaDPhi = DTheta * DPhi; // Product of DTheta and DPhi
+    thread_local Real64 const PhiMin = 0.5 * DPhi;        // Minimum altitude
 
-    std::vector<Real64> sin_Phi;
-    std::vector<Real64> cos_Phi;
-    std::vector<Real64> sin_Theta;
-    std::vector<Real64> cos_Theta;
+    thread_local std::vector<Real64> sin_Phi;
+    thread_local std::vector<Real64> cos_Phi;
+    thread_local std::vector<Real64> sin_Theta;
+    thread_local std::vector<Real64> cos_Theta;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SolarShading
 
     // Object Data
-    Array1D<SurfaceErrorTracking> TrackTooManyFigures;
-    Array1D<SurfaceErrorTracking> TrackTooManyVertices;
-    Array1D<SurfaceErrorTracking> TrackBaseSubSurround;
+    thread_local Array1D<SurfaceErrorTracking> TrackTooManyFigures;
+    thread_local Array1D<SurfaceErrorTracking> TrackTooManyVertices;
+    thread_local Array1D<SurfaceErrorTracking> TrackBaseSubSurround;
 
-    static gio::Fmt fmtLD("*");
+    thread_local static gio::Fmt fmtLD("*");
 
     // MODULE SUBROUTINES:
 
@@ -583,7 +583,7 @@ namespace SolarShading {
         using ScheduleManager::ScheduleFileShadingProcessed;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumItems;
@@ -2392,16 +2392,16 @@ namespace SolarShading {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D<Real64> const EpsilonLimit(
+        thread_local static Array1D<Real64> const EpsilonLimit(
             7, {1.065, 1.23, 1.5, 1.95, 2.8, 4.5, 6.2}); // Upper limit of bins of the sky clearness parameter, Epsilon
         // Circumsolar brightening coefficients; index corresponds to range of Epsilon, the sky clearness parameter
-        static Array1D<Real64> const F11R(8, {-0.0083117, 0.1299457, 0.3296958, 0.5682053, 0.8730280, 1.1326077, 1.0601591, 0.6777470});
-        static Array1D<Real64> const F12R(8, {0.5877285, 0.6825954, 0.4868735, 0.1874525, -0.3920403, -1.2367284, -1.5999137, -0.3272588});
-        static Array1D<Real64> const F13R(8, {-0.0620636, -0.1513752, -0.2210958, -0.2951290, -0.3616149, -0.4118494, -0.3589221, -0.2504286});
+        thread_local static Array1D<Real64> const F11R(8, {-0.0083117, 0.1299457, 0.3296958, 0.5682053, 0.8730280, 1.1326077, 1.0601591, 0.6777470});
+        thread_local static Array1D<Real64> const F12R(8, {0.5877285, 0.6825954, 0.4868735, 0.1874525, -0.3920403, -1.2367284, -1.5999137, -0.3272588});
+        thread_local static Array1D<Real64> const F13R(8, {-0.0620636, -0.1513752, -0.2210958, -0.2951290, -0.3616149, -0.4118494, -0.3589221, -0.2504286});
         // Horizon/zenith brightening coefficient array; index corresponds to range of Epsilon, the sky clearness parameter
-        static Array1D<Real64> const F21R(8, {-0.0596012, -0.0189325, 0.0554140, 0.1088631, 0.2255647, 0.2877813, 0.2642124, 0.1561313});
-        static Array1D<Real64> const F22R(8, {0.0721249, 0.0659650, -0.0639588, -0.1519229, -0.4620442, -0.8230357, -1.1272340, -1.3765031});
-        static Array1D<Real64> const F23R(8, {-0.0220216, -0.0288748, -0.0260542, -0.0139754, 0.0012448, 0.0558651, 0.1310694, 0.2506212});
+        thread_local static Array1D<Real64> const F21R(8, {-0.0596012, -0.0189325, 0.0554140, 0.1088631, 0.2255647, 0.2877813, 0.2642124, 0.1561313});
+        thread_local static Array1D<Real64> const F22R(8, {0.0721249, 0.0659650, -0.0639588, -0.1519229, -0.4620442, -0.8230357, -1.1272340, -1.3765031});
+        thread_local static Array1D<Real64> const F23R(8, {-0.0220216, -0.0288748, -0.0260542, -0.0139754, 0.0012448, 0.0558651, 0.1310694, 0.2506212});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -2538,7 +2538,7 @@ namespace SolarShading {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt ValFmt("(F20.4)");
+        thread_local static gio::Fmt ValFmt("(F20.4)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2624,7 +2624,7 @@ namespace SolarShading {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 TolValue(0.0003);
+        thread_local static Real64 TolValue(0.0003);
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2731,7 +2731,7 @@ namespace SolarShading {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         // MSG - for error message
-        static Array1D_string const MSG(4, {"misses", "", "within", "overlaps"});
+        thread_local static Array1D_string const MSG(4, {"misses", "", "within", "overlaps"});
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2742,15 +2742,15 @@ namespace SolarShading {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int N;                      // Loop Control
         int NVT;                    // Number of vertices
-        static Array1D<Real64> XVT; // X Vertices of
-        static Array1D<Real64> YVT; // Y vertices of
-        static Array1D<Real64> ZVT; // Z vertices of
+        thread_local static Array1D<Real64> XVT; // X Vertices of
+        thread_local static Array1D<Real64> YVT; // Y vertices of
+        thread_local static Array1D<Real64> ZVT; // Z vertices of
 
         int NS1; // Number of the figure being overlapped
         int NS2; // Number of the figure doing overlapping
         int NS3; // Location to place results of overlap
 
-        static bool OneTimeFlag(true);
+        thread_local static bool OneTimeFlag(true);
         bool inside;
 
         bool Out;
@@ -4166,7 +4166,7 @@ namespace SolarShading {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D<Real64> SLOPE; // Slopes from left-most vertex to others
+        thread_local static Array1D<Real64> SLOPE; // Slopes from left-most vertex to others
         Real64 DELTAX;                // Difference between X coordinates of two vertices
         Real64 DELTAY;                // Difference between Y coordinates of two vertices
         Real64 SAVES;                 // Temporary location for exchange of variables
@@ -4180,7 +4180,7 @@ namespace SolarShading {
         int M;   // Number of slopes to be sorted
         int N;   // Vertex number
         int P;   // Location of first slope to be sorted
-        static bool FirstTimeFlag(true);
+        thread_local static bool FirstTimeFlag(true);
 
         if (FirstTimeFlag) {
             SLOPE.allocate(max(10, MaxVerticesPerSurface + 1));
@@ -4321,8 +4321,8 @@ namespace SolarShading {
         int NV3;  // Number of vertices of figure NS3 (the overlap of NS1 and NS2)
         int NIN1; // Number of vertices of NS1 within NS2
         int NIN2; // Number of vertices of NS2 within NS1
-        static bool TooManyFiguresMessage(false);
-        static bool TooManyVerticesMessage(false);
+        thread_local static bool TooManyFiguresMessage(false);
+        thread_local static bool TooManyVerticesMessage(false);
 
         // Check for exceeding array limits.
 #ifdef EP_Count_Calls
@@ -4498,12 +4498,12 @@ namespace SolarShading {
         int iHour;   // Hour index number
         int TS;      // TimeStep Loop Counter
         int SurfNum; // Do loop counter
-        static gio::Fmt fmtA("(A)");
-        static gio::Fmt ShdFracFmtName("(A, A)");
-        static gio::Fmt ShdFracFmt1("(I2.2,'/',I2.2,' ',I2.2, ':',I2.2, ',')");
-        static gio::Fmt ShdFracFmt2("(f6.2,',')");
-        static gio::Fmt fmtN("('\n')");
-        static bool Once(true);
+        thread_local static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt ShdFracFmtName("(A, A)");
+        thread_local static gio::Fmt ShdFracFmt1("(I2.2,'/',I2.2,' ',I2.2, ':',I2.2, ',')");
+        thread_local static gio::Fmt ShdFracFmt2("(f6.2,',')");
+        thread_local static gio::Fmt fmtN("('\n')");
+        thread_local static bool Once(true);
 
         if (Once) InitComplexWindows();
         Once = false;
@@ -4870,7 +4870,7 @@ namespace SolarShading {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -4882,9 +4882,9 @@ namespace SolarShading {
         Array1D_int GSS;             // List of shadowing surfaces numbers for a receiving surface
         Array1D_int BKS;             // List of back surface numbers for a receiving surface
         Array1D_int SBS;             // List of subsurfaces for a receiving surface
-        static int MaxGSS(50);       // Current Max for GSS array
-        static int MaxBKS(50);       // Current Max for BKS array
-        static int MaxSBS(50);       // Current Max for SBS array
+        thread_local static int MaxGSS(50);       // Current Max for GSS array
+        thread_local static int MaxBKS(50);       // Current Max for BKS array
+        thread_local static int MaxSBS(50);       // Current Max for SBS array
         bool CannotShade;            // TRUE if subsurface cannot shade receiving surface
         bool HasWindow;              // TRUE if a window is present on receiving surface
         Real64 ZMIN;                 // Lowest point on the receiving surface
@@ -4899,7 +4899,7 @@ namespace SolarShading {
         bool ShadowingSurf;          // True if a receiving surface is a shadowing surface
         Array1D_bool CastingSurface; // tracking during setup of ShadowComb
 
-        static int MaxDim(0);
+        thread_local static int MaxDim(0);
 
 #ifdef EP_Count_Calls
         ++NumDetShadowCombs_Calls;
@@ -5219,10 +5219,10 @@ namespace SolarShading {
         int NGRS;  // Coordinate transformation index
         int NZ;    // Zone Number of surface
         int NVT;
-        static Array1D<Real64> XVT; // X Vertices of Shadows
-        static Array1D<Real64> YVT; // Y vertices of Shadows
-        static Array1D<Real64> ZVT; // Z vertices of Shadows
-        static bool OneTimeFlag(true);
+        thread_local static Array1D<Real64> XVT; // X Vertices of Shadows
+        thread_local static Array1D<Real64> YVT; // Y vertices of Shadows
+        thread_local static Array1D<Real64> ZVT; // Z vertices of Shadows
+        thread_local static bool OneTimeFlag(true);
         int HTS;         // Heat transfer surface number of the general receiving surface
         int GRSNR;       // Surface number of general receiving surface
         int NBKS;        // Number of back surfaces
@@ -5376,10 +5376,10 @@ namespace SolarShading {
         int N;
         int NVR;
         int NVT;                    // Number of vertices of back surface
-        static Array1D<Real64> XVT; // X,Y,Z coordinates of vertices of
-        static Array1D<Real64> YVT; // back surfaces projected into system
-        static Array1D<Real64> ZVT; // relative to receiving surface
-        static bool OneTimeFlag(true);
+        thread_local static Array1D<Real64> XVT; // X,Y,Z coordinates of vertices of
+        thread_local static Array1D<Real64> YVT; // back surfaces projected into system
+        thread_local static Array1D<Real64> ZVT; // relative to receiving surface
+        thread_local static bool OneTimeFlag(true);
         int BackSurfaceNumber;
         int NS1; // Number of the figure being overlapped
         int NS2; // Number of the figure doing overlapping
@@ -5517,10 +5517,10 @@ namespace SolarShading {
         int GSSNR;             // General shadowing surface number
         int MainOverlapStatus; // Overlap status of the main overlap calculation not the check for
         // multiple overlaps (unless there was an error)
-        static Array1D<Real64> XVT;
-        static Array1D<Real64> YVT;
-        static Array1D<Real64> ZVT;
-        static bool OneTimeFlag(true);
+        thread_local static Array1D<Real64> XVT;
+        thread_local static Array1D<Real64> YVT;
+        thread_local static Array1D<Real64> ZVT;
+        thread_local static bool OneTimeFlag(true);
         int NS1;         // Number of the figure being overlapped
         int NS2;         // Number of the figure doing overlapping
         int NS3;         // Location to place results of overlap
@@ -5984,9 +5984,9 @@ namespace SolarShading {
         Real64 SwitchFacBack;                               // Switching factor for a window that is a back surface
         Real64 TransBeamWin;                                // Beam solar transmittance of a window
         Real64 TransBeamWinSh;                              // Beam solar transmittance of a shaded window
-        static Array1D<Real64> AbsBeamWin;                  // Glass layer beam solar absorptance of a window
+        thread_local static Array1D<Real64> AbsBeamWin;                  // Glass layer beam solar absorptance of a window
         Real64 AbsBeamWinSh;                                // Glass layer beam solar absorptance of a shaded window
-        static Array1D<Real64> AbsBeamWinEQL(CFSMAXNL + 1); // layers beam solar absorptance of a window
+        thread_local static Array1D<Real64> AbsBeamWinEQL(CFSMAXNL + 1); // layers beam solar absorptance of a window
         Real64 AbsBeamTotWin;                               // Sum of window glass layer beam solar absorptances
         Real64 ProfAng;                                     // Window solar profile angle (radians)
         Real64 ProfAngBack;                                 // Back window solar profile angle (radians)
@@ -6187,17 +6187,17 @@ namespace SolarShading {
         //   reflected from obstruction (W/m2)
         Real64 GndSolarInc; // Incident solar radiation on a window from the ground (W/m2)
 
-        static Array1D<Real64> ExtBeamAbsByShadFac; // Factor for exterior beam radiation absorbed by shade
+        thread_local static Array1D<Real64> ExtBeamAbsByShadFac; // Factor for exterior beam radiation absorbed by shade
         // (1/m2) (absorbed radation = beam incident * ExtBeamAbsByShad
-        static Array1D<Real64> IntBeamAbsByShadFac; // Like ExtBeamAbsByShadFac, but for interior beam radiation.
-        static Array1D<Real64> WinTransBmSolar;     // Factor for exterior beam solar transmitted through window,
+        thread_local static Array1D<Real64> IntBeamAbsByShadFac; // Like ExtBeamAbsByShadFac, but for interior beam radiation.
+        thread_local static Array1D<Real64> WinTransBmSolar;     // Factor for exterior beam solar transmitted through window,
         // or window plus shade, into zone at current time (m2)
-        static Array1D<Real64> WinTransDifSolar; // Factor for exterior diffuse solar transmitted through window,
+        thread_local static Array1D<Real64> WinTransDifSolar; // Factor for exterior diffuse solar transmitted through window,
         // or window plus shade, into zone at current time (m2)
 
-        static Array1D<Real64> WinTransDifSolarGnd; // Factor for exterior ground diffuse solar transmitted through
+        thread_local static Array1D<Real64> WinTransDifSolarGnd; // Factor for exterior ground diffuse solar transmitted through
         // window with horizontally-slatted blind into zone at current time (m2)
-        static Array1D<Real64> WinTransDifSolarSky; // Factor for exterior sky diffuse solar transmitted through
+        thread_local static Array1D<Real64> WinTransDifSolarSky; // Factor for exterior sky diffuse solar transmitted through
         // window with horizontally-slatted blind into zone at current time (m2)
         /////////// hoisted into namespace renamed to ////////////
         // static bool MustAlloc( true ); // True when local arrays must be allocated
@@ -6238,10 +6238,10 @@ namespace SolarShading {
         int bestBackTrn; // Direction corresponding best dot product for back surface window
         int TotSolidLay; // Number of window solid layers
 
-        static Array2D<Real64> AbsSolBeamEQL(2, CFSMAXNL + 1);     // absorbed exterior beam radiation by layers fraction
-        static Array2D<Real64> AbsSolDiffEQL(2, CFSMAXNL + 1);     // absorbed exterior diffuse radiation by layers fraction
+        thread_local static Array2D<Real64> AbsSolBeamEQL(2, CFSMAXNL + 1);     // absorbed exterior beam radiation by layers fraction
+        thread_local static Array2D<Real64> AbsSolDiffEQL(2, CFSMAXNL + 1);     // absorbed exterior diffuse radiation by layers fraction
         int EQLNum;                                                // equivalent layer fenestration index
-        static Array2D<Real64> AbsSolBeamBackEQL(2, CFSMAXNL + 1); // absorbed interior beam radiation by layers fraction from back
+        thread_local static Array2D<Real64> AbsSolBeamBackEQL(2, CFSMAXNL + 1); // absorbed interior beam radiation by layers fraction from back
         // Array2D< Real64 > AbsSolDiffBackEQL( CFSMAXNL+1, 2 ); // absorbed exterior diffuse radiation by layers fraction from back //Unused
 
         // scheduled surface gains local variables
@@ -9232,7 +9232,7 @@ namespace SolarShading {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D<Real64> const SineSolDeclCoef(9,
+        thread_local static Array1D<Real64> const SineSolDeclCoef(9,
                                                      {0.00561800,
                                                       0.0657911,
                                                       -0.392779,
@@ -9242,7 +9242,7 @@ namespace SolarShading {
                                                       -0.00007951,
                                                       -0.00011691,
                                                       0.00002096}); // Fitted coefficients of Fourier series | SINE OF DECLINATION | COEFFICIENTS
-        static Array1D<Real64> const EqOfTimeCoef(9,
+        thread_local static Array1D<Real64> const EqOfTimeCoef(9,
                                                   {0.00021971,
                                                    -0.122649,
                                                    0.00762856,
@@ -9455,10 +9455,10 @@ namespace SolarShading {
         Real64 ThetaBase;   // Intermediate slat angle variable (rad)
         Real64 ThetaBlock1; // Slat angles that just block beam solar (rad)
         Real64 ThetaBlock2;
-        static Real64 ThetaBig(0.0);   // Larger of ThetaBlock1 and ThetaBlock2 	//Autodesk Used uninitialized in some runs
-        static Real64 ThetaSmall(0.0); // Smaller of ThetaBlock1 and ThetaBlock2 //Autodesk Used uninitialized in some runs
-        static Real64 ThetaMin(0.0);   // Minimum allowed slat angle, resp. (rad)  //Autodesk Used uninitialized in some runs
-        static Real64 ThetaMax(0.0);   // Maximum allowed slat angle, resp. (rad)  //Autodesk Used uninitialized in some runs
+        thread_local static Real64 ThetaBig(0.0);   // Larger of ThetaBlock1 and ThetaBlock2 	//Autodesk Used uninitialized in some runs
+        thread_local static Real64 ThetaSmall(0.0); // Smaller of ThetaBlock1 and ThetaBlock2 //Autodesk Used uninitialized in some runs
+        thread_local static Real64 ThetaMin(0.0);   // Minimum allowed slat angle, resp. (rad)  //Autodesk Used uninitialized in some runs
+        thread_local static Real64 ThetaMax(0.0);   // Maximum allowed slat angle, resp. (rad)  //Autodesk Used uninitialized in some runs
 
         int IConst; // Construction
 
@@ -11104,7 +11104,7 @@ namespace SolarShading {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const MSG(4, {"misses", "", "within", "overlaps"});
+        thread_local static Array1D_string const MSG(4, {"misses", "", "within", "overlaps"});
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -12383,9 +12383,9 @@ namespace SolarShading {
         Real64 SdotZ;               // temporary variable for manipulating .dot. product
         int BackSurfaceNumber;      // current back surface number
         int NVT;                    // Number of vertices of back surface
-        static Array1D<Real64> XVT; // X,Y,Z coordinates of vertices of
-        static Array1D<Real64> YVT; // back surfaces projected into system
-        static Array1D<Real64> ZVT; // relative to receiving surface
+        thread_local static Array1D<Real64> XVT; // X,Y,Z coordinates of vertices of
+        thread_local static Array1D<Real64> YVT; // back surfaces projected into system
+        thread_local static Array1D<Real64> ZVT; // relative to receiving surface
         int NS1;                    // Number of the figure being overlapped
         int NS2;                    // Number of the figure doing overlapping
         int NS3;                    // Location to place results of overlap

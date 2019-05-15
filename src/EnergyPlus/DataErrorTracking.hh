@@ -63,32 +63,32 @@ namespace DataErrorTracking {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    extern int const SearchCounts;
-    extern Array1D_string const MessageSearch;
-    extern Array1D_string const Summaries;
+    thread_local extern int const SearchCounts;
+    thread_local extern Array1D_string const MessageSearch;
+    thread_local extern Array1D_string const Summaries;
     // in below -- simple line end <CR>.  End of Whole message <CRE>
-    extern std::string const MoreDetails_1;  // InterZone Surface Areas -- mismatch
-    extern std::string const MoreDetails_2;  // Interzone surfaces - different zones
-    extern std::string const MoreDetails_3;  // Node Connection Errors
-    extern std::string const MoreDetails_4;  // InterZone Surface Azimuths -- mismatch
-    extern std::string const MoreDetails_5;  // InterZone Surface Tilts -- mismatch
-    extern std::string const MoreDetails_6;  // Likely non-planar surfaces
-    extern std::string const MoreDetails_7;  // Deprecated Features or Key Values
-    extern std::string const MoreDetails_8;  // Incorrect Floor Tilt
-    extern std::string const MoreDetails_9;  // Incorrect Roof/Ceiling Tilt
-    extern std::string const MoreDetails_10; // Incomplete View factors
-    extern std::string const MoreDetails_11; // Unbalanced exhaust air flow
-    extern std::string const MoreDetails_12; // Loads Initialization did not Converge
-    extern std::string const MoreDetails_13; // CalcDaylightMapPoints: Window
-    extern std::string const MoreDetails_14; // Zone Air Heat Balance Warnings
-    extern std::string const MoreDetails_15; // Occupant density is extremely high
-    extern std::string const MoreDetails_16; // Temperature (low) out of bounds AND Temperature (high) out of bounds
-    extern std::string const MoreDetails_18; // Nominally unused constructions
-    extern std::string const MoreDetails_19; // InfraredTransparent constructions in non-interzone surfaces
-    extern std::string const MoreDetails_20; // No reporting elements requested
-    extern Array1D_string const MoreDetails; // Details 16 applies to both temperature out of bounds | errors.
+    thread_local extern std::string const MoreDetails_1;  // InterZone Surface Areas -- mismatch
+    thread_local extern std::string const MoreDetails_2;  // Interzone surfaces - different zones
+    thread_local extern std::string const MoreDetails_3;  // Node Connection Errors
+    thread_local extern std::string const MoreDetails_4;  // InterZone Surface Azimuths -- mismatch
+    thread_local extern std::string const MoreDetails_5;  // InterZone Surface Tilts -- mismatch
+    thread_local extern std::string const MoreDetails_6;  // Likely non-planar surfaces
+    thread_local extern std::string const MoreDetails_7;  // Deprecated Features or Key Values
+    thread_local extern std::string const MoreDetails_8;  // Incorrect Floor Tilt
+    thread_local extern std::string const MoreDetails_9;  // Incorrect Roof/Ceiling Tilt
+    thread_local extern std::string const MoreDetails_10; // Incomplete View factors
+    thread_local extern std::string const MoreDetails_11; // Unbalanced exhaust air flow
+    thread_local extern std::string const MoreDetails_12; // Loads Initialization did not Converge
+    thread_local extern std::string const MoreDetails_13; // CalcDaylightMapPoints: Window
+    thread_local extern std::string const MoreDetails_14; // Zone Air Heat Balance Warnings
+    thread_local extern std::string const MoreDetails_15; // Occupant density is extremely high
+    thread_local extern std::string const MoreDetails_16; // Temperature (low) out of bounds AND Temperature (high) out of bounds
+    thread_local extern std::string const MoreDetails_18; // Nominally unused constructions
+    thread_local extern std::string const MoreDetails_19; // InfraredTransparent constructions in non-interzone surfaces
+    thread_local extern std::string const MoreDetails_20; // No reporting elements requested
+    thread_local extern Array1D_string const MoreDetails; // Details 16 applies to both temperature out of bounds | errors.
 
-    extern int const MaxRecurringErrorMsgLength; // Maximum error message length for recurring error messages
+    thread_local extern int const MaxRecurringErrorMsgLength; // Maximum error message length for recurring error messages
 
     // DERIVED TYPE DEFINITIONS
 
@@ -96,27 +96,27 @@ namespace DataErrorTracking {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_int MatchCounts;
-    extern bool AbortProcessing;                // Flag used to if currently in "abort processing"
-    extern int NumRecurringErrors;              // Number of stored recurring error messages
-    extern int TotalSevereErrors;               // Counter
-    extern int TotalWarningErrors;              // Counter
-    extern int TotalSevereErrorsDuringWarmup;   // Counter
-    extern int TotalWarningErrorsDuringWarmup;  // Counter
-    extern int TotalSevereErrorsDuringSizing;   // Counter
-    extern int TotalWarningErrorsDuringSizing;  // Counter
-    extern int TotalMultipliedWindows;          // Counter
-    extern int TotalCoincidentVertices;         // Counter
-    extern int TotalDegenerateSurfaces;         // Counter
-    extern int TotalReceivingNonConvexSurfaces; // Counter
-    extern int TotalCastingNonConvexSurfaces;   // Counter
-    extern int TotalRoomAirPatternTooLow;       // Counter
-    extern int TotalRoomAirPatternTooHigh;      // Counter
-    extern bool AskForConnectionsReport;        // Flag used to tell when connections should be reported
-    extern bool AskForSurfacesReport;           // Flag used to tell when surfaces should be reported
-    extern bool AskForPlantCheckOnAbort;        // flag used to tell if plant structure can be checked
-    extern bool ExitDuringSimulations;          // flag used to tell if program is in simulation mode when fatal occurs
-    extern std::string LastSevereError;
+    thread_local extern Array1D_int MatchCounts;
+    thread_local extern bool AbortProcessing;                // Flag used to if currently in "abort processing"
+    thread_local extern int NumRecurringErrors;              // Number of stored recurring error messages
+    thread_local extern int TotalSevereErrors;               // Counter
+    thread_local extern int TotalWarningErrors;              // Counter
+    thread_local extern int TotalSevereErrorsDuringWarmup;   // Counter
+    thread_local extern int TotalWarningErrorsDuringWarmup;  // Counter
+    thread_local extern int TotalSevereErrorsDuringSizing;   // Counter
+    thread_local extern int TotalWarningErrorsDuringSizing;  // Counter
+    thread_local extern int TotalMultipliedWindows;          // Counter
+    thread_local extern int TotalCoincidentVertices;         // Counter
+    thread_local extern int TotalDegenerateSurfaces;         // Counter
+    thread_local extern int TotalReceivingNonConvexSurfaces; // Counter
+    thread_local extern int TotalCastingNonConvexSurfaces;   // Counter
+    thread_local extern int TotalRoomAirPatternTooLow;       // Counter
+    thread_local extern int TotalRoomAirPatternTooHigh;      // Counter
+    thread_local extern bool AskForConnectionsReport;        // Flag used to tell when connections should be reported
+    thread_local extern bool AskForSurfacesReport;           // Flag used to tell when surfaces should be reported
+    thread_local extern bool AskForPlantCheckOnAbort;        // flag used to tell if plant structure can be checked
+    thread_local extern bool ExitDuringSimulations;          // flag used to tell if program is in simulation mode when fatal occurs
+    thread_local extern std::string LastSevereError;
 
     // Types
     struct RecurringErrorData
@@ -145,7 +145,7 @@ namespace DataErrorTracking {
     };
 
     // Object Data
-    extern Array1D<RecurringErrorData> RecurringErrors;
+    thread_local extern Array1D<RecurringErrorData> RecurringErrors;
 
     // Clears the global data in DataErrorTracking
     // Needed for unit tests, should not normally be called.

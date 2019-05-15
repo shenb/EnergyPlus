@@ -116,42 +116,42 @@ namespace ChillerIndirectAbsorption {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // chiller flow modes
-    int const FlowModeNotSet(200);
-    int const ConstantFlow(201);
-    int const NotModulated(202);
-    int const LeavingSetPointModulated(203);
-    static std::string const BlankString;
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
-    static std::string const calcChillerAbsorptionIndirect("CALC Chiller:Absorption:Indirect ");
+    thread_local int const FlowModeNotSet(200);
+    thread_local int const ConstantFlow(201);
+    thread_local int const NotModulated(202);
+    thread_local int const LeavingSetPointModulated(203);
+    thread_local static std::string const BlankString;
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
+    thread_local static std::string const calcChillerAbsorptionIndirect("CALC Chiller:Absorption:Indirect ");
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumIndirectAbsorbers(0);         // number of Absorption Chillers specified in input
-    Real64 CondMassFlowRate(0.0);        // Kg/s - condenser mass flow rate, water side
-    Real64 EvapMassFlowRate(0.0);        // Kg/s - evaporator mass flow rate, water side
-    Real64 GenMassFlowRate(0.0);         // Kg/s - steam mass flow rate, water side
-    Real64 CondOutletTemp(0.0);          // C - condenser outlet temperature, water side
-    Real64 EvapOutletTemp(0.0);          // C - evaporator outlet temperature, water side
-    Real64 GenOutletTemp(0.0);           // C - generator fluid outlet temperature
-    Real64 SteamOutletEnthalpy(0.0);     // J/kg - generator fluid outlet enthalpy
-    Real64 PumpingPower(0.0);            // W - rate of Absorber energy use
-    Real64 PumpingEnergy(0.0);           // J - Absorber energy use
-    Real64 QGenerator(0.0);              // W - rate of Absorber steam use
-    Real64 GeneratorEnergy(0.0);         // J - Absorber steam use
-    Real64 QEvaporator(0.0);             // W - rate of heat transfer to the evaporator coil
-    Real64 EvaporatorEnergy(0.0);        // J - heat transfer to the evaporator coil
-    Real64 QCondenser(0.0);              // W - rate of heat transfer to the condenser coil
-    Real64 CondenserEnergy(0.0);         // J - heat transfer to the condenser coil
-    Real64 EnergyLossToEnvironment(0.0); // J - piping energy loss from generator outlet to pump inlet
-    Real64 ChillerONOFFCyclingFrac(0.0); // fraction of time chiller is on
+    thread_local int NumIndirectAbsorbers(0);         // number of Absorption Chillers specified in input
+    thread_local Real64 CondMassFlowRate(0.0);        // Kg/s - condenser mass flow rate, water side
+    thread_local Real64 EvapMassFlowRate(0.0);        // Kg/s - evaporator mass flow rate, water side
+    thread_local Real64 GenMassFlowRate(0.0);         // Kg/s - steam mass flow rate, water side
+    thread_local Real64 CondOutletTemp(0.0);          // C - condenser outlet temperature, water side
+    thread_local Real64 EvapOutletTemp(0.0);          // C - evaporator outlet temperature, water side
+    thread_local Real64 GenOutletTemp(0.0);           // C - generator fluid outlet temperature
+    thread_local Real64 SteamOutletEnthalpy(0.0);     // J/kg - generator fluid outlet enthalpy
+    thread_local Real64 PumpingPower(0.0);            // W - rate of Absorber energy use
+    thread_local Real64 PumpingEnergy(0.0);           // J - Absorber energy use
+    thread_local Real64 QGenerator(0.0);              // W - rate of Absorber steam use
+    thread_local Real64 GeneratorEnergy(0.0);         // J - Absorber steam use
+    thread_local Real64 QEvaporator(0.0);             // W - rate of heat transfer to the evaporator coil
+    thread_local Real64 EvaporatorEnergy(0.0);        // J - heat transfer to the evaporator coil
+    thread_local Real64 QCondenser(0.0);              // W - rate of heat transfer to the condenser coil
+    thread_local Real64 CondenserEnergy(0.0);         // J - heat transfer to the condenser coil
+    thread_local Real64 EnergyLossToEnvironment(0.0); // J - piping energy loss from generator outlet to pump inlet
+    thread_local Real64 ChillerONOFFCyclingFrac(0.0); // fraction of time chiller is on
 
-    bool GetInput(true); // when TRUE, calls subroutine to read input file.
+    thread_local bool GetInput(true); // when TRUE, calls subroutine to read input file.
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
 
     // Object Data
-    Array1D<IndirectAbsorberSpecs> IndirectAbsorber; // dimension to number of machines
-    Array1D<ReportVars> IndirectAbsorberReport;
+    thread_local Array1D<IndirectAbsorberSpecs> IndirectAbsorber; // dimension to number of machines
+    thread_local Array1D<ReportVars> IndirectAbsorberReport;
 
     // MODULE SUBROUTINES:
 
@@ -321,14 +321,14 @@ namespace ChillerIndirectAbsorption {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetIndirectAbsorberInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetIndirectAbsorberInput: "); // include trailing blank space
 
         // LOCAL VARIABLES
         int AbsorberNum; // Absorber counter
         int NumAlphas;   // Number of elements in the alpha array
         int NumNums;     // Number of elements in the numeric array
         int IOStat;      // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool errFlag;                         // GetInput error flag
         Array1D_bool GenInputOutputNodesUsed; // Used for SetupOutputVariable
 
@@ -851,12 +851,12 @@ namespace ChillerIndirectAbsorption {
         using PlantUtilities::SetComponentFlowRate;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitIndirectAbsorpChiller");
+        thread_local static std::string const RoutineName("InitIndirectAbsorpChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyFlag;
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyFlag;
+        thread_local static Array1D_bool MyEnvrnFlag;
         int CondInletNode;  // node number of water inlet node to the condenser
         int CondOutletNode; // node number of water outlet node from the condenser
         bool errFlag;
@@ -1155,8 +1155,8 @@ namespace ChillerIndirectAbsorption {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeIndirectAbsorpChiller");
-        static std::string const SizeChillerAbsorptionIndirect("SIZE Chiller:Absorption:Indirect");
+        thread_local static std::string const RoutineName("SizeIndirectAbsorpChiller");
+        thread_local static std::string const SizeChillerAbsorptionIndirect("SIZE Chiller:Absorption:Indirect");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizIndex;            // Plant Sizing Do loop index
@@ -1184,7 +1184,7 @@ namespace ChillerIndirectAbsorption {
         Real64 tmpEvapVolFlowRate;      // local evaporator design volume flow rate
         Real64 tmpCondVolFlowRate;      // local condenser design volume flow rate
         Real64 tmpGeneratorVolFlowRate; // local generator design volume flow rate
-        static int DummWaterIndex(1);
+        thread_local static int DummWaterIndex(1);
         Real64 NomCapUser;               // Hardsized nominal capacity cooling power for reporting
         Real64 NomPumpPowerUser;         // Hardsized local nominal pump power for reporting
         Real64 EvapVolFlowRateUser;      // Hardsized local evaporator design volume flow rate for reporting
@@ -1787,9 +1787,9 @@ namespace ChillerIndirectAbsorption {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcIndirectAbsorberModel");
-        static std::string const LoopLossesChillerAbsorptionIndirect("Loop Losses: Chiller:Absorption:Indirect");
-        static std::string const LoopLossesChillerAbsorptionIndirectSpace("Loop Losses: Chiller:Absorption:Indirect ");
+        thread_local static std::string const RoutineName("CalcIndirectAbsorberModel");
+        thread_local static std::string const LoopLossesChillerAbsorptionIndirect("Loop Losses: Chiller:Absorption:Indirect");
+        thread_local static std::string const LoopLossesChillerAbsorptionIndirectSpace("Loop Losses: Chiller:Absorption:Indirect ");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1822,11 +1822,11 @@ namespace ChillerIndirectAbsorption {
         Real64 EnthSteamOutDry;          // enthalpy of dry steam at generator inlet
         Real64 EnthSteamOutWet;          // enthalpy of wet steam at generator inlet
         Real64 HfgSteam;                 // heat of vaporization of steam
-        static Array1D_bool MyEnvironFlag;
-        static Array1D_bool MyEnvironSteamFlag;
-        static bool OneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvironFlag;
+        thread_local static Array1D_bool MyEnvironSteamFlag;
+        thread_local static bool OneTimeFlag(true);
         Real64 FRAC;                    // fraction of time step chiller cycles
-        static bool PossibleSubcooling; // flag to determine if supply water temperature is below setpoint
+        thread_local static bool PossibleSubcooling; // flag to determine if supply water temperature is below setpoint
         Real64 CpFluid;                 // specific heat of generator fluid
         Real64 SteamDeltaT;             // temperature difference of fluid through generator
         Real64 SteamOutletTemp;         // generator outlet temperature
@@ -1841,7 +1841,7 @@ namespace ChillerIndirectAbsorption {
         Real64 EnthPumpInlet;           // enthalpy of condensed steam entering pump (includes loop losses)
         int LoopSideNum;
         int LoopNum;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
 
         if (OneTimeFlag) {
             MyEnvironFlag.allocate(NumIndirectAbsorbers);

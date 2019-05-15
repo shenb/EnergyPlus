@@ -68,7 +68,7 @@ namespace DataTimings {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    extern int const MaxTimingStringLength; // string length for timing string array
+    thread_local extern int const MaxTimingStringLength; // string length for timing string array
 
     // DERIVED TYPE DEFINITIONS
 
@@ -76,20 +76,20 @@ namespace DataTimings {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumTimingElements;
-    extern int MaxTimingElements;
-    extern Real64 dailyWeatherTime;
-    extern Real64 dailyExteriorEnergyUseTime;
-    extern Real64 dailyHeatBalanceTime;
-    extern Real64 hbdailyInit;
-    extern Real64 hbdailyOutSurf;
-    extern Real64 hbdailyInSurf;
-    extern Real64 hbdailyHVAC;
-    extern Real64 hbdailyRep;
-    extern Real64 clockrate;
-    extern bool lprocessingInputTiming;
-    extern bool lmanageSimulationTiming;
-    extern bool lcloseoutReportingTiming;
+    thread_local extern int NumTimingElements;
+    thread_local extern int MaxTimingElements;
+    thread_local extern Real64 dailyWeatherTime;
+    thread_local extern Real64 dailyExteriorEnergyUseTime;
+    thread_local extern Real64 dailyHeatBalanceTime;
+    thread_local extern Real64 hbdailyInit;
+    thread_local extern Real64 hbdailyOutSurf;
+    thread_local extern Real64 hbdailyInSurf;
+    thread_local extern Real64 hbdailyHVAC;
+    thread_local extern Real64 hbdailyRep;
+    thread_local extern Real64 clockrate;
+    thread_local extern bool lprocessingInputTiming;
+    thread_local extern bool lmanageSimulationTiming;
+    thread_local extern bool lcloseoutReportingTiming;
 
     // Following for calls to routines
 #ifdef EP_Count_Calls
@@ -128,7 +128,7 @@ namespace DataTimings {
     };
 
     // Object Data
-    extern Array1D<timings> Timing;
+    thread_local extern Array1D<timings> Timing;
 
     // Functions
 

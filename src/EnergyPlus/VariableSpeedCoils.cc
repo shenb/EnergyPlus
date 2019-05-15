@@ -115,72 +115,72 @@ namespace VariableSpeedCoils {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    Real64 const RatedInletAirTemp(26.6667);     // 26.6667C or 80F
-    Real64 const RatedInletWetBulbTemp(19.44);   // 19.44 or 67F, cooling mode
-    Real64 const RatedInletAirHumRat(0.01125);   // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
-    Real64 const RatedInletWaterTemp(29.4);      // 85 F cooling mode
-    Real64 const RatedAmbAirTemp(35.0);          // 95 F cooling mode
-    Real64 const RatedInletAirTempHeat(21.11);   // 21.11C or 70F, heating mode
-    Real64 const RatedInletWaterTempHeat(21.11); // 21.11C or 70F, heating mode
-    Real64 const RatedAmbAirTempHeat(8.33);      // 8.33 or 47F, heating mode
-    Real64 const RatedAmbAirWBHeat(6.11);        // 8.33 or 43F, heating mode, rated wet bulb temperature
+    thread_local Real64 const RatedInletAirTemp(26.6667);     // 26.6667C or 80F
+    thread_local Real64 const RatedInletWetBulbTemp(19.44);   // 19.44 or 67F, cooling mode
+    thread_local Real64 const RatedInletAirHumRat(0.01125);   // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
+    thread_local Real64 const RatedInletWaterTemp(29.4);      // 85 F cooling mode
+    thread_local Real64 const RatedAmbAirTemp(35.0);          // 95 F cooling mode
+    thread_local Real64 const RatedInletAirTempHeat(21.11);   // 21.11C or 70F, heating mode
+    thread_local Real64 const RatedInletWaterTempHeat(21.11); // 21.11C or 70F, heating mode
+    thread_local Real64 const RatedAmbAirTempHeat(8.33);      // 8.33 or 47F, heating mode
+    thread_local Real64 const RatedAmbAirWBHeat(6.11);        // 8.33 or 43F, heating mode, rated wet bulb temperature
 
     // Water Systems
-    int const CondensateDiscarded(1001); // default mode where water is "lost"
-    int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
+    thread_local int const CondensateDiscarded(1001); // default mode where water is "lost"
+    thread_local int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
 
-    int const WaterSupplyFromMains(101);
-    int const WaterSupplyFromTank(102);
+    thread_local int const WaterSupplyFromMains(101);
+    thread_local int const WaterSupplyFromTank(102);
 
     // Curve Types
-    int const Linear(1);
-    int const BiLinear(2);
-    int const Quadratic(3);
-    int const BiQuadratic(4);
-    int const Cubic(5);
+    thread_local int const Linear(1);
+    thread_local int const BiLinear(2);
+    thread_local int const Quadratic(3);
+    thread_local int const BiQuadratic(4);
+    thread_local int const Cubic(5);
 
     // Defrost strategy (heat pump only)
-    int const ReverseCycle(1); // uses reverse cycle defrost strategy
-    int const Resistive(2);    // uses electric resistance heater for defrost
+    thread_local int const ReverseCycle(1); // uses reverse cycle defrost strategy
+    thread_local int const Resistive(2);    // uses electric resistance heater for defrost
     // Defrost control  (heat pump only)
-    int const Timed(1);    // defrost cycle is timed
-    int const OnDemand(2); // defrost cycle occurs only when required
+    thread_local int const Timed(1);    // defrost cycle is timed
+    thread_local int const OnDemand(2); // defrost cycle occurs only when required
 
-    int const MaxSpedLevels(10); // Maximum number of speed that supports
+    thread_local int const MaxSpedLevels(10); // Maximum number of speed that supports
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
     // Identifier is VarSpeedCoil
-    int NumVarSpeedCoils(0); // The Number of Water to Air Heat Pumps found in the Input
+    thread_local int NumVarSpeedCoils(0); // The Number of Water to Air Heat Pumps found in the Input
 
-    bool MyOneTimeFlag(true);     // one time allocation flag
-    bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
+    thread_local bool MyOneTimeFlag(true);     // one time allocation flag
+    thread_local bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
     // LOGICAL, ALLOCATABLE, DIMENSION(:) :: MySizeFlag
 
-    Real64 SourceSideMassFlowRate(0.0); // Source Side Mass flow rate [Kg/s]
-    Real64 SourceSideInletTemp(0.0);    // Source Side Inlet Temperature [C]
-    Real64 SourceSideInletEnth(0.0);    // Source Side Inlet Enthalpy [J/kg]
-    Real64 LoadSideMassFlowRate(0.0);   // Load Side Mass flow rate [Kg/s]
-    Real64 LoadSideInletDBTemp(0.0);    // Load Side Inlet Dry Bulb Temp [C]
-    Real64 LoadSideInletWBTemp(0.0);    // Load Side Inlet Wet Bulb Temp [C]
-    Real64 LoadSideInletHumRat(0.0);    // Load Side Outlet Humidity ratio
-    Real64 LoadSideInletEnth(0.0);      // Load Side Inlet Enthalpy [J/kg]
-    Real64 LoadSideOutletDBTemp(0.0);   // Load Side Outlet Dry Bulb Temp [C]
-    Real64 LoadSideOutletHumRat(0.0);   // Load Side Outlet Humidity ratio
-    Real64 LoadSideOutletEnth(0.0);     // Load Side Outlet Enthalpy [J/kg]
-    Real64 QSensible(0.0);              // Load side sensible heat transfer rate [W]
-    Real64 QLoadTotal(0.0);             // Load side total heat transfer rate [W]
-    Real64 QLatRated(0.0);              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
-    Real64 QLatActual(0.0);             // Actual Latent Capacity [W]
-    Real64 QSource(0.0);                // Source side heat transfer rate [W]
-    Real64 Winput(0.0);                 // Power Consumption [W]
-    Real64 PLRCorrLoadSideMdot(0.0);    // Load Side Mdot corrected for Part Load Ratio of the unit
+    thread_local Real64 SourceSideMassFlowRate(0.0); // Source Side Mass flow rate [Kg/s]
+    thread_local Real64 SourceSideInletTemp(0.0);    // Source Side Inlet Temperature [C]
+    thread_local Real64 SourceSideInletEnth(0.0);    // Source Side Inlet Enthalpy [J/kg]
+    thread_local Real64 LoadSideMassFlowRate(0.0);   // Load Side Mass flow rate [Kg/s]
+    thread_local Real64 LoadSideInletDBTemp(0.0);    // Load Side Inlet Dry Bulb Temp [C]
+    thread_local Real64 LoadSideInletWBTemp(0.0);    // Load Side Inlet Wet Bulb Temp [C]
+    thread_local Real64 LoadSideInletHumRat(0.0);    // Load Side Outlet Humidity ratio
+    thread_local Real64 LoadSideInletEnth(0.0);      // Load Side Inlet Enthalpy [J/kg]
+    thread_local Real64 LoadSideOutletDBTemp(0.0);   // Load Side Outlet Dry Bulb Temp [C]
+    thread_local Real64 LoadSideOutletHumRat(0.0);   // Load Side Outlet Humidity ratio
+    thread_local Real64 LoadSideOutletEnth(0.0);     // Load Side Outlet Enthalpy [J/kg]
+    thread_local Real64 QSensible(0.0);              // Load side sensible heat transfer rate [W]
+    thread_local Real64 QLoadTotal(0.0);             // Load side total heat transfer rate [W]
+    thread_local Real64 QLatRated(0.0);              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
+    thread_local Real64 QLatActual(0.0);             // Actual Latent Capacity [W]
+    thread_local Real64 QSource(0.0);                // Source side heat transfer rate [W]
+    thread_local Real64 Winput(0.0);                 // Power Consumption [W]
+    thread_local Real64 PLRCorrLoadSideMdot(0.0);    // Load Side Mdot corrected for Part Load Ratio of the unit
 
-    Real64 VSHPWHHeatingCapacity(0.0); // Used by Heat Pump:Water Heater object as total water heating capacity [W]
-    Real64 VSHPWHHeatingCOP(0.0);      // Used by Heat Pump:Water Heater object as water heating COP [W/W]
+    thread_local Real64 VSHPWHHeatingCapacity(0.0); // Used by Heat Pump:Water Heater object as total water heating capacity [W]
+    thread_local Real64 VSHPWHHeatingCOP(0.0);      // Used by Heat Pump:Water Heater object as water heating COP [W/W]
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -198,7 +198,7 @@ namespace VariableSpeedCoils {
     // SHR, bypass factor routines
 
     // Object Data
-    Array1D<VariableSpeedCoilData> VarSpeedCoil;
+    thread_local Array1D<VariableSpeedCoilData> VarSpeedCoil;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -446,7 +446,7 @@ namespace VariableSpeedCoils {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetVarSpeedCoilInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetVarSpeedCoilInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int DXCoilNum;           // The Water to Air HP that you are currently loading input into
@@ -460,11 +460,11 @@ namespace VariableSpeedCoils {
         int NumAlphas;           // Number of variables in String format
         int NumNums;             // Number of variables in Numeric format
         int NumParams;           // Total number of input fields
-        static int MaxNums(0);   // Maximum number of numeric input fields
-        static int MaxAlphas(0); // Maximum number of alpha input fields
+        thread_local static int MaxNums(0);   // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0); // Maximum number of alpha input fields
         int IOStat;
         int AlfaFieldIncre;              // increment number of Alfa field
-        static bool ErrorsFound(false);  // If errors detected in input
+        thread_local static bool ErrorsFound(false);  // If errors detected in input
         Real64 CurveVal;                 // Used to verify modifier curves equal 1 at rated conditions
         Real64 WHInletAirTemp;           // Used to pass proper inlet air temp to HPWH DX coil performance curves
         Real64 WHInletWaterTemp;         // Used to pass proper inlet water temp to HPWH DX coil performance curves
@@ -3213,7 +3213,7 @@ namespace VariableSpeedCoils {
         // shut off after compressor cycle off  [s]
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineNameSimpleWatertoAirHP("InitSimpleWatertoAirHP");
+        thread_local static std::string const RoutineNameSimpleWatertoAirHP("InitSimpleWatertoAirHP");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3224,14 +3224,14 @@ namespace VariableSpeedCoils {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int AirInletNode;                // Node Number of the air inlet
         int WaterInletNode;              // Node Number of the Water inlet
-        static Array1D_bool MyEnvrnFlag; // used for initializations each begin environment flag
-        static Array1D_bool MySizeFlag;  // used for sizing PTHP inputs one time
-        static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyEnvrnFlag; // used for initializations each begin environment flag
+        thread_local static Array1D_bool MySizeFlag;  // used for sizing PTHP inputs one time
+        thread_local static Array1D_bool MyPlantScanFlag;
         Real64 rho;   // local fluid density
         Real64 Cp;    // local fluid specific heat
         int SpeedCal; // calculated speed level
         bool errFlag;
-        static bool ErrorsFound(false);    // TRUE when errors found, air loop initialization error
+        thread_local static bool ErrorsFound(false);    // TRUE when errors found, air loop initialization error
         Real64 RatedVolFlowPerRatedTotCap; // Rated Air Volume Flow Rate divided by Rated Total Capacity [m3/s-W)
         int Mode;                          // Performance mode for MultiMode DX coil; Always 1 for other coil types
         Real64 RatedHeatPumpIndoorAirTemp; // Indoor dry-bulb temperature to heat pump evaporator at rated conditions [C]
@@ -3239,7 +3239,7 @@ namespace VariableSpeedCoils {
         Real64 WaterFlowScale;             // water flow scaling factor match rated flow rate
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitVarSpeedCoil");
+        thread_local static std::string const RoutineName("InitVarSpeedCoil");
 
         if (MyOneTimeFlag) {
             // initialize the environment and sizing flags
@@ -3816,8 +3816,8 @@ namespace VariableSpeedCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeVarSpeedCoil");
-        static std::string const RoutineNameAlt("SizeHVACWaterToAir");
+        thread_local static std::string const RoutineName("SizeVarSpeedCoil");
+        thread_local static std::string const RoutineNameAlt("SizeHVACWaterToAir");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5046,8 +5046,8 @@ namespace VariableSpeedCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcVarSpeedCoilCooling");
-        static std::string const RoutineNameSourceSideInletTemp("CalcVarSpeedCoilCooling:SourceSideInletTemp");
+        thread_local static std::string const RoutineName("CalcVarSpeedCoilCooling");
+        thread_local static std::string const RoutineNameSourceSideInletTemp("CalcVarSpeedCoilCooling:SourceSideInletTemp");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5068,13 +5068,13 @@ namespace VariableSpeedCoils {
 
         bool LatDegradModelSimFlag; // Latent degradation model simulation flag
         int NumIteration;           // Iteration Counter
-        static int Count(0);        // No idea what this is for.
-        static bool firstTime(true);
-        static Real64 LoadSideInletDBTemp_Init; // rated conditions
-        static Real64 LoadSideInletWBTemp_Init; // rated conditions
-        static Real64 LoadSideInletHumRat_Init; // rated conditions
-        static Real64 LoadSideInletEnth_Init;   // rated conditions
-        static Real64 CpAir_Init;               // rated conditions
+        thread_local static int Count(0);        // No idea what this is for.
+        thread_local static bool firstTime(true);
+        thread_local static Real64 LoadSideInletDBTemp_Init; // rated conditions
+        thread_local static Real64 LoadSideInletWBTemp_Init; // rated conditions
+        thread_local static Real64 LoadSideInletHumRat_Init; // rated conditions
+        thread_local static Real64 LoadSideInletEnth_Init;   // rated conditions
+        thread_local static Real64 CpAir_Init;               // rated conditions
         Real64 LoadSideInletDBTemp_Unit;        // calc conditions for unit
         Real64 LoadSideInletWBTemp_Unit;        // calc conditions for unit
         Real64 LoadSideInletHumRat_Unit;        // calc conditions for unit
@@ -5103,12 +5103,12 @@ namespace VariableSpeedCoils {
         Real64 MaxOutletEnth;                   // max possible outlet enthalpy
 
         // ADDED VARIABLES FOR air source coil
-        static Real64 OutdoorDryBulb(0.0);        // Outdoor dry-bulb temperature at condenser (C)
-        static Real64 OutdoorWetBulb(0.0);        // Outdoor wet-bulb temperature at condenser (C)
-        static Real64 OutdoorHumRat(0.0);         // Outdoor humidity ratio at condenser (kg/kg)
-        static Real64 OutdoorPressure(0.0);       // Outdoor barometric pressure at condenser (Pa)
-        static Real64 CrankcaseHeatingPower(0.0); // power due to crankcase heater
-        static Real64 CompAmbTemp(0.0);           // Ambient temperature at compressor
+        thread_local static Real64 OutdoorDryBulb(0.0);        // Outdoor dry-bulb temperature at condenser (C)
+        thread_local static Real64 OutdoorWetBulb(0.0);        // Outdoor wet-bulb temperature at condenser (C)
+        thread_local static Real64 OutdoorHumRat(0.0);         // Outdoor humidity ratio at condenser (kg/kg)
+        thread_local static Real64 OutdoorPressure(0.0);       // Outdoor barometric pressure at condenser (Pa)
+        thread_local static Real64 CrankcaseHeatingPower(0.0); // power due to crankcase heater
+        thread_local static Real64 CompAmbTemp(0.0);           // Ambient temperature at compressor
         Real64 CondInletTemp;                     // Condenser inlet temperature (C). Outdoor dry-bulb temp for air-cooled condenser.
         // Outdoor Wetbulb +(1 - effectiveness)*(outdoor drybulb - outdoor wetbulb) for evap condenser.
         Real64 CondInletHumRat; // Condenser inlet humidity ratio (kg/kg). Zero for air-cooled condenser.
@@ -5689,7 +5689,7 @@ namespace VariableSpeedCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcVarSpeedHPWH");
+        thread_local static std::string const RoutineName("CalcVarSpeedHPWH");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -6254,8 +6254,8 @@ namespace VariableSpeedCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcVarSpeedCoilHeating");
-        static std::string const RoutineNameSourceSideInletTemp("CalcVarSpeedCoilHeating:SourceSideInletTemp");
+        thread_local static std::string const RoutineName("CalcVarSpeedCoilHeating");
+        thread_local static std::string const RoutineNameSourceSideInletTemp("CalcVarSpeedCoilHeating:SourceSideInletTemp");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -6290,19 +6290,19 @@ namespace VariableSpeedCoils {
         Real64 rhoair(0.0); // entering air density
 
         // ADDED VARIABLES FOR air source coil
-        static Real64 OutdoorCoilT(0.0);              // Outdoor coil temperature (C)
-        static Real64 OutdoorCoildw(0.0);             // Outdoor coil delta w assuming coil temp of OutdoorCoilT (kg/kg)
-        static Real64 OutdoorDryBulb(0.0);            // Outdoor dry-bulb temperature at condenser (C)
-        static Real64 OutdoorWetBulb(0.0);            // Outdoor wet-bulb temperature at condenser (C)
-        static Real64 OutdoorHumRat(0.0);             // Outdoor humidity ratio at condenser (kg/kg)
-        static Real64 OutdoorPressure(0.0);           // Outdoor barometric pressure at condenser (Pa)
-        static Real64 FractionalDefrostTime(0.0);     // Fraction of time step system is in defrost
-        static Real64 HeatingCapacityMultiplier(0.0); // Multiplier for heating capacity when system is in defrost
-        static Real64 InputPowerMultiplier(0.0);      // Multiplier for power when system is in defrost
-        static Real64 LoadDueToDefrost(0.0);          // Additional load due to defrost
-        static Real64 CrankcaseHeatingPower(0.0);     // power due to crankcase heater
-        static Real64 DefrostEIRTempModFac(0.0);      // EIR modifier for defrost (function of entering wetbulb, outside drybulb)
-        static Real64 TotRatedCapacity(0.0);          // total rated capacity at the given speed and speed ratio for defrosting
+        thread_local static Real64 OutdoorCoilT(0.0);              // Outdoor coil temperature (C)
+        thread_local static Real64 OutdoorCoildw(0.0);             // Outdoor coil delta w assuming coil temp of OutdoorCoilT (kg/kg)
+        thread_local static Real64 OutdoorDryBulb(0.0);            // Outdoor dry-bulb temperature at condenser (C)
+        thread_local static Real64 OutdoorWetBulb(0.0);            // Outdoor wet-bulb temperature at condenser (C)
+        thread_local static Real64 OutdoorHumRat(0.0);             // Outdoor humidity ratio at condenser (kg/kg)
+        thread_local static Real64 OutdoorPressure(0.0);           // Outdoor barometric pressure at condenser (Pa)
+        thread_local static Real64 FractionalDefrostTime(0.0);     // Fraction of time step system is in defrost
+        thread_local static Real64 HeatingCapacityMultiplier(0.0); // Multiplier for heating capacity when system is in defrost
+        thread_local static Real64 InputPowerMultiplier(0.0);      // Multiplier for power when system is in defrost
+        thread_local static Real64 LoadDueToDefrost(0.0);          // Additional load due to defrost
+        thread_local static Real64 CrankcaseHeatingPower(0.0);     // power due to crankcase heater
+        thread_local static Real64 DefrostEIRTempModFac(0.0);      // EIR modifier for defrost (function of entering wetbulb, outside drybulb)
+        thread_local static Real64 TotRatedCapacity(0.0);          // total rated capacity at the given speed and speed ratio for defrosting
 
         MaxSpeed = VarSpeedCoil(DXCoilNum).NumOfSpeeds;
 
@@ -7453,9 +7453,9 @@ namespace VariableSpeedCoils {
         using CurveManager::CurveValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcTotCapSHR_VSWSHP");
-        static int const MaxIter(30);        // Maximum number of iterations for dry evaporator calculations
-        static Real64 const Tolerance(0.01); // Error tolerance for dry evaporator iterations
+        thread_local static std::string const RoutineName("CalcTotCapSHR_VSWSHP");
+        thread_local static int const MaxIter(30);        // Maximum number of iterations for dry evaporator calculations
+        thread_local static Real64 const Tolerance(0.01); // Error tolerance for dry evaporator iterations
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 TotCapWaterFlowModFac1; // Total capacity modifier (function of actual supply water flow vs nominal flow) at low speed

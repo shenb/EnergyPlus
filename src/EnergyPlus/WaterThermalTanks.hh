@@ -63,101 +63,101 @@ namespace WaterThermalTanks {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern std::string const cMixedWHModuleObj;
-    extern std::string const cStratifiedWHModuleObj;
-    extern std::string const cMixedCWTankModuleObj;
-    extern std::string const cStratifiedCWTankModuleObj;
+    thread_local extern std::string const cMixedWHModuleObj;
+    thread_local extern std::string const cStratifiedWHModuleObj;
+    thread_local extern std::string const cMixedCWTankModuleObj;
+    thread_local extern std::string const cStratifiedCWTankModuleObj;
 
-    extern int const HeatMode;  // heating source is on, source will not turn off until setpoint temp is reached
-    extern int const FloatMode; // heating source is off, source will not turn on until cutin temp is reached
-    extern int const VentMode;  // tank temp is above maximum temperature and water is venting
-    extern int const CoolMode;  // cooling source is on, source will not turn off until setpoint temp is reached
+    thread_local extern int const HeatMode;  // heating source is on, source will not turn off until setpoint temp is reached
+    thread_local extern int const FloatMode; // heating source is off, source will not turn on until cutin temp is reached
+    thread_local extern int const VentMode;  // tank temp is above maximum temperature and water is venting
+    thread_local extern int const CoolMode;  // cooling source is on, source will not turn off until setpoint temp is reached
 
-    extern int const AmbientTempSchedule;   // ambient temperature around tank (or HPWH inlet air) is scheduled
-    extern int const AmbientTempZone;       // tank is located in a zone or HPWH inlet air is zone air only
-    extern int const AmbientTempOutsideAir; // tank is located outdoors or HPWH inlet air is outdoor air only
-    extern int const AmbientTempZoneAndOA;  // applicable to HPWH only, inlet air is mixture of OA and zone air
+    thread_local extern int const AmbientTempSchedule;   // ambient temperature around tank (or HPWH inlet air) is scheduled
+    thread_local extern int const AmbientTempZone;       // tank is located in a zone or HPWH inlet air is zone air only
+    thread_local extern int const AmbientTempOutsideAir; // tank is located outdoors or HPWH inlet air is outdoor air only
+    thread_local extern int const AmbientTempZoneAndOA;  // applicable to HPWH only, inlet air is mixture of OA and zone air
 
-    extern int const CrankcaseTempSchedule; // temperature controlling compressor crankcase heater is scheduled
-    extern int const CrankcaseTempZone;     // temperature controlling compressor crankcase heater is zone air
-    extern int const CrankcaseTempExterior; // temperature controlling compressor crankcase heater is outdoor air
+    thread_local extern int const CrankcaseTempSchedule; // temperature controlling compressor crankcase heater is scheduled
+    thread_local extern int const CrankcaseTempZone;     // temperature controlling compressor crankcase heater is zone air
+    thread_local extern int const CrankcaseTempExterior; // temperature controlling compressor crankcase heater is outdoor air
 
-    extern int const ControlTypeCycle;    // water heater only, cycling heating source control
-    extern int const ControlTypeModulate; // water heater only, modulating heating source control
+    thread_local extern int const ControlTypeCycle;    // water heater only, cycling heating source control
+    thread_local extern int const ControlTypeModulate; // water heater only, modulating heating source control
 
-    extern int const TankShapeVertCylinder;  // tank shape is a vertical cylinder
-    extern int const TankShapeHorizCylinder; // tank shape is a horizontal cylinder
-    extern int const TankShapeOther;         // tank shape has an arbitrary perimeter shape
+    thread_local extern int const TankShapeVertCylinder;  // tank shape is a vertical cylinder
+    thread_local extern int const TankShapeHorizCylinder; // tank shape is a horizontal cylinder
+    thread_local extern int const TankShapeOther;         // tank shape has an arbitrary perimeter shape
 
-    extern int const PriorityMasterSlave;  // water heater only, master-slave priority control of heater elements
-    extern int const PrioritySimultaneous; // water heater only, simultaneous control of heater elements
+    thread_local extern int const PriorityMasterSlave;  // water heater only, master-slave priority control of heater elements
+    thread_local extern int const PrioritySimultaneous; // water heater only, simultaneous control of heater elements
 
-    extern int const InletModeFixed;   // water heater only, inlet water always enters at the user-specified height
-    extern int const InletModeSeeking; // water heater only, inlet water seeks out the node with the closest temperature
+    thread_local extern int const InletModeFixed;   // water heater only, inlet water always enters at the user-specified height
+    thread_local extern int const InletModeSeeking; // water heater only, inlet water seeks out the node with the closest temperature
 
     // integer parameter for water heater
-    extern int const MixedWaterHeater;      // WaterHeater:Mixed
-    extern int const StratifiedWaterHeater; // WaterHeater:Stratified
+    thread_local extern int const MixedWaterHeater;      // WaterHeater:Mixed
+    thread_local extern int const StratifiedWaterHeater; // WaterHeater:Stratified
     // stovall, next line never used because all desuperheater coils used in mixed water heater types
-    extern int const CoilWaterDesuperHeater;        // Coil:WaterHeating:Desuperheater
-    extern int const MixedChilledWaterStorage;      // 'ThermalStorage:ChilledWater:Mixed'
-    extern int const StratifiedChilledWaterStorage; // 'ThermalStorage:ChilledWater:Stratified'
+    thread_local extern int const CoilWaterDesuperHeater;        // Coil:WaterHeating:Desuperheater
+    thread_local extern int const MixedChilledWaterStorage;      // 'ThermalStorage:ChilledWater:Mixed'
+    thread_local extern int const StratifiedChilledWaterStorage; // 'ThermalStorage:ChilledWater:Stratified'
 
     // reclaim heat object types for Coil:WaterHeating:Desuperheater object
-    extern int const COMPRESSORRACK_REFRIGERATEDCASE; // reclaim heating source is refrigerated case compressor rack
-    extern int const COIL_DX_COOLING;                 // reclaim heating source is DX cooling coil
-    extern int const COIL_DX_MULTISPEED;              // reclaim heating source is DX multispeed coil
-    extern int const COIL_DX_MULTIMODE;               // reclaim heating source is DX multimode coil
-    extern int const CONDENSER_REFRIGERATION;         // reclaim heating source is detailed refrigeration system condenser
-    extern int const COIL_DX_VARIABLE_COOLING;        // reclaim heating source is Variable Speed DX cooling coil
+    thread_local extern int const COMPRESSORRACK_REFRIGERATEDCASE; // reclaim heating source is refrigerated case compressor rack
+    thread_local extern int const COIL_DX_COOLING;                 // reclaim heating source is DX cooling coil
+    thread_local extern int const COIL_DX_MULTISPEED;              // reclaim heating source is DX multispeed coil
+    thread_local extern int const COIL_DX_MULTIMODE;               // reclaim heating source is DX multimode coil
+    thread_local extern int const CONDENSER_REFRIGERATION;         // reclaim heating source is detailed refrigeration system condenser
+    thread_local extern int const COIL_DX_VARIABLE_COOLING;        // reclaim heating source is Variable Speed DX cooling coil
 
-    extern int const UseSide;    // Indicates Use side of water heater
-    extern int const SourceSide; // Indicates Source side of water heater
+    thread_local extern int const UseSide;    // Indicates Use side of water heater
+    thread_local extern int const SourceSide; // Indicates Source side of water heater
 
-    extern int const SizeNotSet;
-    extern int const SizePeakDraw;
-    extern int const SizeResidentialMin;
-    extern int const SizePerPerson;
-    extern int const SizePerFloorArea;
-    extern int const SizePerUnit;
-    extern int const SizePerSolarColArea;
+    thread_local extern int const SizeNotSet;
+    thread_local extern int const SizePeakDraw;
+    thread_local extern int const SizeResidentialMin;
+    thread_local extern int const SizePerPerson;
+    thread_local extern int const SizePerFloorArea;
+    thread_local extern int const SizePerUnit;
+    thread_local extern int const SizePerSolarColArea;
 
-    extern int const HPWHControlNotSet;
-    extern int const Heater1HPWHControl;
-    extern int const Heater2HPWHControl;
-    extern int const SourceInletHPWHControl;
-    extern int const SourceOutletHPWHControl;
-    extern int const UseInletHPWHControl;
-    extern int const UseOutletHPWHControl;
+    thread_local extern int const HPWHControlNotSet;
+    thread_local extern int const Heater1HPWHControl;
+    thread_local extern int const Heater2HPWHControl;
+    thread_local extern int const SourceInletHPWHControl;
+    thread_local extern int const SourceOutletHPWHControl;
+    thread_local extern int const UseInletHPWHControl;
+    thread_local extern int const UseOutletHPWHControl;
 
-    extern int const SourceSideStorageTank;
-    extern int const SourceSideIndirectHeatPrimarySetpoint;
-    extern int const SourceSideIndirectHeatAltSetpoint;
+    thread_local extern int const SourceSideStorageTank;
+    thread_local extern int const SourceSideIndirectHeatPrimarySetpoint;
+    thread_local extern int const SourceSideIndirectHeatAltSetpoint;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
-    extern Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
-    extern Array1D_bool MyHPSizeFlag;    // Used to report autosize info in Init
-    extern Array1D_bool CheckWTTEquipName;
-    extern Array1D_bool CheckHPWHEquipName;
+    thread_local extern Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
+    thread_local extern Array1D_bool MyHPSizeFlag;    // Used to report autosize info in Init
+    thread_local extern Array1D_bool CheckWTTEquipName;
+    thread_local extern Array1D_bool CheckHPWHEquipName;
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumChilledWaterMixed;        // number of mixed chilled water tanks
-    extern int NumChilledWaterStratified;   // number of stratified chilled water tanks
-    extern int NumWaterHeaterMixed;         // number of mixed water heaters
-    extern int NumWaterHeaterStratified;    // number of stratified water heaters
-    extern int NumWaterThermalTank;         // total number of water thermal tanks, hot and cold (MIXED + STRATIFIED)
-    extern int NumWaterHeaterDesuperheater; // number of desuperheater heating coils
-    extern int NumHeatPumpWaterHeater;      // number of heat pump water heaters
+    thread_local extern int NumChilledWaterMixed;        // number of mixed chilled water tanks
+    thread_local extern int NumChilledWaterStratified;   // number of stratified chilled water tanks
+    thread_local extern int NumWaterHeaterMixed;         // number of mixed water heaters
+    thread_local extern int NumWaterHeaterStratified;    // number of stratified water heaters
+    thread_local extern int NumWaterThermalTank;         // total number of water thermal tanks, hot and cold (MIXED + STRATIFIED)
+    thread_local extern int NumWaterHeaterDesuperheater; // number of desuperheater heating coils
+    thread_local extern int NumHeatPumpWaterHeater;      // number of heat pump water heaters
     // INTEGER :: MaxCyclesErrorCount           =0 ! error counter for water heater that cycles more than max during time step
 
-    extern Real64 HPPartLoadRatio;            // part load ratio of HPWH
-    extern bool GetWaterThermalTankInputFlag; // Calls to Water Heater from multiple places in code
-    extern Real64 MixerInletAirSchedule;      // output of inlet air mixer node schedule
-    extern Real64 MdotAir;                    // mass flow rate of evaporator air, kg/s
-    extern int NumWaterHeaterSizing;          // Number of sizing/design objects for water heaters.
-    extern Array1D_bool AlreadyRated;         // control so we don't repeat again
+    thread_local extern Real64 HPPartLoadRatio;            // part load ratio of HPWH
+    thread_local extern bool GetWaterThermalTankInputFlag; // Calls to Water Heater from multiple places in code
+    thread_local extern Real64 MixerInletAirSchedule;      // output of inlet air mixer node schedule
+    thread_local extern Real64 MdotAir;                    // mass flow rate of evaporator air, kg/s
+    thread_local extern int NumWaterHeaterSizing;          // Number of sizing/design objects for water heaters.
+    thread_local extern Array1D_bool AlreadyRated;         // control so we don't repeat again
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -669,9 +669,9 @@ namespace WaterThermalTanks {
     };
 
     // Object Data
-    extern Array1D<WaterThermalTankData> WaterThermalTank;
-    extern Array1D<HeatPumpWaterHeaterData> HPWaterHeater;
-    extern Array1D<WaterHeaterDesuperheaterData> WaterHeaterDesuperheater;
+    thread_local extern Array1D<WaterThermalTankData> WaterThermalTank;
+    thread_local extern Array1D<HeatPumpWaterHeaterData> HPWaterHeater;
+    thread_local extern Array1D<WaterHeaterDesuperheaterData> WaterHeaterDesuperheater;
 
     // Functions
 

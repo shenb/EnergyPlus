@@ -64,47 +64,47 @@ namespace EvaporativeFluidCoolers {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    extern std::string const cEvapFluidCooler_SingleSpeed;
-    extern std::string const cEvapFluidCooler_TwoSpeed;
+    thread_local extern std::string const cEvapFluidCooler_SingleSpeed;
+    thread_local extern std::string const cEvapFluidCooler_TwoSpeed;
 
-    extern int const EvapLossByUserFactor;
-    extern int const EvapLossByMoistTheory;
+    thread_local extern int const EvapLossByUserFactor;
+    thread_local extern int const EvapLossByMoistTheory;
 
-    extern int const BlowdownByConcentration;
-    extern int const BlowdownBySchedule;
+    thread_local extern int const BlowdownByConcentration;
+    thread_local extern int const BlowdownBySchedule;
 
-    extern int const PIM_StandardDesignCapacity;
-    extern int const PIM_UFactor;
-    extern int const PIM_UserSpecifiedDesignCapacity;
+    thread_local extern int const PIM_StandardDesignCapacity;
+    thread_local extern int const PIM_UFactor;
+    thread_local extern int const PIM_UserSpecifiedDesignCapacity;
 
-    extern int const EvapFluidCooler_SingleSpeed;
-    extern int const EvapFluidCooler_TwoSpeed;
+    thread_local extern int const EvapFluidCooler_SingleSpeed;
+    thread_local extern int const EvapFluidCooler_TwoSpeed;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumSimpleEvapFluidCoolers; // Number of similar evaporative fluid coolers
+    thread_local extern int NumSimpleEvapFluidCoolers; // Number of similar evaporative fluid coolers
 
     // The following block of variables are used to carry model results for a evaporative fluid cooler instance
     //   across sim, update, and report routines.  Simulation manager must be careful
     //   in models with multiple evaporative fluid coolers.
 
-    extern Real64 InletWaterTemp;    // CW temperature at evaporative fluid cooler inlet
-    extern Real64 OutletWaterTemp;   // CW temperature at evaporative fluid cooler outlet
-    extern int WaterInletNode;       // Node number at evaporative fluid cooler inlet
-    extern int WaterOutletNode;      // Node number at evaporative fluid cooler outlet
-    extern Real64 WaterMassFlowRate; // WaterMassFlowRate through evaporative fluid cooler
+    thread_local extern Real64 InletWaterTemp;    // CW temperature at evaporative fluid cooler inlet
+    thread_local extern Real64 OutletWaterTemp;   // CW temperature at evaporative fluid cooler outlet
+    thread_local extern int WaterInletNode;       // Node number at evaporative fluid cooler inlet
+    thread_local extern int WaterOutletNode;      // Node number at evaporative fluid cooler outlet
+    thread_local extern Real64 WaterMassFlowRate; // WaterMassFlowRate through evaporative fluid cooler
     // DSU this is plant level stuff now REAL(r64)   :: EvapFluidCoolerMassFlowRateMax     = 0.0d0    ! Max Hardware Mass Flow Rate
     // DSU this is plant level stuff now REAL(r64)   :: EvapFluidCoolerMassFlowRateMin     = 0.0d0    ! Min Hardware Mass Flow Rate
     // DSU this is plant level stuff now REAL(r64)   :: LoopMassFlowRateMaxAvail = 0.0d0    ! Max Loop Mass Flow Rate available
     // DSU this is plant level stuff now REAL(r64)   :: LoopMassFlowRateMinAvail = 0.0d0    ! Min Loop Mass Flow Rate available
-    extern Real64 Qactual;          // Evaporative fluid cooler heat transfer
-    extern Real64 FanPower;         // Evaporative fluid cooler fan power used
-    extern Real64 AirFlowRateRatio; // Ratio of air flow rate through VS evaporative fluid cooler
+    thread_local extern Real64 Qactual;          // Evaporative fluid cooler heat transfer
+    thread_local extern Real64 FanPower;         // Evaporative fluid cooler fan power used
+    thread_local extern Real64 AirFlowRateRatio; // Ratio of air flow rate through VS evaporative fluid cooler
     // to design air flow rate
-    extern Real64 WaterUsage; // Evaporative fluid cooler water usage (m3/s)
+    thread_local extern Real64 WaterUsage; // Evaporative fluid cooler water usage (m3/s)
 
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE EvaporativeFluidCoolers
 
@@ -284,9 +284,9 @@ namespace EvaporativeFluidCoolers {
     };
 
     // Object Data
-    extern Array1D<EvapFluidCoolerspecs> SimpleEvapFluidCooler;           // dimension to number of machines
-    extern Array1D<EvapFluidCoolerInletConds> SimpleEvapFluidCoolerInlet; // inlet conditions
-    extern Array1D<ReportVars> SimpleEvapFluidCoolerReport;               // report variables
+    thread_local extern Array1D<EvapFluidCoolerspecs> SimpleEvapFluidCooler;           // dimension to number of machines
+    thread_local extern Array1D<EvapFluidCoolerInletConds> SimpleEvapFluidCoolerInlet; // inlet conditions
+    thread_local extern Array1D<ReportVars> SimpleEvapFluidCoolerReport;               // report variables
 
     // Functions
 

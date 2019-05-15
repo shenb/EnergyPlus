@@ -127,45 +127,45 @@ namespace PackagedThermalStorageCoil {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // control types
-    int const ScheduledOpModes(1);   // control over TES modes is via local schedule
-    int const EMSActuatedOpModes(2); // control over TES modes is via EMS
+    thread_local int const ScheduledOpModes(1);   // control over TES modes is via local schedule
+    thread_local int const EMSActuatedOpModes(2); // control over TES modes is via EMS
 
     // Control Modes
-    int const OffMode(0);
-    int const CoolingOnlyMode(1);
-    int const CoolingAndChargeMode(2);
-    int const CoolingAndDischargeMode(3);
-    int const ChargeOnlyMode(4);
-    int const DischargeOnlyMode(5);
+    thread_local int const OffMode(0);
+    thread_local int const CoolingOnlyMode(1);
+    thread_local int const CoolingAndChargeMode(2);
+    thread_local int const CoolingAndDischargeMode(3);
+    thread_local int const ChargeOnlyMode(4);
+    thread_local int const DischargeOnlyMode(5);
 
     // storage media
-    int const FluidBased(101);
-    int const IceBased(102);
+    thread_local int const FluidBased(101);
+    thread_local int const IceBased(102);
     // INTEGER, PARAMETER :: UserDefinedFluid = 103
 
     // Water Systems
-    int const CondensateDiscarded(1001); // default mode where water is "lost"
-    int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
+    thread_local int const CondensateDiscarded(1001); // default mode where water is "lost"
+    thread_local int const CondensateToTank(1002);    // collect coil condensate from air and store in water storage tank
 
-    int const WaterSupplyFromMains(101);
-    int const WaterSupplyFromTank(102);
+    thread_local int const WaterSupplyFromMains(101);
+    thread_local int const WaterSupplyFromTank(102);
 
     // Dehumidification control modes (DehumidControlMode)
-    int const DehumidControl_CoolReheat(2);
+    thread_local int const DehumidControl_CoolReheat(2);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumTESCoils;
-    Array1D_bool CheckEquipName;
-    bool GetTESInputFlag(true);
+    thread_local int NumTESCoils;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local bool GetTESInputFlag(true);
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
     // Object Data
-    Array1D<PackagedTESCoolingCoilStruct> TESCoil;
+    thread_local Array1D<PackagedTESCoolingCoilStruct> TESCoil;
 
     // Functions
 
@@ -270,14 +270,14 @@ namespace PackagedThermalStorageCoil {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetTESCoilInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetTESCoilInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int item;                       // do loop counter
         int NumAlphas;                  // Number of alphas in input
         int NumNumbers;                 // Number of numeric items in input
         int IOStatus;                   // Input status returned from GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         bool errFlag;
         Real64 TminRho;
         Real64 TmaxRho;
@@ -1852,11 +1852,11 @@ namespace PackagedThermalStorageCoil {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyFlag;       // One time environment flag
-        static Array1D_bool MySizeFlag;   // One time sizing flag
-        static Array1D_bool MyEnvrnFlag;  // flag for init once at start of environment
-        static Array1D_bool MyWarmupFlag; // flag for init after warmup complete
-        static bool MyOneTimeFlag(true);  // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+        thread_local static Array1D_bool MyFlag;       // One time environment flag
+        thread_local static Array1D_bool MySizeFlag;   // One time sizing flag
+        thread_local static Array1D_bool MyEnvrnFlag;  // flag for init once at start of environment
+        thread_local static Array1D_bool MyWarmupFlag; // flag for init after warmup complete
+        thread_local static bool MyOneTimeFlag(true);  // One time flag used to allocate MyEnvrnFlag and MySizeFlag
         bool errFlag;
         int plloopnum;
         int lsnum;
@@ -2111,8 +2111,8 @@ namespace PackagedThermalStorageCoil {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeTESCoil ");
-        static std::string const calcTESWaterStorageTank("CalcTESWaterStorageTank");
+        thread_local static std::string const RoutineName("SizeTESCoil ");
+        thread_local static std::string const calcTESWaterStorageTank("CalcTESWaterStorageTank");
         Real64 const FluidTankSizingDeltaT(10.0);
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
@@ -2489,7 +2489,7 @@ namespace PackagedThermalStorageCoil {
         int const MaxIter(30);
         Real64 const RelaxationFactor(0.4);
         Real64 const Tolerance(0.1);
-        static std::string const RoutineName("CalcTESCoilCoolingOnlyMode");
+        thread_local static std::string const RoutineName("CalcTESCoilCoolingOnlyMode");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2797,7 +2797,7 @@ namespace PackagedThermalStorageCoil {
         int const MaxIter(30);
         Real64 const RelaxationFactor(0.4);
         Real64 const Tolerance(0.1);
-        static std::string const RoutineName("CalcTESCoilCoolingAndChargeMode");
+        thread_local static std::string const RoutineName("CalcTESCoilCoolingAndChargeMode");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -3229,7 +3229,7 @@ namespace PackagedThermalStorageCoil {
         int const MaxIter(30);
         Real64 const RelaxationFactor(0.4);
         Real64 const Tolerance(0.1);
-        static std::string const RoutineName("CalcTESCoilCoolingAndDischargeMode");
+        thread_local static std::string const RoutineName("CalcTESCoilCoolingAndDischargeMode");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -3613,7 +3613,7 @@ namespace PackagedThermalStorageCoil {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcTESCoilChargeOnlyMode");
+        thread_local static std::string const RoutineName("CalcTESCoilChargeOnlyMode");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -3801,8 +3801,8 @@ namespace PackagedThermalStorageCoil {
         int const MaxIter(30);
         Real64 const RelaxationFactor(0.4);
         Real64 const Tolerance(0.1);
-        static std::string const RoutineName("CalcTESCoilDischargeOnlyMode");
-        static std::string const StorageTankName("CalcTESWaterStorageTank");
+        thread_local static std::string const RoutineName("CalcTESCoilDischargeOnlyMode");
+        thread_local static std::string const StorageTankName("CalcTESWaterStorageTank");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -4544,8 +4544,8 @@ namespace PackagedThermalStorageCoil {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcTESWaterStorageTank");
-        static std::string const calcTESIceStorageTank("CalcTESIceStorageTank");
+        thread_local static std::string const RoutineName("CalcTESWaterStorageTank");
+        thread_local static std::string const calcTESIceStorageTank("CalcTESIceStorageTank");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -4682,8 +4682,8 @@ namespace PackagedThermalStorageCoil {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 FreezingTemp(0.0); // zero degrees C
-        static std::string const RoutineName("CalcTESIceStorageTank");
+        thread_local static Real64 FreezingTemp(0.0); // zero degrees C
+        thread_local static std::string const RoutineName("CalcTESIceStorageTank");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

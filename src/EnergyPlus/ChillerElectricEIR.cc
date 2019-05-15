@@ -128,54 +128,54 @@ namespace ChillerElectricEIR {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Chiller type parameters
-    int const AirCooled(1);
-    int const WaterCooled(2);
-    int const EvapCooled(3);
+    thread_local int const AirCooled(1);
+    thread_local int const WaterCooled(2);
+    thread_local int const EvapCooled(3);
 
     // chiller flow modes
-    int const FlowModeNotSet(200);
-    int const ConstantFlow(201);
-    int const NotModulated(202);
-    int const LeavingSetPointModulated(203);
+    thread_local int const FlowModeNotSet(200);
+    thread_local int const ConstantFlow(201);
+    thread_local int const NotModulated(202);
+    thread_local int const LeavingSetPointModulated(203);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumElectricEIRChillers(0);    // Number of electric EIR chillers specified in input
-    Real64 CondMassFlowRate(0.0);     // Condenser mass flow rate [kg/s]
-    Real64 EvapMassFlowRate(0.0);     // Evaporator mass flow rate [kg/s]
-    Real64 CondOutletTemp(0.0);       // Condenser outlet temperature [C]
-    Real64 CondOutletHumRat(0.0);     // Condenser outlet humidity ratio [kg/kg]
-    Real64 EvapOutletTemp(0.0);       // Evaporator outlet temperature [C]
-    Real64 EvapWaterConsumpRate(0.0); // Evap condenser water consumption rate [m3/s]
-    Real64 Power(0.0);                // Rate of chiller electric energy use [W]
-    Real64 QEvaporator(0.0);          // Rate of heat transfer to the evaporator coil [W]
-    Real64 QCondenser(0.0);           // Rate of heat transfer to the condenser coil [W]
-    Real64 QHeatRecovered(0.0);       // Rate of heat transfer to the heat recovery coil [W]
-    Real64 HeatRecOutletTemp(0.0);    // Heat recovery outlet temperature [C]
-    Real64 CondenserFanPower(0.0);    // Condenser Fan Power (fan cycles with compressor) [W]
-    Real64 ChillerCapFT(0.0);         // Chiller capacity fraction (evaluated as a function of temperature)
-    Real64 ChillerEIRFT(0.0);         // Chiller electric input ratio (EIR = 1 / COP) as a function of temperature
-    Real64 ChillerEIRFPLR(0.0);       // Chiller EIR as a function of part-load ratio (PLR)
-    Real64 ChillerPartLoadRatio(0.0); // Chiller part-load ratio (PLR)
-    Real64 ChillerCyclingRatio(0.0);  // Chiller cycling ratio
-    Real64 BasinHeaterPower(0.0);     // Basin heater power (W)
-    Real64 ChillerFalseLoadRate(0.0); // Chiller false load over and above the water-side load [W]
-    Real64 AvgCondSinkTemp(0.0);      // condenser temperature value for use in curves [C]
+    thread_local int NumElectricEIRChillers(0);    // Number of electric EIR chillers specified in input
+    thread_local Real64 CondMassFlowRate(0.0);     // Condenser mass flow rate [kg/s]
+    thread_local Real64 EvapMassFlowRate(0.0);     // Evaporator mass flow rate [kg/s]
+    thread_local Real64 CondOutletTemp(0.0);       // Condenser outlet temperature [C]
+    thread_local Real64 CondOutletHumRat(0.0);     // Condenser outlet humidity ratio [kg/kg]
+    thread_local Real64 EvapOutletTemp(0.0);       // Evaporator outlet temperature [C]
+    thread_local Real64 EvapWaterConsumpRate(0.0); // Evap condenser water consumption rate [m3/s]
+    thread_local Real64 Power(0.0);                // Rate of chiller electric energy use [W]
+    thread_local Real64 QEvaporator(0.0);          // Rate of heat transfer to the evaporator coil [W]
+    thread_local Real64 QCondenser(0.0);           // Rate of heat transfer to the condenser coil [W]
+    thread_local Real64 QHeatRecovered(0.0);       // Rate of heat transfer to the heat recovery coil [W]
+    thread_local Real64 HeatRecOutletTemp(0.0);    // Heat recovery outlet temperature [C]
+    thread_local Real64 CondenserFanPower(0.0);    // Condenser Fan Power (fan cycles with compressor) [W]
+    thread_local Real64 ChillerCapFT(0.0);         // Chiller capacity fraction (evaluated as a function of temperature)
+    thread_local Real64 ChillerEIRFT(0.0);         // Chiller electric input ratio (EIR = 1 / COP) as a function of temperature
+    thread_local Real64 ChillerEIRFPLR(0.0);       // Chiller EIR as a function of part-load ratio (PLR)
+    thread_local Real64 ChillerPartLoadRatio(0.0); // Chiller part-load ratio (PLR)
+    thread_local Real64 ChillerCyclingRatio(0.0);  // Chiller cycling ratio
+    thread_local Real64 BasinHeaterPower(0.0);     // Basin heater power (W)
+    thread_local Real64 ChillerFalseLoadRate(0.0); // Chiller false load over and above the water-side load [W]
+    thread_local Real64 AvgCondSinkTemp(0.0);      // condenser temperature value for use in curves [C]
 
-    Array1D_bool CheckEquipName;
+    thread_local Array1D_bool CheckEquipName;
 
-    bool GetInputEIR(true); // When TRUE, calls subroutine to read input file.
-    bool ChillerIPLVOneTimeFlag(true);
-    Array1D_bool ChillerIPLVFlagArr;
-    bool getInputAllocatedFlag(false);
-    bool InitMyOneTimeFlag(true);
+    thread_local bool GetInputEIR(true); // When TRUE, calls subroutine to read input file.
+    thread_local bool ChillerIPLVOneTimeFlag(true);
+    thread_local Array1D_bool ChillerIPLVFlagArr;
+    thread_local bool getInputAllocatedFlag(false);
+    thread_local bool InitMyOneTimeFlag(true);
     // SUBROUTINE SPECIFICATIONS FOR MODULE ChillerElectricEIR
     // PUBLIC     SimEIRChillerHeatRecovery
 
     // Object Data
-    Array1D<ElectricEIRChillerSpecs> ElectricEIRChiller; // Dimension to number of machines
-    Array1D<ReportEIRVars> ElectricEIRChillerReport;
+    thread_local Array1D<ElectricEIRChillerSpecs> ElectricEIRChiller; // Dimension to number of machines
+    thread_local Array1D<ReportEIRVars> ElectricEIRChillerReport;
 
     // MODULE SUBROUTINES:
 
@@ -365,17 +365,17 @@ namespace ChillerElectricEIR {
 
         // Locals
         // PARAMETERS
-        static std::string const RoutineName("GetElectricEIRChillerInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetElectricEIRChillerInput: "); // include trailing blank space
 
         // LOCAL VARIABLES
         int EIRChillerNum;                 // Chiller counter
         int NumAlphas;                     // Number of elements in the alpha array
         int NumNums;                       // Number of elements in the numeric array
         int IOStat;                        // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);    // True when input errors are found
+        thread_local static bool ErrorsFound(false);    // True when input errors are found
         Real64 CurveVal;                   // Used to verify EIR-FT and CAP-FT curves equal 1 at reference conditions
-        static bool FoundNegValue(false);  // Used to evaluate PLFFPLR curve objects
-        static int CurveCheck(0);          // Used to evaluate PLFFPLR curve objects
+        thread_local static bool FoundNegValue(false);  // Used to evaluate PLFFPLR curve objects
+        thread_local static int CurveCheck(0);          // Used to evaluate PLFFPLR curve objects
         Array1D<Real64> CurveValArray(11); // Used to evaluate PLFFPLR curve objects
         Real64 CurveValTmp;                // Used to evaluate PLFFPLR curve objects
         bool errFlag;                      // Used to tell if a unique chiller name has been specified
@@ -385,7 +385,7 @@ namespace ChillerElectricEIR {
         bool Okay;
 
         // Formats
-        static gio::Fmt Format_530("('Curve Output = ',11(F7.2))");
+        thread_local static gio::Fmt Format_530("('Curve Output = ',11(F7.2))");
 
         // FLOW
 
@@ -786,7 +786,7 @@ namespace ChillerElectricEIR {
                     ShowContinueError("EIR as a function of PLR curve output at various part-load ratios shown below:");
                     ShowContinueError("PLR          =    0.00   0.10   0.20   0.30   0.40   0.50   0.60   0.70   0.80   0.90   1.00");
                     gio::write(StringVar, "'Curve Output = '");
-                    static gio::Fmt fmtF72("((F7.2),$)");
+                    thread_local static gio::Fmt fmtF72("((F7.2),$)");
                     for (CurveValPtr = 1; CurveValPtr <= 11; ++CurveValPtr) {
                         gio::write(StringVar, fmtF72) << CurveValArray(CurveValPtr);
                     }
@@ -1135,10 +1135,10 @@ namespace ChillerElectricEIR {
         using PlantUtilities::SetComponentFlowRate;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("InitElectricEIRChiller");
+        thread_local static std::string const RoutineName("InitElectricEIRChiller");
 
-        static Array1D_bool MyFlag;      // TRUE in order to set component location
-        static Array1D_bool MyEnvrnFlag; // TRUE when new environment is started
+        thread_local static Array1D_bool MyFlag;      // TRUE in order to set component location
+        thread_local static Array1D_bool MyEnvrnFlag; // TRUE when new environment is started
         int EvapInletNode;               // Node number for evaporator water inlet node
         int EvapOutletNode;              // Node number for evaporator water outlet node
         int CondInletNode;               // Node number for condenser water inlet node
@@ -1509,7 +1509,7 @@ namespace ChillerElectricEIR {
         using StandardRatings::CalcChillerIPLV;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeElectricEIRChiller");
+        thread_local static std::string const RoutineName("SizeElectricEIRChiller");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum;     // Plant Sizing index corresponding to CurLoopNum
@@ -1920,8 +1920,8 @@ namespace ChillerElectricEIR {
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
 
-        static gio::Fmt OutputFormat("(F6.2)");
-        static std::string const RoutineName("CalcElectricEIRChillerModel");
+        thread_local static gio::Fmt OutputFormat("(F6.2)");
+        thread_local static std::string const RoutineName("CalcElectricEIRChillerModel");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 FRAC;                        // Chiller cycling ratio
@@ -1950,10 +1950,10 @@ namespace ChillerElectricEIR {
         int LoopSideNum;  // Plant loop side which contains the current chiller (usually supply side)
         int BranchNum;
         int CompNum;
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
         Real64 CurrentEndTime;                 // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
-        static std::string OutputChar;         // character string for warning messages
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static std::string OutputChar;         // character string for warning messages
         Real64 Cp;                             // local fluid specific heat
         Real64 RhoAir;                         // air density [kg/m3]
 
@@ -2617,7 +2617,7 @@ namespace ChillerElectricEIR {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("EIRChillerHeatRecovery");
+        thread_local static std::string const RoutineName("EIRChillerHeatRecovery");
 
         // DERIVED TYPE DEFINITIONS:
         //  na

@@ -65,47 +65,47 @@ namespace DataRootFinder {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS
-    extern int const iSlopeNone;       // Undefined slope specification
-    extern int const iSlopeIncreasing; // For overall increasing function F(X) between min and max points
-    extern int const iSlopeDecreasing; // For overall decreasing function F(X) between min and max points
+    thread_local extern int const iSlopeNone;       // Undefined slope specification
+    thread_local extern int const iSlopeIncreasing; // For overall increasing function F(X) between min and max points
+    thread_local extern int const iSlopeDecreasing; // For overall decreasing function F(X) between min and max points
 
     // Error because the overall slope appears to be flat between the min and max points,
     // implying that the function might be singular over the interval:
     // F(XMin) == F(XMax)
-    extern int const iStatusErrorSingular;
+    thread_local extern int const iStatusErrorSingular;
     // Error because the overall slope assumption is not observed at the min and max points:
     // - for an increasing function F(X), we expect F(XMin) < F(XMax)  otherwise error
     // - for a decreasing function F(X),  we expect F(XMin) > F(XMax)  otherwise error
     // Note that this error status does not detect strict monotonicity at points
     // between the min and max points.
-    extern int const iStatusErrorSlope;
+    thread_local extern int const iStatusErrorSlope;
     // Error because the current candidate X does not lie within the current lower an upper points:
     // X < XLower or X > XUpper
-    extern int const iStatusErrorBracket;
+    thread_local extern int const iStatusErrorBracket;
     // Error because the current candidate X does not lie within the min and max points:
     // X < XMin or X > XMax
-    extern int const iStatusErrorRange;
+    thread_local extern int const iStatusErrorRange;
 
-    extern int const iStatusNone; // Indeterminate error state (not converged), also default state
-    extern int const iStatusOK;   // Unconstrained convergence achieved with root solution so that:
+    thread_local extern int const iStatusNone; // Indeterminate error state (not converged), also default state
+    thread_local extern int const iStatusOK;   // Unconstrained convergence achieved with root solution so that:
     // XMin < XRoot < XMax
-    extern int const iStatusOKMin;      // Constrained convergence achieved with solution XRoot==XMin
-    extern int const iStatusOKMax;      // Constrained convergence achieved with solution XRoot==XMax
-    extern int const iStatusOKRoundOff; // Reached requested tolerance in X variables although Y=F(X) does not
+    thread_local extern int const iStatusOKMin;      // Constrained convergence achieved with solution XRoot==XMin
+    thread_local extern int const iStatusOKMax;      // Constrained convergence achieved with solution XRoot==XMax
+    thread_local extern int const iStatusOKRoundOff; // Reached requested tolerance in X variables although Y=F(X) does not
     // satisfy unconstrained convergence check
 
-    extern int const iStatusWarningNonMonotonic; // Error because F(X) is not strictly monotonic between the
+    thread_local extern int const iStatusWarningNonMonotonic; // Error because F(X) is not strictly monotonic between the
     // lower and upper points
-    extern int const iStatusWarningSingular; // Error because F(X) == YLower or F(X) == YUpper
+    thread_local extern int const iStatusWarningSingular; // Error because F(X) == YLower or F(X) == YUpper
 
-    extern int const iMethodNone;          // No solution method (used internally only when root finder is reset)
-    extern int const iMethodBracket;       // Bracketting mode (used internally only to bracket root)
-    extern int const iMethodBisection;     // Step performed using bisection method (aka interval halving)
-    extern int const iMethodFalsePosition; // Step performed using false position method (aka regula falsi)
-    extern int const iMethodSecant;        // Step performed using secant method
-    extern int const iMethodBrent;         // Step performed using Brent's method
+    thread_local extern int const iMethodNone;          // No solution method (used internally only when root finder is reset)
+    thread_local extern int const iMethodBracket;       // Bracketting mode (used internally only to bracket root)
+    thread_local extern int const iMethodBisection;     // Step performed using bisection method (aka interval halving)
+    thread_local extern int const iMethodFalsePosition; // Step performed using false position method (aka regula falsi)
+    thread_local extern int const iMethodSecant;        // Step performed using secant method
+    thread_local extern int const iMethodBrent;         // Step performed using Brent's method
     // Names for each solution method type
-    extern Array1D_string const SolutionMethodTypes;
+    thread_local extern Array1D_string const SolutionMethodTypes;
 
     // DERIVED TYPE DEFINITIONS
     // Type declaration for the numerical controls.

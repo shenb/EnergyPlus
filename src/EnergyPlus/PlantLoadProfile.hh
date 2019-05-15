@@ -67,7 +67,7 @@ namespace PlantLoadProfile {
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumOfPlantProfile;
+    thread_local extern int NumOfPlantProfile;
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -132,7 +132,7 @@ namespace PlantLoadProfile {
     };
 
     // Object Data
-    extern Array1D<PlantProfileData> PlantProfile;
+    thread_local extern Array1D<PlantProfileData> PlantProfile;
 
     // This could be static inside the class
     void GetPlantProfileInput();

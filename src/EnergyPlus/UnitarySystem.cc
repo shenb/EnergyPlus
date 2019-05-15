@@ -97,65 +97,65 @@ namespace EnergyPlus {
 namespace UnitarySystems {
 
     namespace {
-        bool initUnitarySystemsErrFlag(false);
-        bool initUnitarySystemsErrorsFound(false);
-        bool initLoadBasedControlFlowFracFlagReady(true);
-        Real64 initLoadBasedControlCntrlZoneTerminalUnitMassFlowRateMax(0.0);
-        Real64 initUnitarySystemsQActual(0.0);
+        thread_local bool initUnitarySystemsErrFlag(false);
+        thread_local bool initUnitarySystemsErrorsFound(false);
+        thread_local bool initLoadBasedControlFlowFracFlagReady(true);
+        thread_local Real64 initLoadBasedControlCntrlZoneTerminalUnitMassFlowRateMax(0.0);
+        thread_local Real64 initUnitarySystemsQActual(0.0);
     } // namespace
 
     // MODULE PARAMETER DEFINITIONS
-    bool economizerFlag(false);      // holds air loop economizer status
-    bool SuppHeatingCoilFlag(false); // set to TRUE when simulating supplemental heating coil
-    Real64 const MinAirMassFlow(0.001);
-    int numUnitarySystems(0);
-    bool myOneTimeFlag(true);
-    bool getInputFlag(true);
-    bool getInputOnceFlag(true);
-    bool getMSHPInputOnceFlag(true);
-    std::vector<UnitarySys> unitarySys;
-    std::vector<DesignSpecMSHP> designSpecMSHP;
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const blankString("");
-    Real64 m_massFlow1(0.0);           // Mass flow rate in operating mode 1 (CompOn) [kg/s]
-    Real64 m_massFlow2(0.0);           // Mass flow rate in operating mode 2 (CompOff) [kg/s]
-    Real64 m_runTimeFraction1(0.0);    // Fan runtime fraction in operating mode 1 (CompOn)
-    Real64 m_runTimeFraction2(0.0);    // Fan runtime fraction in operating mode 2 (CompOff)
-    Real64 CompOnMassFlow(0.0);        // Supply air mass flow rate w/ compressor ON [kg/s]
-    Real64 CompOffMassFlow(0.0);       // Supply air mass flow rate w/ compressor OFF [kg/s]
-    Real64 CompOnFlowRatio(0.0);       // fan flow ratio when coil on
-    Real64 CompOffFlowRatio(0.0);      // fan flow ratio when coil off
-    Real64 FanSpeedRatio(0.0);         // ratio of air flow ratio passed to fan object
-    Real64 CoolHeatPLRRat(1.0);        // ratio of cooling to heating PLR, used for cycling fan RH control
-    Real64 OnOffAirFlowRatioSave(0.0); // Saves the OnOffAirFlowRatio calculated in RegulaFalsi calls.
-    Real64 QToCoolSetPt(0.0);          // load to cooling set point {W}
-    Real64 QToHeatSetPt(0.0);          // load to heating set point {W}
-    bool HeatingLoad(false);           // True when zone needs heating
-    bool CoolingLoad(false);           // True when zone needs cooling
-    Real64 MoistureLoad(0.0);          // Dehumidification Load (W)
+    thread_local bool economizerFlag(false);      // holds air loop economizer status
+    thread_local bool SuppHeatingCoilFlag(false); // set to TRUE when simulating supplemental heating coil
+    thread_local Real64 const MinAirMassFlow(0.001);
+    thread_local int numUnitarySystems(0);
+    thread_local bool myOneTimeFlag(true);
+    thread_local bool getInputFlag(true);
+    thread_local bool getInputOnceFlag(true);
+    thread_local bool getMSHPInputOnceFlag(true);
+    thread_local std::vector<UnitarySys> unitarySys;
+    thread_local std::vector<DesignSpecMSHP> designSpecMSHP;
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const blankString("");
+    thread_local Real64 m_massFlow1(0.0);           // Mass flow rate in operating mode 1 (CompOn) [kg/s]
+    thread_local Real64 m_massFlow2(0.0);           // Mass flow rate in operating mode 2 (CompOff) [kg/s]
+    thread_local Real64 m_runTimeFraction1(0.0);    // Fan runtime fraction in operating mode 1 (CompOn)
+    thread_local Real64 m_runTimeFraction2(0.0);    // Fan runtime fraction in operating mode 2 (CompOff)
+    thread_local Real64 CompOnMassFlow(0.0);        // Supply air mass flow rate w/ compressor ON [kg/s]
+    thread_local Real64 CompOffMassFlow(0.0);       // Supply air mass flow rate w/ compressor OFF [kg/s]
+    thread_local Real64 CompOnFlowRatio(0.0);       // fan flow ratio when coil on
+    thread_local Real64 CompOffFlowRatio(0.0);      // fan flow ratio when coil off
+    thread_local Real64 FanSpeedRatio(0.0);         // ratio of air flow ratio passed to fan object
+    thread_local Real64 CoolHeatPLRRat(1.0);        // ratio of cooling to heating PLR, used for cycling fan RH control
+    thread_local Real64 OnOffAirFlowRatioSave(0.0); // Saves the OnOffAirFlowRatio calculated in RegulaFalsi calls.
+    thread_local Real64 QToCoolSetPt(0.0);          // load to cooling set point {W}
+    thread_local Real64 QToHeatSetPt(0.0);          // load to heating set point {W}
+    thread_local bool HeatingLoad(false);           // True when zone needs heating
+    thread_local bool CoolingLoad(false);           // True when zone needs cooling
+    thread_local Real64 MoistureLoad(0.0);          // Dehumidification Load (W)
 
     // Supply Air Sizing Option
-    int const None(1);
-    int const SupplyAirFlowRate(2);
-    int const FlowPerFloorArea(3);
-    int const FractionOfAutoSizedCoolingValue(4);
-    int const FractionOfAutoSizedHeatingValue(5);
-    int const FlowPerCoolingCapacity(6);
-    int const FlowPerHeatingCapacity(7);
+    thread_local int const None(1);
+    thread_local int const SupplyAirFlowRate(2);
+    thread_local int const FlowPerFloorArea(3);
+    thread_local int const FractionOfAutoSizedCoolingValue(4);
+    thread_local int const FractionOfAutoSizedHeatingValue(5);
+    thread_local int const FlowPerCoolingCapacity(6);
+    thread_local int const FlowPerHeatingCapacity(7);
 
     // Coil type for SimWater and SimSteamCoil
-    int const CoolingCoil(0);
-    int const HeatingCoil(1);
-    int const SuppHeatCoil(2);
+    thread_local int const CoolingCoil(0);
+    thread_local int const HeatingCoil(1);
+    thread_local int const SuppHeatCoil(2);
 
     // Last mode of operation
-    int const CoolingMode(1); // last compressor operating mode was in cooling
-    int const HeatingMode(2); // last compressor operating mode was in heating
-    int const NoCoolHeat(3);  // last operating mode was no cooling or heating
+    thread_local int const CoolingMode(1); // last compressor operating mode was in cooling
+    thread_local int const HeatingMode(2); // last compressor operating mode was in heating
+    thread_local int const NoCoolHeat(3);  // last operating mode was no cooling or heating
 
     // Compressor operation
-    int const On(1);  // normal compressor operation
-    int const Off(0); // signal DXCoil that compressor shouldn't run
+    thread_local int const On(1);  // normal compressor operation
+    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
 
     DesignSpecMSHP::DesignSpecMSHP()
         : numOfSpeedHeating(0), numOfSpeedCooling(0), noLoadAirFlowRateRatio(1.0), m_DesignSpecMSHPType_Num(0), m_SingleModeFlag(false)
@@ -526,7 +526,7 @@ namespace UnitarySystems {
 
     void UnitarySys::initUnitarySystems(int const &AirLoopNum, bool const &FirstHVACIteration, int const ZoneOAUnitNum, Real64 const OAUCoilOutTemp)
     {
-        static std::string const routineName("InitUnitarySystems");
+        thread_local static std::string const routineName("InitUnitarySystems");
         bool errorsFound = false; // error flag for mining functions
 
         if (myOneTimeFlag) {
@@ -1353,7 +1353,7 @@ namespace UnitarySystems {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const RunOnSensible(1); // identifier for temperature (sensible load) control
         int const RunOnLatent(2);   // identifier for humidity (latent load) control
-        static std::string const routineName("FrostControlSetPointLimit");
+        thread_local static std::string const routineName("FrostControlSetPointLimit");
 
         Real64 AirMassFlow = DataLoopNode::Node(this->CoolCoilInletNodeNum).MassFlowRate;
         if (ControlMode == RunOnSensible && AirMassFlow > MinAirMassFlow && TempSetPoint < DataLoopNode::Node(this->CoolCoilInletNodeNum).Temp) {
@@ -1405,7 +1405,7 @@ namespace UnitarySystems {
         // heating and cooling capacities are close but not identical.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeUnitarySystem");
+        thread_local static std::string const RoutineName("SizeUnitarySystem");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Iter;                  // iteration count
@@ -2523,8 +2523,8 @@ namespace UnitarySystems {
     void UnitarySys::getUnitarySystemInputData(std::string const &objectName, bool const ZoneEquipment, int const ZoneOAUnitNum, bool &errorsFound)
     {
 
-        static std::string const getUnitarySystemInput("getUnitarySystemInputData");
-        static std::string const unitarySysHeatPumpPerformanceObjectType("UnitarySystemPerformance:Multispeed");
+        thread_local static std::string const getUnitarySystemInput("getUnitarySystemInputData");
+        thread_local static std::string const unitarySysHeatPumpPerformanceObjectType("UnitarySystemPerformance:Multispeed");
 
         std::string cCurrentModuleObject = "AirLoopHVAC:UnitarySystem";
 
@@ -8405,7 +8405,7 @@ namespace UnitarySystems {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const Small5WLoad(5.0);
-        static std::string const routineName("InitUnitarySystems");
+        thread_local static std::string const routineName("InitUnitarySystems");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // static Array1D_bool MyEnvrnFlag; // environment flag
@@ -12880,7 +12880,7 @@ namespace UnitarySystems {
         //  Calculate the heat recovered from UnitarySystem
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const routineName("UnitarySystemHeatRecovery");
+        thread_local static std::string const routineName("UnitarySystemHeatRecovery");
 
         Real64 ReportingConstant = DataHVACGlobals::TimeStepSys * DataGlobals::SecInHour;
 
@@ -14785,7 +14785,7 @@ namespace UnitarySystems {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CheckUnitarySysCoilInOASysExists: "); // include trailing blank space
+        thread_local static std::string const RoutineName("CheckUnitarySysCoilInOASysExists: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         if (UnitarySystems::getInputOnceFlag) {

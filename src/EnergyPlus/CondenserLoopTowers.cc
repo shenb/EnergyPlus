@@ -129,65 +129,65 @@ namespace CondenserLoopTowers {
     using Psychrometrics::PsyWFnTdbTwbPb;
 
     // Empirical Model Type
-    int const CoolToolsXFModel(1);
+    thread_local int const CoolToolsXFModel(1);
     // CoolTools counterflow model does not work properly. The empirical model seems flawed since the tower
     // operates in the free convection regime on the design day.
     // INTEGER, PARAMETER             :: CoolToolsCFModel     = 2
-    int const CoolToolsUserDefined(3);
-    int const YorkCalcModel(4);
-    int const YorkCalcUserDefined(5);
+    thread_local int const CoolToolsUserDefined(3);
+    thread_local int const YorkCalcModel(4);
+    thread_local int const YorkCalcUserDefined(5);
 
-    int const EvapLossByUserFactor(80);
-    int const EvapLossByMoistTheory(81);
+    thread_local int const EvapLossByUserFactor(80);
+    thread_local int const EvapLossByMoistTheory(81);
 
-    int const BlowdownByConcentration(90);
-    int const BlowdownBySchedule(91);
+    thread_local int const BlowdownByConcentration(90);
+    thread_local int const BlowdownBySchedule(91);
 
-    std::string const cCoolingTower_SingleSpeed("CoolingTower:SingleSpeed");
-    std::string const cCoolingTower_TwoSpeed("CoolingTower:TwoSpeed");
-    std::string const cCoolingTower_VariableSpeed("CoolingTower:VariableSpeed");
-    std::string const cCoolingTower_VariableSpeedMerkel("CoolingTower:VariableSpeed:Merkel");
+    thread_local std::string const cCoolingTower_SingleSpeed("CoolingTower:SingleSpeed");
+    thread_local std::string const cCoolingTower_TwoSpeed("CoolingTower:TwoSpeed");
+    thread_local std::string const cCoolingTower_VariableSpeed("CoolingTower:VariableSpeed");
+    thread_local std::string const cCoolingTower_VariableSpeedMerkel("CoolingTower:VariableSpeed:Merkel");
 
-    int const PIM_NominalCapacity(1);
-    int const PIM_UFactor(2);
+    thread_local int const PIM_NominalCapacity(1);
+    thread_local int const PIM_UFactor(2);
 
-    int const CoolingTower_SingleSpeed(1);
-    int const CoolingTower_TwoSpeed(2);
-    int const CoolingTower_VariableSpeed(3);
-    int const CoolingTower_VariableSpeedMerkel(4);
+    thread_local int const CoolingTower_SingleSpeed(1);
+    thread_local int const CoolingTower_TwoSpeed(2);
+    thread_local int const CoolingTower_VariableSpeed(3);
+    thread_local int const CoolingTower_VariableSpeedMerkel(4);
 
-    int const CapacityControl_FanCycling(1);
-    int const CapacityControl_FluidBypass(2);
+    thread_local int const CapacityControl_FanCycling(1);
+    thread_local int const CapacityControl_FluidBypass(2);
 
-    int const CellCtrl_MinCell(1);
-    int const CellCtrl_MaxCell(2);
+    thread_local int const CellCtrl_MinCell(1);
+    thread_local int const CellCtrl_MaxCell(2);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumSimpleTowers(0); // Number of similar towers
-    bool GetInput(true);
-    bool InitTowerOneTimeFlag(true);
+    thread_local int NumSimpleTowers(0); // Number of similar towers
+    thread_local bool GetInput(true);
+    thread_local bool InitTowerOneTimeFlag(true);
     //? The following block of variables are used to carry model results for a tower instance
     //   across sim, update, and report routines.  Simulation manager must be careful
     //   in models with multiple towers.
 
-    Real64 InletWaterTemp(0.0);    // CW temperature at tower inlet
-    Real64 OutletWaterTemp(0.0);   // CW temperature at tower outlet
-    int WaterInletNode(0);         // Node number at tower inlet
-    int WaterOutletNode(0);        // Node number at tower outlet
-    Real64 WaterMassFlowRate(0.0); // WaterMassFlowRate through tower
+    thread_local Real64 InletWaterTemp(0.0);    // CW temperature at tower inlet
+    thread_local Real64 OutletWaterTemp(0.0);   // CW temperature at tower outlet
+    thread_local int WaterInletNode(0);         // Node number at tower inlet
+    thread_local int WaterOutletNode(0);        // Node number at tower outlet
+    thread_local Real64 WaterMassFlowRate(0.0); // WaterMassFlowRate through tower
 
-    Real64 Qactual(0.0);          // Tower heat transfer
-    Real64 CTFanPower(0.0);       // Tower fan power used
-    Real64 AirFlowRateRatio(0.0); // Ratio of air flow rate through VS cooling tower to design air flow rate
-    Real64 BasinHeaterPower(0.0); // Basin heater power use (W)
-    Real64 WaterUsage(0.0);       // Tower water usage (m3/s)
-    Real64 FanCyclingRatio(0.0);  // cycling ratio of tower fan when min fan speed provide to much capacity
+    thread_local Real64 Qactual(0.0);          // Tower heat transfer
+    thread_local Real64 CTFanPower(0.0);       // Tower fan power used
+    thread_local Real64 AirFlowRateRatio(0.0); // Ratio of air flow rate through VS cooling tower to design air flow rate
+    thread_local Real64 BasinHeaterPower(0.0); // Basin heater power use (W)
+    thread_local Real64 WaterUsage(0.0);       // Tower water usage (m3/s)
+    thread_local Real64 FanCyclingRatio(0.0);  // cycling ratio of tower fan when min fan speed provide to much capacity
 
-    Array1D_bool CheckEquipName;
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE CondenserLoopTowers
 
@@ -200,11 +200,11 @@ namespace CondenserLoopTowers {
     // Update routines to check convergence and update nodes
 
     // Object Data
-    Array1D<Towerspecs> SimpleTower;           // dimension to number of machines
-    Array1D<TowerInletConds> SimpleTowerInlet; // inlet conditions
-    Array1D<ReportVars> SimpleTowerReport;     // report variables
-    Array1D<VSTowerData> VSTower;              // model coefficients and specific variables for VS tower
-    std::unordered_map<std::string, std::string> UniqueSimpleTowerNames;
+    thread_local Array1D<Towerspecs> SimpleTower;           // dimension to number of machines
+    thread_local Array1D<TowerInletConds> SimpleTowerInlet; // inlet conditions
+    thread_local Array1D<ReportVars> SimpleTowerReport;     // report variables
+    thread_local Array1D<VSTowerData> VSTower;              // model coefficients and specific variables for VS tower
+    thread_local std::unordered_map<std::string, std::string> UniqueSimpleTowerNames;
 
     // MODULE SUBROUTINES:
 
@@ -424,7 +424,7 @@ namespace CondenserLoopTowers {
         using WaterManager::SetupTankDemandComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt OutputFormat("(F5.2)");
+        thread_local static gio::Fmt OutputFormat("(F5.2)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int TowerNum;                   // Tower number, reference counter for SimpleTower data array
@@ -445,7 +445,7 @@ namespace CondenserLoopTowers {
         int NumNums2;                   // Number of elements in the numeric2 array
         int IOStat;                     // IO Status when calling get input subroutine
         int CoeffNum;                   // Index for reading user defined VS tower coefficients
-        static bool ErrorsFound(false); // Logical flag set .TRUE. if errors found while getting input data
+        thread_local static bool ErrorsFound(false); // Logical flag set .TRUE. if errors found while getting input data
         std::string OutputChar;         // report variable for warning messages
         std::string OutputCharLo;       // report variable for warning messages
         std::string OutputCharHi;       // report variable for warning messages
@@ -2736,13 +2736,13 @@ namespace CondenserLoopTowers {
         using Psychrometrics::PsyTwbFnTdbWPb;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitTower");
+        thread_local static std::string const RoutineName("InitTower");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Flag if input data errors are found
+        thread_local static bool ErrorsFound(false); // Flag if input data errors are found
 
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool OneTimeFlagForEachTower;
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool OneTimeFlagForEachTower;
         //  LOGICAL                                 :: FatalError
         int TypeOf_Num(0);
         int LoopNum;
@@ -2908,11 +2908,11 @@ namespace CondenserLoopTowers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt OutputFormat("(F6.2)");
-        static gio::Fmt OutputFormat2("(F9.6)");
+        thread_local static gio::Fmt OutputFormat("(F6.2)");
+        thread_local static gio::Fmt OutputFormat2("(F9.6)");
         int const MaxIte(500);    // Maximum number of iterations
         Real64 const Acc(0.0001); // Accuracy of result
-        static std::string const RoutineName("SizeTower");
+        thread_local static std::string const RoutineName("SizeTower");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3960,7 +3960,7 @@ namespace CondenserLoopTowers {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const MaxIte(500);    // Maximum number of iterations
         Real64 const Acc(0.0001); // Accuracy of result
-        static std::string const RoutineName("SizeTower");
+        thread_local static std::string const RoutineName("SizeTower");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -4888,9 +4888,9 @@ namespace CondenserLoopTowers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcSingleSpeedTower");
+        thread_local static std::string const RoutineName("CalcSingleSpeedTower");
         int const MaxIteration(100); // Maximum fluid bypass iteration calculations
-        static std::string const MaxItChar("100");
+        thread_local static std::string const MaxItChar("100");
         Real64 const BypassFractionThreshold(0.01); // Threshold to stop bypass iteration
         Real64 const OWTLowerLimit(0.0);            // The limit of tower exit fluid temperature used in the fluid bypass
         //  calculation to avoid fluid freezing. For water, it is 0 degreeC,
@@ -4925,9 +4925,9 @@ namespace CondenserLoopTowers {
         // Added variables for multicell
         Real64 WaterMassFlowRatePerCellMin;
         Real64 WaterMassFlowRatePerCellMax;
-        static int NumCellMin(0);
-        static int NumCellMax(0);
-        static int NumCellOn(0);
+        thread_local static int NumCellMin(0);
+        thread_local static int NumCellMax(0);
+        thread_local static int NumCellOn(0);
         Real64 WaterMassFlowRatePerCell;
         bool IncrNumCellFlag; // determine if yes or no we increase the number of cells
 
@@ -5258,7 +5258,7 @@ namespace CondenserLoopTowers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcTwoSpeedTower");
+        thread_local static std::string const RoutineName("CalcTwoSpeedTower");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5282,14 +5282,14 @@ namespace CondenserLoopTowers {
         int LoopNum;
         int LoopSideNum;
 
-        static int SpeedSel(0);
+        thread_local static int SpeedSel(0);
 
         // Added variables for multicell
         Real64 WaterMassFlowRatePerCellMin;
         Real64 WaterMassFlowRatePerCellMax;
-        static int NumCellMin(0);
-        static int NumCellMax(0);
-        static int NumCellOn(0);
+        thread_local static int NumCellMin(0);
+        thread_local static int NumCellMax(0);
+        thread_local static int NumCellOn(0);
         Real64 WaterMassFlowRatePerCell;
         bool IncrNumCellFlag; // determine if yes or no we increase the number of cells
 
@@ -5505,7 +5505,7 @@ namespace CondenserLoopTowers {
         Real64 const DesignWetBulb(25.56); // tower outdoor air entering wetbulb for design [C]
         int const MaxIte(500);             // Maximum number of iterations for solver
         Real64 const Acc(1.e-3);           // Accuracy of solver result
-        static std::string const RoutineName("CalcMerkelVariableSpeedTower");
+        thread_local static std::string const RoutineName("CalcMerkelVariableSpeedTower");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -5957,11 +5957,11 @@ namespace CondenserLoopTowers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt OutputFormat("(F5.2)");
-        static gio::Fmt OutputFormat2("(F8.5)");
+        thread_local static gio::Fmt OutputFormat("(F5.2)");
+        thread_local static gio::Fmt OutputFormat2("(F8.5)");
         int const MaxIte(500);    // Maximum number of iterations
         Real64 const Acc(0.0001); // Accuracy of result
-        static std::string const RoutineName("CalcVariableSpeedTower");
+        thread_local static std::string const RoutineName("CalcVariableSpeedTower");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5997,18 +5997,18 @@ namespace CondenserLoopTowers {
         std::string OutputChar3;               // character string used for warning messages
         std::string OutputChar4;               // character string used for warning messages
         std::string OutputChar5;               // character string used for warning messages
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
         Real64 CurrentEndTime;                 // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
         int LoopNum;
         int LoopSideNum;
 
         // Added variables for multicell
         Real64 WaterMassFlowRatePerCellMin;
         Real64 WaterMassFlowRatePerCellMax;
-        static int NumCellMin(0);
-        static int NumCellMax(0);
-        static int NumCellOn(0);
+        thread_local static int NumCellMin(0);
+        thread_local static int NumCellMax(0);
+        thread_local static int NumCellOn(0);
         Real64 WaterMassFlowRatePerCell;
         bool IncrNumCellFlag;
 
@@ -6324,7 +6324,7 @@ namespace CondenserLoopTowers {
         Real64 const WetBulbTolerance(0.00001); // Maximum error for exiting wet-bulb temperature between iterations
         // [delta K/K]
         Real64 const DeltaTwbTolerance(0.001); // Maximum error (tolerance) in DeltaTwb for iteration convergence [C]
-        static std::string const RoutineName("SimSimpleTower");
+        thread_local static std::string const RoutineName("SimSimpleTower");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -6560,8 +6560,8 @@ namespace CondenserLoopTowers {
         //    REAL(r64)        :: Twb                       ! Inlet air wet-bulb temperature [C] (or [F] for CoolTools Model)
         //    REAL(r64)        :: Tr                        ! Cooling tower range (outlet water temp minus inlet air wet-bulb temp) [C]
         //   (or [F] for CoolTools Model)
-        static Real64 PctAirFlow(0.0); // air flow rate ratio (fan power ratio in the case of CoolTools model)
-        static Real64 FlowFactor(0.0); // water flow rate to air flow rate ratio (L/G) for YorkCalc model
+        thread_local static Real64 PctAirFlow(0.0); // air flow rate ratio (fan power ratio in the case of CoolTools model)
+        thread_local static Real64 FlowFactor(0.0); // water flow rate to air flow rate ratio (L/G) for YorkCalc model
 
         //    IF(SimpleTower(TowerNum)%TowerModelType .EQ. CoolToolsXFModel .OR. &
         //        SimpleTower(TowerNum)%TowerModelType .EQ. CoolToolsCFModel .OR. &
@@ -6703,13 +6703,13 @@ namespace CondenserLoopTowers {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string OutputChar;         // character string for warning messages
-        static std::string OutputCharLo;       // character string for warning messages
-        static std::string OutputCharHi;       // character string for warning messages
-        static std::string TrimValue;          // character string for warning messages
-        static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
-        static Real64 CurrentEndTime(0.0);     // end time of time step for current simulation time step
-        static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
+        thread_local static std::string OutputChar;         // character string for warning messages
+        thread_local static std::string OutputCharLo;       // character string for warning messages
+        thread_local static std::string OutputCharHi;       // character string for warning messages
+        thread_local static std::string TrimValue;          // character string for warning messages
+        thread_local static Real64 TimeStepSysLast(0.0);    // last system time step (used to check for downshifting)
+        thread_local static Real64 CurrentEndTime(0.0);     // end time of time step for current simulation time step
+        thread_local static Real64 CurrentEndTimeLast(0.0); // end time of time step for last simulation time step
         // current end time is compared with last to see if time step changed
 
         //   initialize capped variables in case independent variables are in bounds
@@ -7144,7 +7144,7 @@ namespace CondenserLoopTowers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalculateWaterUseage");
+        thread_local static std::string const RoutineName("CalculateWaterUseage");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -7156,9 +7156,9 @@ namespace CondenserLoopTowers {
         Real64 AirDensity;
         Real64 AirMassFlowRate;
         Real64 AvailTankVdot;
-        static Real64 BlowDownVdot(0.0);
-        static Real64 DriftVdot(0.0);
-        static Real64 EvapVdot(0.0);
+        thread_local static Real64 BlowDownVdot(0.0);
+        thread_local static Real64 DriftVdot(0.0);
+        thread_local static Real64 EvapVdot(0.0);
         Real64 InletAirEnthalpy;
         Real64 InSpecificHumRat;
         Real64 OutSpecificHumRat;
@@ -7322,7 +7322,7 @@ namespace CondenserLoopTowers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt LowTempFmt("(' ',F6.2)");
+        thread_local static gio::Fmt LowTempFmt("(' ',F6.2)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

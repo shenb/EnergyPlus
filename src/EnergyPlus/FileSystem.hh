@@ -54,7 +54,7 @@ namespace EnergyPlus {
 
 namespace FileSystem {
 
-    extern std::string const exeExtension;
+    thread_local extern std::string const exeExtension;
 
     void makeNativePath(std::string &path);
 

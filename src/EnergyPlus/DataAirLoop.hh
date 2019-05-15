@@ -75,13 +75,13 @@ namespace DataAirLoop {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumOASystems;         // Number of Outdoor Air Systems
-    extern bool AirLoopInputsFilled; // Set to TRUE after first pass through air loop
+    thread_local extern int NumOASystems;         // Number of Outdoor Air Systems
+    thread_local extern bool AirLoopInputsFilled; // Set to TRUE after first pass through air loop
 
     // Variables specific to AirflowNetwork simulations.
     // Avoid using these for other purposes since these variables are only reset to 0 within AirflowNetworkBalanceManager, line 322.
     // Non-AFN simulations may have multiple air loops and use of these variables may yield unintended results.
-    extern Real64 LoopDXCoilRTF; // OnOff fan run time fraction in an HVAC Air Loop
+    thread_local extern Real64 LoopDXCoilRTF; // OnOff fan run time fraction in an HVAC Air Loop
 
     // Types
 
@@ -291,14 +291,14 @@ namespace DataAirLoop {
     };
 
     // Object Data
-    extern Array1D<AirLoopZoneEquipConnectData> AirToZoneNodeInfo;
-    extern Array1D<AirLoopOutsideAirConnectData> AirToOANodeInfo;
-    extern Array1D<DefinePriAirSysAvailMgrs> PriAirSysAvailMgr;
-    extern Array1D<AirLooptoZoneData> AirLoopZoneInfo;
-    extern Array1D<AirLoopControlData> AirLoopControlInfo;
-    extern Array1D<AirLoopFlowData> AirLoopFlow;
-    extern Array1D<OutsideAirSysProps> OutsideAirSys;
-    extern Array1D<AirLoopAFNData> AirLoopAFNInfo;
+    thread_local extern Array1D<AirLoopZoneEquipConnectData> AirToZoneNodeInfo;
+    thread_local extern Array1D<AirLoopOutsideAirConnectData> AirToOANodeInfo;
+    thread_local extern Array1D<DefinePriAirSysAvailMgrs> PriAirSysAvailMgr;
+    thread_local extern Array1D<AirLooptoZoneData> AirLoopZoneInfo;
+    thread_local extern Array1D<AirLoopControlData> AirLoopControlInfo;
+    thread_local extern Array1D<AirLoopFlowData> AirLoopFlow;
+    thread_local extern Array1D<OutsideAirSysProps> OutsideAirSys;
+    thread_local extern Array1D<AirLoopAFNData> AirLoopAFNInfo;
 
     // Clears the global data in DataAirLoop.
     // Needed for unit tests, should not be normally called.

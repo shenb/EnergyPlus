@@ -172,7 +172,7 @@ namespace OutputReportTabularAnnual {
 
     }; // class AnnualTable
 
-    extern std::vector<AnnualTable> annualTables;
+    thread_local extern std::vector<AnnualTable> annualTables;
 
 } // namespace OutputReportTabularAnnual
 

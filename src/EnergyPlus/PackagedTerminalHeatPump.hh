@@ -67,46 +67,46 @@ namespace PackagedTerminalHeatPump {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    extern int const On;  // normal compressor operation
-    extern int const Off; // signal DXCoil that compressor shouldn't run
+    thread_local extern int const On;  // normal compressor operation
+    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // Last mode of operation
-    extern int const CoolingMode; // last compressor operating mode was in cooling
-    extern int const HeatingMode; // last compressor operating mode was in heating
+    thread_local extern int const CoolingMode; // last compressor operating mode was in cooling
+    thread_local extern int const HeatingMode; // last compressor operating mode was in heating
 
     // Airflow control for contant fan mode
-    extern int const UseCompressorOnFlow;  // set compressor OFF air flow rate equal to compressor ON air flow rate
-    extern int const UseCompressorOffFlow; // set compressor OFF air flow rate equal to user defined value
+    thread_local extern int const UseCompressorOnFlow;  // set compressor OFF air flow rate equal to compressor ON air flow rate
+    thread_local extern int const UseCompressorOffFlow; // set compressor OFF air flow rate equal to user defined value
 
     // Unit type
-    extern int const PTHPUnit;   // equivalent to PackagedTerminal:HeatPump:AirToAir
-    extern int const PTACUnit;   // equivalent to PackagedTerminal:AirConditioner
-    extern int const PTWSHPUnit; // equivalent to WaterToAirHeatPump
+    thread_local extern int const PTHPUnit;   // equivalent to PackagedTerminal:HeatPump:AirToAir
+    thread_local extern int const PTACUnit;   // equivalent to PackagedTerminal:AirConditioner
+    thread_local extern int const PTWSHPUnit; // equivalent to WaterToAirHeatPump
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
-    extern Real64 SupHeaterLoad;     // load to be met by supplemental heater [W]
-    extern int NumPTHP;              // total number of PTHP's
-    extern int NumPTAC;              // total number of PTAC's
-    extern int NumPTWSHP;            // total number of PTWSHP's
-    extern int NumPTUs;              // total number of PTHP and PTAC units
-    extern Real64 CompOnMassFlow;    // Supply air mass flow rate w/ compressor ON
-    extern Real64 OACompOnMassFlow;  // OA mass flow rate w/ compressor ON
-    extern Real64 CompOffMassFlow;   // Supply air mass flow rate w/ compressor OFF
-    extern Real64 OACompOffMassFlow; // OA mass flow rate w/ compressor OFF
-    extern Real64 CompOnFlowRatio;   // fan flow ratio when coil on
-    extern Real64 CompOffFlowRatio;  // fan flow ratio when coil off
-    extern Real64 FanSpeedRatio;     // ratio of air flow ratio passed to fan object
-    extern bool GetPTUnitInputFlag;  // First time, input is "gotten"
-    extern Real64 SaveCompressorPLR; // holds compressor PLR from active DX coil
-    extern Real64 SteamDensity;      // density of steam at 100C, used for steam heating coils
-    extern bool HeatingLoad;         // defines a heating load on PTUnit
-    extern bool CoolingLoad;         // defines a cooling load on PTUnit
-    extern Real64 MinWaterFlow;      // minimum water flow for heating [kg/s]
-    extern Real64 TempSteamIn;       // steam coil steam inlet temperature
+    thread_local extern Real64 SupHeaterLoad;     // load to be met by supplemental heater [W]
+    thread_local extern int NumPTHP;              // total number of PTHP's
+    thread_local extern int NumPTAC;              // total number of PTAC's
+    thread_local extern int NumPTWSHP;            // total number of PTWSHP's
+    thread_local extern int NumPTUs;              // total number of PTHP and PTAC units
+    thread_local extern Real64 CompOnMassFlow;    // Supply air mass flow rate w/ compressor ON
+    thread_local extern Real64 OACompOnMassFlow;  // OA mass flow rate w/ compressor ON
+    thread_local extern Real64 CompOffMassFlow;   // Supply air mass flow rate w/ compressor OFF
+    thread_local extern Real64 OACompOffMassFlow; // OA mass flow rate w/ compressor OFF
+    thread_local extern Real64 CompOnFlowRatio;   // fan flow ratio when coil on
+    thread_local extern Real64 CompOffFlowRatio;  // fan flow ratio when coil off
+    thread_local extern Real64 FanSpeedRatio;     // ratio of air flow ratio passed to fan object
+    thread_local extern bool GetPTUnitInputFlag;  // First time, input is "gotten"
+    thread_local extern Real64 SaveCompressorPLR; // holds compressor PLR from active DX coil
+    thread_local extern Real64 SteamDensity;      // density of steam at 100C, used for steam heating coils
+    thread_local extern bool HeatingLoad;         // defines a heating load on PTUnit
+    thread_local extern bool CoolingLoad;         // defines a cooling load on PTUnit
+    thread_local extern Real64 MinWaterFlow;      // minimum water flow for heating [kg/s]
+    thread_local extern Real64 TempSteamIn;       // steam coil steam inlet temperature
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -345,8 +345,8 @@ namespace PackagedTerminalHeatPump {
     };
 
     // Object Data
-    extern Array1D<PTUnitData> PTUnit;
-    extern Array1D<PTUnitNumericFieldData> PTUnitUNumericFields; // holds PT unit numeric input fields character field name
+    thread_local extern Array1D<PTUnitData> PTUnit;
+    thread_local extern Array1D<PTUnitNumericFieldData> PTUnitUNumericFields; // holds PT unit numeric input fields character field name
 
     // Functions
 

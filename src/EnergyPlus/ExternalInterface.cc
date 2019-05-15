@@ -99,67 +99,67 @@ namespace ExternalInterface {
     // http://www.modelisar.com
 
     // Data
-    Real64 tComm(0.0);                // Communication time step
-    Real64 tStop(3600.0);             // Stop time used during the warmup period
-    Real64 tStart(0.0);               // Start time used during the warmup period
-    Real64 hStep(15.0);               // Communication step size
-    bool FlagReIni(false);            // Flag for reinitialization of states in GetSetAndDoStep
-    std::string FMURootWorkingFolder; // FMU root working folder
+    thread_local Real64 tComm(0.0);                // Communication time step
+    thread_local Real64 tStop(3600.0);             // Stop time used during the warmup period
+    thread_local Real64 tStart(0.0);               // Start time used during the warmup period
+    thread_local Real64 hStep(15.0);               // Communication step size
+    thread_local bool FlagReIni(false);            // Flag for reinitialization of states in GetSetAndDoStep
+    thread_local std::string FMURootWorkingFolder; // FMU root working folder
 
     // MODULE PARAMETER DEFINITIONS:
-    int const maxVar(100000);                     // Maximum number of variables to be exchanged
-    int const maxErrMsgLength(10000);             // Maximum error message length from xml schema validation
-    int const indexSchedule(1);                   // Index for schedule in inpVarTypes
-    int const indexVariable(2);                   // Index for variable in inpVarTypes
-    int const indexActuator(3);                   // Index for actuator in inpVarTypes
-    int nInKeys(3);                               // Number of input variables available in ExternalInterface (=highest index* number)
-    int const fmiOK(0);                           // fmiOK
-    int const fmiWarning(1);                      // fmiWarning
-    int const fmiDiscard(2);                      // fmiDiscard
-    int const fmiError(3);                        // fmiError
-    int const fmiFatal(4);                        // fmiPending
-    int const fmiPending(5);                      // fmiPending
-    std::string const socCfgFilNam("socket.cfg"); // socket configuration file
-    std::string const BlankString;
+    thread_local int const maxVar(100000);                     // Maximum number of variables to be exchanged
+    thread_local int const maxErrMsgLength(10000);             // Maximum error message length from xml schema validation
+    thread_local int const indexSchedule(1);                   // Index for schedule in inpVarTypes
+    thread_local int const indexVariable(2);                   // Index for variable in inpVarTypes
+    thread_local int const indexActuator(3);                   // Index for actuator in inpVarTypes
+    thread_local int nInKeys(3);                               // Number of input variables available in ExternalInterface (=highest index* number)
+    thread_local int const fmiOK(0);                           // fmiOK
+    thread_local int const fmiWarning(1);                      // fmiWarning
+    thread_local int const fmiDiscard(2);                      // fmiDiscard
+    thread_local int const fmiError(3);                        // fmiError
+    thread_local int const fmiFatal(4);                        // fmiPending
+    thread_local int const fmiPending(5);                      // fmiPending
+    thread_local std::string const socCfgFilNam("socket.cfg"); // socket configuration file
+    thread_local std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumExternalInterfaces(0);               // Number of ExternalInterface objects
-    int NumExternalInterfacesBCVTB(0);          // Number of BCVTB ExternalInterface objects
-    int NumExternalInterfacesFMUImport(0);      // Number of FMU ExternalInterface objects
-    int NumExternalInterfacesFMUExport(0);      // Number of FMU ExternalInterface objects
-    int NumFMUObjects(0);                       // Number of FMU objects
-    int FMUExportActivate(0);                   // FMU Export flag
-    bool haveExternalInterfaceBCVTB(false);     // Flag for BCVTB interface
-    bool haveExternalInterfaceFMUImport(false); // Flag for FMU-Import interface
-    bool haveExternalInterfaceFMUExport(false); // Flag for FMU-Export interface
-    int simulationStatus(1);                    // Status flag. Used to report during
+    thread_local int NumExternalInterfaces(0);               // Number of ExternalInterface objects
+    thread_local int NumExternalInterfacesBCVTB(0);          // Number of BCVTB ExternalInterface objects
+    thread_local int NumExternalInterfacesFMUImport(0);      // Number of FMU ExternalInterface objects
+    thread_local int NumExternalInterfacesFMUExport(0);      // Number of FMU ExternalInterface objects
+    thread_local int NumFMUObjects(0);                       // Number of FMU objects
+    thread_local int FMUExportActivate(0);                   // FMU Export flag
+    thread_local bool haveExternalInterfaceBCVTB(false);     // Flag for BCVTB interface
+    thread_local bool haveExternalInterfaceFMUImport(false); // Flag for FMU-Import interface
+    thread_local bool haveExternalInterfaceFMUExport(false); // Flag for FMU-Export interface
+    thread_local int simulationStatus(1);                    // Status flag. Used to report during
     // which phase an error occurred.
     // (1=initialization, 2=time stepping)
 
-    Array1D_int keyVarIndexes; // Array index for specific key name
-    Array1D_int varTypes;      // Types of variables in keyVarIndexes
-    Array1D_int varInd;        // Index of ErlVariables for ExternalInterface
-    int socketFD(-1);          // socket file descriptor
-    bool ErrorsFound(false);   // Set to true if errors are found
-    bool noMoreValues(false);  // Flag, true if no more values
+    thread_local Array1D_int keyVarIndexes; // Array index for specific key name
+    thread_local Array1D_int varTypes;      // Types of variables in keyVarIndexes
+    thread_local Array1D_int varInd;        // Index of ErlVariables for ExternalInterface
+    thread_local int socketFD(-1);          // socket file descriptor
+    thread_local bool ErrorsFound(false);   // Set to true if errors are found
+    thread_local bool noMoreValues(false);  // Flag, true if no more values
     // will be sent by the server
 
-    Array1D_string varKeys;     // Keys of report variables used for data exchange
-    Array1D_string varNames;    // Names of report variables used for data exchange
-    Array1D_int inpVarTypes;    // Names of report variables used for data exchange
-    Array1D_string inpVarNames; // Names of report variables used for data exchange
+    thread_local Array1D_string varKeys;     // Keys of report variables used for data exchange
+    thread_local Array1D_string varNames;    // Names of report variables used for data exchange
+    thread_local Array1D_int inpVarTypes;    // Names of report variables used for data exchange
+    thread_local Array1D_string inpVarNames; // Names of report variables used for data exchange
 
-    bool configuredControlPoints(false); // True if control points have been configured
-    bool useEMS(false);                  // Will be set to true if ExternalInterface writes to EMS variables or actuators
+    thread_local bool configuredControlPoints(false); // True if control points have been configured
+    thread_local bool useEMS(false);                  // Will be set to true if ExternalInterface writes to EMS variables or actuators
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ExternalInterface:
 
     // Object Data
-    Array1D<FMUType> FMU; // Variable Types structure
-    std::unordered_map<std::string, std::string> UniqueFMUInputVarNames;
-    Array1D<FMUType> FMUTemp;                            // Variable Types structure
-    Array1D<checkFMUInstanceNameType> checkInstanceName; // Variable Types structure for checking instance names
+    thread_local Array1D<FMUType> FMU; // Variable Types structure
+    thread_local std::unordered_map<std::string, std::string> UniqueFMUInputVarNames;
+    thread_local Array1D<FMUType> FMUTemp;                            // Variable Types structure
+    thread_local Array1D<checkFMUInstanceNameType> checkInstanceName; // Variable Types structure for checking instance names
 
     // Functions
 
@@ -181,7 +181,7 @@ namespace ExternalInterface {
         using DataGlobals::WarmupFlag;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool GetInputFlag(true); // First time, input is "gotten"
+        thread_local static bool GetInputFlag(true); // First time, input is "gotten"
         std::string errorMessage;       // Error message
         int retValErrMsg;
 
@@ -475,7 +475,7 @@ namespace ExternalInterface {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
 
-        static bool firstCall(true);                                   // First time, input has been read
+        thread_local static bool firstCall(true);                                   // First time, input has been read
         std::string const simCfgFilNam("variables.cfg");               // Configuration file
         std::string const xmlStrInKey("schedule,variable,actuator\0"); // xml values in string, separated by ','
 
@@ -484,8 +484,8 @@ namespace ExternalInterface {
         std::string xmlStrOut;    // xml values in string, separated by ';'
         std::string xmlStrOutTyp; // xml values in string, separated by ';'
         std::string xmlStrIn;     // xml values in string, separated by ';'
-        static int nOutVal;       // Number of output values (E+ -> ExternalInterface)
-        static int nInpVar;       // Number of input values (ExternalInterface -> E+)
+        thread_local static int nOutVal;       // Number of output values (E+ -> ExternalInterface)
+        thread_local static int nInpVar;       // Number of input values (ExternalInterface -> E+)
         int retVal;               // Return value of function call, used for error handling
         int mainVersion;          // The version number
         bool socFileExist;        // Set to true if socket configuration
@@ -708,7 +708,7 @@ namespace ExternalInterface {
         using ScheduleManager::ExternalInterfaceSetSchedule;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static bool FirstCallGetSetDoStep(true); // Flag to check when External Interface is called first time
+        thread_local static bool FirstCallGetSetDoStep(true); // Flag to check when External Interface is called first time
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int i, j, k; // Loop counters
@@ -1078,7 +1078,7 @@ namespace ExternalInterface {
         int retValfmiVersion;
         int retValfmiPathLib;
         Array1D_string NameListInstances(5);
-        static bool FirstCallIni(true); // First time, input has been read
+        thread_local static bool FirstCallIni(true); // First time, input has been read
         bool fileExist;
         std::string tempFullFileName;
         Array1D_string strippedFileName; // remove path from entered file name
@@ -1962,10 +1962,10 @@ namespace ExternalInterface {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int i, j, k; // Loop counter
 
-        static bool FirstCallDesignDays(true); // Flag fo first call during warmup
-        static bool FirstCallWUp(true);        // Flag fo first call during warmup
-        static bool FirstCallTStep(true);      // Flag for first call during time stepping
-        static int fmiEndSimulation(0);        // Flag to indicate end of simulation
+        thread_local static bool FirstCallDesignDays(true); // Flag fo first call during warmup
+        thread_local static bool FirstCallWUp(true);        // Flag fo first call during warmup
+        thread_local static bool FirstCallTStep(true);      // Flag for first call during time stepping
+        thread_local static int fmiEndSimulation(0);        // Flag to indicate end of simulation
 
         Array1D_string Alphas(5);
         Array1D_int keyIndexes(1);     // Array index for
@@ -2279,11 +2279,11 @@ namespace ExternalInterface {
         Array1D<Real64> dblValRea(nDblMax);
         std::string retValCha;
         bool continueSimulation; // Flag, true if simulation should continue
-        static bool firstCall(true);
-        static bool showContinuationWithoutUpdate(true);
+        thread_local static bool firstCall(true);
+        thread_local static bool showContinuationWithoutUpdate(true);
 
         // Formats
-        static gio::Fmt Format_1000("(I2)");
+        thread_local static gio::Fmt Format_1000("(I2)");
 
         if (firstCall) {
             DisplayString("ExternalInterface starts first data exchange.");

@@ -114,18 +114,18 @@ namespace CrossVentMgr {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    Real64 HAT_J(0.0);             // HAT_J Convection Coefficient times Area times Temperature for Jet subzone
-    Real64 HA_J(0.0);              // HA_J  Convection Coefficient times Area for Jet subzone
-    Real64 HAT_R(0.0);             // HAT_R Convection Coefficient times Area times Temperature for Recirculation subzone
-    Real64 HA_R(0.0);              // HA_J  Convection Coefficient times Area for Recirculation subzone
-    Real64 const Cjet1(1.873);     // First correlation constant for the jet velocity
-    Real64 const Cjet2(0.243);     // Second correlation constant for the jet velocity
-    Real64 const Crec1(0.591);     // First correlation constant for the recirculation velocity
-    Real64 const Crec2(0.070);     // Second correlation constant for the recirculation velocity
-    Real64 const CjetTemp(0.849);  // Correlation constant for the jet temperature rise
-    Real64 const CrecTemp(1.385);  // Correlation constant for the recirculation temperature rise
-    Real64 const CrecFlow1(0.415); // First correlation constant for the recirculation flow rate
-    Real64 const CrecFlow2(0.466); // Second correlation constant for the recirculation flow rate
+    thread_local Real64 HAT_J(0.0);             // HAT_J Convection Coefficient times Area times Temperature for Jet subzone
+    thread_local Real64 HA_J(0.0);              // HA_J  Convection Coefficient times Area for Jet subzone
+    thread_local Real64 HAT_R(0.0);             // HAT_R Convection Coefficient times Area times Temperature for Recirculation subzone
+    thread_local Real64 HA_R(0.0);              // HA_J  Convection Coefficient times Area for Recirculation subzone
+    thread_local Real64 const Cjet1(1.873);     // First correlation constant for the jet velocity
+    thread_local Real64 const Cjet2(0.243);     // Second correlation constant for the jet velocity
+    thread_local Real64 const Crec1(0.591);     // First correlation constant for the recirculation velocity
+    thread_local Real64 const Crec2(0.070);     // Second correlation constant for the recirculation velocity
+    thread_local Real64 const CjetTemp(0.849);  // Correlation constant for the jet temperature rise
+    thread_local Real64 const CrecTemp(1.385);  // Correlation constant for the recirculation temperature rise
+    thread_local Real64 const CrecFlow1(0.415); // First correlation constant for the recirculation flow rate
+    thread_local Real64 const CrecFlow2(0.466); // Second correlation constant for the recirculation flow rate
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -133,8 +133,8 @@ namespace CrossVentMgr {
         // These are purposefully not in the header file as an extern variable. No one outside of this module should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool InitUCSDCV_MyOneTimeFlag(true);
-        Array1D_bool InitUCSDCV_MyEnvrnFlag;
+        thread_local bool InitUCSDCV_MyOneTimeFlag(true);
+        thread_local Array1D_bool InitUCSDCV_MyEnvrnFlag;
     } // namespace
 
     // SUBROUTINE SPECIFICATIONS:

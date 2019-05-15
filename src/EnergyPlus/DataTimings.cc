@@ -95,7 +95,7 @@ namespace DataTimings {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    int const MaxTimingStringLength(250); // string length for timing string array
+    thread_local int const MaxTimingStringLength(250); // string length for timing string array
 
     // DERIVED TYPE DEFINITIONS
 
@@ -103,20 +103,20 @@ namespace DataTimings {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumTimingElements(0);
-    int MaxTimingElements(0);
-    Real64 dailyWeatherTime;
-    Real64 dailyExteriorEnergyUseTime;
-    Real64 dailyHeatBalanceTime;
-    Real64 hbdailyInit;
-    Real64 hbdailyOutSurf;
-    Real64 hbdailyInSurf;
-    Real64 hbdailyHVAC;
-    Real64 hbdailyRep;
-    Real64 clockrate;
-    bool lprocessingInputTiming(false);
-    bool lmanageSimulationTiming(false);
-    bool lcloseoutReportingTiming(false);
+    thread_local int NumTimingElements(0);
+    thread_local int MaxTimingElements(0);
+    thread_local Real64 dailyWeatherTime;
+    thread_local Real64 dailyExteriorEnergyUseTime;
+    thread_local Real64 dailyHeatBalanceTime;
+    thread_local Real64 hbdailyInit;
+    thread_local Real64 hbdailyOutSurf;
+    thread_local Real64 hbdailyInSurf;
+    thread_local Real64 hbdailyHVAC;
+    thread_local Real64 hbdailyRep;
+    thread_local Real64 clockrate;
+    thread_local bool lprocessingInputTiming(false);
+    thread_local bool lmanageSimulationTiming(false);
+    thread_local bool lcloseoutReportingTiming(false);
 
     // Following for calls to routines
 #ifdef EP_Count_Calls
@@ -139,7 +139,7 @@ namespace DataTimings {
 #endif
 
     // Object Data
-    Array1D<timings> Timing;
+    thread_local Array1D<timings> Timing;
 
     // Functions
 
@@ -361,7 +361,7 @@ namespace DataTimings {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

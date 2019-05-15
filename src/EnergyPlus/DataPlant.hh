@@ -73,244 +73,244 @@ namespace DataPlant {
     // Using/Aliasing
     using DataLoopNode::SensedNodeFlagValue;
 
-    int const OptimalLoading(1);              // Optimal Load Distribution Scheme
-    int const SequentialLoading(2);           // Sequential Load Distribution Scheme
-    int const UniformLoading(3);              // Uniform Load Distribution Scheme
-    int const UniformPLRLoading(4);           // Uniform PLR Load Distribution Scheme
-    int const SequentialUniformPLRLoading(5); // Sequential Uniform PLR Load Distribution Scheme
+    thread_local int const OptimalLoading(1);              // Optimal Load Distribution Scheme
+    thread_local int const SequentialLoading(2);           // Sequential Load Distribution Scheme
+    thread_local int const UniformLoading(3);              // Uniform Load Distribution Scheme
+    thread_local int const UniformPLRLoading(4);           // Uniform PLR Load Distribution Scheme
+    thread_local int const SequentialUniformPLRLoading(5); // Sequential Uniform PLR Load Distribution Scheme
 
-    extern int const LoadRangeBasedMin;
-    extern int const LoadRangeBasedMax;
+    thread_local extern int const LoadRangeBasedMin;
+    thread_local extern int const LoadRangeBasedMax;
 
     // SimFlagCriteriaTypes for use in performing interconnect re-sim checks
-    extern int const CriteriaType_MassFlowRate;
-    extern int const CriteriaType_Temperature;
-    extern int const CriteriaType_HeatTransferRate;
+    thread_local extern int const CriteriaType_MassFlowRate;
+    thread_local extern int const CriteriaType_Temperature;
+    thread_local extern int const CriteriaType_HeatTransferRate;
 
     // Criteria percentage limits for determining re-simulation of connected loop sides
-    extern Real64 const CriteriaDelta_MassFlowRate;
-    extern Real64 const CriteriaDelta_Temperature;
-    extern Real64 const CriteriaDelta_HeatTransferRate;
+    thread_local extern Real64 const CriteriaDelta_MassFlowRate;
+    thread_local extern Real64 const CriteriaDelta_Temperature;
+    thread_local extern Real64 const CriteriaDelta_HeatTransferRate;
 
-    extern int const FreeCoolControlMode_WetBulb; // HeatExchanger:Hydronic model control type mode, outdoor wetbulb sensor
-    extern int const FreeCoolControlMode_DryBulb; // HeatExchanger:Hydronic model control type mode, outdoor drybulb sensor
-    extern int const FreeCoolControlMode_Loop;    // HeatExchanger:Hydronic model control type mode, loop setpoint sensor
+    thread_local extern int const FreeCoolControlMode_WetBulb; // HeatExchanger:Hydronic model control type mode, outdoor wetbulb sensor
+    thread_local extern int const FreeCoolControlMode_DryBulb; // HeatExchanger:Hydronic model control type mode, outdoor drybulb sensor
+    thread_local extern int const FreeCoolControlMode_Loop;    // HeatExchanger:Hydronic model control type mode, loop setpoint sensor
 
     // Parameters for use in Loop Demand Calculation Schemes
-    extern int const SingleSetPoint;       // Uses a single temp setpoint to calculate loop demand
-    extern int const DualSetPointDeadBand; // Uses a dual temp setpoint with a deadband between the high
+    thread_local extern int const SingleSetPoint;       // Uses a single temp setpoint to calculate loop demand
+    thread_local extern int const DualSetPointDeadBand; // Uses a dual temp setpoint with a deadband between the high
     //  and the low to calculate loop demand
     // Parameters for loop setpoint reference
-    extern int const Air;
-    extern int const Ground;
+    thread_local extern int const Air;
+    thread_local extern int const Ground;
 
     // Parameters for common pipe
-    extern int const CommonPipe_No;
-    extern int const CommonPipe_Single;
-    extern int const CommonPipe_TwoWay;
+    thread_local extern int const CommonPipe_No;
+    thread_local extern int const CommonPipe_Single;
+    thread_local extern int const CommonPipe_TwoWay;
 
     // Parameters for loop side location
-    extern int const DemandSupply_No;
-    extern int const DemandSide;
-    extern int const SupplySide;
+    thread_local extern int const DemandSupply_No;
+    thread_local extern int const DemandSide;
+    thread_local extern int const SupplySide;
 
     // Parameters for economizer
-    extern int const Integrated;
-    extern int const NonIntegrated;
-    extern int const None;
+    thread_local extern int const Integrated;
+    thread_local extern int const NonIntegrated;
+    thread_local extern int const None;
 
     // Parameters for tolerance
-    extern Real64 const LoopDemandTol; // minimum significant loop cooling or heating demand
-    extern Real64 const DeltaTempTol;  // minimum significant loop temperature difference
+    thread_local extern Real64 const LoopDemandTol; // minimum significant loop cooling or heating demand
+    thread_local extern Real64 const DeltaTempTol;  // minimum significant loop temperature difference
 
     // Parameters for Component/Equipment Types  (ref: TypeOf in CompData)
-    extern int const LoopType_Plant;
-    extern int const LoopType_Condenser;
-    extern int const LoopType_Both;
+    thread_local extern int const LoopType_Plant;
+    thread_local extern int const LoopType_Condenser;
+    thread_local extern int const LoopType_Both;
 
     // Parameters for FlowLock standardization
-    extern int const FlowPumpQuery; // Used to ask the pumps for their min/max avail based on no constraints
-    extern int const FlowUnlocked;  // components request flow
-    extern int const FlowLocked;    // components take their inlet flow
+    thread_local extern int const FlowPumpQuery; // Used to ask the pumps for their min/max avail based on no constraints
+    thread_local extern int const FlowUnlocked;  // components request flow
+    thread_local extern int const FlowLocked;    // components take their inlet flow
 
     // Pressure Routine Call Enumeration
-    extern int const PressureCall_Init;
-    extern int const PressureCall_Calc;
-    extern int const PressureCall_Update;
+    thread_local extern int const PressureCall_Init;
+    thread_local extern int const PressureCall_Calc;
+    thread_local extern int const PressureCall_Update;
 
     // Pressure Simulation Types
-    extern int const Press_NoPressure;          // Nothing for that particular loop
-    extern int const Press_PumpPowerCorrection; // Only updating the pump power
-    extern int const Press_FlowCorrection;      // Update pump flow rate based on pump curve
-    extern int const Press_FlowSimulation;      // Full pressure network simulation
-    extern Array1D_string const PressureSimType;
+    thread_local extern int const Press_NoPressure;          // Nothing for that particular loop
+    thread_local extern int const Press_PumpPowerCorrection; // Only updating the pump power
+    thread_local extern int const Press_FlowCorrection;      // Update pump flow rate based on pump curve
+    thread_local extern int const Press_FlowSimulation;      // Full pressure network simulation
+    thread_local extern Array1D_string const PressureSimType;
     // Parameters for Component/Equipment Types  (ref: TypeOf in CompData)
-    extern int const NumSimPlantEquipTypes;
-    extern Array1D_string const SimPlantEquipTypes;
+    thread_local extern int const NumSimPlantEquipTypes;
+    thread_local extern Array1D_string const SimPlantEquipTypes;
 
-    extern Array1D_string const ccSimPlantEquipTypes;
+    thread_local extern Array1D_string const ccSimPlantEquipTypes;
 
-    extern Array1D_int const ValidLoopEquipTypes;
+    thread_local extern Array1D_int const ValidLoopEquipTypes;
 
-    extern int const TypeOf_Other;
-    extern int const TypeOf_Boiler_Simple;
-    extern int const TypeOf_Boiler_Steam;
-    extern int const TypeOf_Chiller_Absorption;          // older BLAST absorption chiller
-    extern int const TypeOf_Chiller_Indirect_Absorption; // revised absorption chiller
-    extern int const TypeOf_Chiller_CombTurbine;
-    extern int const TypeOf_Chiller_ConstCOP;
-    extern int const TypeOf_Chiller_DFAbsorption;
-    extern int const TypeOf_Chiller_Electric; // basic BLAST Chiller
-    extern int const TypeOf_Chiller_ElectricEIR;
-    extern int const TypeOf_Chiller_ElectricReformEIR;
-    extern int const TypeOf_Chiller_EngineDriven;
-    extern int const TypeOf_CoolingTower_SingleSpd;
-    extern int const TypeOf_CoolingTower_TwoSpd;
-    extern int const TypeOf_CoolingTower_VarSpd;
-    extern int const TypeOf_Generator_FCExhaust;
-    extern int const TypeOf_HeatPumpWtrHeaterPumped;
-    extern int const TypeOf_HeatPumpWtrHeaterWrapped;
-    extern int const TypeOf_HPWaterEFCooling;
-    extern int const TypeOf_HPWaterEFHeating;
-    extern int const TypeOf_HPWaterPECooling;
-    extern int const TypeOf_HPWaterPEHeating;
-    extern int const TypeOf_Pipe;
-    extern int const TypeOf_PipeSteam;
-    extern int const TypeOf_PipeExterior;
-    extern int const TypeOf_PipeInterior;
-    extern int const TypeOf_PipeUnderground;
-    extern int const TypeOf_PurchChilledWater;
-    extern int const TypeOf_PurchHotWater;
-    extern int const TypeOf_TS_IceDetailed;
-    extern int const TypeOf_TS_IceSimple;
-    extern int const TypeOf_ValveTempering;
-    extern int const TypeOf_WtrHeaterMixed;
-    extern int const TypeOf_WtrHeaterStratified;
-    extern int const TypeOf_PumpVariableSpeed;
-    extern int const TypeOf_PumpConstantSpeed;
-    extern int const TypeOf_PumpCondensate;
-    extern int const TypeOf_PumpBankVariableSpeed;
-    extern int const TypeOf_PumpBankConstantSpeed;
-    extern int const TypeOf_WaterUseConnection;
-    extern int const TypeOf_CoilWaterCooling;             // demand side component
-    extern int const TypeOf_CoilWaterDetailedFlatCooling; // demand side component
-    extern int const TypeOf_CoilWaterSimpleHeating;       // demand side component
-    extern int const TypeOf_CoilSteamAirHeating;          // demand side component
-    extern int const TypeOf_SolarCollectorFlatPlate;      // demand side component
-    extern int const TypeOf_PlantLoadProfile;             // demand side component
-    extern int const TypeOf_GrndHtExchgSystem;
-    extern int const TypeOf_GrndHtExchgSurface;
-    extern int const TypeOf_GrndHtExchgPond;
-    extern int const TypeOf_Generator_MicroTurbine; // newer FSEC turbine
-    extern int const TypeOf_Generator_ICEngine;
-    extern int const TypeOf_Generator_CTurbine; // older BLAST turbine
-    extern int const TypeOf_Generator_MicroCHP;
-    extern int const TypeOf_Generator_FCStackCooler;
-    extern int const TypeOf_FluidCooler_SingleSpd;
-    extern int const TypeOf_FluidCooler_TwoSpd;
-    extern int const TypeOf_EvapFluidCooler_SingleSpd;
-    extern int const TypeOf_EvapFluidCooler_TwoSpd;
-    extern int const TypeOf_ChilledWaterTankMixed;
-    extern int const TypeOf_ChilledWaterTankStratified;
-    extern int const TypeOf_PVTSolarCollectorFlatPlate;
-    extern int const TypeOf_Baseboard_Conv_Water;
-    extern int const TypeOf_Baseboard_Rad_Conv_Steam;
-    extern int const TypeOf_Baseboard_Rad_Conv_Water;
-    extern int const TypeOf_CoolingPanel_Simple;
-    extern int const TypeOf_LowTempRadiant_VarFlow;
-    extern int const TypeOf_LowTempRadiant_ConstFlow;
-    extern int const TypeOf_CooledBeamAirTerminal;
-    extern int const TypeOf_CoilWAHPHeatingEquationFit;
-    extern int const TypeOf_CoilWAHPCoolingEquationFit;
-    extern int const TypeOf_CoilWAHPHeatingParamEst;
-    extern int const TypeOf_CoilWAHPCoolingParamEst;
-    extern int const TypeOf_RefrigSystemWaterCondenser;
-    extern int const TypeOf_RefrigerationWaterCoolRack;
-    extern int const TypeOf_MultiSpeedHeatPumpRecovery;
-    extern int const TypeOf_Chiller_ExhFiredAbsorption;
-    extern int const TypeOf_PipingSystemPipeCircuit;
-    extern int const TypeOf_SolarCollectorICS;
-    extern int const TypeOf_CoilVSWAHPHeatingEquationFit;
-    extern int const TypeOf_CoilVSWAHPCoolingEquationFit;
-    extern int const TypeOf_PlantComponentUserDefined;
-    extern int const TypeOf_CoilUserDefined;
-    extern int const TypeOf_ZoneHVACAirUserDefined;
-    extern int const TypeOf_AirTerminalUserDefined;
-    extern int const TypeOf_HeatPumpVRF;
-    extern int const TypeOf_GrndHtExchgHorizTrench;
-    extern int const TypeOf_FluidToFluidPlantHtExchg;
-    extern int const TypeOf_WaterSource;
-    extern int const TypeOf_CentralGroundSourceHeatPump;
-    extern int const TypeOf_UnitarySysRecovery;
-    extern int const TypeOf_PackagedTESCoolingCoil;
-    extern int const TypeOf_CoolingTower_VarSpdMerkel;
-    extern int const TypeOf_SwimmingPool_Indoor;
-    extern int const TypeOf_GrndHtExchgSlinky;
-    extern int const TypeOf_FourPipeBeamAirTerminal;
+    thread_local extern int const TypeOf_Other;
+    thread_local extern int const TypeOf_Boiler_Simple;
+    thread_local extern int const TypeOf_Boiler_Steam;
+    thread_local extern int const TypeOf_Chiller_Absorption;          // older BLAST absorption chiller
+    thread_local extern int const TypeOf_Chiller_Indirect_Absorption; // revised absorption chiller
+    thread_local extern int const TypeOf_Chiller_CombTurbine;
+    thread_local extern int const TypeOf_Chiller_ConstCOP;
+    thread_local extern int const TypeOf_Chiller_DFAbsorption;
+    thread_local extern int const TypeOf_Chiller_Electric; // basic BLAST Chiller
+    thread_local extern int const TypeOf_Chiller_ElectricEIR;
+    thread_local extern int const TypeOf_Chiller_ElectricReformEIR;
+    thread_local extern int const TypeOf_Chiller_EngineDriven;
+    thread_local extern int const TypeOf_CoolingTower_SingleSpd;
+    thread_local extern int const TypeOf_CoolingTower_TwoSpd;
+    thread_local extern int const TypeOf_CoolingTower_VarSpd;
+    thread_local extern int const TypeOf_Generator_FCExhaust;
+    thread_local extern int const TypeOf_HeatPumpWtrHeaterPumped;
+    thread_local extern int const TypeOf_HeatPumpWtrHeaterWrapped;
+    thread_local extern int const TypeOf_HPWaterEFCooling;
+    thread_local extern int const TypeOf_HPWaterEFHeating;
+    thread_local extern int const TypeOf_HPWaterPECooling;
+    thread_local extern int const TypeOf_HPWaterPEHeating;
+    thread_local extern int const TypeOf_Pipe;
+    thread_local extern int const TypeOf_PipeSteam;
+    thread_local extern int const TypeOf_PipeExterior;
+    thread_local extern int const TypeOf_PipeInterior;
+    thread_local extern int const TypeOf_PipeUnderground;
+    thread_local extern int const TypeOf_PurchChilledWater;
+    thread_local extern int const TypeOf_PurchHotWater;
+    thread_local extern int const TypeOf_TS_IceDetailed;
+    thread_local extern int const TypeOf_TS_IceSimple;
+    thread_local extern int const TypeOf_ValveTempering;
+    thread_local extern int const TypeOf_WtrHeaterMixed;
+    thread_local extern int const TypeOf_WtrHeaterStratified;
+    thread_local extern int const TypeOf_PumpVariableSpeed;
+    thread_local extern int const TypeOf_PumpConstantSpeed;
+    thread_local extern int const TypeOf_PumpCondensate;
+    thread_local extern int const TypeOf_PumpBankVariableSpeed;
+    thread_local extern int const TypeOf_PumpBankConstantSpeed;
+    thread_local extern int const TypeOf_WaterUseConnection;
+    thread_local extern int const TypeOf_CoilWaterCooling;             // demand side component
+    thread_local extern int const TypeOf_CoilWaterDetailedFlatCooling; // demand side component
+    thread_local extern int const TypeOf_CoilWaterSimpleHeating;       // demand side component
+    thread_local extern int const TypeOf_CoilSteamAirHeating;          // demand side component
+    thread_local extern int const TypeOf_SolarCollectorFlatPlate;      // demand side component
+    thread_local extern int const TypeOf_PlantLoadProfile;             // demand side component
+    thread_local extern int const TypeOf_GrndHtExchgSystem;
+    thread_local extern int const TypeOf_GrndHtExchgSurface;
+    thread_local extern int const TypeOf_GrndHtExchgPond;
+    thread_local extern int const TypeOf_Generator_MicroTurbine; // newer FSEC turbine
+    thread_local extern int const TypeOf_Generator_ICEngine;
+    thread_local extern int const TypeOf_Generator_CTurbine; // older BLAST turbine
+    thread_local extern int const TypeOf_Generator_MicroCHP;
+    thread_local extern int const TypeOf_Generator_FCStackCooler;
+    thread_local extern int const TypeOf_FluidCooler_SingleSpd;
+    thread_local extern int const TypeOf_FluidCooler_TwoSpd;
+    thread_local extern int const TypeOf_EvapFluidCooler_SingleSpd;
+    thread_local extern int const TypeOf_EvapFluidCooler_TwoSpd;
+    thread_local extern int const TypeOf_ChilledWaterTankMixed;
+    thread_local extern int const TypeOf_ChilledWaterTankStratified;
+    thread_local extern int const TypeOf_PVTSolarCollectorFlatPlate;
+    thread_local extern int const TypeOf_Baseboard_Conv_Water;
+    thread_local extern int const TypeOf_Baseboard_Rad_Conv_Steam;
+    thread_local extern int const TypeOf_Baseboard_Rad_Conv_Water;
+    thread_local extern int const TypeOf_CoolingPanel_Simple;
+    thread_local extern int const TypeOf_LowTempRadiant_VarFlow;
+    thread_local extern int const TypeOf_LowTempRadiant_ConstFlow;
+    thread_local extern int const TypeOf_CooledBeamAirTerminal;
+    thread_local extern int const TypeOf_CoilWAHPHeatingEquationFit;
+    thread_local extern int const TypeOf_CoilWAHPCoolingEquationFit;
+    thread_local extern int const TypeOf_CoilWAHPHeatingParamEst;
+    thread_local extern int const TypeOf_CoilWAHPCoolingParamEst;
+    thread_local extern int const TypeOf_RefrigSystemWaterCondenser;
+    thread_local extern int const TypeOf_RefrigerationWaterCoolRack;
+    thread_local extern int const TypeOf_MultiSpeedHeatPumpRecovery;
+    thread_local extern int const TypeOf_Chiller_ExhFiredAbsorption;
+    thread_local extern int const TypeOf_PipingSystemPipeCircuit;
+    thread_local extern int const TypeOf_SolarCollectorICS;
+    thread_local extern int const TypeOf_CoilVSWAHPHeatingEquationFit;
+    thread_local extern int const TypeOf_CoilVSWAHPCoolingEquationFit;
+    thread_local extern int const TypeOf_PlantComponentUserDefined;
+    thread_local extern int const TypeOf_CoilUserDefined;
+    thread_local extern int const TypeOf_ZoneHVACAirUserDefined;
+    thread_local extern int const TypeOf_AirTerminalUserDefined;
+    thread_local extern int const TypeOf_HeatPumpVRF;
+    thread_local extern int const TypeOf_GrndHtExchgHorizTrench;
+    thread_local extern int const TypeOf_FluidToFluidPlantHtExchg;
+    thread_local extern int const TypeOf_WaterSource;
+    thread_local extern int const TypeOf_CentralGroundSourceHeatPump;
+    thread_local extern int const TypeOf_UnitarySysRecovery;
+    thread_local extern int const TypeOf_PackagedTESCoolingCoil;
+    thread_local extern int const TypeOf_CoolingTower_VarSpdMerkel;
+    thread_local extern int const TypeOf_SwimmingPool_Indoor;
+    thread_local extern int const TypeOf_GrndHtExchgSlinky;
+    thread_local extern int const TypeOf_FourPipeBeamAirTerminal;
 
     // Parameters for General Equipment Types
-    extern int const NumGeneralEquipTypes;
-    extern Array1D_string const GeneralEquipTypes;
+    thread_local extern int const NumGeneralEquipTypes;
+    thread_local extern Array1D_string const GeneralEquipTypes;
 
-    extern int const GenEquipTypes_Boiler;
-    extern int const GenEquipTypes_Chiller;
-    extern int const GenEquipTypes_CoolingTower;
-    extern int const GenEquipTypes_Generator;
-    extern int const GenEquipTypes_HeatExchanger;
-    extern int const GenEquipTypes_HeatPump;
-    extern int const GenEquipTypes_Pipe;
-    extern int const GenEquipTypes_Pump;
-    extern int const GenEquipTypes_Purchased;
-    extern int const GenEquipTypes_ThermalStorage;
-    extern int const GenEquipTypes_Valve;
-    extern int const GenEquipTypes_WaterThermalTank;
-    extern int const GenEquipTypes_WaterUse;
-    extern int const GenEquipTypes_DemandCoil;
-    extern int const GenEquipTypes_SolarCollector;
-    extern int const GenEquipTypes_LoadProfile;
-    extern int const GenEquipTypes_FluidCooler;
-    extern int const GenEquipTypes_EvapFluidCooler;
-    extern int const GenEquipTypes_GroundHeatExchanger;
-    extern int const GenEquipTypes_ZoneHVACDemand;
-    extern int const GenEquipTypes_Refrigeration;
-    extern int const GenEquipTypes_PlantComponent;
-    extern int const GenEquipTypes_CentralHeatPumpSystem;
+    thread_local extern int const GenEquipTypes_Boiler;
+    thread_local extern int const GenEquipTypes_Chiller;
+    thread_local extern int const GenEquipTypes_CoolingTower;
+    thread_local extern int const GenEquipTypes_Generator;
+    thread_local extern int const GenEquipTypes_HeatExchanger;
+    thread_local extern int const GenEquipTypes_HeatPump;
+    thread_local extern int const GenEquipTypes_Pipe;
+    thread_local extern int const GenEquipTypes_Pump;
+    thread_local extern int const GenEquipTypes_Purchased;
+    thread_local extern int const GenEquipTypes_ThermalStorage;
+    thread_local extern int const GenEquipTypes_Valve;
+    thread_local extern int const GenEquipTypes_WaterThermalTank;
+    thread_local extern int const GenEquipTypes_WaterUse;
+    thread_local extern int const GenEquipTypes_DemandCoil;
+    thread_local extern int const GenEquipTypes_SolarCollector;
+    thread_local extern int const GenEquipTypes_LoadProfile;
+    thread_local extern int const GenEquipTypes_FluidCooler;
+    thread_local extern int const GenEquipTypes_EvapFluidCooler;
+    thread_local extern int const GenEquipTypes_GroundHeatExchanger;
+    thread_local extern int const GenEquipTypes_ZoneHVACDemand;
+    thread_local extern int const GenEquipTypes_Refrigeration;
+    thread_local extern int const GenEquipTypes_PlantComponent;
+    thread_local extern int const GenEquipTypes_CentralHeatPumpSystem;
 
-    extern Array1D<Real64> const ConvergenceHistoryARR;
-    extern Real64 const sum_ConvergenceHistoryARR;
-    extern Real64 const square_sum_ConvergenceHistoryARR;
-    extern Real64 const sum_square_ConvergenceHistoryARR;
+    thread_local extern Array1D<Real64> const ConvergenceHistoryARR;
+    thread_local extern Real64 const sum_ConvergenceHistoryARR;
+    thread_local extern Real64 const square_sum_ConvergenceHistoryARR;
+    thread_local extern Real64 const sum_square_ConvergenceHistoryARR;
 
-    extern int NumPipes;                       // Total number of pipes
-    extern int NumPlantPipes;                  // Total number of plant pipes
-    extern int NumCondPipes;                   // Total number of condenser pipes
-    extern int TotNumLoops;                    // number of plant and condenser loops
-    extern int TotNumHalfLoops;                // number of half loops (2 * TotNumLoops)
-    extern bool PlantFirstSizeCompleted;       // true if first-pass sizing is still going on and not finished
-    extern bool PlantFirstSizesOkayToFinalize; // true if first-pass plant sizing is finish and can save results for simulation
-    extern bool PlantFirstSizesOkayToReport;   // true if initial first pass size can be reported
-    extern bool PlantFinalSizesOkayToReport;   // true if plant sizing is really all done and final results reported
-    extern bool PlantReSizingCompleted;
+    thread_local extern int NumPipes;                       // Total number of pipes
+    thread_local extern int NumPlantPipes;                  // Total number of plant pipes
+    thread_local extern int NumCondPipes;                   // Total number of condenser pipes
+    thread_local extern int TotNumLoops;                    // number of plant and condenser loops
+    thread_local extern int TotNumHalfLoops;                // number of half loops (2 * TotNumLoops)
+    thread_local extern bool PlantFirstSizeCompleted;       // true if first-pass sizing is still going on and not finished
+    thread_local extern bool PlantFirstSizesOkayToFinalize; // true if first-pass plant sizing is finish and can save results for simulation
+    thread_local extern bool PlantFirstSizesOkayToReport;   // true if initial first pass size can be reported
+    thread_local extern bool PlantFinalSizesOkayToReport;   // true if plant sizing is really all done and final results reported
+    thread_local extern bool PlantReSizingCompleted;
 
-    extern bool AnyEMSPlantOpSchemesInModel;
+    thread_local extern bool AnyEMSPlantOpSchemesInModel;
 
-    extern Array1D_int EconBranchNum; // Branch num on which economizer is placed
-    extern Array1D_int EconCompNum;   // Component num of economizer in the economizer branch
+    thread_local extern Array1D_int EconBranchNum; // Branch num on which economizer is placed
+    thread_local extern Array1D_int EconCompNum;   // Component num of economizer in the economizer branch
 
-    extern Array1D_bool LoadChangeDownStream; // sim control flag.
+    thread_local extern Array1D_bool LoadChangeDownStream; // sim control flag.
 
-    extern int PlantManageSubIterations; // tracks plant iterations to characterize solver
-    extern int PlantManageHalfLoopCalls; // tracks number of half loop calls
+    thread_local extern int PlantManageSubIterations; // tracks plant iterations to characterize solver
+    thread_local extern int PlantManageHalfLoopCalls; // tracks number of half loop calls
 
     // Object Data
-    extern Array1D<PlantLoopData> PlantLoop;
-    extern Array1D<PlantAvailMgrData> PlantAvailMgr;
-    extern Array1D<ReportVars> PlantReport;
-    extern Array1D<ReportLoopData> VentRepPlantSupplySide;
-    extern Array1D<ReportLoopData> VentRepPlantDemandSide;
-    extern Array1D<ReportLoopData> VentRepCondSupplySide;
-    extern Array1D<ReportLoopData> VentRepCondDemandSide;
-    extern Array1D<PlantCallingOrderInfoStruct> PlantCallingOrderInfo;
+    thread_local extern Array1D<PlantLoopData> PlantLoop;
+    thread_local extern Array1D<PlantAvailMgrData> PlantAvailMgr;
+    thread_local extern Array1D<ReportVars> PlantReport;
+    thread_local extern Array1D<ReportLoopData> VentRepPlantSupplySide;
+    thread_local extern Array1D<ReportLoopData> VentRepPlantDemandSide;
+    thread_local extern Array1D<ReportLoopData> VentRepCondSupplySide;
+    thread_local extern Array1D<ReportLoopData> VentRepCondDemandSide;
+    thread_local extern Array1D<PlantCallingOrderInfoStruct> PlantCallingOrderInfo;
 
     // Clears the global data in DataPlant.
     // Needed for unit tests, should not be normally called.

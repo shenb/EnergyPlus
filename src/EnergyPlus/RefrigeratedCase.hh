@@ -66,239 +66,239 @@ namespace RefrigeratedCase {
     // MODULE PARAMETER DEFINITIONS:
 
     // Anti-sweat heater control type
-    extern int const ASNone;
-    extern int const ASConstant;
-    extern int const ASLinear;
-    extern int const ASDewPoint;
-    extern int const ASHeatBalance;
+    thread_local extern int const ASNone;
+    thread_local extern int const ASConstant;
+    thread_local extern int const ASLinear;
+    thread_local extern int const ASDewPoint;
+    thread_local extern int const ASHeatBalance;
     // Refrigerated display case defrost type
-    extern int const DefNone;
-    extern int const DefOffCycle;
-    extern int const DefHotFluid;
-    extern int const DefHotFluidOnDemand;
-    extern int const DefHotFluidTerm;
-    extern int const DefElectric;
-    extern int const DefElectricOnDemand;
-    extern int const DefElectricTerm;
+    thread_local extern int const DefNone;
+    thread_local extern int const DefOffCycle;
+    thread_local extern int const DefHotFluid;
+    thread_local extern int const DefHotFluidOnDemand;
+    thread_local extern int const DefHotFluidTerm;
+    thread_local extern int const DefElectric;
+    thread_local extern int const DefElectricOnDemand;
+    thread_local extern int const DefElectricTerm;
 
     // Refrigerated display case rack heat rejection location
-    extern int const LocationOutdoors;
-    extern int const LocationZone;
+    thread_local extern int const LocationOutdoors;
+    thread_local extern int const LocationZone;
     // Condenser cooling type -- See DataHeatBalance - RefrigxxxTypexxx
     // INTEGER, PARAMETER :: CondenserCoolingAir   = 1
     // INTEGER, PARAMETER :: CondenserCoolingEvap  = 2
     // INTEGER, PARAMETER :: CondenserCoolingWater = 3
     // INTEGER, PARAMETER :: CondenserCascade      = 4
     // Air- and evap-cooled condenser fan speed control types
-    extern int const FanVariableSpeed;
-    extern int const FanConstantSpeedLinear;
-    extern int const FanTwoSpeed;
-    extern int const FanConstantSpeed;
+    thread_local extern int const FanVariableSpeed;
+    thread_local extern int const FanConstantSpeedLinear;
+    thread_local extern int const FanTwoSpeed;
+    thread_local extern int const FanConstantSpeed;
     // Water-cooled condenser loop flow type
-    extern int const VariableFlow;
-    extern int const ConstantFlow;
+    thread_local extern int const VariableFlow;
+    thread_local extern int const ConstantFlow;
     // Condenser evap cooling water supply
-    extern int const WaterSupplyFromMains;
-    extern int const WaterSupplyFromTank;
+    thread_local extern int const WaterSupplyFromMains;
+    thread_local extern int const WaterSupplyFromTank;
     // Cascade condenser temperature control types
-    extern int const CascadeTempSet;
-    extern int const CascadeTempFloat;
+    thread_local extern int const CascadeTempSet;
+    thread_local extern int const CascadeTempFloat;
     // Refrigerated display case energy equation form
-    extern int const None;
-    extern int const CaseTemperatureMethod;
-    extern int const RHCubic;
-    extern int const DPCubic;
+    thread_local extern int const None;
+    thread_local extern int const CaseTemperatureMethod;
+    thread_local extern int const RHCubic;
+    thread_local extern int const DPCubic;
     // Secondary loop parameters
-    extern int const SecFluidTypeAlwaysLiquid;
-    extern int const SecFluidTypePhaseChange;
-    extern int const SecPumpControlConstant;
-    extern int const SecPumpControlVariable;
+    thread_local extern int const SecFluidTypeAlwaysLiquid;
+    thread_local extern int const SecFluidTypePhaseChange;
+    thread_local extern int const SecPumpControlConstant;
+    thread_local extern int const SecPumpControlVariable;
     // Walk In Cooler Defrost type
-    extern int const WalkInDefrostFluid;
-    extern int const WalkInDefrostElec;
-    extern int const WalkInDefrostNone;
-    extern int const WalkInDefrostOffCycle;
+    thread_local extern int const WalkInDefrostFluid;
+    thread_local extern int const WalkInDefrostElec;
+    thread_local extern int const WalkInDefrostNone;
+    thread_local extern int const WalkInDefrostOffCycle;
     // Walk In Cooler Defrost Control type
-    extern int const DefrostControlSched;
-    extern int const DefrostContTempTerm;
+    thread_local extern int const DefrostControlSched;
+    thread_local extern int const DefrostContTempTerm;
     // Walk In Cooler Stock Door Protection types
-    extern int const WIStockDoorNone;
-    extern int const WIStockDoorAirCurtain;
-    extern int const WIStockDoorStripCurtain;
+    thread_local extern int const WIStockDoorNone;
+    thread_local extern int const WIStockDoorAirCurtain;
+    thread_local extern int const WIStockDoorStripCurtain;
     // Subcooler type
-    extern int const LiquidSuction;
-    extern int const Mechanical;
+    thread_local extern int const LiquidSuction;
+    thread_local extern int const Mechanical;
     // Compressor suction pressure control
-    extern int const FloatSuctionTemperature;
-    extern int const ConstantSuctionTemperature;
+    thread_local extern int const FloatSuctionTemperature;
+    thread_local extern int const ConstantSuctionTemperature;
     // Compressor rating types
-    extern int const RatedSuperheat;
-    extern int const RatedReturnGasTemperature;
-    extern int const RatedSubcooling;
-    extern int const RatedLiquidTemperature;
+    thread_local extern int const RatedSuperheat;
+    thread_local extern int const RatedReturnGasTemperature;
+    thread_local extern int const RatedSubcooling;
+    thread_local extern int const RatedLiquidTemperature;
     // System service types (applies to system, cascade condenser, and secondary loops)
     // INTEGER, PARAMETER :: SupermarketService =1
     // INTEGER, PARAMETER :: WarehouseService   =2
     // Warehouse coil Defrost type
-    extern int const DefrostFluid;
-    extern int const DefrostElec;
-    extern int const DefrostNone;
-    extern int const DefrostOffCycle;
+    thread_local extern int const DefrostFluid;
+    thread_local extern int const DefrostElec;
+    thread_local extern int const DefrostNone;
+    thread_local extern int const DefrostOffCycle;
 
-    extern int const RatedCapacityTotal;
-    extern int const EuropeanSC1Std;
-    extern int const EuropeanSC1Nom;
-    extern int const EuropeanSC2Std;
-    extern int const EuropeanSC2Nom;
-    extern int const EuropeanSC3Std;
-    extern int const EuropeanSC3Nom;
-    extern int const EuropeanSC4Std;
-    extern int const EuropeanSC4Nom;
-    extern int const EuropeanSC5Std;
-    extern int const EuropeanSC5Nom;
-    extern int const UnitLoadFactorSens;
-    extern int const SHR60;
-    extern int const QuadraticSHR;
-    extern int const European;
-    extern int const TabularRH_DT1_TRoom;
-    extern int const Ceiling;
-    extern int const Middle;
-    extern int const Floor;
-    extern int const DetailedSystem;
-    extern int const SecondarySystem;
+    thread_local extern int const RatedCapacityTotal;
+    thread_local extern int const EuropeanSC1Std;
+    thread_local extern int const EuropeanSC1Nom;
+    thread_local extern int const EuropeanSC2Std;
+    thread_local extern int const EuropeanSC2Nom;
+    thread_local extern int const EuropeanSC3Std;
+    thread_local extern int const EuropeanSC3Nom;
+    thread_local extern int const EuropeanSC4Std;
+    thread_local extern int const EuropeanSC4Nom;
+    thread_local extern int const EuropeanSC5Std;
+    thread_local extern int const EuropeanSC5Nom;
+    thread_local extern int const UnitLoadFactorSens;
+    thread_local extern int const SHR60;
+    thread_local extern int const QuadraticSHR;
+    thread_local extern int const European;
+    thread_local extern int const TabularRH_DT1_TRoom;
+    thread_local extern int const Ceiling;
+    thread_local extern int const Middle;
+    thread_local extern int const Floor;
+    thread_local extern int const DetailedSystem;
+    thread_local extern int const SecondarySystem;
 
     // Following constant approp for R22, future may make f(refrigerant)
-    extern Real64 const CaseSuperheat;      // case superheat used to control thermal expansion valve, ASHRAE 2006 p 44.6 (C)
-    extern Real64 const TransCaseSuperheat; // case superheat for transcritical CO2 systems (C)
+    thread_local extern Real64 const CaseSuperheat;      // case superheat used to control thermal expansion valve, ASHRAE 2006 p 44.6 (C)
+    thread_local extern Real64 const TransCaseSuperheat; // case superheat for transcritical CO2 systems (C)
     // Next two constants used to autosize evap condenser
-    extern Real64 const CondPumpRatePower;  // evap condenser pump rated, Wpump/Wcapacity (15 W/ton)
-    extern Real64 const AirVolRateEvapCond; // evap cond air flow rate for autosize, equiv 850 cfm/ton (m3/W-s)
-    extern Real64 const EvapCutOutTdb;      // shut off evap water flow if outdoor drybulb < evapcutOutTdb (C)
+    thread_local extern Real64 const CondPumpRatePower;  // evap condenser pump rated, Wpump/Wcapacity (15 W/ton)
+    thread_local extern Real64 const AirVolRateEvapCond; // evap cond air flow rate for autosize, equiv 850 cfm/ton (m3/W-s)
+    thread_local extern Real64 const EvapCutOutTdb;      // shut off evap water flow if outdoor drybulb < evapcutOutTdb (C)
     // Miscellaneous constants
-    extern Real64 const MyLargeNumber;
-    extern Real64 const MySmallNumber;
-    extern Real64 const Rair;                  // Air resistance used with Heat Balance anti-sweat (AS) heater
-    extern Real64 const IceMeltEnthalpy;       // heat of fusion of water J/kg
-    extern Real64 const TempTooHotToFrost;     // C, used to check for frosting conditions on evaporator coils
-    extern Real64 const IcetoVaporEnthalpy;    // J/kg to freeze water vapor to ice
-    extern Real64 const WatertoVaporEnthalpy;  // at 0C
-    extern Real64 const SpecificHeatIce;       // in the likely range (2040 at 0C and 1950 at -20C) (J/kg-C)
-    extern Real64 const CondAirVolExponentDry; // exponent for forced air over a cylinder, = 1/.633
+    thread_local extern Real64 const MyLargeNumber;
+    thread_local extern Real64 const MySmallNumber;
+    thread_local extern Real64 const Rair;                  // Air resistance used with Heat Balance anti-sweat (AS) heater
+    thread_local extern Real64 const IceMeltEnthalpy;       // heat of fusion of water J/kg
+    thread_local extern Real64 const TempTooHotToFrost;     // C, used to check for frosting conditions on evaporator coils
+    thread_local extern Real64 const IcetoVaporEnthalpy;    // J/kg to freeze water vapor to ice
+    thread_local extern Real64 const WatertoVaporEnthalpy;  // at 0C
+    thread_local extern Real64 const SpecificHeatIce;       // in the likely range (2040 at 0C and 1950 at -20C) (J/kg-C)
+    thread_local extern Real64 const CondAirVolExponentDry; // exponent for forced air over a cylinder, = 1/.633
     // per ASHRAE 2005 (page 3.15)
-    extern Real64 const CondAirVolExponentEvap; // exponent for evap condenser air vol flow, = 1/.76
+    thread_local extern Real64 const CondAirVolExponentEvap; // exponent for evap condenser air vol flow, = 1/.76
     // per Manske, 1999
-    extern Real64 const EvaporatorAirVolExponent; // exponent for evapaporator air vol flow, = 1/.65
+    thread_local extern Real64 const EvaporatorAirVolExponent; // exponent for evapaporator air vol flow, = 1/.65
     // per Manske, 1999, page 35
 
-    extern Real64 const FanHalfSpeedRatio; // = 1/(2**2.5) for power step for two speed fan
-    extern Real64 const CapFac60Percent;   // = 60%, load served by half power 2-speed fan
+    thread_local extern Real64 const FanHalfSpeedRatio; // = 1/(2**2.5) for power step for two speed fan
+    thread_local extern Real64 const CapFac60Percent;   // = 60%, load served by half power 2-speed fan
 
-    extern Array1D<Real64> const EuropeanWetCoilFactor;
-    extern Array1D<Real64> const EuropeanAirInletTemp;
-    extern Array1D<Real64> const EuropeanEvapTemp;
-    extern Array1D<Real64> const EuropeanDT1;
+    thread_local extern Array1D<Real64> const EuropeanWetCoilFactor;
+    thread_local extern Array1D<Real64> const EuropeanAirInletTemp;
+    thread_local extern Array1D<Real64> const EuropeanEvapTemp;
+    thread_local extern Array1D<Real64> const EuropeanDT1;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumSimulationCondAir;            // Number of air-cooled condensers in simulation
-    extern int NumSimulationCondEvap;           // Number of evaporative condensers in simulation
-    extern int NumSimulationCondWater;          // Number of water-cooled condensers in simulation
-    extern int NumSimulationCascadeCondensers;  // Total number of Cascade condensers in IDF
-    extern int NumSimulationGasCooler;          // Number of gas coolers in simulation
-    extern int NumSimulationSharedGasCoolers;   // Total number of gas coolers that serve more than one system
-    extern int NumTransRefrigSystems;           // Total number of transcritical CO2 refrigeration systems
-    extern int NumSimulationSharedCondensers;   // Total number of condensers that serve more than one system
-    extern int NumSimulationCases;              // Number of refrigerated cases in simulation
-    extern int NumSimulationCaseAndWalkInLists; // Total number of CaseAndWalkIn Lists in IDF
-    extern int NumSimulationWalkIns;            // Number of walk in coolers in simulation
-    extern int NumSimulationCompressors;        // Number of refrigeration compressors in simulation
-    extern int NumSimulationSubcoolers;         // Number of refrigeration subcoolers in simulation
-    extern int NumSimulationMechSubcoolers;     // Number of mechanical subcoolers in simulation
-    extern int NumSimulationRefrigAirChillers;  // Number of individual Air Chillers/coils in simulation
-    extern int NumSimulationSecondarySystems;   // Number of Secondary loops in simulation
-    extern int NumSimulationTransferLoadLists;  // Number of Secondary Lists in simulation
-    extern int NumUnusedRefrigCases;            // Number of refrigerated cases not connected to a rack or system
-    extern int NumUnusedCoils;                  // Number of refrigeration air coils not connected to a rack or system
-    extern int NumUnusedCondensers;             // Number of refrigeration condensors not connected to a system
-    extern int NumUnusedGasCoolers;             // Number of refrigeration gas coolers not connected to a system
-    extern int NumUnusedCompressors;            // Number of refrigeration compressors not connected to a system
-    extern int NumUnusedSecondarys;             // Number of refrigeration secondarys not connected to a system
-    extern int NumUnusedWalkIns;                // Number of refrigeration compressors not connected to a system
-    extern bool MyReferPlantScanFlag;
+    thread_local extern int NumSimulationCondAir;            // Number of air-cooled condensers in simulation
+    thread_local extern int NumSimulationCondEvap;           // Number of evaporative condensers in simulation
+    thread_local extern int NumSimulationCondWater;          // Number of water-cooled condensers in simulation
+    thread_local extern int NumSimulationCascadeCondensers;  // Total number of Cascade condensers in IDF
+    thread_local extern int NumSimulationGasCooler;          // Number of gas coolers in simulation
+    thread_local extern int NumSimulationSharedGasCoolers;   // Total number of gas coolers that serve more than one system
+    thread_local extern int NumTransRefrigSystems;           // Total number of transcritical CO2 refrigeration systems
+    thread_local extern int NumSimulationSharedCondensers;   // Total number of condensers that serve more than one system
+    thread_local extern int NumSimulationCases;              // Number of refrigerated cases in simulation
+    thread_local extern int NumSimulationCaseAndWalkInLists; // Total number of CaseAndWalkIn Lists in IDF
+    thread_local extern int NumSimulationWalkIns;            // Number of walk in coolers in simulation
+    thread_local extern int NumSimulationCompressors;        // Number of refrigeration compressors in simulation
+    thread_local extern int NumSimulationSubcoolers;         // Number of refrigeration subcoolers in simulation
+    thread_local extern int NumSimulationMechSubcoolers;     // Number of mechanical subcoolers in simulation
+    thread_local extern int NumSimulationRefrigAirChillers;  // Number of individual Air Chillers/coils in simulation
+    thread_local extern int NumSimulationSecondarySystems;   // Number of Secondary loops in simulation
+    thread_local extern int NumSimulationTransferLoadLists;  // Number of Secondary Lists in simulation
+    thread_local extern int NumUnusedRefrigCases;            // Number of refrigerated cases not connected to a rack or system
+    thread_local extern int NumUnusedCoils;                  // Number of refrigeration air coils not connected to a rack or system
+    thread_local extern int NumUnusedCondensers;             // Number of refrigeration condensors not connected to a system
+    thread_local extern int NumUnusedGasCoolers;             // Number of refrigeration gas coolers not connected to a system
+    thread_local extern int NumUnusedCompressors;            // Number of refrigeration compressors not connected to a system
+    thread_local extern int NumUnusedSecondarys;             // Number of refrigeration secondarys not connected to a system
+    thread_local extern int NumUnusedWalkIns;                // Number of refrigeration compressors not connected to a system
+    thread_local extern bool MyReferPlantScanFlag;
 
     // Refrigerated case variables
-    extern Real64 CaseRAFactor;              // Factor determining case credit allocation (e.g. % to zone or HVAC)
-    extern Array1D_bool ShowStockingWarning; // Used for one-time warning message for possible case
+    thread_local extern Real64 CaseRAFactor;              // Factor determining case credit allocation (e.g. % to zone or HVAC)
+    thread_local extern Array1D_bool ShowStockingWarning; // Used for one-time warning message for possible case
     // input error regarding stocking
-    extern Array1D_bool ShowFrostWarning; // Used for one-time warning message for possible case
+    thread_local extern Array1D_bool ShowFrostWarning; // Used for one-time warning message for possible case
     // input error regarding frost
-    extern Array1D_bool ShowStoreEnergyWarning; // Used for one-time warning message for possible case
+    thread_local extern Array1D_bool ShowStoreEnergyWarning; // Used for one-time warning message for possible case
     // input error regarding defrost or stocking
     //  Walk In variables
-    extern Array1D_bool ShowUnmetWIEnergyWarning; // Used for one-time warning message
-    extern Array1D_bool ShowWIFrostWarning;       // Used for one-time warning message
+    thread_local extern Array1D_bool ShowUnmetWIEnergyWarning; // Used for one-time warning message
+    thread_local extern Array1D_bool ShowWIFrostWarning;       // Used for one-time warning message
 
     // Refrigeration compressor rack variables
-    extern Real64 TotalRackDeliveredCapacity; // Total capacity of all refrigerated cases attached to rack (W)
-    extern Real64 TotalCompressorPower;       // Total compressor electric power (W)
-    extern Real64 CompressorCOPactual;        // Compressor coefficient of performance at specific operating conditions (W/W)
-    extern Real64 RackSenCreditToZone;        // Amount of condenser heat applied to zone load (W)
-    extern Real64 RackSenCreditToHVAC;        // Amount of condenser heat applied to HVAC RA duct (W)
-    extern int InletNode;                     // Water-cooled condenser inlet node number
-    extern int OutletNode;                    // Water-cooled condenser outlet node number
-    extern Array1D_bool ShowCOPWarning;       // Used for one-time warning message for possible rack
+    thread_local extern Real64 TotalRackDeliveredCapacity; // Total capacity of all refrigerated cases attached to rack (W)
+    thread_local extern Real64 TotalCompressorPower;       // Total compressor electric power (W)
+    thread_local extern Real64 CompressorCOPactual;        // Compressor coefficient of performance at specific operating conditions (W/W)
+    thread_local extern Real64 RackSenCreditToZone;        // Amount of condenser heat applied to zone load (W)
+    thread_local extern Real64 RackSenCreditToHVAC;        // Amount of condenser heat applied to HVAC RA duct (W)
+    thread_local extern int InletNode;                     // Water-cooled condenser inlet node number
+    thread_local extern int OutletNode;                    // Water-cooled condenser outlet node number
+    thread_local extern Array1D_bool ShowCOPWarning;       // Used for one-time warning message for possible rack
     // input error regarding COP
     // Refrigeration condenser variables (used for both racks and detailed systems)
-    extern Real64 TotalCondenserFanPower;  // Total condenser fan electric power (W)
-    extern Real64 TotalCondenserPumpPower; // Total condenser pump electric power (W)
-    extern Real64 TotalCondenserHeat;      // Total condenser heat from compressor rack (W)
-    extern Real64 TotalBasinHeatPower;     // Total condenser basin water heater power (W)
-    extern Real64 TotalEvapWaterUseRate;   // Total condenser water use rate (m3/s)
+    thread_local extern Real64 TotalCondenserFanPower;  // Total condenser fan electric power (W)
+    thread_local extern Real64 TotalCondenserPumpPower; // Total condenser pump electric power (W)
+    thread_local extern Real64 TotalCondenserHeat;      // Total condenser heat from compressor rack (W)
+    thread_local extern Real64 TotalBasinHeatPower;     // Total condenser basin water heater power (W)
+    thread_local extern Real64 TotalEvapWaterUseRate;   // Total condenser water use rate (m3/s)
 
     // Refrigeration system variables
-    extern Array1D_bool ShowUnmetEnergyWarning; // Used for one-time warning message for possible
+    thread_local extern Array1D_bool ShowUnmetEnergyWarning; // Used for one-time warning message for possible
     // compressor input error regarding total system compressor capacity
-    extern Array1D_bool ShowHiStageUnmetEnergyWarning; // Used for one-time warning message for possible
+    thread_local extern Array1D_bool ShowHiStageUnmetEnergyWarning; // Used for one-time warning message for possible
     // high-stage compressor input error regarding high-stage compressor capacity
 
     // Transcritical refrigeration system variables
-    extern bool TransCritSysFlag;                    // Used to indicate whether or not a transcritical refrigeration system has been defined.
-    extern Array1D_bool ShowUnmetEnergyWarningTrans; // Used for one-time warning message for possible
+    thread_local extern bool TransCritSysFlag;                    // Used to indicate whether or not a transcritical refrigeration system has been defined.
+    thread_local extern Array1D_bool ShowUnmetEnergyWarningTrans; // Used for one-time warning message for possible
     // compressor input error regarding total system compressor capacity
 
     // Refrigeration Secondary Loop variables
-    extern Array1D_bool ShowUnmetSecondEnergyWarning; // Used for one-time warning message for possible
+    thread_local extern Array1D_bool ShowUnmetSecondEnergyWarning; // Used for one-time warning message for possible
     // compressor input error regarding secondary loop heat exchanger capacity
     // Refrigerated warehouse coil variables
-    extern Array1D_bool CheckChillerName; // used when simrefrigcoil called for a zone
+    thread_local extern Array1D_bool CheckChillerName; // used when simrefrigcoil called for a zone
     // LOGICAL, ALLOCATABLE,DIMENSION(:) :: CheckZoneNum  !used when simrefrigcoil called for a zone
-    extern Array1D_bool ShowCoilFrostWarning; // Used for one-time warning message if defrost cycles insufficient to melt ice
+    thread_local extern Array1D_bool ShowCoilFrostWarning; // Used for one-time warning message if defrost cycles insufficient to melt ice
 
     // Refrigeration Plant connections checks
-    extern Array1D_bool CheckEquipNameRackWaterCondenser;
-    extern Array1D_bool CheckEquipNameWaterCondenser;
+    thread_local extern Array1D_bool CheckEquipNameRackWaterCondenser;
+    thread_local extern Array1D_bool CheckEquipNameWaterCondenser;
 
     // Control variables
-    extern Array1D_bool RefrigPresentInZone; // Used when translating rate to energy for reporting
+    thread_local extern Array1D_bool RefrigPresentInZone; // Used when translating rate to energy for reporting
     //  total refrigeration impact on a zone
-    extern Array1D_bool CheckChillerSetName; // used when sim chiller set called form zone equip manager
+    thread_local extern Array1D_bool CheckChillerSetName; // used when sim chiller set called form zone equip manager
 
-    extern bool GetRefrigerationInputFlag; // Flag to show case input should be read
-    extern bool HaveRefrigRacks;           // Is initialized as TRUE and remains true when
+    thread_local extern bool GetRefrigerationInputFlag; // Flag to show case input should be read
+    thread_local extern bool HaveRefrigRacks;           // Is initialized as TRUE and remains true when
     // refrigerated racks exist in the input deck
-    extern bool HaveDetailedRefrig; // Is initialized as TRUE and remains true when
+    thread_local extern bool HaveDetailedRefrig; // Is initialized as TRUE and remains true when
     // detailed refrigeration systems exist in the input deck
-    extern bool HaveDetailedTransRefrig; // Is initialized as TRUE and remains true when
+    thread_local extern bool HaveDetailedTransRefrig; // Is initialized as TRUE and remains true when
     // detailed transcritical CO2 refrigeration systems exist in the input deck
-    extern bool ManageRefrigeration; // Is initialized as TRUE and remains true when
+    thread_local extern bool ManageRefrigeration; // Is initialized as TRUE and remains true when
     // refrigerated racks or detailed systems exist in the input deck
-    extern bool UseSysTimeStep; // Flag is true IF working on a system that includes a coil cooling a controlled zone on the system time step,
+    thread_local extern bool UseSysTimeStep; // Flag is true IF working on a system that includes a coil cooling a controlled zone on the system time step,
     // All other refrigeration calculations for case and walkin systems done on the load time step
-    extern bool HaveCasesOrWalkins; // Is initialized as TRUE and remains true when
+    thread_local extern bool HaveCasesOrWalkins; // Is initialized as TRUE and remains true when
     // refrigerated cases or walkins exist in the input deck
-    extern bool HaveChillers; // Is initialized as TRUE and remains true when
+    thread_local extern bool HaveChillers; // Is initialized as TRUE and remains true when
     // chillers exist in the input deck
     // SUBROUTINE SPECIFICATIONS FOR MODULE RefrigeratedCase:
 
@@ -1701,24 +1701,24 @@ namespace RefrigeratedCase {
     };
 
     // Object Data
-    extern Array1D<RefrigCaseData> RefrigCase;
-    extern Array1D<RefrigRackData> RefrigRack;
-    extern Array1D<CaseRAFractionData> CaseRAFraction;
-    extern Array1D<RefrigSystemData> System;
-    extern Array1D<TransRefrigSystemData> TransSystem;
-    extern Array1D<RefrigCondenserData> Condenser;
-    extern Array1D<RefrigCompressorData> Compressor;
-    extern Array1D<RefrigGasCoolerData> GasCooler;
-    extern Array1D<SubcoolerData> Subcooler;
-    extern Array1D<CaseAndWalkInListDef> CaseAndWalkInList;
-    extern Array1D<CompressorListDef> CompressorLists;
-    extern Array1D<SecondaryLoopData> Secondary;
-    extern Array1D<TransferLoadListDef> TransferLoadList;
-    extern Array1D<WalkInData> WalkIn;
-    extern Array1D<WarehouseCoilData> WarehouseCoil;
-    extern Array1D<AirChillerSetData> AirChillerSet;
-    extern Array1D<CoilCreditData> CoilSysCredit;
-    extern Array1D<CaseWIZoneReportData> CaseWIZoneReport;
+    thread_local extern Array1D<RefrigCaseData> RefrigCase;
+    thread_local extern Array1D<RefrigRackData> RefrigRack;
+    thread_local extern Array1D<CaseRAFractionData> CaseRAFraction;
+    thread_local extern Array1D<RefrigSystemData> System;
+    thread_local extern Array1D<TransRefrigSystemData> TransSystem;
+    thread_local extern Array1D<RefrigCondenserData> Condenser;
+    thread_local extern Array1D<RefrigCompressorData> Compressor;
+    thread_local extern Array1D<RefrigGasCoolerData> GasCooler;
+    thread_local extern Array1D<SubcoolerData> Subcooler;
+    thread_local extern Array1D<CaseAndWalkInListDef> CaseAndWalkInList;
+    thread_local extern Array1D<CompressorListDef> CompressorLists;
+    thread_local extern Array1D<SecondaryLoopData> Secondary;
+    thread_local extern Array1D<TransferLoadListDef> TransferLoadList;
+    thread_local extern Array1D<WalkInData> WalkIn;
+    thread_local extern Array1D<WarehouseCoilData> WarehouseCoil;
+    thread_local extern Array1D<AirChillerSetData> AirChillerSet;
+    thread_local extern Array1D<CoilCreditData> CoilSysCredit;
+    thread_local extern Array1D<CaseWIZoneReportData> CaseWIZoneReport;
 
     // Functions
 

@@ -140,19 +140,19 @@ namespace Fans {
     // MODULE PARAMETER DEFINITIONS
     // parameters describing fan types are contained in DataHVACGlobals (see USE statement above)
 
-    int const ExhaustFanCoupledToAvailManagers(150);
-    int const ExhaustFanDecoupledFromAvailManagers(151);
-    static std::string const BlankString;
+    thread_local int const ExhaustFanCoupledToAvailManagers(150);
+    thread_local int const ExhaustFanDecoupledFromAvailManagers(151);
+    thread_local static std::string const BlankString;
     // na
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumFans(0);               // The Number of Fans found in the Input
-    int NumNightVentPerf(0);      // number of FAN:NIGHT VENT PERFORMANCE objects found in the input
-    bool GetFanInputFlag(true);   // Flag set to make sure you get input once
-    bool LocalTurnFansOn(false);  // If True, overrides fan schedule and cycles ZoneHVAC component fans on
-    bool LocalTurnFansOff(false); // If True, overrides fan schedule and LocalTurnFansOn and cycles ZoneHVAC component fans off
+    thread_local int NumFans(0);               // The Number of Fans found in the Input
+    thread_local int NumNightVentPerf(0);      // number of FAN:NIGHT VENT PERFORMANCE objects found in the input
+    thread_local bool GetFanInputFlag(true);   // Flag set to make sure you get input once
+    thread_local bool LocalTurnFansOn(false);  // If True, overrides fan schedule and cycles ZoneHVAC component fans on
+    thread_local bool LocalTurnFansOff(false); // If True, overrides fan schedule and LocalTurnFansOn and cycles ZoneHVAC component fans off
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -160,12 +160,12 @@ namespace Fans {
         // These are purposefully not in the header file as an extern variable. No one outside of this module should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool MyOneTimeFlag(true);             // used for allocation in Init
-        bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local bool MyOneTimeFlag(true);             // used for allocation in Init
+        thread_local bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
 
-        Array1D_bool MySizeFlag;
-        Array1D_bool MyEnvrnFlag;
-        Array1D_bool CheckEquipName;
+        thread_local Array1D_bool MySizeFlag;
+        thread_local Array1D_bool MyEnvrnFlag;
+        thread_local Array1D_bool CheckEquipName;
     } // namespace
 
     // Subroutine Specifications for the Module
@@ -184,10 +184,10 @@ namespace Fans {
     // Utility routines for module
 
     // Object Data
-    Array1D<FanEquipConditions> Fan;
-    std::unordered_map<std::string, std::string> UniqueFanNames;
-    Array1D<NightVentPerfData> NightVentPerf;
-    Array1D<FanNumericFieldData> FanNumericFields;
+    thread_local Array1D<FanEquipConditions> Fan;
+    thread_local std::unordered_map<std::string, std::string> UniqueFanNames;
+    thread_local Array1D<NightVentPerfData> NightVentPerf;
+    thread_local Array1D<FanNumericFieldData> FanNumericFields;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -331,8 +331,8 @@ namespace Fans {
         int NumNums;
         int checkNum;
         int IOStat;
-        static bool ErrorsFound(false);                        // If errors detected in input
-        static std::string const RoutineName("GetFanInput: "); // include trailing blank space
+        thread_local static bool ErrorsFound(false);                        // If errors detected in input
+        thread_local static std::string const RoutineName("GetFanInput: "); // include trailing blank space
         Array1D_string cAlphaFieldNames;
         Array1D_string cNumericFieldNames;
         Array1D_bool lNumericFieldBlanks;
@@ -1214,7 +1214,7 @@ namespace Fans {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeFan: "); // include trailing blank space
+        thread_local static std::string const RoutineName("SizeFan: "); // include trailing blank space
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1242,8 +1242,8 @@ namespace Fans {
         Real64 XmotorMax;                  // Factor for motor max eff curve [ln hp]
         Real64 MotorOutPwrRatio;           // Ratio of motor output power to max motor output power [-]
         Real64 MotorPLEff;                 // Motor normalized (part-load) efficiency [-]
-        static Real64 VFDSpdRatio(0.0);    // Ratio of motor speed to motor max speed [-]
-        static Real64 VFDOutPwrRatio(0.0); // Ratio of VFD output power to max VFD output power [-]
+        thread_local static Real64 VFDSpdRatio(0.0);    // Ratio of motor speed to motor max speed [-]
+        thread_local static Real64 VFDOutPwrRatio(0.0); // Ratio of VFD output power to max VFD output power [-]
         std::string CompName;              // component name
         std::string CompType;              // component type
         std::string SizingString;          // input field sizing description (e.g., Nominal Capacity)
@@ -1717,8 +1717,8 @@ namespace Fans {
         Real64 PartLoadFrac;
         // unused0909      REAL(r64) MaxFlowFrac   !Variable Volume Fan Max Flow Fraction [-]
         Real64 MinFlowFrac;                  // Variable Volume Fan Min Flow Fraction [-]
-        static Real64 FlowFracForPower(0.0); // Variable Volume Fan Flow Fraction for power calcs[-]
-        static Real64 FlowFracActual(0.0);   // actual VAV fan flow fraction
+        thread_local static Real64 FlowFracForPower(0.0); // Variable Volume Fan Flow Fraction for power calcs[-]
+        thread_local static Real64 FlowFracActual(0.0);   // actual VAV fan flow fraction
         Real64 FanShaftPower;                // power delivered to fan shaft
         int NVPerfNum;
 
@@ -1929,7 +1929,7 @@ namespace Fans {
         Real64 FanShaftPower;        // power delivered to fan shaft
         Real64 SpeedRaisedToPower;   // Result of the speed ratio raised to the power of n (Curve object)
         Real64 EffRatioAtSpeedRatio; // Efficeincy ratio at current speed ratio (Curve object)
-        static int ErrCount(0);
+        thread_local static int ErrCount(0);
 
         // unused0909   Tin        = Fan(FanNum)%InletAirTemp
         // unused0909   Win        = Fan(FanNum)%InletAirHumRat
@@ -2286,8 +2286,8 @@ namespace Fans {
         Real64 BeltPLEff;                  // Belt normalized (part-load) efficiency [-]
         Real64 MotorOutPwrRatio;           // Ratio of motor output power to max motor output power [-]
         Real64 MotorPLEff;                 // Motor normalized (part-load) efficiency [-]
-        static Real64 VFDSpdRatio(0.0);    // Ratio of motor speed to motor max speed [-]
-        static Real64 VFDOutPwrRatio(0.0); // Ratio of VFD output power to max VFD output power [-]
+        thread_local static Real64 VFDSpdRatio(0.0);    // Ratio of motor speed to motor max speed [-]
+        thread_local static Real64 VFDOutPwrRatio(0.0); // Ratio of VFD output power to max VFD output power [-]
         Real64 FanEnthalpyChange;          // Air enthalpy change due to fan, belt, and motor losses [kJ/kg]
 
         // Get inputs for night ventilation option

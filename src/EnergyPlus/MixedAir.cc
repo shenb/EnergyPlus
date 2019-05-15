@@ -165,49 +165,49 @@ namespace MixedAir {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    int const NoLockoutPossible(0);
-    int const LockoutWithHeatingPossible(1);
-    int const LockoutWithCompressorPossible(2);
+    thread_local int const NoLockoutPossible(0);
+    thread_local int const LockoutWithHeatingPossible(1);
+    thread_local int const LockoutWithCompressorPossible(2);
 
-    int const NoEconomizer(0);
+    thread_local int const NoEconomizer(0);
     // Changed by Amit as a part on New Feature Proposal
-    int const FixedDryBulb(1);
-    int const FixedEnthalpy(2);
-    int const DifferentialDryBulb(3);
-    int const DifferentialEnthalpy(4);
-    int const FixedDewPointAndDryBulb(5);
-    int const ElectronicEnthalpy(6);
-    int const DifferentialDryBulbAndEnthalpy(7);
+    thread_local int const FixedDryBulb(1);
+    thread_local int const FixedEnthalpy(2);
+    thread_local int const DifferentialDryBulb(3);
+    thread_local int const DifferentialEnthalpy(4);
+    thread_local int const FixedDewPointAndDryBulb(5);
+    thread_local int const ElectronicEnthalpy(6);
+    thread_local int const DifferentialDryBulbAndEnthalpy(7);
     // coil operation
-    int const On(1);  // normal coil operation
-    int const Off(0); // signal coil shouldn't run
+    thread_local int const On(1);  // normal coil operation
+    thread_local int const Off(0); // signal coil shouldn't run
     // component types addressed by this module
-    int const OAMixer_Num(1);
-    int const Fan_Simple_CV(2);
-    int const Fan_Simple_VAV(3);
-    int const WaterCoil_SimpleCool(4);
-    int const WaterCoil_Cooling(5);
-    int const WaterCoil_SimpleHeat(6);
-    int const SteamCoil_AirHeat(7);
-    int const WaterCoil_DetailedCool(8);
-    int const Coil_ElectricHeat(9);
-    int const Coil_GasHeat(10);
-    int const WaterCoil_CoolingHXAsst(11);
-    int const DXSystem(12);
-    int const HeatXchngr(13);
-    int const Desiccant(14);
-    int const Unglazed_SolarCollector(15);
-    int const EvapCooler(16);
-    int const PVT_AirBased(17);
-    int const Fan_ComponentModel(18); // cpw22Aug2010 (new)
-    int const DXHeatPumpSystem(19);
-    int const Coil_UserDefined(20);
-    int const Humidifier(21);
-    int const Fan_System_Object(22);
-    int const UnitarySystemModel(23);
+    thread_local int const OAMixer_Num(1);
+    thread_local int const Fan_Simple_CV(2);
+    thread_local int const Fan_Simple_VAV(3);
+    thread_local int const WaterCoil_SimpleCool(4);
+    thread_local int const WaterCoil_Cooling(5);
+    thread_local int const WaterCoil_SimpleHeat(6);
+    thread_local int const SteamCoil_AirHeat(7);
+    thread_local int const WaterCoil_DetailedCool(8);
+    thread_local int const Coil_ElectricHeat(9);
+    thread_local int const Coil_GasHeat(10);
+    thread_local int const WaterCoil_CoolingHXAsst(11);
+    thread_local int const DXSystem(12);
+    thread_local int const HeatXchngr(13);
+    thread_local int const Desiccant(14);
+    thread_local int const Unglazed_SolarCollector(15);
+    thread_local int const EvapCooler(16);
+    thread_local int const PVT_AirBased(17);
+    thread_local int const Fan_ComponentModel(18); // cpw22Aug2010 (new)
+    thread_local int const DXHeatPumpSystem(19);
+    thread_local int const Coil_UserDefined(20);
+    thread_local int const Humidifier(21);
+    thread_local int const Fan_System_Object(22);
+    thread_local int const UnitarySystemModel(23);
 
-    int const ControllerOutsideAir(2);
-    int const ControllerStandAloneERV(3);
+    thread_local int const ControllerOutsideAir(2);
+    thread_local int const ControllerStandAloneERV(3);
 
     // Zone Outdoor Air Method
     // INTEGER, PARAMETER :: ZOAM_FlowPerPerson = 1  ! set the outdoor air flow rate based on number of people in the zone
@@ -232,7 +232,7 @@ namespace MixedAir {
     // INTEGER, PARAMETER :: SOAM_ProportionalControlDesOcc = 7     ! Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
     //                                                       ! to calculate the system level outdoor air flow rates based on design occupancy
 
-    Array1D_string const CurrentModuleObjects(8,
+    thread_local Array1D_string const CurrentModuleObjects(8,
                                               {"AirLoopHVAC:OutdoorAirSystem",
                                                "AirLoopHVAC:OutdoorAirSystem:EquipmentList",
                                                "AirLoopHVAC:ControllerList",
@@ -244,47 +244,47 @@ namespace MixedAir {
 
     // Parameters below (CMO - Current Module Object.  used primarily in Get Inputs)
     // Multiple Get Input routines in this module or these would be in individual routines.
-    int const CMO_OASystem(1);
-    int const CMO_AirLoopEqList(2);
-    int const CMO_ControllerList(3);
-    int const CMO_SysAvailMgrList(4);
-    int const CMO_OAController(5);
-    int const CMO_ERVController(6);
-    int const CMO_MechVentilation(7);
-    int const CMO_OAMixer(8);
+    thread_local int const CMO_OASystem(1);
+    thread_local int const CMO_AirLoopEqList(2);
+    thread_local int const CMO_ControllerList(3);
+    thread_local int const CMO_SysAvailMgrList(4);
+    thread_local int const CMO_OAController(5);
+    thread_local int const CMO_ERVController(6);
+    thread_local int const CMO_MechVentilation(7);
+    thread_local int const CMO_OAMixer(8);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // Type declarations in MixedAir module
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumControllerLists(0);     // Number of Controller Lists
-    int NumOAControllers(0);       // Number of OA Controllers (includes ERV controllers)
-    int NumERVControllers(0);      // Number of ERV Controllers
-    int NumOAMixers(0);            // Number of Outdoor Air Mixers
-    int NumVentMechControllers(0); // Number of Controller:MechanicalVentilation objects in input deck
+    thread_local int NumControllerLists(0);     // Number of Controller Lists
+    thread_local int NumOAControllers(0);       // Number of OA Controllers (includes ERV controllers)
+    thread_local int NumERVControllers(0);      // Number of ERV Controllers
+    thread_local int NumOAMixers(0);            // Number of Outdoor Air Mixers
+    thread_local int NumVentMechControllers(0); // Number of Controller:MechanicalVentilation objects in input deck
 
-    Array1D_bool MyOneTimeErrorFlag;
-    Array1D_bool MyOneTimeCheckUnitarySysFlag;
-    Array1D_bool initOASysFlag;
-    bool GetOASysInputFlag(true);        // Flag set to make sure you get input once
-    bool GetOAMixerInputFlag(true);      // Flag set to make sure you get input once
-    bool GetOAControllerInputFlag(true); // Flag set to make sure you get input once
+    thread_local Array1D_bool MyOneTimeErrorFlag;
+    thread_local Array1D_bool MyOneTimeCheckUnitarySysFlag;
+    thread_local Array1D_bool initOASysFlag;
+    thread_local bool GetOASysInputFlag(true);        // Flag set to make sure you get input once
+    thread_local bool GetOAMixerInputFlag(true);      // Flag set to make sure you get input once
+    thread_local bool GetOAControllerInputFlag(true); // Flag set to make sure you get input once
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
         // to facilitate easier unit testing of those functions.
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool InitOAControllerOneTimeFlag(true);
-        Array1D_bool InitOAControllerSetPointCheckFlag(true);
-        bool InitOAControllerSetUpAirLoopHVACVariables(true);
-        bool AllocateOAControllersFlag(true);
-        Array1D_string DesignSpecOAObjName;     // name of the design specification outdoor air object
-        Array1D_int DesignSpecOAObjIndex;       // index of the design specification outdoor air object
-        Array1D_string VentMechZoneOrListName;  // Zone or Zone List to apply mechanical ventilation rate
-        Array1D_string DesignSpecZoneADObjName; // name of the design specification zone air distribution object
-        Array1D_int DesignSpecZoneADObjIndex;   // index of the design specification zone air distribution object
+        thread_local bool InitOAControllerOneTimeFlag(true);
+        thread_local Array1D_bool InitOAControllerSetPointCheckFlag(true);
+        thread_local bool InitOAControllerSetUpAirLoopHVACVariables(true);
+        thread_local bool AllocateOAControllersFlag(true);
+        thread_local Array1D_string DesignSpecOAObjName;     // name of the design specification outdoor air object
+        thread_local Array1D_int DesignSpecOAObjIndex;       // index of the design specification outdoor air object
+        thread_local Array1D_string VentMechZoneOrListName;  // Zone or Zone List to apply mechanical ventilation rate
+        thread_local Array1D_string DesignSpecZoneADObjName; // name of the design specification zone air distribution object
+        thread_local Array1D_int DesignSpecZoneADObjIndex;   // index of the design specification zone air distribution object
     }                                           // namespace
     // SUBROUTINE SPECIFICATIONS FOR MODULE MixedAir
     // Driver/Manager Routines
@@ -302,12 +302,12 @@ namespace MixedAir {
     // Utility routines for the module
 
     // Object Data
-    Array1D<ControllerListProps> ControllerLists;
-    Array1D<OAControllerProps> OAController;
-    Array1D<OAMixerProps> OAMixer;
-    Array1D<VentilationMechanicalProps> VentilationMechanical;
-    std::unordered_set<std::string> ControllerListUniqueNames;
-    std::unordered_map<std::string, std::string> OAControllerUniqueNames;
+    thread_local Array1D<ControllerListProps> ControllerLists;
+    thread_local Array1D<OAControllerProps> OAController;
+    thread_local Array1D<OAMixerProps> OAMixer;
+    thread_local Array1D<VentilationMechanicalProps> VentilationMechanical;
+    thread_local std::unordered_set<std::string> ControllerListUniqueNames;
+    thread_local std::unordered_map<std::string, std::string> OAControllerUniqueNames;
 
     // Functions
 
@@ -414,9 +414,9 @@ namespace MixedAir {
     void SimOASysComponents(int const OASysNum, bool const FirstHVACIteration, int const AirLoopNum)
     {
         int CompNum;
-        static std::string CompType; // Tuned Made static
-        static std::string CompName; // Tuned Made static
-        static std::string CtrlName; // Tuned Made static
+        thread_local static std::string CompType; // Tuned Made static
+        thread_local static std::string CompName; // Tuned Made static
+        thread_local static std::string CtrlName; // Tuned Made static
         bool ReSim(false);
         bool Sim(true);
         bool OAHeatCoil(false);
@@ -494,8 +494,8 @@ namespace MixedAir {
         // INTEGER :: CtrlNum
         int OAMixerNum;
         int OAControllerNum;         // OA controller index in OAController
-        static std::string CompType; // Tuned Made static
-        static std::string CompName; // Tuned Made static
+        thread_local static std::string CompType; // Tuned Made static
+        thread_local static std::string CompName; // Tuned Made static
         bool FatalErrorFlag(false);
 
         // SimOutsideAirSys can handle only 1 controller right now.  This must be
@@ -939,7 +939,7 @@ namespace MixedAir {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOutsideAirSysInputs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOutsideAirSysInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -960,15 +960,15 @@ namespace MixedAir {
         int InListNum;
         int ListNum;
         int NumSimpControllers; // number of Controller:Simple objects in an OA System
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         std::string CurrentModuleObject; // Object type for getting and messages
         Array1D_string cAlphaFields;     // Alpha field names
         Array1D_string cNumericFields;   // Numeric field names
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        static int MaxNums(0);           // Maximum number of numeric input fields
-        static int MaxAlphas(0);         // Maximum number of alpha input fields
-        static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        thread_local static int MaxNums(0);           // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0);         // Maximum number of alpha input fields
+        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //  certain object in the input file
 
         if (!GetOASysInputFlag) return;
@@ -1309,7 +1309,7 @@ namespace MixedAir {
         using OutAirNodeManager::CheckOutAirNodeNumber;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOAControllerInputs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOAControllerInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -1328,7 +1328,7 @@ namespace MixedAir {
         Array1D_string cNumericFields;   // Numeric field names
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        static bool ErrorsFound(false);  // Flag identifying errors found during get input
+        thread_local static bool ErrorsFound(false);  // Flag identifying errors found during get input
         int ZoneListNum;                 // Index to Zone List
         int MechVentZoneCount;           // Index counter for zones with mechanical ventilation
         int NumArg;                      // Number of arguments from GetObjectDefMaxArgs call
@@ -1336,19 +1336,19 @@ namespace MixedAir {
         int MaxNums;                     // Maximum numbers in multiple objects
 
         int NumGroups; // Number of extensible input groups of the VentilationMechanical object
-        static int ObjIndex(0);
-        static int EquipListIndex(0);
-        static int EquipNum(0);
-        static int EquipListNum(0);
-        static int ADUNum(0);
+        thread_local static int ObjIndex(0);
+        thread_local static int EquipListIndex(0);
+        thread_local static int EquipNum(0);
+        thread_local static int EquipListNum(0);
+        thread_local static int ADUNum(0);
         int jZone;
         int i;
 
         // Formats
-        static gio::Fmt Format_700("('!<Controller:MechanicalVentilation>,Name,Availability Schedule Name,Demand Controlled Ventilation "
+        thread_local static gio::Fmt Format_700("('!<Controller:MechanicalVentilation>,Name,Availability Schedule Name,Demand Controlled Ventilation "
                                    "{Yes/No},','System Outdoor Air Method,Zone Maximum Outdoor Air Fraction,Number of Zones,Zone Name,DSOA "
                                    "Name,DSZAD Name')");
-        static gio::Fmt fmtA("(A)");
+        thread_local static gio::Fmt fmtA("(A)");
 
         // First, call other get input routines in this module to make sure data is filled during this routine.
         if (GetOASysInputFlag) { // Gets input for object  first time Sim routine is called
@@ -2099,7 +2099,7 @@ namespace MixedAir {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOAMixerInputs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOAMixerInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -2115,7 +2115,7 @@ namespace MixedAir {
         Array1D_string cNumericFields;   // Numeric field names
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
 
         if (!GetOAMixerInputFlag) return;
 
@@ -2253,7 +2253,7 @@ namespace MixedAir {
         using SetPointManager::GetMixedAirNumWithCoilFreezingCheck;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOAControllerInputs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOAControllerInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -2654,10 +2654,10 @@ namespace MixedAir {
         using EMSManager::CheckIfNodeSetPointManagedByEMS;
         using EMSManager::iTemperatureSetPoint;
 
-        static Array1D_bool OAControllerMyOneTimeFlag; // One-time initialization flag
-        static Array1D_bool OAControllerMyEnvrnFlag;   // One-time initialization flag
-        static Array1D_bool OAControllerMySizeFlag;    // One-time initialization flag
-        static Array1D_bool MechVentCheckFlag;         // One-time initialization flag
+        thread_local static Array1D_bool OAControllerMyOneTimeFlag; // One-time initialization flag
+        thread_local static Array1D_bool OAControllerMyEnvrnFlag;   // One-time initialization flag
+        thread_local static Array1D_bool OAControllerMySizeFlag;    // One-time initialization flag
+        thread_local static Array1D_bool MechVentCheckFlag;         // One-time initialization flag
         bool FoundZone;                                // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
         bool FoundAreaZone;                            // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
         bool FoundPeopleZone;                          // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
@@ -3514,8 +3514,8 @@ namespace MixedAir {
         // SUBROUTINE ARGUMENT DEFINITIONS
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcOAController: ");
-        static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_OAController));
+        thread_local static std::string const RoutineName("CalcOAController: ");
+        thread_local static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_OAController));
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3789,8 +3789,8 @@ namespace MixedAir {
         using General::RoundSigDigits;
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
-        static std::string const RoutineName("CalcMechVentController: ");
-        static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_MechVentilation));
+        thread_local static std::string const RoutineName("CalcMechVentController: ");
+        thread_local static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_MechVentilation));
 
         // new local variables for DCV
         Real64 ZoneOAPeople; // Zone OA flow rate based on number of occupants [m3/s]
@@ -3823,13 +3823,13 @@ namespace MixedAir {
         Real64 ZoneContamControllerSched; // Schedule value for ZoneControl:ContaminantController
         Real64 CO2PeopleGeneration;       // CO2 generation from people at design level
 
-        static Real64 Ep(1.0); // zone primary air fraction
-        static Real64 Er(0.0); // zone secondary recirculation fraction
-        static Real64 Fa(1.0); // temporary variable used in multi-path VRP calc
-        static Real64 Fb(1.0);
-        static Real64 Fc(1.0);
-        static Real64 Xs(1.0);  // uncorrected system outdoor air fraction
-        static Real64 Evz(1.0); // zone ventilation efficiency
+        thread_local static Real64 Ep(1.0); // zone primary air fraction
+        thread_local static Real64 Er(0.0); // zone secondary recirculation fraction
+        thread_local static Real64 Fa(1.0); // temporary variable used in multi-path VRP calc
+        thread_local static Real64 Fb(1.0);
+        thread_local static Real64 Fc(1.0);
+        thread_local static Real64 Xs(1.0);  // uncorrected system outdoor air fraction
+        thread_local static Real64 Evz(1.0); // zone ventilation efficiency
 
         int PriNode;   // primary node of zone terminal unit
         int InletNode; // outlet node of zone terminal unit
@@ -4364,8 +4364,8 @@ namespace MixedAir {
         using General::SolveRoot;
         using SetPointManager::GetCoilFreezingCheckFlag;
 
-        static std::string const RoutineName("CalcOAEconomizer: ");
-        static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_OAController));
+        thread_local static std::string const RoutineName("CalcOAEconomizer: ");
+        thread_local static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_OAController));
         int const MaxIte(500);                 // Maximum number of iterations
         Real64 const Acc(0.0001);              // Accuracy of result
         bool AirLoopEconoLockout;              // Economizer lockout flag
@@ -4374,7 +4374,7 @@ namespace MixedAir {
         Real64 EconomizerAirFlowScheduleValue; // value of economizer operation schedule (push-button type control schedule)
         Real64 MaximumOAFracBySetPoint;        // The maximum OA fraction due to freezing cooling coil check
         Real64 OutAirSignal;                   // Used to set OA mass flow rate
-        static Array1D<Real64> Par(6);         // Par(1) = mixed air node number //Tuned Made static
+        thread_local static Array1D<Real64> Par(6);         // Par(1) = mixed air node number //Tuned Made static
                                                // Par(2) = return air node number
                                                // Par(3) = outside air node number
                                                // Par(4) = mixed air mass flow rate
@@ -4819,7 +4819,7 @@ namespace MixedAir {
         using WaterCoils::SetCoilDesFlow;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_OAController));
+        thread_local static std::string const CurrentModuleObject(CurrentModuleObjects(CMO_OAController));
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 OAFlowRatio;   // Used for error checking
@@ -6075,9 +6075,9 @@ namespace MixedAir {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CheckControllerLists");
-        static std::string const CurrentModuleObject("AirLoopHVAC:ControllerList");
-        static std::string const AirLoopObject("AirLoopHVAC");
+        thread_local static std::string const RoutineName("CheckControllerLists");
+        thread_local static std::string const CurrentModuleObject("AirLoopHVAC:ControllerList");
+        thread_local static std::string const AirLoopObject("AirLoopHVAC");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;

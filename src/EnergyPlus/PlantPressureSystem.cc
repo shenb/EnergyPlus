@@ -107,9 +107,9 @@ namespace PlantPressureSystem {
 
     // Data
     // MODULE PARAMETER/ENUMERATIONS DEFINITIONS:
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
     namespace {
-        bool InitPressureDropOneTimeInit(true);
+        thread_local bool InitPressureDropOneTimeInit(true);
     }
 
     void clear_state()
@@ -186,13 +186,13 @@ namespace PlantPressureSystem {
         using DataPlant::Press_NoPressure;
         using DataPlant::SupplySide;
 
-        static Array1D_bool LoopInit;
+        thread_local static Array1D_bool LoopInit;
 
         // Simulation Variables
         int NumBranches;
         int BranchPressureTally;
-        static Array1D_bool FullParallelBranchSetFound(2);
-        static bool CommonPipeErrorEncountered(false);
+        thread_local static Array1D_bool FullParallelBranchSetFound(2);
+        thread_local static bool CommonPipeErrorEncountered(false);
 
         if (InitPressureDropOneTimeInit) {
             // First allocate the initialization array to each plant loop
@@ -397,8 +397,8 @@ namespace PlantPressureSystem {
         using FluidProperties::GetViscosityGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcPlantPressureSystem");
-        static std::string const DummyFluid;
+        thread_local static std::string const RoutineName("CalcPlantPressureSystem");
+        thread_local static std::string const DummyFluid;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int FluidIndex;               // Plant loop level Fluid Index
@@ -411,7 +411,7 @@ namespace PlantPressureSystem {
         Real64 NodeDensity;           // Nodal density {kg/m3}
         Real64 NodeViscosity;         // Nodal viscosity, assuming mu here (dynamic viscosity)
         Real64 BranchDeltaPress(0.0); // Pressure drop for component, {Pa}
-        static int ErrorCounter(0);   // For proper error handling
+        thread_local static int ErrorCounter(0);   // For proper error handling
 
         // Exit early if need be
         if (!PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).HasPressureComponents) {
@@ -872,9 +872,9 @@ namespace PlantPressureSystem {
         Real64 ResolvedLoopMassFlowRate;
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ResolvedLoopMassFlowRate: ");
+        thread_local static std::string const RoutineName("ResolvedLoopMassFlowRate: ");
         int const MaxIters(100);
-        static std::string const DummyFluidName;
+        thread_local static std::string const DummyFluidName;
         Real64 const PressureConvergeCriteria(0.1); // Pa
         Real64 const ZeroTolerance(0.0001);
 
@@ -891,8 +891,8 @@ namespace PlantPressureSystem {
         Real64 LocalSystemMassFlow;
         Real64 LoopEffectiveK;
         bool Converged;
-        static int ZeroKWarningCounter(0);
-        static int MaxIterWarningCounter(0);
+        thread_local static int ZeroKWarningCounter(0);
+        thread_local static int MaxIterWarningCounter(0);
         Array1D<Real64> MassFlowIterativeHistory(3);
         Real64 MdotDeltaLatest;
         Real64 MdotDeltaPrevious;

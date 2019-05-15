@@ -69,32 +69,32 @@ namespace DataDefineEquip {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS
-    extern int const MaxZoneAirComponents;
+    thread_local extern int const MaxZoneAirComponents;
 
     // Equipment Types covered by ZoneAirLoopEquipment:
-    extern int const DualDuctConstVolume;
-    extern int const DualDuctVAV;
-    extern int const SingleDuctVAVReheat;
-    extern int const SingleDuctVAVNoReheat;
-    extern int const SingleDuctConstVolReheat;
-    extern int const SingleDuctConstVolNoReheat;
-    extern int const SingleDuct_SeriesPIU_Reheat;
-    extern int const SingleDuct_ParallelPIU_Reheat;
-    extern int const SingleDuct_ConstVol_4PipeInduc;
-    extern int const SingleDuctVAVReheatVSFan;
-    extern int const SingleDuctCBVAVReheat;
-    extern int const SingleDuctCBVAVNoReheat;
-    extern int const SingleDuctConstVolCooledBeam;
-    extern int const DualDuctVAVOutdoorAir;
-    extern int const SingleDuctUserDefined;
-    extern int const SingleDuctATMixer;
-    extern int const SingleDuctConstVolFourPipeBeam;
+    thread_local extern int const DualDuctConstVolume;
+    thread_local extern int const DualDuctVAV;
+    thread_local extern int const SingleDuctVAVReheat;
+    thread_local extern int const SingleDuctVAVNoReheat;
+    thread_local extern int const SingleDuctConstVolReheat;
+    thread_local extern int const SingleDuctConstVolNoReheat;
+    thread_local extern int const SingleDuct_SeriesPIU_Reheat;
+    thread_local extern int const SingleDuct_ParallelPIU_Reheat;
+    thread_local extern int const SingleDuct_ConstVol_4PipeInduc;
+    thread_local extern int const SingleDuctVAVReheatVSFan;
+    thread_local extern int const SingleDuctCBVAVReheat;
+    thread_local extern int const SingleDuctCBVAVNoReheat;
+    thread_local extern int const SingleDuctConstVolCooledBeam;
+    thread_local extern int const DualDuctVAVOutdoorAir;
+    thread_local extern int const SingleDuctUserDefined;
+    thread_local extern int const SingleDuctATMixer;
+    thread_local extern int const SingleDuctConstVolFourPipeBeam;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
     // components of air system
-    extern int NumAirDistUnits;
+    thread_local extern int NumAirDistUnits;
 
     // Types
 
@@ -151,7 +151,7 @@ namespace DataDefineEquip {
     };
 
     // Object Data
-    extern Array1D<ZoneAirEquip> AirDistUnit; // Used to specify zone related
+    thread_local extern Array1D<ZoneAirEquip> AirDistUnit; // Used to specify zone related
 
     // Clears the global data in DataDefineEquip.
     // Needed for unit tests, should not be normally called.

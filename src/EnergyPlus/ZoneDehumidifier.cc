@@ -125,20 +125,20 @@ namespace ZoneDehumidifier {
     // MODULE PARAMETER DEFINITIONS:
 
     // Unit type index
-    int const ZoneDehumidUnit(1); // 1 is the index for ZoneHVAC:Dehumidifier:DX
+    thread_local int const ZoneDehumidUnit(1); // 1 is the index for ZoneHVAC:Dehumidifier:DX
 
     // Water Systems
-    int const CondensateDiscarded(1001); // Default mode where water is "lost"
-    int const CondensateToTank(1002);    // Collect coil condensate from air and store in water storage tank
+    thread_local int const CondensateDiscarded(1001); // Default mode where water is "lost"
+    thread_local int const CondensateToTank(1002);    // Collect coil condensate from air and store in water storage tank
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumDehumidifiers(0); // Number of zone dehumidifier objects in the input file
+    thread_local int NumDehumidifiers(0); // Number of zone dehumidifier objects in the input file
 
-    bool GetInputFlag(true); // Set to FALSE after first time input is "gotten"
-    Array1D_bool CheckEquipName;
+    thread_local bool GetInputFlag(true); // Set to FALSE after first time input is "gotten"
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
     // Driver/Manager Routines
@@ -156,7 +156,7 @@ namespace ZoneDehumidifier {
     // Get either inlet or outlet node number
 
     // Object Data
-    Array1D<ZoneDehumidifierData> ZoneDehumid;
+    thread_local Array1D<ZoneDehumidifierData> ZoneDehumid;
 
     // Functions
 
@@ -279,8 +279,8 @@ namespace ZoneDehumidifier {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetZoneDehumidifierInput");
-        static std::string const CurrentModuleObject("ZoneHVAC:Dehumidifier:DX");
+        thread_local static std::string const RoutineName("GetZoneDehumidifierInput");
+        thread_local static std::string const CurrentModuleObject("ZoneHVAC:Dehumidifier:DX");
         Real64 const RatedInletAirTemp(26.7);
         Real64 const RatedInletAirRH(60.0);
 
@@ -292,17 +292,17 @@ namespace ZoneDehumidifier {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneDehumidIndex;           // Loop index
-        static int NumAlphas(0);        // Number of Alphas to allocate arrays, then used for each GetObjectItem call
-        static int NumNumbers(0);       // Number of Numbers to allocate arrays, then used for each GetObjectItem call
+        thread_local static int NumAlphas(0);        // Number of Alphas to allocate arrays, then used for each GetObjectItem call
+        thread_local static int NumNumbers(0);       // Number of Numbers to allocate arrays, then used for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         Array1D_string Alphas;          // Alpha input items for object
         Array1D_string cAlphaFields;    // Alpha field names
         Array1D_string cNumericFields;  // Numeric field names
         Array1D<Real64> Numbers;        // Numeric input items for object
         Array1D_bool lAlphaBlanks;      // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;    // Logical array, numeric field input BLANK = .TRUE.
-        static int TotalArgs(0);        // Total number of alpha and numeric arguments (max)
+        thread_local static int TotalArgs(0);        // Total number of alpha and numeric arguments (max)
         Real64 CurveVal;                // Output from curve object (water removal or energy factor curves)
 
         NumDehumidifiers = inputProcessor->getNumObjectsFound(CurrentModuleObject);
@@ -644,7 +644,7 @@ namespace ZoneDehumidifier {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitZoneDehumidifier");
+        thread_local static std::string const RoutineName("InitZoneDehumidifier");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -653,10 +653,10 @@ namespace ZoneDehumidifier {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyEnvrnFlag; // Used for initializations each begin environment flag
+        thread_local static Array1D_bool MyEnvrnFlag; // Used for initializations each begin environment flag
         //  LOGICAL, ALLOCATABLE, SAVE, DIMENSION(:) :: MySizeFlag  ! Used for sizing zone dehumidifier inputs one time
-        static bool MyOneTimeFlag(true);             // initialization flag
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static bool MyOneTimeFlag(true);             // initialization flag
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int LoopIndex;                               // DO loop index
         int AirInletNode;                            // Inlet air node number
         Real64 RatedAirHumrat;                       // Humidity ratio (kg/kg) at rated inlet air conditions of 26.6667C, 60% RH
@@ -800,7 +800,7 @@ namespace ZoneDehumidifier {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcZoneDehumidifier");
+        thread_local static std::string const RoutineName("CalcZoneDehumidifier");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -827,8 +827,8 @@ namespace ZoneDehumidifier {
         Real64 hfg;                     // Enthalpy of evaporation of inlet air (J/kg)
         Real64 AirMassFlowRate;         // Air mass flow rate through this dehumidifier (kg/s)
         Real64 Cp;                      // Heat capacity of inlet air (J/kg-C)
-        static int AirInletNodeNum(0);  // Node number for the inlet air to the dehumidifier
-        static int AirOutletNodeNum(0); // Node number for the outlet air from the dehumidifier
+        thread_local static int AirInletNodeNum(0);  // Node number for the inlet air to the dehumidifier
+        thread_local static int AirOutletNodeNum(0); // Node number for the outlet air from the dehumidifier
 
         SensibleOutput = 0.0;
         LatentOutput = 0.0;

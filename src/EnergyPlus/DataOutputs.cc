@@ -83,8 +83,8 @@ namespace DataOutputs {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const NumMonthlyReports(62);
-    Array1D_string const MonthlyNamedReports(NumMonthlyReports,
+    thread_local int const NumMonthlyReports(62);
+    thread_local Array1D_string const MonthlyNamedReports(NumMonthlyReports,
                                              {"ZONECOOLINGSUMMARYMONTHLY",
                                               "ZONEHEATINGSUMMARYMONTHLY",
                                               "ZONEELECTRICSUMMARYMONTHLY",
@@ -151,18 +151,18 @@ namespace DataOutputs {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    int MaxConsideredOutputVariables(0); // Max Array size for OutputVariable pre-scanned
-    int NumConsideredOutputVariables(0); // Number of variables - pre-scanned, allowed for output
-    int iNumberOfRecords;                // Number of records in input
-    int iNumberOfDefaultedFields;        // number of defaulted fields
-    int iTotalFieldsWithDefaults;        // number of fields that can be defaulted
-    int iNumberOfAutoSizedFields;        // number of autosized fields
-    int iTotalAutoSizableFields;         // number of fields that can be autosized
-    int iNumberOfAutoCalcedFields;       // number of autocalculated fields
-    int iTotalAutoCalculatableFields;    // number of fields that can be autocalculated
+    thread_local int MaxConsideredOutputVariables(0); // Max Array size for OutputVariable pre-scanned
+    thread_local int NumConsideredOutputVariables(0); // Number of variables - pre-scanned, allowed for output
+    thread_local int iNumberOfRecords;                // Number of records in input
+    thread_local int iNumberOfDefaultedFields;        // number of defaulted fields
+    thread_local int iTotalFieldsWithDefaults;        // number of fields that can be defaulted
+    thread_local int iNumberOfAutoSizedFields;        // number of autosized fields
+    thread_local int iTotalAutoSizableFields;         // number of fields that can be autosized
+    thread_local int iNumberOfAutoCalcedFields;       // number of autocalculated fields
+    thread_local int iTotalAutoCalculatableFields;    // number of fields that can be autocalculated
 
     // Object Data
-    std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables>> OutputVariablesForSimulation;
+    thread_local std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables>> OutputVariablesForSimulation;
     // Functions
 
     OutputReportingVariables::OutputReportingVariables(std::string const &KeyValue, std::string const &VariableName)

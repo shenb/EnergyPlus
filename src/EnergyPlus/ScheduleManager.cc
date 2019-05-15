@@ -115,9 +115,9 @@ namespace ScheduleManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    int const MaxDayTypes(12);
-    static std::string const BlankString;
-    Array1D_string const ValidDayTypes(MaxDayTypes,
+    thread_local int const MaxDayTypes(12);
+    thread_local static std::string const BlankString;
+    thread_local Array1D_string const ValidDayTypes(MaxDayTypes,
                                        {"Sunday",
                                         "Monday",
                                         "Tuesday",
@@ -131,8 +131,8 @@ namespace ScheduleManager {
                                         "CustomDay1",
                                         "CustomDay2"});
 
-    int const NumScheduleTypeLimitUnitTypes(14);
-    Array1D_string const ScheduleTypeLimitUnitTypes(NumScheduleTypeLimitUnitTypes,
+    thread_local int const NumScheduleTypeLimitUnitTypes(14);
+    thread_local Array1D_string const ScheduleTypeLimitUnitTypes(NumScheduleTypeLimitUnitTypes,
                                                     {"Dimensionless",
                                                      "Temperature",
                                                      "DeltaTemperature",
@@ -148,11 +148,11 @@ namespace ScheduleManager {
                                                      "Control",
                                                      "Mode"});
 
-    int const ScheduleInput_year(1);
-    int const ScheduleInput_compact(2);
-    int const ScheduleInput_file(3);
-    int const ScheduleInput_constant(4);
-    int const ScheduleInput_external(5);
+    thread_local int const ScheduleInput_year(1);
+    thread_local int const ScheduleInput_compact(2);
+    thread_local int const ScheduleInput_file(3);
+    thread_local int const ScheduleInput_constant(4);
+    thread_local int const ScheduleInput_external(5);
 
     // DERIVED TYPE DEFINITIONS
 
@@ -161,15 +161,15 @@ namespace ScheduleManager {
     // MODULE VARIABLE DECLARATIONS:
 
     // Integer Variables for the Module
-    int NumScheduleTypes(0);
-    int NumDaySchedules(0);
-    int NumWeekSchedules(0);
-    int NumSchedules(0);
+    thread_local int NumScheduleTypes(0);
+    thread_local int NumDaySchedules(0);
+    thread_local int NumWeekSchedules(0);
+    thread_local int NumSchedules(0);
 
     // Logical Variables for Module
-    bool ScheduleInputProcessed(false); // This is false until the Schedule Input has been processed.
-    bool ScheduleDSTSFileWarningIssued(false);
-    bool ScheduleFileShadingProcessed(false);
+    thread_local bool ScheduleInputProcessed(false); // This is false until the Schedule Input has been processed.
+    thread_local bool ScheduleDSTSFileWarningIssued(false);
+    thread_local bool ScheduleFileShadingProcessed(false);
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -177,22 +177,22 @@ namespace ScheduleManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool CheckScheduleValueMinMaxRunOnceOnly(true);
+        thread_local bool CheckScheduleValueMinMaxRunOnceOnly(true);
     } // namespace
 
     // Derived Types Variables
 
     // Object Data
-    Array1D<ScheduleTypeData> ScheduleType; // Allowed Schedule Types
-    Array1D<DayScheduleData> DaySchedule;   // Day Schedule Storage
-    std::unordered_map<std::string, std::string> UniqueDayScheduleNames;
-    Array1D<WeekScheduleData> WeekSchedule; // Week Schedule Storage
-    std::unordered_map<std::string, std::string> UniqueWeekScheduleNames;
-    Array1D<ScheduleData> Schedule; // Schedule Storage
-    std::unordered_map<std::string, std::string> UniqueScheduleNames;
+    thread_local Array1D<ScheduleTypeData> ScheduleType; // Allowed Schedule Types
+    thread_local Array1D<DayScheduleData> DaySchedule;   // Day Schedule Storage
+    thread_local std::unordered_map<std::string, std::string> UniqueDayScheduleNames;
+    thread_local Array1D<WeekScheduleData> WeekSchedule; // Week Schedule Storage
+    thread_local std::unordered_map<std::string, std::string> UniqueWeekScheduleNames;
+    thread_local Array1D<ScheduleData> Schedule; // Schedule Storage
+    thread_local std::unordered_map<std::string, std::string> UniqueScheduleNames;
 
-    static gio::Fmt fmtLD("*");
-    static gio::Fmt fmtA("(A)");
+    thread_local static gio::Fmt fmtLD("*");
+    thread_local static gio::Fmt fmtA("(A)");
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -250,7 +250,7 @@ namespace ScheduleManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ProcessScheduleInput: ");
+        thread_local static std::string const RoutineName("ProcessScheduleInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -329,10 +329,10 @@ namespace ScheduleManager {
         int UntilFld;
         int xxcount;
         //  REAL(r64) tempval
-        static bool FullYearSet(false);
-        static std::string CurrentThrough;
-        static std::string LastFor;
-        static std::string errmsg;
+        thread_local static bool FullYearSet(false);
+        thread_local static std::string CurrentThrough;
+        thread_local static std::string LastFor;
+        thread_local static std::string errmsg;
         int kdy;
         bool FileExists;
         // for SCHEDULE:FILE
@@ -2373,18 +2373,18 @@ namespace ScheduleManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Array1D_string const Months(12, {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
-        static Array1D_string const HrField({0, 24}, {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+        thread_local static Array1D_string const Months(12, {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
+        thread_local static Array1D_string const HrField({0, 24}, {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
                                                       "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"});
-        static gio::Fmt SchTFmt0("('! Schedule Details Report=',A,' =====================')");
-        static gio::Fmt SchTFmt("('! <ScheduleType>,Name,Limited? {Yes/No},Minimum,Maximum,',   'Continuous? {Yes/No - Discrete}')");
-        static gio::Fmt SchSFmt("('! <Schedule>,Name,ScheduleType,{Until Date,WeekSchedule}** Repeated until Dec 31')");
-        static gio::Fmt SchTFmtdata("('ScheduleTypeLimits',5(',',A))");
-        static gio::Fmt SchWFmtdata("('Schedule:Week:Daily',',',A,$)");
-        static gio::Fmt CMinFmt("(I2.2)");
-        static gio::Fmt ThruFmt("(',Through ',A,1X,I2.2,',',A)");
-        static gio::Fmt SchDFmt0("('! <DaySchedule>,Name,ScheduleType,Interpolated {Yes/No},Time (HH:MM) =>',$)");
-        static gio::Fmt SchDFmtdata0("('DaySchedule,',A,',',A,',',A,',',A,$)");
+        thread_local static gio::Fmt SchTFmt0("('! Schedule Details Report=',A,' =====================')");
+        thread_local static gio::Fmt SchTFmt("('! <ScheduleType>,Name,Limited? {Yes/No},Minimum,Maximum,',   'Continuous? {Yes/No - Discrete}')");
+        thread_local static gio::Fmt SchSFmt("('! <Schedule>,Name,ScheduleType,{Until Date,WeekSchedule}** Repeated until Dec 31')");
+        thread_local static gio::Fmt SchTFmtdata("('ScheduleTypeLimits',5(',',A))");
+        thread_local static gio::Fmt SchWFmtdata("('Schedule:Week:Daily',',',A,$)");
+        thread_local static gio::Fmt CMinFmt("(I2.2)");
+        thread_local static gio::Fmt ThruFmt("(',Through ',A,1X,I2.2,',',A)");
+        thread_local static gio::Fmt SchDFmt0("('! <DaySchedule>,Name,ScheduleType,Interpolated {Yes/No},Time (HH:MM) =>',$)");
+        thread_local static gio::Fmt SchDFmtdata0("('DaySchedule,',A,',',A,',',A,',',A,$)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3544,7 +3544,7 @@ namespace ScheduleManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static gio::Fmt hhmmFormat("(I2.2)");
+        thread_local static gio::Fmt hhmmFormat("(I2.2)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -4940,7 +4940,7 @@ namespace ScheduleManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ScheduleIndex;
         int WhichHour;
-        static bool DoScheduleReportingSetup(true);
+        thread_local static bool DoScheduleReportingSetup(true);
         int WeekSchedulePointer;
         int DaySchedulePointer;
 

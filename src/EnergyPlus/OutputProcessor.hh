@@ -72,113 +72,113 @@ namespace OutputProcessor {
     // in this file should obey a USE OutputProcessor, ONLY: rule.
 
     // MODULE PARAMETER DEFINITIONS:
-    extern int const ReportVDD_No;  // Don't report the variable dictionaries in any form
-    extern int const ReportVDD_Yes; // Report the variable dictionaries in "report format"
-    extern int const ReportVDD_IDF; // Report the variable dictionaries in "IDF format"
+    thread_local extern int const ReportVDD_No;  // Don't report the variable dictionaries in any form
+    thread_local extern int const ReportVDD_Yes; // Report the variable dictionaries in "report format"
+    thread_local extern int const ReportVDD_IDF; // Report the variable dictionaries in "IDF format"
 
-    extern Real64 const MinSetValue;
-    extern Real64 const MaxSetValue;
-    extern int const IMinSetValue;
-    extern int const IMaxSetValue;
+    thread_local extern Real64 const MinSetValue;
+    thread_local extern Real64 const MaxSetValue;
+    thread_local extern int const IMinSetValue;
+    thread_local extern int const IMaxSetValue;
 
-    extern int const ZoneVar; // Type value for those variables reported on the Zone Time Step
-    extern int const HVACVar; // Type value for those variables reported on the System Time Step
+    thread_local extern int const ZoneVar; // Type value for those variables reported on the Zone Time Step
+    thread_local extern int const HVACVar; // Type value for those variables reported on the System Time Step
 
-    extern int const VarType_NotFound; // ref: GetVariableKeyCountandType, 0 = not found
-    extern int const VarType_Integer;  // ref: GetVariableKeyCountandType, 1 = integer
-    extern int const VarType_Real;     // ref: GetVariableKeyCountandType, 2 = real
-    extern int const VarType_Meter;    // ref: GetVariableKeyCountandType, 3 = meter
-    extern int const VarType_Schedule; // ref: GetVariableKeyCountandType, 4 = schedule
+    thread_local extern int const VarType_NotFound; // ref: GetVariableKeyCountandType, 0 = not found
+    thread_local extern int const VarType_Integer;  // ref: GetVariableKeyCountandType, 1 = integer
+    thread_local extern int const VarType_Real;     // ref: GetVariableKeyCountandType, 2 = real
+    thread_local extern int const VarType_Meter;    // ref: GetVariableKeyCountandType, 3 = meter
+    thread_local extern int const VarType_Schedule; // ref: GetVariableKeyCountandType, 4 = schedule
 
-    extern int const MeterType_Normal;     // Type value for normal meters
-    extern int const MeterType_Custom;     // Type value for custom meters
-    extern int const MeterType_CustomDec;  // Type value for custom meters that decrement another meter
-    extern int const MeterType_CustomDiff; // Type value for custom meters that difference another meter
+    thread_local extern int const MeterType_Normal;     // Type value for normal meters
+    thread_local extern int const MeterType_Custom;     // Type value for custom meters
+    thread_local extern int const MeterType_CustomDec;  // Type value for custom meters that decrement another meter
+    thread_local extern int const MeterType_CustomDiff; // Type value for custom meters that difference another meter
 
-    extern Array1D_string const DayTypes;
-    extern int const UnitsStringLength;
+    thread_local extern Array1D_string const DayTypes;
+    thread_local extern int const UnitsStringLength;
 
-    extern int const RVarAllocInc;
-    extern int const LVarAllocInc;
-    extern int const IVarAllocInc;
+    thread_local extern int const RVarAllocInc;
+    thread_local extern int const LVarAllocInc;
+    thread_local extern int const IVarAllocInc;
 
     //  For IP Units (tabular reports) certain resources will be put in sub-tables
     // INTEGER, PARAMETER :: RT_IPUnits_Consumption=0
-    extern int const RT_IPUnits_Electricity;
-    extern int const RT_IPUnits_Gas;
-    extern int const RT_IPUnits_Cooling;
-    extern int const RT_IPUnits_Water;
-    extern int const RT_IPUnits_OtherKG;
-    extern int const RT_IPUnits_OtherM3;
-    extern int const RT_IPUnits_OtherL;
-    extern int const RT_IPUnits_OtherJ;
+    thread_local extern int const RT_IPUnits_Electricity;
+    thread_local extern int const RT_IPUnits_Gas;
+    thread_local extern int const RT_IPUnits_Cooling;
+    thread_local extern int const RT_IPUnits_Water;
+    thread_local extern int const RT_IPUnits_OtherKG;
+    thread_local extern int const RT_IPUnits_OtherM3;
+    thread_local extern int const RT_IPUnits_OtherL;
+    thread_local extern int const RT_IPUnits_OtherJ;
 
     // DERIVED TYPE DEFINITIONS:
 
-    extern int InstMeterCacheSize;     // the maximum size of the instant meter cache used in GetInstantMeterValue
-    extern int InstMeterCacheSizeInc;  // the increment for the instant meter cache used in GetInstantMeterValue
-    extern Array1D_int InstMeterCache; // contains a list of RVariableTypes that make up a specific meter
-    extern int InstMeterCacheLastUsed; // the last item in the instant meter cache used
+    thread_local extern int InstMeterCacheSize;     // the maximum size of the instant meter cache used in GetInstantMeterValue
+    thread_local extern int InstMeterCacheSizeInc;  // the increment for the instant meter cache used in GetInstantMeterValue
+    thread_local extern Array1D_int InstMeterCache; // contains a list of RVariableTypes that make up a specific meter
+    thread_local extern int InstMeterCacheLastUsed; // the last item in the instant meter cache used
 
     // INTERFACE BLOCK SPECIFICATIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int CurrentReportNumber;
-    extern int NumVariablesForOutput;
-    extern int MaxVariablesForOutput;
-    extern int NumOfRVariable_Setup;
-    extern int NumTotalRVariable;
-    extern int NumOfRVariable_Sum;
-    extern int NumOfRVariable_Meter;
-    extern int NumOfRVariable;
-    extern int MaxRVariable;
-    extern int NumOfIVariable_Setup;
-    extern int NumTotalIVariable;
-    extern int NumOfIVariable_Sum;
-    extern int NumOfIVariable;
-    extern int MaxIVariable;
-    extern bool OutputInitialized;
-    extern int ProduceReportVDD;
-    extern int OutputFileMeterDetails; // Unit number for Meter Details file (output)
-    extern int NumHoursInDay;
-    extern int NumHoursInMonth;
-    extern int NumHoursInSim;
-    extern Array1D_int ReportList;
-    extern int NumReportList;
-    extern int NumExtraVars;
+    thread_local extern int CurrentReportNumber;
+    thread_local extern int NumVariablesForOutput;
+    thread_local extern int MaxVariablesForOutput;
+    thread_local extern int NumOfRVariable_Setup;
+    thread_local extern int NumTotalRVariable;
+    thread_local extern int NumOfRVariable_Sum;
+    thread_local extern int NumOfRVariable_Meter;
+    thread_local extern int NumOfRVariable;
+    thread_local extern int MaxRVariable;
+    thread_local extern int NumOfIVariable_Setup;
+    thread_local extern int NumTotalIVariable;
+    thread_local extern int NumOfIVariable_Sum;
+    thread_local extern int NumOfIVariable;
+    thread_local extern int MaxIVariable;
+    thread_local extern bool OutputInitialized;
+    thread_local extern int ProduceReportVDD;
+    thread_local extern int OutputFileMeterDetails; // Unit number for Meter Details file (output)
+    thread_local extern int NumHoursInDay;
+    thread_local extern int NumHoursInMonth;
+    thread_local extern int NumHoursInSim;
+    thread_local extern Array1D_int ReportList;
+    thread_local extern int NumReportList;
+    thread_local extern int NumExtraVars;
 
-    extern int NumOfReqVariables; // Current number of Requested Report Variables
+    thread_local extern int NumOfReqVariables; // Current number of Requested Report Variables
 
-    extern int NumVarMeterArrays; // Current number of Arrays pointing to meters
+    thread_local extern int NumVarMeterArrays; // Current number of Arrays pointing to meters
 
-    extern int NumEnergyMeters;        // Current number of Energy Meters
-    extern Array1D<Real64> MeterValue; // This holds the current timestep value for each meter.
+    thread_local extern int NumEnergyMeters;        // Current number of Energy Meters
+    thread_local extern Array1D<Real64> MeterValue; // This holds the current timestep value for each meter.
 
-    extern int TimeStepStampReportNbr;          // TimeStep and Hourly Report number
-    extern std::string TimeStepStampReportChr;  // TimeStep and Hourly Report number (character -- for printing)
-    extern bool TrackingHourlyVariables;        // Requested Hourly Report Variables
-    extern int DailyStampReportNbr;             // Daily Report number
-    extern std::string DailyStampReportChr;     // Daily Report number (character -- for printing)
-    extern bool TrackingDailyVariables;         // Requested Daily Report Variables
-    extern int MonthlyStampReportNbr;           // Monthly Report number
-    extern std::string MonthlyStampReportChr;   // Monthly Report number (character -- for printing)
-    extern bool TrackingMonthlyVariables;       // Requested Monthly Report Variables
-    extern int YearlyStampReportNbr;            // Monthly Report number
-    extern std::string YearlyStampReportChr;    // Monthly Report number (character -- for printing)
-    extern bool TrackingYearlyVariables;        // Requested Yearly Report Variables
-    extern int RunPeriodStampReportNbr;         // RunPeriod Report number
-    extern std::string RunPeriodStampReportChr; // RunPeriod Report number (character -- for printing)
-    extern bool TrackingRunPeriodVariables;     // Requested RunPeriod Report Variables
-    extern Real64 TimeStepZoneSec;              // Seconds from NumTimeStepInHour
-    extern bool ErrorsLogged;
-    extern bool ProduceVariableDictionary;
+    thread_local extern int TimeStepStampReportNbr;          // TimeStep and Hourly Report number
+    thread_local extern std::string TimeStepStampReportChr;  // TimeStep and Hourly Report number (character -- for printing)
+    thread_local extern bool TrackingHourlyVariables;        // Requested Hourly Report Variables
+    thread_local extern int DailyStampReportNbr;             // Daily Report number
+    thread_local extern std::string DailyStampReportChr;     // Daily Report number (character -- for printing)
+    thread_local extern bool TrackingDailyVariables;         // Requested Daily Report Variables
+    thread_local extern int MonthlyStampReportNbr;           // Monthly Report number
+    thread_local extern std::string MonthlyStampReportChr;   // Monthly Report number (character -- for printing)
+    thread_local extern bool TrackingMonthlyVariables;       // Requested Monthly Report Variables
+    thread_local extern int YearlyStampReportNbr;            // Monthly Report number
+    thread_local extern std::string YearlyStampReportChr;    // Monthly Report number (character -- for printing)
+    thread_local extern bool TrackingYearlyVariables;        // Requested Yearly Report Variables
+    thread_local extern int RunPeriodStampReportNbr;         // RunPeriod Report number
+    thread_local extern std::string RunPeriodStampReportChr; // RunPeriod Report number (character -- for printing)
+    thread_local extern bool TrackingRunPeriodVariables;     // Requested RunPeriod Report Variables
+    thread_local extern Real64 TimeStepZoneSec;              // Seconds from NumTimeStepInHour
+    thread_local extern bool ErrorsLogged;
+    thread_local extern bool ProduceVariableDictionary;
 
-    extern int MaxNumSubcategories;
-    extern bool isFinalYear;
+    thread_local extern int MaxNumSubcategories;
+    thread_local extern bool isFinalYear;
 
-    extern bool GetOutputInputFlag; // First time, input is "gotten"
+    thread_local extern bool GetOutputInputFlag; // First time, input is "gotten"
 
     // All routines should be listed here whether private or not
     // PUBLIC  ReallocateTVar
@@ -249,7 +249,7 @@ namespace OutputProcessor {
         Yearly         // Write out at 'EndYearFlag'
     };
 
-    extern ReportingFrequency minimumReportFrequency;
+    thread_local extern ReportingFrequency minimumReportFrequency;
 
     enum class StoreType
     {
@@ -561,16 +561,16 @@ namespace OutputProcessor {
     };
 
     // Object Data
-    extern Array1D<TimeSteps> TimeValue;                     // Pointers to the actual TimeStep variables
-    extern Array1D<RealVariableType> RVariableTypes;         // Variable Types structure (use NumOfRVariables to traverse)
-    extern Array1D<IntegerVariableType> IVariableTypes;      // Variable Types structure (use NumOfIVariables to traverse)
-    extern Array1D<VariableTypeForDDOutput> DDVariableTypes; // Variable Types structure (use NumVariablesForOutput to traverse)
-    extern Reference<RealVariables> RVariable;
-    extern Reference<IntegerVariables> IVariable;
-    extern Array1D<ReqReportVariables> ReqRepVars;
-    extern Array1D<MeterArrayType> VarMeterArrays;
-    extern Array1D<MeterType> EnergyMeters;
-    extern Array1D<EndUseCategoryType> EndUseCategory;
+    thread_local extern Array1D<TimeSteps> TimeValue;                     // Pointers to the actual TimeStep variables
+    thread_local extern Array1D<RealVariableType> RVariableTypes;         // Variable Types structure (use NumOfRVariables to traverse)
+    thread_local extern Array1D<IntegerVariableType> IVariableTypes;      // Variable Types structure (use NumOfIVariables to traverse)
+    thread_local extern Array1D<VariableTypeForDDOutput> DDVariableTypes; // Variable Types structure (use NumVariablesForOutput to traverse)
+    thread_local extern Reference<RealVariables> RVariable;
+    thread_local extern Reference<IntegerVariables> IVariable;
+    thread_local extern Array1D<ReqReportVariables> ReqRepVars;
+    thread_local extern Array1D<MeterArrayType> VarMeterArrays;
+    thread_local extern Array1D<MeterType> EnergyMeters;
+    thread_local extern Array1D<EndUseCategoryType> EndUseCategory;
 
     // Functions
 

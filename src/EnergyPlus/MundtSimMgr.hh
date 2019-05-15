@@ -64,9 +64,9 @@ namespace MundtSimMgr {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern Real64 const CpAir;    // Specific heat of air
-    extern Real64 const MinSlope; // Bound on result from Mundt model
-    extern Real64 const MaxSlope; // Bound on result from Mundt Model
+    thread_local extern Real64 const CpAir;    // Specific heat of air
+    thread_local extern Real64 const MinSlope; // Bound on result from Mundt model
+    thread_local extern Real64 const MaxSlope; // Bound on result from Mundt Model
 
     // MODULE DERIVED TYPE DEFINITIONS:
 
@@ -74,26 +74,26 @@ namespace MundtSimMgr {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_int FloorSurfSetIDs; // fixed variable for floors
-    extern Array1D_int TheseSurfIDs;    // temporary working variable
-    extern int MundtCeilAirID;          // air node index in AirDataManager
-    extern int MundtFootAirID;          // air node index in AirDataManager
-    extern int SupplyNodeID;            // air node index in AirDataManager
-    extern int TstatNodeID;             // air node index in AirDataManager
-    extern int ReturnNodeID;            // air node index in AirDataManager
-    extern int NumRoomNodes;            // number of nodes connected to walls
-    extern int NumFloorSurfs;           // total number of surfaces for floor
-    extern Array1D_int RoomNodeIDs;     // ids of the first NumRoomNode Air Nodes
-    extern Array1D_int ID1dSurf;        // numbers used to identify surfaces
-    extern int MundtZoneNum;            // index of zones using Mundt model
-    extern Real64 ZoneHeight;           // zone height
-    extern Real64 ZoneFloorArea;        // zone floor area
-    extern Real64 QventCool;            // heat gain due to ventilation
-    extern Real64 ConvIntGain;          // heat gain due to internal gains
-    extern Real64 SupplyAirTemp;        // supply air temperature
-    extern Real64 SupplyAirVolumeRate;  // supply air volume flowrate
-    extern Real64 ZoneAirDensity;       // zone air density
-    extern Real64 QsysCoolTot;          // zone sensible cooling load
+    thread_local extern Array1D_int FloorSurfSetIDs; // fixed variable for floors
+    thread_local extern Array1D_int TheseSurfIDs;    // temporary working variable
+    thread_local extern int MundtCeilAirID;          // air node index in AirDataManager
+    thread_local extern int MundtFootAirID;          // air node index in AirDataManager
+    thread_local extern int SupplyNodeID;            // air node index in AirDataManager
+    thread_local extern int TstatNodeID;             // air node index in AirDataManager
+    thread_local extern int ReturnNodeID;            // air node index in AirDataManager
+    thread_local extern int NumRoomNodes;            // number of nodes connected to walls
+    thread_local extern int NumFloorSurfs;           // total number of surfaces for floor
+    thread_local extern Array1D_int RoomNodeIDs;     // ids of the first NumRoomNode Air Nodes
+    thread_local extern Array1D_int ID1dSurf;        // numbers used to identify surfaces
+    thread_local extern int MundtZoneNum;            // index of zones using Mundt model
+    thread_local extern Real64 ZoneHeight;           // zone height
+    thread_local extern Real64 ZoneFloorArea;        // zone floor area
+    thread_local extern Real64 QventCool;            // heat gain due to ventilation
+    thread_local extern Real64 ConvIntGain;          // heat gain due to internal gains
+    thread_local extern Real64 SupplyAirTemp;        // supply air temperature
+    thread_local extern Real64 SupplyAirVolumeRate;  // supply air volume flowrate
+    thread_local extern Real64 ZoneAirDensity;       // zone air density
+    thread_local extern Real64 QsysCoolTot;          // zone sensible cooling load
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE MundtSimMgr
 
@@ -148,10 +148,10 @@ namespace MundtSimMgr {
     };
 
     // Object Data
-    extern Array1D<DefineZoneData> ZoneData;            // zone data
-    extern Array2D<DefineLinearModelNode> LineNode;     // air nodes
-    extern Array2D<DefineSurfaceSettings> MundtAirSurf; // surfaces
-    extern Array1D<DefineSurfaceSettings> FloorSurf;    // floor
+    thread_local extern Array1D<DefineZoneData> ZoneData;            // zone data
+    thread_local extern Array2D<DefineLinearModelNode> LineNode;     // air nodes
+    thread_local extern Array2D<DefineSurfaceSettings> MundtAirSurf; // surfaces
+    thread_local extern Array1D<DefineSurfaceSettings> FloorSurf;    // floor
 
     // Functions
 

@@ -177,46 +177,46 @@ namespace OutputReportTabular {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    int const MaxHeaderLength(50);
-    int const MaxNoteLength(200);
+    thread_local int const MaxHeaderLength(50);
+    thread_local int const MaxNoteLength(200);
 
-    int const aggTypeSumOrAvg(1);
-    int const aggTypeMaximum(2);
-    int const aggTypeMinimum(3);
-    int const aggTypeValueWhenMaxMin(4);
-    int const aggTypeHoursZero(5);
-    int const aggTypeHoursNonZero(6);
-    int const aggTypeHoursPositive(7);
-    int const aggTypeHoursNonPositive(8);
-    int const aggTypeHoursNegative(9);
-    int const aggTypeHoursNonNegative(10);
-    int const aggTypeSumOrAverageHoursShown(11);
-    int const aggTypeMaximumDuringHoursShown(12);
-    int const aggTypeMinimumDuringHoursShown(13);
+    thread_local int const aggTypeSumOrAvg(1);
+    thread_local int const aggTypeMaximum(2);
+    thread_local int const aggTypeMinimum(3);
+    thread_local int const aggTypeValueWhenMaxMin(4);
+    thread_local int const aggTypeHoursZero(5);
+    thread_local int const aggTypeHoursNonZero(6);
+    thread_local int const aggTypeHoursPositive(7);
+    thread_local int const aggTypeHoursNonPositive(8);
+    thread_local int const aggTypeHoursNegative(9);
+    thread_local int const aggTypeHoursNonNegative(10);
+    thread_local int const aggTypeSumOrAverageHoursShown(11);
+    thread_local int const aggTypeMaximumDuringHoursShown(12);
+    thread_local int const aggTypeMinimumDuringHoursShown(13);
 
-    int const tableStyleComma(1);
-    int const tableStyleTab(2);
-    int const tableStyleFixed(3);
-    int const tableStyleHTML(4);
-    int const tableStyleXML(5);
+    thread_local int const tableStyleComma(1);
+    thread_local int const tableStyleTab(2);
+    thread_local int const tableStyleFixed(3);
+    thread_local int const tableStyleHTML(4);
+    thread_local int const tableStyleXML(5);
 
-    int const unitsStyleNone(0); // no change to any units
-    int const unitsStyleJtoKWH(1);
-    int const unitsStyleJtoMJ(2);
-    int const unitsStyleJtoGJ(3);
-    int const unitsStyleInchPound(4);
-    int const unitsStyleNotFound(5);
+    thread_local int const unitsStyleNone(0); // no change to any units
+    thread_local int const unitsStyleJtoKWH(1);
+    thread_local int const unitsStyleJtoMJ(2);
+    thread_local int const unitsStyleJtoGJ(3);
+    thread_local int const unitsStyleInchPound(4);
+    thread_local int const unitsStyleNotFound(5);
 
-    int const stepTypeZone(ZoneTSReporting);
-    int const stepTypeHVAC(HVACTSReporting);
+    thread_local int const stepTypeZone(ZoneTSReporting);
+    thread_local int const stepTypeHVAC(HVACTSReporting);
 
     // BEPS Report Related Variables
     // From Report:Table:Predefined - BEPS
-    int const numResourceTypes(14);
-    int const numSourceTypes(12);
+    thread_local int const numResourceTypes(14);
+    thread_local int const numSourceTypes(12);
 
-    static std::string const validChars("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_:.");
-    static std::string const BlankString;
+    thread_local static std::string const validChars("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_:.");
+    thread_local static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
 
@@ -225,165 +225,165 @@ namespace OutputReportTabular {
 
     // arrays for time binned results
 
-    int OutputTableBinnedCount(0);
-    int BinResultsTableCount(0);
-    int BinResultsIntervalCount(0);
+    thread_local int OutputTableBinnedCount(0);
+    thread_local int BinResultsTableCount(0);
+    thread_local int BinResultsIntervalCount(0);
 
-    int const numNamedMonthly(62);
+    thread_local int const numNamedMonthly(62);
     // These reports are detailed/named in routine InitializePredefinedMonthlyTitles
 
-    int MonthlyInputCount(0);
-    int sizeMonthlyInput(0);
-    int MonthlyFieldSetInputCount(0);
-    int sizeMonthlyFieldSetInput(0);
-    int MonthlyTablesCount(0);
-    int MonthlyColumnsCount(0);
-    Array1D_bool IsMonthGathered(12, false); // shown as true for any month used
+    thread_local int MonthlyInputCount(0);
+    thread_local int sizeMonthlyInput(0);
+    thread_local int MonthlyFieldSetInputCount(0);
+    thread_local int sizeMonthlyFieldSetInput(0);
+    thread_local int MonthlyTablesCount(0);
+    thread_local int MonthlyColumnsCount(0);
+    thread_local Array1D_bool IsMonthGathered(12, false); // shown as true for any month used
 
-    int TOCEntriesCount(0);
-    int TOCEntriesSize(0);
+    thread_local int TOCEntriesCount(0);
+    thread_local int TOCEntriesSize(0);
 
-    int UnitConvSize(0);
+    thread_local int UnitConvSize(0);
 
-    bool WriteTabularFiles(false);
-    bool GetInput(true);
-    bool firstTimeGatherHGReport(true);
+    thread_local bool WriteTabularFiles(false);
+    thread_local bool GetInput(true);
+    thread_local bool firstTimeGatherHGReport(true);
 
     // Allow up to five output files to be created
-    int const maxNumStyles(5);
+    thread_local int const maxNumStyles(5);
 
     // From Report:Table:Style
-    int unitsStyle(0); // see list of parameters
-    int numStyles(0);
-    std::ofstream csv_stream;                                                                                                    // CSV table stream
-    std::ofstream tab_stream;                                                                                                    // Tab table stream
-    std::ofstream fix_stream;                                                                                                    // Fixed table stream
-    std::ofstream htm_stream;                                                                                                    // HTML table stream
-    std::ofstream xml_stream;                                                                                                    // XML table stream
-    Array1D<std::ofstream *> TabularOutputFile(maxNumStyles, {&csv_stream, &tab_stream, &fix_stream, &htm_stream, &xml_stream}); // Table stream array
-    Array1D_string del(maxNumStyles);        // the delimiter to use
-    Array1D_int TableStyle(maxNumStyles, 0); // see list of parameters
+    thread_local int unitsStyle(0); // see list of parameters
+    thread_local int numStyles(0);
+    thread_local std::ofstream csv_stream;                                                                                                    // CSV table stream
+    thread_local std::ofstream tab_stream;                                                                                                    // Tab table stream
+    thread_local std::ofstream fix_stream;                                                                                                    // Fixed table stream
+    thread_local std::ofstream htm_stream;                                                                                                    // HTML table stream
+    thread_local std::ofstream xml_stream;                                                                                                    // XML table stream
+    thread_local Array1D<std::ofstream *> TabularOutputFile(maxNumStyles, {&csv_stream, &tab_stream, &fix_stream, &htm_stream, &xml_stream}); // Table stream array
+    thread_local Array1D_string del(maxNumStyles);        // the delimiter to use
+    thread_local Array1D_int TableStyle(maxNumStyles, 0); // see list of parameters
 
-    Real64 timeInYear(0.0);
+    thread_local Real64 timeInYear(0.0);
 
     // Flags for predefined tabular reports
-    bool displayTabularBEPS(false);
-    bool displayLEEDSummary(false);
-    bool displayTabularCompCosts(false); // added BTG 5/6/04 for component cost summary
-    bool displayTabularVeriSum(false);   // added JG 2006-06-28 for input verification and summary report
-    bool displayComponentSizing(false);
-    bool displaySurfaceShadowing(false);
-    bool displayDemandEndUse(false);
-    bool displayAdaptiveComfort(false);
-    bool displaySourceEnergyEndUseSummary(false);
-    bool displayZoneComponentLoadSummary(false);
-    bool displayAirLoopComponentLoadSummary(false);
-    bool displayFacilityComponentLoadSummary(false);
-    bool displayLifeCycleCostReport(false);
-    bool displayTariffReport(false);
-    bool displayEconomicResultSummary(false);
-    bool displayEioSummary(false);
+    thread_local bool displayTabularBEPS(false);
+    thread_local bool displayLEEDSummary(false);
+    thread_local bool displayTabularCompCosts(false); // added BTG 5/6/04 for component cost summary
+    thread_local bool displayTabularVeriSum(false);   // added JG 2006-06-28 for input verification and summary report
+    thread_local bool displayComponentSizing(false);
+    thread_local bool displaySurfaceShadowing(false);
+    thread_local bool displayDemandEndUse(false);
+    thread_local bool displayAdaptiveComfort(false);
+    thread_local bool displaySourceEnergyEndUseSummary(false);
+    thread_local bool displayZoneComponentLoadSummary(false);
+    thread_local bool displayAirLoopComponentLoadSummary(false);
+    thread_local bool displayFacilityComponentLoadSummary(false);
+    thread_local bool displayLifeCycleCostReport(false);
+    thread_local bool displayTariffReport(false);
+    thread_local bool displayEconomicResultSummary(false);
+    thread_local bool displayEioSummary(false);
 
     // BEPS Report Related Variables
     // From Report:Table:Predefined - BEPS
     // arrays that hold the meter numbers that are initialized at get input
-    Array1D_int meterNumTotalsBEPS(numResourceTypes, 0);
-    Array1D_int meterNumTotalsSource(numSourceTypes, 0);
-    Array1D_bool fuelfactorsused(numSourceTypes, false);
-    Array1D_bool ffUsed(numResourceTypes, false);
-    Array1D<Real64> SourceFactors(numResourceTypes, 0.0);
-    Array1D_bool ffSchedUsed(numResourceTypes, false);
-    Array1D_int ffSchedIndex(numResourceTypes, 0);
-    Array2D_int meterNumEndUseBEPS(numResourceTypes, NumEndUses, 0);
-    Array3D_int meterNumEndUseSubBEPS;
+    thread_local Array1D_int meterNumTotalsBEPS(numResourceTypes, 0);
+    thread_local Array1D_int meterNumTotalsSource(numSourceTypes, 0);
+    thread_local Array1D_bool fuelfactorsused(numSourceTypes, false);
+    thread_local Array1D_bool ffUsed(numResourceTypes, false);
+    thread_local Array1D<Real64> SourceFactors(numResourceTypes, 0.0);
+    thread_local Array1D_bool ffSchedUsed(numResourceTypes, false);
+    thread_local Array1D_int ffSchedIndex(numResourceTypes, 0);
+    thread_local Array2D_int meterNumEndUseBEPS(numResourceTypes, NumEndUses, 0);
+    thread_local Array3D_int meterNumEndUseSubBEPS;
     // arrays that hold the names of the resource and end uses
-    Array1D_string resourceTypeNames(numResourceTypes);
-    Array1D_string sourceTypeNames(numSourceTypes);
-    Array1D_string endUseNames(NumEndUses);
+    thread_local Array1D_string resourceTypeNames(numResourceTypes);
+    thread_local Array1D_string sourceTypeNames(numSourceTypes);
+    thread_local Array1D_string endUseNames(NumEndUses);
     // arrays that hold the actual values for the year
-    Array1D<Real64> gatherTotalsBEPS(numResourceTypes, 0.0);
-    Array1D<Real64> gatherTotalsBySourceBEPS(numResourceTypes, 0.0);
-    Array1D<Real64> gatherTotalsSource(numSourceTypes, 0.0);
-    Array1D<Real64> gatherTotalsBySource(numSourceTypes, 0.0);
-    Array2D<Real64> gatherEndUseBEPS(numResourceTypes, NumEndUses, 0.0);
-    Array2D<Real64> gatherEndUseBySourceBEPS(numResourceTypes, NumEndUses, 0.0);
-    Array3D<Real64> gatherEndUseSubBEPS;
-    Array1D_bool needOtherRowLEED45(NumEndUses);
+    thread_local Array1D<Real64> gatherTotalsBEPS(numResourceTypes, 0.0);
+    thread_local Array1D<Real64> gatherTotalsBySourceBEPS(numResourceTypes, 0.0);
+    thread_local Array1D<Real64> gatherTotalsSource(numSourceTypes, 0.0);
+    thread_local Array1D<Real64> gatherTotalsBySource(numSourceTypes, 0.0);
+    thread_local Array2D<Real64> gatherEndUseBEPS(numResourceTypes, NumEndUses, 0.0);
+    thread_local Array2D<Real64> gatherEndUseBySourceBEPS(numResourceTypes, NumEndUses, 0.0);
+    thread_local Array3D<Real64> gatherEndUseSubBEPS;
+    thread_local Array1D_bool needOtherRowLEED45(NumEndUses);
 
     // arrays the hold the demand values
-    Array1D<Real64> gatherDemandTotal(numResourceTypes, 0.0);
-    Array2D<Real64> gatherDemandEndUse(numResourceTypes, NumEndUses, 0.0);
-    Array2D<Real64> gatherDemandIndEndUse(numResourceTypes, NumEndUses, 0.0);
-    Array3D<Real64> gatherDemandEndUseSub;
-    Array3D<Real64> gatherDemandIndEndUseSub;
-    Array1D_int gatherDemandTimeStamp(numResourceTypes, 0);
+    thread_local Array1D<Real64> gatherDemandTotal(numResourceTypes, 0.0);
+    thread_local Array2D<Real64> gatherDemandEndUse(numResourceTypes, NumEndUses, 0.0);
+    thread_local Array2D<Real64> gatherDemandIndEndUse(numResourceTypes, NumEndUses, 0.0);
+    thread_local Array3D<Real64> gatherDemandEndUseSub;
+    thread_local Array3D<Real64> gatherDemandIndEndUseSub;
+    thread_local Array1D_int gatherDemandTimeStamp(numResourceTypes, 0);
     // to keep track of hours for the BEPS report gathering
-    Real64 gatherElapsedTimeBEPS(0.0);
+    thread_local Real64 gatherElapsedTimeBEPS(0.0);
     // for normalization of results
-    Real64 buildingGrossFloorArea(0.0);
-    Real64 buildingConditionedFloorArea(0.0);
+    thread_local Real64 buildingGrossFloorArea(0.0);
+    thread_local Real64 buildingConditionedFloorArea(0.0);
     // keep track if schedules are used in fuel factors
-    bool fuelFactorSchedulesUsed(false);
+    thread_local bool fuelFactorSchedulesUsed(false);
     // for electic load components on BEPS report
-    int meterNumPowerFuelFireGen(0);
-    Real64 gatherPowerFuelFireGen(0.0);
-    int meterNumPowerPV(0);
-    Real64 gatherPowerPV(0.0);
-    int meterNumPowerWind(0);
-    Real64 gatherPowerWind(0.0);
-    Real64 OverallNetEnergyFromStorage(0.0);
-    int meterNumPowerHTGeothermal(0);
-    Real64 gatherPowerHTGeothermal(0.0);
-    int meterNumElecProduced(0);
-    Real64 gatherElecProduced(0.0);
-    int meterNumElecPurchased(0);
-    Real64 gatherElecPurchased(0.0);
-    int meterNumElecSurplusSold(0);
-    Real64 gatherElecSurplusSold(0.0);
-    int meterNumElecStorage = (0);
-    Real64 gatherElecStorage = (0.0);
-    int meterNumPowerConversion = (0);
-    Real64 gatherPowerConversion = (0.0);
+    thread_local int meterNumPowerFuelFireGen(0);
+    thread_local Real64 gatherPowerFuelFireGen(0.0);
+    thread_local int meterNumPowerPV(0);
+    thread_local Real64 gatherPowerPV(0.0);
+    thread_local int meterNumPowerWind(0);
+    thread_local Real64 gatherPowerWind(0.0);
+    thread_local Real64 OverallNetEnergyFromStorage(0.0);
+    thread_local int meterNumPowerHTGeothermal(0);
+    thread_local Real64 gatherPowerHTGeothermal(0.0);
+    thread_local int meterNumElecProduced(0);
+    thread_local Real64 gatherElecProduced(0.0);
+    thread_local int meterNumElecPurchased(0);
+    thread_local Real64 gatherElecPurchased(0.0);
+    thread_local int meterNumElecSurplusSold(0);
+    thread_local Real64 gatherElecSurplusSold(0.0);
+    thread_local int meterNumElecStorage = (0);
+    thread_local Real64 gatherElecStorage = (0.0);
+    thread_local int meterNumPowerConversion = (0);
+    thread_local Real64 gatherPowerConversion = (0.0);
     // for on site thermal source components on BEPS report
-    int meterNumWaterHeatRecovery(0);
-    Real64 gatherWaterHeatRecovery(0.0);
-    int meterNumAirHeatRecoveryCool(0);
-    Real64 gatherAirHeatRecoveryCool(0.0);
-    int meterNumAirHeatRecoveryHeat(0);
-    Real64 gatherAirHeatRecoveryHeat(0.0);
-    int meterNumHeatHTGeothermal(0);
-    Real64 gatherHeatHTGeothermal(0.0);
-    int meterNumHeatSolarWater(0);
-    Real64 gatherHeatSolarWater(0.0);
-    int meterNumHeatSolarAir(0);
-    Real64 gatherHeatSolarAir(0.0);
+    thread_local int meterNumWaterHeatRecovery(0);
+    thread_local Real64 gatherWaterHeatRecovery(0.0);
+    thread_local int meterNumAirHeatRecoveryCool(0);
+    thread_local Real64 gatherAirHeatRecoveryCool(0.0);
+    thread_local int meterNumAirHeatRecoveryHeat(0);
+    thread_local Real64 gatherAirHeatRecoveryHeat(0.0);
+    thread_local int meterNumHeatHTGeothermal(0);
+    thread_local Real64 gatherHeatHTGeothermal(0.0);
+    thread_local int meterNumHeatSolarWater(0);
+    thread_local Real64 gatherHeatSolarWater(0.0);
+    thread_local int meterNumHeatSolarAir(0);
+    thread_local Real64 gatherHeatSolarAir(0.0);
     // for on site water components on BEPS report
-    int meterNumRainWater(0);
-    Real64 gatherRainWater(0.0);
-    int meterNumCondensate(0);
-    Real64 gatherCondensate(0.0);
-    int meterNumGroundwater(0);
-    Real64 gatherWellwater(0.0);
-    int meterNumMains(0);
-    Real64 gatherMains(0.0);
-    int meterNumWaterEndUseTotal(0);
-    Real64 gatherWaterEndUseTotal(0.0);
+    thread_local int meterNumRainWater(0);
+    thread_local Real64 gatherRainWater(0.0);
+    thread_local int meterNumCondensate(0);
+    thread_local Real64 gatherCondensate(0.0);
+    thread_local int meterNumGroundwater(0);
+    thread_local Real64 gatherWellwater(0.0);
+    thread_local int meterNumMains(0);
+    thread_local Real64 gatherMains(0.0);
+    thread_local int meterNumWaterEndUseTotal(0);
+    thread_local Real64 gatherWaterEndUseTotal(0.0);
     // for source energy conversion factors on BEPS report
-    Real64 sourceFactorElectric(0.0);
-    Real64 sourceFactorNaturalGas(0.0);
-    Real64 efficiencyDistrictCooling(0.0);
-    Real64 efficiencyDistrictHeating(0.0);
-    Real64 sourceFactorSteam(0.0);
-    Real64 sourceFactorGasoline(0.0);
-    Real64 sourceFactorDiesel(0.0);
-    Real64 sourceFactorCoal(0.0);
-    Real64 sourceFactorFuelOil1(0.0);
-    Real64 sourceFactorFuelOil2(0.0);
-    Real64 sourceFactorPropane(0.0);
-    Real64 sourceFactorOtherFuel1(0.0);
-    Real64 sourceFactorOtherFuel2(0.0);
+    thread_local Real64 sourceFactorElectric(0.0);
+    thread_local Real64 sourceFactorNaturalGas(0.0);
+    thread_local Real64 efficiencyDistrictCooling(0.0);
+    thread_local Real64 efficiencyDistrictHeating(0.0);
+    thread_local Real64 sourceFactorSteam(0.0);
+    thread_local Real64 sourceFactorGasoline(0.0);
+    thread_local Real64 sourceFactorDiesel(0.0);
+    thread_local Real64 sourceFactorCoal(0.0);
+    thread_local Real64 sourceFactorFuelOil1(0.0);
+    thread_local Real64 sourceFactorFuelOil2(0.0);
+    thread_local Real64 sourceFactorPropane(0.0);
+    thread_local Real64 sourceFactorOtherFuel1(0.0);
+    thread_local Real64 sourceFactorOtherFuel2(0.0);
 
-    Array1D_int td(8);
+    thread_local Array1D_int td(8);
     //(1)   Current year
     //(2)   Current month
     //(3)   Current day
@@ -394,141 +394,141 @@ namespace OutputReportTabular {
     //(8)   Milliseconds (0-999)
 
     // Design day name storage
-    Array1D_string DesignDayName;
-    int DesignDayCount(0);
+    thread_local Array1D_string DesignDayName;
+    thread_local int DesignDayCount(0);
 
     // arrays related to pulse and load component reporting
-    Array2D<Real64> radiantPulseUsed;
-    Array2D_int radiantPulseTimestep;
-    Array2D<Real64> radiantPulseReceived;
-    Array3D<Real64> loadConvectedNormal;
-    Array3D<Real64> loadConvectedWithPulse;
-    Array3D<Real64> netSurfRadSeq;
-    Array2D<Real64> decayCurveCool;
-    Array2D<Real64> decayCurveHeat;
-    Array3D<Real64> ITABSFseq; // used for determining the radiant fraction on each surface
-    Array3D<Real64> TMULTseq;  // used for determining the radiant fraction on each surface
+    thread_local Array2D<Real64> radiantPulseUsed;
+    thread_local Array2D_int radiantPulseTimestep;
+    thread_local Array2D<Real64> radiantPulseReceived;
+    thread_local Array3D<Real64> loadConvectedNormal;
+    thread_local Array3D<Real64> loadConvectedWithPulse;
+    thread_local Array3D<Real64> netSurfRadSeq;
+    thread_local Array2D<Real64> decayCurveCool;
+    thread_local Array2D<Real64> decayCurveHeat;
+    thread_local Array3D<Real64> ITABSFseq; // used for determining the radiant fraction on each surface
+    thread_local Array3D<Real64> TMULTseq;  // used for determining the radiant fraction on each surface
 
-    Array3D<Real64> peopleInstantSeq;
-    Array3D<Real64> peopleLatentSeq;
-    Array3D<Real64> peopleRadSeq;
+    thread_local Array3D<Real64> peopleInstantSeq;
+    thread_local Array3D<Real64> peopleLatentSeq;
+    thread_local Array3D<Real64> peopleRadSeq;
 
-    Array3D<Real64> lightInstantSeq;
-    Array3D<Real64> lightRetAirSeq;
-    Array3D<Real64> lightLWRadSeq; // long wave thermal radiation
-    Array3D<Real64> lightSWRadSeq; // short wave visible radiation
+    thread_local Array3D<Real64> lightInstantSeq;
+    thread_local Array3D<Real64> lightRetAirSeq;
+    thread_local Array3D<Real64> lightLWRadSeq; // long wave thermal radiation
+    thread_local Array3D<Real64> lightSWRadSeq; // short wave visible radiation
 
-    Array3D<Real64> equipInstantSeq;
-    Array3D<Real64> equipLatentSeq;
-    Array3D<Real64> equipRadSeq;
+    thread_local Array3D<Real64> equipInstantSeq;
+    thread_local Array3D<Real64> equipLatentSeq;
+    thread_local Array3D<Real64> equipRadSeq;
 
-    Array3D<Real64> refrigInstantSeq;
-    Array3D<Real64> refrigRetAirSeq;
-    Array3D<Real64> refrigLatentSeq;
+    thread_local Array3D<Real64> refrigInstantSeq;
+    thread_local Array3D<Real64> refrigRetAirSeq;
+    thread_local Array3D<Real64> refrigLatentSeq;
 
-    Array3D<Real64> waterUseInstantSeq;
-    Array3D<Real64> waterUseLatentSeq;
+    thread_local Array3D<Real64> waterUseInstantSeq;
+    thread_local Array3D<Real64> waterUseLatentSeq;
 
-    Array3D<Real64> hvacLossInstantSeq;
-    Array3D<Real64> hvacLossRadSeq;
+    thread_local Array3D<Real64> hvacLossInstantSeq;
+    thread_local Array3D<Real64> hvacLossRadSeq;
 
-    Array3D<Real64> powerGenInstantSeq;
-    Array3D<Real64> powerGenRadSeq;
-    Array3D<Real64> infilInstantSeq;
-    Array3D<Real64> infilLatentSeq;
+    thread_local Array3D<Real64> powerGenInstantSeq;
+    thread_local Array3D<Real64> powerGenRadSeq;
+    thread_local Array3D<Real64> infilInstantSeq;
+    thread_local Array3D<Real64> infilLatentSeq;
 
-    Array3D<Real64> zoneVentInstantSeq;
-    Array3D<Real64> zoneVentLatentSeq;
+    thread_local Array3D<Real64> zoneVentInstantSeq;
+    thread_local Array3D<Real64> zoneVentLatentSeq;
 
-    Array3D<Real64> interZoneMixInstantSeq;
-    Array3D<Real64> interZoneMixLatentSeq;
+    thread_local Array3D<Real64> interZoneMixInstantSeq;
+    thread_local Array3D<Real64> interZoneMixLatentSeq;
 
-    Array3D<Real64> feneCondInstantSeq;
+    thread_local Array3D<Real64> feneCondInstantSeq;
     // REAL(r64), DIMENSION(:,:,:),ALLOCATABLE,PUBLIC  :: feneSolarInstantSeq
-    Array3D<Real64> feneSolarRadSeq;
+    thread_local Array3D<Real64> feneSolarRadSeq;
 
     // These correspond to the columns in the load component table
-    int const cSensInst(1);
-    int const cSensDelay(2);
-    int const cSensRA(3);
-    int const cLatent(4);
-    int const cTotal(5);
-    int const cPerc(6);
-    int const cArea(7);
-    int const cPerArea(8);
+    thread_local int const cSensInst(1);
+    thread_local int const cSensDelay(2);
+    thread_local int const cSensRA(3);
+    thread_local int const cLatent(4);
+    thread_local int const cTotal(5);
+    thread_local int const cPerc(6);
+    thread_local int const cArea(7);
+    thread_local int const cPerArea(8);
 
     // internal gains
-    int const rPeople(1);
-    int const rLights(2);
-    int const rEquip(3);
-    int const rRefrig(4);
-    int const rWaterUse(5);
-    int const rHvacLoss(6);
-    int const rPowerGen(7);
+    thread_local int const rPeople(1);
+    thread_local int const rLights(2);
+    thread_local int const rEquip(3);
+    thread_local int const rRefrig(4);
+    thread_local int const rWaterUse(5);
+    thread_local int const rHvacLoss(6);
+    thread_local int const rPowerGen(7);
     // misc
-    int const rDOAS(8);
-    int const rInfil(9);
-    int const rZoneVent(10);
-    int const rIntZonMix(11);
+    thread_local int const rDOAS(8);
+    thread_local int const rInfil(9);
+    thread_local int const rZoneVent(10);
+    thread_local int const rIntZonMix(11);
     // opaque surfaces
-    int const rRoof(12);
-    int const rIntZonCeil(13);
-    int const rOtherRoof(14);
-    int const rExtWall(15);
-    int const rIntZonWall(16);
-    int const rGrdWall(17);
-    int const rOtherWall(18);
-    int const rExtFlr(19);
-    int const rIntZonFlr(20);
-    int const rGrdFlr(21);
-    int const rOtherFlr(22);
+    thread_local int const rRoof(12);
+    thread_local int const rIntZonCeil(13);
+    thread_local int const rOtherRoof(14);
+    thread_local int const rExtWall(15);
+    thread_local int const rIntZonWall(16);
+    thread_local int const rGrdWall(17);
+    thread_local int const rOtherWall(18);
+    thread_local int const rExtFlr(19);
+    thread_local int const rIntZonFlr(20);
+    thread_local int const rGrdFlr(21);
+    thread_local int const rOtherFlr(22);
     // subsurfaces
-    int const rFeneCond(23);
-    int const rFeneSolr(24);
-    int const rOpqDoor(25);
+    thread_local int const rFeneCond(23);
+    thread_local int const rFeneSolr(24);
+    thread_local int const rOpqDoor(25);
     // total
-    int const rGrdTot(26);
+    thread_local int const rGrdTot(26);
 
-    int const zoneOuput = 1;
-    int const airLoopOutput = 2;
-    int const facilityOutput = 3;
+    thread_local int const zoneOuput = 1;
+    thread_local int const airLoopOutput = 2;
+    thread_local int const facilityOutput = 3;
 
-    int maxUniqueKeyCount(0);
+    thread_local int maxUniqueKeyCount(0);
 
     // for the XML report must keep track fo the active sub-table name and report set by other routines
-    std::string activeSubTableName;
-    std::string activeReportNameNoSpace;
-    std::string activeReportName;
-    std::string activeForName;
-    std::string prevReportName;
+    thread_local std::string activeSubTableName;
+    thread_local std::string activeReportNameNoSpace;
+    thread_local std::string activeReportName;
+    thread_local std::string activeForName;
+    thread_local std::string prevReportName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
     // PRIVATE      DateToStr
 
     // Object Data
-    Array1D<OutputTableBinnedType> OutputTableBinned;
-    Array2D<BinResultsType> BinResults;      // table number, number of intervals
-    Array1D<BinResultsType> BinResultsBelow; // time below the lowest defined bin
-    Array1D<BinResultsType> BinResultsAbove; // time above the highest defined bin
-    Array1D<BinObjVarIDType> BinObjVarID;
-    Array1D<BinStatisticsType> BinStatistics;
-    Array1D<NamedMonthlyType> namedMonthly; // for predefined monthly report titles
-    Array1D<MonthlyFieldSetInputType> MonthlyFieldSetInput;
-    Array1D<MonthlyInputType> MonthlyInput;
-    Array1D<MonthlyTablesType> MonthlyTables;
-    Array1D<MonthlyColumnsType> MonthlyColumns;
-    Array1D<TOCEntriesType> TOCEntries;
-    Array1D<UnitConvType> UnitConv;
+    thread_local Array1D<OutputTableBinnedType> OutputTableBinned;
+    thread_local Array2D<BinResultsType> BinResults;      // table number, number of intervals
+    thread_local Array1D<BinResultsType> BinResultsBelow; // time below the lowest defined bin
+    thread_local Array1D<BinResultsType> BinResultsAbove; // time above the highest defined bin
+    thread_local Array1D<BinObjVarIDType> BinObjVarID;
+    thread_local Array1D<BinStatisticsType> BinStatistics;
+    thread_local Array1D<NamedMonthlyType> namedMonthly; // for predefined monthly report titles
+    thread_local Array1D<MonthlyFieldSetInputType> MonthlyFieldSetInput;
+    thread_local Array1D<MonthlyInputType> MonthlyInput;
+    thread_local Array1D<MonthlyTablesType> MonthlyTables;
+    thread_local Array1D<MonthlyColumnsType> MonthlyColumns;
+    thread_local Array1D<TOCEntriesType> TOCEntries;
+    thread_local Array1D<UnitConvType> UnitConv;
 
-    static gio::Fmt fmtLD("*");
-    static gio::Fmt fmtA("(A)");
+    thread_local static gio::Fmt fmtLD("*");
+    thread_local static gio::Fmt fmtA("(A)");
 
     namespace {
-        bool GatherMonthlyResultsForTimestepRunOnce(true);
-        bool UpdateTabularReportsGetInput(true);
-        bool GatherHeatGainReportfirstTime(true);
-        bool AllocateLoadComponentArraysDoAllocate(true);
-        bool initAdjFenDone(false);
+        thread_local bool GatherMonthlyResultsForTimestepRunOnce(true);
+        thread_local bool UpdateTabularReportsGetInput(true);
+        thread_local bool GatherHeatGainReportfirstTime(true);
+        thread_local bool AllocateLoadComponentArraysDoAllocate(true);
+        thread_local bool initAdjFenDone(false);
     } // namespace
 
     // Functions
@@ -822,7 +822,7 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject("Output:Table:Monthly");
+        thread_local static std::string const CurrentModuleObject("Output:Table:Monthly");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -841,7 +841,7 @@ namespace OutputReportTabular {
         Array1D_string AlphArray; // character string data
         Array1D<Real64> NumArray; // numeric data
         int IOStat;               // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
 
         MonthlyInputCount = inputProcessor->getNumObjectsFound(CurrentModuleObject);
         if (MonthlyInputCount > 0) {
@@ -1091,10 +1091,10 @@ namespace OutputReportTabular {
         int mColumn;
         int ColumnsRecount;
         int TablesRecount;
-        static Real64 BigNum(0.0);
+        thread_local static Real64 BigNum(0.0);
         bool environmentKeyFound;
-        static bool VarWarning(true);
-        static int ErrCount1(0);
+        thread_local static bool VarWarning(true);
+        thread_local static int ErrCount1(0);
         // INTEGER       :: maxKeyCount
 
         // if not a running a weather simulation do not create reports
@@ -1536,7 +1536,7 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject("Output:Table:TimeBins");
+        thread_local static std::string const CurrentModuleObject("Output:Table:TimeBins");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1755,7 +1755,7 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject("OutputControl:Table:Style");
+        thread_local static std::string const CurrentModuleObject("OutputControl:Table:Style");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1944,7 +1944,7 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject("Output:Table:SummaryReports");
+        thread_local static std::string const CurrentModuleObject("Output:Table:SummaryReports");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2392,7 +2392,7 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject("Output:Table:SummaryReports");
+        thread_local static std::string const CurrentModuleObject("Output:Table:SummaryReports");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -3720,16 +3720,16 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const Entire_Facility("Entire Facility");
-        static std::string const Annual_Building_Utility_Performance_Summary("Annual Building Utility Performance Summary");
-        static std::string const Input_Verification_and_Results_Summary("Input Verification and Results Summary");
-        static std::string const Demand_End_Use_Components_Summary("Demand End Use Components Summary");
-        static std::string const Source_Energy_End_Use_Components_Summary("Source Energy End Use Components Summary");
-        static std::string const Component_Cost_Economics_Summary("Component Cost Economics Summary");
-        static std::string const Component_Sizing_Summary("Component Sizing Summary");
-        static std::string const Surface_Shadowing_Summary("Surface Shadowing Summary");
-        static std::string const Adaptive_Comfort_Summary("Adaptive Comfort Summary");
-        static std::string const Initialization_Summary("Initialization Summary");
+        thread_local static std::string const Entire_Facility("Entire Facility");
+        thread_local static std::string const Annual_Building_Utility_Performance_Summary("Annual Building Utility Performance Summary");
+        thread_local static std::string const Input_Verification_and_Results_Summary("Input Verification and Results Summary");
+        thread_local static std::string const Demand_End_Use_Components_Summary("Demand End Use Components Summary");
+        thread_local static std::string const Source_Energy_End_Use_Components_Summary("Source Energy End Use Components Summary");
+        thread_local static std::string const Component_Cost_Economics_Summary("Component Cost Economics Summary");
+        thread_local static std::string const Component_Sizing_Summary("Component Sizing Summary");
+        thread_local static std::string const Surface_Shadowing_Summary("Surface Shadowing Summary");
+        thread_local static std::string const Adaptive_Comfort_Summary("Adaptive Comfort Summary");
+        thread_local static std::string const Initialization_Summary("Initialization Summary");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -4061,12 +4061,12 @@ namespace OutputReportTabular {
         // local copies of some of the MonthlyColumns array references since
         // profiling showed that they were slow.
 
-        static Array1D_int MonthlyColumnsTypeOfVar;
-        static Array1D_int MonthlyColumnsStepType;
-        static Array1D_int MonthlyColumnsAggType;
-        static Array1D_int MonthlyColumnsVarNum;
-        static Array1D_int MonthlyTablesNumColumns;
-        static int curFirstColumn(0);
+        thread_local static Array1D_int MonthlyColumnsTypeOfVar;
+        thread_local static Array1D_int MonthlyColumnsStepType;
+        thread_local static Array1D_int MonthlyColumnsAggType;
+        thread_local static Array1D_int MonthlyColumnsVarNum;
+        thread_local static Array1D_int MonthlyTablesNumColumns;
+        thread_local static int curFirstColumn(0);
 
         if (!DoWeathSim) return;
 
@@ -4869,21 +4869,21 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int iZone(0);
-        static int iRadiant(0);
-        static int iunit(0);
-        static int curZone(0);
-        static Real64 eqpSens(0.0);
-        static Real64 total(0.0);
+        thread_local static int iZone(0);
+        thread_local static int iRadiant(0);
+        thread_local static int iunit(0);
+        thread_local static int curZone(0);
+        thread_local static Real64 eqpSens(0.0);
+        thread_local static Real64 total(0.0);
         // the following arrays store the radiant total for each timestep
-        static Array1D<Real64> radiantHeat;
-        static Array1D<Real64> radiantCool;
-        static Array1D<Real64> ATUHeat;
-        static Array1D<Real64> ATUCool;
-        static int timestepTimeStamp(0);
-        static Real64 bldgHtPk(0.0);
-        static Real64 bldgClPk(0.0);
-        static Real64 timeStepRatio(0.0);
+        thread_local static Array1D<Real64> radiantHeat;
+        thread_local static Array1D<Real64> radiantCool;
+        thread_local static Array1D<Real64> ATUHeat;
+        thread_local static Array1D<Real64> ATUCool;
+        thread_local static int timestepTimeStamp(0);
+        thread_local static Real64 bldgHtPk(0.0);
+        thread_local static Real64 bldgClPk(0.0);
+        thread_local static Real64 timeStepRatio(0.0);
 
         Real64 mult; // zone list and group multipliers
 
@@ -5490,7 +5490,7 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const degChar("°");
+        thread_local static std::string const degChar("°");
 
         // LineTypes for reading the stat file
         int const StatisticsLine(1);
@@ -5530,8 +5530,8 @@ namespace OutputReportTabular {
         std::string lineIn;
         int statFile;
         bool fileExists;
-        static int lineType(0);
-        static int lineTypeinterim(0);
+        thread_local static int lineType(0);
+        thread_local static int lineTypeinterim(0);
         int readStat;
         bool isASHRAE;
         bool iscalc;
@@ -6133,7 +6133,7 @@ namespace OutputReportTabular {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static char const tb('\t'); // tab character
+        thread_local static char const tb('\t'); // tab character
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -6226,32 +6226,32 @@ namespace OutputReportTabular {
         int zonePt;
         int iZone;
         Real64 mult; // zone list and group multipliers
-        static Real64 totalVolume(0.0);
-        static int numUncondZones(0);
-        static int numCondZones(0);
+        thread_local static Real64 totalVolume(0.0);
+        thread_local static int numUncondZones(0);
+        thread_local static int numCondZones(0);
         int StartOfWeek;
-        static Real64 HrsPerWeek(0.0);
+        thread_local static Real64 HrsPerWeek(0.0);
         Real64 consumptionTotal;
         Real64 convertJtoGJ;
         // sensible heat gain report totals
-        static Real64 totalHvacHt(0.0);
-        static Real64 totalHvacCl(0.0);
-        static Real64 totalHvacATUHt(0.0);
-        static Real64 totalHvacATUCl(0.0);
-        static Real64 totalSurfHt(0.0);
-        static Real64 totalSurfCl(0.0);
-        static Real64 totalPeoplAdd(0.0);
-        static Real64 totalLiteAdd(0.0);
-        static Real64 totalEquipAdd(0.0);
-        static Real64 totalWindAdd(0.0);
-        static Real64 totalIzaAdd(0.0);
-        static Real64 totalInfilAdd(0.0);
-        static Real64 totalOtherAdd(0.0);
-        static Real64 totalEquipRem(0.0);
-        static Real64 totalWindRem(0.0);
-        static Real64 totalIzaRem(0.0);
-        static Real64 totalInfilRem(0.0);
-        static Real64 totalOtherRem(0.0);
+        thread_local static Real64 totalHvacHt(0.0);
+        thread_local static Real64 totalHvacCl(0.0);
+        thread_local static Real64 totalHvacATUHt(0.0);
+        thread_local static Real64 totalHvacATUCl(0.0);
+        thread_local static Real64 totalSurfHt(0.0);
+        thread_local static Real64 totalSurfCl(0.0);
+        thread_local static Real64 totalPeoplAdd(0.0);
+        thread_local static Real64 totalLiteAdd(0.0);
+        thread_local static Real64 totalEquipAdd(0.0);
+        thread_local static Real64 totalWindAdd(0.0);
+        thread_local static Real64 totalIzaAdd(0.0);
+        thread_local static Real64 totalInfilAdd(0.0);
+        thread_local static Real64 totalOtherAdd(0.0);
+        thread_local static Real64 totalEquipRem(0.0);
+        thread_local static Real64 totalWindRem(0.0);
+        thread_local static Real64 totalIzaRem(0.0);
+        thread_local static Real64 totalInfilRem(0.0);
+        thread_local static Real64 totalOtherRem(0.0);
 
         convertJtoGJ = 1.0 / 1000000000.0;
         StartOfWeek = RunPeriodStartDayOfWeek;
@@ -6629,7 +6629,7 @@ namespace OutputReportTabular {
         int curCol;
         Real64 curVal;
         Real64 curConversionFactor;
-        static Real64 curConversionOffset(0.0);
+        thread_local static Real64 curConversionOffset(0.0);
         int columnUsedCount;
         int columnRecount;
         int digitsShown;
@@ -6645,8 +6645,8 @@ namespace OutputReportTabular {
         Real64 veryLarge;
         Real64 verySmall;
 
-        static Real64 const storedMaxVal(std::numeric_limits<Real64>::max());
-        static Real64 const storedMinVal(std::numeric_limits<Real64>::lowest());
+        thread_local static Real64 const storedMaxVal(std::numeric_limits<Real64>::max());
+        thread_local static Real64 const storedMinVal(std::numeric_limits<Real64>::lowest());
 
         rowHead(1) = "January";
         rowHead(2) = "February";
@@ -7322,13 +7322,13 @@ namespace OutputReportTabular {
         Real64 processOthrCost;
 
         std::string subCatName;
-        static Real64 leedSiteIntLite(0.0);
-        static Real64 leedSiteSpHeat(0.0);
-        static Real64 leedSiteSpCool(0.0);
-        static Real64 leedSiteFanInt(0.0);
-        static Real64 leedSiteSrvWatr(0.0);
-        static Real64 leedSiteRecept(0.0);
-        static Real64 leedSiteTotal(0.0);
+        thread_local static Real64 leedSiteIntLite(0.0);
+        thread_local static Real64 leedSiteSpHeat(0.0);
+        thread_local static Real64 leedSiteSpCool(0.0);
+        thread_local static Real64 leedSiteFanInt(0.0);
+        thread_local static Real64 leedSiteSrvWatr(0.0);
+        thread_local static Real64 leedSiteRecept(0.0);
+        thread_local static Real64 leedSiteTotal(0.0);
         Real64 unconvert;
 
         if (displayTabularBEPS || displayLEEDSummary) {
@@ -9050,7 +9050,7 @@ namespace OutputReportTabular {
         int kEndUseSub;
         int i;
         int numRows;
-        static std::string footnote;
+        thread_local static std::string footnote;
         Real64 additionalFuelMax;
         int additionalFuelSelected;
         int additionalFuelNonZeroCount;
@@ -9572,11 +9572,11 @@ namespace OutputReportTabular {
         int item;    // do-loop counter for line items
         int NumRows; // number of rows in report table excluding table header
         int NumCols; // number of columns in report table
-        static std::string SIunit;
-        static std::string m2_unitName;
-        static Real64 m2_unitConv(0.0);
-        static int unitConvIndex(0);
-        static std::string IPunitName;
+        thread_local static std::string SIunit;
+        thread_local static std::string m2_unitName;
+        thread_local static Real64 m2_unitConv(0.0);
+        thread_local static int unitConvIndex(0);
+        thread_local static std::string IPunitName;
         Real64 IPqty;
         Real64 IPsingleValue;
         Real64 IPvaluePer;
@@ -9909,32 +9909,32 @@ namespace OutputReportTabular {
         bool zoneIsCond;
         bool usezoneFloorArea;
 
-        static int grandTotal(1);
-        static int condTotal(2);
-        static int uncondTotal(3);
-        static int notpartTotal(4);
+        thread_local static int grandTotal(1);
+        thread_local static int condTotal(2);
+        thread_local static int uncondTotal(3);
+        thread_local static int notpartTotal(4);
         int iTotal;
-        static std::string SIunit;
-        static int unitConvIndex(0);
-        static Real64 m_unitConv(0.0);
-        static Real64 m2_unitConv(0.0);
-        static Real64 m3_unitConv(0.0);
-        static Real64 Wm2_unitConv(0.0);
-        static std::string m_unitName;
-        static std::string m2_unitName;
-        static std::string m3_unitName;
-        static std::string Wm2_unitName;
+        thread_local static std::string SIunit;
+        thread_local static int unitConvIndex(0);
+        thread_local static Real64 m_unitConv(0.0);
+        thread_local static Real64 m2_unitConv(0.0);
+        thread_local static Real64 m3_unitConv(0.0);
+        thread_local static Real64 Wm2_unitConv(0.0);
+        thread_local static std::string m_unitName;
+        thread_local static std::string m2_unitName;
+        thread_local static std::string m3_unitName;
+        thread_local static std::string Wm2_unitName;
 
         // zone summary total
-        static Array1D<Real64> zstArea(4);
-        static Array1D<Real64> zstVolume(4);
-        static Array1D<Real64> zstWallArea(4);
-        static Array1D<Real64> zstUndWallArea(4);
-        static Array1D<Real64> zstWindowArea(4);
-        static Array1D<Real64> zstOpeningArea(4);
-        static Array1D<Real64> zstLight(4);
-        static Array1D<Real64> zstPeople(4);
-        static Array1D<Real64> zstPlug(4);
+        thread_local static Array1D<Real64> zstArea(4);
+        thread_local static Array1D<Real64> zstVolume(4);
+        thread_local static Array1D<Real64> zstWallArea(4);
+        thread_local static Array1D<Real64> zstUndWallArea(4);
+        thread_local static Array1D<Real64> zstWindowArea(4);
+        thread_local static Array1D<Real64> zstOpeningArea(4);
+        thread_local static Array1D<Real64> zstLight(4);
+        thread_local static Array1D<Real64> zstPeople(4);
+        thread_local static Array1D<Real64> zstPlug(4);
 
         zstArea = 0.0;
         zstVolume = 0.0;
@@ -10646,7 +10646,7 @@ namespace OutputReportTabular {
         Array1D_int columnWidth;
         Array1D_string rowHead;
         Array2D_string tableBody;
-        static int numPeopleAdaptive(0);
+        thread_local static int numPeopleAdaptive(0);
         int i;
         Array1D_int peopleInd; // Index the relevant people
 
@@ -10954,11 +10954,11 @@ namespace OutputReportTabular {
         int loopLimit;
         int iTableEntry;
         int jUnique;
-        static std::string curColHeadWithSI;
-        static std::string curColHead;
-        static int indexUnitConv(0);
-        static Real64 curValueSI(0.0);
-        static Real64 curValue(0.0);
+        thread_local static std::string curColHeadWithSI;
+        thread_local static std::string curColHead;
+        thread_local static int indexUnitConv(0);
+        thread_local static Real64 curValueSI(0.0);
+        thread_local static Real64 curValue(0.0);
 
         if (displayComponentSizing) {
             WriteReportHeaders("Component Sizing Summary", "Entire Facility", OutputProcessor::StoreType::Averaged);
@@ -11708,12 +11708,12 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int ZoneNum(0);
-        static int SurfNum(0);
-        static int TimeStep(0);
-        static int TimeOfPulse(0);
-        static int CoolDesSelected(0); // design day selected for cooling
-        static int HeatDesSelected(0); // design day selected for heating
+        thread_local static int ZoneNum(0);
+        thread_local static int SurfNum(0);
+        thread_local static int TimeStep(0);
+        thread_local static int TimeOfPulse(0);
+        thread_local static int CoolDesSelected(0); // design day selected for cooling
+        thread_local static int HeatDesSelected(0); // design day selected for heating
         int i;
         Real64 diff;
 
@@ -11867,10 +11867,10 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int iSurf(0);
-        static int ZoneNum(0);
-        static int TimeStepInDay(0);
-        static Array1D_int IntGainTypesTubular(1, {IntGainTypeOf_DaylightingDeviceTubular});
+        thread_local static int iSurf(0);
+        thread_local static int ZoneNum(0);
+        thread_local static int TimeStepInDay(0);
+        thread_local static Array1D_int IntGainTypesTubular(1, {IntGainTypeOf_DaylightingDeviceTubular});
 
         if (CompLoadReportIsReq && !isPulseZoneSizing) {
             TimeStepInDay = (HourOfDay - 1) * NumOfTimeStepInHour + TimeStep;
@@ -11940,8 +11940,8 @@ namespace OutputReportTabular {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int iZone(0);
-        static int TimeStepInDay(0);
+        thread_local static int iZone(0);
+        thread_local static int TimeStepInDay(0);
 
         if (CompLoadReportIsReq && !isPulseZoneSizing) {
             TimeStepInDay = (HourOfDay - 1) * NumOfTimeStepInHour + TimeStep;
@@ -12607,7 +12607,7 @@ namespace OutputReportTabular {
         using DataSurfaces::SurfaceClass_Window;
 
         // static bool initAdjFenDone(false); moved to anonymous namespace for unit testing
-        static Array3D_bool adjFenDone;
+        thread_local static Array3D_bool adjFenDone;
 
         Array1D<Real64> peopleRadIntoSurf;
         Array1D<Real64> equipRadIntoSurf;
@@ -13885,7 +13885,7 @@ namespace OutputReportTabular {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const blank;
+        thread_local static std::string const blank;
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -14625,7 +14625,7 @@ namespace OutputReportTabular {
         int kColumn;
         int curTable;
         int curCol;
-        static Real64 BigNum(0.0);
+        thread_local static Real64 BigNum(0.0);
 
         for (iInput = 1; iInput <= MonthlyInputCount; ++iInput) {
             for (jTable = 1; jTable <= MonthlyInput(iInput).numTables; ++jTable) {
@@ -15062,7 +15062,7 @@ namespace OutputReportTabular {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        static Array1D<gio::Fmt> formDigits({0, 9},
+        thread_local static Array1D<gio::Fmt> formDigits({0, 9},
                                             {"(F12.0)",
                                              "(F12.1)",
                                              "(F12.2)",
@@ -15075,7 +15075,7 @@ namespace OutputReportTabular {
                                              "(F12.9)"}); // formDigits(0) | formDigits(1) | formDigits(2) | formDigits(3) |
                                                           // formDigits(4) | formDigits(5) | formDigits(6) | formDigits(7) |
                                                           // formDigits(8) | formDigits(9)
-        static Array1D<Real64> const maxvalDigits({0, 9},
+        thread_local static Array1D<Real64> const maxvalDigits({0, 9},
                                                   {9999999999.0,
                                                    999999999.0,
                                                    99999999.0,
@@ -15088,7 +15088,7 @@ namespace OutputReportTabular {
                                                    9.0}); // maxvalDigits(0) | maxvalDigits(1) | maxvalDigits(2) | maxvalDigits(3) |
                                                           // maxvalDigits(4) | maxvalDigits(5) | maxvalDigits(6) | maxvalDigits(7) |
                                                           // maxvalDigits(8) | maxvalDigits(9)
-        static gio::Fmt fmtd("(E12.6)");
+        thread_local static gio::Fmt fmtd("(E12.6)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -15182,7 +15182,7 @@ namespace OutputReportTabular {
 
         // Locals
         // ((month*100 + day)*100 + hour)*100 + minute
-        static gio::Fmt DateFmt("(I2.2,'-',A3,'-',I2.2,':',I2.2)");
+        thread_local static gio::Fmt DateFmt("(I2.2,'-',A3,'-',I2.2,':',I2.2)");
 
         int Month;  // month in integer format (1-12)
         int Day;    // day in integer format (1-31)
@@ -16141,8 +16141,8 @@ namespace OutputReportTabular {
         //    na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int found(0);
-        static int iUnit(0);
+        thread_local static int found(0);
+        thread_local static int iUnit(0);
 
         for (iUnit = 1; iUnit <= UnitConvSize; ++iUnit) {
             if (UtilityRoutines::SameString(UnitConv(iUnit).siName, SIunit)) {
@@ -16256,8 +16256,8 @@ namespace OutputReportTabular {
         //    na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int found(0);
-        static int iUnit(0);
+        thread_local static int found(0);
+        thread_local static int iUnit(0);
 
         for (iUnit = 1; iUnit <= UnitConvSize; ++iUnit) {
             if (UtilityRoutines::SameString(UnitConv(iUnit).siName, SIunit)) {

@@ -138,68 +138,68 @@ namespace OutdoorAirUnit {
     using General::TrimSigDigits;
 
     // component types addressed by this module
-    std::string const cMO_OutdoorAirUnit("ZoneHVAC:OutdoorAirUnit");
+    thread_local std::string const cMO_OutdoorAirUnit("ZoneHVAC:OutdoorAirUnit");
 
-    int const WaterCoil_SimpleCool(1);
-    int const WaterCoil_Cooling(2);
-    int const WaterCoil_SimpleHeat(3);
-    int const SteamCoil_AirHeat(4);
-    int const WaterCoil_DetailedCool(5);
-    int const WaterCoil_CoolingHXAsst(6);
-    int const Coil_ElectricHeat(7);
-    int const Coil_GasHeat(8);
-    int const DXSystem(9);
-    int const HeatXchngr(10);
-    int const Desiccant(11);
-    int const DXHeatPumpSystem(12);
-    int const UnitarySystemModel(13);
+    thread_local int const WaterCoil_SimpleCool(1);
+    thread_local int const WaterCoil_Cooling(2);
+    thread_local int const WaterCoil_SimpleHeat(3);
+    thread_local int const SteamCoil_AirHeat(4);
+    thread_local int const WaterCoil_DetailedCool(5);
+    thread_local int const WaterCoil_CoolingHXAsst(6);
+    thread_local int const Coil_ElectricHeat(7);
+    thread_local int const Coil_GasHeat(8);
+    thread_local int const DXSystem(9);
+    thread_local int const HeatXchngr(10);
+    thread_local int const Desiccant(11);
+    thread_local int const DXHeatPumpSystem(12);
+    thread_local int const UnitarySystemModel(13);
 
     //  Control Types
-    int const Neutral(1);       // Controls system using zone mean air temperature
-    int const Unconditioned(2); // Controls system when outdoor air temperature is identified with control temperature
-    int const Temperature(3);   // Controls system using temperature band
+    thread_local int const Neutral(1);       // Controls system using zone mean air temperature
+    thread_local int const Unconditioned(2); // Controls system when outdoor air temperature is identified with control temperature
+    thread_local int const Temperature(3);   // Controls system using temperature band
 
     // Operating Options
-    int const HeatingMode(1); // normal heating coil operation
-    int const CoolingMode(2); // normal cooling coil operation
-    int const NeutralMode(3); // signal coil shouldn't run
+    thread_local int const HeatingMode(1); // normal heating coil operation
+    thread_local int const CoolingMode(2); // normal cooling coil operation
+    thread_local int const NeutralMode(3); // signal coil shouldn't run
 
-    Array1D_string const CurrentModuleObjects(2, {"ZoneHVAC:OutdoorAirUnit", "ZoneHVAC:OutdoorAirUnit:EquipmentList"});
+    thread_local Array1D_string const CurrentModuleObjects(2, {"ZoneHVAC:OutdoorAirUnit", "ZoneHVAC:OutdoorAirUnit:EquipmentList"});
 
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
-    static std::string const BlankString;
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
+    thread_local static std::string const BlankString;
 
     // Parameters below (CO - Current module Object.  used primarily in Get Inputs)
     // Multiple Get Input routines in this module or these would be in individual routines.
-    int const CO_OAUnit(1);
-    int const CO_OAEqList(2);
+    thread_local int const CO_OAUnit(1);
+    thread_local int const CO_OAEqList(2);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumOfOAUnits(0);                   // Number of outdoor air unit in the input file
-    Real64 OAMassFlowRate(0.0);            // Outside air mass flow rate for the zone outdoor air unit
-    bool GetOutdoorAirUnitInputFlag(true); // Flag set to make sure you get input once
+    thread_local int NumOfOAUnits(0);                   // Number of outdoor air unit in the input file
+    thread_local Real64 OAMassFlowRate(0.0);            // Outside air mass flow rate for the zone outdoor air unit
+    thread_local bool GetOutdoorAirUnitInputFlag(true); // Flag set to make sure you get input once
 
     // Autosizing variables
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
-    Array1D_bool MyOneTimeErrorFlag;
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local Array1D_bool MyOneTimeErrorFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OUTDOOR AIR UNIT
     // PRIVATE UpdateOutdoorAirUnit
     // PUBLIC GetOutAirCoilOutletTemp
 
     // Object Data
-    Array1D<OAUnitData> OutAirUnit;
-    std::unordered_set<std::string> SupplyFanUniqueNames;
-    std::unordered_set<std::string> ExhaustFanUniqueNames;
-    std::unordered_set<std::string> ComponentListUniqueNames;
+    thread_local Array1D<OAUnitData> OutAirUnit;
+    thread_local std::unordered_set<std::string> SupplyFanUniqueNames;
+    thread_local std::unordered_set<std::string> ExhaustFanUniqueNames;
+    thread_local std::unordered_set<std::string> ComponentListUniqueNames;
 
     namespace {
-        bool MyOneTimeFlag(true);
-        bool ZoneEquipmentListChecked(false);
+        thread_local bool MyOneTimeFlag(true);
+        thread_local bool ZoneEquipmentListChecked(false);
     } // namespace
 
     // Functions
@@ -357,7 +357,7 @@ namespace OutdoorAirUnit {
         using HVACDXSystem::CheckDXCoolingCoilInOASysExists;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetOutdoorAirUnitInputs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetOutdoorAirUnitInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -370,10 +370,10 @@ namespace OutdoorAirUnit {
         int NumInList;
         int InListNum;
         int ListNum;
-        static bool ErrorsFound(false);
-        static int MaxNums(0);           // Maximum number of numeric input fields
-        static int MaxAlphas(0);         // Maximum number of alpha input fields
-        static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        thread_local static bool ErrorsFound(false);
+        thread_local static int MaxNums(0);           // Maximum number of numeric input fields
+        thread_local static int MaxAlphas(0);         // Maximum number of alpha input fields
+        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         bool IsValid;                    // Set for outside air node check
         Array1D_string cAlphaArgs;       // Alpha input items for object
         std::string CurrentModuleObject; // Object type for getting and messages
@@ -383,7 +383,7 @@ namespace OutdoorAirUnit {
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
         Array1D<Real64> NumArray;
         Array1D_string AlphArray;
-        static bool errFlag(false);
+        thread_local static bool errFlag(false);
 
         // FLOW:
         // Figure out how many outdoor air units there are in the input file
@@ -1123,8 +1123,8 @@ namespace OutdoorAirUnit {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject("ZoneHVAC:OutdoorAirUnit");
-        static std::string const RoutineName("SizeOutdoorAirUnit");
+        thread_local static std::string const CurrentModuleObject("ZoneHVAC:OutdoorAirUnit");
+        thread_local static std::string const RoutineName("SizeOutdoorAirUnit");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1138,9 +1138,9 @@ namespace OutdoorAirUnit {
         // static bool MyOneTimeFlag( true );
         // static bool ZoneEquipmentListChecked( false ); // True after the Zone Equipment List has been checked for items
         ////////////////////////////////////////////////////////////////////////////////////
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         int InNode;                       // inlet node number in outdoor air unit
         int OutNode;                      // outlet node number in outdoor air unit
         int OutsideAirNode;               // outside air node number outdoor air unit
@@ -1447,7 +1447,7 @@ namespace OutdoorAirUnit {
         using WaterCoils::SimulateWaterCoilComponents;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeOutdoorAirUnit");
+        thread_local static std::string const RoutineName("SizeOutdoorAirUnit");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum; // index of plant sizing object for 1st heating loop
@@ -1704,7 +1704,7 @@ namespace OutdoorAirUnit {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const CurrentModuleObject("ZoneHVAC:OutdoorAirUnit");
+        thread_local static std::string const CurrentModuleObject("ZoneHVAC:OutdoorAirUnit");
         Real64 DesOATemp;    // Design OA Temp degree C
         Real64 AirMassFlow;  // air mass flow rate [kg/s]
         int ControlNode;     // the hot water or cold water inlet node
@@ -1721,8 +1721,8 @@ namespace OutdoorAirUnit {
         Real64 LoCtrlTemp;   // Current low point in setpoint temperature range
         Real64 AirInEnt;     // RE-calcualte the Enthalpy of supply air
         Real64 AirOutletTemp;
-        static int OperatingMode(0);
-        static int UnitControlType(0);
+        thread_local static int OperatingMode(0);
+        thread_local static int UnitControlType(0);
         Real64 ZoneSupAirEnt; // Specific humidity ratio of inlet air (kg moisture / kg moist air)
         // Latent output
         Real64 LatentOutput; // Latent (moisture) add/removal rate, negative is dehumidification [kg/s]
@@ -2139,13 +2139,13 @@ namespace OutdoorAirUnit {
         int WHCoilInletNode;
         int WHCoilOutletNode;
         Real64 QUnitOut;
-        static int DXSystemIndex(0);
+        thread_local static int DXSystemIndex(0);
         Real64 CompAirOutTemp;
         Real64 FanEffect;
         bool DrawFan; // fan position If .True., the temperature increasing by fan operating is considered
         Real64 Dxsystemouttemp;
-        static bool HeatActive(false);
-        static bool CoolActive(false);
+        thread_local static bool HeatActive(false);
+        thread_local static bool CoolActive(false);
 
         // Flow!
         UnitNum = OAUnitNum;
