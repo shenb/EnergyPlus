@@ -512,7 +512,7 @@ namespace HVACManager {
               auto & var = varmap.second; 
               auto varZoneNum = zoneNum(var.zoneName);
               switch ( var.type ) {
-                case VariableType::INPUT: {
+                case FMI::VariableType::INPUT: {
                   if ( var.varName == "T" ) {
                     EnergyPlus::DataHeatBalFanSys::ZT( varZoneNum ) = var.value;
                     EnergyPlus::DataHeatBalFanSys::MAT( varZoneNum ) = var.value;
@@ -521,7 +521,7 @@ namespace HVACManager {
                   }
                   break;
                 }
-                case VariableType::PARAMETER: {
+                case FMI::VariableType::PARAMETER: {
                   if ( var.varName == "V" ) {
                     var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
                   } else if ( var.varName == "AFlo" ) {
@@ -533,16 +533,15 @@ namespace HVACManager {
                   }
                   break;
                 }
-              }
-            }
-
-            for( auto & varmap : epcomp->variables ) {
-              auto & var = varmap.second; 
-              auto varZoneNum = zoneNum(var.zoneName);
-              switch ( var.type ) {
-                case VariableType::OUTPUT: {
+                case FMI::VariableType::OUTPUT: {
                   if ( var.varName == "QConSen_flow" ) {
                     var.value = ZoneTempPredictorCorrector::HDot( varZoneNum );
+                  } else if ( var.varName == "V" ) {
+                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
+                  } else if ( var.varName == "AFlo" ) {
+                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).FloorArea;
+                  } else if ( var.varName == "mSenFac" ) {
+                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).ZoneVolCapMultpSens;
                   } else {
                     std::cout << "output named " << var.varName << " is not valid" << std::endl;
                   }
@@ -550,11 +549,6 @@ namespace HVACManager {
                 }
               }
             }
-
-            //// Update each zone HDot
-            //for (int ZoneNum = 1; ZoneNum <= NumOfZones; ZoneNum++) {
-            //  DataHeatBalFanSys::HDot( ZoneNum ) = ZoneTempPredictorCorrector::HDot( ZoneNum );
-            //}
 
             // Signal that the step is done
             {

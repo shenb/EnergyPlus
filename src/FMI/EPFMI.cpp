@@ -8,6 +8,9 @@
 #include "../EnergyPlus/DataHeatBalance.hh"
 #include "../EnergyPlus/DataEnvironment.hh"
 #include "../EnergyPlus/FMIDataGlobals.hh"
+#include "../EnergyPlus/InputProcessing/IdfParser.hh"
+#include "../EnergyPlus/InputProcessing/EmbeddedEpJSONSchema.hh"
+#include <boost/filesystem.hpp>
 #include <functional>
 #include <map>
 #include <memory>
@@ -22,6 +25,8 @@ using namespace std::placeholders;
 
 std::list<EPComponent> epComponents;
 
+using json = nlohmann::json;
+
 EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   fmi2Type fmuType,
   fmi2String fmuGUID,
@@ -32,7 +37,6 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
 {
   UNUSED(fmuType);
   UNUSED(fmuGUID);
-  UNUSED(fmuResourceLocation);
   UNUSED(functions);
   UNUSED(visible);
   UNUSED(loggingOn);
@@ -41,9 +45,25 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   auto & comp = epComponents.back();
   comp.instanceName = instanceName;
 
+  const auto resourcePath = boost::filesystem::path(fmuResourceLocation);
+
+  boost::system::error_code ec;
+  for ( const auto & entry : boost::filesystem::directory_iterator(resourcePath, ec) ) {
+    const auto path = entry.path();
+    const auto extension = path.extension();
+    if ( extension == ".idf" ) {
+      comp.idfInputPath = path.string();
+    } else if ( extension == ".epw" ) {
+      comp.weatherFilePath = path.string();
+    } else if ( extension == ".idd" ) {
+      comp.iddPath = path.string();
+    }
+  }
+
+  comp.variables = EnergyPlus::FMI::parseVariables(comp.idfInputPath);
+
   return &comp;
 }
-
 
 EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
   fmi2Boolean toleranceDefined,
@@ -65,13 +85,13 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
     const char * argv[argc];
     argv[0] = "energyplus";
     argv[1] = "-d";
-    argv[2] = epcomp->instanceName;
+    argv[2] = epcomp->instanceName.c_str();
     argv[3] = "-w";
-    argv[4] = epcomp->weatherFilePath;
+    argv[4] = epcomp->weatherFilePath.c_str();
     argv[5] = "-i";
-    argv[6] = epcomp->iddPath;
-    argv[7] = epcomp->idfInputPath;
-    
+    argv[6] = epcomp->iddPath.c_str();
+    argv[7] = epcomp->idfInputPath.c_str();
+
     EnergyPlus::epcomp = epcomp;
     EnergyPlus::CommandLineInterface::ProcessArgs( argc, argv );
     RunEnergyPlus();
@@ -83,8 +103,6 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
     epcomp->epstatus = EPStatus::WORKING;
   }
 
-  std::cout << "start thread" << std::endl;
-
   epcomp->simthread = std::thread(simulation);
 
   {
@@ -92,8 +110,6 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
     std::unique_lock<std::mutex> lk( epcomp->time_mutex );
     epcomp->time_cv.wait( lk, [&epcomp](){ return epcomp->epstatus == EPStatus::IDLE; } );
   }
-
-  std::cout << "done wait after start thread" << std::endl;
 
   return fmi2OK;
 }

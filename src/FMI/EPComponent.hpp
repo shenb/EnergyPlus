@@ -57,29 +57,7 @@
 #include <condition_variable>
 #include <fmi2FunctionTypes.h>
 #include "EnergyPlus.hh"
-
-enum class VariableType { INPUT, OUTPUT, PARAMETER };
-
-struct Variable {
-  Variable(const char * name, VariableType _type)
-    : type(_type)
-  {
-    std::vector<std::string> strings;
-    std::istringstream f(name);
-    std::string s;    
-    while (std::getline(f, s, ',')) {
-        strings.push_back(s);
-    }
-
-    zoneName = strings[0];
-    varName = strings[1];
-  };
-
-  std::string zoneName;
-  std::string varName;
-  Real64 value;
-  VariableType type;
-};
+#include "Variables.hpp"
 
 enum class EPStatus { WORKING, IDLE, TERMINATING };
 
@@ -88,11 +66,11 @@ struct EPComponent {
   EPComponent( const EPComponent& ) = delete;
   EPComponent( EPComponent&& ) {}
 
-  fmi2String instanceName;
+  std::string instanceName;
 
-  fmi2String weatherFilePath;
-  fmi2String iddPath;
-  fmi2String idfInputPath;
+  std::string weatherFilePath;
+  std::string iddPath;
+  std::string idfInputPath;
 
   fmi2Boolean toleranceDefined;
   fmi2Real tolerance;
@@ -102,7 +80,7 @@ struct EPComponent {
   fmi2Real currentTime;
   fmi2Real nextSimTime;
 
-  std::map<unsigned int, Variable> variables;
+  std::map<unsigned int, EnergyPlus::FMI::Variable> variables;
 
   std::thread simthread;
   EPStatus epstatus;
