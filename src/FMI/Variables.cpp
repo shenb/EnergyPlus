@@ -64,7 +64,7 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
     ++i;
     {
       Variable var;
-      var.type = VariableType::T;
+      var.type = VariableType::QCONSEN_FLOW;
       var.key = zone;
 
       var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_QConSen_flow"));
