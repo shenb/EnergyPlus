@@ -510,43 +510,26 @@ namespace HVACManager {
             // Exchange Data
             for( auto & varmap : epcomp->variables ) {
               auto & var = varmap.second; 
-              auto varZoneNum = zoneNum(var.zoneName);
+              auto varZoneNum = zoneNum(var.key);
               switch ( var.type ) {
-                case FMI::VariableType::INPUT: {
-                  if ( var.varName == "T" ) {
-                    EnergyPlus::DataHeatBalFanSys::ZT( varZoneNum ) = var.value;
-                    EnergyPlus::DataHeatBalFanSys::MAT( varZoneNum ) = var.value;
-                  } else {
-                    std::cout << "input named " << var.varName << " is not valid" << std::endl;
-                  }
+                case FMI::VariableType::T:
+                  EnergyPlus::DataHeatBalFanSys::ZT( varZoneNum ) = var.value;
+                  EnergyPlus::DataHeatBalFanSys::MAT( varZoneNum ) = var.value;
                   break;
-                }
-                case FMI::VariableType::PARAMETER: {
-                  if ( var.varName == "V" ) {
-                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
-                  } else if ( var.varName == "AFlo" ) {
-                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).FloorArea;
-                  } else if ( var.varName == "mSenFac" ) {
-                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).ZoneVolCapMultpSens;
-                  } else {
-                    std::cout << "parameter named " << var.varName << " is not valid" << std::endl;
-                  }
+                case FMI::VariableType::V:
+                  var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
                   break;
-                }
-                case FMI::VariableType::OUTPUT: {
-                  if ( var.varName == "QConSen_flow" ) {
-                    var.value = ZoneTempPredictorCorrector::HDot( varZoneNum );
-                  } else if ( var.varName == "V" ) {
-                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
-                  } else if ( var.varName == "AFlo" ) {
-                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).FloorArea;
-                  } else if ( var.varName == "mSenFac" ) {
-                    var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).ZoneVolCapMultpSens;
-                  } else {
-                    std::cout << "output named " << var.varName << " is not valid" << std::endl;
-                  }
+                case FMI::VariableType::AFLO:
+                  var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).FloorArea;
                   break;
-                }
+                case FMI::VariableType::MSENFAC:
+                  var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).ZoneVolCapMultpSens;
+                  break;
+                case FMI::VariableType::QCONSEN_FLOW:
+                  var.value = ZoneTempPredictorCorrector::HDot( varZoneNum );
+                  break;
+                default:
+                  break;
               }
             }
 

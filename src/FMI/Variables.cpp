@@ -10,30 +10,6 @@ using json = nlohmann::json;
 namespace EnergyPlus {
 namespace FMI {
 
-std::string Variable::name() const
-{
-  return zoneName + "_" + varName;
-}
-
-std::string Variable::causality() const
-{
-  std::string result;
-
-  switch(type) {
-    case VariableType::INPUT :
-      result = "input";
-      break;
-    case VariableType::OUTPUT :
-      result = "output";
-      break;
-    case VariableType::PARAMETER :
-      result = "parameter";
-      break;
-  }
-
-  return result;
-}
-
 std::vector<std::string> zoneNames(const std::string & idfPath) {
   std::vector<std::string> result;
 
@@ -69,121 +45,97 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
   for (const auto & zone : zones) {
     {
       Variable var;
-      var.varName = "T";
-      var.zoneName = zone;
-      var.description = "Temperature of the zone air";
-      var.variability = "continuous";
-      //var.initial = "";
-      var.quantity = "ThermodynamicTemperature";
-      var.unit = "degC";
-      var.relativeQuantity = false;
-      var.start = 0.0;
-      var.type = VariableType::INPUT;
+      var.type = VariableType::T;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_T"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Temperature of the zone air"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","input"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","ThermodynamicTemperature"));
+      var.real_attributes.emplace_back(std::make_pair("unit","degC"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","0.0"));
+
       result.emplace(i,std::move(var));
     }
     ++i;
     {
       Variable var;
-      var.varName = "QConSen_flow";
-      var.zoneName = zone;
-      var.type = VariableType::OUTPUT;
-      var.description = "Convective sensible heat added to the zone";
-      var.variability = "discrete";
-      var.initial = "calculated";
-      var.quantity = "Power";
-      var.unit = "W";
-      var.relativeQuantity = false;
-      //var.start = 0.0;
+      var.type = VariableType::T;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_QConSen_flow"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Convective sensible heat added to the zone"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","Power"));
+      var.real_attributes.emplace_back(std::make_pair("unit","W"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+
       result.emplace(i,std::move(var));
     }
     ++i;
     {
       Variable var;
-      var.varName = "AFlo";
-      var.zoneName = zone;
-      var.type = VariableType::PARAMETER;
-      var.description = "Floor area";
-      var.variability = "fixed";
-      var.initial = "exact";
-      var.quantity = "area";
-      var.unit = "m2";
-      var.relativeQuantity = false;
-      var.start = 12.0;
+      var.type = VariableType::AFLO;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_AFlo"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Floor area"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","local"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","constant"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","exact"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","Area"));
+      var.real_attributes.emplace_back(std::make_pair("unit","m2"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","12.0"));
+
       result.emplace(i,std::move(var));
     }
     ++i;
     {
       Variable var;
-      var.varName = "V";
-      var.zoneName = zone;
-      var.type = VariableType::PARAMETER;
-      var.description = "Volume";
-      var.variability = "fixed";
-      var.initial = "exact";
-      var.quantity = "volume";
-      var.unit = "m3";
-      var.relativeQuantity = false;
-      var.start = 36.0;
+      var.type = VariableType::V;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_V"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Volume"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","local"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","constant"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","exact"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","Volume"));
+      var.real_attributes.emplace_back(std::make_pair("unit","m3"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","36.0"));
+
       result.emplace(i,std::move(var));
     }
     ++i;
     {
       Variable var;
-      var.varName = "mSenFac";
-      var.zoneName = zone;
-      var.type = VariableType::PARAMETER;
-      var.description = "Factor for scaling sensible thermal mass of volume";
-      var.variability = "fixed";
-      var.initial = "exact";
-      //var.quantity = "volume";
-      //var.unit = "m3";
-      var.relativeQuantity = false;
-      var.start = 1.0;
-      result.emplace(i,std::move(var));
-    }
-    ++i;
-    {
-      Variable var;
-      var.varName = "AFlo";
-      var.zoneName = zone;
-      var.type = VariableType::OUTPUT;
-      var.description = "Floor area";
-      var.variability = "fixed";
-      var.initial = "exact";
-      var.quantity = "area";
-      var.unit = "m2";
-      var.relativeQuantity = false;
-      var.start = 12.0;
-      result.emplace(i,std::move(var));
-    }
-    ++i;
-    {
-      Variable var;
-      var.varName = "V";
-      var.zoneName = zone;
-      var.type = VariableType::OUTPUT;
-      var.description = "Volume";
-      var.variability = "fixed";
-      var.initial = "exact";
-      var.quantity = "volume";
-      var.unit = "m3";
-      var.relativeQuantity = false;
-      var.start = 36.0;
-      result.emplace(i,std::move(var));
-    }
-    ++i;
-    {
-      Variable var;
-      var.varName = "mSenFac";
-      var.zoneName = zone;
-      var.type = VariableType::OUTPUT;
-      var.description = "Factor for scaling sensible thermal mass of volume";
-      var.variability = "fixed";
-      var.initial = "exact";
-      //var.quantity = "volume";
-      //var.unit = "m3";
-      var.relativeQuantity = false;
-      var.start = 1.0;
+      var.type = VariableType::MSENFAC;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_mSenFac"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Factor for scaling sensible thermal mass of volume"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","local"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","constant"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","exact"));
+
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","1.0"));
+
       result.emplace(i,std::move(var));
     }
     ++i;

@@ -1,5 +1,6 @@
 #include "EPFMI.hpp"
 #include "EPComponent.hpp"
+#include <fmi2Functions.h>
 #include "../EnergyPlus/public/EnergyPlusPgm.hh"
 #include "../EnergyPlus/CommandLineInterface.hh"
 #include "../EnergyPlus/ZoneTempPredictorCorrector.hh"
@@ -18,6 +19,7 @@
 #include <sstream>
 #include <algorithm>
 #include <list>
+#include <regex>
 
 using namespace std::placeholders;
 
@@ -30,7 +32,7 @@ using json = nlohmann::json;
 EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   fmi2Type fmuType,
   fmi2String fmuGUID,
-  fmi2String fmuResourceLocation,
+  fmi2String fmuResourceURI,
   const fmi2CallbackFunctions* functions,
   fmi2Boolean visible,
   fmi2Boolean loggingOn)
@@ -45,7 +47,8 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   auto & comp = epComponents.back();
   comp.instanceName = instanceName;
 
-  const auto resourcePath = boost::filesystem::path(fmuResourceLocation);
+	const auto resourcePathString = std::regex_replace(fmuResourceURI, std::regex("^file://"), "");
+  const auto resourcePath = boost::filesystem::path(resourcePathString);
 
   boost::system::error_code ec;
   for ( const auto & entry : boost::filesystem::directory_iterator(resourcePath, ec) ) {
@@ -218,8 +221,7 @@ EPFMI_API fmi2Status fmi2NewDiscreteStates(fmi2Component  c, fmi2EventInfo* even
   return fmi2OK;
 }
 
-EPFMI_API fmi2Status fmi2Terminate(fmi2Component c)
-{
+void stopEnergyPlus(fmi2Component c) {
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   {
@@ -229,6 +231,11 @@ EPFMI_API fmi2Status fmi2Terminate(fmi2Component c)
   // Notify E+ to advance
   epcomp->time_cv.notify_one();
   epcomp->simthread.join();
+}
+
+EPFMI_API fmi2Status fmi2Terminate(fmi2Component c)
+{
+  stopEnergyPlus(c);
 
   // TODO: Something like this
   //auto it = std::find(epComponents.begin(), epComponents.end(), *epcomp);
@@ -238,4 +245,154 @@ EPFMI_API fmi2Status fmi2Terminate(fmi2Component c)
 
   return fmi2OK;
 }
+
+EPFMI_API const char* fmi2GetTypesPlatform(void)
+{
+  return fmi2TypesPlatform;
+}
+
+EPFMI_API const char* fmi2GetVersion(void)
+{
+  return fmi2Version;
+}
+
+EPFMI_API fmi2Status fmi2SetDebugLogging(fmi2Component, fmi2Boolean, size_t, const fmi2String[])
+{
+  std::cout << "Logging not enabled yet" << std::endl;
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2Reset(fmi2Component c)
+{
+  EPComponent * epcomp = static_cast<EPComponent*>(c);
+  stopEnergyPlus(c);
+  epcomp->variables = EnergyPlus::FMI::parseVariables(epcomp->idfInputPath);
+
+  return fmi2OK;
+}
+
+EPFMI_API void fmi2FreeInstance(fmi2Component c)
+{
+  EPComponent * epcomp = static_cast<EPComponent*>(c);
+  stopEnergyPlus(c);
+
+  auto it = std::find(epComponents.begin(), epComponents.end(), *epcomp);
+  epComponents.erase(it);
+
+  c = nullptr;
+}
+
+EPFMI_API fmi2Status fmi2EnterInitializationMode(fmi2Component)
+{
+  std::cout << "fmi2EnterInitializationMode called, however this method is idempotent" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2ExitInitializationMode(fmi2Component)
+{
+  std::cout << "fmi2ExitInitializationMode called, however this method is idempotent" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetInteger(fmi2Component, const fmi2ValueReference[], size_t, fmi2Integer[])
+{
+  std::cout << "fmi2GetInteger called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetBoolean(fmi2Component, const fmi2ValueReference[], size_t, fmi2Boolean[])
+{
+  std::cout << "fmi2GetBoolean called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetString(fmi2Component, const fmi2ValueReference[], size_t, fmi2String [])
+{
+  std::cout << "fmi2GetString called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2SetInteger(fmi2Component, const fmi2ValueReference[], size_t, const fmi2Integer[])
+{
+  std::cout << "fmi2SetInteger called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2SetBoolean(fmi2Component, const fmi2ValueReference[], size_t, const fmi2Boolean[])
+{
+  std::cout << "fmi2SetInteger called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2SetString(fmi2Component, const fmi2ValueReference[], size_t, const fmi2String [])
+{
+  std::cout << "fmi2SetString called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2EnterEventMode(fmi2Component)
+{
+  std::cout << "fmi2EnterEventMode called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+
+EPFMI_API fmi2Status fmi2EnterContinuousTimeMode(fmi2Component)
+{
+  std::cout << "fmi2EnterContinuousTimeMode called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2CompletedIntegratorStep(fmi2Component, fmi2Boolean, fmi2Boolean*, fmi2Boolean*)
+{
+  std::cout << "fmi2CompletedIntegratorStep called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2SetContinuousStates(fmi2Component, const fmi2Real[], size_t)
+{
+  std::cout << "fmi2SetContinuousStates called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetDerivatives(fmi2Component, fmi2Real[], size_t)
+{
+  std::cout << "fmi2GetDerivatives called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetEventIndicators(fmi2Component, fmi2Real[], size_t)
+{
+  std::cout << "fmi2GetEventIndicators called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetContinuousStates(fmi2Component, fmi2Real[], size_t)
+{
+  std::cout << "fmi2GetContinuousStates called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
+EPFMI_API fmi2Status fmi2GetNominalsOfContinuousStates(fmi2Component, fmi2Real[], size_t)
+{
+  std::cout << "fmi2GetNominalsOfContinuousStates called, however this method is not implemented" << std::endl;
+
+  return fmi2OK;
+}
+
 

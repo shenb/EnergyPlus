@@ -10,24 +10,16 @@
 namespace EnergyPlus {
 namespace FMI {
 
-enum class VariableType { INPUT, OUTPUT, PARAMETER };
+enum class VariableType { T, V, AFLO, MSENFAC, QCONSEN_FLOW };
+
+using VariableAttribute = std::pair<std::string, std::string>;
 
 struct Variable {
-  std::string name() const;
-
-  std::string causality() const;
-
-  std::string varName;
-  std::string zoneName;
-  std::string description;
-  std::string variability;
-  std::string initial;
-  std::string quantity;
-  std::string unit;
-  bool relativeQuantity;
-  Real64 start;
   VariableType type;
+  std::string key; 
   Real64 value;
+  std::vector<VariableAttribute> scalar_attributes;
+  std::vector<VariableAttribute> real_attributes;
 };
 
 std::map<unsigned int, Variable> parseVariables(const std::string & idf);

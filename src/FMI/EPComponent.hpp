@@ -65,6 +65,9 @@ struct EPComponent {
   EPComponent() {}
   EPComponent( const EPComponent& ) = delete;
   EPComponent( EPComponent&& ) {}
+  bool operator==(const EPComponent& other) const {
+    return (this == &other);
+  }
 
   std::string instanceName;
 
