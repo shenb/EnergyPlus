@@ -43,6 +43,8 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   UNUSED(visible);
   UNUSED(loggingOn);
 
+  std::cout << "fmi2Instantiate called" << std::endl;
+
   epComponents.emplace_back();
   auto & comp = epComponents.back();
   comp.instanceName = instanceName;
@@ -75,6 +77,7 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
   fmi2Boolean stopTimeDefined,
   fmi2Real stopTime)
 {
+  std::cout << "fmi2SetupExperiment called" << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   epcomp->toleranceDefined = toleranceDefined;
@@ -117,36 +120,9 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
   return fmi2OK;
 }
 
-//  //for ( const auto & param : parameters ) {
-//  //  if ( param.varName == "V" ) {
-//  //    valueGetters[param.valueRef] = std::bind(getZoneVolume, _1, param.zoneNum());
-//  //  } else if ( param.varName == "AFlo" ) {
-//  //    valueGetters[param.valueRef] = std::bind(getZoneFloorArea, _1, param.zoneNum());
-//  //  } else if ( param.varName == "mSenFac" ) {
-//  //    valueGetters[param.valueRef] = std::bind(getZoneCapacityMult, _1, param.zoneNum());
-//  //  } else {
-//  //    std::cout << "parameter named " << param.varName << " is not valid" << std::endl;
-//  //  }
-//  //}
-//
-//  //for ( const auto & input : inputs ) {
-//  //  if ( input.varName == "T" ) {
-//  //    valueSetters[input.valueRef] = std::bind(setZoneTemperature, _1, input.zoneNum());
-//  //  } else {
-//  //    std::cout << "input named " << input.varName << " is not valid" << std::endl;
-//  //  }
-//  //}
-//
-//  //for ( const auto & output : outputs ) {
-//  //  if ( output.varName == "QConSen_flow" ) {
-//  //    valueGetters[output.valueRef] = std::bind(getZoneH, _1, output.zoneNum());
-//  //  } else {
-//  //    std::cout << "output named " << output.varName << " is not valid" << std::endl;
-//  //  }
-//  //}
-
 EPFMI_API fmi2Status fmi2SetTime(fmi2Component c, fmi2Real time)
 {
+  std::cout << "fmi2SetTime called" << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   {
@@ -165,12 +141,12 @@ EPFMI_API fmi2Status fmi2SetTime(fmi2Component c, fmi2Real time)
   return fmi2OK;
 }
 
-
 EPFMI_API fmi2Status fmi2SetReal(fmi2Component c,
   const fmi2ValueReference vr[],
   size_t nvr,
   const fmi2Real values[])
 {
+  std::cout << "fmi2SetReal called" << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   for ( size_t i = 0; i < nvr; ++i ) {
@@ -197,6 +173,7 @@ EPFMI_API fmi2Status fmi2GetReal(fmi2Component c,
   size_t nvr,
   fmi2Real values[])
 {
+  std::cout << "fmi2GetReal called" << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   for ( size_t i = 0; i < nvr; ++i ) {
@@ -212,8 +189,11 @@ EPFMI_API fmi2Status fmi2GetReal(fmi2Component c,
 
 EPFMI_API fmi2Status fmi2NewDiscreteStates(fmi2Component  c, fmi2EventInfo* eventInfo)
 {
+  std::cout << "fmi2NewDiscreteStates called" << std::endl;
+
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
+  eventInfo->newDiscreteStatesNeeded = fmi2False;
   eventInfo->nextEventTime = epcomp->nextSimTime;
   eventInfo->nextEventTimeDefined = fmi2True;
   eventInfo->terminateSimulation = fmi2False;
@@ -222,6 +202,8 @@ EPFMI_API fmi2Status fmi2NewDiscreteStates(fmi2Component  c, fmi2EventInfo* even
 }
 
 void stopEnergyPlus(fmi2Component c) {
+  std::cout << "stopEnergyPlus called" << std::endl;
+
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   {
@@ -235,24 +217,21 @@ void stopEnergyPlus(fmi2Component c) {
 
 EPFMI_API fmi2Status fmi2Terminate(fmi2Component c)
 {
+  std::cout << "fmi2Terminate called" << std::endl;
   stopEnergyPlus(c);
-
-  // TODO: Something like this
-  //auto it = std::find(epComponents.begin(), epComponents.end(), *epcomp);
-  //if ( it != epComponents.end() ) {
-  //  epComponents.erase(it);
-  //}
 
   return fmi2OK;
 }
 
 EPFMI_API const char* fmi2GetTypesPlatform(void)
 {
+  std::cout << "fmi2GetTypesPlatform called" << std::endl;
   return fmi2TypesPlatform;
 }
 
 EPFMI_API const char* fmi2GetVersion(void)
 {
+  std::cout << "fmi2GetVersion called" << std::endl;
   return fmi2Version;
 }
 
@@ -264,6 +243,7 @@ EPFMI_API fmi2Status fmi2SetDebugLogging(fmi2Component, fmi2Boolean, size_t, con
 
 EPFMI_API fmi2Status fmi2Reset(fmi2Component c)
 {
+  std::cout << "fmi2Reset called" << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
   stopEnergyPlus(c);
   epcomp->variables = EnergyPlus::FMI::parseVariables(epcomp->idfInputPath);
@@ -273,8 +253,8 @@ EPFMI_API fmi2Status fmi2Reset(fmi2Component c)
 
 EPFMI_API void fmi2FreeInstance(fmi2Component c)
 {
+  std::cout << "fmi2FreeInstance called" << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
-  stopEnergyPlus(c);
 
   auto it = std::find(epComponents.begin(), epComponents.end(), *epcomp);
   epComponents.erase(it);
@@ -284,63 +264,63 @@ EPFMI_API void fmi2FreeInstance(fmi2Component c)
 
 EPFMI_API fmi2Status fmi2EnterInitializationMode(fmi2Component)
 {
-  std::cout << "fmi2EnterInitializationMode called, however this method is idempotent" << std::endl;
+  std::cout << "fmi2EnterInitializationMode called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2ExitInitializationMode(fmi2Component)
 {
-  std::cout << "fmi2ExitInitializationMode called, however this method is idempotent" << std::endl;
+  std::cout << "fmi2ExitInitializationMode called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetInteger(fmi2Component, const fmi2ValueReference[], size_t, fmi2Integer[])
 {
-  std::cout << "fmi2GetInteger called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetInteger called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetBoolean(fmi2Component, const fmi2ValueReference[], size_t, fmi2Boolean[])
 {
-  std::cout << "fmi2GetBoolean called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetBoolean called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetString(fmi2Component, const fmi2ValueReference[], size_t, fmi2String [])
 {
-  std::cout << "fmi2GetString called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetString called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2SetInteger(fmi2Component, const fmi2ValueReference[], size_t, const fmi2Integer[])
 {
-  std::cout << "fmi2SetInteger called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2SetInteger called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2SetBoolean(fmi2Component, const fmi2ValueReference[], size_t, const fmi2Boolean[])
 {
-  std::cout << "fmi2SetInteger called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2SetInteger called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2SetString(fmi2Component, const fmi2ValueReference[], size_t, const fmi2String [])
 {
-  std::cout << "fmi2SetString called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2SetString called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2EnterEventMode(fmi2Component)
 {
-  std::cout << "fmi2EnterEventMode called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2EnterEventMode called" << std::endl;
 
   return fmi2OK;
 }
@@ -348,49 +328,49 @@ EPFMI_API fmi2Status fmi2EnterEventMode(fmi2Component)
 
 EPFMI_API fmi2Status fmi2EnterContinuousTimeMode(fmi2Component)
 {
-  std::cout << "fmi2EnterContinuousTimeMode called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2EnterContinuousTimeMode called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2CompletedIntegratorStep(fmi2Component, fmi2Boolean, fmi2Boolean*, fmi2Boolean*)
 {
-  std::cout << "fmi2CompletedIntegratorStep called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2CompletedIntegratorStep called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2SetContinuousStates(fmi2Component, const fmi2Real[], size_t)
 {
-  std::cout << "fmi2SetContinuousStates called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2SetContinuousStates called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetDerivatives(fmi2Component, fmi2Real[], size_t)
 {
-  std::cout << "fmi2GetDerivatives called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetDerivatives called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetEventIndicators(fmi2Component, fmi2Real[], size_t)
 {
-  std::cout << "fmi2GetEventIndicators called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetEventIndicators called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetContinuousStates(fmi2Component, fmi2Real[], size_t)
 {
-  std::cout << "fmi2GetContinuousStates called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetContinuousStates called" << std::endl;
 
   return fmi2OK;
 }
 
 EPFMI_API fmi2Status fmi2GetNominalsOfContinuousStates(fmi2Component, fmi2Real[], size_t)
 {
-  std::cout << "fmi2GetNominalsOfContinuousStates called, however this method is not implemented" << std::endl;
+  std::cout << "fmi2GetNominalsOfContinuousStates called" << std::endl;
 
   return fmi2OK;
 }
