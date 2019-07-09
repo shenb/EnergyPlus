@@ -133,29 +133,29 @@ namespace HWBaseboardRadiator {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local std::string const cCMO_BBRadiator_Water("ZoneHVAC:Baseboard:RadiantConvective:Water");
+    std::string const cCMO_BBRadiator_Water("ZoneHVAC:Baseboard:RadiantConvective:Water");
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumHWBaseboards(0);
-    thread_local Array1D<Real64> QBBRadSource;         // Need to keep the last value in case we are still iterating
-    thread_local Array1D<Real64> QBBRadSrcAvg;         // Need to keep the last value in case we are still iterating
-    thread_local Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    int NumHWBaseboards(0);
+    Array1D<Real64> QBBRadSource;         // Need to keep the last value in case we are still iterating
+    Array1D<Real64> QBBRadSrcAvg;         // Need to keep the last value in case we are still iterating
+    Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
 
     // Record keeping variables used to calculate QBBRadSrcAvg locally
-    thread_local Array1D<Real64> LastQBBRadSrc;      // Need to keep the last value in case we are still iterating
-    thread_local Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    thread_local Array1D_bool MySizeFlag;
-    thread_local Array1D_bool CheckEquipName;
-    thread_local Array1D_bool SetLoopIndexFlag; // get loop number flag
+    Array1D<Real64> LastQBBRadSrc;      // Need to keep the last value in case we are still iterating
+    Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    Array1D_bool MySizeFlag;
+    Array1D_bool CheckEquipName;
+    Array1D_bool SetLoopIndexFlag; // get loop number flag
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
     // Object Data
-    thread_local Array1D<HWBaseboardParams> HWBaseboard;
-    thread_local Array1D<HWBaseboardNumericFieldData> HWBaseboardNumericFields;
+    Array1D<HWBaseboardParams> HWBaseboard;
+    Array1D<HWBaseboardNumericFieldData> HWBaseboardNumericFields;
 
     // Functions
 
@@ -184,7 +184,7 @@ namespace HWBaseboardRadiator {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int BaseboardNum;               // Index of unit in baseboard array
-        thread_local static bool GetInputFlag(true); // One time get input flag
+        static bool GetInputFlag(true); // One time get input flag
         Real64 QZnReq;                  // Zone load not yet satisfied
         Real64 MaxWaterFlow;
         Real64 MinWaterFlow;
@@ -309,7 +309,7 @@ namespace HWBaseboardRadiator {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetHWBaseboardInput:");
+        static std::string const RoutineName("GetHWBaseboardInput:");
         Real64 const MaxFraction(1.0);
         Real64 const MinFraction(0.0);
         Real64 const MaxWaterTempAvg(150.0);        // Maximum limit of average water temperature in degree C
@@ -334,7 +334,7 @@ namespace HWBaseboardRadiator {
         int NumNumbers;        // Number of Numbers for each GetobjectItem call
         int SurfNum;           // Surface number Do loop counter
         int IOStat;
-        thread_local static bool ErrorsFound(false); // If errors detected in input
+        static bool ErrorsFound(false); // If errors detected in input
         bool errFlag;
 
         NumHWBaseboards = inputProcessor->getNumObjectsFound(cCMO_BBRadiator_Water);
@@ -756,7 +756,7 @@ namespace HWBaseboardRadiator {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const Constant(0.0062); // Constant of linear equation for air mass flow rate
         Real64 const Coeff(0.0000275); // Correlation coefficient to capacity
-        thread_local static std::string const RoutineName("BaseboardRadiatorWater:InitHWBaseboard");
+        static std::string const RoutineName("BaseboardRadiatorWater:InitHWBaseboard");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -765,9 +765,9 @@ namespace HWBaseboardRadiator {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static bool ZoneEquipmentListChecked(false);
-        thread_local static Array1D_bool MyEnvrnFlag;
+        static bool MyOneTimeFlag(true);
+        static bool ZoneEquipmentListChecked(false);
+        static Array1D_bool MyEnvrnFlag;
         int Loop;
         int WaterInletNode;
         int ZoneNode;
@@ -954,8 +954,8 @@ namespace HWBaseboardRadiator {
         Real64 const CPAirStd(1005.0);      // Average specific heat of air at between 25C and 40C in J/kg-k
         Real64 const Constant(0.0062);      // Constant of linear equation for air mass flow rate
         Real64 const Coeff(0.0000275);      // Correlation coefficient to capacity
-        thread_local static std::string const RoutineName("SizeHWBaseboard");
-        thread_local static std::string const RoutineNameFull("BaseboardRadiatorWater:SizeHWBaseboard");
+        static std::string const RoutineName("SizeHWBaseboard");
+        static std::string const RoutineNameFull("BaseboardRadiatorWater:SizeHWBaseboard");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1273,7 +1273,7 @@ namespace HWBaseboardRadiator {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const MinFrac(0.0005); // Minimum fraction that delivers radiant heats to surfaces
-        thread_local static std::string const RoutineName("CalcHWBaseboard");
+        static std::string const RoutineName("CalcHWBaseboard");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1448,8 +1448,8 @@ namespace HWBaseboardRadiator {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int WaterInletNode;
         int WaterOutletNode;
-        thread_local static int Iter(0);
-        thread_local static bool MyEnvrnFlag(true);
+        static int Iter(0);
+        static bool MyEnvrnFlag(true);
 
         if (BeginEnvrnFlag && MyEnvrnFlag) {
             Iter = 0;

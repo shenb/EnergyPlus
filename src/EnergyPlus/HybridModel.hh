@@ -65,8 +65,8 @@ namespace HybridModel {
     // MODULE PARAMETER DEFINITIONS
 
     // MODULE VARIABLE TYPE DECLARATIONS:
-    thread_local extern bool FlagHybridModel;      // True if hybrid model is activated
-    thread_local extern int NumOfHybridModelZones; // Number of hybrid model zones in the model
+    extern bool FlagHybridModel;      // True if hybrid model is activated
+    extern int NumOfHybridModelZones; // Number of hybrid model zones in the model
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -96,7 +96,7 @@ namespace HybridModel {
     };
 
     // Object Data
-    thread_local extern Array1D<HybridModelProperties> HybridModelZone;
+    extern Array1D<HybridModelProperties> HybridModelZone;
 
     // Functions
 

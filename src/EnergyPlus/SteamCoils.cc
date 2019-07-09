@@ -122,22 +122,22 @@ namespace SteamCoils {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const SteamCoil_AirHeating(2);
-    thread_local int const TemperatureSetPointControl(1);
-    thread_local int const ZoneLoadControl(3);
-    thread_local static std::string const fluidNameSteam("STEAM");
-    thread_local static std::string const BlankString;
+    int const SteamCoil_AirHeating(2);
+    int const TemperatureSetPointControl(1);
+    int const ZoneLoadControl(3);
+    static std::string const fluidNameSteam("STEAM");
+    static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // INTERFACE DEFINITIONS
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int SteamIndex(0);
-    thread_local int NumSteamCoils(0); // The Number of SteamCoils found in the Input
-    thread_local Array1D_bool MySizeFlag;
-    thread_local Array1D_bool CoilWarningOnceFlag;
-    thread_local Array1D_bool CheckEquipName;
-    thread_local bool GetSteamCoilsInputFlag(true); // Flag set to make sure you get input once
+    int SteamIndex(0);
+    int NumSteamCoils(0); // The Number of SteamCoils found in the Input
+    Array1D_bool MySizeFlag;
+    Array1D_bool CoilWarningOnceFlag;
+    Array1D_bool CheckEquipName;
+    bool GetSteamCoilsInputFlag(true); // Flag set to make sure you get input once
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -155,7 +155,7 @@ namespace SteamCoils {
     // Utility routines for module
 
     // Object Data
-    thread_local Array1D<SteamCoilEquipConditions> SteamCoil;
+    Array1D<SteamCoilEquipConditions> SteamCoil;
 
     // MODULE SUBROUTINES:
 
@@ -280,7 +280,7 @@ namespace SteamCoils {
         using NodeInputManager::GetOnlySingleNode;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetSteamCoilInput: "); // include trailing blank space
+        static std::string const RoutineName("GetSteamCoilInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int CoilNum; // The SteamCoil that you are currently loading input into
@@ -289,7 +289,7 @@ namespace SteamCoils {
         int NumAlphas;
         int NumNums;
         int IOStat;
-        thread_local static bool ErrorsFound(false);  // If errors detected in input
+        static bool ErrorsFound(false);  // If errors detected in input
         std::string CurrentModuleObject; // for ease in getting objects
         Array1D_string AlphArray;        // Alpha input items for object
         Array1D_string cAlphaFields;     // Alpha field names
@@ -297,7 +297,7 @@ namespace SteamCoils {
         Array1D<Real64> NumArray;        // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //  certain object in the input file
         bool errFlag;
 
@@ -501,7 +501,7 @@ namespace SteamCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitSteamCoil");
+        static std::string const RoutineName("InitSteamCoil");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -516,9 +516,9 @@ namespace SteamCoils {
         int AirOutletNode;
         Real64 SteamDensity;
         Real64 StartEnthSteam;
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static Array1D_bool MyEnvrnFlag;
-        thread_local static Array1D_bool MyPlantScanFlag;
+        static bool MyOneTimeFlag(true);
+        static Array1D_bool MyEnvrnFlag;
+        static Array1D_bool MyPlantScanFlag;
         bool errFlag;
 
         if (MyOneTimeFlag) {
@@ -702,7 +702,7 @@ namespace SteamCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeSteamCoil");
+        static std::string const RoutineName("SizeSteamCoil");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1061,8 +1061,8 @@ namespace SteamCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcSteamAirCoil");
-        thread_local static std::string const RoutineNameSizeSteamCoil("SizeSteamCoil");
+        static std::string const RoutineName("CalcSteamAirCoil");
+        static std::string const RoutineNameSizeSteamCoil("SizeSteamCoil");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1071,31 +1071,31 @@ namespace SteamCoils {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Real64 SteamMassFlowRate(0.0);
-        thread_local static Real64 AirMassFlow(0.0); // [kg/sec]
-        thread_local static Real64 TempAirIn(0.0);   // [C]
-        thread_local static Real64 TempAirOut(0.0);  // [C]
-        thread_local static Real64 Win(0.0);
-        thread_local static Real64 TempSteamIn(0.0);
-        thread_local static Real64 TempWaterOut(0.0);
-        thread_local static Real64 CapacitanceAir(0.0);
-        thread_local static Real64 HeatingCoilLoad(0.0);
-        thread_local static Real64 CoilPress(0.0);
-        thread_local static Real64 EnthSteamInDry(0.0);
-        thread_local static Real64 EnthSteamOutWet(0.0);
-        thread_local static Real64 LatentHeatSteam(0.0);
-        thread_local static Real64 SubcoolDeltaTemp(0.0);
-        thread_local static Real64 TempSetPoint(0.0);
-        thread_local static Real64 QCoilReq(0.0);
-        thread_local static Real64 QCoilCap(0.0);
-        thread_local static Real64 QSteamCoilMaxHT(0.0);
-        thread_local static Real64 TempWaterAtmPress(0.0);
-        thread_local static Real64 TempLoopOutToPump(0.0);
-        thread_local static Real64 EnergyLossToEnvironment(0.0);
-        thread_local static Real64 EnthCoilOutlet(0.0);
-        thread_local static Real64 EnthPumpInlet(0.0);
-        thread_local static Real64 EnthAtAtmPress(0.0);
-        thread_local static Real64 CpWater(0.0);
+        static Real64 SteamMassFlowRate(0.0);
+        static Real64 AirMassFlow(0.0); // [kg/sec]
+        static Real64 TempAirIn(0.0);   // [C]
+        static Real64 TempAirOut(0.0);  // [C]
+        static Real64 Win(0.0);
+        static Real64 TempSteamIn(0.0);
+        static Real64 TempWaterOut(0.0);
+        static Real64 CapacitanceAir(0.0);
+        static Real64 HeatingCoilLoad(0.0);
+        static Real64 CoilPress(0.0);
+        static Real64 EnthSteamInDry(0.0);
+        static Real64 EnthSteamOutWet(0.0);
+        static Real64 LatentHeatSteam(0.0);
+        static Real64 SubcoolDeltaTemp(0.0);
+        static Real64 TempSetPoint(0.0);
+        static Real64 QCoilReq(0.0);
+        static Real64 QCoilCap(0.0);
+        static Real64 QSteamCoilMaxHT(0.0);
+        static Real64 TempWaterAtmPress(0.0);
+        static Real64 TempLoopOutToPump(0.0);
+        static Real64 EnergyLossToEnvironment(0.0);
+        static Real64 EnthCoilOutlet(0.0);
+        static Real64 EnthPumpInlet(0.0);
+        static Real64 EnthAtAtmPress(0.0);
+        static Real64 CpWater(0.0);
 
         QCoilReq = QCoilRequested;
         TempAirIn = SteamCoil(CoilNum).InletAirTemp;
@@ -1697,7 +1697,7 @@ namespace SteamCoils {
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
         int WhichCoil;
-        thread_local static int ErrCount(0);
+        static int ErrCount(0);
 
         // Obtains and Allocates SteamCoil related parameters from input file
         if (GetSteamCoilsInputFlag) { // First time subroutine has been entered

@@ -111,21 +111,21 @@ namespace PlantPipingSystemsManager {
     using DataGlobals::Pi;
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local std::string const ObjName_ug_GeneralDomain("PipingSystem:Underground:Domain");
-    thread_local std::string const ObjName_Circuit("PipingSystem:Underground:PipeCircuit");
-    thread_local std::string const ObjName_Segment("PipingSystem:Underground:PipeSegment");
-    thread_local std::string const ObjName_HorizTrench("GroundHeatExchanger:HorizontalTrench");
-    thread_local std::string const ObjName_ZoneCoupled_Slab("Site:GroundDomain:Slab");
-    thread_local std::string const ObjName_ZoneCoupled_Basement("Site:GroundDomain:Basement");
+    std::string const ObjName_ug_GeneralDomain("PipingSystem:Underground:Domain");
+    std::string const ObjName_Circuit("PipingSystem:Underground:PipeCircuit");
+    std::string const ObjName_Segment("PipingSystem:Underground:PipeSegment");
+    std::string const ObjName_HorizTrench("GroundHeatExchanger:HorizontalTrench");
+    std::string const ObjName_ZoneCoupled_Slab("Site:GroundDomain:Slab");
+    std::string const ObjName_ZoneCoupled_Basement("Site:GroundDomain:Basement");
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D<Direction> NeighborFieldCells;
-    thread_local Array1D<Direction> NeighborBoundaryCells;
-    thread_local Array1D<FullDomainStructureInfo> PipingSystemDomains;
-    thread_local Array1D<PipeCircuitInfo> PipingSystemCircuits;
-    thread_local Array1D<PipeSegmentInfo> PipingSystemSegments;
-    thread_local std::unordered_map<std::string, std::string> GroundDomainUniqueNames;
-    thread_local bool GetInputFlag(true); // First time, input is "gotten"
+    Array1D<Direction> NeighborFieldCells;
+    Array1D<Direction> NeighborBoundaryCells;
+    Array1D<FullDomainStructureInfo> PipingSystemDomains;
+    Array1D<PipeCircuitInfo> PipingSystemCircuits;
+    Array1D<PipeSegmentInfo> PipingSystemSegments;
+    std::unordered_map<std::string, std::string> GroundDomainUniqueNames;
+    bool GetInputFlag(true); // First time, input is "gotten"
 
     void clear_state()
     {
@@ -176,7 +176,7 @@ namespace PlantPipingSystemsManager {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SimPipingSystems");
+        static std::string const RoutineName("SimPipingSystems");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int CircuitNum;
@@ -250,14 +250,14 @@ namespace PlantPipingSystemsManager {
         using DataHVACGlobals::SysTimeElapsed;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitAndSimGroundDomain");
+        static std::string const RoutineName("InitAndSimGroundDomain");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool WriteEIOFlag(true); // Set to false once eio information is written
+        static bool WriteEIOFlag(true); // Set to false once eio information is written
 
-        thread_local static gio::Fmt DomainCellsToEIOHeader(
+        static gio::Fmt DomainCellsToEIOHeader(
             "('! <Domain Name>, Total Number of Domain Cells, Total Number of Ground Surface Cells, Total Number of Insulation Cells')");
-        thread_local static gio::Fmt DomainCellsToEIO("(A,',',I5',',I5',',I5)");
+        static gio::Fmt DomainCellsToEIO("(A,',',I5',',I5',',I5)");
 
         // int ZoneNum( 0 );
         int SurfCtr(0);
@@ -464,10 +464,10 @@ namespace PlantPipingSystemsManager {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetPipingSystemsAndGroundDomainsInput");
+        static std::string const RoutineName("GetPipingSystemsAndGroundDomainsInput");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int NumGeneralizedDomains;
         int NumZoneCoupledDomains;
         int NumBasements;
@@ -688,7 +688,7 @@ namespace PlantPipingSystemsManager {
         using namespace GroundTemperatureManager;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReadGeneralDomainInputs");
+        static std::string const RoutineName("ReadGeneralDomainInputs");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int DomainNum;  // Item to be "gotten"
@@ -990,7 +990,7 @@ namespace PlantPipingSystemsManager {
         using namespace GroundTemperatureManager;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReadZoneCoupledDomainInputs");
+        static std::string const RoutineName("ReadZoneCoupledDomainInputs");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneCoupledDomainCtr;
@@ -1350,7 +1350,7 @@ namespace PlantPipingSystemsManager {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReadBasementInputs");
+        static std::string const RoutineName("ReadBasementInputs");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int BasementCtr;
@@ -1717,7 +1717,7 @@ namespace PlantPipingSystemsManager {
         using NodeInputManager::GetOnlySingleNode;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReadPipeCircuitInputs");
+        static std::string const RoutineName("ReadPipeCircuitInputs");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumPipeSegments;
@@ -1835,7 +1835,7 @@ namespace PlantPipingSystemsManager {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReadPipeSegmentInputs");
+        static std::string const RoutineName("ReadPipeSegmentInputs");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int SegmentCtr;
@@ -1911,7 +1911,7 @@ namespace PlantPipingSystemsManager {
         using namespace GroundTemperatureManager;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReadHorizontalTrenchInputs");
+        static std::string const RoutineName("ReadHorizontalTrenchInputs");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int HorizontalGHXCtr;
@@ -2312,7 +2312,7 @@ namespace PlantPipingSystemsManager {
         //       RE-ENGINEERED  na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitPipingSystems");
+        static std::string const RoutineName("InitPipingSystems");
 
         auto &thisDomain = PipingSystemDomains(DomainNum);
         auto &thisCircuit = PipingSystemCircuits(CircuitNum);
@@ -3062,7 +3062,7 @@ namespace PlantPipingSystemsManager {
         //       RE-ENGINEERED  na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Real64 BasementCellFraction(0.001); // the fraction of domain extent to use for the basement cells
+        static Real64 BasementCellFraction(0.001); // the fraction of domain extent to use for the basement cells
         // actual dimension shouldn't matter for calculation purposes
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
@@ -3493,7 +3493,7 @@ namespace PlantPipingSystemsManager {
         Array1D<GridRegion> ThesePartitionRegions({0, PartitionsUBound});
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CreatePartitionRegionList");
+        static std::string const RoutineName("CreatePartitionRegionList");
 
         if (!PartitionsExist) {
             return ThesePartitionRegions;
@@ -5732,7 +5732,7 @@ namespace PlantPipingSystemsManager {
         //       RE-ENGINEERED  na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D<Direction> const Directions(4, {Direction::NegativeX, Direction::NegativeY, Direction::PositiveX, Direction::PositiveY});
+        static Array1D<Direction> const Directions(4, {Direction::NegativeX, Direction::NegativeY, Direction::PositiveX, Direction::PositiveY});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 Resistance = 0.0;
@@ -6306,7 +6306,7 @@ namespace PlantPipingSystemsManager {
         //       RE-ENGINEERED  na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static std::string const RoutineName("PipingSystemCircuit::DoStartOfTimeStepInitializations");
+        static std::string const RoutineName("PipingSystemCircuit::DoStartOfTimeStepInitializations");
         Real64 Beta;
         Real64 CellTemp;
         Real64 CellRhoCp;
@@ -6457,7 +6457,7 @@ namespace PlantPipingSystemsManager {
         //       RE-ENGINEERED  na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("DoEndOfIterationOperations");
+        static std::string const RoutineName("DoEndOfIterationOperations");
 
         auto &thisDomain(PipingSystemDomains(DomainNum));
 

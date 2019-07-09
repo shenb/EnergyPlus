@@ -64,26 +64,26 @@ namespace PhotovoltaicThermalCollectors {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const SimplePVTmodel;
-    thread_local extern int const LayerByLayerPVTmodel;
+    extern int const SimplePVTmodel;
+    extern int const LayerByLayerPVTmodel;
 
-    thread_local extern int const ScheduledThermEffic; // mode for thermal efficiency is to use schedule
-    thread_local extern int const FixedThermEffic;     // mode for thermal efficiency is to use fixed value
+    extern int const ScheduledThermEffic; // mode for thermal efficiency is to use schedule
+    extern int const FixedThermEffic;     // mode for thermal efficiency is to use fixed value
 
-    thread_local extern int const LiquidWorkingFluid;
-    thread_local extern int const AirWorkingFluid;
+    extern int const LiquidWorkingFluid;
+    extern int const AirWorkingFluid;
 
-    thread_local extern int const CalledFromPlantLoopEquipMgr;
-    thread_local extern int const CalledFromOutsideAirSystem;
+    extern int const CalledFromPlantLoopEquipMgr;
+    extern int const CalledFromOutsideAirSystem;
 
-    thread_local extern Real64 const SimplePVTWaterSizeFactor; // [ m3/s/m2 ] average of collectors in SolarCollectors.idf
+    extern Real64 const SimplePVTWaterSizeFactor; // [ m3/s/m2 ] average of collectors in SolarCollectors.idf
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern int NumPVT;              // count of all types of PVT in input file
-    thread_local extern int NumSimplePVTPerform; // count of simple PVT performance objects in input file
+    extern Array1D_bool CheckEquipName;
+    extern int NumPVT;              // count of all types of PVT in input file
+    extern int NumSimplePVTPerform; // count of simple PVT performance objects in input file
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
     // Driver/Manager Routines
@@ -183,7 +183,7 @@ namespace PhotovoltaicThermalCollectors {
     };
 
     // Object Data
-    thread_local extern Array1D<PVTCollectorStruct> PVT;
+    extern Array1D<PVTCollectorStruct> PVT;
 
     // Functions
 

@@ -64,20 +64,20 @@ namespace HVACDXHeatPumpSystem {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern Real64 const MinAirMassFlow;
+    extern Real64 const MinAirMassFlow;
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    extern int const On;  // normal compressor operation
+    extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumDXHeatPumpSystems; // The Number of DXHeatPumpSystems found in the Input
-    thread_local extern bool EconomizerFlag;      // holds air loop economizer status
-    thread_local extern bool GetInputFlag;        // Flag to get input only once
+    extern int NumDXHeatPumpSystems; // The Number of DXHeatPumpSystems found in the Input
+    extern bool EconomizerFlag;      // holds air loop economizer status
+    extern bool GetInputFlag;        // Flag to get input only once
 
     // Make this type allocatable
-    thread_local extern Array1D_bool CheckEquipName;
+    extern Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -132,7 +132,7 @@ namespace HVACDXHeatPumpSystem {
     };
 
     // Object Data
-    thread_local extern Array1D<DXHeatPumpSystemStruct> DXHeatPumpSystem;
+    extern Array1D<DXHeatPumpSystemStruct> DXHeatPumpSystem;
 
     // Functions
 

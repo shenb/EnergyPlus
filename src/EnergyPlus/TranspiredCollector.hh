@@ -65,17 +65,17 @@ namespace TranspiredCollector {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const Layout_Square;
-    thread_local extern int const Layout_Triangle;
-    thread_local extern int const Correlation_Kutscher1994;
-    thread_local extern int const Correlation_VanDeckerHollandsBrunger2001;
+    extern int const Layout_Square;
+    extern int const Layout_Triangle;
+    extern int const Correlation_Kutscher1994;
+    extern int const Correlation_VanDeckerHollandsBrunger2001;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumUTSC; // number of transpired collectors in model
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern bool GetInputFlag; // First time, input is gotten
+    extern int NumUTSC; // number of transpired collectors in model
+    extern Array1D_bool CheckEquipName;
+    extern bool GetInputFlag; // First time, input is gotten
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE TranspiredCollector:
 
@@ -167,7 +167,7 @@ namespace TranspiredCollector {
     };
 
     // Object Data
-    thread_local extern Array1D<UTSCDataStruct> UTSC;
+    extern Array1D<UTSCDataStruct> UTSC;
 
     // Functions
     void clear_state();

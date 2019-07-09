@@ -66,49 +66,49 @@ namespace HVACMultiSpeedHeatPump {
     // MODULE PARAMETER DEFINITIONS
 
     // Heating coil types
-    thread_local extern int const MultiSpeedHeatingCoil; // COIL:DX:MultiSpeed:Heating
+    extern int const MultiSpeedHeatingCoil; // COIL:DX:MultiSpeed:Heating
     // Cooling coil types
-    thread_local extern int const MultiSpeedCoolingCoil; // COIL:DX:MultiSpeed:Cooling
+    extern int const MultiSpeedCoolingCoil; // COIL:DX:MultiSpeed:Cooling
     // Supplymental heating coil types
-    thread_local extern int const SuppHeatingCoilGas;  // Supplymental heating coil type: COIL:GAS:HEATING
-    thread_local extern int const SuppHeatingCoilElec; // Supplymental heating coil type: COIL:ELECTRIC:HEATING
-    thread_local extern int const SuppHeatingCoilRec;  // Supplymental heating coil type: COIL:ENGINEHEATRECOVERY:HEATING
+    extern int const SuppHeatingCoilGas;  // Supplymental heating coil type: COIL:GAS:HEATING
+    extern int const SuppHeatingCoilElec; // Supplymental heating coil type: COIL:ELECTRIC:HEATING
+    extern int const SuppHeatingCoilRec;  // Supplymental heating coil type: COIL:ENGINEHEATRECOVERY:HEATING
 
     // Curve Types
-    thread_local extern int const Linear;      // Linear curve type
-    thread_local extern int const BiLinear;    // Bi-linear curve type
-    thread_local extern int const Quadratic;   // Quadratic curve type
-    thread_local extern int const BiQuadratic; // Bi-quadratic curve type
-    thread_local extern int const Cubic;       // Cubic curve type
+    extern int const Linear;      // Linear curve type
+    extern int const BiLinear;    // Bi-linear curve type
+    extern int const Quadratic;   // Quadratic curve type
+    extern int const BiQuadratic; // Bi-quadratic curve type
+    extern int const Cubic;       // Cubic curve type
 
     // Mode of operation
-    thread_local extern int const CoolingMode; // System operating mode is cooling
-    thread_local extern int const HeatingMode; // System operating mode is heating
+    extern int const CoolingMode; // System operating mode is cooling
+    extern int const HeatingMode; // System operating mode is heating
 
     // Airflow control for contant fan mode
-    thread_local extern int const UseCompressorOnFlow;  // set compressor OFF air flow rate equal to compressor ON air flow rate
-    thread_local extern int const UseCompressorOffFlow; // set compressor OFF air flow rate equal to user defined value
+    extern int const UseCompressorOnFlow;  // set compressor OFF air flow rate equal to compressor ON air flow rate
+    extern int const UseCompressorOffFlow; // set compressor OFF air flow rate equal to user defined value
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    extern int const On;  // normal compressor operation
+    extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumMSHeatPumps; // Number of multi speed heat pumps
-    thread_local extern int AirLoopPass;    // Number of air loop pass
-    thread_local extern Real64 TempSteamIn; // steam coil steam inlet temperature
+    extern int NumMSHeatPumps; // Number of multi speed heat pumps
+    extern int AirLoopPass;    // Number of air loop pass
+    extern Real64 TempSteamIn; // steam coil steam inlet temperature
 
-    thread_local extern std::string CurrentModuleObject; // Object type for getting and error messages
-    thread_local extern Real64 CompOnMassFlow;           // System air mass flow rate w/ compressor ON
-    thread_local extern Real64 CompOffMassFlow;          // System air mass flow rate w/ compressor OFF
-    thread_local extern Real64 CompOnFlowRatio;          // fan flow ratio when coil on
-    thread_local extern Real64 CompOffFlowRatio;         // fan flow ratio when coil off
-    thread_local extern Real64 FanSpeedRatio;            // fan speed ratio passed to on/off fan object
-    thread_local extern Real64 SupHeaterLoad;            // load to be met by supplemental heater [W]
-    thread_local extern Real64 SaveLoadResidual;         // Saved load residual used to check convergence
-    thread_local extern Real64 SaveCompressorPLR;        // holds compressor PLR from active DX coil
-    thread_local extern Array1D_bool CheckEquipName;
+    extern std::string CurrentModuleObject; // Object type for getting and error messages
+    extern Real64 CompOnMassFlow;           // System air mass flow rate w/ compressor ON
+    extern Real64 CompOffMassFlow;          // System air mass flow rate w/ compressor OFF
+    extern Real64 CompOnFlowRatio;          // fan flow ratio when coil on
+    extern Real64 CompOffFlowRatio;         // fan flow ratio when coil off
+    extern Real64 FanSpeedRatio;            // fan speed ratio passed to on/off fan object
+    extern Real64 SupHeaterLoad;            // load to be met by supplemental heater [W]
+    extern Real64 SaveLoadResidual;         // Saved load residual used to check convergence
+    extern Real64 SaveCompressorPLR;        // holds compressor PLR from active DX coil
+    extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -288,8 +288,8 @@ namespace HVACMultiSpeedHeatPump {
     };
 
     // Object Data
-    thread_local extern Array1D<MSHeatPumpData> MSHeatPump;
-    thread_local extern Array1D<MSHeatPumpReportData> MSHeatPumpReport;
+    extern Array1D<MSHeatPumpData> MSHeatPump;
+    extern Array1D<MSHeatPumpReportData> MSHeatPumpReport;
 
     // Functions
 

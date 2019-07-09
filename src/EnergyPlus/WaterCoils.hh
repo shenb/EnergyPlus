@@ -68,55 +68,55 @@ namespace WaterCoils {
 
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local extern int const MaxPolynomOrder;
-    thread_local extern int const MaxOrderedPairs;
+    extern int const MaxPolynomOrder;
+    extern int const MaxOrderedPairs;
 
-    thread_local extern Real64 const PolyConvgTol;
-    thread_local extern Real64 const MinWaterMassFlowFrac;
-    thread_local extern Real64 const MinAirMassFlow;
+    extern Real64 const PolyConvgTol;
+    extern Real64 const MinWaterMassFlowFrac;
+    extern Real64 const MinAirMassFlow;
 
     // coil types in this module
-    thread_local extern int const WaterCoil_SimpleHeating;
-    thread_local extern int const WaterCoil_DetFlatFinCooling;
-    thread_local extern int const WaterCoil_Cooling;
+    extern int const WaterCoil_SimpleHeating;
+    extern int const WaterCoil_DetFlatFinCooling;
+    extern int const WaterCoil_Cooling;
 
-    thread_local extern int const CoilType_Cooling;
-    thread_local extern int const CoilType_Heating;
+    extern int const CoilType_Cooling;
+    extern int const CoilType_Heating;
 
-    thread_local extern int const CoilModel_Simple;
-    thread_local extern int const CoilModel_Cooling;
-    thread_local extern int const CoilModel_Detailed;
+    extern int const CoilModel_Simple;
+    extern int const CoilModel_Cooling;
+    extern int const CoilModel_Detailed;
 
     // Parameters for Heat Exchanger Configuration
-    thread_local extern int const CounterFlow;
-    thread_local extern int const CrossFlow;
-    thread_local extern int const SimpleAnalysis;
-    thread_local extern int const DetailedAnalysis;
+    extern int const CounterFlow;
+    extern int const CrossFlow;
+    extern int const SimpleAnalysis;
+    extern int const DetailedAnalysis;
 
     // Water Systems
-    thread_local extern int const CondensateDiscarded; // default mode where water is "lost"
-    thread_local extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
+    extern int const CondensateDiscarded; // default mode where water is "lost"
+    extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
 
     // Parameters for COIL:Water:SimpleHeating Coil Performance Input Method
-    thread_local extern int const UAandFlow; // for Coil Performance Input Method = UA and Design Water Flow Rate
-    thread_local extern int const NomCap;    // for Coil Performance Input Method = Nominal Capacity
+    extern int const UAandFlow; // for Coil Performance Input Method = UA and Design Water Flow Rate
+    extern int const NomCap;    // for Coil Performance Input Method = Nominal Capacity
 
     // Parameters Subroutine CoolingCoil: design calc or simulation calc.
-    thread_local extern int const DesignCalc; // ignore on/off check in CoolingCoil
-    thread_local extern int const SimCalc;    // pay attention to on/off check in CoolingCoil
+    extern int const DesignCalc; // ignore on/off check in CoolingCoil
+    extern int const SimCalc;    // pay attention to on/off check in CoolingCoil
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumWaterCoils; // The Number of WaterCoils found in the Input
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool MyUAAndFlowCalcFlag;
-    thread_local extern Array1D_bool MyCoilDesignFlag;
-    thread_local extern Array1D_bool CoilWarningOnceFlag;
-    thread_local extern Array1D_int WaterTempCoolCoilErrs; // error counting for detailed coils
-    thread_local extern Array1D_int PartWetCoolCoilErrs;   // error counting for detailed coils
-    thread_local extern bool GetWaterCoilsInputFlag;       // Flag set to make sure you get input once
-    thread_local extern Array1D_bool CheckEquipName;
+    extern int NumWaterCoils; // The Number of WaterCoils found in the Input
+    extern Array1D_bool MySizeFlag;
+    extern Array1D_bool MyUAAndFlowCalcFlag;
+    extern Array1D_bool MyCoilDesignFlag;
+    extern Array1D_bool CoilWarningOnceFlag;
+    extern Array1D_int WaterTempCoolCoilErrs; // error counting for detailed coils
+    extern Array1D_int PartWetCoolCoilErrs;   // error counting for detailed coils
+    extern bool GetWaterCoilsInputFlag;       // Flag set to make sure you get input once
+    extern Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -308,8 +308,8 @@ namespace WaterCoils {
     };
 
     // Object Data
-    thread_local extern Array1D<WaterCoilEquipConditions> WaterCoil;
-    thread_local extern Array1D<WaterCoilNumericFieldData> WaterCoilNumericFields;
+    extern Array1D<WaterCoilEquipConditions> WaterCoil;
+    extern Array1D<WaterCoilNumericFieldData> WaterCoilNumericFields;
 
     // Functions
     void clear_state();

@@ -52,7 +52,7 @@
 
 namespace EnergyPlus {
 
-thread_local extern EPComponent * epcomp;
+extern thread_local EPComponent * epcomp;
 
 }
 

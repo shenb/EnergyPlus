@@ -66,11 +66,11 @@ namespace ChillerExhaustAbsorption {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumExhaustAbsorbers; // number of Absorption Chillers specified in input
+    extern int NumExhaustAbsorbers; // number of Absorption Chillers specified in input
 
     // This type holds the output from the algorithm i.e., the Report Variables
 
-    thread_local extern Array1D_bool CheckEquipName;
+    extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
 
@@ -230,8 +230,8 @@ namespace ChillerExhaustAbsorption {
     };
 
     // Object Data
-    thread_local extern Array1D<ExhaustAbsorberSpecs> ExhaustAbsorber; // dimension to number of machines
-    thread_local extern Array1D<ReportVars> ExhaustAbsorberReport;
+    extern Array1D<ExhaustAbsorberSpecs> ExhaustAbsorber; // dimension to number of machines
+    extern Array1D<ReportVars> ExhaustAbsorberReport;
 
     // Functions
 

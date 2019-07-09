@@ -109,19 +109,19 @@ namespace PollutionModule {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const ElecPollFactor(1);
-    thread_local int const NatGasPollFactor(2);
-    thread_local int const FuelOil1PollFactor(3);
-    thread_local int const FuelOil2PollFactor(4);
-    thread_local int const CoalPollFactor(5);
-    thread_local int const GasolinePollFactor(6);
-    thread_local int const PropanePollFactor(7);
-    thread_local int const DieselPollFactor(8);
-    thread_local int const OtherFuel1PollFactor(9);
-    thread_local int const OtherFuel2PollFactor(10);
-    thread_local int const PollFactorNumTypes(10);
+    int const ElecPollFactor(1);
+    int const NatGasPollFactor(2);
+    int const FuelOil1PollFactor(3);
+    int const FuelOil2PollFactor(4);
+    int const CoalPollFactor(5);
+    int const GasolinePollFactor(6);
+    int const PropanePollFactor(7);
+    int const DieselPollFactor(8);
+    int const OtherFuel1PollFactor(9);
+    int const OtherFuel2PollFactor(10);
+    int const PollFactorNumTypes(10);
 
-    thread_local static std::string const BlankString;
+    static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -136,15 +136,15 @@ namespace PollutionModule {
     // Facility Meter Indexes
     // Facility Meter Values used in Pollution Calcs
 
-    thread_local bool PollutionReportSetup(false);
-    thread_local bool GetInputFlagPollution(true);
-    thread_local int NumEnvImpactFactors(0);
-    thread_local int NumFuelFactors(0);
+    bool PollutionReportSetup(false);
+    bool GetInputFlagPollution(true);
+    int NumEnvImpactFactors(0);
+    int NumFuelFactors(0);
 
     //         Subroutine Specifications for the Module
 
     // Object Data
-    thread_local PollutionProps
+    PollutionProps
         Pollution(ComponentProps(ElecPollFactor, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
                   ComponentProps(ElecPollFactor, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
                   ComponentProps(ElecPollFactor, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
@@ -529,7 +529,7 @@ namespace PollutionModule {
                   0.0,
                   0.0,
                   0.0);
-    thread_local FuelTypeProps FuelType;
+    FuelTypeProps FuelType;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -671,7 +671,7 @@ namespace PollutionModule {
         int NumNums;
         int Loop;
         int IOStat;
-        thread_local static bool ErrorsFound(false);
+        static bool ErrorsFound(false);
 
         if (!GetInputFlagPollution) return; // Input already gotten
 

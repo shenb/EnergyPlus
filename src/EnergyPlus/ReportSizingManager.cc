@@ -161,11 +161,11 @@ namespace ReportSizingManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyOneTimeFlag(true);
+        static bool MyOneTimeFlag(true);
 
         // Formats
-        thread_local static gio::Fmt Format_990("('! <Component Sizing Information>, Component Type, Component Name, ','Input Field Description, Value')");
-        thread_local static gio::Fmt Format_991("(' Component Sizing Information, ',A,', ',A,', ',A,', ',A)");
+        static gio::Fmt Format_990("('! <Component Sizing Information>, Component Type, Component Name, ','Input Field Description, Value')");
+        static gio::Fmt Format_991("(' Component Sizing Information, ',A,', ',A,', ',A,', ',A)");
 
         if (MyOneTimeFlag) {
             gio::write(OutputFileInits, Format_990);

@@ -174,7 +174,7 @@ namespace ZoneEquipmentManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
+    static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
@@ -185,22 +185,22 @@ namespace ZoneEquipmentManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool reportDOASZoneSizingHeader(true);
-        thread_local bool InitZoneEquipmentOneTimeFlag(true);
-        thread_local bool InitZoneEquipmentEnvrnFlag(true);
-        thread_local bool FirstPassZoneEquipFlag(true); // indicates first pass through zone equipment, used to reset selected ZoneEqSizing variables
+        bool reportDOASZoneSizingHeader(true);
+        bool InitZoneEquipmentOneTimeFlag(true);
+        bool InitZoneEquipmentEnvrnFlag(true);
+        bool FirstPassZoneEquipFlag(true); // indicates first pass through zone equipment, used to reset selected ZoneEqSizing variables
     }                                      // namespace
 
-    thread_local Array1D<Real64> AvgData; // scratch array for storing averaged data
-    thread_local Array1D_int DefaultSimOrder;
-    thread_local int NumOfTimeStepInDay; // number of zone time steps in a day
-    thread_local bool GetZoneEquipmentInputFlag(true);
-    thread_local bool SizeZoneEquipmentOneTimeFlag(true);
+    Array1D<Real64> AvgData; // scratch array for storing averaged data
+    Array1D_int DefaultSimOrder;
+    int NumOfTimeStepInDay; // number of zone time steps in a day
+    bool GetZoneEquipmentInputFlag(true);
+    bool SizeZoneEquipmentOneTimeFlag(true);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ZoneEquipmentManager
 
     // Object Data
-    thread_local Array1D<SimulationOrder> PrioritySimOrder;
+    Array1D<SimulationOrder> PrioritySimOrder;
 
     // Functions
     void clear_state()
@@ -587,7 +587,7 @@ namespace ZoneEquipmentManager {
         using General::RoundSigDigits;
 
         // Parameters
-        thread_local static std::string const RoutineName("SizeZoneEquipment");
+        static std::string const RoutineName("SizeZoneEquipment");
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
@@ -865,7 +865,7 @@ namespace ZoneEquipmentManager {
         // Consult the "DOAS Effect On Zone Sizing" new feature proposal and design documents
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcDOASSupCondsForSizing");
+        static std::string const RoutineName("CalcDOASSupCondsForSizing");
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
 
@@ -963,26 +963,26 @@ namespace ZoneEquipmentManager {
         int TimeStepIndex;               // zone time step index
         Real64 TotPeopleInZone;          // total (maximum) number of people in a zone
         int PeopleNum;                   // index of People structure
-        thread_local static Real64 OAFromPeople(0.0); // min OA calculated from zone occupancy [m3/s]
-        thread_local static Real64 OAFromArea(0.0);   // min OA calculated from zone area and OA flow per area [m3/s]
+        static Real64 OAFromPeople(0.0); // min OA calculated from zone occupancy [m3/s]
+        static Real64 OAFromArea(0.0);   // min OA calculated from zone area and OA flow per area [m3/s]
         int ZoneIndex;                   // index of Zone Sizing zone name in zone array
         int ZoneSizIndex;                // zone sizing do loop index
-        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
-        thread_local static Real64 SchMax(0.0);       // maximum people multiplier value
+        static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        static Real64 SchMax(0.0);       // maximum people multiplier value
         Real64 OAVolumeFlowRate;         // outside air flow rate (m3/s)
         bool UseOccSchFlag;              // flag to use occupancy schedule when calculating OA
         bool UseMinOASchFlag;            // flag to use min OA schedule when calculating OA
         int DSOAPtr;                     // index to DesignSpecification:OutdoorAir object
 
         // Formats
-        thread_local static gio::Fmt Format_890("('! <Load Timesteps in Zone Design Calculation Averaging Window>, Value')");
-        thread_local static gio::Fmt Format_891("(' Load Timesteps in Zone Design Calculation Averaging Window, ',I4)");
-        thread_local static gio::Fmt Format_990("('! <Heating Sizing Factor Information>, Sizing Factor ID, Value')");
-        thread_local static gio::Fmt Format_991("(' Heating Sizing Factor Information, Global, ',G12.5)");
-        thread_local static gio::Fmt Format_992("(' Heating Sizing Factor Information, Zone ',A,', ',G12.5)");
-        thread_local static gio::Fmt Format_993("('! <Cooling Sizing Factor Information>, Sizing Factor ID, Value')");
-        thread_local static gio::Fmt Format_994("(' Cooling Sizing Factor Information, Global, ',G12.5)");
-        thread_local static gio::Fmt Format_995("(' Cooling Sizing Factor Information, Zone ',A,', ',G12.5)");
+        static gio::Fmt Format_890("('! <Load Timesteps in Zone Design Calculation Averaging Window>, Value')");
+        static gio::Fmt Format_891("(' Load Timesteps in Zone Design Calculation Averaging Window, ',I4)");
+        static gio::Fmt Format_990("('! <Heating Sizing Factor Information>, Sizing Factor ID, Value')");
+        static gio::Fmt Format_991("(' Heating Sizing Factor Information, Global, ',G12.5)");
+        static gio::Fmt Format_992("(' Heating Sizing Factor Information, Zone ',A,', ',G12.5)");
+        static gio::Fmt Format_993("('! <Cooling Sizing Factor Information>, Sizing Factor ID, Value')");
+        static gio::Fmt Format_994("(' Cooling Sizing Factor Information, Global, ',G12.5)");
+        static gio::Fmt Format_995("(' Cooling Sizing Factor Information, Zone ',A,', ',G12.5)");
 
         for (ZoneSizIndex = 1; ZoneSizIndex <= NumZoneSizingInput; ++ZoneSizIndex) {
             ZoneIndex = UtilityRoutines::FindItemInList(ZoneSizingInput(ZoneSizIndex).ZoneName, Zone);
@@ -2222,16 +2222,16 @@ namespace ZoneEquipmentManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static gio::Fmt fmtA("(A)");
-        thread_local static gio::Fmt ZSizeFmt10("('Time')");
-        thread_local static gio::Fmt ZSizeFmt11("(A1,A,':',A,A,A1,A,':',A,A,A1,A,':',A,A,A1,A,':',A,A )");
-        thread_local static gio::Fmt ZSizeFmt20("(I2.2,':',I2.2,':00')");
-        thread_local static gio::Fmt ZSizeFmt21("(A1,ES12.6,A1,ES12.6,A1,ES12.6,A1,ES12.6 )");
-        thread_local static gio::Fmt ZSizeFmt30("('Peak')");
-        thread_local static gio::Fmt ZSizeFmt31("(A1,ES12.6,A1,ES12.6,A1,ES12.6,A1,ES12.6)");
-        thread_local static gio::Fmt ZSizeFmt40("(/'Peak Vol Flow (m3/s)')");
-        thread_local static gio::Fmt ZSizeFmt41("(A1,A1,A1,ES12.6,A1,ES12.6)");
-        thread_local static std::string const RoutineName("UpdateZoneSizing");
+        static gio::Fmt fmtA("(A)");
+        static gio::Fmt ZSizeFmt10("('Time')");
+        static gio::Fmt ZSizeFmt11("(A1,A,':',A,A,A1,A,':',A,A,A1,A,':',A,A,A1,A,':',A,A )");
+        static gio::Fmt ZSizeFmt20("(I2.2,':',I2.2,':00')");
+        static gio::Fmt ZSizeFmt21("(A1,ES12.6,A1,ES12.6,A1,ES12.6,A1,ES12.6 )");
+        static gio::Fmt ZSizeFmt30("('Peak')");
+        static gio::Fmt ZSizeFmt31("(A1,ES12.6,A1,ES12.6,A1,ES12.6,A1,ES12.6)");
+        static gio::Fmt ZSizeFmt40("(/'Peak Vol Flow (m3/s)')");
+        static gio::Fmt ZSizeFmt41("(A1,A1,A1,ES12.6,A1,ES12.6)");
+        static std::string const RoutineName("UpdateZoneSizing");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3392,16 +3392,16 @@ namespace ZoneEquipmentManager {
         int ZoneEquipTypeNum;
         int ZoneCompNum;
 
-        thread_local static bool SupPathInletChanged(false);
-        thread_local static bool FirstCall; // indicates first call to supply air path components
+        static bool SupPathInletChanged(false);
+        static bool FirstCall; // indicates first call to supply air path components
         bool ErrorFlag;
-        thread_local static bool ValidSAMComp(false);
+        static bool ValidSAMComp(false);
 
         Real64 SysOutputProvided; // sensible output delivered by zone equipment (W)
         Real64 LatOutputProvided; // latent output delivered by zone equipment (kg/s)
         Real64 AirSysOutput;
         Real64 NonAirSysOutput;
-        thread_local static Array1D_bool DirectAirAndAirTerminalWarningIssued; // only warn once for each zone with problems
+        static Array1D_bool DirectAirAndAirTerminalWarningIssued; // only warn once for each zone with problems
 
         // Determine flow rate and temperature of supply air based on type of damper
 
@@ -5421,11 +5421,11 @@ namespace ZoneEquipmentManager {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const StdGravity(9.80665); // The acceleration of gravity at the sea level (m/s2)
-        thread_local static std::string const RoutineNameMixing("CalcAirFlowSimple:Mixing");
-        thread_local static std::string const RoutineNameCrossMixing("CalcAirFlowSimple:CrossMixing");
-        thread_local static std::string const RoutineNameRefrigerationDoorMixing("CalcAirFlowSimple:RefrigerationDoorMixing");
-        thread_local static std::string const RoutineNameInfiltration("CalcAirFlowSimple:Infiltration");
-        thread_local static std::string const RoutineNameZoneAirBalance("CalcAirFlowSimple:ZoneAirBalance");
+        static std::string const RoutineNameMixing("CalcAirFlowSimple:Mixing");
+        static std::string const RoutineNameCrossMixing("CalcAirFlowSimple:CrossMixing");
+        static std::string const RoutineNameRefrigerationDoorMixing("CalcAirFlowSimple:RefrigerationDoorMixing");
+        static std::string const RoutineNameInfiltration("CalcAirFlowSimple:Infiltration");
+        static std::string const RoutineNameZoneAirBalance("CalcAirFlowSimple:ZoneAirBalance");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 MCP;
@@ -6391,7 +6391,7 @@ namespace ZoneEquipmentManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         //  INTEGER      :: ERVNum=0                   ! the stand alone ERV index
-        thread_local static int ZoneNum(0); // zone index
+        static int ZoneNum(0); // zone index
         int j;                 // index
         int I;                 // index
 
@@ -6650,9 +6650,9 @@ namespace ZoneEquipmentManager {
         using General::RoundSigDigits;
 
         // Formats
-        thread_local static gio::Fmt Format_990("('! <Zone Sizing DOAS Inputs>, Zone Name, DOAS Design Control Strategy, DOAS Design Low Setpoint Temperature "
+        static gio::Fmt Format_990("('! <Zone Sizing DOAS Inputs>, Zone Name, DOAS Design Control Strategy, DOAS Design Low Setpoint Temperature "
                                    "{C}, DOAS Design High Setpoint Temperature {C} ')");
-        thread_local static gio::Fmt Format_991("(' Zone Sizing DOAS Inputs',4(', ',A))");
+        static gio::Fmt Format_991("(' Zone Sizing DOAS Inputs',4(', ',A))");
 
         if (reportDOASZoneSizingHeader) {
             gio::write(OutputFileInits, Format_990);

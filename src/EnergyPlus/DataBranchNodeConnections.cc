@@ -77,28 +77,28 @@ namespace DataBranchNodeConnections {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local static std::string const BlankString;
+    static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumCompSets(0);             // Number of Component Sets found in branches
-    thread_local int NumNodeConnectionErrors(0); // Count of node connection errors
+    int NumCompSets(0);             // Number of Component Sets found in branches
+    int NumNodeConnectionErrors(0); // Count of node connection errors
 
-    thread_local int NumOfNodeConnections(0);
-    thread_local int MaxNumOfNodeConnections(0);
-    thread_local int NodeConnectionAlloc(1000);
-    thread_local int NumOfActualParents(0);
-    thread_local int NumOfAirTerminalNodes(0);
-    thread_local int MaxNumOfAirTerminalNodes(0);
-    thread_local int EqNodeConnectionAlloc(100);
+    int NumOfNodeConnections(0);
+    int MaxNumOfNodeConnections(0);
+    int NodeConnectionAlloc(1000);
+    int NumOfActualParents(0);
+    int NumOfAirTerminalNodes(0);
+    int MaxNumOfAirTerminalNodes(0);
+    int EqNodeConnectionAlloc(100);
 
     // Object Data
-    thread_local Array1D<ComponentListData> CompSets;
-    thread_local Array1D<ParentListData> ParentNodeList;
-    thread_local Array1D<NodeConnectionDef> NodeConnections;
-    thread_local Array1D<EqNodeConnectionDef> AirTerminalNodeConnections;
-    thread_local Array1D_bool NonConnectedNodes;
+    Array1D<ComponentListData> CompSets;
+    Array1D<ParentListData> ParentNodeList;
+    Array1D<NodeConnectionDef> NodeConnections;
+    Array1D<EqNodeConnectionDef> AirTerminalNodeConnections;
+    Array1D_bool NonConnectedNodes;
 
     // Clears the global data in DataBranchNodeConnections.
     // Needed for unit tests, should not be normally called.

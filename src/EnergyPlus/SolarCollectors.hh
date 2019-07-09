@@ -65,32 +65,32 @@ namespace SolarCollectors {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Fluid Type Flags
-    thread_local extern int const WATER;
-    thread_local extern int const AIR;
+    extern int const WATER;
+    extern int const AIR;
 
     // Test Correlation Type Flags
-    thread_local extern int const INLET;
-    thread_local extern int const AVERAGE;
-    thread_local extern int const OUTLET;
+    extern int const INLET;
+    extern int const AVERAGE;
+    extern int const OUTLET;
 
     // ICS Collector Type Flag
-    thread_local extern int const ICSRectangularTank;
+    extern int const ICSRectangularTank;
     // INTEGER, PARAMETER :: ICSProgressiveTube = 2
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
-    thread_local extern Array1D_bool CheckEquipName;
+    extern Array1D_bool CheckEquipName;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumOfParameters;
-    thread_local extern int NumOfCollectors;
+    extern int NumOfParameters;
+    extern int NumOfCollectors;
 
-    thread_local extern Array1D<Real64> TransSysSkyDiff; // transmittance of cover system for sky diffuse solar rad.
-    thread_local extern Array1D<Real64> TransSysGrnDiff; // transmittance of cover system for ground diffuse solar rad.
-    thread_local extern Array1D<Real64> RefSysSkyDiff;   // reflectance of cover system for sky diffuse solar rad.
-    thread_local extern Array1D<Real64> RefSysGrnDiff;   // reflectance of cover system for ground diffuse solar rad.
+    extern Array1D<Real64> TransSysSkyDiff; // transmittance of cover system for sky diffuse solar rad.
+    extern Array1D<Real64> TransSysGrnDiff; // transmittance of cover system for ground diffuse solar rad.
+    extern Array1D<Real64> RefSysSkyDiff;   // reflectance of cover system for sky diffuse solar rad.
+    extern Array1D<Real64> RefSysGrnDiff;   // reflectance of cover system for ground diffuse solar rad.
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -234,8 +234,8 @@ namespace SolarCollectors {
     };
 
     // Object Data
-    thread_local extern Array1D<ParametersData> Parameters;
-    thread_local extern Array1D<CollectorData> Collector;
+    extern Array1D<ParametersData> Parameters;
+    extern Array1D<CollectorData> Collector;
 
     // Functions
 

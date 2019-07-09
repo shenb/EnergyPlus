@@ -69,19 +69,19 @@ namespace Fans {
     // MODULE PARAMETER DEFINITIONS
     // parameters describing fan types are contained in DataHVACGlobals (see USE statement above)
 
-    thread_local extern int const ExhaustFanCoupledToAvailManagers;
-    thread_local extern int const ExhaustFanDecoupledFromAvailManagers;
+    extern int const ExhaustFanCoupledToAvailManagers;
+    extern int const ExhaustFanDecoupledFromAvailManagers;
 
     // na
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumFans;           // The Number of Fans found in the Input
-    thread_local extern int NumNightVentPerf;  // number of FAN:NIGHT VENT PERFORMANCE objects found in the input
-    thread_local extern bool GetFanInputFlag;  // Flag set to make sure you get input once
-    thread_local extern bool LocalTurnFansOn;  // If True, overrides fan schedule and cycles ZoneHVAC component fans on
-    thread_local extern bool LocalTurnFansOff; // If True, overrides fan schedule and LocalTurnFansOn and forces ZoneHVAC comp fans off
+    extern int NumFans;           // The Number of Fans found in the Input
+    extern int NumNightVentPerf;  // number of FAN:NIGHT VENT PERFORMANCE objects found in the input
+    extern bool GetFanInputFlag;  // Flag set to make sure you get input once
+    extern bool LocalTurnFansOn;  // If True, overrides fan schedule and cycles ZoneHVAC component fans on
+    extern bool LocalTurnFansOff; // If True, overrides fan schedule and LocalTurnFansOn and forces ZoneHVAC comp fans off
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -267,9 +267,9 @@ namespace Fans {
     };
 
     // Object Data
-    thread_local extern Array1D<FanEquipConditions> Fan;
-    thread_local extern Array1D<NightVentPerfData> NightVentPerf;
-    thread_local extern Array1D<FanNumericFieldData> FanNumericFields;
+    extern Array1D<FanEquipConditions> Fan;
+    extern Array1D<NightVentPerfData> NightVentPerf;
+    extern Array1D<FanNumericFieldData> FanNumericFields;
 
     // Functions
     void clear_state();

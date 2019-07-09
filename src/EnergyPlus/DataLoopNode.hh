@@ -64,56 +64,56 @@ namespace DataLoopNode {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Valid Fluid Types for Nodes
-    thread_local extern int const NodeType_Unknown;  // 'blank'
-    thread_local extern int const NodeType_Air;      // 'Air'
-    thread_local extern int const NodeType_Water;    // 'Water'
-    thread_local extern int const NodeType_Steam;    // 'Steam'
-    thread_local extern int const NodeType_Electric; // 'Electric'
-    thread_local extern Array1D_string const ValidNodeFluidTypes;
-    thread_local extern int const NumValidNodeFluidTypes;
+    extern int const NodeType_Unknown;  // 'blank'
+    extern int const NodeType_Air;      // 'Air'
+    extern int const NodeType_Water;    // 'Water'
+    extern int const NodeType_Steam;    // 'Steam'
+    extern int const NodeType_Electric; // 'Electric'
+    extern Array1D_string const ValidNodeFluidTypes;
+    extern int const NumValidNodeFluidTypes;
 
     // Valid Connection Types for Nodes
-    thread_local extern Array1D_string const ValidConnectionTypes;
+    extern Array1D_string const ValidConnectionTypes;
 
-    thread_local extern int const NumValidConnectionTypes;
+    extern int const NumValidConnectionTypes;
 
-    thread_local extern int const NodeConnectionType_Inlet;
-    thread_local extern int const NodeConnectionType_Outlet;
-    thread_local extern int const NodeConnectionType_Internal;
-    thread_local extern int const NodeConnectionType_ZoneNode;
-    thread_local extern int const NodeConnectionType_Sensor;
-    thread_local extern int const NodeConnectionType_Actuator;
-    thread_local extern int const NodeConnectionType_OutsideAir;
-    thread_local extern int const NodeConnectionType_ReliefAir;
-    thread_local extern int const NodeConnectionType_ZoneInlet;
-    thread_local extern int const NodeConnectionType_ZoneReturn;
-    thread_local extern int const NodeConnectionType_ZoneExhaust;
-    thread_local extern int const NodeConnectionType_SetPoint;
-    thread_local extern int const NodeConnectionType_Electric;
-    thread_local extern int const NodeConnectionType_OutsideAirReference;
-    thread_local extern int const NodeConnectionType_InducedAir;
+    extern int const NodeConnectionType_Inlet;
+    extern int const NodeConnectionType_Outlet;
+    extern int const NodeConnectionType_Internal;
+    extern int const NodeConnectionType_ZoneNode;
+    extern int const NodeConnectionType_Sensor;
+    extern int const NodeConnectionType_Actuator;
+    extern int const NodeConnectionType_OutsideAir;
+    extern int const NodeConnectionType_ReliefAir;
+    extern int const NodeConnectionType_ZoneInlet;
+    extern int const NodeConnectionType_ZoneReturn;
+    extern int const NodeConnectionType_ZoneExhaust;
+    extern int const NodeConnectionType_SetPoint;
+    extern int const NodeConnectionType_Electric;
+    extern int const NodeConnectionType_OutsideAirReference;
+    extern int const NodeConnectionType_InducedAir;
 
     // Valid IsParent Types for Node Connections
-    thread_local extern bool const ObjectIsParent;
-    thread_local extern bool const ObjectIsNotParent;
-    thread_local extern bool const IncrementFluidStreamYes;
-    thread_local extern bool const IncrementFluidStreamNo;
-    thread_local extern Real64 const SensedNodeFlagValue;
-    thread_local extern Real64 const SensedLoadFlagValue;
+    extern bool const ObjectIsParent;
+    extern bool const ObjectIsNotParent;
+    extern bool const IncrementFluidStreamYes;
+    extern bool const IncrementFluidStreamNo;
+    extern Real64 const SensedNodeFlagValue;
+    extern Real64 const SensedLoadFlagValue;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumOfNodes;
-    thread_local extern int NumofSplitters;
-    thread_local extern int NumofMixers;
+    extern int NumOfNodes;
+    extern int NumofSplitters;
+    extern int NumofMixers;
 
     // You will be tempted to put the following into the Node Derived type as
     // the "Name" for the Node.  Don't do it!!!  Several areas of the code have
     // the following assignments:  Node(somenodenumber)=Node(someothernodenumber) to
     // set/update Node conditions.  If the Node derived type would include the name
     // then the name would get changed and bad things would result...
-    thread_local extern Array1D_string NodeID;
+    extern Array1D_string NodeID;
 
     // Types
 
@@ -290,10 +290,10 @@ namespace DataLoopNode {
     };
 
     // Object Data
-    thread_local extern Array1D<NodeData> Node; // dim to num nodes in SimHVAC
-    thread_local extern NodeData DefaultNodeValues;
-    thread_local extern Array1D<MoreNodeData> MoreNodeInfo;
-    thread_local extern Array1D<MarkedNodeData> MarkedNode;
+    extern Array1D<NodeData> Node; // dim to num nodes in SimHVAC
+    extern NodeData DefaultNodeValues;
+    extern Array1D<MoreNodeData> MoreNodeInfo;
+    extern Array1D<MarkedNodeData> MarkedNode;
 
     // Clears the global data in DataLoopNode.
     // Needed for unit tests, should not be normally called.

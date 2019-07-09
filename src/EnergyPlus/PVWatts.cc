@@ -69,7 +69,7 @@ namespace EnergyPlus {
 
 namespace PVWatts {
 
-    thread_local std::map<int, PVWattsGenerator> PVWattsGenerators;
+    std::map<int, PVWattsGenerator> PVWattsGenerators;
 
     PVWattsGenerator::PVWattsGenerator(const std::string &name,
                                        const Real64 dcSystemCapacity,

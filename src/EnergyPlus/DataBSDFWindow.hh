@@ -67,19 +67,19 @@ namespace DataBSDFWindow {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    thread_local extern int const BasisType_WINDOW;
-    thread_local extern int const BasisType_Custom;
+    extern int const BasisType_WINDOW;
+    extern int const BasisType_Custom;
 
-    thread_local extern int const BasisSymmetry_Axisymmetric;
-    thread_local extern int const BasisSymmetry_None;
+    extern int const BasisSymmetry_Axisymmetric;
+    extern int const BasisSymmetry_None;
 
     // Thermal calculations for complex fenestration can be used to generate reports for standard cases
     // noCondition is used when performing timestep calculations
     // summerCondtion will override certain parameters so that produced results are matching standard summer WINDOW (software) results
     // winterCondition will override certain parameters so that produced resuls are matching standard winter WINDOW (software) results
-    thread_local extern int const noCondition;
-    thread_local extern int const summerCondition;
-    thread_local extern int const winterCondition;
+    extern int const noCondition;
+    extern int const summerCondition;
+    extern int const winterCondition;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -91,13 +91,13 @@ namespace DataBSDFWindow {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int TotComplexFenStates; // Number of complex fenestration construction definitions
-    thread_local extern int FirstBSDF;           // Location of first complex fenestration construction definition in Constr array
-    thread_local extern int MaxBkSurf;           // was 20    Maximum number of back surfaces in solar overlap & interior solar distribution
-    thread_local extern int TotThermalModels;    // Number of thermal models
+    extern int TotComplexFenStates; // Number of complex fenestration construction definitions
+    extern int FirstBSDF;           // Location of first complex fenestration construction definition in Constr array
+    extern int MaxBkSurf;           // was 20    Maximum number of back surfaces in solar overlap & interior solar distribution
+    extern int TotThermalModels;    // Number of thermal models
     // calculation
-    thread_local extern Array3D<Real64> SUNCOSTS;     // Timestep values of solar direction cosines
-    thread_local extern Array2D<Real64> BSDFTempMtrx; // Temporary matrix for holding axisymmetric input
+    extern Array3D<Real64> SUNCOSTS;     // Timestep values of solar direction cosines
+    extern Array2D<Real64> BSDFTempMtrx; // Temporary matrix for holding axisymmetric input
 
     // Types
 
@@ -448,7 +448,7 @@ namespace DataBSDFWindow {
     };
 
     // Object Data
-    thread_local extern Array1D<BSDFWindowGeomDescr> ComplexWind; // Window geometry structure: set in CalcPerSolarBeam/SolarShading
+    extern Array1D<BSDFWindowGeomDescr> ComplexWind; // Window geometry structure: set in CalcPerSolarBeam/SolarShading
 
 } // namespace DataBSDFWindow
 

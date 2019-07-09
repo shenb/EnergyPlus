@@ -67,15 +67,15 @@ namespace BaseboardRadiator {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern Real64 const SimpConvAirFlowSpeed; // m/s
+    extern Real64 const SimpConvAirFlowSpeed; // m/s
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumBaseboards;
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern Array1D_bool SetLoopIndexFlag; // get loop number flag
+    extern int NumBaseboards;
+    extern Array1D_bool MySizeFlag;
+    extern Array1D_bool CheckEquipName;
+    extern Array1D_bool SetLoopIndexFlag; // get loop number flag
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
@@ -143,8 +143,8 @@ namespace BaseboardRadiator {
         }
     };
     // Object Data
-    thread_local extern Array1D<BaseboardParams> Baseboard;
-    thread_local extern Array1D<BaseboardParamsNumericFieldData> BaseboardParamsNumericFields;
+    extern Array1D<BaseboardParams> Baseboard;
+    extern Array1D<BaseboardParamsNumericFieldData> BaseboardParamsNumericFields;
 
     // Functions
 

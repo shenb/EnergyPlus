@@ -114,7 +114,7 @@ namespace PlantUtilities {
         };
 
         // Object Data
-        thread_local Array1D<CriteriaData> CriteriaChecks; // stores criteria information
+        Array1D<CriteriaData> CriteriaChecks; // stores criteria information
     }                                         // namespace
     // MODULE VARIABLE DECLARATIONS:
     // na
@@ -272,10 +272,10 @@ namespace PlantUtilities {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool OneTimeDiagSetup(true);
+        static bool OneTimeDiagSetup(true);
         bool EMSLoadOverride;
-        thread_local static Array1D_bool NodeErrorMsgIssued;
-        thread_local static bool NullPlantErrorMsgIssued;
+        static Array1D_bool NodeErrorMsgIssued;
+        static bool NullPlantErrorMsgIssued;
         Real64 MdotOldRequest; // initial value of mass flow
         int CompInletNodeNum;
         int CompOutletNodeNum;
@@ -1529,7 +1529,7 @@ namespace PlantUtilities {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("UpdateChillerComponentCondenserSide");
+        static std::string const RoutineName("UpdateChillerComponentCondenserSide");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1538,7 +1538,7 @@ namespace PlantUtilities {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool DidAnythingChange(false); // set to true if conditions changed
+        static bool DidAnythingChange(false); // set to true if conditions changed
         int OtherLoopNum;                     // local loop pointer for remote connected loop
         int OtherLoopSide;                    // local loop side pointer for remote connected loop
         int ConnectLoopNum;                   // local do loop counter
@@ -1624,10 +1624,10 @@ namespace PlantUtilities {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("UpdateComponentHeatRecoverySide");
+        static std::string const RoutineName("UpdateComponentHeatRecoverySide");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool DidAnythingChange(false); // set to true if conditions changed
+        static bool DidAnythingChange(false); // set to true if conditions changed
         int OtherLoopNum;                     // local loop pointer for remote connected loop
         int OtherLoopSide;                    // local loop side pointer for remote connected loop
         int ConnectLoopNum;                   // local do loop counter
@@ -1711,7 +1711,7 @@ namespace PlantUtilities {
         using DataPlant::PlantLoop;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool DidAnythingChange(false); // set to true if conditions changed
+        static bool DidAnythingChange(false); // set to true if conditions changed
         int OtherLoopNum;                     // local loop pointer for remote connected loop
         int OtherLoopSide;                    // local loop side pointer for remote connected loop
         int ConnectLoopNum;                   // local do loop counter

@@ -63,13 +63,13 @@ namespace OutsideEnergySources {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const EnergyType_DistrictHeating;
-    thread_local extern int const EnergyType_DistrictCooling;
+    extern int const EnergyType_DistrictHeating;
+    extern int const EnergyType_DistrictCooling;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumDistrictUnits;
+    extern int NumDistrictUnits;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OutsideEnergySources
 
@@ -125,8 +125,8 @@ namespace OutsideEnergySources {
     };
 
     // Object Data
-    thread_local extern Array1D<OutsideEnergySourceSpecs> EnergySource;
-    thread_local extern Array1D<ReportVars> EnergySourceReport;
+    extern Array1D<OutsideEnergySourceSpecs> EnergySource;
+    extern Array1D<ReportVars> EnergySourceReport;
 
     // Functions
     void clear_state();

@@ -93,7 +93,7 @@ namespace TARCOGArgs {
     using namespace TARCOGOutput;
     using namespace TARCOGParams;
 
-    thread_local static gio::Fmt fmtI3("(I3)");
+    static gio::Fmt fmtI3("(I3)");
 
     // Functions
 

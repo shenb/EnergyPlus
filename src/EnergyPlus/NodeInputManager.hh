@@ -76,18 +76,18 @@ namespace NodeInputManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumOfNodeLists;       // Total number of Node Lists in IDF
-    thread_local extern int NumOfUniqueNodeNames; // Number of Unique Node Names (current)
+    extern int NumOfNodeLists;       // Total number of Node Lists in IDF
+    extern int NumOfUniqueNodeNames; // Number of Unique Node Names (current)
     // The following is a module level flag because there are several possible "entries" into
     // this module that may need to get the Node Inputs.
-    thread_local extern bool GetNodeInputFlag;           // Flag to Get Node Input(s)
-    thread_local extern Array1D_int NodeRef;             // Number of times a Node is "referenced"
-    thread_local extern std::string CurCheckContextName; // Used in Uniqueness checks
-    thread_local extern Array1D_string UniqueNodeNames;  // used in uniqueness checks
-    thread_local extern int NumCheckNodes;               // Num of Unique nodes in check
-    thread_local extern int MaxCheckNodes;               // Current "max" unique nodes in check
-    thread_local extern bool NodeVarsSetup;              // Setup indicator of node vars for reporting (also that all nodes have been entered)
-    thread_local extern Array1D_bool NodeWetBulbRepReq;
+    extern bool GetNodeInputFlag;           // Flag to Get Node Input(s)
+    extern Array1D_int NodeRef;             // Number of times a Node is "referenced"
+    extern std::string CurCheckContextName; // Used in Uniqueness checks
+    extern Array1D_string UniqueNodeNames;  // used in uniqueness checks
+    extern int NumCheckNodes;               // Num of Unique nodes in check
+    extern int MaxCheckNodes;               // Current "max" unique nodes in check
+    extern bool NodeVarsSetup;              // Setup indicator of node vars for reporting (also that all nodes have been entered)
+    extern Array1D_bool NodeWetBulbRepReq;
 
     // Types
 
@@ -106,7 +106,7 @@ namespace NodeInputManager {
     };
 
     // Object Data
-    thread_local extern Array1D<NodeListDef> NodeLists; // Node Lists
+    extern Array1D<NodeListDef> NodeLists; // Node Lists
 
     // Functions
 

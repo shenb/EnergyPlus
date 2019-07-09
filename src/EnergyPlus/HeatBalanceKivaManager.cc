@@ -410,7 +410,7 @@ namespace HeatBalanceKivaManager {
         }
 
         // Read in Header Information
-        thread_local static Array1D_string const Header(8,
+        static Array1D_string const Header(8,
                                            {"LOCATION",
                                             "DESIGN CONDITIONS",
                                             "TYPICAL/EXTREME PERIODS",

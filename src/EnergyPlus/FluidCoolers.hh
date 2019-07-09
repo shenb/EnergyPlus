@@ -63,37 +63,37 @@ namespace FluidCoolers {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern std::string const cFluidCooler_SingleSpeed;
-    thread_local extern std::string const cFluidCooler_TwoSpeed;
+    extern std::string const cFluidCooler_SingleSpeed;
+    extern std::string const cFluidCooler_TwoSpeed;
 
-    thread_local extern int const PIM_NominalCapacity;
-    thread_local extern int const PIM_UFactor;
+    extern int const PIM_NominalCapacity;
+    extern int const PIM_UFactor;
 
-    thread_local extern int const FluidCooler_SingleSpeed;
-    thread_local extern int const FluidCooler_TwoSpeed;
+    extern int const FluidCooler_SingleSpeed;
+    extern int const FluidCooler_TwoSpeed;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumSimpleFluidCoolers; // Number of similar fluid coolers
+    extern int NumSimpleFluidCoolers; // Number of similar fluid coolers
 
     // The following block of variables are used to carry model results for a fluid cooler instance
     // across sim, update, and report routines.  Simulation manager must be careful
     // in models with multiple fluid coolers.
 
-    thread_local extern Real64 InletWaterTemp;    // CW temperature at fluid cooler inlet
-    thread_local extern Real64 OutletWaterTemp;   // CW temperature at fluid cooler outlet
-    thread_local extern int WaterInletNode;       // Node number at fluid cooler inlet
-    thread_local extern int WaterOutletNode;      // Node number at fluid cooler outlet
-    thread_local extern Real64 WaterMassFlowRate; // WaterMassFlowRate through fluid cooler
+    extern Real64 InletWaterTemp;    // CW temperature at fluid cooler inlet
+    extern Real64 OutletWaterTemp;   // CW temperature at fluid cooler outlet
+    extern int WaterInletNode;       // Node number at fluid cooler inlet
+    extern int WaterOutletNode;      // Node number at fluid cooler outlet
+    extern Real64 WaterMassFlowRate; // WaterMassFlowRate through fluid cooler
     // DSU this is plant level stuff now  :: FluidCoolerMassFlowRateMax     = 0.0    ! Max Hardware Mass Flow Rate
     // DSU this is plant level stuff now  :: FluidCoolerMassFlowRateMin     = 0.0    ! Min Hardware Mass Flow Rate
     // DSU this is plant level stuff now  :: LoopMassFlowRateMaxAvail = 0.0    ! Max Loop Mass Flow Rate available
     // DSU this is plant level stuff now  :: LoopMassFlowRateMinAvail = 0.0    ! Min Loop Mass Flow Rate available
-    thread_local extern Real64 Qactual;  // Fluid cooler heat transfer
-    thread_local extern Real64 FanPower; // Fluid cooler fan power used
+    extern Real64 Qactual;  // Fluid cooler heat transfer
+    extern Real64 FanPower; // Fluid cooler fan power used
 
-    thread_local extern Array1D_bool CheckEquipName;
+    extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE CondenserLoopFluidCoolers
 
@@ -213,9 +213,9 @@ namespace FluidCoolers {
     };
 
     // Object Data
-    thread_local extern Array1D<FluidCoolerspecs> SimpleFluidCooler;           // dimension to number of machines
-    thread_local extern Array1D<FluidCoolerInletConds> SimpleFluidCoolerInlet; // inlet conditions
-    thread_local extern Array1D<ReportVars> SimpleFluidCoolerReport;           // report variables
+    extern Array1D<FluidCoolerspecs> SimpleFluidCooler;           // dimension to number of machines
+    extern Array1D<FluidCoolerInletConds> SimpleFluidCoolerInlet; // inlet conditions
+    extern Array1D<ReportVars> SimpleFluidCoolerReport;           // report variables
 
     // Functions
     bool TestFluidCoolerSingleSpeedInputForDesign(std::string const &cCurrentModuleObject,

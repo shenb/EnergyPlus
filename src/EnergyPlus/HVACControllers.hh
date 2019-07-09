@@ -75,20 +75,20 @@ namespace HVACControllers {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Number of significant digits to display in error messages for floating-point numbers
-    thread_local extern Real64 const SomeFloatingPoint;
-    thread_local extern int const NumSigDigits;
+    extern Real64 const SomeFloatingPoint;
+    extern int const NumSigDigits;
 
     // Parameters for controls used here
-    thread_local extern int const iNoControlVariable;
-    thread_local extern int const iTemperature;
-    thread_local extern int const iHumidityRatio;
-    thread_local extern int const iTemperatureAndHumidityRatio;
-    thread_local extern int const iFlow;
+    extern int const iNoControlVariable;
+    extern int const iTemperature;
+    extern int const iHumidityRatio;
+    extern int const iTemperatureAndHumidityRatio;
+    extern int const iFlow;
 
-    thread_local extern int const CoilType_Cooling;
-    thread_local extern int const CoilType_Heating;
+    extern int const CoilType_Cooling;
+    extern int const CoilType_Heating;
 
-    thread_local extern Array1D_string const ControlVariableTypes;
+    extern Array1D_string const ControlVariableTypes;
 
     // DERIVED TYPE DEFINITIONS
 
@@ -99,14 +99,14 @@ namespace HVACControllers {
     // Type describing an air loop's runtime statistics over the course of the simulation
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumControllers;  // The number of controllers found in the Input
-    thread_local extern int NumAirLoopStats; // Same size as NumPrimaryAirSys if controllers
+    extern int NumControllers;  // The number of controllers found in the Input
+    extern int NumAirLoopStats; // Same size as NumPrimaryAirSys if controllers
     // are defined, 0 otherwise.
     // all controllers per air loop
-    thread_local extern Array1D_bool CheckEquipName;
+    extern Array1D_bool CheckEquipName;
 
     // Flag set to make sure you get input once
-    thread_local extern bool GetControllerInputFlag;
+    extern bool GetControllerInputFlag;
 
     // SUBROUTINE Specifications for the Module
     // Driver/Manager Routines
@@ -286,9 +286,9 @@ namespace HVACControllers {
     };
 
     // Object Data
-    thread_local extern Array1D<ControllerPropsType> ControllerProps;
-    thread_local extern Array1D<RootFinderDataType> RootFinders;
-    thread_local extern Array1D<AirLoopStatsType> AirLoopStats; // Statistics array to analyze computational profile for
+    extern Array1D<ControllerPropsType> ControllerProps;
+    extern Array1D<RootFinderDataType> RootFinders;
+    extern Array1D<AirLoopStatsType> AirLoopStats; // Statistics array to analyze computational profile for
 
     // Functions
 

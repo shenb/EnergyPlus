@@ -185,7 +185,7 @@ void SummarizeErrors();
 void ShowRecurringErrors();
 
 namespace UtilityRoutines {
-    thread_local extern bool outputErrorHeader;
+    extern bool outputErrorHeader;
 
     template <class T> struct is_shared_ptr : std::false_type
     {

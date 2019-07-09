@@ -257,7 +257,7 @@ namespace PlantLoopEquip {
         // set up a reference for this component
         auto &sim_component(PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(Num));
 
-        thread_local static std::vector<int> compsToSimAfterInitLoopEquip = {TypeOf_Pipe, TypeOf_PipeSteam};
+        static std::vector<int> compsToSimAfterInitLoopEquip = {TypeOf_Pipe, TypeOf_PipeSteam};
 
         // set local variables
         EquipTypeNum = sim_component.TypeOf_Num;

@@ -100,22 +100,22 @@ namespace CoolTower {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const WaterSupplyFromMains(101);
-    thread_local int const WaterSupplyFromTank(102);
-    thread_local int const WaterFlowSchedule(0);
-    thread_local int const WindDrivenFlow(1);
+    int const WaterSupplyFromMains(101);
+    int const WaterSupplyFromTank(102);
+    int const WaterFlowSchedule(0);
+    int const WindDrivenFlow(1);
 
-    thread_local static std::string const BlankString;
+    static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLES DECLARATIONS:
-    thread_local int NumCoolTowers(0); // Total cooltower statements in inputs
+    int NumCoolTowers(0); // Total cooltower statements in inputs
 
     // Subroutine Specifications for the Heat Balance Module
 
     // Object Data
-    thread_local Array1D<CoolTowerParams> CoolTowerSys;
+    Array1D<CoolTowerParams> CoolTowerSys;
 
     // Functions
 
@@ -161,7 +161,7 @@ namespace CoolTower {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool GetInputFlag(true);
+        static bool GetInputFlag(true);
         // unused1208  LOGICAL :: ErrorsFound=.FALSE.
         // unused1208  INTEGER :: CoolTowerNum
 
@@ -199,7 +199,7 @@ namespace CoolTower {
         using WaterManager::SetupTankDemandComponent;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const CurrentModuleObject("ZoneCoolTower:Shower");
+        static std::string const CurrentModuleObject("ZoneCoolTower:Shower");
         Real64 const MaximumWaterFlowRate(0.016667); // Maximum limit of water flow rate in m3/s (1000 l/min)
         Real64 const MinimumWaterFlowRate(0.0);      // Minimum limit of water flow rate
         Real64 const MaxHeight(30.0);                // Maximum effective tower height in m
@@ -216,7 +216,7 @@ namespace CoolTower {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ErrorsFound(false); // If errors detected in input
+        static bool ErrorsFound(false); // If errors detected in input
         int CoolTowerNum;               // Cooltower number
         int NumAlphas;                  // Number of Alphas for each GetobjectItem call
         int NumNumbers;                 // Number of Numbers for each GetobjectItem call

@@ -64,35 +64,35 @@ namespace EvaporativeCoolers {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const WaterSupplyFromMains;
-    thread_local extern int const WaterSupplyFromTank;
+    extern int const WaterSupplyFromMains;
+    extern int const WaterSupplyFromTank;
 
-    thread_local extern int const BlowThruFan;
-    thread_local extern int const DrawThruFan;
+    extern int const BlowThruFan;
+    extern int const DrawThruFan;
 
-    thread_local extern int const ZoneTemperatureDeadBandOnOffCycling;
-    thread_local extern int const ZoneCoolingLoadOnOffCycling;
-    thread_local extern int const ZoneCoolingLoadVariableSpeedFan;
+    extern int const ZoneTemperatureDeadBandOnOffCycling;
+    extern int const ZoneCoolingLoadOnOffCycling;
+    extern int const ZoneCoolingLoadVariableSpeedFan;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetInputEvapComponentsFlag; // Flag set to make sure you get input once
-    thread_local extern int NumEvapCool;                 // The Number of Evap Coolers found in the Input
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
+    extern bool GetInputEvapComponentsFlag; // Flag set to make sure you get input once
+    extern int NumEvapCool;                 // The Number of Evap Coolers found in the Input
+    extern Array1D_bool MySizeFlag;
+    extern Array1D_bool CheckEquipName;
 
-    thread_local extern int NumZoneEvapUnits;
-    thread_local extern Array1D_bool CheckZoneEvapUnitName;
-    thread_local extern bool GetInputZoneEvapUnit;
+    extern int NumZoneEvapUnits;
+    extern Array1D_bool CheckZoneEvapUnitName;
+    extern bool GetInputZoneEvapUnit;
 
     // Indirect Evaporative Coolers Research Special Operating Modes
-    thread_local extern int const None;            // the indirect evaporative cooler Research Special is scheduled off or turned off
-    thread_local extern int const DryModulated;    // the evaporative cooler Research Special is modulated in Dry Mode
-    thread_local extern int const DryFull;         // the evaporative cooler Research Special is run in full capacity in Dry Mode
-    thread_local extern int const DryWetModulated; // the evaporative cooler Research Special is modulated in Dry Mode or wet Mode
-    thread_local extern int const WetModulated;    // the evaporative cooler Research Special is modulated in wet Mode
-    thread_local extern int const WetFull;         // the evaporative cooler Research Special is run in full capacity in Wet Mode
+    extern int const None;            // the indirect evaporative cooler Research Special is scheduled off or turned off
+    extern int const DryModulated;    // the evaporative cooler Research Special is modulated in Dry Mode
+    extern int const DryFull;         // the evaporative cooler Research Special is run in full capacity in Dry Mode
+    extern int const DryWetModulated; // the evaporative cooler Research Special is modulated in Dry Mode or wet Mode
+    extern int const WetModulated;    // the evaporative cooler Research Special is modulated in wet Mode
+    extern int const WetFull;         // the evaporative cooler Research Special is run in full capacity in Wet Mode
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE EvapCoolers
 
@@ -318,9 +318,9 @@ namespace EvaporativeCoolers {
     };
 
     // Object Data
-    thread_local extern Array1D<EvapConditions> EvapCond;
-    thread_local extern Array1D<ZoneEvapCoolerUnitStruct> ZoneEvapUnit;
-    thread_local extern Array1D<ZoneEvapCoolerUnitFieldData> ZoneEvapCoolerUnitFields;
+    extern Array1D<EvapConditions> EvapCond;
+    extern Array1D<ZoneEvapCoolerUnitStruct> ZoneEvapUnit;
+    extern Array1D<ZoneEvapCoolerUnitFieldData> ZoneEvapCoolerUnitFields;
 
     // Functions
 

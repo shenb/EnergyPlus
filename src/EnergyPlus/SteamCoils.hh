@@ -64,20 +64,20 @@ namespace SteamCoils {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const SteamCoil_AirHeating;
-    thread_local extern int const TemperatureSetPointControl;
-    thread_local extern int const ZoneLoadControl;
+    extern int const SteamCoil_AirHeating;
+    extern int const TemperatureSetPointControl;
+    extern int const ZoneLoadControl;
 
     // DERIVED TYPE DEFINITIONS
 
     // INTERFACE DEFINITIONS
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int SteamIndex;
-    thread_local extern int NumSteamCoils; // The Number of SteamCoils found in the Input
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CoilWarningOnceFlag;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern bool GetSteamCoilsInputFlag; // Flag set to make sure you get input once
+    extern int SteamIndex;
+    extern int NumSteamCoils; // The Number of SteamCoils found in the Input
+    extern Array1D_bool MySizeFlag;
+    extern Array1D_bool CoilWarningOnceFlag;
+    extern Array1D_bool CheckEquipName;
+    extern bool GetSteamCoilsInputFlag; // Flag set to make sure you get input once
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -179,7 +179,7 @@ namespace SteamCoils {
     };
 
     // Object Data
-    thread_local extern Array1D<SteamCoilEquipConditions> SteamCoil;
+    extern Array1D<SteamCoilEquipConditions> SteamCoil;
 
     // Functions
 

@@ -63,15 +63,15 @@ namespace BaseboardElectric {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern std::string const cCMO_BBRadiator_Electric;
-    thread_local extern Real64 const SimpConvAirFlowSpeed; // m/s
+    extern std::string const cCMO_BBRadiator_Electric;
+    extern Real64 const SimpConvAirFlowSpeed; // m/s
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumBaseboards;
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
+    extern int NumBaseboards;
+    extern Array1D_bool MySizeFlag;
+    extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
@@ -118,8 +118,8 @@ namespace BaseboardElectric {
     };
 
     // Object Data
-    thread_local extern Array1D<BaseboardParams> Baseboard;
-    thread_local extern Array1D<BaseboardNumericFieldData> BaseboardNumericFields;
+    extern Array1D<BaseboardParams> Baseboard;
+    extern Array1D<BaseboardNumericFieldData> BaseboardNumericFields;
 
     // Functions
 
