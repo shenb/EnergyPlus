@@ -70,9 +70,9 @@ namespace Vectors {
     // MODULE PARAMETER DEFINITIONS
 
     // Object Data
-    extern Vector const XUnit;
-    extern Vector const YUnit;
-    extern Vector const ZUnit;
+    thread_local extern Vector const XUnit;
+    thread_local extern Vector const YUnit;
+    thread_local extern Vector const ZUnit;
 
     // Functions
 

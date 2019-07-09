@@ -65,18 +65,18 @@ namespace WindTurbine {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const HAWT; // 'HorizontalAxisWindTurbine'
-    extern int const VAWT; // 'VerticalAxisWindTurbine'
+    thread_local extern int const HAWT; // 'HorizontalAxisWindTurbine'
+    thread_local extern int const VAWT; // 'VerticalAxisWindTurbine'
 
-    extern int const FSFP; // 'FixedSpeedFixedPitch'
-    extern int const FSVP; // 'FixedSpeedVariablePitch'
-    extern int const VSFP; // 'VariableSpeedFixedPitch'
-    extern int const VSVP; // 'VariableSpeedVariablePitch'
+    thread_local extern int const FSFP; // 'FixedSpeedFixedPitch'
+    thread_local extern int const FSVP; // 'FixedSpeedVariablePitch'
+    thread_local extern int const VSFP; // 'VariableSpeedFixedPitch'
+    thread_local extern int const VSVP; // 'VariableSpeedVariablePitch'
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLES DECLARATIONS:
-    extern int NumWindTurbines; // Total wind turbine statements in inputs
+    thread_local extern int NumWindTurbines; // Total wind turbine statements in inputs
 
     // Subroutine Specifications for the Heat Balance Module
 
@@ -146,7 +146,7 @@ namespace WindTurbine {
     };
 
     // Object Data
-    extern Array1D<WindTurbineParams> WindTurbineSys;
+    thread_local extern Array1D<WindTurbineParams> WindTurbineSys;
 
     // Functions
 

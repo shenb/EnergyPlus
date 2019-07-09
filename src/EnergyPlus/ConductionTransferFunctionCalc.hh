@@ -66,7 +66,7 @@ namespace ConductionTransferFunctionCalc {
     // nodes per construction.  This limit is a compromise between faster,
     // less accurate solutions and slower, possibly more accurate answers.
 
-    extern int const NumOfPerpendNodes; // Number of nodes in the direction
+    thread_local extern int const NumOfPerpendNodes; // Number of nodes in the direction
     // perpendicular to the main direction of heat transfer.  This is only used
     // when a two-dimensional solution has been requested for a construction
     // with a heat source/sink.
@@ -78,26 +78,26 @@ namespace ConductionTransferFunctionCalc {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array2D<Real64> AExp; // Exponential of AMat
-    extern Array2D<Real64> AInv; // Inverse of AMat
-    extern Array2D<Real64> AMat; // "A" matrix from Seem's dissertation
+    thread_local extern Array2D<Real64> AExp; // Exponential of AMat
+    thread_local extern Array2D<Real64> AInv; // Inverse of AMat
+    thread_local extern Array2D<Real64> AMat; // "A" matrix from Seem's dissertation
     // (constant coefficients of linear system)
-    extern Array1D<Real64> BMat;   // "B" matrix of state space method (non-zero elements)
-    extern Array1D<Real64> CMat;   // "C" matrix of state space method (non-zero elements)
-    extern Array1D<Real64> DMat;   // "D" matrix of state space method (non-zero elements)
-    extern Array1D<Real64> e;      // Coefficients for the surface flux history term
-    extern Array2D<Real64> Gamma1; // Intermediate calculation array corresponding to a term
+    thread_local extern Array1D<Real64> BMat;   // "B" matrix of state space method (non-zero elements)
+    thread_local extern Array1D<Real64> CMat;   // "C" matrix of state space method (non-zero elements)
+    thread_local extern Array1D<Real64> DMat;   // "D" matrix of state space method (non-zero elements)
+    thread_local extern Array1D<Real64> e;      // Coefficients for the surface flux history term
+    thread_local extern Array2D<Real64> Gamma1; // Intermediate calculation array corresponding to a term
     // in Seem's dissertation
-    extern Array2D<Real64> Gamma2; // Intermediate calculation array corresponding to a term
+    thread_local extern Array2D<Real64> Gamma2; // Intermediate calculation array corresponding to a term
     // in Seem's dissertation
-    extern int NodeSource;   // Node at which a source or sink is present
-    extern int NodeUserTemp; // Node where user wishes to calculate a temperature
+    thread_local extern int NodeSource;   // Node at which a source or sink is present
+    thread_local extern int NodeUserTemp; // Node where user wishes to calculate a temperature
     // (for constructions with sources/sinks only)
-    extern int rcmax;          // Total number of nodes in the construct (<= MaxTotNodes)
-    extern Array3D<Real64> s;  // Coefficients for the surface temperature history terms
-    extern Array2D<Real64> s0; // Coefficients for the current surface temperature terms
-    extern Real64 TinyLimit;
-    extern Array2D<Real64> IdenMatrix; // Identity Matrix
+    thread_local extern int rcmax;          // Total number of nodes in the construct (<= MaxTotNodes)
+    thread_local extern Array3D<Real64> s;  // Coefficients for the surface temperature history terms
+    thread_local extern Array2D<Real64> s0; // Coefficients for the current surface temperature terms
+    thread_local extern Real64 TinyLimit;
+    thread_local extern Array2D<Real64> IdenMatrix; // Identity Matrix
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ConductionTransferFunctionCalc
 

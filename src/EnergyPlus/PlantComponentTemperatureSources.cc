@@ -100,15 +100,15 @@ namespace PlantComponentTemperatureSources {
     using General::TrimSigDigits;
 
     // MODULE PARAMETER DEFINITIONS:
-    int const TempSpecType_Constant(-1);
-    int const TempSpecType_Schedule(-2);
+    thread_local int const TempSpecType_Constant(-1);
+    thread_local int const TempSpecType_Schedule(-2);
 
     // MODULE VARIABLES
-    int NumSources(0);
-    bool GetInput(true); // then TRUE, calls subroutine to read input file.
+    thread_local int NumSources(0);
+    thread_local bool GetInput(true); // then TRUE, calls subroutine to read input file.
 
     // Object Data
-    Array1D<WaterSourceSpecs> WaterSource; // dimension to number of machines
+    thread_local Array1D<WaterSourceSpecs> WaterSource; // dimension to number of machines
 
     void SimWaterSource(std::string const &SourceName,            // user-specified name for this component
                         int const EP_UNUSED(EquipFlowCtrl),       // Flow control mode for the equipment
@@ -221,7 +221,7 @@ namespace PlantComponentTemperatureSources {
         int NumAlphas; // Number of elements in the alpha array
         int NumNums;   // Number of elements in the numeric array
         int IOStat;    // IO Status when calling get input subroutine
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
 
         // GET NUMBER OF ALL EQUIPMENT TYPES
         cCurrentModuleObject = "PlantComponent:TemperatureSource";
@@ -364,7 +364,7 @@ namespace PlantComponentTemperatureSources {
         using ScheduleManager::GetCurrentScheduleValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitWaterSource");
+        thread_local static std::string const RoutineName("InitWaterSource");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 rho; // local fluid density
@@ -604,7 +604,7 @@ namespace PlantComponentTemperatureSources {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcWaterSource");
+        thread_local static std::string const RoutineName("CalcWaterSource");
 
         if (WaterSource(SourceNum).MassFlowRate > 0.0) {
             WaterSource(SourceNum).OutletTemp = WaterSource(SourceNum).BoundaryTemp;

@@ -71,28 +71,28 @@ namespace DataDaylighting {
 
     // MODULE PARAMETER DEFINITIONS:
     // Two kinds of reference points: used directly in daylighting, used to show illuminance map of zone
-    extern int const MaxRefPoints;    // Maximum number of daylighting reference points, 2
-    extern int const MaxMapRefPoints; // Maximum number of Illuminance Map Ref Points
-    extern int TotRefPoints;          // number of Daylighting:ReferencePoint objects found
+    thread_local extern int const MaxRefPoints;    // Maximum number of daylighting reference points, 2
+    thread_local extern int const MaxMapRefPoints; // Maximum number of Illuminance Map Ref Points
+    thread_local extern int TotRefPoints;          // number of Daylighting:ReferencePoint objects found
 
-    extern int const NotInOrAdjZoneExtWin; // Exterior window is not in a Daylighting:Detailed zone
+    thread_local extern int const NotInOrAdjZoneExtWin; // Exterior window is not in a Daylighting:Detailed zone
     // or in an adjacent zone with a shared interior window
-    extern int const InZoneExtWin;  // Exterior window is in a Daylighting:Detailed zone
-    extern int const AdjZoneExtWin; // Exterior window is in a zone adjacent to a Daylighting:
+    thread_local extern int const InZoneExtWin;  // Exterior window is in a Daylighting:Detailed zone
+    thread_local extern int const AdjZoneExtWin; // Exterior window is in a zone adjacent to a Daylighting:
     // Detailed zone with which it shares an interior window
 
-    extern int const CalledForRefPoint;
-    extern int const CalledForMapPoint;
+    thread_local extern int const CalledForRefPoint;
+    thread_local extern int const CalledForMapPoint;
 
     // Parameters for "DaylightMethod"
-    extern int const NoDaylighting;
-    extern int const SplitFluxDaylighting;
-    extern int const DElightDaylighting;
+    thread_local extern int const NoDaylighting;
+    thread_local extern int const SplitFluxDaylighting;
+    thread_local extern int const DElightDaylighting;
 
     // Parameters for "Lighting Control Type"
-    extern int const Continuous;
-    extern int const Stepped;
-    extern int const ContinuousOff;
+    thread_local extern int const Continuous;
+    thread_local extern int const Stepped;
+    thread_local extern int const ContinuousOff;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -101,13 +101,13 @@ namespace DataDaylighting {
     // INTERFACE BLOCK SPECIFICATIONS: na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int TotIllumMaps;
-    extern bool mapResultsToReport; // used when only partial hour has "sun up"
-    extern bool mapResultsReported; // when no map results are ever reported this will still be false
-    extern char MapColSep;          // Character for separating map columns (tab, space, comma)
+    thread_local extern int TotIllumMaps;
+    thread_local extern bool mapResultsToReport; // used when only partial hour has "sun up"
+    thread_local extern bool mapResultsReported; // when no map results are ever reported this will still be false
+    thread_local extern char MapColSep;          // Character for separating map columns (tab, space, comma)
 
-    extern bool DFSReportSizingDays;
-    extern bool DFSReportAllShadowCalculationDays;
+    thread_local extern bool DFSReportSizingDays;
+    thread_local extern bool DFSReportAllShadowCalculationDays;
 
     // Types
 
@@ -319,14 +319,14 @@ namespace DataDaylighting {
         std::string wndwName;        // Window name
         Real64 feneRota;             // Fenestration Rotation
     };
-    extern int TotDElightCFS; // number of Daylighting:DELight:ComplexFenestration
+    thread_local extern int TotDElightCFS; // number of Daylighting:DELight:ComplexFenestration
 
     // Object Data
-    extern Array1D<ZoneDaylightCalc> ZoneDaylight;
-    extern Array1D<IllumMapData> IllumMap;
-    extern Array1D<MapCalcData> IllumMapCalc;
-    extern Array1D<RefPointData> DaylRefPt;
-    extern Array1D<DElightComplexFeneData> DElightComplexFene;
+    thread_local extern Array1D<ZoneDaylightCalc> ZoneDaylight;
+    thread_local extern Array1D<IllumMapData> IllumMap;
+    thread_local extern Array1D<MapCalcData> IllumMapCalc;
+    thread_local extern Array1D<RefPointData> DaylRefPt;
+    thread_local extern Array1D<DElightComplexFeneData> DElightComplexFene;
 
 } // namespace DataDaylighting
 

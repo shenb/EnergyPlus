@@ -61,48 +61,48 @@ namespace HeatBalanceHAMTManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const ittermax; // Maximum Number of itterations
-    extern int const adjmax;   // Maximum Number of Adjacent Cells
+    thread_local extern int const ittermax; // Maximum Number of itterations
+    thread_local extern int const adjmax;   // Maximum Number of Adjacent Cells
 
-    extern Real64 const wdensity; // Density of water kg.m-3
-    extern Real64 const wspech;   // Specific Heat Capacity of Water J.kg-1.K-1 (at 20C)
-    extern Real64 const whv;      // Evaporation enthalpy of water J.kg-1
-    extern Real64 const convt;    // Temperature convergence limit
-    extern Real64 const qvplim;   // Maximum latent heat W
-    extern Real64 const rhmax;    // Maximum RH value
+    thread_local extern Real64 const wdensity; // Density of water kg.m-3
+    thread_local extern Real64 const wspech;   // Specific Heat Capacity of Water J.kg-1.K-1 (at 20C)
+    thread_local extern Real64 const whv;      // Evaporation enthalpy of water J.kg-1
+    thread_local extern Real64 const convt;    // Temperature convergence limit
+    thread_local extern Real64 const qvplim;   // Maximum latent heat W
+    thread_local extern Real64 const rhmax;    // Maximum RH value
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_int firstcell;
-    extern Array1D_int lastcell;
-    extern Array1D_int Extcell;
-    extern Array1D_int ExtRadcell;
-    extern Array1D_int ExtConcell;
-    extern Array1D_int ExtSkycell;
-    extern Array1D_int ExtGrncell;
-    extern Array1D_int Intcell;
-    extern Array1D_int IntConcell;
+    thread_local extern Array1D_int firstcell;
+    thread_local extern Array1D_int lastcell;
+    thread_local extern Array1D_int Extcell;
+    thread_local extern Array1D_int ExtRadcell;
+    thread_local extern Array1D_int ExtConcell;
+    thread_local extern Array1D_int ExtSkycell;
+    thread_local extern Array1D_int ExtGrncell;
+    thread_local extern Array1D_int Intcell;
+    thread_local extern Array1D_int IntConcell;
 
-    extern Array1D<Real64> watertot;
-    extern Array1D<Real64> surfrh;
-    extern Array1D<Real64> surfextrh;
-    extern Array1D<Real64> surftemp;
-    extern Array1D<Real64> surfexttemp;
-    extern Array1D<Real64> surfvp;
+    thread_local extern Array1D<Real64> watertot;
+    thread_local extern Array1D<Real64> surfrh;
+    thread_local extern Array1D<Real64> surfextrh;
+    thread_local extern Array1D<Real64> surftemp;
+    thread_local extern Array1D<Real64> surfexttemp;
+    thread_local extern Array1D<Real64> surfvp;
 
-    extern Array1D<Real64> extvtc;   // External Surface vapor transfer coefficient
-    extern Array1D<Real64> intvtc;   // Internal Surface Vapor Transfer Coefficient
-    extern Array1D_bool extvtcflag;  // External Surface vapor transfer coefficient flag
-    extern Array1D_bool intvtcflag;  // Internal Surface Vapor Transfer Coefficient flag
-    extern Array1D_bool MyEnvrnFlag; // Flag to reset surface properties.
+    thread_local extern Array1D<Real64> extvtc;   // External Surface vapor transfer coefficient
+    thread_local extern Array1D<Real64> intvtc;   // Internal Surface Vapor Transfer Coefficient
+    thread_local extern Array1D_bool extvtcflag;  // External Surface vapor transfer coefficient flag
+    thread_local extern Array1D_bool intvtcflag;  // Internal Surface Vapor Transfer Coefficient flag
+    thread_local extern Array1D_bool MyEnvrnFlag; // Flag to reset surface properties.
 
-    extern Real64 deltat; // time step in seconds
+    thread_local extern Real64 deltat; // time step in seconds
 
-    extern int TotCellsMax; // Maximum number of cells per material
+    thread_local extern int TotCellsMax; // Maximum number of cells per material
 
-    extern bool latswitch;  // latent heat switch,
-    extern bool rainswitch; // rain switch,
+    thread_local extern bool latswitch;  // latent heat switch,
+    thread_local extern bool rainswitch; // rain switch,
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HeatBalanceHAMTManager:
 
@@ -152,7 +152,7 @@ namespace HeatBalanceHAMTManager {
     };
 
     // Object Data
-    extern Array1D<subcell> cells;
+    thread_local extern Array1D<subcell> cells;
 
     // Functions
 

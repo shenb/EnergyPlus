@@ -64,44 +64,44 @@ namespace EconomicLifeCycleCost {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const disConvBeginOfYear;
-    extern int const disConvMidYear;
-    extern int const disConvEndOfYear;
+    thread_local extern int const disConvBeginOfYear;
+    thread_local extern int const disConvMidYear;
+    thread_local extern int const disConvEndOfYear;
 
-    extern int const inflAppConstantDollar;
-    extern int const inflAppCurrentDollar;
+    thread_local extern int const inflAppConstantDollar;
+    thread_local extern int const inflAppCurrentDollar;
 
     // ModifiedAcceleratedCostRecoverySystem or Straight Line
-    extern int const depMethMACRS3;
-    extern int const depMethMACRS5;
-    extern int const depMethMACRS7;
-    extern int const depMethMACRS10;
-    extern int const depMethMACRS15;
-    extern int const depMethMACRS20;
-    extern int const depMethStraight27;
-    extern int const depMethStraight31;
-    extern int const depMethStraight39;
-    extern int const depMethStraight40;
-    extern int const depMethNone;
+    thread_local extern int const depMethMACRS3;
+    thread_local extern int const depMethMACRS5;
+    thread_local extern int const depMethMACRS7;
+    thread_local extern int const depMethMACRS10;
+    thread_local extern int const depMethMACRS15;
+    thread_local extern int const depMethMACRS20;
+    thread_local extern int const depMethStraight27;
+    thread_local extern int const depMethStraight31;
+    thread_local extern int const depMethStraight39;
+    thread_local extern int const depMethStraight40;
+    thread_local extern int const depMethNone;
 
-    extern int const costCatMaintenance;
-    extern int const costCatRepair;
-    extern int const costCatOperation;
-    extern int const costCatReplacement;
-    extern int const costCatMinorOverhaul;
-    extern int const costCatMajorOverhaul;
-    extern int const costCatOtherOperational;
-    extern int const costCatConstruction;
-    extern int const costCatSalvage;
-    extern int const costCatOtherCapital;
-    extern int const costCatWater;
-    extern int const costCatEnergy;
-    extern int const costCatTotEnergy;
-    extern int const costCatTotOper;
-    extern int const costCatTotCaptl;
-    extern int const costCatTotGrand;
+    thread_local extern int const costCatMaintenance;
+    thread_local extern int const costCatRepair;
+    thread_local extern int const costCatOperation;
+    thread_local extern int const costCatReplacement;
+    thread_local extern int const costCatMinorOverhaul;
+    thread_local extern int const costCatMajorOverhaul;
+    thread_local extern int const costCatOtherOperational;
+    thread_local extern int const costCatConstruction;
+    thread_local extern int const costCatSalvage;
+    thread_local extern int const costCatOtherCapital;
+    thread_local extern int const costCatWater;
+    thread_local extern int const costCatEnergy;
+    thread_local extern int const costCatTotEnergy;
+    thread_local extern int const costCatTotOper;
+    thread_local extern int const costCatTotCaptl;
+    thread_local extern int const costCatTotGrand;
 
-    extern int const countOfCostCat; // count of the number of cost categories
+    thread_local extern int const countOfCostCat; // count of the number of cost categories
 
     // The NIST supplement includes UPV* factors for
     //   Electricity
@@ -111,8 +111,8 @@ namespace EconomicLifeCycleCost {
     //   Residual oil
     //   Coal
 
-    extern int const startServicePeriod;
-    extern int const startBasePeriod;
+    thread_local extern int const startServicePeriod;
+    thread_local extern int const startBasePeriod;
 
     // DERIVED TYPE DEFINITIONS:
     // na
@@ -120,55 +120,55 @@ namespace EconomicLifeCycleCost {
     // MODULE VARIABLE DECLARATIONS:
 
     // related to LifeCycleCost:Parameters
-    extern bool LCCparamPresent;       // If a LifeCycleCost:Parameters object is present
-    extern std::string LCCname;        // Name
-    extern int discountConvension;     // Discounting Convention
-    extern int inflationApproach;      // Inflation Approach
-    extern Real64 realDiscountRate;    // Real Discount Rate
-    extern Real64 nominalDiscountRate; // Nominal Discount Rate
-    extern Real64 inflation;           // Inflation
-    extern int baseDateMonth;          // Base Date Month (1=Jan, 12=Dec)
-    extern int baseDateYear;           // Base Date Year  1900-2100
-    extern int serviceDateMonth;       // Service Date Month (1=Jan, 12=Dec)
-    extern int serviceDateYear;        // Service Date Year 1900-2100
-    extern int lengthStudyYears;       // Length of Study Period in Years
-    extern int lengthStudyTotalMonths; // Length of Study expressed in months (years x 12)
-    extern Real64 taxRate;             // Tax rate
-    extern int depreciationMethod;     // Depreciation Method
+    thread_local extern bool LCCparamPresent;       // If a LifeCycleCost:Parameters object is present
+    thread_local extern std::string LCCname;        // Name
+    thread_local extern int discountConvension;     // Discounting Convention
+    thread_local extern int inflationApproach;      // Inflation Approach
+    thread_local extern Real64 realDiscountRate;    // Real Discount Rate
+    thread_local extern Real64 nominalDiscountRate; // Nominal Discount Rate
+    thread_local extern Real64 inflation;           // Inflation
+    thread_local extern int baseDateMonth;          // Base Date Month (1=Jan, 12=Dec)
+    thread_local extern int baseDateYear;           // Base Date Year  1900-2100
+    thread_local extern int serviceDateMonth;       // Service Date Month (1=Jan, 12=Dec)
+    thread_local extern int serviceDateYear;        // Service Date Year 1900-2100
+    thread_local extern int lengthStudyYears;       // Length of Study Period in Years
+    thread_local extern int lengthStudyTotalMonths; // Length of Study expressed in months (years x 12)
+    thread_local extern Real64 taxRate;             // Tax rate
+    thread_local extern int depreciationMethod;     // Depreciation Method
     // derived
-    extern int lastDateMonth; // Last Date Month (the month before the base date month)
-    extern int lastDateYear;  // Last Date Year (base date year + length of study period in years)
+    thread_local extern int lastDateMonth; // Last Date Month (the month before the base date month)
+    thread_local extern int lastDateYear;  // Last Date Year (base date year + length of study period in years)
 
-    extern int numRecurringCosts;
+    thread_local extern int numRecurringCosts;
 
-    extern int numNonrecurringCost;
+    thread_local extern int numNonrecurringCost;
 
-    extern int numUsePriceEscalation;
+    thread_local extern int numUsePriceEscalation;
 
-    extern int numUseAdjustment;
+    thread_local extern int numUseAdjustment;
 
-    extern int numCashFlow;
-    extern int const skRecurring;
-    extern int const skNonrecurring;
-    extern int const skResource;
-    extern int const skSum;
-    extern int const pvkEnergy;
-    extern int const pvkNonEnergy;
-    extern int const pvkNotComputed;
-    extern int numResourcesUsed;
+    thread_local extern int numCashFlow;
+    thread_local extern int const skRecurring;
+    thread_local extern int const skNonrecurring;
+    thread_local extern int const skResource;
+    thread_local extern int const skSum;
+    thread_local extern int const pvkEnergy;
+    thread_local extern int const pvkNonEnergy;
+    thread_local extern int const pvkNotComputed;
+    thread_local extern int numResourcesUsed;
 
     // present value factors
-    extern Array1D<Real64> SPV;
-    extern Array2D<Real64> energySPV; // yearly equivalent to FEMP UPV* values
+    thread_local extern Array1D<Real64> SPV;
+    thread_local extern Array2D<Real64> energySPV; // yearly equivalent to FEMP UPV* values
 
     // arrays related to computing after tax cashflow and present value
-    extern Array1D<Real64> DepreciatedCapital;
-    extern Array1D<Real64> TaxableIncome;
-    extern Array1D<Real64> Taxes;
-    extern Array1D<Real64> AfterTaxCashFlow;
-    extern Array1D<Real64> AfterTaxPresentValue;
+    thread_local extern Array1D<Real64> DepreciatedCapital;
+    thread_local extern Array1D<Real64> TaxableIncome;
+    thread_local extern Array1D<Real64> Taxes;
+    thread_local extern Array1D<Real64> AfterTaxCashFlow;
+    thread_local extern Array1D<Real64> AfterTaxPresentValue;
 
-    extern Array1D_string const MonthNames;
+    thread_local extern Array1D_string const MonthNames;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -269,11 +269,11 @@ namespace EconomicLifeCycleCost {
     };
 
     // Object Data
-    extern Array1D<RecurringCostsType> RecurringCosts;
-    extern Array1D<NonrecurringCostType> NonrecurringCost;
-    extern Array1D<UsePriceEscalationType> UsePriceEscalation;
-    extern Array1D<UseAdjustmentType> UseAdjustment;
-    extern Array1D<CashFlowType> CashFlow;
+    thread_local extern Array1D<RecurringCostsType> RecurringCosts;
+    thread_local extern Array1D<NonrecurringCostType> NonrecurringCost;
+    thread_local extern Array1D<UsePriceEscalationType> UsePriceEscalation;
+    thread_local extern Array1D<UseAdjustmentType> UseAdjustment;
+    thread_local extern Array1D<CashFlowType> CashFlow;
 
     // Functions
 

@@ -140,7 +140,7 @@ Real64 XingGroundTempsModel::getGroundTemp()
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
     int n;
-    Real64 static tp(NumDaysInYear); // Period of soil temperature cycle
+    thread_local Real64 static tp(NumDaysInYear); // Period of soil temperature cycle
     Real64 Ts_1;                     // Amplitude of surface temperature
     Real64 Ts_2;                     // Amplitude of surface temperature
     Real64 PL_1;                     // Phase shift of surface temperature

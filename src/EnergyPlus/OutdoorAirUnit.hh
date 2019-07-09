@@ -66,50 +66,50 @@ namespace OutdoorAirUnit {
     // MODULE PARAMETER DEFINITIONS
 
     // component types addressed by this module
-    extern std::string const cMO_OutdoorAirUnit;
+    thread_local extern std::string const cMO_OutdoorAirUnit;
 
-    extern int const WaterCoil_SimpleCool;
-    extern int const WaterCoil_Cooling;
-    extern int const WaterCoil_SimpleHeat;
-    extern int const SteamCoil_AirHeat;
-    extern int const WaterCoil_DetailedCool;
-    extern int const WaterCoil_CoolingHXAsst;
-    extern int const Coil_ElectricHeat;
-    extern int const Coil_GasHeat;
-    extern int const DXSystem;
-    extern int const HeatXchngr;
-    extern int const Desiccant;
-    extern int const DXHeatPumpSystem;
-    extern int const UnirarySystemModel;
+    thread_local extern int const WaterCoil_SimpleCool;
+    thread_local extern int const WaterCoil_Cooling;
+    thread_local extern int const WaterCoil_SimpleHeat;
+    thread_local extern int const SteamCoil_AirHeat;
+    thread_local extern int const WaterCoil_DetailedCool;
+    thread_local extern int const WaterCoil_CoolingHXAsst;
+    thread_local extern int const Coil_ElectricHeat;
+    thread_local extern int const Coil_GasHeat;
+    thread_local extern int const DXSystem;
+    thread_local extern int const HeatXchngr;
+    thread_local extern int const Desiccant;
+    thread_local extern int const DXHeatPumpSystem;
+    thread_local extern int const UnirarySystemModel;
 
     //  Control Types
-    extern int const Neutral;       // Controls system using zone mean air temperature
-    extern int const Unconditioned; // Controls system when outdoor air temperature is identified with control temperature
-    extern int const Temperature;   // Controls system using temperature band
+    thread_local extern int const Neutral;       // Controls system using zone mean air temperature
+    thread_local extern int const Unconditioned; // Controls system when outdoor air temperature is identified with control temperature
+    thread_local extern int const Temperature;   // Controls system using temperature band
 
     // Operating Options
-    extern int const HeatingMode; // normal heating coil operation
-    extern int const CoolingMode; // normal cooling coil operation
-    extern int const NeutralMode; // signal coil shouldn't run
+    thread_local extern int const HeatingMode; // normal heating coil operation
+    thread_local extern int const CoolingMode; // normal cooling coil operation
+    thread_local extern int const NeutralMode; // signal coil shouldn't run
 
-    extern Array1D_string const CurrentModuleObjects;
+    thread_local extern Array1D_string const CurrentModuleObjects;
 
     // Parameters below (CO - Current module Object.  used primarily in Get Inputs)
     // Multiple Get Input routines in this module or these would be in individual routines.
-    extern int const CO_OAUnit;
-    extern int const CO_OAEqList;
+    thread_local extern int const CO_OAUnit;
+    thread_local extern int const CO_OAEqList;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumOfOAUnits;      // Number of outdoor air unit in the input file
-    extern Real64 OAMassFlowRate; // Outside air mass flow rate for the zone outdoor air unit
-    extern Array1D_bool MyOneTimeErrorFlag;
-    extern bool GetOutdoorAirUnitInputFlag; // Flag set to make sure you get input once
+    thread_local extern int NumOfOAUnits;      // Number of outdoor air unit in the input file
+    thread_local extern Real64 OAMassFlowRate; // Outside air mass flow rate for the zone outdoor air unit
+    thread_local extern Array1D_bool MyOneTimeErrorFlag;
+    thread_local extern bool GetOutdoorAirUnitInputFlag; // Flag set to make sure you get input once
 
     // Autosizing variables
-    extern Array1D_bool MySizeFlag;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OUTDOOR AIR UNIT
     // PRIVATE UpdateOutdoorAirUnit
@@ -241,7 +241,7 @@ namespace OutdoorAirUnit {
     };
 
     // Object Data
-    extern Array1D<OAUnitData> OutAirUnit;
+    thread_local extern Array1D<OAUnitData> OutAirUnit;
 
     // Functions
 

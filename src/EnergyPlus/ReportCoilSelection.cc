@@ -83,7 +83,7 @@
 
 namespace EnergyPlus {
 
-std::unique_ptr<ReportCoilSelection> coilSelectionReportObj;
+thread_local std::unique_ptr<ReportCoilSelection> coilSelectionReportObj;
 
 void createCoilSelectionReportObj()
 {

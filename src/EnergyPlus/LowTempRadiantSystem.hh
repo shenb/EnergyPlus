@@ -64,60 +64,60 @@ namespace LowTempRadiantSystem {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // System types:
-    extern int const HydronicSystem;     // Variable flow hydronic radiant system
-    extern int const ConstantFlowSystem; // Constant flow, variable (controlled) temperature radiant system
-    extern int const ElectricSystem;     // Electric resistance radiant heating system
-    extern std::string const cHydronicSystem;
-    extern std::string const cConstantFlowSystem;
-    extern std::string const cElectricSystem;
+    thread_local extern int const HydronicSystem;     // Variable flow hydronic radiant system
+    thread_local extern int const ConstantFlowSystem; // Constant flow, variable (controlled) temperature radiant system
+    thread_local extern int const ElectricSystem;     // Electric resistance radiant heating system
+    thread_local extern std::string const cHydronicSystem;
+    thread_local extern std::string const cConstantFlowSystem;
+    thread_local extern std::string const cElectricSystem;
     // Operating modes:
-    extern int const NotOperating; // Parameter for use with OperatingMode variable, set for heating
-    extern int const HeatingMode;  // Parameter for use with OperatingMode variable, set for heating
-    extern int const CoolingMode;  // Parameter for use with OperatingMode variable, set for cooling
+    thread_local extern int const NotOperating; // Parameter for use with OperatingMode variable, set for heating
+    thread_local extern int const HeatingMode;  // Parameter for use with OperatingMode variable, set for heating
+    thread_local extern int const CoolingMode;  // Parameter for use with OperatingMode variable, set for cooling
     // Control types:
-    extern int const MATControl;       // Controls system using mean air temperature
-    extern int const MRTControl;       // Controls system using mean radiant temperature
-    extern int const OperativeControl; // Controls system using operative temperature
-    extern int const ODBControl;       // Controls system using outside air dry-bulb temperature
-    extern int const OWBControl;       // Controls system using outside air wet-bulb temperature
+    thread_local extern int const MATControl;       // Controls system using mean air temperature
+    thread_local extern int const MRTControl;       // Controls system using mean radiant temperature
+    thread_local extern int const OperativeControl; // Controls system using operative temperature
+    thread_local extern int const ODBControl;       // Controls system using outside air dry-bulb temperature
+    thread_local extern int const OWBControl;       // Controls system using outside air wet-bulb temperature
     // Condensation control types:
-    extern int const CondCtrlNone;      // Condensation control--none, so system never shuts down
-    extern int const CondCtrlSimpleOff; // Condensation control--simple off, system shuts off when condensation predicted
-    extern int const CondCtrlVariedOff; // Condensation control--variable off, system modulates to keep running if possible
+    thread_local extern int const CondCtrlNone;      // Condensation control--none, so system never shuts down
+    thread_local extern int const CondCtrlSimpleOff; // Condensation control--simple off, system shuts off when condensation predicted
+    thread_local extern int const CondCtrlVariedOff; // Condensation control--variable off, system modulates to keep running if possible
     // Number of Circuits per Surface Calculation Method
-    extern int const OneCircuit;          // there is 1 circuit per surface
-    extern int const CalculateFromLength; // The number of circuits is TubeLength*SurfaceFlowFrac / CircuitLength
-    extern std::string const OnePerSurf;
-    extern std::string const CalcFromLength;
+    thread_local extern int const OneCircuit;          // there is 1 circuit per surface
+    thread_local extern int const CalculateFromLength; // The number of circuits is TubeLength*SurfaceFlowFrac / CircuitLength
+    thread_local extern std::string const OnePerSurf;
+    thread_local extern std::string const CalcFromLength;
     // Limit temperatures to indicate that a system cannot heat or cannot cool
-    extern Real64 LowTempHeating;  // Used to indicate that a user does not have a heating control temperature
-    extern Real64 HighTempCooling; // Used to indicate that a user does not have a cooling control temperature
+    thread_local extern Real64 LowTempHeating;  // Used to indicate that a user does not have a heating control temperature
+    thread_local extern Real64 HighTempCooling; // Used to indicate that a user does not have a cooling control temperature
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
     // Standard, run-of-the-mill variables...
-    extern int NumOfHydrLowTempRadSys;    // Number of hydronic low tempererature radiant systems
-    extern int NumOfCFloLowTempRadSys;    // Number of constant flow (hydronic) low tempererature radiant systems
-    extern int NumOfElecLowTempRadSys;    // Number of electric low tempererature radiant systems
-    extern int CFloCondIterNum;           // Number of iterations for a constant flow radiant system--controls variable cond sys ctrl
-    extern int TotalNumOfRadSystems;      // Total number of low temperature radiant systems
-    extern int OperatingMode;             // Used to keep track of whether system is in heating or cooling mode
-    extern int MaxCloNumOfSurfaces;       // Used to set allocate size in CalcClo routine
-    extern bool VarOffCond;               // Set to true when in cooling for constant flow system + variable off condensation predicted
-    extern bool FirstTimeInit;            // Set to true initially and set to false once the first pass is made through the initialization routine
-    extern Real64 LoopReqTemp;            // Temperature required at the inlet of the pump (from the loop) to meet control logic
-    extern Array1D<Real64> QRadSysSrcAvg; // Average source over the time step for a particular radiant surface
-    extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
+    thread_local extern int NumOfHydrLowTempRadSys;    // Number of hydronic low tempererature radiant systems
+    thread_local extern int NumOfCFloLowTempRadSys;    // Number of constant flow (hydronic) low tempererature radiant systems
+    thread_local extern int NumOfElecLowTempRadSys;    // Number of electric low tempererature radiant systems
+    thread_local extern int CFloCondIterNum;           // Number of iterations for a constant flow radiant system--controls variable cond sys ctrl
+    thread_local extern int TotalNumOfRadSystems;      // Total number of low temperature radiant systems
+    thread_local extern int OperatingMode;             // Used to keep track of whether system is in heating or cooling mode
+    thread_local extern int MaxCloNumOfSurfaces;       // Used to set allocate size in CalcClo routine
+    thread_local extern bool VarOffCond;               // Set to true when in cooling for constant flow system + variable off condensation predicted
+    thread_local extern bool FirstTimeInit;            // Set to true initially and set to false once the first pass is made through the initialization routine
+    thread_local extern Real64 LoopReqTemp;            // Temperature required at the inlet of the pump (from the loop) to meet control logic
+    thread_local extern Array1D<Real64> QRadSysSrcAvg; // Average source over the time step for a particular radiant surface
+    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QRadSysSrcAvg locally
-    extern Array1D<Real64> LastQRadSysSrc;     // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastQRadSysSrc;     // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
     // Autosizing variables
-    extern Array1D_bool MySizeFlagHydr;
-    extern Array1D_bool MySizeFlagCFlo;
-    extern Array1D_bool MySizeFlagElec;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool MySizeFlagHydr;
+    thread_local extern Array1D_bool MySizeFlagCFlo;
+    thread_local extern Array1D_bool MySizeFlagElec;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE LowTempRadiantSystem
 
@@ -404,12 +404,12 @@ namespace LowTempRadiantSystem {
     };
 
     // Object Data
-    extern Array1D<HydronicRadiantSystemData> HydrRadSys;
-    extern Array1D<ConstantFlowRadiantSystemData> CFloRadSys;
-    extern Array1D<ElectricRadiantSystemData> ElecRadSys;
-    extern Array1D<RadSysTypeData> RadSysTypes;
-    extern Array1D<ElecRadSysNumericFieldData> ElecRadSysNumericFields;
-    extern Array1D<HydronicRadiantSysNumericFieldData> HydronicRadiantSysNumericFields;
+    thread_local extern Array1D<HydronicRadiantSystemData> HydrRadSys;
+    thread_local extern Array1D<ConstantFlowRadiantSystemData> CFloRadSys;
+    thread_local extern Array1D<ElectricRadiantSystemData> ElecRadSys;
+    thread_local extern Array1D<RadSysTypeData> RadSysTypes;
+    thread_local extern Array1D<ElecRadSysNumericFieldData> ElecRadSysNumericFields;
+    thread_local extern Array1D<HydronicRadiantSysNumericFieldData> HydronicRadiantSysNumericFields;
 
     // Functions
 

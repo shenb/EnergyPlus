@@ -64,45 +64,45 @@ namespace ChillerElectricEIR {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Chiller type parameters
-    extern int const AirCooled;
-    extern int const WaterCooled;
-    extern int const EvapCooled;
+    thread_local extern int const AirCooled;
+    thread_local extern int const WaterCooled;
+    thread_local extern int const EvapCooled;
 
     // chiller flow modes
-    extern int const FlowModeNotSet;
-    extern int const ConstantFlow;
-    extern int const NotModulated;
-    extern int const LeavingSetPointModulated;
+    thread_local extern int const FlowModeNotSet;
+    thread_local extern int const ConstantFlow;
+    thread_local extern int const NotModulated;
+    thread_local extern int const LeavingSetPointModulated;
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumElectricEIRChillers;  // Number of electric EIR chillers specified in input
-    extern Real64 CondMassFlowRate;     // Condenser mass flow rate [kg/s]
-    extern Real64 EvapMassFlowRate;     // Evaporator mass flow rate [kg/s]
-    extern Real64 CondOutletTemp;       // Condenser outlet temperature [C]
-    extern Real64 CondOutletHumRat;     // Condenser outlet humidity ratio [kg/kg]
-    extern Real64 EvapOutletTemp;       // Evaporator outlet temperature [C]
-    extern Real64 Power;                // Rate of chiller electric energy use [W]
-    extern Real64 QEvaporator;          // Rate of heat transfer to the evaporator coil [W]
-    extern Real64 QCondenser;           // Rate of heat transfer to the condenser coil [W]
-    extern Real64 QHeatRecovered;       // Rate of heat transfer to the heat recovery coil [W]
-    extern Real64 HeatRecOutletTemp;    // Heat recovery outlet temperature [C]
-    extern Real64 CondenserFanPower;    // Condenser Fan Power (fan cycles with compressor) [W]
-    extern Real64 ChillerCapFT;         // Chiller capacity fraction (evaluated as a function of temperature)
-    extern Real64 ChillerEIRFT;         // Chiller electric input ratio (EIR = 1 / COP) as a function of temperature
-    extern Real64 ChillerEIRFPLR;       // Chiller EIR as a function of part-load ratio (PLR)
-    extern Real64 ChillerPartLoadRatio; // Chiller part-load ratio (PLR)
-    extern Real64 ChillerCyclingRatio;  // Chiller cycling ratio
-    extern Real64 BasinHeaterPower;     // Basin heater power (W)
-    extern Real64 ChillerFalseLoadRate; // Chiller false load over and above the water-side load [W]
-    extern Real64 AvgCondSinkTemp;      // condenser temperature value for use in curves [C]
+    thread_local extern int NumElectricEIRChillers;  // Number of electric EIR chillers specified in input
+    thread_local extern Real64 CondMassFlowRate;     // Condenser mass flow rate [kg/s]
+    thread_local extern Real64 EvapMassFlowRate;     // Evaporator mass flow rate [kg/s]
+    thread_local extern Real64 CondOutletTemp;       // Condenser outlet temperature [C]
+    thread_local extern Real64 CondOutletHumRat;     // Condenser outlet humidity ratio [kg/kg]
+    thread_local extern Real64 EvapOutletTemp;       // Evaporator outlet temperature [C]
+    thread_local extern Real64 Power;                // Rate of chiller electric energy use [W]
+    thread_local extern Real64 QEvaporator;          // Rate of heat transfer to the evaporator coil [W]
+    thread_local extern Real64 QCondenser;           // Rate of heat transfer to the condenser coil [W]
+    thread_local extern Real64 QHeatRecovered;       // Rate of heat transfer to the heat recovery coil [W]
+    thread_local extern Real64 HeatRecOutletTemp;    // Heat recovery outlet temperature [C]
+    thread_local extern Real64 CondenserFanPower;    // Condenser Fan Power (fan cycles with compressor) [W]
+    thread_local extern Real64 ChillerCapFT;         // Chiller capacity fraction (evaluated as a function of temperature)
+    thread_local extern Real64 ChillerEIRFT;         // Chiller electric input ratio (EIR = 1 / COP) as a function of temperature
+    thread_local extern Real64 ChillerEIRFPLR;       // Chiller EIR as a function of part-load ratio (PLR)
+    thread_local extern Real64 ChillerPartLoadRatio; // Chiller part-load ratio (PLR)
+    thread_local extern Real64 ChillerCyclingRatio;  // Chiller cycling ratio
+    thread_local extern Real64 BasinHeaterPower;     // Basin heater power (W)
+    thread_local extern Real64 ChillerFalseLoadRate; // Chiller false load over and above the water-side load [W]
+    thread_local extern Real64 AvgCondSinkTemp;      // condenser temperature value for use in curves [C]
 
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
-    extern bool GetInputEIR; // When TRUE, calls subroutine to read input file.
-    extern bool ChillerIPLVOneTimeFlag;
-    extern Array1D_bool ChillerIPLVFlagArr; // TRUE in order to calculate IPLV
-    extern bool getInputAllocatedFlag;      // True when arrays are allocated
-    extern bool InitMyOneTimeFlag;          // Flag used to execute code only once
+    thread_local extern bool GetInputEIR; // When TRUE, calls subroutine to read input file.
+    thread_local extern bool ChillerIPLVOneTimeFlag;
+    thread_local extern Array1D_bool ChillerIPLVFlagArr; // TRUE in order to calculate IPLV
+    thread_local extern bool getInputAllocatedFlag;      // True when arrays are allocated
+    thread_local extern bool InitMyOneTimeFlag;          // Flag used to execute code only once
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ChillerElectricEIR
     // PUBLIC     SimEIRChillerHeatRecovery
@@ -274,8 +274,8 @@ namespace ChillerElectricEIR {
     };
 
     // Object Data
-    extern Array1D<ElectricEIRChillerSpecs> ElectricEIRChiller; // Dimension to number of machines
-    extern Array1D<ReportEIRVars> ElectricEIRChillerReport;
+    thread_local extern Array1D<ElectricEIRChillerSpecs> ElectricEIRChiller; // Dimension to number of machines
+    thread_local extern Array1D<ReportEIRVars> ElectricEIRChillerReport;
 
     // Functions
     void clear_state();

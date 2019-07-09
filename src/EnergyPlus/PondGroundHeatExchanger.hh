@@ -65,12 +65,12 @@ namespace PondGroundHeatExchanger {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern Real64 const SmallNum;      // Very small number to avoid div0 errors
-    extern Real64 const StefBoltzmann; // Stefan-Boltzmann constant
+    thread_local extern Real64 const SmallNum;      // Very small number to avoid div0 errors
+    thread_local extern Real64 const StefBoltzmann; // Stefan-Boltzmann constant
 
     // MODULE VARIABLE DECLARATIONS:
     // utility variables initialized once
-    extern int NumOfPondGHEs; // Number of pond ground heat exchangers
+    thread_local extern int NumOfPondGHEs; // Number of pond ground heat exchangers
     // Utility variables - initialized for each instance of a pond
     // extern Real64 nsvInletTemp; // water inlet temperature
     // extern Real64 nsvOutletTemp; // water outlet temperature
@@ -182,7 +182,7 @@ namespace PondGroundHeatExchanger {
     };
 
     // Object Data
-    extern Array1D<PondGroundHeatExchangerData> PondGHE;
+    thread_local extern Array1D<PondGroundHeatExchangerData> PondGHE;
 
     void GetPondGroundHeatExchanger();
 

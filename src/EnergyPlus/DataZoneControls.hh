@@ -68,19 +68,19 @@ namespace DataZoneControls {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumTempControlledZones;
-    extern int NumHumidityControlZones;
-    extern int NumComfortControlledZones;
-    extern int NumTStatStatements;
-    extern int NumComfortTStatStatements;
-    extern int NumOpTempControlledZones;          // number of zones with operative temp control
-    extern int NumTempAndHumidityControlledZones; // number of zones with over cool control
-    extern bool AnyOpTempControl;                 // flag set true if any zones have op temp control
-    extern bool AnyZoneTempAndHumidityControl;    // flag set true if any zones have over cool control
-    extern Array1D_bool StageZoneLogic;           // Logical array, A zone with staged thermostat = .TRUE.
-    extern Array1D<Real64> OccRoomTSetPointHeat;  // occupied heating set point for optimum start period
-    extern Array1D<Real64> OccRoomTSetPointCool;  // occupied cooling set point for optimum start period
-    extern bool GetZoneAirStatsInputFlag;         // True when need to get input
+    thread_local extern int NumTempControlledZones;
+    thread_local extern int NumHumidityControlZones;
+    thread_local extern int NumComfortControlledZones;
+    thread_local extern int NumTStatStatements;
+    thread_local extern int NumComfortTStatStatements;
+    thread_local extern int NumOpTempControlledZones;          // number of zones with operative temp control
+    thread_local extern int NumTempAndHumidityControlledZones; // number of zones with over cool control
+    thread_local extern bool AnyOpTempControl;                 // flag set true if any zones have op temp control
+    thread_local extern bool AnyZoneTempAndHumidityControl;    // flag set true if any zones have over cool control
+    thread_local extern Array1D_bool StageZoneLogic;           // Logical array, A zone with staged thermostat = .TRUE.
+    thread_local extern Array1D<Real64> OccRoomTSetPointHeat;  // occupied heating set point for optimum start period
+    thread_local extern Array1D<Real64> OccRoomTSetPointCool;  // occupied cooling set point for optimum start period
+    thread_local extern bool GetZoneAirStatsInputFlag;         // True when need to get input
 
     // Types
 
@@ -287,13 +287,13 @@ namespace DataZoneControls {
     };
 
     // Object Data
-    extern Array1D<ZoneHumidityControls> HumidityControlZone;
-    extern Array1D<ZoneTempControls> TempControlledZone;
-    extern Array1D<ZoneComfortControls> ComfortControlledZone;
-    extern Array1D<TStatObject> TStatObjects;
-    extern Array1D<TStatObject> ComfortTStatObjects;
-    extern Array1D<TStatObject> StagedTStatObjects;
-    extern Array1D<ZoneStagedControls> StageControlledZone;
+    thread_local extern Array1D<ZoneHumidityControls> HumidityControlZone;
+    thread_local extern Array1D<ZoneTempControls> TempControlledZone;
+    thread_local extern Array1D<ZoneComfortControls> ComfortControlledZone;
+    thread_local extern Array1D<TStatObject> TStatObjects;
+    thread_local extern Array1D<TStatObject> ComfortTStatObjects;
+    thread_local extern Array1D<TStatObject> StagedTStatObjects;
+    thread_local extern Array1D<ZoneStagedControls> StageControlledZone;
 
 } // namespace DataZoneControls
 

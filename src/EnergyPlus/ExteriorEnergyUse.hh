@@ -63,29 +63,29 @@ namespace ExteriorEnergyUse {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const ElecUse;         // Electricity
-    extern int const GasUse;          // Gas (Natural)
-    extern int const WaterUse;        // Water
-    extern int const CoalUse;         // Coal
-    extern int const FuelOil1Use;     // FuelOil#1
-    extern int const FuelOil2Use;     // FuelOil#2
-    extern int const LPGUse;          // PropaneGas
-    extern int const GasolineUse;     // Gasoline
-    extern int const DieselUse;       // Diesel
-    extern int const SteamUse;        // Steam
-    extern int const DistrictCoolUse; // Purchased Cooling
-    extern int const DistrictHeatUse; // Purchased Heating
-    extern int const OtherFuel1Use;   // OtherFuel1
-    extern int const OtherFuel2Use;   // OtherFuel2
+    thread_local extern int const ElecUse;         // Electricity
+    thread_local extern int const GasUse;          // Gas (Natural)
+    thread_local extern int const WaterUse;        // Water
+    thread_local extern int const CoalUse;         // Coal
+    thread_local extern int const FuelOil1Use;     // FuelOil#1
+    thread_local extern int const FuelOil2Use;     // FuelOil#2
+    thread_local extern int const LPGUse;          // PropaneGas
+    thread_local extern int const GasolineUse;     // Gasoline
+    thread_local extern int const DieselUse;       // Diesel
+    thread_local extern int const SteamUse;        // Steam
+    thread_local extern int const DistrictCoolUse; // Purchased Cooling
+    thread_local extern int const DistrictHeatUse; // Purchased Heating
+    thread_local extern int const OtherFuel1Use;   // OtherFuel1
+    thread_local extern int const OtherFuel2Use;   // OtherFuel2
 
-    extern int const ScheduleOnly;       // exterior lights only on schedule
-    extern int const AstroClockOverride; // exterior lights controlled to turn off during day.
+    thread_local extern int const ScheduleOnly;       // exterior lights only on schedule
+    thread_local extern int const AstroClockOverride; // exterior lights controlled to turn off during day.
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumExteriorLights; // Number of Exterior Light Inputs
-    extern int NumExteriorEqs;    // Number of Exterior Equipment Inputs
+    thread_local extern int NumExteriorLights; // Number of Exterior Light Inputs
+    thread_local extern int NumExteriorEqs;    // Number of Exterior Equipment Inputs
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>
 
@@ -140,8 +140,8 @@ namespace ExteriorEnergyUse {
     };
 
     // Object Data
-    extern Array1D<ExteriorLightUsage> ExteriorLights;        // Structure for Exterior Light reporting
-    extern Array1D<ExteriorEquipmentUsage> ExteriorEquipment; // Structure for Exterior Equipment Reporting
+    thread_local extern Array1D<ExteriorLightUsage> ExteriorLights;        // Structure for Exterior Light reporting
+    thread_local extern Array1D<ExteriorEquipmentUsage> ExteriorEquipment; // Structure for Exterior Equipment Reporting
 
     // Functions
 

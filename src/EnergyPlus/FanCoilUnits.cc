@@ -152,55 +152,55 @@ namespace FanCoilUnits {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    std::string const cMO_FanCoil("ZoneHVAC:FourPipeFanCoil");
+    thread_local std::string const cMO_FanCoil("ZoneHVAC:FourPipeFanCoil");
 
     // coil operation
-    int const On(1);  // normal coil operation
-    int const Off(0); // signal coil shouldn't run
+    thread_local int const On(1);  // normal coil operation
+    thread_local int const Off(0); // signal coil shouldn't run
 
     // coil type units supported in this module
-    int const FanCoilUnit_4Pipe(1);
+    thread_local int const FanCoilUnit_4Pipe(1);
 
-    int const CCoil_Water(1);
-    int const CCoil_Detailed(2);
-    int const CCoil_HXAssist(3);
+    thread_local int const CCoil_Water(1);
+    thread_local int const CCoil_Detailed(2);
+    thread_local int const CCoil_HXAssist(3);
 
-    int const HCoil_Water(1);
-    int const HCoil_Electric(2);
+    thread_local int const HCoil_Water(1);
+    thread_local int const HCoil_Electric(2);
 
     // capacity control method supported in this module
-    int const CCM_ConsFanVarFlow(1);
-    int const CCM_CycFan(2);
-    int const CCM_VarFanVarFlow(3);
-    int const CCM_VarFanConsFlow(4);
-    int const CCM_MultiSpeedFan(5);
-    int const CCM_ASHRAE(6);
+    thread_local int const CCM_ConsFanVarFlow(1);
+    thread_local int const CCM_CycFan(2);
+    thread_local int const CCM_VarFanVarFlow(3);
+    thread_local int const CCM_VarFanConsFlow(4);
+    thread_local int const CCM_MultiSpeedFan(5);
+    thread_local int const CCM_ASHRAE(6);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
     namespace {
-        bool InitFanCoilUnitsOneTimeFlag(true);
-        bool InitFanCoilUnitsCheckInZoneEquipmentListFlag(false); // True after the Zone Equipment List has been checked for items
+        thread_local bool InitFanCoilUnitsOneTimeFlag(true);
+        thread_local bool InitFanCoilUnitsCheckInZoneEquipmentListFlag(false); // True after the Zone Equipment List has been checked for items
     }                                                             // namespace
 
-    int NumFanCoils(0);
-    int Num4PipeFanCoils(0);
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
-    bool GetFanCoilInputFlag(true); // First time, input is "gotten"
-    Real64 FanFlowRatio(0.0);
-    bool HeatingLoad(false);       // True when zone needs heating
-    bool CoolingLoad(false);       // True when zone needs cooling
-    Real64 const Small5WLoad(5.0); // load threshold 5.0 W
+    thread_local int NumFanCoils(0);
+    thread_local int Num4PipeFanCoils(0);
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local bool GetFanCoilInputFlag(true); // First time, input is "gotten"
+    thread_local Real64 FanFlowRatio(0.0);
+    thread_local bool HeatingLoad(false);       // True when zone needs heating
+    thread_local bool CoolingLoad(false);       // True when zone needs cooling
+    thread_local Real64 const Small5WLoad(5.0); // load threshold 5.0 W
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // look up functions for node numbers
 
     // Object Data
-    Array1D<FanCoilData> FanCoil;
-    Array1D<FanCoilNumericFieldData> FanCoilNumericFields;
+    thread_local Array1D<FanCoilData> FanCoil;
+    thread_local Array1D<FanCoilNumericFieldData> FanCoilNumericFields;
 
     // Functions
 
@@ -341,7 +341,7 @@ namespace FanCoilUnits {
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
-        static std::string const RoutineName("GetFanCoilUnits: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetFanCoilUnits: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int FanCoilIndex;                      // loop index
@@ -350,8 +350,8 @@ namespace FanCoilUnits {
         int NumNumbers;                        // Number of Numbers for each GetObjectItem call
         Array1D_int OANodeNums(4);             // Node numbers of Outdoor air mixer (OA, EA, RA, MA)
         int IOStatus;                          // Used in GetObjectItem
-        static bool ErrorsFound(false);        // Set to true if errors in input, fatal at end of routine
-        static bool errFlag(false);            // Local error flag for GetOAMixerNodeNums
+        thread_local static bool ErrorsFound(false);        // Set to true if errors in input, fatal at end of routine
+        thread_local static bool errFlag(false);            // Local error flag for GetOAMixerNodeNums
         bool IsNotOK;                          // Flag to verify name
         std::string CurrentModuleObject;       // Object type for getting and error messages
         Array1D_string Alphas;                 // Alpha input items for object
@@ -360,16 +360,16 @@ namespace FanCoilUnits {
         Array1D<Real64> Numbers;               // Numeric input items for object
         Array1D_bool lAlphaBlanks;             // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;           // Logical array, numeric field input BLANK = .TRUE.
-        static int TotalArgs(0);               // Total number of alpha and numeric arguments (max) for a
+        thread_local static int TotalArgs(0);               // Total number of alpha and numeric arguments (max) for a
         int CtrlZone;                          // index to loop counter
         int NodeNum;                           // index to loop counter
-        static bool ZoneExNodeNotFound(false); // used in error checking
-        static bool ZoneInNodeNotFound(false); // used in error checking
-        static int ATMixerNum(0);              // index of air terminal mixer in the air terminal mixer data array
-        static int ATMixerType(0);             // type of air terminal mixer (1=inlet side; 2=supply side)
-        static int ATMixerPriNode(0);          // node number of the air terminal mixer primary air inlet
-        static int ATMixerSecNode(0);          // node number of the air terminal mixer secondary air inlet
-        static int ATMixerOutNode(0);          // node number of the air terminal mixer secondary air inlet
+        thread_local static bool ZoneExNodeNotFound(false); // used in error checking
+        thread_local static bool ZoneInNodeNotFound(false); // used in error checking
+        thread_local static int ATMixerNum(0);              // index of air terminal mixer in the air terminal mixer data array
+        thread_local static int ATMixerType(0);             // type of air terminal mixer (1=inlet side; 2=supply side)
+        thread_local static int ATMixerPriNode(0);          // node number of the air terminal mixer primary air inlet
+        thread_local static int ATMixerSecNode(0);          // node number of the air terminal mixer secondary air inlet
+        thread_local static int ATMixerOutNode(0);          // node number of the air terminal mixer secondary air inlet
         std::string ATMixerName;
 
         // FLOW
@@ -1104,7 +1104,7 @@ namespace FanCoilUnits {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitFanCoilUnits");
+        thread_local static std::string const RoutineName("InitFanCoilUnits");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InNode;         // inlet node number in fan coil loop
@@ -1116,9 +1116,9 @@ namespace FanCoilUnits {
         int AirRelNode;     // relief air node number in fan coil loop
         Real64 RhoAir;      // air density at InNode
         int Loop;
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         Real64 rho;
         bool errFlag;
 
@@ -1384,16 +1384,16 @@ namespace FanCoilUnits {
         using WaterCoils::WaterCoil;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeFanCoilUnit: "); // include trailing blank space
-        static std::string const RoutineNameNoSpace("SizeFanCoilUnit");
+        thread_local static std::string const RoutineName("SizeFanCoilUnit: "); // include trailing blank space
+        thread_local static std::string const RoutineNameNoSpace("SizeFanCoilUnit");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum;  // index of plant sizing object for 1st heating loop
         int PltSizCoolNum;  // index of plant sizing object for 1st cooling loop
         bool ErrorsFound;   // TRUE if errors foind during sizing
         Real64 DesCoilLoad; // coil load used for sizing [W]
-        static int CoilWaterInletNode(0);
-        static int CoilWaterOutletNode(0);
+        thread_local static int CoilWaterInletNode(0);
+        thread_local static int CoilWaterOutletNode(0);
         std::string CoolingCoilName;
         std::string CoolingCoilType;
         Real64 rho;
@@ -3511,8 +3511,8 @@ namespace FanCoilUnits {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int OutletNode;                // unit air outlet node
         int InletNode;                 // unit air inlet node
-        static int ATMixOutNode(0);    // outlet node of ATM Mixer
-        static int ZoneNode(0);        // zone node
+        thread_local static int ATMixOutNode(0);    // outlet node of ATM Mixer
+        thread_local static int ZoneNode(0);        // zone node
         Real64 AirMassFlow;            // total mass flow through the unit
         Real64 PartLoad;               // if PLR present PartLoad = PLR
         Real64 OASchedValue;           // value of OASchedValue, =1 if not schedule
@@ -3753,7 +3753,7 @@ namespace FanCoilUnits {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SimMultiStage4PipeFanCoil");
+        thread_local static std::string const RoutineName("SimMultiStage4PipeFanCoil");
         // int const MaxIterCycl( 100 );
 
         // INTERFACE BLOCK SPECIFICATIONS
@@ -4117,7 +4117,7 @@ namespace FanCoilUnits {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcMultiStage4PipeFanCoil");
+        thread_local static std::string const RoutineName("CalcMultiStage4PipeFanCoil");
         int const MaxIterCycl(100);
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:

@@ -74,57 +74,57 @@ namespace AirflowNetwork {
     // all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    int const CompTypeNum_DOP(1);  // Detailed large opening component
-    int const CompTypeNum_SOP(2);  // Simple opening component
-    int const CompTypeNum_SCR(3);  // Surface crack component
-    int const CompTypeNum_SEL(4);  // Surface effective leakage ratio component
-    int const CompTypeNum_PLR(5);  // Distribution system crack component
-    int const CompTypeNum_DWC(6);  // Distribution system duct component
-    int const CompTypeNum_CVF(7);  // Distribution system constant volume fan component
-    int const CompTypeNum_FAN(8);  // Distribution system detailed fan component
-    int const CompTypeNum_MRR(9);  // Distribution system multiple curve fit power law resistant flow component
-    int const CompTypeNum_DMP(10); // Distribution system damper component
-    int const CompTypeNum_ELR(11); // Distribution system effective leakage ratio component
-    int const CompTypeNum_CPD(12); // Distribution system constant pressure drop component
-    int const CompTypeNum_COI(13); // Distribution system coil component
-    int const CompTypeNum_TMU(14); // Distribution system terminal unit component
-    int const CompTypeNum_EXF(15); // Zone exhaust fan
-    int const CompTypeNum_HEX(16); // Distribution system heat exchanger
-    int const CompTypeNum_HOP(17); // Horizontal opening component
-    int const CompTypeNum_RVD(18); // Reheat VAV terminal damper
-    int const CompTypeNum_OAF(19); // Distribution system OA
-    int const CompTypeNum_REL(20); // Distribution system relief air
+    thread_local int const CompTypeNum_DOP(1);  // Detailed large opening component
+    thread_local int const CompTypeNum_SOP(2);  // Simple opening component
+    thread_local int const CompTypeNum_SCR(3);  // Surface crack component
+    thread_local int const CompTypeNum_SEL(4);  // Surface effective leakage ratio component
+    thread_local int const CompTypeNum_PLR(5);  // Distribution system crack component
+    thread_local int const CompTypeNum_DWC(6);  // Distribution system duct component
+    thread_local int const CompTypeNum_CVF(7);  // Distribution system constant volume fan component
+    thread_local int const CompTypeNum_FAN(8);  // Distribution system detailed fan component
+    thread_local int const CompTypeNum_MRR(9);  // Distribution system multiple curve fit power law resistant flow component
+    thread_local int const CompTypeNum_DMP(10); // Distribution system damper component
+    thread_local int const CompTypeNum_ELR(11); // Distribution system effective leakage ratio component
+    thread_local int const CompTypeNum_CPD(12); // Distribution system constant pressure drop component
+    thread_local int const CompTypeNum_COI(13); // Distribution system coil component
+    thread_local int const CompTypeNum_TMU(14); // Distribution system terminal unit component
+    thread_local int const CompTypeNum_EXF(15); // Zone exhaust fan
+    thread_local int const CompTypeNum_HEX(16); // Distribution system heat exchanger
+    thread_local int const CompTypeNum_HOP(17); // Horizontal opening component
+    thread_local int const CompTypeNum_RVD(18); // Reheat VAV terminal damper
+    thread_local int const CompTypeNum_OAF(19); // Distribution system OA
+    thread_local int const CompTypeNum_REL(20); // Distribution system relief air
 
     // EPlus component Type
-    int const EPlusTypeNum_SCN(1); // Supply connection
-    int const EPlusTypeNum_RCN(2); // Return connection
-    int const EPlusTypeNum_RHT(3); // Reheat terminal
-    int const EPlusTypeNum_FAN(4); // Fan
-    int const EPlusTypeNum_COI(5); // Heating or cooling coil
-    int const EPlusTypeNum_HEX(6); // Heat exchanger
-    int const EPlusTypeNum_RVD(7); // Reheat VAV terminal damper
+    thread_local int const EPlusTypeNum_SCN(1); // Supply connection
+    thread_local int const EPlusTypeNum_RCN(2); // Return connection
+    thread_local int const EPlusTypeNum_RHT(3); // Reheat terminal
+    thread_local int const EPlusTypeNum_FAN(4); // Fan
+    thread_local int const EPlusTypeNum_COI(5); // Heating or cooling coil
+    thread_local int const EPlusTypeNum_HEX(6); // Heat exchanger
+    thread_local int const EPlusTypeNum_RVD(7); // Reheat VAV terminal damper
 
     // EPlus node type
-    int const EPlusTypeNum_ZIN(1);  // Zone inlet node
-    int const EPlusTypeNum_ZOU(2);  // Zone outlet node
-    int const EPlusTypeNum_SPL(3);  // Splitter node
-    int const EPlusTypeNum_MIX(4);  // Mixer node
-    int const EPlusTypeNum_OAN(5);  // Outside air system node
-    int const EPlusTypeNum_EXT(6);  // OA system inlet node
-    int const EPlusTypeNum_FIN(7);  // Fan Inlet node
-    int const EPlusTypeNum_FOU(8);  // Fan Outlet Node
-    int const EPlusTypeNum_COU(9);  // Coil Outlet Node
-    int const EPlusTypeNum_HXO(10); // Heat exchanger Outlet Node
-    int const EPlusTypeNum_DIN(11); // Damper Inlet node
-    int const EPlusTypeNum_DOU(12); // Damper Outlet Node
-    int const EPlusTypeNum_SPI(13); // Splitter inlet Node
-    int const EPlusTypeNum_SPO(14); // Splitter Outlet Node
+    thread_local int const EPlusTypeNum_ZIN(1);  // Zone inlet node
+    thread_local int const EPlusTypeNum_ZOU(2);  // Zone outlet node
+    thread_local int const EPlusTypeNum_SPL(3);  // Splitter node
+    thread_local int const EPlusTypeNum_MIX(4);  // Mixer node
+    thread_local int const EPlusTypeNum_OAN(5);  // Outside air system node
+    thread_local int const EPlusTypeNum_EXT(6);  // OA system inlet node
+    thread_local int const EPlusTypeNum_FIN(7);  // Fan Inlet node
+    thread_local int const EPlusTypeNum_FOU(8);  // Fan Outlet Node
+    thread_local int const EPlusTypeNum_COU(9);  // Coil Outlet Node
+    thread_local int const EPlusTypeNum_HXO(10); // Heat exchanger Outlet Node
+    thread_local int const EPlusTypeNum_DIN(11); // Damper Inlet node
+    thread_local int const EPlusTypeNum_DOU(12); // Damper Outlet Node
+    thread_local int const EPlusTypeNum_SPI(13); // Splitter inlet Node
+    thread_local int const EPlusTypeNum_SPO(14); // Splitter Outlet Node
 
-    int const iWPCCntr_Input(1);
-    int const iWPCCntr_SurfAvg(2);
+    thread_local int const iWPCCntr_Input(1);
+    thread_local int const iWPCCntr_SurfAvg(2);
 
-    int const PressureCtrlExhaust(1);
-    int const PressureCtrlRelief(2);
+    thread_local int const PressureCtrlExhaust(1);
+    thread_local int const PressureCtrlRelief(2);
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -133,7 +133,7 @@ namespace AirflowNetwork {
     // Link simulation variable in air distribution system
     // Sensible and latent exchange variable in air distribution system
 
-    int SimulateAirflowNetwork(1);
+    thread_local int SimulateAirflowNetwork(1);
     // Vent Control  DistSys Control  Flag    Description
     //  NONE           NONE           0      No AirflowNetwork and SIMPLE
     //  SIMPLE         NONE           1      Simple calculations only
@@ -142,91 +142,91 @@ namespace AirflowNetwork {
     //  SIMPLE         DISTSYS        4      Perform distribution system during system on time and simple calculations during off time
     //  MULTIZONE      DISTSYS        5      Perform distribution system during system on time and multizone calculations during off time
 
-    int const AirflowNetworkControlSimple(1);    // Simple calculations only
-    int const AirflowNetworkControlMultizone(2); // Perform multizone calculations only
-    int const AirflowNetworkControlSimpleADS(4); // Perform distribution system during system
+    thread_local int const AirflowNetworkControlSimple(1);    // Simple calculations only
+    thread_local int const AirflowNetworkControlMultizone(2); // Perform multizone calculations only
+    thread_local int const AirflowNetworkControlSimpleADS(4); // Perform distribution system during system
     // on time and simple calculations during off time
-    int const AirflowNetworkControlMultiADS(5); // Perform distribution system during system on time
+    thread_local int const AirflowNetworkControlMultiADS(5); // Perform distribution system during system on time
     // and multizone calculations during off time
 
-    Array1D_bool AirflowNetworkZoneFlag;
+    thread_local Array1D_bool AirflowNetworkZoneFlag;
 
-    int NumOfNodesMultiZone(0);    // Number of nodes for multizone calculation
-    int NumOfNodesDistribution(0); // Number of nodes for distribution system calculation
-    int NumOfLinksMultiZone(0);    // Number of links for multizone calculation
-    int NumOfLinksDistribution(0); // Number of links for distribution system calculation
-    int NumOfNodesIntraZone(0);    // Number of nodes for intrazone calculation
-    int NumOfLinksIntraZone(0);    // Number of links for intrazone calculation
+    thread_local int NumOfNodesMultiZone(0);    // Number of nodes for multizone calculation
+    thread_local int NumOfNodesDistribution(0); // Number of nodes for distribution system calculation
+    thread_local int NumOfLinksMultiZone(0);    // Number of links for multizone calculation
+    thread_local int NumOfLinksDistribution(0); // Number of links for distribution system calculation
+    thread_local int NumOfNodesIntraZone(0);    // Number of nodes for intrazone calculation
+    thread_local int NumOfLinksIntraZone(0);    // Number of links for intrazone calculation
 
-    int AirflowNetworkNumOfNodes(0); // Number of nodes for AirflowNetwork calculation
+    thread_local int AirflowNetworkNumOfNodes(0); // Number of nodes for AirflowNetwork calculation
     // = NumOfNodesMultiZone+NumOfNodesDistribution
-    int AirflowNetworkNumOfComps(0); // Number of components for AirflowNetwork calculation
-    int AirflowNetworkNumOfLinks(0); // Number of links for AirflowNetwork calculation
+    thread_local int AirflowNetworkNumOfComps(0); // Number of components for AirflowNetwork calculation
+    thread_local int AirflowNetworkNumOfLinks(0); // Number of links for AirflowNetwork calculation
     // = NumOfLinksMultiZone+NumOfLinksDistribution
     // RoomAirManager use
-    int AirflowNetworkNumOfSurfaces(0); // The number of surfaces for multizone calculation
-    int AirflowNetworkNumOfZones(0);    // The number of zones for multizone calculation
+    thread_local int AirflowNetworkNumOfSurfaces(0); // The number of surfaces for multizone calculation
+    thread_local int AirflowNetworkNumOfZones(0);    // The number of zones for multizone calculation
 
-    bool RollBackFlag(false);                  // Roll back flag when system time step down shifting
-    Array1D<Real64> ANZT;                      // Local zone air temperature for roll back use
-    Array1D<Real64> ANZW;                      // Local zone air humidity ratio for roll back use
-    Array1D<Real64> ANCO;                      // Local zone air CO2 for roll back use
-    Array1D<Real64> ANGC;                      // Local zone air generic contaminant for roll back use
-    int AirflowNetworkNumOfExhFan(0);          // Number of zone exhaust fans
-    Array1D_bool AirflowNetworkZoneExhaustFan; // Logical to use zone exhaust fans
-    bool AirflowNetworkFanActivated(false);    // Supply fan activation flag
-    bool AirflowNetworkUnitarySystem(false);   // set to TRUE for unitary systems (to make answers equal, will remove eventually)
+    thread_local bool RollBackFlag(false);                  // Roll back flag when system time step down shifting
+    thread_local Array1D<Real64> ANZT;                      // Local zone air temperature for roll back use
+    thread_local Array1D<Real64> ANZW;                      // Local zone air humidity ratio for roll back use
+    thread_local Array1D<Real64> ANCO;                      // Local zone air CO2 for roll back use
+    thread_local Array1D<Real64> ANGC;                      // Local zone air generic contaminant for roll back use
+    thread_local int AirflowNetworkNumOfExhFan(0);          // Number of zone exhaust fans
+    thread_local Array1D_bool AirflowNetworkZoneExhaustFan; // Logical to use zone exhaust fans
+    thread_local bool AirflowNetworkFanActivated(false);    // Supply fan activation flag
+    thread_local bool AirflowNetworkUnitarySystem(false);   // set to TRUE for unitary systems (to make answers equal, will remove eventually)
     // Multispeed HP only
-    int MultiSpeedHPIndicator(0); // Indicator for multispeed heat pump use
+    thread_local int MultiSpeedHPIndicator(0); // Indicator for multispeed heat pump use
     // Additional airflow needed for an VAV fan to compensate the leakage losses and supply pathway pressure losses [kg/s]
-    Real64 VAVTerminalRatio(0.0);       // The terminal flow ratio when a supply VAV fan reach its max flow rate
-    bool VAVSystem(false);              // This flag is used to represent a VAV system
-    Real64 ExhaustFanMassFlowRate(0.0); // Exhaust fan flow rate used in PressureStat
-    int PressureSetFlag(0);             // PressureSet flag
-    Real64 ReliefMassFlowRate(0.0);     // OA Mixer relief node flow rate used in PressureStat
+    thread_local Real64 VAVTerminalRatio(0.0);       // The terminal flow ratio when a supply VAV fan reach its max flow rate
+    thread_local bool VAVSystem(false);              // This flag is used to represent a VAV system
+    thread_local Real64 ExhaustFanMassFlowRate(0.0); // Exhaust fan flow rate used in PressureStat
+    thread_local int PressureSetFlag(0);             // PressureSet flag
+    thread_local Real64 ReliefMassFlowRate(0.0);     // OA Mixer relief node flow rate used in PressureStat
 
     // Object Data
-    Array1D<AirflowNetworkNodeSimuData> AirflowNetworkNodeSimu;
-    Array1D<AirflowNetworkLinkSimuData> AirflowNetworkLinkSimu;
-    Array1D<AirflowNetworkExchangeProp> AirflowNetworkExchangeData;
-    Array1D<AirflowNetworkExchangeProp> AirflowNetworkMultiExchangeData;
-    Array1D<AirflowNetworkLinkReportData> AirflowNetworkLinkReport;
-    Array1D<AirflowNetworkNodeReportData> AirflowNetworkNodeReport;
-    Array1D<AirflowNetworkLinkReportData> AirflowNetworkLinkReport1;
-    AirflowNetworkSimuProp AirflowNetworkSimu;
-    Array1D<AirflowNetworkNodeProp> AirflowNetworkNodeData;
-    Array1D<AirflowNetworkCompProp> AirflowNetworkCompData;
-    Array1D<AirflowNetworkLinkageProp> AirflowNetworkLinkageData;
-    Array1D<MultizoneZoneProp> MultizoneZoneData;
-    Array1D<MultizoneSurfaceProp> MultizoneSurfaceData;
-    Array1D<DetailedOpening> MultizoneCompDetOpeningData;
-    Array1D<SimpleOpening> MultizoneCompSimpleOpeningData;
-    Array1D<HorizontalOpening> MultizoneCompHorOpeningData;
+    thread_local Array1D<AirflowNetworkNodeSimuData> AirflowNetworkNodeSimu;
+    thread_local Array1D<AirflowNetworkLinkSimuData> AirflowNetworkLinkSimu;
+    thread_local Array1D<AirflowNetworkExchangeProp> AirflowNetworkExchangeData;
+    thread_local Array1D<AirflowNetworkExchangeProp> AirflowNetworkMultiExchangeData;
+    thread_local Array1D<AirflowNetworkLinkReportData> AirflowNetworkLinkReport;
+    thread_local Array1D<AirflowNetworkNodeReportData> AirflowNetworkNodeReport;
+    thread_local Array1D<AirflowNetworkLinkReportData> AirflowNetworkLinkReport1;
+    thread_local AirflowNetworkSimuProp AirflowNetworkSimu;
+    thread_local Array1D<AirflowNetworkNodeProp> AirflowNetworkNodeData;
+    thread_local Array1D<AirflowNetworkCompProp> AirflowNetworkCompData;
+    thread_local Array1D<AirflowNetworkLinkageProp> AirflowNetworkLinkageData;
+    thread_local Array1D<MultizoneZoneProp> MultizoneZoneData;
+    thread_local Array1D<MultizoneSurfaceProp> MultizoneSurfaceData;
+    thread_local Array1D<DetailedOpening> MultizoneCompDetOpeningData;
+    thread_local Array1D<SimpleOpening> MultizoneCompSimpleOpeningData;
+    thread_local Array1D<HorizontalOpening> MultizoneCompHorOpeningData;
     // Array1D<ReferenceConditions> MultizoneSurfaceStdConditionsCrackData;
-    Array1D<SurfaceCrack> MultizoneSurfaceCrackData;
-    Array1D<EffectiveLeakageArea> MultizoneSurfaceELAData;
-    Array1D<MultizoneExternalNodeProp> MultizoneExternalNodeData;
-    Array1D<DeltaCpProp> DeltaCp;
-    Array1D<DeltaCpProp> EPDeltaCP;
-    Array1D<ZoneExhaustFan> MultizoneCompExhaustFanData;
-    Array1D<IntraZoneNodeProp> IntraZoneNodeData;
-    Array1D<IntraZoneLinkageProp> IntraZoneLinkageData;
-    Array1D<DisSysNodeProp> DisSysNodeData;
-    Array1D<DuctLeak> DisSysCompLeakData;
-    Array1D<EffectiveLeakageRatio> DisSysCompELRData;
-    Array1D<Duct> DisSysCompDuctData;
-    Array1D<Damper> DisSysCompDamperData;
-    Array1D<ConstantVolumeFan> DisSysCompCVFData;
-    Array1D<DetailedFan> DisSysCompDetFanData;
-    Array1D<DisSysCompCoilProp> DisSysCompCoilData;
-    Array1D<DisSysCompHXProp> DisSysCompHXData;
-    Array1D<DisSysCompTermUnitProp> DisSysCompTermUnitData;
-    Array1D<ConstantPressureDrop> DisSysCompCPDData;
-    Array1D<AiflowNetworkReportProp> AirflowNetworkReportData;
-    Array1D<PressureControllerProp> PressureControllerData;
-    Array1D<OutdoorAirFan> DisSysCompOutdoorAirData;
-    Array1D<ReliefFlow> DisSysCompReliefAirData;
-    Array1D<AirflowNetworkLinkageViewFactorProp> AirflowNetworkLinkageViewFactorData;
+    thread_local Array1D<SurfaceCrack> MultizoneSurfaceCrackData;
+    thread_local Array1D<EffectiveLeakageArea> MultizoneSurfaceELAData;
+    thread_local Array1D<MultizoneExternalNodeProp> MultizoneExternalNodeData;
+    thread_local Array1D<DeltaCpProp> DeltaCp;
+    thread_local Array1D<DeltaCpProp> EPDeltaCP;
+    thread_local Array1D<ZoneExhaustFan> MultizoneCompExhaustFanData;
+    thread_local Array1D<IntraZoneNodeProp> IntraZoneNodeData;
+    thread_local Array1D<IntraZoneLinkageProp> IntraZoneLinkageData;
+    thread_local Array1D<DisSysNodeProp> DisSysNodeData;
+    thread_local Array1D<DuctLeak> DisSysCompLeakData;
+    thread_local Array1D<EffectiveLeakageRatio> DisSysCompELRData;
+    thread_local Array1D<Duct> DisSysCompDuctData;
+    thread_local Array1D<Damper> DisSysCompDamperData;
+    thread_local Array1D<ConstantVolumeFan> DisSysCompCVFData;
+    thread_local Array1D<DetailedFan> DisSysCompDetFanData;
+    thread_local Array1D<DisSysCompCoilProp> DisSysCompCoilData;
+    thread_local Array1D<DisSysCompHXProp> DisSysCompHXData;
+    thread_local Array1D<DisSysCompTermUnitProp> DisSysCompTermUnitData;
+    thread_local Array1D<ConstantPressureDrop> DisSysCompCPDData;
+    thread_local Array1D<AiflowNetworkReportProp> AirflowNetworkReportData;
+    thread_local Array1D<PressureControllerProp> PressureControllerData;
+    thread_local Array1D<OutdoorAirFan> DisSysCompOutdoorAirData;
+    thread_local Array1D<ReliefFlow> DisSysCompReliefAirData;
+    thread_local Array1D<AirflowNetworkLinkageViewFactorProp> AirflowNetworkLinkageViewFactorData;
 
     static Real64 square(Real64 x)
     {
@@ -1040,7 +1040,7 @@ namespace AirflowNetwork {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const RealMin(1e-37);
-        static Real64 const sqrt_1_2(std::sqrt(1.2));
+        thread_local static Real64 const sqrt_1_2(std::sqrt(1.2));
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1049,7 +1049,7 @@ namespace AirflowNetwork {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Real64 const sqrt_2(std::sqrt(2.0));
+        thread_local static Real64 const sqrt_2(std::sqrt(2.0));
 
         Real64 Width;
         Real64 Height;
@@ -1668,7 +1668,7 @@ namespace AirflowNetwork {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static Real64 const sqrt_2(std::sqrt(2.0));
+        thread_local static Real64 const sqrt_2(std::sqrt(2.0));
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CDM;

@@ -424,7 +424,7 @@ public: // data
 
 }; // end ReportCoilSelection class
 
-extern std::unique_ptr<ReportCoilSelection> coilSelectionReportObj;
+thread_local extern std::unique_ptr<ReportCoilSelection> coilSelectionReportObj;
 
 void createCoilSelectionReportObj();
 

@@ -70,10 +70,10 @@ namespace CTElectricGenerator {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumCTGenerators; // number of CT Generators specified in input
-    extern bool GetCTInput;     // then TRUE, calls subroutine to read input file.
+    thread_local extern int NumCTGenerators; // number of CT Generators specified in input
+    thread_local extern bool GetCTInput;     // then TRUE, calls subroutine to read input file.
 
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
 
@@ -180,8 +180,8 @@ namespace CTElectricGenerator {
     };
 
     // Object Data
-    extern Array1D<CTGeneratorSpecs> CTGenerator; // dimension to number of machines
-    extern Array1D<ReportVars> CTGeneratorReport;
+    thread_local extern Array1D<CTGeneratorSpecs> CTGenerator; // dimension to number of machines
+    thread_local extern Array1D<ReportVars> CTGeneratorReport;
 
     // Functions
 

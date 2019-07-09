@@ -79,7 +79,7 @@ namespace FileSystem {
 #ifdef _WIN32
     std::string const exeExtension(".exe");
 #else
-    std::string const exeExtension;
+    thread_local std::string const exeExtension;
 #endif
 
     void makeNativePath(std::string &path)

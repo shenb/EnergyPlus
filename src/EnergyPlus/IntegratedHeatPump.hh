@@ -60,7 +60,7 @@ namespace EnergyPlus {
 namespace IntegratedHeatPump {
 
     // Identifier is VarSpeedCoil
-    extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
+    thread_local extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
 
     // operation mode
     enum class IHPOperationMode : int
@@ -234,7 +234,7 @@ namespace IntegratedHeatPump {
     };
 
     // Object Data
-    extern Array1D<IntegratedHeatPumpData> IntegratedHeatPumps;
+    thread_local extern Array1D<IntegratedHeatPumpData> IntegratedHeatPumps;
 
     // Functions
     void clear_state();

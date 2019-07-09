@@ -66,13 +66,13 @@ namespace DataDaylightingDevices {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    extern int const MaxTZones;   // Maximum number of transition zones
-    extern int const NumOfAngles; // Number of data points on transmittance vs. angle curve
+    thread_local extern int const MaxTZones;   // Maximum number of transition zones
+    thread_local extern int const NumOfAngles; // Number of data points on transmittance vs. angle curve
 
-    extern int const VisibleBeam; // Constant for radiation type
-    extern int const SolarBeam;   // Constant for radiation type
-    extern int const SolarAniso;  // Constant for radiation type
-    extern int const SolarIso;    // Constant for radiation type
+    thread_local extern int const VisibleBeam; // Constant for radiation type
+    thread_local extern int const SolarBeam;   // Constant for radiation type
+    thread_local extern int const SolarAniso;  // Constant for radiation type
+    thread_local extern int const SolarIso;    // Constant for radiation type
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -81,8 +81,8 @@ namespace DataDaylightingDevices {
     // INTERFACE BLOCK SPECIFICATIONS: na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumOfTDDPipes; // Number of TDD pipes in the input file
-    extern int NumOfShelf;    // Number of daylighting shelves in the input file
+    thread_local extern int NumOfTDDPipes; // Number of TDD pipes in the input file
+    thread_local extern int NumOfShelf;    // Number of daylighting shelves in the input file
 
     // Types
 
@@ -152,8 +152,8 @@ namespace DataDaylightingDevices {
     };
 
     // Object Data
-    extern Array1D<TDDPipeData> TDDPipe;
-    extern Array1D<ShelfData> Shelf;
+    thread_local extern Array1D<TDDPipeData> TDDPipe;
+    thread_local extern Array1D<ShelfData> Shelf;
 
 } // namespace DataDaylightingDevices
 

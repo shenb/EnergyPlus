@@ -64,38 +64,38 @@ namespace DataHVACControllers {
 
     // MODULE PARAMETER DEFINITIONS:
 
-    extern int const ControllerSimple_Type;
-    extern Array1D_string const ControllerTypes;
+    thread_local extern int const ControllerSimple_Type;
+    thread_local extern Array1D_string const ControllerTypes;
 
     // Controller action used in modules HVACControllers and ZoneControllers
-    extern int const iNoAction;
-    extern int const iReverseAction;
-    extern int const iNormalAction;
-    extern Array1D_string const ActionTypes;
+    thread_local extern int const iNoAction;
+    thread_local extern int const iReverseAction;
+    thread_local extern int const iNormalAction;
+    thread_local extern Array1D_string const ActionTypes;
 
     // Controller mode used in modules HVACControllers and ZoneControllers
-    extern int const iModeWrongAction; // Controller error. E.g., bad action
-    extern int const iModeNone;        // Controller mode not yet determined
-    extern int const iModeOff;         // Controller off (no air flow in loop)
-    extern int const iModeInactive;    // Controller inactive (equip not available for current step)
-    extern int const iModeActive;      // Controller active (schedule>0 and min<actuated<max)
-    extern int const iModeMinActive;   // Controller active and min-constrained (equip available and actuated=min)
-    extern int const iModeMaxActive;   // Controller active and max-constrained (equip available and actuated=max)
+    thread_local extern int const iModeWrongAction; // Controller error. E.g., bad action
+    thread_local extern int const iModeNone;        // Controller mode not yet determined
+    thread_local extern int const iModeOff;         // Controller off (no air flow in loop)
+    thread_local extern int const iModeInactive;    // Controller inactive (equip not available for current step)
+    thread_local extern int const iModeActive;      // Controller active (schedule>0 and min<actuated<max)
+    thread_local extern int const iModeMinActive;   // Controller active and min-constrained (equip available and actuated=min)
+    thread_local extern int const iModeMaxActive;   // Controller active and max-constrained (equip available and actuated=max)
 
-    extern int const iFirstMode; // First operating mode in range
-    extern int const iLastMode;  // Last operating mode in range
-    extern Array1D_string const ControllerModeTypes;
+    thread_local extern int const iFirstMode; // First operating mode in range
+    thread_local extern int const iLastMode;  // Last operating mode in range
+    thread_local extern Array1D_string const ControllerModeTypes;
 
     // Controller operation used in module HVACControllers
-    extern int const iControllerOpColdStart;   // Reset for cold start
-    extern int const iControllerOpWarmRestart; // Reset for warm restart with previous solution
-    extern int const iControllerOpIterate;     // Check convergence and estimate next guess if needed
-    extern int const iControllerOpEnd;         // Check convergence only and trace
+    thread_local extern int const iControllerOpColdStart;   // Reset for cold start
+    thread_local extern int const iControllerOpWarmRestart; // Reset for warm restart with previous solution
+    thread_local extern int const iControllerOpIterate;     // Check convergence and estimate next guess if needed
+    thread_local extern int const iControllerOpEnd;         // Check convergence only and trace
 
     // Controller restart flag used in module HVACControllers
-    extern int const iControllerWarmRestartNone;    // Indicates that warm restart was not attempted
-    extern int const iControllerWarmRestartFail;    // Indicates that warm restart failed
-    extern int const iControllerWarmRestartSuccess; // Indicates that warm restart was successful
+    thread_local extern int const iControllerWarmRestartNone;    // Indicates that warm restart was not attempted
+    thread_local extern int const iControllerWarmRestartFail;    // Indicates that warm restart failed
+    thread_local extern int const iControllerWarmRestartSuccess; // Indicates that warm restart was successful
 
 } // namespace DataHVACControllers
 

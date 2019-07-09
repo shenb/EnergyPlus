@@ -89,12 +89,12 @@ namespace PlantValves {
     using General::TrimSigDigits;
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumTemperingValves;
-    bool GetTemperingValves(true);
-    bool OneTimeInitFlag(true);
+    thread_local int NumTemperingValves;
+    thread_local bool GetTemperingValves(true);
+    thread_local bool OneTimeInitFlag(true);
 
     // Object Data
-    Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
+    thread_local Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
 
     PlantComponent *TemperValveData::factory(std::string objectName) {
         // Process the input data for valves if it hasn't been done already
@@ -174,7 +174,7 @@ namespace PlantValves {
         int NumAlphas;                   // Number of Alphas for each GetObjectItem call
         int NumNumbers;                  // Number of Numbers for each GetObjectItem call
         int IOStatus;                    // Used in GetObjectItem
-        static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
         std::string CurrentModuleObject; // for ease in renaming.
 
         CurrentModuleObject = "TemperingValve";

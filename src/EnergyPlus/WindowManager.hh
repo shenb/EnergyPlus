@@ -64,132 +64,132 @@ namespace WindowManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    extern Real64 const sigma;   // Stefan-Boltzmann constant
-    extern Real64 const TKelvin; // conversion from Kelvin to Celsius
-    extern int const nume;       // Number of wavelength values in solar spectrum
-    extern int const numt3;      // Number of wavelength values in the photopic response
+    thread_local extern Real64 const sigma;   // Stefan-Boltzmann constant
+    thread_local extern Real64 const TKelvin; // conversion from Kelvin to Celsius
+    thread_local extern int const nume;       // Number of wavelength values in solar spectrum
+    thread_local extern int const numt3;      // Number of wavelength values in the photopic response
 
     //               Dens  dDens/dT  Con    dCon/dT   Vis    dVis/dT Prandtl dPrandtl/dT
-    extern Array1D<Real64> const AirProps;
+    thread_local extern Array1D<Real64> const AirProps;
     // Air mass 1.5 terrestrial solar global spectral irradiance (W/m2-micron)
     // on a 37 degree tilted surface; corresponds
     // to wavelengths (microns) in following data block (ISO 9845-1 and ASTM E 892;
     // derived from Optics5 data file ISO-9845GlobalNorm.std, 10-14-99)
-    extern Array1D<Real64> wle; // Solar spectrum wavelength values (microns)
+    thread_local extern Array1D<Real64> wle; // Solar spectrum wavelength values (microns)
 
-    extern Array1D<Real64> e; // Solar spectrum values corresponding to wle
+    thread_local extern Array1D<Real64> e; // Solar spectrum values corresponding to wle
 
     // Phototopic response function and corresponding wavelengths (microns)
     // (CIE 1931 observer; ISO/CIE 10527, CIE Standard Calorimetric Observers;
     // derived from Optics5 data file "CIE 1931 Color Match from E308.txt", which is
     // the same as WINDOW4 file Cie31t.dat)
-    extern Array1D<Real64> wlt3; // Wavelength values for photopic response
+    thread_local extern Array1D<Real64> wlt3; // Wavelength values for photopic response
 
-    extern Array1D<Real64> y30; // Photopic response corresponding to wavelengths in wlt3
+    thread_local extern Array1D<Real64> y30; // Photopic response corresponding to wavelengths in wlt3
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int ngllayer;           // Number of glass layers
-    extern int nglface;            // Number of glass faces
-    extern int nglfacep;           // Number of glass faces, + 2 if shade layer present
-    extern Real64 tout;            // Outside air temperature (K)
-    extern Real64 tin;             // Inside air temperature (previous timestep) (K)
-    extern Real64 tilt;            // Window tilt (deg)
-    extern Real64 tiltr;           // Window tilt (radians)
-    extern Real64 hcin;            // Convective inside air film conductance (W/m2-K)
-    extern Real64 hcout;           // Convective outside air film conductance (W/m2-K)
-    extern Real64 Ebout;           // Sigma*(outside air temp)**4 (W/m2)
-    extern Real64 Outir;           // IR radiance of window's exterior surround (W/m2)
-    extern Real64 Rmir;            // IR radiance of window's interior surround (W/m2)
-    extern Real64 Rtot;            // Total thermal resistance of window (m2-K/W)
-    extern Array3D<Real64> gcon;   // Gas thermal conductivity coefficients for each gap
-    extern Array3D<Real64> gvis;   // Gas viscosity coefficients for each gap
-    extern Array3D<Real64> gcp;    // Gas specific-heat coefficients for each gap
-    extern Array2D<Real64> gwght;  // Gas molecular weights for each gap
-    extern Array2D<Real64> gfract; // Gas fractions for each gap
-    extern Array1D_int gnmix;      // Number of gases in gap
-    extern Array1D<Real64> gap;    // Gap width (m)
-    extern Array1D<Real64> thick;  // Glass layer thickness (m)
-    extern Array1D<Real64> scon;   // Glass layer conductance--conductivity/thickness (W/m2-K)
-    extern Array1D<Real64> tir;    // Front and back IR transmittance for each glass layer
-    extern Array1D<Real64> emis;   // Front and back IR emissivity for each glass layer
-    extern Array1D<Real64> rir;    // Front and back IR reflectance for each glass layer
+    thread_local extern int ngllayer;           // Number of glass layers
+    thread_local extern int nglface;            // Number of glass faces
+    thread_local extern int nglfacep;           // Number of glass faces, + 2 if shade layer present
+    thread_local extern Real64 tout;            // Outside air temperature (K)
+    thread_local extern Real64 tin;             // Inside air temperature (previous timestep) (K)
+    thread_local extern Real64 tilt;            // Window tilt (deg)
+    thread_local extern Real64 tiltr;           // Window tilt (radians)
+    thread_local extern Real64 hcin;            // Convective inside air film conductance (W/m2-K)
+    thread_local extern Real64 hcout;           // Convective outside air film conductance (W/m2-K)
+    thread_local extern Real64 Ebout;           // Sigma*(outside air temp)**4 (W/m2)
+    thread_local extern Real64 Outir;           // IR radiance of window's exterior surround (W/m2)
+    thread_local extern Real64 Rmir;            // IR radiance of window's interior surround (W/m2)
+    thread_local extern Real64 Rtot;            // Total thermal resistance of window (m2-K/W)
+    thread_local extern Array3D<Real64> gcon;   // Gas thermal conductivity coefficients for each gap
+    thread_local extern Array3D<Real64> gvis;   // Gas viscosity coefficients for each gap
+    thread_local extern Array3D<Real64> gcp;    // Gas specific-heat coefficients for each gap
+    thread_local extern Array2D<Real64> gwght;  // Gas molecular weights for each gap
+    thread_local extern Array2D<Real64> gfract; // Gas fractions for each gap
+    thread_local extern Array1D_int gnmix;      // Number of gases in gap
+    thread_local extern Array1D<Real64> gap;    // Gap width (m)
+    thread_local extern Array1D<Real64> thick;  // Glass layer thickness (m)
+    thread_local extern Array1D<Real64> scon;   // Glass layer conductance--conductivity/thickness (W/m2-K)
+    thread_local extern Array1D<Real64> tir;    // Front and back IR transmittance for each glass layer
+    thread_local extern Array1D<Real64> emis;   // Front and back IR emissivity for each glass layer
+    thread_local extern Array1D<Real64> rir;    // Front and back IR reflectance for each glass layer
     //  (program calculates from tir and emis)
-    extern Array1D<Real64> AbsRadGlassFace; // Solar radiation and IR radiation from internal
+    thread_local extern Array1D<Real64> AbsRadGlassFace; // Solar radiation and IR radiation from internal
     //  gains absorbed by glass face
-    extern Array1D<Real64> thetas;     // Glass surface temperatures (K)
-    extern Array1D<Real64> thetasPrev; // Previous-iteration glass surface temperatures (K)
-    extern Array1D<Real64> fvec;       // Glass face heat balance function
-    extern Array2D<Real64> fjac;       // Glass face heat balance Jacobian
-    extern Array1D<Real64> dtheta;     // Glass layer temperature difference factor [K]
-    extern Array2D<Real64> zir;        // IR transfer matrix
-    extern Array2D<Real64> ziri;       // Inverse of IR transfer matrix
-    extern Array2D<Real64> ddeldt;     // Matrix of derivatives of residuals wrt temperature
-    extern Array2D<Real64> dtddel;     // Inverse of matrix of derivatives of
+    thread_local extern Array1D<Real64> thetas;     // Glass surface temperatures (K)
+    thread_local extern Array1D<Real64> thetasPrev; // Previous-iteration glass surface temperatures (K)
+    thread_local extern Array1D<Real64> fvec;       // Glass face heat balance function
+    thread_local extern Array2D<Real64> fjac;       // Glass face heat balance Jacobian
+    thread_local extern Array1D<Real64> dtheta;     // Glass layer temperature difference factor [K]
+    thread_local extern Array2D<Real64> zir;        // IR transfer matrix
+    thread_local extern Array2D<Real64> ziri;       // Inverse of IR transfer matrix
+    thread_local extern Array2D<Real64> ddeldt;     // Matrix of derivatives of residuals wrt temperature
+    thread_local extern Array2D<Real64> dtddel;     // Inverse of matrix of derivatives of
     //   residuals wrt temperature
-    extern Array1D<Real64> qf;    // IR heat flux at each face [W/m2]
-    extern Array1D<Real64> hf;    // Component of convective flux at each face
-    extern Array2D<Real64> der;   // Derivative of IR sources wrt surface temperature
-    extern Array2D<Real64> dhf;   // Derivative of heat flux wrt surface temperature
-    extern Array1D<Real64> sour;  // IR source term at each face [W/m2]
-    extern Array1D<Real64> delta; // Residual at each glass layer [W/m2]
-    extern Array1D<Real64> hcgap; // Convective gap conductance
-    extern Array1D<Real64> hrgap; // Radiative gap conductance
-    extern Array1D<Real64> rgap;  // Convective plus radiative gap resistance
+    thread_local extern Array1D<Real64> qf;    // IR heat flux at each face [W/m2]
+    thread_local extern Array1D<Real64> hf;    // Component of convective flux at each face
+    thread_local extern Array2D<Real64> der;   // Derivative of IR sources wrt surface temperature
+    thread_local extern Array2D<Real64> dhf;   // Derivative of heat flux wrt surface temperature
+    thread_local extern Array1D<Real64> sour;  // IR source term at each face [W/m2]
+    thread_local extern Array1D<Real64> delta; // Residual at each glass layer [W/m2]
+    thread_local extern Array1D<Real64> hcgap; // Convective gap conductance
+    thread_local extern Array1D<Real64> hrgap; // Radiative gap conductance
+    thread_local extern Array1D<Real64> rgap;  // Convective plus radiative gap resistance
     //   (inverse of hcgap + hrgap)
-    extern Array1D<Real64> rs; // Outside film convective resistance, gap resistances,
+    thread_local extern Array1D<Real64> rs; // Outside film convective resistance, gap resistances,
     //   inside air film convective resistance
-    extern Array1D<Real64> arhs;
-    extern Real64 A23P; // Intermediate variables in glass face
-    extern Real64 A32P;
-    extern Real64 A45P;
-    extern Real64 A54P;
-    extern Real64 A67P;
-    extern Real64 A76P;
-    extern Real64 A23; // heat balance equations
-    extern Real64 A45;
-    extern Real64 A67;
+    thread_local extern Array1D<Real64> arhs;
+    thread_local extern Real64 A23P; // Intermediate variables in glass face
+    thread_local extern Real64 A32P;
+    thread_local extern Real64 A45P;
+    thread_local extern Real64 A54P;
+    thread_local extern Real64 A67P;
+    thread_local extern Real64 A76P;
+    thread_local extern Real64 A23; // heat balance equations
+    thread_local extern Real64 A45;
+    thread_local extern Real64 A67;
 
-    extern Array2D<Real64> wlt; // Spectral data wavelengths for each glass layer in a glazing system
+    thread_local extern Array2D<Real64> wlt; // Spectral data wavelengths for each glass layer in a glazing system
     // Following data, Spectral data for each layer for each wavelength in wlt
-    extern Array2D<Real64> t;        // normal transmittance
-    extern Array2D<Real64> rff;      // normal front reflectance
-    extern Array2D<Real64> rbb;      // normal back reflectance
-    extern Array2D<Real64> tPhi;     // transmittance at angle of incidence
-    extern Array2D<Real64> rfPhi;    // front reflectance at angle of incidence
-    extern Array2D<Real64> rbPhi;    // back reflectance at angle of incidence
-    extern Array2D<Real64> tadjPhi;  // transmittance at angle of incidence
-    extern Array2D<Real64> rfadjPhi; // front reflectance at angle of incidence
-    extern Array2D<Real64> rbadjPhi; // back reflectance at angle of incidence
+    thread_local extern Array2D<Real64> t;        // normal transmittance
+    thread_local extern Array2D<Real64> rff;      // normal front reflectance
+    thread_local extern Array2D<Real64> rbb;      // normal back reflectance
+    thread_local extern Array2D<Real64> tPhi;     // transmittance at angle of incidence
+    thread_local extern Array2D<Real64> rfPhi;    // front reflectance at angle of incidence
+    thread_local extern Array2D<Real64> rbPhi;    // back reflectance at angle of incidence
+    thread_local extern Array2D<Real64> tadjPhi;  // transmittance at angle of incidence
+    thread_local extern Array2D<Real64> rfadjPhi; // front reflectance at angle of incidence
+    thread_local extern Array2D<Real64> rbadjPhi; // back reflectance at angle of incidence
 
-    extern Array1D_int numpt;      // Number of spectral data wavelengths for each layer; =2 if no spectra data for a layer
-    extern Array1D<Real64> stPhi;  // Glazing system transmittance at angle of incidence for each wavelength in wle
-    extern Array1D<Real64> srfPhi; // Glazing system front reflectance at angle of incidence for each wavelength in wle
-    extern Array1D<Real64> srbPhi; // Glazing system back reflectance at angle of incidence for each wavelenth in wle
-    extern Array2D<Real64> saPhi;  // For each layer, glazing system absorptance at angle of incidence
+    thread_local extern Array1D_int numpt;      // Number of spectral data wavelengths for each layer; =2 if no spectra data for a layer
+    thread_local extern Array1D<Real64> stPhi;  // Glazing system transmittance at angle of incidence for each wavelength in wle
+    thread_local extern Array1D<Real64> srfPhi; // Glazing system front reflectance at angle of incidence for each wavelength in wle
+    thread_local extern Array1D<Real64> srbPhi; // Glazing system back reflectance at angle of incidence for each wavelenth in wle
+    thread_local extern Array2D<Real64> saPhi;  // For each layer, glazing system absorptance at angle of incidence
     // for each wavelenth in wle
-    extern Array2D<Real64> top;              // Transmittance matrix for subr. op
-    extern Array2D<Real64> rfop;             // Front reflectance matrix for subr. op
-    extern Array2D<Real64> rbop;             // Back transmittance matrix for subr. op
-    extern Array1D<Real64> IndepVarCurveFit; // Values of independent variable (cos of inc. angle) for curve fit
-    extern Array1D<Real64> DepVarCurveFit;   // Values of dependent variable corresponding to IndepVarCurveFit values
-    extern Array1D<Real64> CoeffsCurveFit;   // Polynomial coefficients from curve fit
-    extern Array1D<Real64> tsolPhi;          // Glazing system solar transmittance for each angle of incidence
-    extern Array1D<Real64> rfsolPhi;         // Glazing system solar front reflectance for each angle of incidence
-    extern Array1D<Real64> rbsolPhi;         // Glazing system solar back reflectance for each angle of incidence
-    extern Array2D<Real64> solabsPhi;        // Glazing system solar absorptance for each angle of incidence
-    extern Array2D<Real64> solabsBackPhi;    // Glazing system back solar absorptance for each angle of incidence
-    extern Array1D<Real64> solabsShadePhi;   // Glazing system interior shade solar absorptance for each angle of incidence
-    extern Array1D<Real64> tvisPhi;          // Glazing system visible transmittance for each angle of incidence
-    extern Array1D<Real64> rfvisPhi;         // Glazing system visible front reflectance for each angle of incidence
-    extern Array1D<Real64> rbvisPhi;         // Glazing system visible back reflectance for each angle of incidence
-    extern Array1D<Real64> CosPhiIndepVar;   // Cos of incidence angles at 10-deg increments for curve fits
+    thread_local extern Array2D<Real64> top;              // Transmittance matrix for subr. op
+    thread_local extern Array2D<Real64> rfop;             // Front reflectance matrix for subr. op
+    thread_local extern Array2D<Real64> rbop;             // Back transmittance matrix for subr. op
+    thread_local extern Array1D<Real64> IndepVarCurveFit; // Values of independent variable (cos of inc. angle) for curve fit
+    thread_local extern Array1D<Real64> DepVarCurveFit;   // Values of dependent variable corresponding to IndepVarCurveFit values
+    thread_local extern Array1D<Real64> CoeffsCurveFit;   // Polynomial coefficients from curve fit
+    thread_local extern Array1D<Real64> tsolPhi;          // Glazing system solar transmittance for each angle of incidence
+    thread_local extern Array1D<Real64> rfsolPhi;         // Glazing system solar front reflectance for each angle of incidence
+    thread_local extern Array1D<Real64> rbsolPhi;         // Glazing system solar back reflectance for each angle of incidence
+    thread_local extern Array2D<Real64> solabsPhi;        // Glazing system solar absorptance for each angle of incidence
+    thread_local extern Array2D<Real64> solabsBackPhi;    // Glazing system back solar absorptance for each angle of incidence
+    thread_local extern Array1D<Real64> solabsShadePhi;   // Glazing system interior shade solar absorptance for each angle of incidence
+    thread_local extern Array1D<Real64> tvisPhi;          // Glazing system visible transmittance for each angle of incidence
+    thread_local extern Array1D<Real64> rfvisPhi;         // Glazing system visible front reflectance for each angle of incidence
+    thread_local extern Array1D<Real64> rbvisPhi;         // Glazing system visible back reflectance for each angle of incidence
+    thread_local extern Array1D<Real64> CosPhiIndepVar;   // Cos of incidence angles at 10-deg increments for curve fits
 
     class CWindowModel;
     class CWindowOpticalModel;
 
-    extern std::unique_ptr<CWindowModel> inExtWindowModel;
-    extern std::unique_ptr<CWindowOpticalModel> winOpticalModel;
+    thread_local extern std::unique_ptr<CWindowModel> inExtWindowModel;
+    thread_local extern std::unique_ptr<CWindowOpticalModel> winOpticalModel;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE WindowManager:
     //   Optical Calculation Routines

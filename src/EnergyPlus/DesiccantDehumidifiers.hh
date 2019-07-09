@@ -65,27 +65,27 @@ namespace DesiccantDehumidifiers {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Desiccant dehumidifier type
-    extern int const Solid;   // DESICCANT DEHUMIDIFIER:SOLID = 1
-    extern int const Generic; // DESICCANT DEHUMIDIFIER = 2
+    thread_local extern int const Solid;   // DESICCANT DEHUMIDIFIER:SOLID = 1
+    thread_local extern int const Generic; // DESICCANT DEHUMIDIFIER = 2
     //  Desiccant heat exchanger type
-    extern int const BalancedHX; // HeatExchanger:Desiccant:BalancedFlow = 1
+    thread_local extern int const BalancedHX; // HeatExchanger:Desiccant:BalancedFlow = 1
     // Desiccant control type
-    extern int const FixedHumratBypass; // FIXED LEAVING HUMRAT SETPOINT:BYPASS = 1
-    extern int const NodeHumratBypass;  // NODE LEAVING HUMRAT SETPOINT:BYPASS  = 2
+    thread_local extern int const FixedHumratBypass; // FIXED LEAVING HUMRAT SETPOINT:BYPASS = 1
+    thread_local extern int const NodeHumratBypass;  // NODE LEAVING HUMRAT SETPOINT:BYPASS  = 2
     // Preheat selection
-    extern int const No;  // Condenser waste heat NOT reclaimed for desiccant regeneration
-    extern int const Yes; // Condenser waste heat reclaimed for desiccant regeneration
+    thread_local extern int const No;  // Condenser waste heat NOT reclaimed for desiccant regeneration
+    thread_local extern int const Yes; // Condenser waste heat reclaimed for desiccant regeneration
     // Performance Model
-    extern int const PM_Default;    // Performance Model = default
-    extern int const PM_UserCurves; // Performance Model = user curve
+    thread_local extern int const PM_Default;    // Performance Model = default
+    thread_local extern int const PM_UserCurves; // Performance Model = user curve
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumDesicDehums;        // number of desiccant dehumidifiers of all types
-    extern int NumSolidDesicDehums;   // number of solid desiccant dehumidifiers
-    extern int NumGenericDesicDehums; // number of generic desiccant dehumidifiers
-    extern Real64 TempSteamIn;        // steam coil steam inlet temperature
+    thread_local extern int NumDesicDehums;        // number of desiccant dehumidifiers of all types
+    thread_local extern int NumSolidDesicDehums;   // number of solid desiccant dehumidifiers
+    thread_local extern int NumGenericDesicDehums; // number of generic desiccant dehumidifiers
+    thread_local extern Real64 TempSteamIn;        // steam coil steam inlet temperature
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>
 
@@ -238,7 +238,7 @@ namespace DesiccantDehumidifiers {
     };
 
     // Object Data
-    extern Array1D<DesiccantDehumidifierData> DesicDehum;
+    thread_local extern Array1D<DesiccantDehumidifierData> DesicDehum;
 
     // Functions
 

@@ -69,7 +69,7 @@ namespace SizingManager {
     // INTERFACE BLOCK SPECIFICATIONS: none
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumAirLoops;
+    thread_local extern int NumAirLoops;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SimulationManager
 

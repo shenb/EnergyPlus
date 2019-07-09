@@ -63,24 +63,24 @@ namespace WindowAC {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const WindowAC_UnitType;
-    extern std::string const cWindowAC_UnitType;
-    extern Array1D_string const cWindowAC_UnitTypes;
+    thread_local extern int const WindowAC_UnitType;
+    thread_local extern std::string const cWindowAC_UnitType;
+    thread_local extern Array1D_string const cWindowAC_UnitTypes;
 
     // Compressor operation
-    extern int const On;  // normal compressor operation
-    extern int const Off; // signal DXCoil that compressor shouldn't run
+    thread_local extern int const On;  // normal compressor operation
+    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumWindAC;
-    extern int NumWindACCyc;
-    extern Array1D_bool MySizeFlag;
-    extern bool GetWindowACInputFlag; // First time, input is "gotten"
-    extern bool CoolingLoad;          // defines a cooling load
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumWindAC;
+    thread_local extern int NumWindACCyc;
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern bool GetWindowACInputFlag; // First time, input is "gotten"
+    thread_local extern bool CoolingLoad;          // defines a cooling load
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -172,8 +172,8 @@ namespace WindowAC {
     };
 
     // Object Data
-    extern Array1D<WindACData> WindAC;
-    extern Array1D<WindACNumericFieldData> WindACNumericFields; // holds window AC numeric input fields character field name
+    thread_local extern Array1D<WindACData> WindAC;
+    thread_local extern Array1D<WindACNumericFieldData> WindACNumericFields; // holds window AC numeric input fields character field name
 
     // Functions
 

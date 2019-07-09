@@ -121,24 +121,24 @@ namespace TranspiredCollector {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    int const Layout_Square(1);
-    int const Layout_Triangle(2);
-    int const Correlation_Kutscher1994(1);
-    int const Correlation_VanDeckerHollandsBrunger2001(2);
+    thread_local int const Layout_Square(1);
+    thread_local int const Layout_Triangle(2);
+    thread_local int const Correlation_Kutscher1994(1);
+    thread_local int const Correlation_VanDeckerHollandsBrunger2001(2);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumUTSC(0); // number of transpired collectors in model
-    Array1D_bool CheckEquipName;
-    bool GetInputFlag(true); // First time, input is gotten
+    thread_local int NumUTSC(0); // number of transpired collectors in model
+    thread_local Array1D_bool CheckEquipName;
+    thread_local bool GetInputFlag(true); // First time, input is gotten
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE TranspiredCollector:
 
     // Object Data
-    Array1D<UTSCDataStruct> UTSC;
+    thread_local Array1D<UTSCDataStruct> UTSC;
 
     // Functions
     void clear_state()
@@ -173,7 +173,7 @@ namespace TranspiredCollector {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static int UTSCNum(0); // local number index for UTSC
+        thread_local static int UTSCNum(0); // local number index for UTSC
 
         if (GetInputFlag) {
             GetTranspiredCollectorInput();
@@ -288,7 +288,7 @@ namespace TranspiredCollector {
         int MaxNumNumbers;              // argumenet for call to GetObjectDefMaxArgs
         int Dummy;                      // argumenet for call to GetObjectDefMaxArgs
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int Found;
         int AlphaOffset; // local temp var
         std::string Roughness;
@@ -769,10 +769,10 @@ namespace TranspiredCollector {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MyOneTimeFlag(true);
+        thread_local static bool MyOneTimeFlag(true);
         int UTSCUnitNum;
-        static bool MySetPointCheckFlag(true);
-        static Array1D_bool MyEnvrnFlag;
+        thread_local static bool MySetPointCheckFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
         int ControlNode;
         // unused  INTEGER             :: InletNode
         int SplitBranch;

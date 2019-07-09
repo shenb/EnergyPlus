@@ -71,27 +71,27 @@ namespace WindowEquivalentLayer {
     using namespace DataWindowEquivalentLayer;
 
     // Data
-    extern Real64 const RadiansToDeg; // Conversion for Radians to Degrees
-    extern Real64 const PAtmSeaLevel; // Standard atmospheric pressure at sea level (Pa)
-    extern int const hipRHO;          // return reflectance
-    extern int const hipTAU;          // return transmittance
-    extern Real64 const SMALL_ERROR;  // small number
+    thread_local extern Real64 const RadiansToDeg; // Conversion for Radians to Degrees
+    thread_local extern Real64 const PAtmSeaLevel; // Standard atmospheric pressure at sea level (Pa)
+    thread_local extern int const hipRHO;          // return reflectance
+    thread_local extern int const hipTAU;          // return transmittance
+    thread_local extern Real64 const SMALL_ERROR;  // small number
     // CFSGAP: space between layers (gap types)
-    extern int const gtySEALED;  // sealed
-    extern int const gtyOPENin;  // open to indoor air  (re Open Channel Flow (OCF))
-    extern int const gtyOPENout; // open to outdoor air (re Open Channel Flow (OCF))
+    thread_local extern int const gtySEALED;  // sealed
+    thread_local extern int const gtyOPENin;  // open to indoor air  (re Open Channel Flow (OCF))
+    thread_local extern int const gtyOPENout; // open to outdoor air (re Open Channel Flow (OCF))
     // shade control options
-    extern int const lscNONE;   // no control
-    extern int const lscVBPROF; // VB slatA = ProfA (max gain)
-    extern int const lscVBNOBM; // VB slatA just exclude beam
+    thread_local extern int const lscNONE;   // no control
+    thread_local extern int const lscVBPROF; // VB slatA = ProfA (max gain)
+    thread_local extern int const lscVBNOBM; // VB slatA just exclude beam
     // Constants
-    extern int const hipRHO_BT0;
-    extern int const hipTAU_BT0;
-    extern int const hipTAU_BB0;
-    extern int const hipDIM; // dimension of parameter array
+    thread_local extern int const hipRHO_BT0;
+    thread_local extern int const hipTAU_BT0;
+    thread_local extern int const hipTAU_BB0;
+    thread_local extern int const hipDIM; // dimension of parameter array
 
-    extern Array3D<Real64> CFSDiffAbsTrans;
-    extern Array1D_bool EQLDiffPropFlag;
+    thread_local extern Array3D<Real64> CFSDiffAbsTrans;
+    thread_local extern Array1D_bool EQLDiffPropFlag;
 
     // MODULE SUBROUTINES:
     // Initialization routines for module

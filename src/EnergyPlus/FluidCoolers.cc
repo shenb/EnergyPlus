@@ -101,16 +101,16 @@ namespace FluidCoolers {
     // Based on cooling tower by Shirey, Raustad: Dec 2000; Shirey, Sept 2002
 
     // MODULE PARAMETER DEFINITIONS:
-    std::string const cFluidCooler_SingleSpeed("FluidCooler:SingleSpeed");
-    std::string const cFluidCooler_TwoSpeed("FluidCooler:TwoSpeed");
-    static std::string const BlankString;
+    thread_local std::string const cFluidCooler_SingleSpeed("FluidCooler:SingleSpeed");
+    thread_local std::string const cFluidCooler_TwoSpeed("FluidCooler:TwoSpeed");
+    thread_local static std::string const BlankString;
 
-    bool GetFluidCoolerInputFlag(true);
-    int NumSimpleFluidCoolers(0); // Number of similar fluid coolers
+    thread_local bool GetFluidCoolerInputFlag(true);
+    thread_local int NumSimpleFluidCoolers(0); // Number of similar fluid coolers
 
     // Object Data
-    Array1D<FluidCoolerspecs> SimpleFluidCooler; // dimension to number of machines
-    std::unordered_map<std::string, std::string> UniqueSimpleFluidCoolerNames;
+    thread_local Array1D<FluidCoolerspecs> SimpleFluidCooler; // dimension to number of machines
+    thread_local std::unordered_map<std::string, std::string> UniqueSimpleFluidCoolerNames;
 
     PlantComponent *FluidCoolerspecs::factory(int objectType, std::string objectName)
     {
@@ -693,7 +693,7 @@ namespace FluidCoolers {
         // Based on InitTower subroutine by Don Shirey Sept/Oct 2002, F Buhl Oct 2002
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitFluidCooler");
+        thread_local static std::string const RoutineName("InitFluidCooler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool ErrorsFound(false); // Flag if input data errors are found
@@ -787,7 +787,7 @@ namespace FluidCoolers {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const MaxIte(500);    // Maximum number of iterations
         Real64 const Acc(0.0001); // Accuracy of result
-        static std::string const CalledFrom("SizeFluidCooler");
+        thread_local static std::string const CalledFrom("SizeFluidCooler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int SolFla;                     // Flag of solver
@@ -1433,7 +1433,7 @@ namespace FluidCoolers {
         // Based on SingleSpeedTower subroutine by Dan Fisher ,Sept 1998.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SingleSpeedFluidCooler");
+        thread_local static std::string const RoutineName("SingleSpeedFluidCooler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 TempSetPoint = 0.0;
@@ -1539,7 +1539,7 @@ namespace FluidCoolers {
         // Based on TwoSpeedTower by Dan Fisher ,Sept. 1998.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("TwoSpeedFluidCooler");
+        thread_local static std::string const RoutineName("TwoSpeedFluidCooler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 TempSetPoint = 0.0;
@@ -1633,7 +1633,7 @@ namespace FluidCoolers {
         Real64 _Qactual;        // Actual heat transfer rate between fluid cooler water and air [W]
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcFluidCoolerOutlet");
+        thread_local static std::string const RoutineName("CalcFluidCoolerOutlet");
 
         if (UAdesign == 0.0) return;
 
@@ -1727,7 +1727,7 @@ namespace FluidCoolers {
         // This subroutine is for passing results to the outlet water node.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static ObjexxFCL::gio::Fmt LowTempFmt("(' ',F6.2)");
+        thread_local static ObjexxFCL::gio::Fmt LowTempFmt("(' ',F6.2)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         std::string CharErrOut;

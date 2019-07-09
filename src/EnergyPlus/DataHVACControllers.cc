@@ -79,27 +79,27 @@ namespace DataHVACControllers {
 
     // MODULE PARAMETER DEFINITIONS:
 
-    int const ControllerSimple_Type(1);
-    Array1D_string const ControllerTypes(1, std::string("Controller:WaterCoil"));
+    thread_local int const ControllerSimple_Type(1);
+    thread_local Array1D_string const ControllerTypes(1, std::string("Controller:WaterCoil"));
 
     // Controller action used in modules HVACControllers and ZoneControllers
-    int const iNoAction(0);
-    int const iReverseAction(1);
-    int const iNormalAction(2);
-    Array1D_string const ActionTypes({0, 2}, {"No action", "Reverse action", "Normal action"});
+    thread_local int const iNoAction(0);
+    thread_local int const iReverseAction(1);
+    thread_local int const iNormalAction(2);
+    thread_local Array1D_string const ActionTypes({0, 2}, {"No action", "Reverse action", "Normal action"});
 
     // Controller mode used in modules HVACControllers and ZoneControllers
-    int const iModeWrongAction(-2); // Controller error. E.g., bad action
-    int const iModeNone(-1);        // Controller mode not yet determined
-    int const iModeOff(0);          // Controller off (no air flow in loop)
-    int const iModeInactive(1);     // Controller inactive (equip not available for current step)
-    int const iModeActive(2);       // Controller active (schedule>0 and min<actuated<max)
-    int const iModeMinActive(3);    // Controller active and min-constrained (equip available and actuated=min)
-    int const iModeMaxActive(4);    // Controller active and max-constrained (equip available and actuated=max)
+    thread_local int const iModeWrongAction(-2); // Controller error. E.g., bad action
+    thread_local int const iModeNone(-1);        // Controller mode not yet determined
+    thread_local int const iModeOff(0);          // Controller off (no air flow in loop)
+    thread_local int const iModeInactive(1);     // Controller inactive (equip not available for current step)
+    thread_local int const iModeActive(2);       // Controller active (schedule>0 and min<actuated<max)
+    thread_local int const iModeMinActive(3);    // Controller active and min-constrained (equip available and actuated=min)
+    thread_local int const iModeMaxActive(4);    // Controller active and max-constrained (equip available and actuated=max)
 
-    int const iFirstMode(iModeWrongAction); // First operating mode in range
-    int const iLastMode(iModeMaxActive);    // Last operating mode in range
-    Array1D_string const ControllerModeTypes({-2, 4},
+    thread_local int const iFirstMode(iModeWrongAction); // First operating mode in range
+    thread_local int const iLastMode(iModeMaxActive);    // Last operating mode in range
+    thread_local Array1D_string const ControllerModeTypes({-2, 4},
                                              {"Wrong action mode",
                                               "No controller mode",
                                               "Off controller mode",
@@ -109,15 +109,15 @@ namespace DataHVACControllers {
                                               "Active max-constrained controller mode"});
 
     // Controller operation used in module HVACControllers
-    int const iControllerOpColdStart(1);   // Reset for cold start
-    int const iControllerOpWarmRestart(2); // Reset for warm restart with previous solution
-    int const iControllerOpIterate(3);     // Check convergence and estimate next guess if needed
-    int const iControllerOpEnd(4);         // Check convergence only and trace
+    thread_local int const iControllerOpColdStart(1);   // Reset for cold start
+    thread_local int const iControllerOpWarmRestart(2); // Reset for warm restart with previous solution
+    thread_local int const iControllerOpIterate(3);     // Check convergence and estimate next guess if needed
+    thread_local int const iControllerOpEnd(4);         // Check convergence only and trace
 
     // Controller restart flag used in module HVACControllers
-    int const iControllerWarmRestartNone(-1);   // Indicates that warm restart was not attempted
-    int const iControllerWarmRestartFail(0);    // Indicates that warm restart failed
-    int const iControllerWarmRestartSuccess(1); // Indicates that warm restart was successful
+    thread_local int const iControllerWarmRestartNone(-1);   // Indicates that warm restart was not attempted
+    thread_local int const iControllerWarmRestartFail(0);    // Indicates that warm restart failed
+    thread_local int const iControllerWarmRestartSuccess(1); // Indicates that warm restart was successful
 
     // DERIVED TYPE DEFINITIONS:
     // na

@@ -70,9 +70,9 @@ namespace SolarReflectionManager {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int TotSolReflRecSurf; // Total number of exterior surfaces that can receive reflected solar
-    extern int TotPhiReflRays;    // Number of rays in altitude angle (-90 to 90 deg) for diffuse refl calc
-    extern int TotThetaReflRays;  // Number of rays in azimuth angle (0 to 180 deg) for diffuse refl calc
+    thread_local extern int TotSolReflRecSurf; // Total number of exterior surfaces that can receive reflected solar
+    thread_local extern int TotPhiReflRays;    // Number of rays in altitude angle (-90 to 90 deg) for diffuse refl calc
+    thread_local extern int TotThetaReflRays;  // Number of rays in azimuth angle (0 to 180 deg) for diffuse refl calc
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ExteriorSolarReflectionManager
 
@@ -111,7 +111,7 @@ namespace SolarReflectionManager {
     };
 
     // Object Data
-    extern Array1D<SolReflRecSurfData> SolReflRecSurf;
+    thread_local extern Array1D<SolReflRecSurfData> SolReflRecSurf;
 
     // Functions
 

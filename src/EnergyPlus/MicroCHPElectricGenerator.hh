@@ -62,9 +62,9 @@ namespace MicroCHPElectricGenerator {
     // MODULE PARAMETER DEFINITIONS
 
     // DERIVED TYPE DEFINITIONS
-    extern bool GetMicroCHPInput; // When TRUE, calls subroutine to read input file.
-    extern Array1D_bool CheckEquipName;
-    extern Array1D_bool MySizeFlag;
+    thread_local extern bool GetMicroCHPInput; // When TRUE, calls subroutine to read input file.
+    thread_local extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool MySizeFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Combustion ElectricGenerator
 

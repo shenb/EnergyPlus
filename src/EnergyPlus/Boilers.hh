@@ -61,28 +61,28 @@ namespace EnergyPlus {
 namespace Boilers {
 
     // Boiler normalized efficiency curve types
-    extern int const Linear;
-    extern int const BiLinear;
-    extern int const Quadratic;
-    extern int const BiQuadratic;
-    extern int const Cubic;
-    extern int const QuadraticLinear;
-    extern int const BiCubic;
+    thread_local extern int const Linear;
+    thread_local extern int const BiLinear;
+    thread_local extern int const Quadratic;
+    thread_local extern int const BiQuadratic;
+    thread_local extern int const Cubic;
+    thread_local extern int const QuadraticLinear;
+    thread_local extern int const BiCubic;
 
     // water temperature evaluation method
-    extern int const BoilerTempModeNotSet;
-    extern int const EnteringBoilerTemp;
-    extern int const LeavingBoilerTemp;
+    thread_local extern int const BoilerTempModeNotSet;
+    thread_local extern int const EnteringBoilerTemp;
+    thread_local extern int const LeavingBoilerTemp;
 
     // Boiler flow modes
-    extern int const FlowModeNotSet;
-    extern int const ConstantFlow;
-    extern int const NotModulated;
-    extern int const LeavingSetPointModulated;
+    thread_local extern int const FlowModeNotSet;
+    thread_local extern int const ConstantFlow;
+    thread_local extern int const NotModulated;
+    thread_local extern int const LeavingSetPointModulated;
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumBoilers;          // Number of boilers
-    extern bool GetBoilerInputFlag; // Boiler input flag, false if input is processed
+    thread_local extern int NumBoilers;          // Number of boilers
+    thread_local extern bool GetBoilerInputFlag; // Boiler input flag, false if input is processed
 
     struct BoilerSpecs : PlantComponent
     {
@@ -185,7 +185,7 @@ namespace Boilers {
         static PlantComponent *factory(std::string const &objectName);
     };
 
-    extern Array1D<BoilerSpecs> Boiler; // boiler data - dimension to number of machines
+    thread_local extern Array1D<BoilerSpecs> Boiler; // boiler data - dimension to number of machines
 
     void clear_state();
 

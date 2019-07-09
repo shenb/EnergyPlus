@@ -66,16 +66,16 @@ namespace DataReportingFlags {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumOfWarmupDays; // reinitialized for each environment.
-    extern std::string cWarmupDay;
-    extern bool DisplayPerfSimulationFlag;        // True when "Performing Simulation" should be displayed
-    extern bool DoWeatherInitReporting;           // Init reporting -- items that go onto OutputFileInits
-    extern bool PrintEndDataDictionary;           // Flag for printing "End of Data Dictionary" on output files
-    extern bool IgnoreInteriorWindowTransmission; // True when section "IgnoreInteriorWindowTransmission" is entered
-    extern bool MakeMirroredDetachedShading;      // True (default) when Detached Shading Surfaces should be "mirrored"
-    extern bool MakeMirroredAttachedShading;      // True (default) when Attached Shading Surfaces should be "mirrored"
-    extern bool DebugOutput;
-    extern bool EvenDuringWarmup;
+    thread_local extern int NumOfWarmupDays; // reinitialized for each environment.
+    thread_local extern std::string cWarmupDay;
+    thread_local extern bool DisplayPerfSimulationFlag;        // True when "Performing Simulation" should be displayed
+    thread_local extern bool DoWeatherInitReporting;           // Init reporting -- items that go onto OutputFileInits
+    thread_local extern bool PrintEndDataDictionary;           // Flag for printing "End of Data Dictionary" on output files
+    thread_local extern bool IgnoreInteriorWindowTransmission; // True when section "IgnoreInteriorWindowTransmission" is entered
+    thread_local extern bool MakeMirroredDetachedShading;      // True (default) when Detached Shading Surfaces should be "mirrored"
+    thread_local extern bool MakeMirroredAttachedShading;      // True (default) when Attached Shading Surfaces should be "mirrored"
+    thread_local extern bool DebugOutput;
+    thread_local extern bool EvenDuringWarmup;
 
 } // namespace DataReportingFlags
 

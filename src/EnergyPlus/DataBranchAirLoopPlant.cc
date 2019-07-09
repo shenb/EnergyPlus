@@ -83,29 +83,29 @@ namespace DataBranchAirLoopPlant {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Parameters for tolerance
-    Real64 const MassFlowTolerance(0.000000001); // minimum significant mass flow rate (kg/s)
+    thread_local Real64 const MassFlowTolerance(0.000000001); // minimum significant mass flow rate (kg/s)
 
     // Pressure Curve Type: None, pressure, or generic curve (if generic it will be a postive value which is the curve manager index)
-    int const PressureCurve_Error(-1);
-    int const PressureCurve_None(0);
-    int const PressureCurve_Pressure(1);
-    int const PressureCurve_Generic(2);
+    thread_local int const PressureCurve_Error(-1);
+    thread_local int const PressureCurve_None(0);
+    thread_local int const PressureCurve_Pressure(1);
+    thread_local int const PressureCurve_Generic(2);
 
     // Parameters for flow Control Types for branch flow resolution inside splitter/mixers
-    int const ControlType_Unknown(0);
-    int const ControlType_Active(1);       // 'Active'
-    int const ControlType_Passive(2);      // 'Passive'
-    int const ControlType_SeriesActive(3); // 'SeriesActive'
-    int const ControlType_Bypass(4);       // 'Bypass
-    Array1D_string const cControlType({0, 4}, {"Unknown", "Active", "Passive", "SeriesActive", "Bypass"});
+    thread_local int const ControlType_Unknown(0);
+    thread_local int const ControlType_Active(1);       // 'Active'
+    thread_local int const ControlType_Passive(2);      // 'Passive'
+    thread_local int const ControlType_SeriesActive(3); // 'SeriesActive'
+    thread_local int const ControlType_Bypass(4);       // 'Bypass
+    thread_local Array1D_string const cControlType({0, 4}, {"Unknown", "Active", "Passive", "SeriesActive", "Bypass"});
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumPressureCurves(0);
+    thread_local int NumPressureCurves(0);
 
     // Object Data
-    Array1D<PlantPressureCurveData> PressureCurve;
+    thread_local Array1D<PlantPressureCurveData> PressureCurve;
 
     void clear_state()
     {

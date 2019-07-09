@@ -63,25 +63,25 @@ namespace Humidifiers {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const Humidifier_Steam_Electric;
-    extern int const Humidifier_Steam_Gas;
+    thread_local extern int const Humidifier_Steam_Electric;
+    thread_local extern int const Humidifier_Steam_Gas;
 
-    extern Array1D_string const HumidifierType;
+    thread_local extern Array1D_string const HumidifierType;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumHumidifiers;   // number of humidifiers of all types
-    extern int NumElecSteamHums; // number of electric steam humidifiers
-    extern int NumGasSteamHums;  // number of gas steam humidifiers
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumHumidifiers;   // number of humidifiers of all types
+    thread_local extern int NumElecSteamHums; // number of electric steam humidifiers
+    thread_local extern int NumGasSteamHums;  // number of gas steam humidifiers
+    thread_local extern Array1D_bool CheckEquipName;
 
     // Humidifier normalized thermal efficiency curve types
-    extern int const Linear;
-    extern int const Quadratic;
-    extern int const Cubic;
-    extern int const FixedInletWaterTemperature;
-    extern int const VariableInletWaterTemperature;
+    thread_local extern int const Linear;
+    thread_local extern int const Quadratic;
+    thread_local extern int const Cubic;
+    thread_local extern int const FixedInletWaterTemperature;
+    thread_local extern int const VariableInletWaterTemperature;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -175,7 +175,7 @@ namespace Humidifiers {
     };
 
     // Object Data
-    extern Array1D<HumidifierData> Humidifier;
+    thread_local extern Array1D<HumidifierData> Humidifier;
 
     // Functions
 

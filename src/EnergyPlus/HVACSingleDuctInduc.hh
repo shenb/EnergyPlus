@@ -63,16 +63,16 @@ namespace HVACSingleDuctInduc {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const SingleDuct_CV_FourPipeInduc;
-    extern int const SingleDuct_CV_2PipeInduc;
+    thread_local extern int const SingleDuct_CV_FourPipeInduc;
+    thread_local extern int const SingleDuct_CV_2PipeInduc;
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumIndUnits;
-    extern int NumFourPipes;
-    extern Array1D_bool CheckEquipName;
-    extern bool GetIUInputFlag; // First time, input is "gotten"
+    thread_local extern int NumIndUnits;
+    thread_local extern int NumFourPipes;
+    thread_local extern Array1D_bool CheckEquipName;
+    thread_local extern bool GetIUInputFlag; // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HVACSingleDuctInduc:
 
@@ -153,7 +153,7 @@ namespace HVACSingleDuctInduc {
     };
 
     // Object Data
-    extern Array1D<IndUnitData> IndUnit;
+    thread_local extern Array1D<IndUnitData> IndUnit;
 
     // Functions
 

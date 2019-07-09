@@ -133,15 +133,15 @@ namespace UnitHeater {
     using namespace FluidProperties;
 
     // MODULE PARAMETER DEFINITIONS
-    std::string const cMO_UnitHeater("ZoneHVAC:UnitHeater");
+    thread_local std::string const cMO_UnitHeater("ZoneHVAC:UnitHeater");
 
     // Character parameters for outside air control types:
-    std::string const ElectricCoil("ElectricCoil");
-    std::string const GasCoil("GasCoil");
-    std::string const WaterHeatingCoil("WaterHeatingCoil");
-    std::string const SteamCoil("SteamCoil");
+    thread_local std::string const ElectricCoil("ElectricCoil");
+    thread_local std::string const GasCoil("GasCoil");
+    thread_local std::string const WaterHeatingCoil("WaterHeatingCoil");
+    thread_local std::string const SteamCoil("SteamCoil");
 
-    static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameSteam("STEAM");
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -149,21 +149,21 @@ namespace UnitHeater {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool InitUnitHeaterOneTimeFlag(true);
-        bool GetUnitHeaterInputFlag(true);
+        thread_local bool InitUnitHeaterOneTimeFlag(true);
+        thread_local bool GetUnitHeaterInputFlag(true);
     } // namespace
 
-    bool HCoilOn;       // TRUE if the heating coil (gas or electric especially) should be running
-    int NumOfUnitHeats; // Number of unit heaters in the input file
-    Real64 QZnReq;      // heating or cooling needed by zone [watts]
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
+    thread_local bool HCoilOn;       // TRUE if the heating coil (gas or electric especially) should be running
+    thread_local int NumOfUnitHeats; // Number of unit heaters in the input file
+    thread_local Real64 QZnReq;      // heating or cooling needed by zone [watts]
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE UnitHeater
 
     // Object Data
-    Array1D<UnitHeaterData> UnitHeat;
-    Array1D<UnitHeatNumericFieldData> UnitHeatNumericFields;
+    thread_local Array1D<UnitHeaterData> UnitHeat;
+    thread_local Array1D<UnitHeatNumericFieldData> UnitHeatNumericFields;
 
     // Functions
 
@@ -296,15 +296,15 @@ namespace UnitHeater {
         using WaterCoils::GetCoilWaterInletNode;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false);                               // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false);                               // Set to true if errors in input, fatal at end of routine
         int IOStatus;                                                 // Used in GetObjectItem
         bool IsNotOK;                                                 // TRUE if there was a problem with a list name
-        static bool errFlag(false);                                   // interim error flag
+        thread_local static bool errFlag(false);                                   // interim error flag
         int NumAlphas;                                                // Number of Alphas for each GetObjectItem call
         int NumNumbers;                                               // Number of Numbers for each GetObjectItem call
         int NumFields;                                                // Total number of fields in object
         int UnitHeatNum;                                              // Item to be "gotten"
-        static std::string const RoutineName("GetUnitHeaterInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetUnitHeaterInput: "); // include trailing blank space
         Real64 FanVolFlow;                                            // Fan volumetric flow rate
         std::string CurrentModuleObject;
         Array1D_string Alphas;         // Alpha items for object
@@ -740,13 +740,13 @@ namespace UnitHeater {
         using WaterCoils::SimulateWaterCoilComponents;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitUnitHeater");
+        thread_local static std::string const RoutineName("InitUnitHeater");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyPlantScanFlag;
-        static Array1D_bool MyZoneEqFlag;            // used to set up zone equipment availability managers
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static Array1D_bool MyZoneEqFlag;            // used to set up zone equipment availability managers
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;
         int HotConNode; // hot water control node number in unit heater loop
         int InNode;     // inlet node number in unit heater loop
@@ -756,7 +756,7 @@ namespace UnitHeater {
         Real64 SteamDensity;
         Real64 rho; // local fluid density
         bool errFlag;
-        static bool SetMassFlowRateToZero(false); // TRUE when mass flow rates need to be set to zero
+        thread_local static bool SetMassFlowRateToZero(false); // TRUE when mass flow rates need to be set to zero
         // FLOW:
 
         // Do the one time initializations
@@ -979,7 +979,7 @@ namespace UnitHeater {
         using WaterCoils::WaterCoil;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizeUnitHeater");
+        thread_local static std::string const RoutineName("SizeUnitHeater");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum; // index of plant sizing object for 1st heating loop
@@ -990,11 +990,11 @@ namespace UnitHeater {
         Real64 EnthSteamOutWet;
         Real64 LatentHeatSteam;
         Real64 SteamDensity;
-        static int RefrigIndex(0);
-        static int CoilWaterInletNode(0);
-        static int CoilWaterOutletNode(0);
-        static int CoilSteamInletNode(0);
-        static int CoilSteamOutletNode(0);
+        thread_local static int RefrigIndex(0);
+        thread_local static int CoilWaterInletNode(0);
+        thread_local static int CoilWaterOutletNode(0);
+        thread_local static int CoilSteamInletNode(0);
+        thread_local static int CoilSteamOutletNode(0);
         Real64 Cp;                     // local temporary for fluid specific heat
         Real64 rho;                    // local temporary for fluid density
         bool IsAutoSize;               // Indicator to autosize

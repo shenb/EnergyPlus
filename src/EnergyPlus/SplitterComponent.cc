@@ -97,10 +97,10 @@ namespace SplitterComponent {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    bool GetSplitterInputFlag(true);
+    thread_local bool GetSplitterInputFlag(true);
     // Public because Used by SimAirServingZones and the Direct Air Unit
-    int NumSplitters(0); // The Number of Splitters found in the Input
-    Array1D_bool CheckEquipName;
+    thread_local int NumSplitters(0); // The Number of Splitters found in the Input
+    thread_local Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -116,7 +116,7 @@ namespace SplitterComponent {
     // Reporting routines for module
 
     // Object Data
-    Array1D<SplitterConditions> SplitterCond;
+    thread_local Array1D<SplitterConditions> SplitterCond;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -218,7 +218,7 @@ namespace SplitterComponent {
         using NodeInputManager::GetOnlySingleNode;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetSplitterInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetSplitterInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int SplitterNum; // The Splitter that you are currently loading input into
@@ -226,7 +226,7 @@ namespace SplitterComponent {
         int NumNums;
         int NodeNum;
         int IOStat;
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         int NumParams;
         int OutNodeNum1;
         int OutNodeNum2;
@@ -390,7 +390,7 @@ namespace SplitterComponent {
         int OutletNode;
         int NodeNum;
         Real64 AirEnthalpy; // [J/kg]
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
 
         // FLOW:
 

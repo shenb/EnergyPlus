@@ -93,16 +93,16 @@ namespace DataSurfaceLists {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumOfSurfaceLists(0);            // Number of surface lists in the user input file
-    int NumOfSurfListVentSlab(0);        // Number of surface lists in the user input file
-    bool SurfaceListInputsFilled(false); // Set to TRUE after first pass through air loop
+    thread_local int NumOfSurfaceLists(0);            // Number of surface lists in the user input file
+    thread_local int NumOfSurfListVentSlab(0);        // Number of surface lists in the user input file
+    thread_local bool SurfaceListInputsFilled(false); // Set to TRUE after first pass through air loop
 
     //  CHARACTER(len=*), PARAMETER :: CurrentModuleObject = ' '
     // SUBROUTINE SPECIFICATIONS FOR MODULE DataSurfaceLists
 
     // Object Data
-    Array1D<SurfaceListData> SurfList;
-    Array1D<SlabListData> SlabList;
+    thread_local Array1D<SurfaceListData> SurfList;
+    thread_local Array1D<SlabListData> SlabList;
 
     // Functions
 
@@ -133,8 +133,8 @@ namespace DataSurfaceLists {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CurrentModuleObject1("ZoneHVAC:LowTemperatureRadiant:SurfaceGroup");
-        static std::string const CurrentModuleObject2("ZoneHVAC:VentilatedSlab:SlabGroup");
+        thread_local static std::string const CurrentModuleObject1("ZoneHVAC:LowTemperatureRadiant:SurfaceGroup");
+        thread_local static std::string const CurrentModuleObject2("ZoneHVAC:VentilatedSlab:SlabGroup");
         Real64 const FlowFractionTolerance(0.0001); // Smallest deviation from unity for the sum of all fractions
         Real64 const SurfListMinFlowFrac(0.001);    // Minimum allowed flow fraction (to avoid divide by zero)
 

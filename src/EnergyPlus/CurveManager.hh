@@ -70,48 +70,48 @@ namespace CurveManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern std::string const Blank;
+    thread_local extern std::string const Blank;
 
     // Curve Type parameters, these can differ from object types (e.g. a CurveType_TableOneIV can be linear, quadratic, etc)
-    extern int const Linear;
-    extern int const BiLinear;
-    extern int const Quadratic;
-    extern int const BiQuadratic;
-    extern int const Cubic;
-    extern int const QuadraticLinear;
-    extern int const BiCubic;
-    extern int const TriQuadratic;
-    extern int const Exponent;
-    extern int const Quartic;
-    extern int const FanPressureRise;
-    extern int const ExponentialSkewNormal;
-    extern int const Sigmoid;
-    extern int const RectangularHyperbola1;
-    extern int const RectangularHyperbola2;
-    extern int const ExponentialDecay;
-    extern int const DoubleExponentialDecay;
-    extern int const QuadLinear;
-    extern int const CubicLinear;
-    extern int const ChillerPartLoadWithLift;
+    thread_local extern int const Linear;
+    thread_local extern int const BiLinear;
+    thread_local extern int const Quadratic;
+    thread_local extern int const BiQuadratic;
+    thread_local extern int const Cubic;
+    thread_local extern int const QuadraticLinear;
+    thread_local extern int const BiCubic;
+    thread_local extern int const TriQuadratic;
+    thread_local extern int const Exponent;
+    thread_local extern int const Quartic;
+    thread_local extern int const FanPressureRise;
+    thread_local extern int const ExponentialSkewNormal;
+    thread_local extern int const Sigmoid;
+    thread_local extern int const RectangularHyperbola1;
+    thread_local extern int const RectangularHyperbola2;
+    thread_local extern int const ExponentialDecay;
+    thread_local extern int const DoubleExponentialDecay;
+    thread_local extern int const QuadLinear;
+    thread_local extern int const CubicLinear;
+    thread_local extern int const ChillerPartLoadWithLift;
 
     // Interpolation Types
-    extern int const LinearInterpolationOfTable;
-    extern int const LagrangeInterpolationLinearExtrapolation;
-    extern int const EvaluateCurveToLimits;
+    thread_local extern int const LinearInterpolationOfTable;
+    thread_local extern int const LagrangeInterpolationLinearExtrapolation;
+    thread_local extern int const EvaluateCurveToLimits;
 
     // Data Format
-    extern int const SINGLELINEINDEPENDENTVARIABLEWITHMATRIX;
+    thread_local extern int const SINGLELINEINDEPENDENTVARIABLEWITHMATRIX;
 
     // Sort Order
-    extern int const ASCENDING;
-    extern int const DESCENDING;
+    thread_local extern int const ASCENDING;
+    thread_local extern int const DESCENDING;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumCurves;
-    extern bool GetCurvesInputFlag; // First time, input is "gotten"
+    thread_local extern int NumCurves;
+    thread_local extern bool GetCurvesInputFlag; // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -293,12 +293,12 @@ namespace CurveManager {
     };
 
     // Object Data
-    extern Array1D<PerfomanceCurveData> PerfCurve;
-    extern Array1D<PerfCurveTableDataStruct> PerfCurveTableData;
-    extern Array1D<TableDataStruct> TableData;
-    extern Array1D<TableDataStruct> TempTableData;
-    extern Array1D<TableDataStruct> Temp2TableData;
-    extern Array1D<TableLookupData> TableLookup;
+    thread_local extern Array1D<PerfomanceCurveData> PerfCurve;
+    thread_local extern Array1D<PerfCurveTableDataStruct> PerfCurveTableData;
+    thread_local extern Array1D<TableDataStruct> TableData;
+    thread_local extern Array1D<TableDataStruct> TempTableData;
+    thread_local extern Array1D<TableDataStruct> Temp2TableData;
+    thread_local extern Array1D<TableLookupData> TableLookup;
 
     // Functions
 

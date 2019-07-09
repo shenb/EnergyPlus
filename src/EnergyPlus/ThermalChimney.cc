@@ -107,9 +107,9 @@ namespace ThermalChimney {
     // Data
     // DERIVED TYPE DEFINITIONS
 
-    int TotThermalChimney(0); // Total ThermalChimney Statements in input
+    thread_local int TotThermalChimney(0); // Total ThermalChimney Statements in input
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // Subroutine Specifications for the Heat Balance Module
     // Driver Routines
@@ -119,9 +119,9 @@ namespace ThermalChimney {
     // Utility routines for module
 
     // Object Data
-    Array1D<ThermalChimneyData> ThermalChimneySys;
-    Array1D<ThermChimZnReportVars> ZnRptThermChim;
-    Array1D<ThermChimReportVars> ThermalChimneyReport;
+    thread_local Array1D<ThermalChimneyData> ThermalChimneySys;
+    thread_local Array1D<ThermChimZnReportVars> ZnRptThermChim;
+    thread_local Array1D<ThermChimReportVars> ThermalChimneyReport;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -165,8 +165,8 @@ namespace ThermalChimney {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool GetInputFlag(true);
-        static bool ErrorsFound(false);
+        thread_local static bool GetInputFlag(true);
+        thread_local static bool ErrorsFound(false);
 
         // Obtains and Allocates heat balance related parameters from input file
         if (GetInputFlag) {

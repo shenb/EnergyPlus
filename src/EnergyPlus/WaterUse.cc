@@ -92,27 +92,27 @@ namespace WaterUse {
     using DataGlobals::WarmupFlag;
 
     // MODULE PARAMETER DEFINITIONS:
-    int const HeatRecoveryHXIdeal(1);
-    int const HeatRecoveryHXCounterFlow(2);
-    int const HeatRecoveryHXCrossFlow(3);
+    thread_local int const HeatRecoveryHXIdeal(1);
+    thread_local int const HeatRecoveryHXCounterFlow(2);
+    thread_local int const HeatRecoveryHXCrossFlow(3);
 
-    int const HeatRecoveryConfigPlant(1);
-    int const HeatRecoveryConfigEquipment(2);
-    int const HeatRecoveryConfigPlantAndEquip(3);
+    thread_local int const HeatRecoveryConfigPlant(1);
+    thread_local int const HeatRecoveryConfigEquipment(2);
+    thread_local int const HeatRecoveryConfigPlantAndEquip(3);
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumWaterEquipment(0);
-    int NumWaterConnections(0);
-    bool GetWaterUseInputFlag(true);
+    thread_local int NumWaterEquipment(0);
+    thread_local int NumWaterConnections(0);
+    thread_local bool GetWaterUseInputFlag(true);
 
-    Array1D_bool CheckEquipName;
-    Array1D_bool CheckPlantLoop;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local Array1D_bool CheckPlantLoop;
 
     // Object Data
-    Array1D<WaterEquipmentType> WaterEquipment;
-    Array1D<WaterConnectionsType> WaterConnections;
+    thread_local Array1D<WaterEquipmentType> WaterEquipment;
+    thread_local Array1D<WaterConnectionsType> WaterConnections;
 
     void clear_state()
     {
@@ -154,8 +154,8 @@ namespace WaterUse {
         int WaterEquipNum;
         int WaterConnNum;
         int NumIteration;
-        static int MaxIterationsErrorCount;
-        static bool MyEnvrnFlag(true);
+        thread_local static int MaxIterationsErrorCount;
+        thread_local static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (GetWaterUseInputFlag) {
@@ -269,8 +269,8 @@ namespace WaterUse {
         //  INTEGER :: WaterEquipNum
         int WaterConnNum;
         int NumIteration;
-        static int MaxIterationsErrorCount;
-        static bool MyEnvrnFlag(true);
+        thread_local static int MaxIterationsErrorCount;
+        thread_local static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (GetWaterUseInputFlag) {
@@ -382,7 +382,7 @@ namespace WaterUse {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
@@ -1217,7 +1217,7 @@ namespace WaterUse {
         Real64 FlowMassMax;
         Real64 MoistureMassMax;
 
-        static std::string const RoutineName("CalcEquipmentDrainTemp");
+        thread_local static std::string const RoutineName("CalcEquipmentDrainTemp");
 
         // FLOW:
 
@@ -1309,8 +1309,8 @@ namespace WaterUse {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InletNode;
         int OutletNode;
-        static bool MyOneTimeFlag(true);      // one time flag                    !DSU
-        static Array1D_bool SetLoopIndexFlag; // get loop number flag             !DSU
+        thread_local static bool MyOneTimeFlag(true);      // one time flag                    !DSU
+        thread_local static Array1D_bool SetLoopIndexFlag; // get loop number flag             !DSU
         bool errFlag;
 
         if (MyOneTimeFlag) {                                       // DSU
@@ -1886,7 +1886,7 @@ namespace WaterUse {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int WaterEquipNum;
         int ZoneNum;
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (NumWaterEquipment == 0) return;

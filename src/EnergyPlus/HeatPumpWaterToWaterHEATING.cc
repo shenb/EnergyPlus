@@ -105,17 +105,17 @@ namespace HeatPumpWaterToWaterHEATING {
     using namespace DataLoopNode;
 
     // MODULE PARAMETER DEFINITIONS
-    std::string const ModuleCompName("HeatPump:WaterToWater:ParameterEstimation:Heating");
-    std::string const ModuleCompNameUC("HEATPUMP:WATERTOWATER:PARAMETERESTIMATION:HEATING");
+    thread_local std::string const ModuleCompName("HeatPump:WaterToWater:ParameterEstimation:Heating");
+    thread_local std::string const ModuleCompNameUC("HEATPUMP:WATERTOWATER:PARAMETERESTIMATION:HEATING");
 
-    std::string GSHPRefrigerant("R22"); // Refrigerent name and index
-    int GSHPRefrigIndex(0);
+    thread_local std::string GSHPRefrigerant("R22"); // Refrigerent name and index
+    thread_local int GSHPRefrigIndex(0);
 
-    int NumGSHPs(0);                         // number of Gshps specified in input
+    thread_local int NumGSHPs(0);                         // number of Gshps specified in input
 
     // Object Data
-    bool GetWWHPHeatingInput = true;
-    Array1D<GshpPeHeatingSpecs> GSHP; // dimension to number of machines
+    thread_local bool GetWWHPHeatingInput = true;
+    thread_local Array1D<GshpPeHeatingSpecs> GSHP; // dimension to number of machines
 
     void clear_state() {
         NumGSHPs = 0;
@@ -249,7 +249,7 @@ namespace HeatPumpWaterToWaterHEATING {
         Array1D_string AlphArray(5);  // character string data
         Array1D<Real64> NumArray(23); // numeric data
 
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
 
         NumGSHPs = inputProcessor->getNumObjectsFound(ModuleCompName);
 
@@ -482,7 +482,7 @@ namespace HeatPumpWaterToWaterHEATING {
         // initialization
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitGshp");
+        thread_local static std::string const RoutineName("InitGshp");
 
         // For each new environment
         if (BeginEnvrnFlag && this->beginEnvironFlag) {
@@ -571,13 +571,13 @@ namespace HeatPumpWaterToWaterHEATING {
         Real64 const RelaxParam(0.6);
         Real64 const SmallNum(1.0e-20);
         int const IterationLimit(500);
-        static std::string const RoutineName("CalcGshpModel");
-        static std::string const RoutineNameLoadSideTemp("CalcGSHPModel:LoadSideTemp");
-        static std::string const RoutineNameSourceSideTemp("CalcGSHPModel:SourceSideTemp");
-        static std::string const RoutineNameCompressInletTemp("CalcGSHPModel:CompressInletTemp");
-        static std::string const RoutineNameSuctionPr("CalcGSHPModel:SuctionPr");
-        static std::string const RoutineNameCompSuctionTemp("CalcGSHPModel:CompSuctionTemp");
-        static ObjexxFCL::gio::Fmt fmtLD("*");
+        thread_local static std::string const RoutineName("CalcGshpModel");
+        thread_local static std::string const RoutineNameLoadSideTemp("CalcGSHPModel:LoadSideTemp");
+        thread_local static std::string const RoutineNameSourceSideTemp("CalcGSHPModel:SourceSideTemp");
+        thread_local static std::string const RoutineNameCompressInletTemp("CalcGSHPModel:CompressInletTemp");
+        thread_local static std::string const RoutineNameSuctionPr("CalcGSHPModel:SuctionPr");
+        thread_local static std::string const RoutineNameCompSuctionTemp("CalcGSHPModel:CompSuctionTemp");
+        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CompSuctionTemp;
@@ -587,8 +587,8 @@ namespace HeatPumpWaterToWaterHEATING {
         std::string ErrString;
         Real64 DutyFactor;
 
-        static Real64 CurrentSimTime(0.0);
-        static Real64 PrevSimTime(0.0);
+        thread_local static Real64 CurrentSimTime(0.0);
+        thread_local static Real64 PrevSimTime(0.0);
 
         // Init Module level Variables
         if (PrevSimTime != CurrentSimTime) {

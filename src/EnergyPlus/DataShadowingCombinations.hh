@@ -86,7 +86,7 @@ namespace DataShadowingCombinations {
     };
 
     // Object Data
-    extern Array1D<ShadowingCombinations> ShadowComb;
+    thread_local extern Array1D<ShadowingCombinations> ShadowComb;
 
 } // namespace DataShadowingCombinations
 

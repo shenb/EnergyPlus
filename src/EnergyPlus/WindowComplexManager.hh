@@ -75,26 +75,26 @@ namespace WindowComplexManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    extern Real64 const sigma; // Stefan-Boltzmann constant
-    extern Real64 const PressureDefault;
+    thread_local extern Real64 const sigma; // Stefan-Boltzmann constant
+    thread_local extern Real64 const PressureDefault;
 
-    extern int const Calculate_Geometry;
-    extern int const Copy_Geometry;
+    thread_local extern int const Calculate_Geometry;
+    thread_local extern int const Copy_Geometry;
 
-    extern int const TmpLen; // Length increment of temporary arrays
+    thread_local extern int const TmpLen; // Length increment of temporary arrays
 
-    extern int const Front_Incident; // Ray identification types
-    extern int const Front_Transmitted;
-    extern int const Front_Reflected;
-    extern int const Back_Incident;
-    extern int const Back_Transmitted;
-    extern int const Back_Reflected;
+    thread_local extern int const Front_Incident; // Ray identification types
+    thread_local extern int const Front_Transmitted;
+    thread_local extern int const Front_Reflected;
+    thread_local extern int const Back_Incident;
+    thread_local extern int const Back_Transmitted;
+    thread_local extern int const Back_Reflected;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumComplexWind; // Total number of complex windows
+    thread_local extern int NumComplexWind; // Total number of complex windows
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE WindowComplexManager:
 
@@ -133,9 +133,9 @@ namespace WindowComplexManager {
     };
 
     // Object Data
-    extern Array1D<BasisStruct> BasisList;
-    extern Array1D<WindowIndex> WindowList;
-    extern Array2D<WindowStateIndex> WindowStateList;
+    thread_local extern Array1D<BasisStruct> BasisList;
+    thread_local extern Array1D<WindowIndex> WindowList;
+    thread_local extern Array2D<WindowStateIndex> WindowStateList;
 
     // Functions
 

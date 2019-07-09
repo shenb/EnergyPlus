@@ -63,8 +63,8 @@ namespace InternalHeatGains {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    extern bool GetInternalHeatGainsInputFlag; // Controls the GET routine calling (limited to first time)
-    extern bool ErrorsFound;                   // if errors were found in the input
+    thread_local extern bool GetInternalHeatGainsInputFlag; // Controls the GET routine calling (limited to first time)
+    thread_local extern bool ErrorsFound;                   // if errors were found in the input
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE InternalHeatGains
     // PUBLIC  SumInternalConvectionGainsByIndices

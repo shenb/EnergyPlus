@@ -116,8 +116,8 @@ namespace DirectAirManager {
     // Type declarations in DirectAir module
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumDirectAir(0);
-    Array1D_bool CheckEquipName;
+    thread_local int NumDirectAir(0);
+    thread_local Array1D_bool CheckEquipName;
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -125,18 +125,18 @@ namespace DirectAirManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool GetDirectAirInputFlag(true);
-        static bool MyOneTimeFlag(true);
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MySizeFlag;
-        static Array1D_bool MyDirectAirInitFlag;
+        thread_local bool GetDirectAirInputFlag(true);
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MySizeFlag;
+        thread_local static Array1D_bool MyDirectAirInitFlag;
     } // namespace
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE AirLoopSplitter
 
     // Object Data
-    Array1D<DirectAirProps> DirectAir;
+    thread_local Array1D<DirectAirProps> DirectAir;
 
     void clear_state()
     {
@@ -250,8 +250,8 @@ namespace DirectAirManager {
         int NumAlphas; // Number of alphanumerics returned by GetObjectItem
         int DirectAirNum;
         int IOStat;
-        static std::string const RoutineName("GetDirectAirInput: "); // include trailing blank space
-        static bool ErrorsFound(false);
+        thread_local static std::string const RoutineName("GetDirectAirInput: "); // include trailing blank space
+        thread_local static bool ErrorsFound(false);
         int Loop;     // Do Loop Index
         int CtrlZone; // controlled zome do loop index
         int SupAirIn; // controlled zone supply air inlet index

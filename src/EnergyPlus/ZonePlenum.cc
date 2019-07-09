@@ -110,22 +110,22 @@ namespace ZonePlenum {
     // Data
     // DERIVED TYPE DEFINITIONS
 
-    int NumZonePlenums(0);       // The Number of ZonePlenums found in the Input
-    int NumZoneReturnPlenums(0); // The Number of ZoneReturnPlenums found in the Input
-    int NumZoneSupplyPlenums(0); // The Number of ZoneSupplyPlenums found in the Input
-    Array1D_bool CheckRetEquipName;
-    Array1D_bool CheckSupEquipName;
+    thread_local int NumZonePlenums(0);       // The Number of ZonePlenums found in the Input
+    thread_local int NumZoneReturnPlenums(0); // The Number of ZoneReturnPlenums found in the Input
+    thread_local int NumZoneSupplyPlenums(0); // The Number of ZoneSupplyPlenums found in the Input
+    thread_local Array1D_bool CheckRetEquipName;
+    thread_local Array1D_bool CheckSupEquipName;
 
     namespace {
-        bool GetInputFlag(true); // Flag set to make sure you get input once
-        bool InitAirZoneReturnPlenumEnvrnFlag(true);
-        bool InitAirZoneReturnPlenumOneTimeFlag(true);
+        thread_local bool GetInputFlag(true); // Flag set to make sure you get input once
+        thread_local bool InitAirZoneReturnPlenumEnvrnFlag(true);
+        thread_local bool InitAirZoneReturnPlenumOneTimeFlag(true);
     } // namespace
     // SUBROUTINE SPECIFICATIONS FOR MODULE ZONEPLENUM
 
     // Object Data
-    Array1D<ZoneReturnPlenumConditions> ZoneRetPlenCond;
-    Array1D<ZoneSupplyPlenumConditions> ZoneSupPlenCond;
+    thread_local Array1D<ZoneReturnPlenumConditions> ZoneRetPlenCond;
+    thread_local Array1D<ZoneSupplyPlenumConditions> ZoneSupPlenCond;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -343,10 +343,10 @@ namespace ZonePlenum {
         Array1D_string cNumericFields;   // Numeric field names
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        static bool ErrorsFound(false);
+        thread_local static bool ErrorsFound(false);
         bool NodeListError; // Flag for node list error
         bool UniqueNodeError;
-        static std::string const RoutineName("GetZonePlenumInput: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetZonePlenumInput: "); // include trailing blank space
         std::string InducedNodeListName;
 
         // Flow
@@ -918,7 +918,7 @@ namespace ZonePlenum {
         int PlenumZoneNum;
         int NodeIndex;
 
-        static bool MyEnvrnFlag(true);
+        thread_local static bool MyEnvrnFlag(true);
         // FLOW:
 
         // Do the Begin Environment initializations

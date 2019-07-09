@@ -75,42 +75,42 @@ namespace ZoneTempPredictorCorrector {
     // INTEGER, PUBLIC, PARAMETER :: iPushZoneTimestepHistories    = 5
     // INTEGER, PUBLIC, PARAMETER :: iPushSystemTimestepHistories  = 6
 
-    extern Array1D_string const ValidControlTypes;
+    thread_local extern Array1D_string const ValidControlTypes;
 
-    extern Array1D_string const ValidComfortControlTypes;
+    thread_local extern Array1D_string const ValidComfortControlTypes;
 
-    extern Array1D_string const cZControlTypes;
+    thread_local extern Array1D_string const cZControlTypes;
 
-    extern int const iZC_TStat;
-    extern int const iZC_TCTStat;
-    extern int const iZC_OTTStat;
-    extern int const iZC_HStat;
-    extern int const iZC_TandHStat;
-    extern int const iZC_StagedDual;
-    extern Array1D_int const iZControlTypes;
+    thread_local extern int const iZC_TStat;
+    thread_local extern int const iZC_TCTStat;
+    thread_local extern int const iZC_OTTStat;
+    thread_local extern int const iZC_HStat;
+    thread_local extern int const iZC_TandHStat;
+    thread_local extern int const iZC_StagedDual;
+    thread_local extern Array1D_int const iZControlTypes;
 
-    extern int const SglHeatSetPoint;
-    extern int const SglCoolSetPoint;
-    extern int const SglHCSetPoint;
-    extern int const DualSetPoint;
-    extern int const SglHeatSetPointFanger;
-    extern int const SglCoolSetPointFanger;
-    extern int const SglHCSetPointFanger;
-    extern int const DualSetPointFanger;
-    extern int const SglHeatSetPointPierce;
-    extern int const SglCoolSetPointPierce;
-    extern int const SglHCSetPointPierce;
-    extern int const DualSetPointPierce;
-    extern int const SglHeatSetPointKSU;
-    extern int const SglCoolSetPointKSU;
-    extern int const SglHCSetPointKSU;
-    extern int const DualSetPointKSU;
+    thread_local extern int const SglHeatSetPoint;
+    thread_local extern int const SglCoolSetPoint;
+    thread_local extern int const SglHCSetPoint;
+    thread_local extern int const DualSetPoint;
+    thread_local extern int const SglHeatSetPointFanger;
+    thread_local extern int const SglCoolSetPointFanger;
+    thread_local extern int const SglHCSetPointFanger;
+    thread_local extern int const DualSetPointFanger;
+    thread_local extern int const SglHeatSetPointPierce;
+    thread_local extern int const SglCoolSetPointPierce;
+    thread_local extern int const SglHCSetPointPierce;
+    thread_local extern int const DualSetPointPierce;
+    thread_local extern int const SglHeatSetPointKSU;
+    thread_local extern int const SglCoolSetPointKSU;
+    thread_local extern int const SglHCSetPointKSU;
+    thread_local extern int const DualSetPointKSU;
 
     // Average method parameter with multiple people objects in a zone
-    extern int const AverageMethodNum_NO;  // No multiple people objects
-    extern int const AverageMethodNum_SPE; // Specific people object
-    extern int const AverageMethodNum_OBJ; // People object average
-    extern int const AverageMethodNum_PEO; // People number average
+    thread_local extern int const AverageMethodNum_NO;  // No multiple people objects
+    thread_local extern int const AverageMethodNum_SPE; // Specific people object
+    thread_local extern int const AverageMethodNum_OBJ; // People object average
+    thread_local extern int const AverageMethodNum_PEO; // People number average
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -119,31 +119,31 @@ namespace ZoneTempPredictorCorrector {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumSingleTempHeatingControls;
-    extern int NumSingleTempCoolingControls;
-    extern int NumSingleTempHeatCoolControls;
-    extern int NumDualTempHeatCoolControls;
+    thread_local extern int NumSingleTempHeatingControls;
+    thread_local extern int NumSingleTempCoolingControls;
+    thread_local extern int NumSingleTempHeatCoolControls;
+    thread_local extern int NumDualTempHeatCoolControls;
 
     // Number of Thermal comfort control types
-    extern int NumSingleFangerHeatingControls;
-    extern int NumSingleFangerCoolingControls;
-    extern int NumSingleFangerHeatCoolControls;
-    extern int NumDualFangerHeatCoolControls;
+    thread_local extern int NumSingleFangerHeatingControls;
+    thread_local extern int NumSingleFangerCoolingControls;
+    thread_local extern int NumSingleFangerHeatCoolControls;
+    thread_local extern int NumDualFangerHeatCoolControls;
 
     // Number of zone with staged controlled objects
-    extern int NumStageCtrZone;
+    thread_local extern int NumStageCtrZone;
     // Number of zone with onoff thermostat
-    extern int NumOnOffCtrZone;
+    thread_local extern int NumOnOffCtrZone;
 
-    extern Array1D<Real64> ZoneSetPointLast;
-    extern Array1D<Real64> TempIndZnLd;
-    extern Array1D<Real64> TempDepZnLd;
-    extern Array1D<Real64> ZoneAirRelHum; // Zone relative humidity in percent
+    thread_local extern Array1D<Real64> ZoneSetPointLast;
+    thread_local extern Array1D<Real64> TempIndZnLd;
+    thread_local extern Array1D<Real64> TempDepZnLd;
+    thread_local extern Array1D<Real64> ZoneAirRelHum; // Zone relative humidity in percent
 
     // Zone temperature history - used only for oscillation test
-    extern Array2D<Real64> ZoneTempHist;
-    extern Array1D<Real64> ZoneTempOscillate;
-    extern Real64 AnyZoneTempOscillate;
+    thread_local extern Array2D<Real64> ZoneTempHist;
+    thread_local extern Array1D<Real64> ZoneTempOscillate;
+    thread_local extern Real64 AnyZoneTempOscillate;
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -202,16 +202,16 @@ namespace ZoneTempPredictorCorrector {
     };
 
     // Object Data
-    extern Array1D<ZoneTempControlType> SetPointSingleHeating;
-    extern Array1D<ZoneTempControlType> SetPointSingleCooling;
-    extern Array1D<ZoneTempControlType> SetPointSingleHeatCool;
-    extern Array1D<ZoneTempControlType> SetPointDualHeatCool;
-    extern Array1D<ZoneComfortFangerControlType> SetPointSingleHeatingFanger;
-    extern Array1D<ZoneComfortFangerControlType> SetPointSingleCoolingFanger;
-    extern Array1D<ZoneComfortFangerControlType> SetPointSingleHeatCoolFanger;
-    extern Array1D<ZoneComfortFangerControlType> SetPointDualHeatCoolFanger;
-    extern AdaptiveComfortDailySetPointSchedule AdapComfortDailySetPointSchedule;
-    extern Array1D<Real64> AdapComfortSetPointSummerDesDay;
+    thread_local extern Array1D<ZoneTempControlType> SetPointSingleHeating;
+    thread_local extern Array1D<ZoneTempControlType> SetPointSingleCooling;
+    thread_local extern Array1D<ZoneTempControlType> SetPointSingleHeatCool;
+    thread_local extern Array1D<ZoneTempControlType> SetPointDualHeatCool;
+    thread_local extern Array1D<ZoneComfortFangerControlType> SetPointSingleHeatingFanger;
+    thread_local extern Array1D<ZoneComfortFangerControlType> SetPointSingleCoolingFanger;
+    thread_local extern Array1D<ZoneComfortFangerControlType> SetPointSingleHeatCoolFanger;
+    thread_local extern Array1D<ZoneComfortFangerControlType> SetPointDualHeatCoolFanger;
+    thread_local extern AdaptiveComfortDailySetPointSchedule AdapComfortDailySetPointSchedule;
+    thread_local extern Array1D<Real64> AdapComfortSetPointSummerDesDay;
 
     // Functions
     void clear_state();

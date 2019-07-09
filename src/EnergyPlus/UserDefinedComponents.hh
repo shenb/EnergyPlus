@@ -72,16 +72,16 @@ namespace UserDefinedComponents {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumUserPlantComps;
-    extern int NumUserCoils;
-    extern int NumUserZoneAir;
-    extern int NumUserAirTerminals;
+    thread_local extern int NumUserPlantComps;
+    thread_local extern int NumUserCoils;
+    thread_local extern int NumUserZoneAir;
+    thread_local extern int NumUserAirTerminals;
 
-    extern Array1D_bool CheckUserPlantCompName;
-    extern Array1D_bool CheckUserCoilName;
-    extern Array1D_bool CheckUserZoneAirName;
-    extern Array1D_bool CheckUserAirTerminal;
-    extern bool GetInput;
+    thread_local extern Array1D_bool CheckUserPlantCompName;
+    thread_local extern Array1D_bool CheckUserCoilName;
+    thread_local extern Array1D_bool CheckUserZoneAirName;
+    thread_local extern Array1D_bool CheckUserAirTerminal;
+    thread_local extern bool GetInput;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -278,10 +278,10 @@ namespace UserDefinedComponents {
     };
 
     // Object Data
-    extern Array1D<UserPlantComponentStruct> UserPlantComp;
-    extern Array1D<UserCoilComponentStruct> UserCoil;
-    extern Array1D<UserZoneHVACForcedAirComponentStruct> UserZoneAirHVAC;
-    extern Array1D<UserAirTerminalComponentStruct> UserAirTerminal;
+    thread_local extern Array1D<UserPlantComponentStruct> UserPlantComp;
+    thread_local extern Array1D<UserCoilComponentStruct> UserCoil;
+    thread_local extern Array1D<UserZoneHVACForcedAirComponentStruct> UserZoneAirHVAC;
+    thread_local extern Array1D<UserAirTerminalComponentStruct> UserAirTerminal;
 
     // Functions
 

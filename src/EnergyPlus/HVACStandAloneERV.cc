@@ -128,21 +128,21 @@ namespace HVACStandAloneERV {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
-    int const ControllerSimple(1);
-    int const ControllerOutsideAir(2);
-    int const ControllerStandAloneERV(3);
+    thread_local int const ControllerSimple(1);
+    thread_local int const ControllerOutsideAir(2);
+    thread_local int const ControllerStandAloneERV(3);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumStandAloneERVs; // Total number of stand alone ERVs defined in the idf
+    thread_local int NumStandAloneERVs; // Total number of stand alone ERVs defined in the idf
 
-    Array1D_bool MySizeFlag;
-    Array1D_bool CheckEquipName;
-    bool GetERVInputFlag(true); // First time, input is "gotten"
+    thread_local Array1D_bool MySizeFlag;
+    thread_local Array1D_bool CheckEquipName;
+    thread_local bool GetERVInputFlag(true); // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -159,11 +159,11 @@ namespace HVACStandAloneERV {
     // Utility routines for module
 
     // Object Data
-    Array1D<StandAloneERVData> StandAloneERV;
-    std::unordered_set<std::string> HeatExchangerUniqueNames;
-    std::unordered_set<std::string> SupplyAirFanUniqueNames;
-    std::unordered_set<std::string> ExhaustAirFanUniqueNames;
-    std::unordered_set<std::string> ControllerUniqueNames;
+    thread_local Array1D<StandAloneERVData> StandAloneERV;
+    thread_local std::unordered_set<std::string> HeatExchangerUniqueNames;
+    thread_local std::unordered_set<std::string> SupplyAirFanUniqueNames;
+    thread_local std::unordered_set<std::string> ExhaustAirFanUniqueNames;
+    thread_local std::unordered_set<std::string> ControllerUniqueNames;
 
     // Functions
 
@@ -305,7 +305,7 @@ namespace HVACStandAloneERV {
         int MaxAlphas;                    // Max between the two objects gotten here
         int MaxNumbers;                   // Max between the two objects gotten here
         int IOStatus;                     // Used in GetObjectItem
-        static bool ErrorsFound(false);   // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false);   // Set to true if errors in input, fatal at end of routine
         int NumERVCtrlrs;                 // total number of CONTROLLER:STAND ALONE ERV objects
         int ERVControllerNum;             // index to ERV controller
         int WhichERV;                     // used in controller GetInput
@@ -313,9 +313,9 @@ namespace HVACStandAloneERV {
         int NodeNumber;                   // used to find zone with humidistat
         int HStatZoneNum;                 // used to find zone with humidistat
         int NumHstatZone;                 // index to humidity controlled zones
-        static int ControlledZoneNum(0);  // used to find zone with humidistat
-        static bool ZoneNodeFound(false); // used to find zone with humidistat
-        static bool HStatFound(false);    // used to find zone with humidistat
+        thread_local static int ControlledZoneNum(0);  // used to find zone with humidistat
+        thread_local static bool ZoneNodeFound(false); // used to find zone with humidistat
+        thread_local static bool HStatFound(false);    // used to find zone with humidistat
         bool errFlag;                     // Error flag used in mining calls
         Real64 SAFanVolFlowRate;          // supply air fan volumetric flow rate [m3/s]
         Real64 EAFanVolFlowRate;          // exhaust air fan volumetric flow rate [m3/s]
@@ -1213,7 +1213,7 @@ namespace HVACStandAloneERV {
         using MixedAir::SimOAController;
 
         // Locals
-        static Array1D_bool MySizeFlag;
+        thread_local static Array1D_bool MySizeFlag;
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
@@ -1231,10 +1231,10 @@ namespace HVACStandAloneERV {
         int ExhInNode;    // exhaust air inlet node number
         int SupInletNode; // supply air inlet node number for Stand Alone ERV 'StandAloneERVNum'
         Real64 RhoAir;    // air density at SupInNode, standard conditions (dry air @ 20C,actual elevation pressure)
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MyZoneEqFlag;            // used to set up zone equipment availability managers
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MyZoneEqFlag;            // used to set up zone equipment availability managers
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;                                    // loop counter
 
         // Do the one time initializations
@@ -1405,7 +1405,7 @@ namespace HVACStandAloneERV {
         using ReportSizingManager::ReportSizingOutput;
         using ScheduleManager::GetScheduleMaxValue;
 
-        static std::string const RoutineName("SizeStandAloneERV: ");
+        thread_local static std::string const RoutineName("SizeStandAloneERV: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum;                       // Index to zone object

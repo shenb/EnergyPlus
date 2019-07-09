@@ -61,8 +61,8 @@ namespace EnergyPlus {
 namespace FluidCoolers {
 
     // MODULE PARAMETER DEFINITIONS:
-    extern std::string const cFluidCooler_SingleSpeed;
-    extern std::string const cFluidCooler_TwoSpeed;
+    thread_local extern std::string const cFluidCooler_SingleSpeed;
+    thread_local extern std::string const cFluidCooler_TwoSpeed;
 
     enum class PerfInputMethod
     {
@@ -70,7 +70,7 @@ namespace FluidCoolers {
         U_FACTOR
     };
 
-    extern int NumSimpleFluidCoolers; // Number of similar fluid coolers
+    thread_local extern int NumSimpleFluidCoolers; // Number of similar fluid coolers
 
     struct FluidCoolerspecs : PlantComponent
     {
@@ -203,7 +203,7 @@ namespace FluidCoolers {
         static PlantComponent *factory(int typeOf, std::string objectName);
     };
 
-    extern Array1D<FluidCoolerspecs> SimpleFluidCooler; // dimension to number of machines
+    thread_local extern Array1D<FluidCoolerspecs> SimpleFluidCooler; // dimension to number of machines
 
     void GetFluidCoolerInput();
 

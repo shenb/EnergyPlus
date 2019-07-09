@@ -121,22 +121,22 @@ namespace UFADManager {
 
     // Data
     // MODULE VARIABLE DECLARATIONS:
-    static std::string const BlankString;
+    thread_local static std::string const BlankString;
 
-    Real64 HAT_MX(0.0);                  // HAT_MX Convection Coefficient times Area times Temperature for the upper subzone
-    Real64 HAT_MXWin(0.0);               // HAT_MX Convection Coefficient times Area times Temperature for the upper subzone (windows only)
-    Real64 HA_MX(0.0);                   // HA_MX Convection Coefficient times Area for the upper subzone
-    Real64 HA_MXWin(0.0);                // HA_MX Convection Coefficient times Area for the upper subzone (windows only)
-    Real64 HAT_OC(0.0);                  // HAT_OC Convection Coefficient times Area times Temperature for the lower subzone
-    Real64 HAT_OCWin(0.0);               // HAT_OC Convection Coefficient times Area times Temperature for the lower subzone (windows only)
-    Real64 HA_OC(0.0);                   // HA_OC Convection Coefficient times Area for the lower subzone
-    Real64 HA_OCWin(0.0);                // HA_OC Convection Coefficient times Area for the lower subzone (windows only)
-    Real64 HAT_FLOOR(0.0);               // HAT_FLOOR Convection Coefficient times Area times Temperature for the floor(?) subzone
-    Real64 HA_FLOOR(0.0);                // HA_FLOOR Convection Coefficient times Area for the floor(?) subzone
-    Real64 HeightFloorSubzoneTop(0.2);   // Assumed thickness of floor subzone
-    Real64 ThickOccupiedSubzoneMin(0.2); // Minimum thickness of occupied subzone
-    Real64 HeightIntMass(0.0);           // Height of internal mass surfaces, assumed vertical, cannot exceed ceiling height
-    Real64 HeightIntMassDefault(2.0);    // Default height of internal mass surfaces
+    thread_local Real64 HAT_MX(0.0);                  // HAT_MX Convection Coefficient times Area times Temperature for the upper subzone
+    thread_local Real64 HAT_MXWin(0.0);               // HAT_MX Convection Coefficient times Area times Temperature for the upper subzone (windows only)
+    thread_local Real64 HA_MX(0.0);                   // HA_MX Convection Coefficient times Area for the upper subzone
+    thread_local Real64 HA_MXWin(0.0);                // HA_MX Convection Coefficient times Area for the upper subzone (windows only)
+    thread_local Real64 HAT_OC(0.0);                  // HAT_OC Convection Coefficient times Area times Temperature for the lower subzone
+    thread_local Real64 HAT_OCWin(0.0);               // HAT_OC Convection Coefficient times Area times Temperature for the lower subzone (windows only)
+    thread_local Real64 HA_OC(0.0);                   // HA_OC Convection Coefficient times Area for the lower subzone
+    thread_local Real64 HA_OCWin(0.0);                // HA_OC Convection Coefficient times Area for the lower subzone (windows only)
+    thread_local Real64 HAT_FLOOR(0.0);               // HAT_FLOOR Convection Coefficient times Area times Temperature for the floor(?) subzone
+    thread_local Real64 HA_FLOOR(0.0);                // HA_FLOOR Convection Coefficient times Area for the floor(?) subzone
+    thread_local Real64 HeightFloorSubzoneTop(0.2);   // Assumed thickness of floor subzone
+    thread_local Real64 ThickOccupiedSubzoneMin(0.2); // Minimum thickness of occupied subzone
+    thread_local Real64 HeightIntMass(0.0);           // Height of internal mass surfaces, assumed vertical, cannot exceed ceiling height
+    thread_local Real64 HeightIntMassDefault(2.0);    // Default height of internal mass surfaces
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -245,12 +245,12 @@ namespace UFADManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // na
 
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MySizeFlag;
-        static Real64 NumShadesDown(0.0);
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MySizeFlag;
+        thread_local static Real64 NumShadesDown(0.0);
         int UINum;             // index to underfloor interior zone model data
-        static int Ctd(0);     // DO loop index
-        static int SurfNum(0); // surface data structure index
+        thread_local static int Ctd(0);     // DO loop index
+        thread_local static int SurfNum(0); // surface data structure index
 
         // Do the one time initializations
         if (MyOneTimeFlag) {
@@ -334,15 +334,15 @@ namespace UFADManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int UINum;                            // index to underfloor interior zone model data
-        static int Ctd(0);                    // DO loop index
-        static int SurfNum(0);                // surface data structure index
-        static Real64 NumberOfOccupants(0.0); // design number of occupants in the zone
-        static Real64 NumberOfPlumes(0.0);    // design number of plumes in the zone
-        static Real64 ZoneElecConv(0.0);      // zone elec equip design convective gain [W]
-        static Real64 ZoneGasConv(0.0);       // zone gas equip design convective gain [W]
-        static Real64 ZoneOthEqConv(0.0);     // zone other equip design convective gain [W]
-        static Real64 ZoneHWEqConv(0.0);      // zone hot water equip design convective gain [W]
-        static Real64 ZoneSteamEqConv(0.0);   // zone steam equip design convective gain [W]
+        thread_local static int Ctd(0);                    // DO loop index
+        thread_local static int SurfNum(0);                // surface data structure index
+        thread_local static Real64 NumberOfOccupants(0.0); // design number of occupants in the zone
+        thread_local static Real64 NumberOfPlumes(0.0);    // design number of plumes in the zone
+        thread_local static Real64 ZoneElecConv(0.0);      // zone elec equip design convective gain [W]
+        thread_local static Real64 ZoneGasConv(0.0);       // zone gas equip design convective gain [W]
+        thread_local static Real64 ZoneOthEqConv(0.0);     // zone other equip design convective gain [W]
+        thread_local static Real64 ZoneHWEqConv(0.0);      // zone hot water equip design convective gain [W]
+        thread_local static Real64 ZoneSteamEqConv(0.0);   // zone steam equip design convective gain [W]
 
         if (ZoneModelType == RoomAirModel_UCSDUFI) {
             UINum = ZoneUFPtr(ZoneNum);
@@ -1014,7 +1014,7 @@ namespace UFADManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MIXFLAG(false); // if true treat as a mixed zone
+        thread_local static bool MIXFLAG(false); // if true treat as a mixed zone
         Real64 CeilingHeight;       // zone ceiling height above floor [m]
         int UINum;                  // index to underfloor interior zone model data
         Real64 GainsFrac;           // fraction of occupied subzone heat gains that remain in the subzone;
@@ -1040,7 +1040,7 @@ namespace UFADManager {
         Real64 MCpT_Total;          // total mass flow rate * specific heat* temp for this zone [W]
         Real64 NumberOfPlumes;
         Real64 PowerInPlumes;             // [W]
-        static Real64 PowerPerPlume(0.0); // power generating each plume [W]
+        thread_local static Real64 PowerPerPlume(0.0); // power generating each plume [W]
         Real64 HeightFrac;                // Fractional height of transition between occupied and upper subzones
         Real64 TotSysFlow;                // [m3/s]
         Real64 NumDiffusersPerPlume;
@@ -1059,9 +1059,9 @@ namespace UFADManager {
         Real64 HeightOccupiedSubzoneAve; // Height of center of occupied air subzone
         Real64 ZoneMult;                 // total zone multiplier
         int ZoneNodeNum;                 // node number of the HVAC zone node
-        static Real64 TempDepCoef(0.0);  // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
-        static Real64 TempIndCoef(0.0);  // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
-        static Array1D_int IntGainTypesOccupied(29,
+        thread_local static Real64 TempDepCoef(0.0);  // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
+        thread_local static Real64 TempIndCoef(0.0);  // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
+        thread_local static Array1D_int IntGainTypesOccupied(29,
                                                 {IntGainTypeOf_People,
                                                  IntGainTypeOf_WaterHeaterMixed,
                                                  IntGainTypeOf_WaterHeaterStratified,
@@ -1092,7 +1092,7 @@ namespace UFADManager {
                                                  IntGainTypeOf_RefrigerationSecondaryPipe,
                                                  IntGainTypeOf_RefrigerationWalkIn});
 
-        static Array1D_int IntGainTypesUpSubzone(2, {IntGainTypeOf_DaylightingDeviceTubular, IntGainTypeOf_Lights});
+        thread_local static Array1D_int IntGainTypesUpSubzone(2, {IntGainTypeOf_DaylightingDeviceTubular, IntGainTypeOf_Lights});
         Real64 RetAirGains;
 
         // Exact solution or Euler method
@@ -1487,7 +1487,7 @@ namespace UFADManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool MIXFLAG(false); // if true treat as a mixed zone
+        thread_local static bool MIXFLAG(false); // if true treat as a mixed zone
         Real64 CeilingHeight;       // zone ceiling height above floor [m]
         int UINum;                  // index to underfloor interior zone model data
         Real64 GainsFrac;           // fraction of occupied subzone heat gains that remain in the subzone;
@@ -1513,9 +1513,9 @@ namespace UFADManager {
         Real64 MCpT_Total;          // total mass flow rate * specific heat* temp for this zone [W]
         Real64 NumberOfPlumes;
         Real64 PowerInPlumes;             // [W]
-        static Real64 PowerPerPlume(0.0); // power carried by each plume [W]
+        thread_local static Real64 PowerPerPlume(0.0); // power carried by each plume [W]
         Real64 PowerInPlumesPerMeter;     // Power in Plumes per meter of window length [W/m]
-        static Real64 NumDiffusersPerPlume(0.0);
+        thread_local static Real64 NumDiffusersPerPlume(0.0);
         Real64 HeightFrac; // Fractional height of transition between occupied and upper subzones
         Real64 TotSysFlow; // [m3/s]
         Real64 NumDiffusers;
@@ -1533,9 +1533,9 @@ namespace UFADManager {
         Real64 HeightOccupiedSubzoneAve; // Height of center of occupied air subzone
         Real64 ZoneMult;                 // total zone multiplier
         int ZoneNodeNum;                 // node number of the HVAC zone node
-        static Real64 TempDepCoef(0.0);  // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
-        static Real64 TempIndCoef(0.0);  // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
-        static Array1D_int IntGainTypesOccupied(29,
+        thread_local static Real64 TempDepCoef(0.0);  // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
+        thread_local static Real64 TempIndCoef(0.0);  // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
+        thread_local static Array1D_int IntGainTypesOccupied(29,
                                                 {IntGainTypeOf_People,
                                                  IntGainTypeOf_WaterHeaterMixed,
                                                  IntGainTypeOf_WaterHeaterStratified,
@@ -1566,7 +1566,7 @@ namespace UFADManager {
                                                  IntGainTypeOf_RefrigerationSecondaryPipe,
                                                  IntGainTypeOf_RefrigerationWalkIn});
 
-        static Array1D_int IntGainTypesUpSubzone(2, {IntGainTypeOf_DaylightingDeviceTubular, IntGainTypeOf_Lights});
+        thread_local static Array1D_int IntGainTypesUpSubzone(2, {IntGainTypeOf_DaylightingDeviceTubular, IntGainTypeOf_Lights});
         Real64 RetAirGains;
 
         // Exact solution or Euler method

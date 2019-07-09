@@ -64,26 +64,26 @@ namespace HeatingCoils {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern Real64 const MinAirMassFlow;
-    extern int NumDesuperheaterCoil; // Total number of desuperheater heating coil objects in input
+    thread_local extern Real64 const MinAirMassFlow;
+    thread_local extern int NumDesuperheaterCoil; // Total number of desuperheater heating coil objects in input
 
     // reclaim heat object types
-    extern int const COMPRESSORRACK_REFRIGERATEDCASE;
-    extern int const COIL_DX_COOLING;
-    extern int const COIL_DX_MULTISPEED;
-    extern int const COIL_DX_MULTIMODE;
-    extern int const CONDENSER_REFRIGERATION;
-    extern int const COIL_DX_VARIABLE_COOLING;
+    thread_local extern int const COMPRESSORRACK_REFRIGERATEDCASE;
+    thread_local extern int const COIL_DX_COOLING;
+    thread_local extern int const COIL_DX_MULTISPEED;
+    thread_local extern int const COIL_DX_MULTIMODE;
+    thread_local extern int const CONDENSER_REFRIGERATION;
+    thread_local extern int const COIL_DX_VARIABLE_COOLING;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumHeatingCoils; // The Number of HeatingCoils found in the Input
-    extern Array1D_bool MySizeFlag;
-    extern Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
-    extern bool GetCoilsInputFlag;       // Flag set to make sure you get input once
-    extern bool CoilIsSuppHeater;        // Flag set to indicate the heating coil is a supplemental heater
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumHeatingCoils; // The Number of HeatingCoils found in the Input
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
+    thread_local extern bool GetCoilsInputFlag;       // Flag set to make sure you get input once
+    thread_local extern bool CoilIsSuppHeater;        // Flag set to indicate the heating coil is a supplemental heater
+    thread_local extern Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -192,8 +192,8 @@ namespace HeatingCoils {
     };
 
     // Object Data
-    extern Array1D<HeatingCoilEquipConditions> HeatingCoil;
-    extern Array1D<HeatingCoilNumericFieldData> HeatingCoilNumericFields;
+    thread_local extern Array1D<HeatingCoilEquipConditions> HeatingCoil;
+    thread_local extern Array1D<HeatingCoilNumericFieldData> HeatingCoilNumericFields;
 
     // Functions
 

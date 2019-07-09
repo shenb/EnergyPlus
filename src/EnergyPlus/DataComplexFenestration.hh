@@ -62,39 +62,39 @@ namespace DataComplexFenestration {
 
     // Data
     // Parameters for complex shade
-    extern int const csVenetianHorizontal;
-    extern int const csWoven;
-    extern int const csPerforated;
-    extern int const csOtherShadingType;
-    extern int const csBSDF;
-    extern int const csVenetianVertical;
+    thread_local extern int const csVenetianHorizontal;
+    thread_local extern int const csWoven;
+    thread_local extern int const csPerforated;
+    thread_local extern int const csOtherShadingType;
+    thread_local extern int const csBSDF;
+    thread_local extern int const csVenetianVertical;
 
     // Parameters for gas definitions
-    extern int const GasCoeffsCustom;
-    extern int const GasCoeffsAir;
-    extern int const GasCoeffsArgon;
-    extern int const GasCoeffsKrypton;
-    extern int const GasCoeffsXenon;
+    thread_local extern int const GasCoeffsCustom;
+    thread_local extern int const GasCoeffsAir;
+    thread_local extern int const GasCoeffsArgon;
+    thread_local extern int const GasCoeffsKrypton;
+    thread_local extern int const GasCoeffsXenon;
 
     // Parameters for Thermal Algorithm
     // INTEGER, PARAMETER :: taTarcog = 0
     // INTEGER, PARAMETER :: taWinkelmann = 1
 
     // Parameters for calculation standard
-    extern int const csISO15099;
-    extern int const csEN673Declared;
-    extern int const csEN673Design;
+    thread_local extern int const csISO15099;
+    thread_local extern int const csEN673Declared;
+    thread_local extern int const csEN673Design;
 
     // Parameters for thermal model
-    extern int const tmISO15099;
-    extern int const tmScaledCavityWidth;
-    extern int const tmConvectiveScalarModel_NoSDThickness;
-    extern int const tmConvectiveScalarModel_WithSDThickness;
+    thread_local extern int const tmISO15099;
+    thread_local extern int const tmScaledCavityWidth;
+    thread_local extern int const tmConvectiveScalarModel_NoSDThickness;
+    thread_local extern int const tmConvectiveScalarModel_WithSDThickness;
 
     // Parameters for deflection model
-    extern int const dmNoDeflection;
-    extern int const dmTemperatureAndPressureInput;
-    extern int const dmMeasuredDeflection;
+    thread_local extern int const dmNoDeflection;
+    thread_local extern int const dmTemperatureAndPressureInput;
+    thread_local extern int const dmMeasuredDeflection;
 
     // Types
 

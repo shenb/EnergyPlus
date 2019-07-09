@@ -113,38 +113,38 @@ namespace FaultsManager {
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
 
-        bool RunFaultMgrOnceFlag(false); // True if CheckAndReadFaults is already done
-        bool ErrorsFound(false);         // True if errors detected in input
+        thread_local bool RunFaultMgrOnceFlag(false); // True if CheckAndReadFaults is already done
+        thread_local bool ErrorsFound(false);         // True if errors detected in input
     }                                    // namespace
 
     // ControllerTypeEnum
-    int const iController_AirEconomizer(1001);
+    thread_local int const iController_AirEconomizer(1001);
 
     // Input methods for fouling coils
-    int const iFouledCoil_UARated(9001);
-    int const iFouledCoil_FoulingFactor(9002);
+    thread_local int const iFouledCoil_UARated(9001);
+    thread_local int const iFouledCoil_FoulingFactor(9002);
 
     // MODULE VARIABLE DECLARATIONS:
-    int const NumFaultTypes(16);
-    int const NumFaultTypesEconomizer(5);
+    thread_local int const NumFaultTypes(16);
+    thread_local int const NumFaultTypesEconomizer(5);
 
     // FaultTypeEnum
-    int const iFault_TemperatureSensorOffset_OutdoorAir(101);
-    int const iFault_HumiditySensorOffset_OutdoorAir(102);
-    int const iFault_EnthalpySensorOffset_OutdoorAir(103);
-    int const iFault_TemperatureSensorOffset_ReturnAir(104);
-    int const iFault_EnthalpySensorOffset_ReturnAir(105);
-    int const iFault_Fouling_Coil(106);
-    int const iFault_ThermostatOffset(107);
-    int const iFault_HumidistatOffset(108);
-    int const iFault_Fouling_AirFilter(109);
-    int const iFault_TemperatureSensorOffset_ChillerSupplyWater(110);
-    int const iFault_TemperatureSensorOffset_CondenserSupplyWater(111);
-    int const iFault_Fouling_Tower(112);
-    int const iFault_TemperatureSensorOffset_CoilSupplyAir(113);
-    int const iFault_Fouling_Boiler(114);
-    int const iFault_Fouling_Chiller(115);
-    int const iFault_Fouling_EvapCooler(116);
+    thread_local int const iFault_TemperatureSensorOffset_OutdoorAir(101);
+    thread_local int const iFault_HumiditySensorOffset_OutdoorAir(102);
+    thread_local int const iFault_EnthalpySensorOffset_OutdoorAir(103);
+    thread_local int const iFault_TemperatureSensorOffset_ReturnAir(104);
+    thread_local int const iFault_EnthalpySensorOffset_ReturnAir(105);
+    thread_local int const iFault_Fouling_Coil(106);
+    thread_local int const iFault_ThermostatOffset(107);
+    thread_local int const iFault_HumidistatOffset(108);
+    thread_local int const iFault_Fouling_AirFilter(109);
+    thread_local int const iFault_TemperatureSensorOffset_ChillerSupplyWater(110);
+    thread_local int const iFault_TemperatureSensorOffset_CondenserSupplyWater(111);
+    thread_local int const iFault_Fouling_Tower(112);
+    thread_local int const iFault_TemperatureSensorOffset_CoilSupplyAir(113);
+    thread_local int const iFault_Fouling_Boiler(114);
+    thread_local int const iFault_Fouling_Chiller(115);
+    thread_local int const iFault_Fouling_EvapCooler(116);
 
     // Types of faults under Group Operational Faults in IDD
     //  1. Temperature sensor offset (FY14)
@@ -167,7 +167,7 @@ namespace FaultsManager {
     //  Pressure sensor offset
     //  more
 
-    Array1D_string const cFaults(NumFaultTypes,
+    thread_local Array1D_string const cFaults(NumFaultTypes,
                                  {"FaultModel:TemperatureSensorOffset:OutdoorAir",
                                   "FaultModel:HumiditySensorOffset:OutdoorAir",
                                   "FaultModel:EnthalpySensorOffset:OutdoorAir",
@@ -193,7 +193,7 @@ namespace FaultsManager {
     //      'FaultModel:DamperLeakage:ReturnAir           ', &
     //      'FaultModel:DamperLeakage:OutdoorAir          ' /)
 
-    Array1D_int const iFaultTypeEnums(NumFaultTypes,
+    thread_local Array1D_int const iFaultTypeEnums(NumFaultTypes,
                                       {iFault_TemperatureSensorOffset_OutdoorAir,
                                        iFault_HumiditySensorOffset_OutdoorAir,
                                        iFault_EnthalpySensorOffset_OutdoorAir,
@@ -211,37 +211,37 @@ namespace FaultsManager {
                                        iFault_Fouling_Chiller,
                                        iFault_Fouling_EvapCooler});
 
-    bool AnyFaultsInModel(false); // True if there are operational faults in the model
-    int NumFaults(0);             // Number of faults (include multiple faults of same type) in the model
+    thread_local bool AnyFaultsInModel(false); // True if there are operational faults in the model
+    thread_local int NumFaults(0);             // Number of faults (include multiple faults of same type) in the model
 
-    int NumFaultyEconomizer(0);         // Total number of faults related with the economizer
-    int NumFouledCoil(0);               // Total number of fouled coils
-    int NumFaultyThermostat(0);         // Total number of faulty thermostat with offset
-    int NumFaultyHumidistat(0);         // Total number of faulty humidistat with offset
-    int NumFaultyAirFilter(0);          // Total number of fouled air filters
-    int NumFaultyChillerSWTSensor(0);   // Total number of faulty Chillers Supply Water Temperature Sensor
-    int NumFaultyCondenserSWTSensor(0); // Total number of faulty Condenser Supply Water Temperature Sensor
-    int NumFaultyTowerFouling(0);       // Total number of faulty Towers with Scaling
-    int NumFaultyCoilSATSensor(0);      // Total number of faulty Coil Supply Air Temperature Sensor
-    int NumFaultyBoilerFouling(0);      // Total number of faulty Boilers with Fouling
-    int NumFaultyChillerFouling(0);     // Total number of faulty Chillers with Fouling
-    int NumFaultyEvapCoolerFouling(0);  // Total number of faulty Evaporative Coolers with Fouling
+    thread_local int NumFaultyEconomizer(0);         // Total number of faults related with the economizer
+    thread_local int NumFouledCoil(0);               // Total number of fouled coils
+    thread_local int NumFaultyThermostat(0);         // Total number of faulty thermostat with offset
+    thread_local int NumFaultyHumidistat(0);         // Total number of faulty humidistat with offset
+    thread_local int NumFaultyAirFilter(0);          // Total number of fouled air filters
+    thread_local int NumFaultyChillerSWTSensor(0);   // Total number of faulty Chillers Supply Water Temperature Sensor
+    thread_local int NumFaultyCondenserSWTSensor(0); // Total number of faulty Condenser Supply Water Temperature Sensor
+    thread_local int NumFaultyTowerFouling(0);       // Total number of faulty Towers with Scaling
+    thread_local int NumFaultyCoilSATSensor(0);      // Total number of faulty Coil Supply Air Temperature Sensor
+    thread_local int NumFaultyBoilerFouling(0);      // Total number of faulty Boilers with Fouling
+    thread_local int NumFaultyChillerFouling(0);     // Total number of faulty Chillers with Fouling
+    thread_local int NumFaultyEvapCoolerFouling(0);  // Total number of faulty Evaporative Coolers with Fouling
 
     // SUBROUTINE SPECIFICATIONS:
 
     // Object Data
-    Array1D<FaultPropertiesEconomizer> FaultsEconomizer;
-    Array1D<FaultPropertiesFoulingCoil> FouledCoils;
-    Array1D<FaultPropertiesThermostat> FaultsThermostatOffset;
-    Array1D<FaultPropertiesHumidistat> FaultsHumidistatOffset;
-    Array1D<FaultPropertiesAirFilter> FaultsFouledAirFilters;
-    Array1D<FaultPropertiesChillerSWT> FaultsChillerSWTSensor;
-    Array1D<FaultPropertiesCondenserSWT> FaultsCondenserSWTSensor;
-    Array1D<FaultPropertiesTowerFouling> FaultsTowerFouling;
-    Array1D<FaultPropertiesCoilSAT> FaultsCoilSATSensor;
-    Array1D<FaultPropertiesBoilerFouling> FaultsBoilerFouling;
-    Array1D<FaultPropertiesChillerFouling> FaultsChillerFouling;
-    Array1D<FaultPropertiesEvapCoolerFouling> FaultsEvapCoolerFouling;
+    thread_local Array1D<FaultPropertiesEconomizer> FaultsEconomizer;
+    thread_local Array1D<FaultPropertiesFoulingCoil> FouledCoils;
+    thread_local Array1D<FaultPropertiesThermostat> FaultsThermostatOffset;
+    thread_local Array1D<FaultPropertiesHumidistat> FaultsHumidistatOffset;
+    thread_local Array1D<FaultPropertiesAirFilter> FaultsFouledAirFilters;
+    thread_local Array1D<FaultPropertiesChillerSWT> FaultsChillerSWTSensor;
+    thread_local Array1D<FaultPropertiesCondenserSWT> FaultsCondenserSWTSensor;
+    thread_local Array1D<FaultPropertiesTowerFouling> FaultsTowerFouling;
+    thread_local Array1D<FaultPropertiesCoilSAT> FaultsCoilSATSensor;
+    thread_local Array1D<FaultPropertiesBoilerFouling> FaultsBoilerFouling;
+    thread_local Array1D<FaultPropertiesChillerFouling> FaultsChillerFouling;
+    thread_local Array1D<FaultPropertiesEvapCoolerFouling> FaultsEvapCoolerFouling;
 
     // Functions
 

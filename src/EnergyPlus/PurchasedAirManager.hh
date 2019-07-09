@@ -65,45 +65,45 @@ namespace PurchasedAirManager {
     // MODULE PARAMETER DEFINITIONS:
     // MODULE PARAMETER DEFINITIONS:
     // Heating and Cooling Limit type parameters
-    extern int const NoLimit;
-    extern int const LimitFlowRate;
-    extern int const LimitCapacity;
-    extern int const LimitFlowRateAndCapacity;
-    extern Array1D_string const cLimitType;
+    thread_local extern int const NoLimit;
+    thread_local extern int const LimitFlowRate;
+    thread_local extern int const LimitCapacity;
+    thread_local extern int const LimitFlowRateAndCapacity;
+    thread_local extern Array1D_string const cLimitType;
     // Dehumidification and Humidification control type parameters
-    extern int const None;
-    extern int const ConstantSensibleHeatRatio;
-    extern int const Humidistat;
-    extern int const ConstantSupplyHumidityRatio;
+    thread_local extern int const None;
+    thread_local extern int const ConstantSensibleHeatRatio;
+    thread_local extern int const Humidistat;
+    thread_local extern int const ConstantSupplyHumidityRatio;
     // Demand controlled ventilation type parameters
-    extern int const NoDCV;
-    extern int const OccupancySchedule;
-    extern int const CO2SetPoint;
+    thread_local extern int const NoDCV;
+    thread_local extern int const OccupancySchedule;
+    thread_local extern int const CO2SetPoint;
     // Outdoor air economizer type parameters
-    extern int const NoEconomizer;
-    extern int const DifferentialDryBulb;
-    extern int const DifferentialEnthalpy;
+    thread_local extern int const NoEconomizer;
+    thread_local extern int const DifferentialDryBulb;
+    thread_local extern int const DifferentialEnthalpy;
     // Heat recovery type parameters
-    extern int const NoHeatRecovery;
-    extern int const Sensible;
-    extern int const Enthalpy;
+    thread_local extern int const NoHeatRecovery;
+    thread_local extern int const Sensible;
+    thread_local extern int const Enthalpy;
     // Operating mode parameters
-    extern int const Off;
-    extern int const Heat;
-    extern int const Cool;
-    extern int const DeadBand;
+    thread_local extern int const Off;
+    thread_local extern int const Heat;
+    thread_local extern int const Cool;
+    thread_local extern int const DeadBand;
     // Delta humidity ratio limit, 0.00025 equals delta between 45F dewpoint and 46F dewpoint
     // used to prevent dividing by near zero
-    extern Real64 const SmallDeltaHumRat;
+    thread_local extern Real64 const SmallDeltaHumRat;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    extern int NumPurchAir;
-    extern int NumPlenumArrays; // total number of plenum arrays
-    extern bool GetPurchAirInputFlag;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumPurchAir;
+    thread_local extern int NumPlenumArrays; // total number of plenum arrays
+    thread_local extern bool GetPurchAirInputFlag;
+    thread_local extern Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE PurchasedAir:
 
     // Types
@@ -299,9 +299,9 @@ namespace PurchasedAirManager {
     };
 
     // Object Data
-    extern Array1D<ZonePurchasedAir> PurchAir;                      // Used to specify purchased air parameters
-    extern Array1D<PurchAirNumericFieldData> PurchAirNumericFields; // Used to save the indices of scalable sizing object for zone HVAC
-    extern Array1D<PurchAirPlenumArrayData> PurchAirPlenumArrays;   // Used to save the indices of scalable sizing object for zone HVAC
+    thread_local extern Array1D<ZonePurchasedAir> PurchAir;                      // Used to specify purchased air parameters
+    thread_local extern Array1D<PurchAirNumericFieldData> PurchAirNumericFields; // Used to save the indices of scalable sizing object for zone HVAC
+    thread_local extern Array1D<PurchAirPlenumArrayData> PurchAirPlenumArrays;   // Used to save the indices of scalable sizing object for zone HVAC
 
     // Functions
 

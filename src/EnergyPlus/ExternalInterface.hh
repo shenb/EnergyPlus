@@ -68,29 +68,29 @@ namespace EnergyPlus {
 namespace ExternalInterface {
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Real64 tComm;
-    extern Real64 tStop;
-    extern Real64 tStart;
-    extern Real64 hStep;
-    extern bool FlagReIni;
-    extern std::string FMURootWorkingFolder;
-    extern int LEN_FMU_ROOT_DIR;
+    thread_local extern Real64 tComm;
+    thread_local extern Real64 tStop;
+    thread_local extern Real64 tStart;
+    thread_local extern Real64 hStep;
+    thread_local extern bool FlagReIni;
+    thread_local extern std::string FMURootWorkingFolder;
+    thread_local extern int LEN_FMU_ROOT_DIR;
 
     // MODULE PARAMETER DEFINITIONS:
-    extern int const maxVar;               // Maximum number of variables to be exchanged
-    extern int const maxErrMsgLength;      // Maximum error message length from xml schema validation
-    extern int const indexSchedule;        // Index for schedule in inpVarTypes
-    extern int const indexVariable;        // Index for variable in inpVarTypes
-    extern int const indexActuator;        // Index for actuator in inpVarTypes
-    extern int nInKeys;                    // Number of input variables available in ExternalInterface (=highest index* number)
-    extern int const fmiOK;                // fmiOK
-    extern int const fmiWarning;           // fmiWarning
-    extern int const fmiDiscard;           // fmiDiscard
-    extern int const fmiError;             // fmiError
-    extern int const fmiFatal;             // fmiPending
-    extern int const fmiPending;           // fmiPending
-    extern std::string const socCfgFilNam; // socket configuration file
-    extern std::string const BlankString;
+    thread_local extern int const maxVar;               // Maximum number of variables to be exchanged
+    thread_local extern int const maxErrMsgLength;      // Maximum error message length from xml schema validation
+    thread_local extern int const indexSchedule;        // Index for schedule in inpVarTypes
+    thread_local extern int const indexVariable;        // Index for variable in inpVarTypes
+    thread_local extern int const indexActuator;        // Index for actuator in inpVarTypes
+    thread_local extern int nInKeys;                    // Number of input variables available in ExternalInterface (=highest index* number)
+    thread_local extern int const fmiOK;                // fmiOK
+    thread_local extern int const fmiWarning;           // fmiWarning
+    thread_local extern int const fmiDiscard;           // fmiDiscard
+    thread_local extern int const fmiError;             // fmiError
+    thread_local extern int const fmiFatal;             // fmiPending
+    thread_local extern int const fmiPending;           // fmiPending
+    thread_local extern std::string const socCfgFilNam; // socket configuration file
+    thread_local extern std::string const BlankString;
 
     struct fmuInputVariableType
     {
@@ -286,37 +286,37 @@ namespace ExternalInterface {
         }
     };
 
-    extern Array1D<FMUType> FMU;                                // Variable Types structure
-    extern Array1D<FMUType> FMUTemp;                            // Variable Types structure
-    extern Array1D<checkFMUInstanceNameType> checkInstanceName; // Variable Types structure for checking instance names
-    extern int NumExternalInterfaces;                           // Number of ExternalInterface objects
-    extern int NumExternalInterfacesBCVTB;                      // Number of BCVTB ExternalInterface objects
-    extern int NumExternalInterfacesFMUImport;                  // Number of FMU ExternalInterface objects
-    extern int NumExternalInterfacesFMUExport;                  // Number of FMU ExternalInterface objects
-    extern int NumFMUObjects;                                   // Number of FMU objects
-    extern int FMUExportActivate;                               // FMU Export flag
-    extern bool haveExternalInterfaceBCVTB;                     // Flag for BCVTB interface
-    extern bool haveExternalInterfaceFMUImport;                 // Flag for FMU-Import interface
-    extern bool haveExternalInterfaceFMUExport;                 // Flag for FMU-Export interface
-    extern int simulationStatus;                                // Status flag. Used to report during
+    thread_local extern Array1D<FMUType> FMU;                                // Variable Types structure
+    thread_local extern Array1D<FMUType> FMUTemp;                            // Variable Types structure
+    thread_local extern Array1D<checkFMUInstanceNameType> checkInstanceName; // Variable Types structure for checking instance names
+    thread_local extern int NumExternalInterfaces;                           // Number of ExternalInterface objects
+    thread_local extern int NumExternalInterfacesBCVTB;                      // Number of BCVTB ExternalInterface objects
+    thread_local extern int NumExternalInterfacesFMUImport;                  // Number of FMU ExternalInterface objects
+    thread_local extern int NumExternalInterfacesFMUExport;                  // Number of FMU ExternalInterface objects
+    thread_local extern int NumFMUObjects;                                   // Number of FMU objects
+    thread_local extern int FMUExportActivate;                               // FMU Export flag
+    thread_local extern bool haveExternalInterfaceBCVTB;                     // Flag for BCVTB interface
+    thread_local extern bool haveExternalInterfaceFMUImport;                 // Flag for FMU-Import interface
+    thread_local extern bool haveExternalInterfaceFMUExport;                 // Flag for FMU-Export interface
+    thread_local extern int simulationStatus;                                // Status flag. Used to report during
     // which phase an error occurred.
     // (1=initialization, 2=time stepping)
 
-    extern Array1D<int> keyVarIndexes; // Array index for specific key name
-    extern Array1D<int> varTypes;      // Types of variables in keyVarIndexes
-    extern Array1D<int> varInd;        // Index of ErlVariables for ExternalInterface
-    extern int socketFD;               // socket file descriptor
-    extern bool ErrorsFound;           // Set to true if errors are found
-    extern bool noMoreValues;          // Flag, true if no more values
+    thread_local extern Array1D<int> keyVarIndexes; // Array index for specific key name
+    thread_local extern Array1D<int> varTypes;      // Types of variables in keyVarIndexes
+    thread_local extern Array1D<int> varInd;        // Index of ErlVariables for ExternalInterface
+    thread_local extern int socketFD;               // socket file descriptor
+    thread_local extern bool ErrorsFound;           // Set to true if errors are found
+    thread_local extern bool noMoreValues;          // Flag, true if no more values
     // will be sent by the server
 
-    extern Array1D<std::string> varKeys;     // Keys of report variables used for data exchange
-    extern Array1D<std::string> varNames;    // Names of report variables used for data exchange
-    extern Array1D<int> inpVarTypes;         // Names of report variables used for data exchange
-    extern Array1D<std::string> inpVarNames; // Names of report variables used for data exchange
+    thread_local extern Array1D<std::string> varKeys;     // Keys of report variables used for data exchange
+    thread_local extern Array1D<std::string> varNames;    // Names of report variables used for data exchange
+    thread_local extern Array1D<int> inpVarTypes;         // Names of report variables used for data exchange
+    thread_local extern Array1D<std::string> inpVarNames; // Names of report variables used for data exchange
 
-    extern bool configuredControlPoints; // True if control points have been configured
-    extern bool useEMS;                  // Will be set to true if ExternalInterface writes to EMS variables or actuators
+    thread_local extern bool configuredControlPoints; // True if control points have been configured
+    thread_local extern bool useEMS;                  // Will be set to true if ExternalInterface writes to EMS variables or actuators
 
     // Functions
 

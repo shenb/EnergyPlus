@@ -63,22 +63,22 @@ namespace ElectricBaseboardRadiator {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const BaseboardRadiator_Electric;
-    extern std::string const cCMO_BBRadiator_Electric;
+    thread_local extern int const BaseboardRadiator_Electric;
+    thread_local extern std::string const cCMO_BBRadiator_Electric;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumElecBaseboards;
-    extern Array1D<Real64> QBBElecRadSource;     // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> QBBElecRadSrcAvg;     // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    thread_local extern int NumElecBaseboards;
+    thread_local extern Array1D<Real64> QBBElecRadSource;     // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> QBBElecRadSrcAvg;     // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QBBRadSrcAvg locally
-    extern Array1D<Real64> LastQBBElecRadSrc;  // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    extern Array1D_bool MySizeFlag;
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D<Real64> LastQBBElecRadSrc;  // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    thread_local extern Array1D_bool MySizeFlag;
+    thread_local extern Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
     // Types
@@ -138,8 +138,8 @@ namespace ElectricBaseboardRadiator {
     };
 
     // Object Data
-    extern Array1D<ElecBaseboardParams> ElecBaseboard;
-    extern Array1D<ElecBaseboardNumericFieldData> ElecBaseboardNumericFields;
+    thread_local extern Array1D<ElecBaseboardParams> ElecBaseboard;
+    thread_local extern Array1D<ElecBaseboardNumericFieldData> ElecBaseboardNumericFields;
 
     // Functions
 

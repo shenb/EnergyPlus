@@ -70,93 +70,93 @@ namespace DXCoils {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Defrost strategy (heat pump only)
-    extern int const ReverseCycle; // uses reverse cycle defrost strategy
-    extern int const Resistive;    // uses electric resistance heater for defrost
+    thread_local extern int const ReverseCycle; // uses reverse cycle defrost strategy
+    thread_local extern int const Resistive;    // uses electric resistance heater for defrost
     // Defrost control  (heat pump only)
-    extern int const Timed;    // defrost cycle is timed
-    extern int const OnDemand; // defrost cycle occurs only when required
+    thread_local extern int const Timed;    // defrost cycle is timed
+    thread_local extern int const OnDemand; // defrost cycle occurs only when required
     // Compressor operation
-    extern int const On;  // normal compressor operation
-    extern int const Off; // signal DXCoil that compressor shouldn't run
+    thread_local extern int const On;  // normal compressor operation
+    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
 
-    extern Real64 const RatedInletAirTemp;           // 26.6667C or 80F
-    extern Real64 const RatedInletWetBulbTemp;       // 19.44 or 67F
-    extern Real64 const RatedInletAirHumRat;         // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
-    extern Real64 const RatedOutdoorAirTemp;         // 35 C or 95F
-    extern Real64 const RatedInletAirTempHeat;       // 21.11C or 70F
-    extern Real64 const RatedOutdoorAirTempHeat;     // 8.33 C or 47F
-    extern Real64 const RatedOutdoorWetBulbTempHeat; // 6.11 C or 43F
-    extern Real64 const RatedInletWetBulbTempHeat;   // 15.55 or 60F
+    thread_local extern Real64 const RatedInletAirTemp;           // 26.6667C or 80F
+    thread_local extern Real64 const RatedInletWetBulbTemp;       // 19.44 or 67F
+    thread_local extern Real64 const RatedInletAirHumRat;         // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
+    thread_local extern Real64 const RatedOutdoorAirTemp;         // 35 C or 95F
+    thread_local extern Real64 const RatedInletAirTempHeat;       // 21.11C or 70F
+    thread_local extern Real64 const RatedOutdoorAirTempHeat;     // 8.33 C or 47F
+    thread_local extern Real64 const RatedOutdoorWetBulbTempHeat; // 6.11 C or 43F
+    thread_local extern Real64 const RatedInletWetBulbTempHeat;   // 15.55 or 60F
 
-    extern Real64 const DryCoilOutletHumRatioMin; // dry coil outlet minimum hum ratio kgH2O/kgdry air
+    thread_local extern Real64 const DryCoilOutletHumRatioMin; // dry coil outlet minimum hum ratio kgH2O/kgdry air
 
     // Curve Types
-    extern int const Linear;
-    extern int const BiLinear;
-    extern int const Quadratic;
-    extern int const BiQuadratic;
-    extern int const Cubic;
+    thread_local extern int const Linear;
+    thread_local extern int const BiLinear;
+    thread_local extern int const Quadratic;
+    thread_local extern int const BiQuadratic;
+    thread_local extern int const Cubic;
 
     // Multimode DX Coil
-    extern int const MaxCapacityStages; // Maximum number of capacity stages supported
-    extern int const MaxDehumidModes;   // Maximum number of enhanced dehumidification modes supported
-    extern int const MaxModes;          // Maximum number of performance modes
+    thread_local extern int const MaxCapacityStages; // Maximum number of capacity stages supported
+    thread_local extern int const MaxDehumidModes;   // Maximum number of enhanced dehumidification modes supported
+    thread_local extern int const MaxModes;          // Maximum number of performance modes
 
     // Water Systems
-    extern int const CondensateDiscarded; // default mode where water is "lost"
-    extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
+    thread_local extern int const CondensateDiscarded; // default mode where water is "lost"
+    thread_local extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
 
-    extern int const WaterSupplyFromMains;
-    extern int const WaterSupplyFromTank;
+    thread_local extern int const WaterSupplyFromMains;
+    thread_local extern int const WaterSupplyFromTank;
 
-    extern int const NumValidOutputFuelTypes;
-    extern Array1D_string const cValidOutputFuelTypes;
+    thread_local extern int const NumValidOutputFuelTypes;
+    thread_local extern Array1D_string const cValidOutputFuelTypes;
 
     // Fuel Types
-    extern int const FuelTypeElectricity; // Fuel type for electricity
-    extern int const FuelTypeNaturalGas;  // Fuel type for natural gas
-    extern int const FuelTypePropaneGas;  // Fuel type for propane gas
-    extern int const FuelTypeDiesel;      // Fuel type for diesel
-    extern int const FuelTypeGasoline;    // Fuel type for gasoline
-    extern int const FuelTypeFuelOil1;    // Fuel type for fuel oil #1
-    extern int const FuelTypeFuelOil2;    // Fuel type for fuel oil #2
-    extern int const FuelTypeOtherFuel1;  // Fuel type for other fuel #1
-    extern int const FuelTypeOtherFuel2;  // Fuel type for other fuel #2
+    thread_local extern int const FuelTypeElectricity; // Fuel type for electricity
+    thread_local extern int const FuelTypeNaturalGas;  // Fuel type for natural gas
+    thread_local extern int const FuelTypePropaneGas;  // Fuel type for propane gas
+    thread_local extern int const FuelTypeDiesel;      // Fuel type for diesel
+    thread_local extern int const FuelTypeGasoline;    // Fuel type for gasoline
+    thread_local extern int const FuelTypeFuelOil1;    // Fuel type for fuel oil #1
+    thread_local extern int const FuelTypeFuelOil2;    // Fuel type for fuel oil #2
+    thread_local extern int const FuelTypeOtherFuel1;  // Fuel type for other fuel #1
+    thread_local extern int const FuelTypeOtherFuel2;  // Fuel type for other fuel #2
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D<Real64> DXCoilOutletTemp;           // DX coil outlet dry bulb temperature [C]
-    extern Array1D<Real64> DXCoilOutletHumRat;         // DX coil outlet humidity ratio [kgWater/kgDryAir]
-    extern Array1D<Real64> DXCoilPartLoadRatio;        // DX coil part-load ratio
-    extern Array1D_int DXCoilFanOpMode;                // supply air fan operating mode
-    extern Array1D<Real64> DXCoilFullLoadOutAirTemp;   // DX coil full load outlet dry bulb temperature [C]
-    extern Array1D<Real64> DXCoilFullLoadOutAirHumRat; // DX coil full load outlet humidity ratio [kgWater/kgDryAir]
-    extern Array1D<Real64> DXCoilTotalCooling;         // DX cooling coil total cooling output [W]
-    extern Array1D<Real64> DXCoilTotalHeating;         // DX heating coil total heating output [W]
-    extern Array1D<Real64> DXCoilCoolInletAirWBTemp;   // DX cooling coil inlet air wet-bulb temp [C]
-    extern Array1D<Real64> DXCoilHeatInletAirDBTemp;   // DX heating coil inlet air dry-bulb temp [C]
-    extern Array1D<Real64> DXCoilHeatInletAirWBTemp;   // DX heating coil inlet air wet-bulb temp [C]
+    thread_local extern Array1D<Real64> DXCoilOutletTemp;           // DX coil outlet dry bulb temperature [C]
+    thread_local extern Array1D<Real64> DXCoilOutletHumRat;         // DX coil outlet humidity ratio [kgWater/kgDryAir]
+    thread_local extern Array1D<Real64> DXCoilPartLoadRatio;        // DX coil part-load ratio
+    thread_local extern Array1D_int DXCoilFanOpMode;                // supply air fan operating mode
+    thread_local extern Array1D<Real64> DXCoilFullLoadOutAirTemp;   // DX coil full load outlet dry bulb temperature [C]
+    thread_local extern Array1D<Real64> DXCoilFullLoadOutAirHumRat; // DX coil full load outlet humidity ratio [kgWater/kgDryAir]
+    thread_local extern Array1D<Real64> DXCoilTotalCooling;         // DX cooling coil total cooling output [W]
+    thread_local extern Array1D<Real64> DXCoilTotalHeating;         // DX heating coil total heating output [W]
+    thread_local extern Array1D<Real64> DXCoilCoolInletAirWBTemp;   // DX cooling coil inlet air wet-bulb temp [C]
+    thread_local extern Array1D<Real64> DXCoilHeatInletAirDBTemp;   // DX heating coil inlet air dry-bulb temp [C]
+    thread_local extern Array1D<Real64> DXCoilHeatInletAirWBTemp;   // DX heating coil inlet air wet-bulb temp [C]
 
-    extern int CurDXCoilNum;
+    thread_local extern int CurDXCoilNum;
 
-    extern int NumDXCoils;                           // Total number of DX coils
-    extern Real64 HPWHHeatingCapacity;               // Used by Heat Pump:Water Heater object as total water heating capacity [W]
-    extern Real64 HPWHHeatingCOP;                    // Used by Heat Pump:Water Heater object as water heating COP [W/W]
-    extern bool GetCoilsInputFlag;                   // First time, input is "gotten"
-    extern bool MyOneTimeFlag;                       // One time flag used to allocate MyEnvrnFlag and MySizeFlag
-    extern int NumVRFHeatingCoils;                   // number of VRF heat pump heating coils
-    extern int NumVRFCoolingCoils;                   // number of VRF heat pump cooling coils
-    extern int NumDXHeatingCoils;                    // number of DX heat pump heating coils
-    extern int NumDoe2DXCoils;                       // number of doe2 DX  coils
-    extern int NumDXHeatPumpWaterHeaterPumpedCoils;  // number of DX  water heater coils, pumped
-    extern int NumDXHeatPumpWaterHeaterWrappedCoils; // number of wrapped tank HPWH coils
-    extern int NumDXMulSpeedCoils;                   // number of DX coils with multi-speed compressor
-    extern int NumDXMulModeCoils;                    // number of DX coils with multi-mode performance
+    thread_local extern int NumDXCoils;                           // Total number of DX coils
+    thread_local extern Real64 HPWHHeatingCapacity;               // Used by Heat Pump:Water Heater object as total water heating capacity [W]
+    thread_local extern Real64 HPWHHeatingCOP;                    // Used by Heat Pump:Water Heater object as water heating COP [W/W]
+    thread_local extern bool GetCoilsInputFlag;                   // First time, input is "gotten"
+    thread_local extern bool MyOneTimeFlag;                       // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+    thread_local extern int NumVRFHeatingCoils;                   // number of VRF heat pump heating coils
+    thread_local extern int NumVRFCoolingCoils;                   // number of VRF heat pump cooling coils
+    thread_local extern int NumDXHeatingCoils;                    // number of DX heat pump heating coils
+    thread_local extern int NumDoe2DXCoils;                       // number of doe2 DX  coils
+    thread_local extern int NumDXHeatPumpWaterHeaterPumpedCoils;  // number of DX  water heater coils, pumped
+    thread_local extern int NumDXHeatPumpWaterHeaterWrappedCoils; // number of wrapped tank HPWH coils
+    thread_local extern int NumDXMulSpeedCoils;                   // number of DX coils with multi-speed compressor
+    thread_local extern int NumDXMulModeCoils;                    // number of DX coils with multi-mode performance
 
-    extern int NumDXMulSpeedCoolCoils; // number of multispeed DX cooling coils
-    extern int NumDXMulSpeedHeatCoils; // number of multispeed DX heating coils
-    extern Array1D_bool CheckEquipName;
+    thread_local extern int NumDXMulSpeedCoolCoils; // number of multispeed DX cooling coils
+    thread_local extern int NumDXMulSpeedHeatCoils; // number of multispeed DX heating coils
+    thread_local extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -595,8 +595,8 @@ namespace DXCoils {
     };
 
     // Object Data
-    extern Array1D<DXCoilData> DXCoil;
-    extern Array1D<DXCoilNumericFieldData> DXCoilNumericFields;
+    thread_local extern Array1D<DXCoilData> DXCoil;
+    thread_local extern Array1D<DXCoilNumericFieldData> DXCoilNumericFields;
 
     // Functions
 

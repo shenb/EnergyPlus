@@ -181,8 +181,8 @@ namespace TarcogShading {
         Real64 hc;
         Real64 hc1;
         Real64 hc2;
-        static Array1D<Real64> frct1(maxgas);
-        static Array1D<Real64> frct2(maxgas);
+        thread_local static Array1D<Real64> frct1(maxgas);
+        thread_local static Array1D<Real64> frct2(maxgas);
         Real64 speed;
         Real64 Tav;
         Real64 Tgap;
@@ -203,8 +203,8 @@ namespace TarcogShading {
         int k;
         int nmix1;
         int nmix2;
-        static Array1D_int iprop1(maxgas);
-        static Array1D_int iprop2(maxgas);
+        thread_local static Array1D_int iprop1(maxgas);
+        thread_local static Array1D_int iprop2(maxgas);
 
         // init vectors:
         qv = 0.0;

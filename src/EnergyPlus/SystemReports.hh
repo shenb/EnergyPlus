@@ -60,109 +60,109 @@ namespace SystemReports {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    extern int const NoHeatNoCool;
-    extern int const CoolingOnly;
-    extern int const HeatingOnly;
-    extern int const HeatAndCool;
-    extern int const MaxSetBackCount;
+    thread_local extern int const NoHeatNoCool;
+    thread_local extern int const CoolingOnly;
+    thread_local extern int const HeatingOnly;
+    thread_local extern int const HeatAndCool;
+    thread_local extern int const MaxSetBackCount;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
     // Ventilation Report Variables
-    extern Array1D<Real64> MaxCoolingLoadMetByVent;
-    extern Array1D<Real64> MaxCoolingLoadAddedByVent;
-    extern Array1D<Real64> MaxOvercoolingByVent;
-    extern Array1D<Real64> MaxHeatingLoadMetByVent;
-    extern Array1D<Real64> MaxHeatingLoadAddedByVent;
-    extern Array1D<Real64> MaxOverheatingByVent;
-    extern Array1D<Real64> MaxNoLoadHeatingByVent;
-    extern Array1D<Real64> MaxNoLoadCoolingByVent;
+    thread_local extern Array1D<Real64> MaxCoolingLoadMetByVent;
+    thread_local extern Array1D<Real64> MaxCoolingLoadAddedByVent;
+    thread_local extern Array1D<Real64> MaxOvercoolingByVent;
+    thread_local extern Array1D<Real64> MaxHeatingLoadMetByVent;
+    thread_local extern Array1D<Real64> MaxHeatingLoadAddedByVent;
+    thread_local extern Array1D<Real64> MaxOverheatingByVent;
+    thread_local extern Array1D<Real64> MaxNoLoadHeatingByVent;
+    thread_local extern Array1D<Real64> MaxNoLoadCoolingByVent;
 
-    extern Array1D<Real64> RemMaxCoolingLoadMetByVent;
-    extern Array1D<Real64> RemMaxCoolingLoadAddedByVent;
-    extern Array1D<Real64> RemMaxOvercoolingByVent;
-    extern Array1D<Real64> RemMaxHeatingLoadMetByVent;
-    extern Array1D<Real64> RemMaxHeatingLoadAddedByVent;
-    extern Array1D<Real64> RemMaxOverheatingByVent;
-    extern Array1D<Real64> RemMaxNoLoadHeatingByVent;
-    extern Array1D<Real64> RemMaxNoLoadCoolingByVent;
+    thread_local extern Array1D<Real64> RemMaxCoolingLoadMetByVent;
+    thread_local extern Array1D<Real64> RemMaxCoolingLoadAddedByVent;
+    thread_local extern Array1D<Real64> RemMaxOvercoolingByVent;
+    thread_local extern Array1D<Real64> RemMaxHeatingLoadMetByVent;
+    thread_local extern Array1D<Real64> RemMaxHeatingLoadAddedByVent;
+    thread_local extern Array1D<Real64> RemMaxOverheatingByVent;
+    thread_local extern Array1D<Real64> RemMaxNoLoadHeatingByVent;
+    thread_local extern Array1D<Real64> RemMaxNoLoadCoolingByVent;
 
-    extern Array1D<Real64> LastMaxCoolingLoadMetByVent;
-    extern Array1D<Real64> LastMaxCoolingLoadAddedByVent;
-    extern Array1D<Real64> LastMaxOvercoolingByVent;
-    extern Array1D<Real64> LastMaxHeatingLoadMetByVent;
-    extern Array1D<Real64> LastMaxHeatingLoadAddedByVent;
-    extern Array1D<Real64> LastMaxOverheatingByVent;
-    extern Array1D<Real64> LastMaxNoLoadHeatingByVent;
-    extern Array1D<Real64> LastMaxNoLoadCoolingByVent;
+    thread_local extern Array1D<Real64> LastMaxCoolingLoadMetByVent;
+    thread_local extern Array1D<Real64> LastMaxCoolingLoadAddedByVent;
+    thread_local extern Array1D<Real64> LastMaxOvercoolingByVent;
+    thread_local extern Array1D<Real64> LastMaxHeatingLoadMetByVent;
+    thread_local extern Array1D<Real64> LastMaxHeatingLoadAddedByVent;
+    thread_local extern Array1D<Real64> LastMaxOverheatingByVent;
+    thread_local extern Array1D<Real64> LastMaxNoLoadHeatingByVent;
+    thread_local extern Array1D<Real64> LastMaxNoLoadCoolingByVent;
 
-    extern Array1D<Real64> SysTotZoneLoadHTNG;
-    extern Array1D<Real64> SysTotZoneLoadCLNG;
-    extern Array1D<Real64> SysOALoadHTNG;
-    extern Array1D<Real64> SysOALoadCLNG;
-    extern Array1D<Real64> SysTotHTNG;
-    extern Array1D<Real64> SysTotCLNG;
+    thread_local extern Array1D<Real64> SysTotZoneLoadHTNG;
+    thread_local extern Array1D<Real64> SysTotZoneLoadCLNG;
+    thread_local extern Array1D<Real64> SysOALoadHTNG;
+    thread_local extern Array1D<Real64> SysOALoadCLNG;
+    thread_local extern Array1D<Real64> SysTotHTNG;
+    thread_local extern Array1D<Real64> SysTotCLNG;
 
-    extern Array1D<Real64> SysTotH2OHOT;
-    extern Array1D<Real64> SysTotH2OCOLD;
-    extern Array1D<Real64> SysTotElec;
-    extern Array1D<Real64> SysTotGas;
-    extern Array1D<Real64> SysTotSteam;
+    thread_local extern Array1D<Real64> SysTotH2OHOT;
+    thread_local extern Array1D<Real64> SysTotH2OCOLD;
+    thread_local extern Array1D<Real64> SysTotElec;
+    thread_local extern Array1D<Real64> SysTotGas;
+    thread_local extern Array1D<Real64> SysTotSteam;
 
-    extern Array1D<Real64> SysHumidHTNG;
-    extern Array1D<Real64> SysHumidElec;
-    extern Array1D<Real64> SysHumidGas;
-    extern Array1D<Real64> SysEvapCLNG;
-    extern Array1D<Real64> SysEvapElec;
-    extern Array1D<Real64> SysHeatExHTNG;
-    extern Array1D<Real64> SysHeatExCLNG;
-    extern Array1D<Real64> DesDehumidCLNG;
-    extern Array1D<Real64> DesDehumidElec;
-    extern Array1D<Real64> SysSolarCollectHeating;
-    extern Array1D<Real64> SysSolarCollectCooling;
-    extern Array1D<Real64> SysUserDefinedTerminalHeating;
-    extern Array1D<Real64> SysUserDefinedTerminalCooling;
+    thread_local extern Array1D<Real64> SysHumidHTNG;
+    thread_local extern Array1D<Real64> SysHumidElec;
+    thread_local extern Array1D<Real64> SysHumidGas;
+    thread_local extern Array1D<Real64> SysEvapCLNG;
+    thread_local extern Array1D<Real64> SysEvapElec;
+    thread_local extern Array1D<Real64> SysHeatExHTNG;
+    thread_local extern Array1D<Real64> SysHeatExCLNG;
+    thread_local extern Array1D<Real64> DesDehumidCLNG;
+    thread_local extern Array1D<Real64> DesDehumidElec;
+    thread_local extern Array1D<Real64> SysSolarCollectHeating;
+    thread_local extern Array1D<Real64> SysSolarCollectCooling;
+    thread_local extern Array1D<Real64> SysUserDefinedTerminalHeating;
+    thread_local extern Array1D<Real64> SysUserDefinedTerminalCooling;
 
-    extern Array1D<Real64> SysFANCompHTNG;
-    extern Array1D<Real64> SysFANCompElec;
-    extern Array1D<Real64> SysCCCompCLNG;
-    extern Array1D<Real64> SysCCCompH2OCOLD;
-    extern Array1D<Real64> SysCCCompElec;
-    extern Array1D<Real64> SysHCCompH2OHOT;
-    extern Array1D<Real64> SysHCCompElec;
-    extern Array1D<Real64> SysHCCompElecRes;
-    extern Array1D<Real64> SysHCCompHTNG;
-    extern Array1D<Real64> SysHCCompGas;
-    extern Array1D<Real64> SysHCCompSteam;
-    extern Array1D<Real64> SysDomesticH20;
+    thread_local extern Array1D<Real64> SysFANCompHTNG;
+    thread_local extern Array1D<Real64> SysFANCompElec;
+    thread_local extern Array1D<Real64> SysCCCompCLNG;
+    thread_local extern Array1D<Real64> SysCCCompH2OCOLD;
+    thread_local extern Array1D<Real64> SysCCCompElec;
+    thread_local extern Array1D<Real64> SysHCCompH2OHOT;
+    thread_local extern Array1D<Real64> SysHCCompElec;
+    thread_local extern Array1D<Real64> SysHCCompElecRes;
+    thread_local extern Array1D<Real64> SysHCCompHTNG;
+    thread_local extern Array1D<Real64> SysHCCompGas;
+    thread_local extern Array1D<Real64> SysHCCompSteam;
+    thread_local extern Array1D<Real64> SysDomesticH20;
 
-    extern Array1D<Real64> ZoneOAMassFlow;       // zone mech vent mass flow rate {kg/s}
-    extern Array1D<Real64> ZoneOAMass;           // zone mech vent total mass for time {kg}
-    extern Array1D<Real64> ZoneOAVolFlowStdRho;  // zone mech vent volume flow rate at standard density {m3/s}
-    extern Array1D<Real64> ZoneOAVolStdRho;      // zone mech vent total volume OA at standard density {m3/s}
-    extern Array1D<Real64> ZoneOAVolFlowCrntRho; // zone mech vent volume flow rate at current density {m3/s}
-    extern Array1D<Real64> ZoneOAVolCrntRho;     // zone mech vent total volume OA at current density {m3/s}
-    extern Array1D<Real64> ZoneMechACH;          // zone mech vent air changes per hour {ACH}
+    thread_local extern Array1D<Real64> ZoneOAMassFlow;       // zone mech vent mass flow rate {kg/s}
+    thread_local extern Array1D<Real64> ZoneOAMass;           // zone mech vent total mass for time {kg}
+    thread_local extern Array1D<Real64> ZoneOAVolFlowStdRho;  // zone mech vent volume flow rate at standard density {m3/s}
+    thread_local extern Array1D<Real64> ZoneOAVolStdRho;      // zone mech vent total volume OA at standard density {m3/s}
+    thread_local extern Array1D<Real64> ZoneOAVolFlowCrntRho; // zone mech vent volume flow rate at current density {m3/s}
+    thread_local extern Array1D<Real64> ZoneOAVolCrntRho;     // zone mech vent total volume OA at current density {m3/s}
+    thread_local extern Array1D<Real64> ZoneMechACH;          // zone mech vent air changes per hour {ACH}
 
-    extern bool AirLoopLoadsReportEnabled;
-    extern bool VentLoadsReportEnabled;
-    extern bool VentEnergyReportEnabled;
-    extern bool VentReportStructureCreated;
-    extern int TotalLoopConnects; // Total number of loop connections
-    extern int MaxLoopArraySize;
-    extern int MaxCompArraySize;
-    extern int DBFlag;
+    thread_local extern bool AirLoopLoadsReportEnabled;
+    thread_local extern bool VentLoadsReportEnabled;
+    thread_local extern bool VentEnergyReportEnabled;
+    thread_local extern bool VentReportStructureCreated;
+    thread_local extern int TotalLoopConnects; // Total number of loop connections
+    thread_local extern int MaxLoopArraySize;
+    thread_local extern int MaxCompArraySize;
+    thread_local extern int DBFlag;
 
-    extern Array1D_int SetBackCounter;
-    extern Array1D_int HeatCoolFlag;
-    extern Array1D_int FirstHeatCoolFlag;
-    extern Array1D_int FirstHeatCoolHour;
-    extern Array1D_int LastHeatCoolFlag;
-    extern Array1D_int LastHeatCoolHour;
-    extern Array1D_bool AirLoopCalcDone;
-    extern Array1D_bool NoLoadFlag;
-    extern Array1D_bool UnmetLoadFlag;
+    thread_local extern Array1D_int SetBackCounter;
+    thread_local extern Array1D_int HeatCoolFlag;
+    thread_local extern Array1D_int FirstHeatCoolFlag;
+    thread_local extern Array1D_int FirstHeatCoolHour;
+    thread_local extern Array1D_int LastHeatCoolFlag;
+    thread_local extern Array1D_int LastHeatCoolHour;
+    thread_local extern Array1D_bool AirLoopCalcDone;
+    thread_local extern Array1D_bool NoLoadFlag;
+    thread_local extern Array1D_bool UnmetLoadFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SystemReports
 
@@ -219,7 +219,7 @@ namespace SystemReports {
     };
 
     // Object Data
-    extern Array1D<SummarizeLoads> Vent;
+    thread_local extern Array1D<SummarizeLoads> Vent;
 
     // Functions
 

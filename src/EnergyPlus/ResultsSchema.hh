@@ -329,7 +329,7 @@ namespace ResultsFramework {
         bool outputMsgPack = false;
     };
 
-    extern std::unique_ptr<ResultsSchema> OutputSchema;
+    thread_local extern std::unique_ptr<ResultsSchema> OutputSchema;
 
     void clear_state();
 } // namespace ResultsFramework

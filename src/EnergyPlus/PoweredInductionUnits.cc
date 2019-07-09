@@ -135,34 +135,34 @@ namespace PoweredInductionUnits {
     using DataHeatBalFanSys::TempControlType;
 
     // MODULE PARAMETER DEFINITIONS
-    int const SingleDuct_SeriesPIU_Reheat(6);
-    int const SingleDuct_ParallelPIU_Reheat(7);
+    thread_local int const SingleDuct_SeriesPIU_Reheat(6);
+    thread_local int const SingleDuct_ParallelPIU_Reheat(7);
     // coil types in this module
-    int const HCoilType_Gas(1);
-    int const HCoilType_Electric(2);
-    int const HCoilType_SimpleHeating(3);
-    int const HCoilType_SteamAirHeating(4);
+    thread_local int const HCoilType_Gas(1);
+    thread_local int const HCoilType_Electric(2);
+    thread_local int const HCoilType_SimpleHeating(3);
+    thread_local int const HCoilType_SteamAirHeating(4);
 
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
 
     // MODULE VARIABLE DECLARATIONS:
-    Array1D_bool CheckEquipName;
+    thread_local Array1D_bool CheckEquipName;
 
     namespace {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool GetPIUInputFlag(true); // First time, input is "gotten"
+        thread_local bool GetPIUInputFlag(true); // First time, input is "gotten"
     }                               // namespace
 
-    int NumPIUs(0);
-    int NumSeriesPIUs(0);
-    int NumParallelPIUs(0);
+    thread_local int NumPIUs(0);
+    thread_local int NumSeriesPIUs(0);
+    thread_local int NumParallelPIUs(0);
 
     // Object Data
-    Array1D<PowIndUnitData> PIU;
-    std::unordered_map<std::string, std::string> PiuUniqueNames;
+    thread_local Array1D<PowIndUnitData> PIU;
+    thread_local std::unordered_map<std::string, std::string> PiuUniqueNames;
 
     void clear_state()
     {
@@ -299,13 +299,13 @@ namespace PoweredInductionUnits {
         int NumAlphas;                  // Number of Alpha input fields for each GetObjectItem call
         int NumNumbers;                 // Number of Numeric input fields for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         bool IsNotOK;                   // Flag to verify name
         int CtrlZone;                   // controlled zome do loop index
         int SupAirIn;                   // controlled zone supply air inlet index
         bool AirNodeFound;
         int ADUNum;
-        static std::string const RoutineName("GetPIUs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetPIUs: "); // include trailing blank space
         bool SteamMessageNeeded;
         int FanType_Num; // integer representation of fan type
 
@@ -769,7 +769,7 @@ namespace PoweredInductionUnits {
         using PlantUtilities::ScanPlantLoopsForObject;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("InitPIU");
+        thread_local static std::string const RoutineName("InitPIU");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PriNode;    // primary air inlet node number
@@ -777,11 +777,11 @@ namespace PoweredInductionUnits {
         int HotConNode; // hot water control node number in PIU
         int OutletNode; // unit air outlet node number
         Real64 RhoAir;  // air density at outside pressure and standard temperature and humidity
-        static bool MyOneTimeFlag(true);
-        static Array1D_bool MyEnvrnFlag;
-        static Array1D_bool MySizeFlag;
-        static Array1D_bool MyPlantScanFlag;
-        static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local static bool MyOneTimeFlag(true);
+        thread_local static Array1D_bool MyEnvrnFlag;
+        thread_local static Array1D_bool MySizeFlag;
+        thread_local static Array1D_bool MyPlantScanFlag;
+        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;                                    // Loop checking control variable
         Real64 rho;                                  // local plant fluid density
         bool errFlag;
@@ -996,7 +996,7 @@ namespace PoweredInductionUnits {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizePIU");
+        thread_local static std::string const RoutineName("SizePIU");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum; // index of plant sizing object for 1st heating loop
@@ -1011,14 +1011,14 @@ namespace PoweredInductionUnits {
         Real64 EnthSteamOutWet;
         Real64 LatentHeatSteam;
         Real64 SteamDensity;
-        static int CoilWaterInletNode(0);
-        static int CoilWaterOutletNode(0);
-        static int CoilSteamInletNode(0);
-        static int CoilSteamOutletNode(0);
+        thread_local static int CoilWaterInletNode(0);
+        thread_local static int CoilWaterOutletNode(0);
+        thread_local static int CoilSteamInletNode(0);
+        thread_local static int CoilSteamOutletNode(0);
         bool ErrorsFound;
         Real64 rho;
         Real64 Cp;
-        static int DummyWaterIndex(1);
+        thread_local static int DummyWaterIndex(1);
         bool IsAutoSize;               // Indicator to autosize
         Real64 MaxPriAirVolFlowDes;    // Autosized maximum primary air flow for reporting
         Real64 MaxPriAirVolFlowUser;   // Hardsized maximum primary air flow for reporting

@@ -79,38 +79,38 @@ namespace DataStringGlobals {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    std::string const UpperCase("ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ");
-    std::string const LowerCase("abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûüý");
-    std::string const AccentedUpperCase("ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ");
-    std::string const AccentedLowerCase("àáâãäåæçèéêëìíîïðñòóôõöøùúûüý");
-    std::string const AllCase("àáâãäåæçèéêëìíîïðñòóôõöøùúûüýÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+    thread_local std::string const UpperCase("ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ");
+    thread_local std::string const LowerCase("abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûüý");
+    thread_local std::string const AccentedUpperCase("ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ");
+    thread_local std::string const AccentedLowerCase("àáâãäåæçèéêëìíîïðñòóôõöøùúûüý");
+    thread_local std::string const AllCase("àáâãäåæçèéêëìíîïðñòóôõöøùúûüýÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 #ifdef _WIN32
-    std::string const NL("\r\n"); // Platform newline
+    thread_local std::string const NL("\r\n"); // Platform newline
 #else
-    std::string const NL("\n"); // Platform newline
+    thread_local std::string const NL("\n"); // Platform newline
 #endif
 #ifdef _WIN32
-    char const pathChar('\\');
-    char const altpathChar('/');
+    thread_local char const pathChar('\\');
+    thread_local char const altpathChar('/');
 #elif __linux__
-    char const pathChar('/');
-    char const altpathChar('\\');
+    thread_local char const pathChar('/');
+    thread_local char const altpathChar('\\');
 #elif __unix__
-    char const pathChar('/');
-    char const altpathChar('\\');
+    thread_local char const pathChar('/');
+    thread_local char const altpathChar('\\');
 #elif __posix__
-    char const pathChar('/');
-    char const altpathChar('\\');
+    thread_local char const pathChar('/');
+    thread_local char const altpathChar('\\');
 #elif __APPLE__
-    char const pathChar('/');
-    char const altpathChar('\\');
+    thread_local char const pathChar('/');
+    thread_local char const altpathChar('\\');
 #else
 #error "Invalid platform detection in DataStringGlobals."
 #endif
-    char const CharComma(',');     // comma
-    char const CharSemicolon(';'); // semicolon
-    char const CharTab('\t');      // tab
-    char const CharSpace(' ');     // space
+    thread_local char const CharComma(',');     // comma
+    thread_local char const CharSemicolon(';'); // semicolon
+    thread_local char const CharTab('\t');      // tab
+    thread_local char const CharSpace(' ');     // space
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -119,108 +119,108 @@ namespace DataStringGlobals {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    std::string outputAuditFileName("eplusout.audit");
-    std::string outputBndFileName("eplusout.bnd");
-    std::string outputDxfFileName("eplusout.dxf");
-    std::string outputEioFileName("eplusout.eio");
-    std::string outputEndFileName("eplusout.end");
-    std::string outputErrFileName("eplusout.err");
-    std::string outputEsoFileName("eplusout.eso");
-    std::string outputJsonFileName("eplusout.json");
-    std::string outputTSHvacJsonFileName("eplusout_detailed_HVAC.json");
-    std::string outputTSZoneJsonFileName("eplusout_detailed_zone.json");
-    std::string outputTSJsonFileName("eplusout_timestep.json");
-    std::string outputYRJsonFileName("eplusout_yearly.json");
-    std::string outputMNJsonFileName("eplusout_monthly.json");
-    std::string outputDYJsonFileName("eplusout_daily.json");
-    std::string outputHRJsonFileName("eplusout_hourly.json");
-    std::string outputSMJsonFileName("eplusout_runperiod.json");
-    std::string outputCborFileName("eplusout.cbor");
-    std::string outputTSHvacCborFileName("eplusout_detailed_HVAC.cbor");
-    std::string outputTSZoneCborFileName("eplusout_detailed_zone.cbor");
-    std::string outputTSCborFileName("eplusout_timestep.cbor");
-    std::string outputYRCborFileName("eplusout_yearly.cbor");
-    std::string outputMNCborFileName("eplusout_monthly.cbor");
-    std::string outputDYCborFileName("eplusout_daily.cbor");
-    std::string outputHRCborFileName("eplusout_hourly.cbor");
-    std::string outputSMCborFileName("eplusout_runperiod.cbor");
-    std::string outputMsgPackFileName("eplusout.msgpack");
-    std::string outputTSHvacMsgPackFileName("eplusout_detailed_HVAC.msgpack");
-    std::string outputTSZoneMsgPackFileName("eplusout_detailed_zone.msgpack");
-    std::string outputTSMsgPackFileName("eplusout_timestep.msgpack");
-    std::string outputYRMsgPackFileName("eplusout_yearly.msgpack");
-    std::string outputMNMsgPackFileName("eplusout_monthly.msgpack");
-    std::string outputDYMsgPackFileName("eplusout_daily.msgpack");
-    std::string outputHRMsgPackFileName("eplusout_hourly.msgpack");
-    std::string outputSMMsgPackFileName("eplusout_runperiod.msgpack");
-    std::string outputMtdFileName("eplusout.mtd");
-    std::string outputMddFileName("eplusout.mdd");
-    std::string outputMtrFileName("eplusout.mtr");
-    std::string outputRddFileName("eplusout.rdd");
-    std::string outputShdFileName("eplusout.shd");
-    std::string outputTblCsvFileName("eplustbl.csv");
-    std::string outputTblHtmFileName("eplustbl.htm");
-    std::string outputTblTabFileName("eplustbl.tab");
-    std::string outputTblTxtFileName("eplustbl.txt");
-    std::string outputTblXmlFileName("eplustbl.xml");
-    std::string outputAdsFileName("eplusADS.out");
-    std::string outputDfsFileName("eplusout.dfs");
-    std::string outputGLHEFileName("eplusout.glhe");
-    std::string outputDelightInFileName("eplusout.delightin");
-    std::string outputDelightOutFileName("eplusout.delightout");
-    std::string outputDelightEldmpFileName("eplusout.delighteldmp");
-    std::string outputDelightDfdmpFileName("eplusout.delightdfdmp");
-    std::string outputMapTabFileName("eplusmap.tab");
-    std::string outputMapCsvFileName("eplusmap.csv");
-    std::string outputMapTxtFileName("eplusmap.txt");
-    std::string outputEddFileName("eplusout.edd");
-    std::string outputIperrFileName("eplusout.iperr");
-    std::string outputDbgFileName("eplusout.dbg");
-    std::string outputSlnFileName("eplusout.sln");
-    std::string outputSciFileName("eplusout.sci");
-    std::string outputWrlFileName("eplusout.wrl");
-    std::string outputZszCsvFileName("epluszsz.csv");
-    std::string outputZszTabFileName("epluszsz.tab");
-    std::string outputZszTxtFileName("epluszsz.txt");
-    std::string outputSszCsvFileName("eplusssz.csv");
-    std::string outputSszTabFileName("eplusssz.tab");
-    std::string outputSszTxtFileName("eplusssz.txt");
-    std::string outputScreenCsvFileName("eplusscreen.csv");
-    std::string outputSqlFileName("eplusout.sql");
-    std::string outputSqliteErrFileName("eplussqlite.err");
-    std::string TarcogIterationsFileName("TarcogIterations.dbg");
-    std::string outputCsvFileName("eplusout.csv");
-    std::string outputMtrCsvFileName("eplusmtr.csv");
-    std::string outputRvauditFileName("eplusout.rvaudit");
-    std::string outputExtShdFracFileName("eplusshading.csv");
+    thread_local std::string outputAuditFileName("eplusout.audit");
+    thread_local std::string outputBndFileName("eplusout.bnd");
+    thread_local std::string outputDxfFileName("eplusout.dxf");
+    thread_local std::string outputEioFileName("eplusout.eio");
+    thread_local std::string outputEndFileName("eplusout.end");
+    thread_local std::string outputErrFileName("eplusout.err");
+    thread_local std::string outputEsoFileName("eplusout.eso");
+    thread_local std::string outputJsonFileName("eplusout.json");
+    thread_local std::string outputTSHvacJsonFileName("eplusout_detailed_HVAC.json");
+    thread_local std::string outputTSZoneJsonFileName("eplusout_detailed_zone.json");
+    thread_local std::string outputTSJsonFileName("eplusout_timestep.json");
+    thread_local std::string outputYRJsonFileName("eplusout_yearly.json");
+    thread_local std::string outputMNJsonFileName("eplusout_monthly.json");
+    thread_local std::string outputDYJsonFileName("eplusout_daily.json");
+    thread_local std::string outputHRJsonFileName("eplusout_hourly.json");
+    thread_local std::string outputSMJsonFileName("eplusout_runperiod.json");
+    thread_local std::string outputCborFileName("eplusout.cbor");
+    thread_local std::string outputTSHvacCborFileName("eplusout_detailed_HVAC.cbor");
+    thread_local std::string outputTSZoneCborFileName("eplusout_detailed_zone.cbor");
+    thread_local std::string outputTSCborFileName("eplusout_timestep.cbor");
+    thread_local std::string outputYRCborFileName("eplusout_yearly.cbor");
+    thread_local std::string outputMNCborFileName("eplusout_monthly.cbor");
+    thread_local std::string outputDYCborFileName("eplusout_daily.cbor");
+    thread_local std::string outputHRCborFileName("eplusout_hourly.cbor");
+    thread_local std::string outputSMCborFileName("eplusout_runperiod.cbor");
+    thread_local std::string outputMsgPackFileName("eplusout.msgpack");
+    thread_local std::string outputTSHvacMsgPackFileName("eplusout_detailed_HVAC.msgpack");
+    thread_local std::string outputTSZoneMsgPackFileName("eplusout_detailed_zone.msgpack");
+    thread_local std::string outputTSMsgPackFileName("eplusout_timestep.msgpack");
+    thread_local std::string outputYRMsgPackFileName("eplusout_yearly.msgpack");
+    thread_local std::string outputMNMsgPackFileName("eplusout_monthly.msgpack");
+    thread_local std::string outputDYMsgPackFileName("eplusout_daily.msgpack");
+    thread_local std::string outputHRMsgPackFileName("eplusout_hourly.msgpack");
+    thread_local std::string outputSMMsgPackFileName("eplusout_runperiod.msgpack");
+    thread_local std::string outputMtdFileName("eplusout.mtd");
+    thread_local std::string outputMddFileName("eplusout.mdd");
+    thread_local std::string outputMtrFileName("eplusout.mtr");
+    thread_local std::string outputRddFileName("eplusout.rdd");
+    thread_local std::string outputShdFileName("eplusout.shd");
+    thread_local std::string outputTblCsvFileName("eplustbl.csv");
+    thread_local std::string outputTblHtmFileName("eplustbl.htm");
+    thread_local std::string outputTblTabFileName("eplustbl.tab");
+    thread_local std::string outputTblTxtFileName("eplustbl.txt");
+    thread_local std::string outputTblXmlFileName("eplustbl.xml");
+    thread_local std::string outputAdsFileName("eplusADS.out");
+    thread_local std::string outputDfsFileName("eplusout.dfs");
+    thread_local std::string outputGLHEFileName("eplusout.glhe");
+    thread_local std::string outputDelightInFileName("eplusout.delightin");
+    thread_local std::string outputDelightOutFileName("eplusout.delightout");
+    thread_local std::string outputDelightEldmpFileName("eplusout.delighteldmp");
+    thread_local std::string outputDelightDfdmpFileName("eplusout.delightdfdmp");
+    thread_local std::string outputMapTabFileName("eplusmap.tab");
+    thread_local std::string outputMapCsvFileName("eplusmap.csv");
+    thread_local std::string outputMapTxtFileName("eplusmap.txt");
+    thread_local std::string outputEddFileName("eplusout.edd");
+    thread_local std::string outputIperrFileName("eplusout.iperr");
+    thread_local std::string outputDbgFileName("eplusout.dbg");
+    thread_local std::string outputSlnFileName("eplusout.sln");
+    thread_local std::string outputSciFileName("eplusout.sci");
+    thread_local std::string outputWrlFileName("eplusout.wrl");
+    thread_local std::string outputZszCsvFileName("epluszsz.csv");
+    thread_local std::string outputZszTabFileName("epluszsz.tab");
+    thread_local std::string outputZszTxtFileName("epluszsz.txt");
+    thread_local std::string outputSszCsvFileName("eplusssz.csv");
+    thread_local std::string outputSszTabFileName("eplusssz.tab");
+    thread_local std::string outputSszTxtFileName("eplusssz.txt");
+    thread_local std::string outputScreenCsvFileName("eplusscreen.csv");
+    thread_local std::string outputSqlFileName("eplusout.sql");
+    thread_local std::string outputSqliteErrFileName("eplussqlite.err");
+    thread_local std::string TarcogIterationsFileName("TarcogIterations.dbg");
+    thread_local std::string outputCsvFileName("eplusout.csv");
+    thread_local std::string outputMtrCsvFileName("eplusmtr.csv");
+    thread_local std::string outputRvauditFileName("eplusout.rvaudit");
+    thread_local std::string outputExtShdFracFileName("eplusshading.csv");
 
-    std::string EnergyPlusIniFileName;
-    std::string inStatFileName;
-    std::string eplusADSFileName;
-    std::string idfFileNameOnly;
-    std::string idfDirPathName;
-    std::string outDirPathName;
-    std::string inputFileNameOnly;
-    std::string inputDirPathName;
-    std::string outputDirPathName;
-    std::string exeDirectory;
-    std::string inputFileName;
-    std::string inputIddFileName;
-    std::string inputEpJSONSchemaFileName;
-    std::string inputWeatherFileName;
-    std::string FullName;
-    std::string weatherFileNameOnly;
-    std::string ProgramPath;          // Path for Program from INI file
-    std::string CurrentWorkingFolder; // Current working directory for run
-    std::string CurrentDateTime;      // For printing current date and time at start of run
-    std::string IDDVerString;         // Version information from the IDD (line 1)
+    thread_local std::string EnergyPlusIniFileName;
+    thread_local std::string inStatFileName;
+    thread_local std::string eplusADSFileName;
+    thread_local std::string idfFileNameOnly;
+    thread_local std::string idfDirPathName;
+    thread_local std::string outDirPathName;
+    thread_local std::string inputFileNameOnly;
+    thread_local std::string inputDirPathName;
+    thread_local std::string outputDirPathName;
+    thread_local std::string exeDirectory;
+    thread_local std::string inputFileName;
+    thread_local std::string inputIddFileName;
+    thread_local std::string inputEpJSONSchemaFileName;
+    thread_local std::string inputWeatherFileName;
+    thread_local std::string FullName;
+    thread_local std::string weatherFileNameOnly;
+    thread_local std::string ProgramPath;          // Path for Program from INI file
+    thread_local std::string CurrentWorkingFolder; // Current working directory for run
+    thread_local std::string CurrentDateTime;      // For printing current date and time at start of run
+    thread_local std::string IDDVerString;         // Version information from the IDD (line 1)
 
-    std::string
+    thread_local std::string
         VerString("EnergyPlus, Version ${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}.${CMAKE_VERSION_PATCH}-${CMAKE_VERSION_BUILD}"); // String that
                                                                                                                                       // represents
                                                                                                                                       // version
                                                                                                                                       // information
-    std::string MatchVersion("${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}"); // String to be matched by Version object
+    thread_local std::string MatchVersion("${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}"); // String to be matched by Version object
 
 
     void clear_state()

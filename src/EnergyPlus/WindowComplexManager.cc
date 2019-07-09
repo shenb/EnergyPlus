@@ -132,33 +132,33 @@ namespace WindowComplexManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    Real64 const sigma(5.6697e-8); // Stefan-Boltzmann constant
-    Real64 const PressureDefault(101325.0);
+    thread_local Real64 const sigma(5.6697e-8); // Stefan-Boltzmann constant
+    thread_local Real64 const PressureDefault(101325.0);
 
-    int const Calculate_Geometry(1);
-    int const Copy_Geometry(2);
+    thread_local int const Calculate_Geometry(1);
+    thread_local int const Copy_Geometry(2);
 
-    int const TmpLen(20); // Length increment of temporary arrays
+    thread_local int const TmpLen(20); // Length increment of temporary arrays
 
-    int const Front_Incident(1); // Ray identification types
-    int const Front_Transmitted(2);
-    int const Front_Reflected(3);
-    int const Back_Incident(4);
-    int const Back_Transmitted(5);
-    int const Back_Reflected(6);
+    thread_local int const Front_Incident(1); // Ray identification types
+    thread_local int const Front_Transmitted(2);
+    thread_local int const Front_Reflected(3);
+    thread_local int const Back_Incident(4);
+    thread_local int const Back_Transmitted(5);
+    thread_local int const Back_Reflected(6);
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumComplexWind(0); // Total number of complex windows
+    thread_local int NumComplexWind(0); // Total number of complex windows
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE WindowComplexManager:
 
     // Object Data
-    Array1D<BasisStruct> BasisList;
-    Array1D<WindowIndex> WindowList;
-    Array2D<WindowStateIndex> WindowStateList;
+    thread_local Array1D<BasisStruct> BasisList;
+    thread_local Array1D<WindowIndex> WindowList;
+    thread_local Array2D<WindowStateIndex> WindowStateList;
 
     // Functions
 
@@ -204,23 +204,23 @@ namespace WindowComplexManager {
         // DERIVED TYPE DEFINITIONS:
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool Once(true); // Flag for insuring things happen once
-        static int IBasis(0);   // Index for identifying basis in BasisList
-        static int ISurf(0);    // Index for sorting thru Surface array
-        static int IConst(0);   // Index for accessing Construct array
-        static int IState(0);   // Index identifying the window state for a particular window
-        static int IWind(0);    // Index identifying a window in the WindowList
-        static int I(0);        // general purpose index
-        static int J(0);        // general purpose index
-        static int JSurf(0);    // back surface number
+        thread_local static bool Once(true); // Flag for insuring things happen once
+        thread_local static int IBasis(0);   // Index for identifying basis in BasisList
+        thread_local static int ISurf(0);    // Index for sorting thru Surface array
+        thread_local static int IConst(0);   // Index for accessing Construct array
+        thread_local static int IState(0);   // Index identifying the window state for a particular window
+        thread_local static int IWind(0);    // Index identifying a window in the WindowList
+        thread_local static int I(0);        // general purpose index
+        thread_local static int J(0);        // general purpose index
+        thread_local static int JSurf(0);    // back surface number
         int BaseSurf;           // base surface number (used in finding back surface)
-        static int K(0);        // general purpose index
-        static int KBkSurf(0);  // back surface index
-        static int KBasis(0);   // secondary reference to a basis index
-        static int NumBasis(0); // Number of unique bases (No. in BasisList)
-        static int NBkSurf(0);  // Local variable for the number of back surfaces
+        thread_local static int K(0);        // general purpose index
+        thread_local static int KBkSurf(0);  // back surface index
+        thread_local static int KBasis(0);   // secondary reference to a basis index
+        thread_local static int NumBasis(0); // Number of unique bases (No. in BasisList)
+        thread_local static int NBkSurf(0);  // Local variable for the number of back surfaces
         int NumStates;          // Local variable for the number of states
-        static int MatrixNo(0); // Index of Basis matrix
+        thread_local static int MatrixNo(0); // Index of Basis matrix
         Array1D<Real64> Thetas; // temp array holding theta values
         Array1D_int NPhis;      // temp array holding number of phis for a given theta
         Array1D<Real64> V(3);   // vector array
@@ -671,7 +671,7 @@ namespace WindowComplexManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool Once(true); // Flag for insuring things happen once
+        thread_local static bool Once(true); // Flag for insuring things happen once
 
         // One-time initialization
         if (Once) {
@@ -792,9 +792,9 @@ namespace WindowComplexManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         // Object Data
-        static Vector SunDir(0.0, 0.0, 1.0); // unit vector pointing toward sun (world CS)
-        static Vector Posit(0.0, 0.0, 1.0);  // vector location of current ground point
-        static Vector HitPt(0.0, 0.0, 1.0);  // vector location of ray intersection with a surface
+        thread_local static Vector SunDir(0.0, 0.0, 1.0); // unit vector pointing toward sun (world CS)
+        thread_local static Vector Posit(0.0, 0.0, 1.0);  // vector location of current ground point
+        thread_local static Vector HitPt(0.0, 0.0, 1.0);  // vector location of ray intersection with a surface
 
         if (KickOffSizing || KickOffSimulation) return;
 
@@ -971,8 +971,8 @@ namespace WindowComplexManager {
         int BkIncRay;            // index of sun dir in back incidence basis
         bool RegWindFnd;         // flag for regular exterior back surf window
         Array1D_int RegWinIndex; // bk surf nos of reg windows
-        static int NRegWin(0);   // no reg windows found as back surfaces
-        static int KRegWin(0);   // index of reg window as back surface
+        thread_local static int NRegWin(0);   // no reg windows found as back surfaces
+        thread_local static int KRegWin(0);   // index of reg window as back surface
         Real64 Refl;             // temporary reflectance
         Array1D<Real64> Absorb;  // temporary layer absorptance
 
@@ -1139,11 +1139,11 @@ namespace WindowComplexManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static int ISurf(0);     // Index for sorting thru Surface array
+        thread_local static int ISurf(0);     // Index for sorting thru Surface array
                                  //		static int IConst( 0 ); // Index for accessing Construct array
-        static int IState(0);    // Index identifying the window state for a particular window
-        static int IWind(0);     // Index identifying a window in the WindowList
-        static int NumStates(0); // local copy of no of states
+        thread_local static int IState(0);    // Index identifying the window state for a particular window
+        thread_local static int IWind(0);     // Index identifying a window in the WindowList
+        thread_local static int NumStates(0); // local copy of no of states
 
         for (IWind = 1; IWind <= NumComplexWind; ++IWind) {
             ISurf = WindowList(IWind).SurfNo;
@@ -1245,8 +1245,8 @@ namespace WindowComplexManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum;                 // Zone Number
         int SurfNum;                 // Surface Number
-        static int NumSurfInZone(0); // Number of zone surfaces
-        static bool ComplexFenInZone(false);
+        thread_local static int NumSurfInZone(0); // Number of zone surfaces
+        thread_local static bool ComplexFenInZone(false);
 
         for (ZoneNum = 1; ZoneNum <= NumOfZones; ++ZoneNum) {
             ComplexFenInZone = false;
@@ -1295,23 +1295,23 @@ namespace WindowComplexManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        static int I(0);               // general purpose index
-        static int J(0);               // general purpose index
-        static int NThetas(0);         // Current number of theta values
-        static int NumElem(0);         // Number of elements in current basis
-        static int ElemNo(0);          // Current basis element number
+        thread_local static int I(0);               // general purpose index
+        thread_local static int J(0);               // general purpose index
+        thread_local static int NThetas(0);         // Current number of theta values
+        thread_local static int NumElem(0);         // Number of elements in current basis
+        thread_local static int ElemNo(0);          // Current basis element number
         int MaxNPhis;                  // Max no of NPhis for any theta
-        static Real64 Theta(0.0);      // Current theta value
-        static Real64 Phi(0.0);        // Current phi value
-        static Real64 DTheta(0.0);     // Increment for theta value (Window6 type input)
-        static Real64 DPhi(0.0);       // Increment for phi value (Window6 type input)
-        static Real64 HalfDTheta(0.0); // Half-width of all theta bins except first and last (W6 input)
-        static Real64 Lamda(0.0);      // Current 'Lamda' value (element weight)
-        static Real64 SolAng(0.0);     // Current element solid angle
-        static Real64 NextTheta(0.0);  // Next theta in the W6 basis after current
-        static Real64 LastTheta(0.0);  // Previous theta in the W6 basis before current
-        static Real64 LowerTheta(0.0); // Lower theta boundary of the element
-        static Real64 UpperTheta(0.0); // Upper theta boundary of the element
+        thread_local static Real64 Theta(0.0);      // Current theta value
+        thread_local static Real64 Phi(0.0);        // Current phi value
+        thread_local static Real64 DTheta(0.0);     // Increment for theta value (Window6 type input)
+        thread_local static Real64 DPhi(0.0);       // Increment for phi value (Window6 type input)
+        thread_local static Real64 HalfDTheta(0.0); // Half-width of all theta bins except first and last (W6 input)
+        thread_local static Real64 Lamda(0.0);      // Current 'Lamda' value (element weight)
+        thread_local static Real64 SolAng(0.0);     // Current element solid angle
+        thread_local static Real64 NextTheta(0.0);  // Next theta in the W6 basis after current
+        thread_local static Real64 LastTheta(0.0);  // Previous theta in the W6 basis before current
+        thread_local static Real64 LowerTheta(0.0); // Lower theta boundary of the element
+        thread_local static Real64 UpperTheta(0.0); // Upper theta boundary of the element
         Array1D<Real64> Thetas;        // temp array holding theta values
         Array1D_int NPhis;             // temp array holding number of phis for a given theta
 
@@ -2006,11 +2006,11 @@ namespace WindowComplexManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int IConst;       // Pointer to construction for this fenestration
-        static int I(0);  // general purpose index
-        static int J(0);  // general purpose index
-        static int JJ(0); // general purpose index--ray
-        static int L(0);  // general purpose index--layer
-        static int M(0);  // general purpose index--ray
+        thread_local static int I(0);  // general purpose index
+        thread_local static int J(0);  // general purpose index
+        thread_local static int JJ(0); // general purpose index--ray
+        thread_local static int L(0);  // general purpose index--layer
+        thread_local static int M(0);  // general purpose index--ray
         int KBkSurf;      // back surface index
         int JSurf;        // surface number (used for back surface)
         int BaseSurf;     // base surface number (used for finding back surface)
@@ -2985,42 +2985,42 @@ namespace WindowComplexManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         // TARCOG Inputs:
-        static int nlayer(0);     // Number of glazing layers
-        static int iwd(0);        // Wind direction:  0 - windward, 1 - leeward
-        static Real64 tout(0.0);  // Outdoor temperature [K]
-        static Real64 tind(0.0);  // Indoor temperature [K]
-        static Real64 trmin(0.0); // Indoor mean radiant temperature [K]
-        static Real64 wso(0.0);   // Outdoor wind speed [m/s]
-        static Real64 wsi(0.0);   // Inside forced air speed [m/s]
-        static Real64 dir(0.0);   // Direct solar radiation [W/m^2]
-        static int isky(0);       // Flag for sky temperature (Tsky) and sky emittance (esky)
+        thread_local static int nlayer(0);     // Number of glazing layers
+        thread_local static int iwd(0);        // Wind direction:  0 - windward, 1 - leeward
+        thread_local static Real64 tout(0.0);  // Outdoor temperature [K]
+        thread_local static Real64 tind(0.0);  // Indoor temperature [K]
+        thread_local static Real64 trmin(0.0); // Indoor mean radiant temperature [K]
+        thread_local static Real64 wso(0.0);   // Outdoor wind speed [m/s]
+        thread_local static Real64 wsi(0.0);   // Inside forced air speed [m/s]
+        thread_local static Real64 dir(0.0);   // Direct solar radiation [W/m^2]
+        thread_local static int isky(0);       // Flag for sky temperature (Tsky) and sky emittance (esky)
         //                      0 - both tsky and esky are specified
         //                      1 - tsky specified, esky = 1
         //                      2 - Swinbank model for effective sky emittance
-        static Real64 tsky(0.0);      // Night sky temperature [K]
-        static Real64 esky(0.0);      // Effective night sky emittance
-        static Real64 fclr(0.0);      // Fraction of sky that is clear
+        thread_local static Real64 tsky(0.0);      // Night sky temperature [K]
+        thread_local static Real64 esky(0.0);      // Effective night sky emittance
+        thread_local static Real64 fclr(0.0);      // Fraction of sky that is clear
         Real64 VacuumPressure;        // maximal pressure for gas to be considered as vacuum [Pa]
         Real64 VacuumMaxGapThickness; // maximal gap thickness for which vacuum calculation will work without issuing
         // warning message
-        static Array1D<Real64> gap(maxlay, 0.0);      // Vector of gap widths [m] {maxlay}
-        static Array1D<Real64> thick(maxlay, 0.0);    // Vector of glass thicknesses [m] {maxlay}
-        static Array1D<Real64> scon(maxlay, 0.0);     // Vector of conductivities of each glazing layer  [W/m.K] {maxlay}
-        static Array1D<Real64> tir(maxlay * 2, 0.0);  // Vector of IR transmittances of each layer {2*maxlay - 2 surfaces per layer}
-        static Array1D<Real64> emis(maxlay * 2, 0.0); // Vector of IR emittances of each surface {2*maxlay - 2 surfaces per layer}
-        static Array1D_int SupportPlr(maxlay, 0);     // Shows whether or not gap have support pillar
+        thread_local static Array1D<Real64> gap(maxlay, 0.0);      // Vector of gap widths [m] {maxlay}
+        thread_local static Array1D<Real64> thick(maxlay, 0.0);    // Vector of glass thicknesses [m] {maxlay}
+        thread_local static Array1D<Real64> scon(maxlay, 0.0);     // Vector of conductivities of each glazing layer  [W/m.K] {maxlay}
+        thread_local static Array1D<Real64> tir(maxlay * 2, 0.0);  // Vector of IR transmittances of each layer {2*maxlay - 2 surfaces per layer}
+        thread_local static Array1D<Real64> emis(maxlay * 2, 0.0); // Vector of IR emittances of each surface {2*maxlay - 2 surfaces per layer}
+        thread_local static Array1D_int SupportPlr(maxlay, 0);     // Shows whether or not gap have support pillar
         // 0 - does not have support pillar
         // 1 - have support pillar
-        static Array1D<Real64> PillarSpacing(maxlay, 0.0); // Pillar spacing for each gap (used in case there is support pillar)
-        static Array1D<Real64> PillarRadius(maxlay, 0.0);  // Pillar radius for each gap (used in case there is support pillar)
+        thread_local static Array1D<Real64> PillarSpacing(maxlay, 0.0); // Pillar spacing for each gap (used in case there is support pillar)
+        thread_local static Array1D<Real64> PillarRadius(maxlay, 0.0);  // Pillar radius for each gap (used in case there is support pillar)
 
-        static Real64 totsol(0.0);                       // Total solar transmittance of the IGU
-        static Real64 tilt(0.0);                         // Window tilt [degrees]
-        static Array1D<Real64> asol(maxlay, 0.0);        // Vector of Absorbed solar energy fractions for each layer {maxlay}
-        static Real64 height(0.0);                       // IGU cavity height [m]
-        static Real64 heightt(0.0);                      // Total window height [m]
-        static Real64 width(0.0);                        // Window width [m]
-        static Array1D<Real64> presure(maxlay + 1, 0.0); // Vector of gas pressures in gaps [N/m^2] {maxlay+1}
+        thread_local static Real64 totsol(0.0);                       // Total solar transmittance of the IGU
+        thread_local static Real64 tilt(0.0);                         // Window tilt [degrees]
+        thread_local static Array1D<Real64> asol(maxlay, 0.0);        // Vector of Absorbed solar energy fractions for each layer {maxlay}
+        thread_local static Real64 height(0.0);                       // IGU cavity height [m]
+        thread_local static Real64 heightt(0.0);                      // Total window height [m]
+        thread_local static Real64 width(0.0);                        // Window width [m]
+        thread_local static Array1D<Real64> presure(maxlay + 1, 0.0); // Vector of gas pressures in gaps [N/m^2] {maxlay+1}
 
         // Deflection
         // Tarcog requires deflection as input parameters.  Deflection is NOT used in EnergyPlus simulations
@@ -3031,28 +3031,28 @@ namespace WindowComplexManager {
         Real64 Pa;                                         // Atmospheric (outside/inside) pressure (used onlu if CalcDeflection = 1)
         Real64 Pini;                                       // Initial presssure at time of fabrication (used only if CalcDeflection = 1)
         Real64 Tini;                                       // Initial temperature at time of fabrication (used only if CalcDeflection = 1)
-        static Array1D<Real64> GapDefMax(maxlay - 1, 0.0); // Vector of gap widths in deflected state.  It will be used as input
+        thread_local static Array1D<Real64> GapDefMax(maxlay - 1, 0.0); // Vector of gap widths in deflected state.  It will be used as input
         // if CalcDeflection = 2. In case CalcDeflection = 1 it will return recalculated
         // gap widths. [m]
-        static Array1D<Real64> YoungsMod(maxlay, 0.0);   // Vector of Young's modulus. [m]
-        static Array1D<Real64> PoissonsRat(maxlay, 0.0); // Vector of Poisson's Ratios. [m]
-        static Array1D<Real64> LayerDef(maxlay, 0.0);    // Vector of layers deflection. [m]
+        thread_local static Array1D<Real64> YoungsMod(maxlay, 0.0);   // Vector of Young's modulus. [m]
+        thread_local static Array1D<Real64> PoissonsRat(maxlay, 0.0); // Vector of Poisson's Ratios. [m]
+        thread_local static Array1D<Real64> LayerDef(maxlay, 0.0);    // Vector of layers deflection. [m]
 
-        static Array2D_int iprop(maxgas, maxlay + 1, 1);      // Matrix of gas codes - see above {maxgap x maxgas}
-        static Array2D<Real64> frct(maxgas, maxlay + 1, 0.0); // Matrix of mass percentages in gap mixtures  {maxgap x maxgas}
-        static Array2D<Real64> gcon(3, maxgas, 0.0);          // Matrix of constants for gas conductivity calc
+        thread_local static Array2D_int iprop(maxgas, maxlay + 1, 1);      // Matrix of gas codes - see above {maxgap x maxgas}
+        thread_local static Array2D<Real64> frct(maxgas, maxlay + 1, 0.0); // Matrix of mass percentages in gap mixtures  {maxgap x maxgas}
+        thread_local static Array2D<Real64> gcon(3, maxgas, 0.0);          // Matrix of constants for gas conductivity calc
         //     (A, B, C for max of 10 gasses) {maxgas x 3}
-        static Array2D<Real64> gvis(3, maxgas, 0.0); // Matrix of constants for gas dynamic viscosity calc
+        thread_local static Array2D<Real64> gvis(3, maxgas, 0.0); // Matrix of constants for gas dynamic viscosity calc
         //     (A, B, C for max of 10 gasses) {maxgas x 3}
-        static Array2D<Real64> gcp(3, maxgas, 0.0); // Matrix of constants for gas specific heat calc at constant pressure
+        thread_local static Array2D<Real64> gcp(3, maxgas, 0.0); // Matrix of constants for gas specific heat calc at constant pressure
         //     (A, B, C for max of 10 gasses) {maxgas x 3}
-        static Array1D<Real64> wght(maxgas, 0.0); // Vector of Molecular weights for gasses {maxgas}
-        static Array1D<Real64> gama(maxgas, 0.0); // Vector of spefic heat ration for low pressure calc {maxgas}
-        static bool feedData(false);              // flag to notify if data needs to be feed into gas arrays
-        static Array1D_int nmix(maxlay + 1, 0);   // Vector of number of gasses in gas mixture of each gap {maxlay+1}
-        static Real64 hin(0.0);                   // Indoor combined film coefficient (if non-zero) [W/m^2.K]
-        static Real64 hout(0.0);                  // Outdoor combined film coefficient (if non-zero) [W/m^2.K]
-        static Array1D_int ibc(2, 0);             // Vector of boundary condition flags (ibc(1) - outdoor, ibc(2) - indoor)
+        thread_local static Array1D<Real64> wght(maxgas, 0.0); // Vector of Molecular weights for gasses {maxgas}
+        thread_local static Array1D<Real64> gama(maxgas, 0.0); // Vector of spefic heat ration for low pressure calc {maxgas}
+        thread_local static bool feedData(false);              // flag to notify if data needs to be feed into gas arrays
+        thread_local static Array1D_int nmix(maxlay + 1, 0);   // Vector of number of gasses in gas mixture of each gap {maxlay+1}
+        thread_local static Real64 hin(0.0);                   // Indoor combined film coefficient (if non-zero) [W/m^2.K]
+        thread_local static Real64 hout(0.0);                  // Outdoor combined film coefficient (if non-zero) [W/m^2.K]
+        thread_local static Array1D_int ibc(2, 0);             // Vector of boundary condition flags (ibc(1) - outdoor, ibc(2) - indoor)
         //             0 - h to be calculated;
         //             1 - combined film coefficient (h) prescribed;
         //             2 - convective film coefficient (hc) prescribed.
@@ -3061,53 +3061,53 @@ namespace WindowComplexManager {
         //             -1  - old SPC142 correlation
         //             -2  - Klems-Yazdanian correlation (applicable to outdoor only)
         //             -3  - Kimura correlation (applicable to outdoor only)
-        static Array1D<Real64> Atop(maxlay, 0.0); // Vector with areas of top openings - between SD layers and top of
+        thread_local static Array1D<Real64> Atop(maxlay, 0.0); // Vector with areas of top openings - between SD layers and top of
         //               glazing cavity, for each layer [m^2] {maxlay} *
-        static Array1D<Real64> Abot(maxlay, 0.0); // Vector with areas of bottom openings - between SD layers
+        thread_local static Array1D<Real64> Abot(maxlay, 0.0); // Vector with areas of bottom openings - between SD layers
         //               and bottom of glazing cavity [m^2] {maxlay}
-        static Array1D<Real64> Al(maxlay, 0.0); // Vector with areas of left-hand side openings - between SD layers
+        thread_local static Array1D<Real64> Al(maxlay, 0.0); // Vector with areas of left-hand side openings - between SD layers
         //               and left end of glazing cavity [m^2] {maxlay}
-        static Array1D<Real64> Ar(maxlay, 0.0); // Vector of areas of right-hand side openings - between SD layers
+        thread_local static Array1D<Real64> Ar(maxlay, 0.0); // Vector of areas of right-hand side openings - between SD layers
         //               and right end of glazing cavity [m^2] {maxlay}
-        static Array1D<Real64> Ah(maxlay, 0.0);          // Vector of total areas of holes for each SD [m^2] {maxlay}
-        static Array1D<Real64> SlatThick(maxlay, 0.0);   // Thickness of the slat material [m] {maxlay} **
-        static Array1D<Real64> SlatWidth(maxlay, 0.0);   // Slat width [m] {maxlay}
-        static Array1D<Real64> SlatAngle(maxlay, 0.0);   // Slat tilt angle [deg] {maxlay}
-        static Array1D<Real64> SlatCond(maxlay, 0.0);    // Conductivity of the slat material [W/m.K] {maxlay}
-        static Array1D<Real64> SlatSpacing(maxlay, 0.0); // Distance between slats [m] {maxlay}
-        static Array1D<Real64> SlatCurve(maxlay, 0.0);   // Curvature radius of the slat [m] {maxlay}
-        static Array1D<Real64> vvent(maxlay + 1, 0.0);   // Vector of velocities for forced ventilation, for each gap, and for
+        thread_local static Array1D<Real64> Ah(maxlay, 0.0);          // Vector of total areas of holes for each SD [m^2] {maxlay}
+        thread_local static Array1D<Real64> SlatThick(maxlay, 0.0);   // Thickness of the slat material [m] {maxlay} **
+        thread_local static Array1D<Real64> SlatWidth(maxlay, 0.0);   // Slat width [m] {maxlay}
+        thread_local static Array1D<Real64> SlatAngle(maxlay, 0.0);   // Slat tilt angle [deg] {maxlay}
+        thread_local static Array1D<Real64> SlatCond(maxlay, 0.0);    // Conductivity of the slat material [W/m.K] {maxlay}
+        thread_local static Array1D<Real64> SlatSpacing(maxlay, 0.0); // Distance between slats [m] {maxlay}
+        thread_local static Array1D<Real64> SlatCurve(maxlay, 0.0);   // Curvature radius of the slat [m] {maxlay}
+        thread_local static Array1D<Real64> vvent(maxlay + 1, 0.0);   // Vector of velocities for forced ventilation, for each gap, and for
         //               outdoor and indoor environment [m/s] {maxlay+1} ***
-        static Array1D<Real64> tvent(maxlay + 1, 0.0); // Vector of temperatures of ventilation gas for forced ventilation, for each
+        thread_local static Array1D<Real64> tvent(maxlay + 1, 0.0); // Vector of temperatures of ventilation gas for forced ventilation, for each
         //  gap, and for outdoor and indoor environment [K] {maxlay+1}
-        static Array1D_int LayerType(maxlay, 0); // Glazing layer type flag {maxlay}:
+        thread_local static Array1D_int LayerType(maxlay, 0); // Glazing layer type flag {maxlay}:
         //                 0 - Specular layer,
         //                 1 - Venetian blind (SD)
         //                 2 - Woven shade (SD) (not implemented)
         //                 3 - Diffuse shade (not implemented)
-        static Array1D_int nslice(maxlay, 0); // Vector of numbers of slices in a laminated glazing layers
+        thread_local static Array1D_int nslice(maxlay, 0); // Vector of numbers of slices in a laminated glazing layers
         //   (0 - monolithic layer) {maxlay}
-        static Array1D<Real64> LaminateA(maxlay, 0.0); // Left-hand side array for creating slice equations {maxlay}
-        static Array1D<Real64> LaminateB(maxlay, 0.0); // Right-hand side array for creating slice equations {maxlay}
-        static Array1D<Real64> sumsol(maxlay, 0.0);    // Array of absorbed solar energy fractions for each laminated
+        thread_local static Array1D<Real64> LaminateA(maxlay, 0.0); // Left-hand side array for creating slice equations {maxlay}
+        thread_local static Array1D<Real64> LaminateB(maxlay, 0.0); // Right-hand side array for creating slice equations {maxlay}
+        thread_local static Array1D<Real64> sumsol(maxlay, 0.0);    // Array of absorbed solar energy fractions for each laminated
         //               glazing layer [W/m^2] {maxlay}
-        static int standard(1); // Calculation standard switch:
+        thread_local static int standard(1); // Calculation standard switch:
         //                 1 - ISO 15099,
         //                 2 - EN673 / ISO 10292 Declared,
         //                 3 - EN673 / ISO 10292 Design.
-        static int ThermalMod(0); // Thermal model:
+        thread_local static int ThermalMod(0); // Thermal model:
         //                 0 - ISO15099
         //                 1 - Scaled Cavity Width (SCW)
         //                 2 - Convective Scalar Model (CSM)
-        static int Debug_mode(0); // Switch for debug output files:
+        thread_local static int Debug_mode(0); // Switch for debug output files:
         //                 0 - don't create debug output files
         //                 1 - append results to existing debug output file (where applicable)
         //                 2 - store results in a new debug output file
-        static std::string Debug_dir;          // Target directory for debug files (pointer to a character array)
-        static std::string Debug_file("Test"); // Template file name used to create debug output files
-        static std::int32_t Window_ID(-1);     // ID of the window (long integer value, passed by W6)
-        static std::int32_t IGU_ID(-1);        // ID of the IGU (long integer value, passed by W6)
-        static Real64 SDScalar(0.0);           // SD convection factor (value between 0 and 1)
+        thread_local static std::string Debug_dir;          // Target directory for debug files (pointer to a character array)
+        thread_local static std::string Debug_file("Test"); // Template file name used to create debug output files
+        thread_local static std::int32_t Window_ID(-1);     // ID of the window (long integer value, passed by W6)
+        thread_local static std::int32_t IGU_ID(-1);        // ID of the IGU (long integer value, passed by W6)
+        thread_local static Real64 SDScalar(0.0);           // SD convection factor (value between 0 and 1)
         //                 0.0 - No SD layer
         //                 1.0 - Closed SD
         //               Notes:   * vvent, tvent, Atop, Abot, Al, Ar and Ah are considered for SD layers only.
@@ -3117,8 +3117,8 @@ namespace WindowComplexManager {
         //                     **** Forced ventilation calculation is not active at this time.
         // TARCOG Output:
 
-        static Array1D<Real64> theta(maxlay * 2, 0.0); // Vector of average temperatures of glazing surfaces [K] {2*maxlay}
-        static Array1D<Real64> q(maxlay * 2 + 1, 0.0); // Vector of various heat fluxes [W/m^2] {2*maxlay+1},
+        thread_local static Array1D<Real64> theta(maxlay * 2, 0.0); // Vector of average temperatures of glazing surfaces [K] {2*maxlay}
+        thread_local static Array1D<Real64> q(maxlay * 2 + 1, 0.0); // Vector of various heat fluxes [W/m^2] {2*maxlay+1},
         //    depending on element index:
         //    1  = qout (heat flux from outer-most glazing surface to outdoor space)
         //   2*i = qpane(i) (heat flux through i-th glazing layer)
@@ -3126,49 +3126,49 @@ namespace WindowComplexManager {
         //          surface of the adjacent glazing layer)
         // 2*nlayer+1 = qin (heat flux from indoor space to inner-most glazing
         //              surface)
-        static Array1D<Real64> qprim(maxlay1, 0.0); // Vector of heat fluxes from the outdoor-faced surfaces of glazing layers
+        thread_local static Array1D<Real64> qprim(maxlay1, 0.0); // Vector of heat fluxes from the outdoor-faced surfaces of glazing layers
         //    towards the adjacent glazing cavity [W/m2]
-        static Array1D<Real64> qv(maxlay1, 0.0);    // Vector of heat fluxes to each gap by ventillation [W/m^2]
-        static Real64 ufactor(0.0);                 // Center of glass U-value [W/m^2.K]
-        static Real64 sc(0.0);                      // Shading Coefficient
-        static Real64 hflux(0.0);                   // Net heat flux between room and window [W/m^2]
-        static Real64 hcin(0.0);                    // Indoor convective surface heat transfer coefficient  [W/m^2.K]
-        static Real64 hcout(0.0);                   // Outdoor convective surface heat transfer coefficient [W/m^2.K]
-        static Real64 hrin(0.0);                    // Indoor radiative surface heat transfer coefficient [W/m^2.K]
-        static Real64 hrout(0.0);                   // Outdoor radiative surface heat transfer coefficient [W/m^2.K]
-        static Array1D<Real64> hcgap(maxlay1, 0.0); // Convective part of gap effective conductivity {maxlay}
-        static Array1D<Real64> hrgap(maxlay1, 0.0); // Radiative part of gap effective conductivity (including in and out)
-        static Real64 shgc(0.0);                    // Solar heat gain coefficient - per ISO 15099
-        static Real64 shgct(0.0);                   // Solar heat gain coefficient - per old procedure
-        static Real64 tamb(0.0);                    // Outdoor environmental temperature [K]
-        static Real64 troom(0.0);                   // Indoor environmental temperature [K]
-        static Array1D<Real64> hg(maxlay, 0.0);     // Gas conductance of the glazing cavity
+        thread_local static Array1D<Real64> qv(maxlay1, 0.0);    // Vector of heat fluxes to each gap by ventillation [W/m^2]
+        thread_local static Real64 ufactor(0.0);                 // Center of glass U-value [W/m^2.K]
+        thread_local static Real64 sc(0.0);                      // Shading Coefficient
+        thread_local static Real64 hflux(0.0);                   // Net heat flux between room and window [W/m^2]
+        thread_local static Real64 hcin(0.0);                    // Indoor convective surface heat transfer coefficient  [W/m^2.K]
+        thread_local static Real64 hcout(0.0);                   // Outdoor convective surface heat transfer coefficient [W/m^2.K]
+        thread_local static Real64 hrin(0.0);                    // Indoor radiative surface heat transfer coefficient [W/m^2.K]
+        thread_local static Real64 hrout(0.0);                   // Outdoor radiative surface heat transfer coefficient [W/m^2.K]
+        thread_local static Array1D<Real64> hcgap(maxlay1, 0.0); // Convective part of gap effective conductivity {maxlay}
+        thread_local static Array1D<Real64> hrgap(maxlay1, 0.0); // Radiative part of gap effective conductivity (including in and out)
+        thread_local static Real64 shgc(0.0);                    // Solar heat gain coefficient - per ISO 15099
+        thread_local static Real64 shgct(0.0);                   // Solar heat gain coefficient - per old procedure
+        thread_local static Real64 tamb(0.0);                    // Outdoor environmental temperature [K]
+        thread_local static Real64 troom(0.0);                   // Indoor environmental temperature [K]
+        thread_local static Array1D<Real64> hg(maxlay, 0.0);     // Gas conductance of the glazing cavity
         //         [W/m^2.K] - EN673 and ISO 10292 procedure
-        static Array1D<Real64> hr(maxlay, 0.0); // Radiation conductance of the glazing cavity
+        thread_local static Array1D<Real64> hr(maxlay, 0.0); // Radiation conductance of the glazing cavity
         //         [W/m^2.K] - EN673 and ISO 10292 procedure
-        static Array1D<Real64> hs(maxlay, 0.0); // Thermal conductance of the glazing cavity
+        thread_local static Array1D<Real64> hs(maxlay, 0.0); // Thermal conductance of the glazing cavity
         //         [W/m^2.K] - EN673 and ISO 10292 procedure
-        static Real64 he(0.0);                                    // External heat transfer coefficient [W/m^2.K] - EN673 and ISO 10292 procedure
-        static Real64 hi(0.0);                                    // Internal heat transfer coefficient [W/m^2.K] - EN673 and ISO 10292 procedure
-        static Array1D<Real64> Ra(maxlay + 1, 0.0);               // Vector of Rayleigh numbers, for each gap {maxlay}
-        static Array1D<Real64> Nu(maxlay + 1, 0.0);               // Vector of Nusselt numbers, for each gap {maxlay}
-        static int nperr(0);                                      // Error code
-        static Real64 ShadeEmisRatioOut(0.0);                     // Ratio of modified to glass emissivity at the outermost glazing surface
-        static Real64 ShadeEmisRatioIn(0.0);                      // Ratio of modified to glass emissivity at the innermost glazing surface
-        static Real64 ShadeHcRatioOut(0.0);                       // Ratio of modified to unshaded Hc at the outermost glazing surface
-        static Real64 ShadeHcRatioIn(0.0);                        // Ratio of modified to unshaded Hc at the innermost glazing surface
-        static Real64 HcUnshadedOut(0.0);                         // Hc value at outdoor surface of an unshaded subsystem [W/m^2.K]
-        static Real64 HcUnshadedIn(0.0);                          // Hc value at indoor surface of an unshaded subsystem [W/m^2.K]
-        static Array1D<Real64> Keff(maxlay, 0.0);                 // Vector of keff values for gaps [W/m.K] {maxlay}
-        static Array1D<Real64> ShadeGapKeffConv(maxlay - 1, 0.0); // Vector of convective keff values for areas above/below
+        thread_local static Real64 he(0.0);                                    // External heat transfer coefficient [W/m^2.K] - EN673 and ISO 10292 procedure
+        thread_local static Real64 hi(0.0);                                    // Internal heat transfer coefficient [W/m^2.K] - EN673 and ISO 10292 procedure
+        thread_local static Array1D<Real64> Ra(maxlay + 1, 0.0);               // Vector of Rayleigh numbers, for each gap {maxlay}
+        thread_local static Array1D<Real64> Nu(maxlay + 1, 0.0);               // Vector of Nusselt numbers, for each gap {maxlay}
+        thread_local static int nperr(0);                                      // Error code
+        thread_local static Real64 ShadeEmisRatioOut(0.0);                     // Ratio of modified to glass emissivity at the outermost glazing surface
+        thread_local static Real64 ShadeEmisRatioIn(0.0);                      // Ratio of modified to glass emissivity at the innermost glazing surface
+        thread_local static Real64 ShadeHcRatioOut(0.0);                       // Ratio of modified to unshaded Hc at the outermost glazing surface
+        thread_local static Real64 ShadeHcRatioIn(0.0);                        // Ratio of modified to unshaded Hc at the innermost glazing surface
+        thread_local static Real64 HcUnshadedOut(0.0);                         // Hc value at outdoor surface of an unshaded subsystem [W/m^2.K]
+        thread_local static Real64 HcUnshadedIn(0.0);                          // Hc value at indoor surface of an unshaded subsystem [W/m^2.K]
+        thread_local static Array1D<Real64> Keff(maxlay, 0.0);                 // Vector of keff values for gaps [W/m.K] {maxlay}
+        thread_local static Array1D<Real64> ShadeGapKeffConv(maxlay - 1, 0.0); // Vector of convective keff values for areas above/below
         // SD layers [W/m.K] {maxlay-1}
 
         int ZoneNum; // Zone number corresponding to SurfNum
 
-        static Array1D<Real64> deltaTemp(100, 0.0);
+        thread_local static Array1D<Real64> deltaTemp(100, 0.0);
         int i;
-        static Array1D_int iMinDT(1, 0);
-        static Array1D_int IDConst(100, 0);
+        thread_local static Array1D_int iMinDT(1, 0);
+        thread_local static Array1D_int IDConst(100, 0);
 
         int TotLay; // Total number of layers in a construction
         //   (sum of solid layers and gap layers)
@@ -3225,8 +3225,8 @@ namespace WindowComplexManager {
         Real64 CpAirZone;             // Heat capacity of zone air (J/kg-K)
         Real64 ConvHeatGainToZoneAir; // Convective heat gain to zone air from window gap airflow (W)
                                       //		int ConstrNumSh; // Construction number with shading device
-        static int CalcSHGC(0);       // SHGC calculations are not necessary for E+ run
-        static int NumOfIterations(0);
+        thread_local static int CalcSHGC(0);       // SHGC calculations are not necessary for E+ run
+        thread_local static int NumOfIterations(0);
 
         int GasType; // locally used coefficent to point at correct gas type
         int ICoeff;
@@ -4031,8 +4031,8 @@ namespace WindowComplexManager {
 
         // Locals
         // Local variables
-        static int counter(1);
-        static bool coeffFound(false);
+        thread_local static int counter(1);
+        thread_local static bool coeffFound(false);
 
         feedData = false;
         coeffFound = false;

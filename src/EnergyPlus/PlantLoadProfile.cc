@@ -97,11 +97,11 @@ namespace PlantLoadProfile {
     using PlantUtilities::SetComponentFlowRate;
 
     // MODULE VARIABLE DECLARATIONS:
-    bool GetPlantLoadProfileInputFlag(true);
-    int NumOfPlantProfile;
+    thread_local bool GetPlantLoadProfileInputFlag(true);
+    thread_local int NumOfPlantProfile;
 
     // Object Data
-    Array1D<PlantProfileData> PlantProfile;
+    thread_local Array1D<PlantProfileData> PlantProfile;
 
     PlantComponent *PlantProfileData::factory(std::string objectName)
     {
@@ -154,7 +154,7 @@ namespace PlantLoadProfile {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("SimulatePlantProfile");
+        thread_local static std::string const RoutineName("SimulatePlantProfile");
         Real64 DeltaTemp;
 
         this->InitPlantProfile();
@@ -203,7 +203,7 @@ namespace PlantLoadProfile {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static std::string const RoutineName("InitPlantProfile");
+        thread_local static std::string const RoutineName("InitPlantProfile");
         Real64 FluidDensityInit;
         bool errFlag;
 
@@ -372,7 +372,7 @@ namespace PlantLoadProfile {
 
         // Locals
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call

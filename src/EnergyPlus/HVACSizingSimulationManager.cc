@@ -215,7 +215,7 @@ void HVACSizingSimulationManager::UpdateSizingLogsSystemStep()
     sizingLogger.UpdateSizingLogValuesSystemStep();
 }
 
-std::unique_ptr<HVACSizingSimulationManager> hvacSizingSimulationManager;
+thread_local std::unique_ptr<HVACSizingSimulationManager> hvacSizingSimulationManager;
 
 void ManageHVACSizingSimulation(bool &ErrorsFound)
 {
@@ -239,8 +239,8 @@ void ManageHVACSizingSimulation(bool &ErrorsFound)
 
     bool Available; // an environment is available to process
     int HVACSizingIterCount;
-    static ObjexxFCL::gio::Fmt Format_700("('Environment:WarmupDays,',I3)");
-    static ObjexxFCL::gio::Fmt fmtLD("*");
+    thread_local static ObjexxFCL::gio::Fmt Format_700("('Environment:WarmupDays,',I3)");
+    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
 
     hvacSizingSimulationManager->DetermineSizingAnalysesNeeded();
 

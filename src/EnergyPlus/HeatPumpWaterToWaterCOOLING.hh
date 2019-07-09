@@ -61,13 +61,13 @@ namespace EnergyPlus {
 namespace HeatPumpWaterToWaterCOOLING {
 
     // MODULE PARAMETER DEFINITIONS
-    extern std::string const ModuleCompName;
-    extern std::string const ModuleCompNameUC;
+    thread_local extern std::string const ModuleCompName;
+    thread_local extern std::string const ModuleCompNameUC;
 
-    extern std::string GSHPRefrigerant; // refrigerent name and index
-    extern int GSHPRefrigIndex;
+    thread_local extern std::string GSHPRefrigerant; // refrigerent name and index
+    thread_local extern int GSHPRefrigIndex;
 
-    extern int NumGSHPs;                       // number of Gshps specified in input
+    thread_local extern int NumGSHPs;                       // number of Gshps specified in input
 
     struct GshpPeCoolingSpecs : PlantComponent // Needs Some Modifications talk with Dr.Fisher and decide....
     {
@@ -170,7 +170,7 @@ namespace HeatPumpWaterToWaterCOOLING {
     };
 
     // Object Data
-    extern Array1D<GshpPeCoolingSpecs> GSHP; // dimension to number of machines
+    thread_local extern Array1D<GshpPeCoolingSpecs> GSHP; // dimension to number of machines
 
     void clear_state();
 

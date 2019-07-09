@@ -69,17 +69,17 @@ namespace ScheduleManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const MaxDayTypes;
-    extern Array1D_string const ValidDayTypes;
+    thread_local extern int const MaxDayTypes;
+    thread_local extern Array1D_string const ValidDayTypes;
 
-    extern int const NumScheduleTypeLimitUnitTypes;
-    extern Array1D_string const ScheduleTypeLimitUnitTypes;
+    thread_local extern int const NumScheduleTypeLimitUnitTypes;
+    thread_local extern Array1D_string const ScheduleTypeLimitUnitTypes;
 
-    extern int const ScheduleInput_year;
-    extern int const ScheduleInput_compact;
-    extern int const ScheduleInput_file;
-    extern int const ScheduleInput_constant;
-    extern int const ScheduleInput_external;
+    thread_local extern int const ScheduleInput_year;
+    thread_local extern int const ScheduleInput_compact;
+    thread_local extern int const ScheduleInput_file;
+    thread_local extern int const ScheduleInput_constant;
+    thread_local extern int const ScheduleInput_external;
 
     // DERIVED TYPE DEFINITIONS
 
@@ -88,16 +88,16 @@ namespace ScheduleManager {
     // MODULE VARIABLE DECLARATIONS:
 
     // Integer Variables for the Module
-    extern int NumScheduleTypes;
-    extern int NumDaySchedules;
-    extern int NumWeekSchedules;
-    extern int NumSchedules;
+    thread_local extern int NumScheduleTypes;
+    thread_local extern int NumDaySchedules;
+    thread_local extern int NumWeekSchedules;
+    thread_local extern int NumSchedules;
 
     // Logical Variables for Module
-    extern bool ScheduleInputProcessed; // This is false until the Schedule Input has been processed.
-    extern bool ScheduleDSTSFileWarningIssued;
+    thread_local extern bool ScheduleInputProcessed; // This is false until the Schedule Input has been processed.
+    thread_local extern bool ScheduleDSTSFileWarningIssued;
 
-    extern bool ScheduleFileShadingProcessed; // This is false unless there is a Schedule:File:Shading object.
+    thread_local extern bool ScheduleFileShadingProcessed; // This is false unless there is a Schedule:File:Shading object.
 
     enum class ScheduleInterpolation
     {
@@ -180,10 +180,10 @@ namespace ScheduleManager {
     };
 
     // Object Data
-    extern Array1D<ScheduleTypeData> ScheduleType; // Allowed Schedule Types
-    extern Array1D<DayScheduleData> DaySchedule;   // Day Schedule Storage
-    extern Array1D<WeekScheduleData> WeekSchedule; // Week Schedule Storage
-    extern Array1D<ScheduleData> Schedule;         // Schedule Storage
+    thread_local extern Array1D<ScheduleTypeData> ScheduleType; // Allowed Schedule Types
+    thread_local extern Array1D<DayScheduleData> DaySchedule;   // Day Schedule Storage
+    thread_local extern Array1D<WeekScheduleData> WeekSchedule; // Week Schedule Storage
+    thread_local extern Array1D<ScheduleData> Schedule;         // Schedule Storage
 
     // Functions
 

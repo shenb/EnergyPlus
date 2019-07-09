@@ -64,32 +64,32 @@ namespace DualDuct {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    extern int const DualDuct_ConstantVolume;
-    extern int const DualDuct_VariableVolume;
-    extern int const DualDuct_OutdoorAir;
-    extern std::string const cCMO_DDConstantVolume;
-    extern std::string const cCMO_DDVariableVolume;
-    extern std::string const cCMO_DDVarVolOA;
+    thread_local extern int const DualDuct_ConstantVolume;
+    thread_local extern int const DualDuct_VariableVolume;
+    thread_local extern int const DualDuct_OutdoorAir;
+    thread_local extern std::string const cCMO_DDConstantVolume;
+    thread_local extern std::string const cCMO_DDVariableVolume;
+    thread_local extern std::string const cCMO_DDVarVolOA;
 
-    extern int const DD_OA_ConstantOAMode;
-    extern int const DD_OA_ScheduleOAMode;
-    extern int const DD_OA_DynamicOAMode;
+    thread_local extern int const DD_OA_ConstantOAMode;
+    thread_local extern int const DD_OA_ScheduleOAMode;
+    thread_local extern int const DD_OA_DynamicOAMode;
 
-    extern int const PerPersonModeNotSet;
-    extern int const PerPersonDCVByCurrentLevel;
-    extern int const PerPersonByDesignLevel;
+    thread_local extern int const PerPersonModeNotSet;
+    thread_local extern int const PerPersonDCVByCurrentLevel;
+    thread_local extern int const PerPersonByDesignLevel;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_bool CheckEquipName;
+    thread_local extern Array1D_bool CheckEquipName;
 
-    extern int NumDampers; // The Number of Dampers found in the Input
-    extern int NumDualDuctConstVolDampers;
-    extern int NumDualDuctVarVolDampers;
-    extern int NumDualDuctVarVolOA;
-    extern Real64 MassFlowSetToler;
-    extern bool GetDualDuctInputFlag; // Flag set to make sure you get input once
+    thread_local extern int NumDampers; // The Number of Dampers found in the Input
+    thread_local extern int NumDualDuctConstVolDampers;
+    thread_local extern int NumDualDuctVarVolDampers;
+    thread_local extern int NumDualDuctVarVolOA;
+    thread_local extern Real64 MassFlowSetToler;
+    thread_local extern bool GetDualDuctInputFlag; // Flag set to make sure you get input once
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -178,13 +178,13 @@ namespace DualDuct {
     };
 
     // Object Data
-    extern Array1D<DamperDesignParams> Damper;
-    extern Array1D<DamperFlowConditions> DamperInlet;
-    extern Array1D<DamperFlowConditions> DamperHotAirInlet;
-    extern Array1D<DamperFlowConditions> DamperColdAirInlet;
-    extern Array1D<DamperFlowConditions> DamperOutlet;
-    extern Array1D<DamperFlowConditions> DamperOAInlet;        // VAV:OutdoorAir Outdoor Air Inlet
-    extern Array1D<DamperFlowConditions> DamperRecircAirInlet; // VAV:OutdoorAir Recirculated Air Inlet
+    thread_local extern Array1D<DamperDesignParams> Damper;
+    thread_local extern Array1D<DamperFlowConditions> DamperInlet;
+    thread_local extern Array1D<DamperFlowConditions> DamperHotAirInlet;
+    thread_local extern Array1D<DamperFlowConditions> DamperColdAirInlet;
+    thread_local extern Array1D<DamperFlowConditions> DamperOutlet;
+    thread_local extern Array1D<DamperFlowConditions> DamperOAInlet;        // VAV:OutdoorAir Outdoor Air Inlet
+    thread_local extern Array1D<DamperFlowConditions> DamperRecircAirInlet; // VAV:OutdoorAir Recirculated Air Inlet
 
     // Functions
 

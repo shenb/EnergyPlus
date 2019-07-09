@@ -245,7 +245,7 @@ namespace HVACFan {
 
     }; // class FanSystem
 
-    extern std::vector<std::unique_ptr<FanSystem>> fanObjs;
+    thread_local extern std::vector<std::unique_ptr<FanSystem>> fanObjs;
 
     void clearHVACFanObjects();
 

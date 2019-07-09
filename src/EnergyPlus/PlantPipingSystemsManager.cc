@@ -110,22 +110,22 @@ namespace EnergyPlus {
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cert-err58-cpp"
         // MODULE PARAMETER DEFINITIONS:
-        std::string const ObjName_ug_GeneralDomain("PipingSystem:Underground:Domain");
-        std::string const ObjName_Circuit("PipingSystem:Underground:PipeCircuit");
-        std::string const ObjName_Segment("PipingSystem:Underground:PipeSegment");
-        std::string const ObjName_HorizTrench("GroundHeatExchanger:HorizontalTrench");
-        std::string const ObjName_ZoneCoupled_Slab("Site:GroundDomain:Slab");
-        std::string const ObjName_ZoneCoupled_Basement("Site:GroundDomain:Basement");
+        thread_local std::string const ObjName_ug_GeneralDomain("PipingSystem:Underground:Domain");
+        thread_local std::string const ObjName_Circuit("PipingSystem:Underground:PipeCircuit");
+        thread_local std::string const ObjName_Segment("PipingSystem:Underground:PipeSegment");
+        thread_local std::string const ObjName_HorizTrench("GroundHeatExchanger:HorizontalTrench");
+        thread_local std::string const ObjName_ZoneCoupled_Slab("Site:GroundDomain:Slab");
+        thread_local std::string const ObjName_ZoneCoupled_Basement("Site:GroundDomain:Basement");
 
         // MODULE VARIABLE DECLARATIONS:
-        std::vector<Domain> domains;
-        std::vector<Circuit> circuits;
-        std::vector<Segment> segments;
-        std::unordered_map<std::string, std::string> GroundDomainUniqueNames;
-        bool GetInputFlag(true); // First time, input is "gotten"
-        bool GetSegmentInputFlag(true);
-        bool GetCircuitInputFlag(true);
-        bool WriteEIOFlag(true); // False after EIO is written
+        thread_local std::vector<Domain> domains;
+        thread_local std::vector<Circuit> circuits;
+        thread_local std::vector<Segment> segments;
+        thread_local std::unordered_map<std::string, std::string> GroundDomainUniqueNames;
+        thread_local bool GetInputFlag(true); // First time, input is "gotten"
+        thread_local bool GetSegmentInputFlag(true);
+        thread_local bool GetCircuitInputFlag(true);
+        thread_local bool WriteEIOFlag(true); // False after EIO is written
 #pragma clang diagnostic pop
 
         void clear_state() {
@@ -203,11 +203,11 @@ namespace EnergyPlus {
             //       MODIFIED       by Sushobhit Acharya, March 2015
             //       RE-ENGINEERED  na
 
-            static std::string const RoutineName("InitAndSimGroundDomain");
+            thread_local static std::string const RoutineName("InitAndSimGroundDomain");
 
-            static ObjexxFCL::gio::Fmt DomainCellsToEIOHeader(
+            thread_local static ObjexxFCL::gio::Fmt DomainCellsToEIOHeader(
                     "('! <Domain Name>, Total Number of Domain Cells, Total Number of Ground Surface Cells, Total Number of Insulation Cells')");
-            static ObjexxFCL::gio::Fmt DomainCellsToEIO("(A,',',I5',',I5',',I5)");
+            thread_local static ObjexxFCL::gio::Fmt DomainCellsToEIO("(A,',',I5',',I5',',I5)");
 
             // Read input if necessary
             if (GetInputFlag) {
@@ -414,7 +414,7 @@ namespace EnergyPlus {
             //       MODIFIED       na
             //       RE-ENGINEERED  na
 
-            static std::string const RoutineName("GetPipingSystemsAndGroundDomainsInput");
+            thread_local static std::string const RoutineName("GetPipingSystemsAndGroundDomainsInput");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
@@ -510,7 +510,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("ReadGeneralDomainInputs");
+            thread_local static std::string const RoutineName("ReadGeneralDomainInputs");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -827,7 +827,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("ReadZoneCoupledDomainInputs");
+            thread_local static std::string const RoutineName("ReadZoneCoupledDomainInputs");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -1133,7 +1133,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("ReadBasementInputs");
+            thread_local static std::string const RoutineName("ReadBasementInputs");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -1466,7 +1466,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("ReadPipeCircuitInputs");
+            thread_local static std::string const RoutineName("ReadPipeCircuitInputs");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int NumAlphas;
@@ -1729,7 +1729,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("ReadPipeSegmentInputs");
+            thread_local static std::string const RoutineName("ReadPipeSegmentInputs");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -1800,7 +1800,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("ReadHorizontalTrenchInputs");
+            thread_local static std::string const RoutineName("ReadHorizontalTrenchInputs");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int NumAlphas;  // Number of Alphas for each GetObjectItem call
@@ -2075,7 +2075,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("InitPipingSystems");
+            thread_local static std::string const RoutineName("InitPipingSystems");
 
             // Do any one-time initializations
             if (thisCircuit->NeedToFindOnPlantLoop) {
@@ -3049,7 +3049,7 @@ namespace EnergyPlus {
             std::vector<GridRegion> ThesePartitionRegions;
 
             // FUNCTION PARAMETER DEFINITIONS:
-            static std::string const RoutineName("CreatePartitionRegionList");
+            thread_local static std::string const RoutineName("CreatePartitionRegionList");
 
             if (!PartitionsExist) {
                 return ThesePartitionRegions;
@@ -5160,7 +5160,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::vector<Direction> const Directions = {Direction::NegativeX, Direction::NegativeY,
+            thread_local static std::vector<Direction> const Directions = {Direction::NegativeX, Direction::NegativeY,
                                                               Direction::PositiveX, Direction::PositiveY};
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
@@ -5671,7 +5671,7 @@ namespace EnergyPlus {
         }
 
         void Domain::DoStartOfTimeStepInitializations() {
-            static std::string const RoutineName("PipingSystemCircuit::DoStartOfTimeStepInitializations");
+            thread_local static std::string const RoutineName("PipingSystemCircuit::DoStartOfTimeStepInitializations");
 
             // Update environmental conditions
             this->Cur.CurAirTemp = DataEnvironment::OutDryBulbTemp;
@@ -5731,7 +5731,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-            static std::string const RoutineName("PipingSystemCircuit::DoStartOfTimeStepInitializations");
+            thread_local static std::string const RoutineName("PipingSystemCircuit::DoStartOfTimeStepInitializations");
             Real64 CellTemp;
             Real64 CellRhoCp;
             Real64 FluidCp;
@@ -5842,7 +5842,7 @@ namespace EnergyPlus {
             //       RE-ENGINEERED  na
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            static std::string const RoutineName("DoEndOfIterationOperations");
+            thread_local static std::string const RoutineName("DoEndOfIterationOperations");
 
             //'check if we have converged for this iteration
             Finished = this->IsConverged_CurrentToPrevIteration();

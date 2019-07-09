@@ -91,7 +91,7 @@ namespace OutsideEnergySources {
     // Module containing the routines dealing with the OutsideEnergySources
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumDistrictUnits(0);
+    thread_local int NumDistrictUnits(0);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OutsideEnergySources
     namespace {
@@ -100,11 +100,11 @@ namespace OutsideEnergySources {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool SimOutsideEnergyGetInputFlag(true);
+        thread_local bool SimOutsideEnergyGetInputFlag(true);
     } // namespace
     // Object Data
-    Array1D<OutsideEnergySourceSpecs> EnergySource;
-    std::unordered_map<std::string, std::string> EnergySourceUniqueNames;
+    thread_local Array1D<OutsideEnergySourceSpecs> EnergySource;
+    thread_local std::unordered_map<std::string, std::string> EnergySourceUniqueNames;
 
     // Functions
     void clear_state()
@@ -480,7 +480,7 @@ namespace OutsideEnergySources {
         //       RE-ENGINEERED  Sept 2010, Brent Griffith, plant rewrite
 
          // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SimDistrictEnergy");
+        thread_local static std::string const RoutineName("SimDistrictEnergy");
 
         // set inlet and outlet nodes
         int const LoopNum = this->LoopNum;

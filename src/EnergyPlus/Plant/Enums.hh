@@ -53,14 +53,14 @@ namespace DataPlant {
 
     // Parameters for loop flow request priority,
     //     used in logic to deal with Node%MassFlowRequest for determining overall loop flow rate
-    int const LoopFlowStatus_Unknown(21);             // component's status is not yet set
-    int const LoopFlowStatus_NeedyAndTurnsLoopOn(22); // component is a "winner" for loop flow requests
+    thread_local int const LoopFlowStatus_Unknown(21);             // component's status is not yet set
+    thread_local int const LoopFlowStatus_NeedyAndTurnsLoopOn(22); // component is a "winner" for loop flow requests
     // active valve inside component that modulates flow
     //  gets the loop going under most conditions
-    int const LoopFlowStatus_NeedyIfLoopOn(23); // component is a "winner" for loop flow requests
+    thread_local int const LoopFlowStatus_NeedyIfLoopOn(23); // component is a "winner" for loop flow requests
     // but doesn't normally get the loop going to start with
     //  once loop is going, may increase needs, non-zero minimums
-    int const LoopFlowStatus_TakesWhatGets(24); // component is a "loser" for loop flow requests,
+    thread_local int const LoopFlowStatus_TakesWhatGets(24); // component is a "loser" for loop flow requests,
     // but if the loop is on it
     // it does make flow requests (for s/m resolution)
 
@@ -95,14 +95,14 @@ namespace DataPlant {
 
     // Parameters for component character wrt how load gets met (or not)
     //  used in %HowLoadServed to facilitate load dispatch logic
-    int const HowMet_Unknown(50);                              // not yet set
-    int const HowMet_NoneDemand(51);                           // does not meet a load, demand component
-    int const HowMet_PassiveCap(52);                           // Passive machine, does what conditions allow but
-    int const HowMet_ByNominalCap(53);                         // MaxLoad, MinLoad, OptLoad should work
-    int const HowMet_ByNominalCapLowOutLimit(54);              // MaxLoad, MinLoad, OptLoad but with low limit temp on outlet
-    int const HowMet_ByNominalCapHiOutLimit(55);               // MaxLoad, MinLoad, OptLoad but with high limit temp on outlet
-    int const HowMet_ByNominalCapFreeCoolCntrl(56);            // HowMet_ByNominalCap with free cool shutdown
-    int const HowMet_ByNominalCapLowOutLimitFreeCoolCntrl(57); // HowMet_ByNominalCapLowOutLimit with free cool shutdown
+    thread_local int const HowMet_Unknown(50);                              // not yet set
+    thread_local int const HowMet_NoneDemand(51);                           // does not meet a load, demand component
+    thread_local int const HowMet_PassiveCap(52);                           // Passive machine, does what conditions allow but
+    thread_local int const HowMet_ByNominalCap(53);                         // MaxLoad, MinLoad, OptLoad should work
+    thread_local int const HowMet_ByNominalCapLowOutLimit(54);              // MaxLoad, MinLoad, OptLoad but with low limit temp on outlet
+    thread_local int const HowMet_ByNominalCapHiOutLimit(55);               // MaxLoad, MinLoad, OptLoad but with high limit temp on outlet
+    thread_local int const HowMet_ByNominalCapFreeCoolCntrl(56);            // HowMet_ByNominalCap with free cool shutdown
+    thread_local int const HowMet_ByNominalCapLowOutLimitFreeCoolCntrl(57); // HowMet_ByNominalCapLowOutLimit with free cool shutdown
 
 } // namespace DataPlant
 

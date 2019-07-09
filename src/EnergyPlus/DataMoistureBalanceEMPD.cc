@@ -74,22 +74,22 @@ namespace DataMoistureBalanceEMPD {
 
     // Parameters for the definition and limitation of arrays:
 
-    Real64 const Lam(2500000.0); // heat of adsorption for building materials
+    thread_local Real64 const Lam(2500000.0); // heat of adsorption for building materials
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na
 
     // MODULE VARIABLE DECLARATIONS:
     // Variables that are used in both the Surface Heat Balance and the Moisture Balance
-    Array1D<Real64> RVSurfaceOld; // Moisture level at interior surfaces at previous time step
-    Array1D<Real64> RVSurface;    // Moisture level at interior surfaces at current interation
+    thread_local Array1D<Real64> RVSurfaceOld; // Moisture level at interior surfaces at previous time step
+    thread_local Array1D<Real64> RVSurface;    // Moisture level at interior surfaces at current interation
     // and current time step
-    Array1D<Real64> HeatFluxLatent; // Moisture flux at interior surfaces [W]
-    Array1D<Real64> RVSurfLayerOld;
-    Array1D<Real64> RVdeepOld;
-    Array1D<Real64> RVSurfLayer;
-    Array1D<Real64> RVDeepLayer;
-    Array1D<Real64> RVwall;
+    thread_local Array1D<Real64> HeatFluxLatent; // Moisture flux at interior surfaces [W]
+    thread_local Array1D<Real64> RVSurfLayerOld;
+    thread_local Array1D<Real64> RVdeepOld;
+    thread_local Array1D<Real64> RVSurfLayer;
+    thread_local Array1D<Real64> RVDeepLayer;
+    thread_local Array1D<Real64> RVwall;
 
     void clear_state()
     {

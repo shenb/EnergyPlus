@@ -114,7 +114,7 @@ namespace PlantUtilities {
         };
 
         // Object Data
-        Array1D<CriteriaData> CriteriaChecks; // stores criteria information
+        thread_local Array1D<CriteriaData> CriteriaChecks; // stores criteria information
     }                                         // namespace
     // MODULE VARIABLE DECLARATIONS:
     // na
@@ -1213,10 +1213,10 @@ namespace PlantUtilities {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("UpdateChillerComponentCondenserSide");
+        thread_local static std::string const RoutineName("UpdateChillerComponentCondenserSide");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool DidAnythingChange(false); // set to true if conditions changed
+        thread_local static bool DidAnythingChange(false); // set to true if conditions changed
         int OtherLoopNum;                     // local loop pointer for remote connected loop
         int OtherLoopSide;                    // local loop side pointer for remote connected loop
         int ConnectLoopNum;                   // local do loop counter
@@ -1302,10 +1302,10 @@ namespace PlantUtilities {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("UpdateComponentHeatRecoverySide");
+        thread_local static std::string const RoutineName("UpdateComponentHeatRecoverySide");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool DidAnythingChange(false); // set to true if conditions changed
+        thread_local static bool DidAnythingChange(false); // set to true if conditions changed
         int OtherLoopNum;                     // local loop pointer for remote connected loop
         int OtherLoopSide;                    // local loop side pointer for remote connected loop
         int ConnectLoopNum;                   // local do loop counter
@@ -1387,7 +1387,7 @@ namespace PlantUtilities {
         using DataPlant::PlantLoop;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        static bool DidAnythingChange(false); // set to true if conditions changed
+        thread_local static bool DidAnythingChange(false); // set to true if conditions changed
         int OtherLoopNum;                     // local loop pointer for remote connected loop
         int OtherLoopSide;                    // local loop side pointer for remote connected loop
         int ConnectLoopNum;                   // local do loop counter

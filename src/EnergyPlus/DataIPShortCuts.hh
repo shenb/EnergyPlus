@@ -72,13 +72,13 @@ namespace DataIPShortCuts {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    extern Array1D_string cAlphaFieldNames;
-    extern Array1D_string cNumericFieldNames;
-    extern Array1D_bool lNumericFieldBlanks;
-    extern Array1D_bool lAlphaFieldBlanks;
-    extern Array1D_string cAlphaArgs;
-    extern Array1D<Real64> rNumericArgs;
-    extern std::string cCurrentModuleObject;
+    thread_local extern Array1D_string cAlphaFieldNames;
+    thread_local extern Array1D_string cNumericFieldNames;
+    thread_local extern Array1D_bool lNumericFieldBlanks;
+    thread_local extern Array1D_bool lAlphaFieldBlanks;
+    thread_local extern Array1D_string cAlphaArgs;
+    thread_local extern Array1D<Real64> rNumericArgs;
+    thread_local extern std::string cCurrentModuleObject;
 
     // Clears the global data in DataIPShortCuts.
     // Needed for unit tests, should not be normally called.

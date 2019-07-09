@@ -70,15 +70,15 @@ namespace GlobalNames {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    extern int NumChillers;
-    extern int NumBoilers;
-    extern int NumBaseboards;
-    extern int NumCoils;
-    extern int CurMaxChillers;
-    extern int CurMaxBoilers;
-    extern int CurMaxBaseboards;
-    extern int CurMaxCoils;
-    extern int numAirDistUnits; // count of air distribution units
+    thread_local extern int NumChillers;
+    thread_local extern int NumBoilers;
+    thread_local extern int NumBaseboards;
+    thread_local extern int NumCoils;
+    thread_local extern int CurMaxChillers;
+    thread_local extern int CurMaxBoilers;
+    thread_local extern int CurMaxBaseboards;
+    thread_local extern int CurMaxCoils;
+    thread_local extern int numAirDistUnits; // count of air distribution units
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE GlobalNames:
 
@@ -97,11 +97,11 @@ namespace GlobalNames {
     };
 
     // Object Data
-    extern std::unordered_map<std::string, std::string> ChillerNames;
-    extern std::unordered_map<std::string, std::string> BoilerNames;
-    extern std::unordered_map<std::string, std::string> BaseboardNames;
-    extern std::unordered_map<std::string, std::string> CoilNames;
-    extern std::unordered_map<std::string, std::string> aDUNames;
+    thread_local extern std::unordered_map<std::string, std::string> ChillerNames;
+    thread_local extern std::unordered_map<std::string, std::string> BoilerNames;
+    thread_local extern std::unordered_map<std::string, std::string> BaseboardNames;
+    thread_local extern std::unordered_map<std::string, std::string> CoilNames;
+    thread_local extern std::unordered_map<std::string, std::string> aDUNames;
 
     // Functions
 

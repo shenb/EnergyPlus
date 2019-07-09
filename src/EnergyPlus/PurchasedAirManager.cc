@@ -140,52 +140,52 @@ namespace PurchasedAirManager {
     // MODULE PARAMETER DEFINITIONS:
     // MODULE PARAMETER DEFINITIONS:
     // Heating and Cooling Limit type parameters
-    int const NoLimit(1);
-    int const LimitFlowRate(2);
-    int const LimitCapacity(3);
-    int const LimitFlowRateAndCapacity(4);
-    Array1D_string const cLimitType(4, {"NoLimit", "LimitFlowRate", "LimitCapacity", "LimitFlowRateAndCapacity"});
+    thread_local int const NoLimit(1);
+    thread_local int const LimitFlowRate(2);
+    thread_local int const LimitCapacity(3);
+    thread_local int const LimitFlowRateAndCapacity(4);
+    thread_local Array1D_string const cLimitType(4, {"NoLimit", "LimitFlowRate", "LimitCapacity", "LimitFlowRateAndCapacity"});
     // Dehumidification and Humidification control type parameters
-    int const None(1);
-    int const ConstantSensibleHeatRatio(2);
-    int const Humidistat(3);
-    int const ConstantSupplyHumidityRatio(4);
+    thread_local int const None(1);
+    thread_local int const ConstantSensibleHeatRatio(2);
+    thread_local int const Humidistat(3);
+    thread_local int const ConstantSupplyHumidityRatio(4);
     // Demand controlled ventilation type parameters
-    int const NoDCV(1);
-    int const OccupancySchedule(2);
-    int const CO2SetPoint(3);
+    thread_local int const NoDCV(1);
+    thread_local int const OccupancySchedule(2);
+    thread_local int const CO2SetPoint(3);
     // Outdoor air economizer type parameters
-    int const NoEconomizer(1);
-    int const DifferentialDryBulb(2);
-    int const DifferentialEnthalpy(3);
+    thread_local int const NoEconomizer(1);
+    thread_local int const DifferentialDryBulb(2);
+    thread_local int const DifferentialEnthalpy(3);
     // Heat recovery type parameters
-    int const NoHeatRecovery(1);
-    int const Sensible(2);
-    int const Enthalpy(3);
+    thread_local int const NoHeatRecovery(1);
+    thread_local int const Sensible(2);
+    thread_local int const Enthalpy(3);
     // Operating mode parameters
-    int const Off(0);
-    int const Heat(1);
-    int const Cool(2);
-    int const DeadBand(3);
+    thread_local int const Off(0);
+    thread_local int const Heat(1);
+    thread_local int const Cool(2);
+    thread_local int const DeadBand(3);
     // Delta humidity ratio limit, 0.00025 equals delta between 45F dewpoint and 46F dewpoint
     // used to prevent dividing by near zero
-    Real64 const SmallDeltaHumRat(0.00025);
+    thread_local Real64 const SmallDeltaHumRat(0.00025);
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    int NumPurchAir;
-    int NumPlenumArrays;
-    bool GetPurchAirInputFlag(true);
-    Array1D_bool CheckEquipName;
+    thread_local int NumPurchAir;
+    thread_local int NumPlenumArrays;
+    thread_local bool GetPurchAirInputFlag(true);
+    thread_local Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE PurchasedAir:
 
     // Object Data
-    Array1D<ZonePurchasedAir> PurchAir;                        // Used to specify purchased air parameters
-    Array1D<PurchAirNumericFieldData> PurchAirNumericFields;   // Used to save the indices of scalable sizing object for zone HVAC
-    Array1D<PurchAirPlenumArrayData> PurchAirPlenumArrays;     // Used to save the indices of scalable sizing object for zone HVAC
-    Array1D<PurchAirPlenumArrayData> TempPurchAirPlenumArrays; // Used to save the indices of scalable sizing object for zone HVAC
+    thread_local Array1D<ZonePurchasedAir> PurchAir;                        // Used to specify purchased air parameters
+    thread_local Array1D<PurchAirNumericFieldData> PurchAirNumericFields;   // Used to save the indices of scalable sizing object for zone HVAC
+    thread_local Array1D<PurchAirPlenumArrayData> PurchAirPlenumArrays;     // Used to save the indices of scalable sizing object for zone HVAC
+    thread_local Array1D<PurchAirPlenumArrayData> TempPurchAirPlenumArrays; // Used to save the indices of scalable sizing object for zone HVAC
 
     // Functions
 
@@ -195,11 +195,11 @@ namespace PurchasedAirManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        bool InitPurchasedAirMyOneTimeFlag(true);
-        bool InitPurchasedAirZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
-        Array1D_bool InitPurchasedAirMyEnvrnFlag;
-        Array1D_bool InitPurchasedAirMySizeFlag;
-        Array1D_bool InitPurchasedAirOneTimeUnitInitsDone; // True if one-time inits for PurchAirNum are completed
+        thread_local bool InitPurchasedAirMyOneTimeFlag(true);
+        thread_local bool InitPurchasedAirZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        thread_local Array1D_bool InitPurchasedAirMyEnvrnFlag;
+        thread_local Array1D_bool InitPurchasedAirMySizeFlag;
+        thread_local Array1D_bool InitPurchasedAirOneTimeUnitInitsDone; // True if one-time inits for PurchAirNum are completed
 
     } // namespace
 
@@ -303,8 +303,8 @@ namespace PurchasedAirManager {
         int IOStat;
         int CtrlZone;                                              // zone index
         int NodeNum;                                               // node index
-        static std::string const RoutineName("GetPurchasedAir: "); // include trailing blank space
-        static bool ErrorsFound(false);                            // If errors detected in input
+        thread_local static std::string const RoutineName("GetPurchasedAir: "); // include trailing blank space
+        thread_local static bool ErrorsFound(false);                            // If errors detected in input
         bool IsOANodeListed;                                       // Flag for OA node name listed in OutdoorAir:Node or Nodelist
         bool UniqueNodeError;                                      // Flag for non-unique node error(s)
 
@@ -1394,7 +1394,7 @@ namespace PurchasedAirManager {
         using ReportSizingManager::RequestSizing;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("SizePurchasedAir: "); // include trailing blank space
+        thread_local static std::string const RoutineName("SizePurchasedAir: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool IsAutoSize;               // Indicator to autosize
@@ -1960,7 +1960,7 @@ namespace PurchasedAirManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcPurchAirLoads");
+        thread_local static std::string const RoutineName("CalcPurchAirLoads");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2835,7 +2835,7 @@ namespace PurchasedAirManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcPurchAirMixedAir");
+        thread_local static std::string const RoutineName("CalcPurchAirMixedAir");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

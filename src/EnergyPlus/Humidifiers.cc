@@ -116,32 +116,32 @@ namespace Humidifiers {
     using namespace ScheduleManager;
 
     // MODULE PARAMETER DEFINITIONS
-    int const Humidifier_Steam_Electric(1);
-    int const Humidifier_Steam_Gas(2);
+    thread_local int const Humidifier_Steam_Electric(1);
+    thread_local int const Humidifier_Steam_Gas(2);
 
-    Array1D_string const HumidifierType(2, {"Humidifier:Steam:Electric", "Humidifier:Steam:Gas"});
+    thread_local Array1D_string const HumidifierType(2, {"Humidifier:Steam:Electric", "Humidifier:Steam:Gas"});
 
-    static std::string const fluidNameSteam("STEAM");
-    static std::string const fluidNameWater("WATER");
+    thread_local static std::string const fluidNameSteam("STEAM");
+    thread_local static std::string const fluidNameWater("WATER");
 
     // MODULE VARIABLE DECLARATIONS:
-    int NumHumidifiers(0);   // number of humidifiers of all types
-    int NumElecSteamHums(0); // number of electric steam humidifiers
-    int NumGasSteamHums(0);  // number of electric steam humidifiers
-    Array1D_bool CheckEquipName;
+    thread_local int NumHumidifiers(0);   // number of humidifiers of all types
+    thread_local int NumElecSteamHums(0); // number of electric steam humidifiers
+    thread_local int NumGasSteamHums(0);  // number of electric steam humidifiers
+    thread_local Array1D_bool CheckEquipName;
 
     // Humidifier normalized thermal efficiency curve types
-    int const Linear(1);
-    int const Quadratic(2);
-    int const Cubic(3);
-    int const FixedInletWaterTemperature(1);
-    int const VariableInletWaterTemperature(2);
+    thread_local int const Linear(1);
+    thread_local int const Quadratic(2);
+    thread_local int const Cubic(3);
+    thread_local int const FixedInletWaterTemperature(1);
+    thread_local int const VariableInletWaterTemperature(2);
 
-    bool GetInputFlag = true; // moved up from a static function variable
+    thread_local bool GetInputFlag = true; // moved up from a static function variable
 
     // Object Data
-    Array1D<HumidifierData> Humidifier;
-    std::unordered_map<std::string, std::string> HumidifierUniqueNames;
+    thread_local Array1D<HumidifierData> Humidifier;
+    thread_local std::unordered_map<std::string, std::string> HumidifierUniqueNames;
 
     // Clears the global data in Humidifiers.
     // Needed for unit tests, should not be normally called.
@@ -264,7 +264,7 @@ namespace Humidifiers {
         using CurveManager::GetCurveIndex;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("GetHumidifierInputs: "); // include trailing blank space
+        thread_local static std::string const RoutineName("GetHumidifierInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int HumidifierIndex;             // loop index
@@ -274,7 +274,7 @@ namespace Humidifiers {
         int MaxNums;                     // maximum Number of Numbers for each GetObjectItem call
         int MaxAlphas;                   // maximum Number of Numbers for each GetObjectItem call
         int IOStatus;                    // Used in GetObjectItem
-        static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
         std::string CurrentModuleObject; // for ease in getting objects
         Array1D_string Alphas;           // Alpha input items for object
         Array1D_string cAlphaFields;     // Alpha field names
@@ -282,7 +282,7 @@ namespace Humidifiers {
         Array1D<Real64> Numbers;         // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //  certain object in the input file
 
         CurrentModuleObject = "Humidifier:Steam:Electric";
@@ -625,7 +625,7 @@ namespace Humidifiers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CalledFrom("Humidifier:InitHumidifier");
+        thread_local static std::string const CalledFrom("Humidifier:InitHumidifier");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -741,7 +741,7 @@ namespace Humidifiers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const CalledFrom("Humidifier:SizeHumidifier");
+        thread_local static std::string const CalledFrom("Humidifier:SizeHumidifier");
         Real64 const Tref(20.0);    // Reference temp of water for rated capacity calcs [C]
         Real64 const TSteam(100.0); // saturated steam temperature generated by Humidifier [C]
 
@@ -761,7 +761,7 @@ namespace Humidifiers {
         Real64 WaterSatEnthalpy;        // enthalpy of saturated water at 100C, J/kg
         bool IsAutoSize;                // Indicator to autosize
         bool HardSizeNoDesRun;          // Indicator to a hard-sized field with no design sizing data
-        static bool ErrorsFound(false); // TRUE if errors detected in input
+        thread_local static bool ErrorsFound(false); // TRUE if errors detected in input
         Real64 NomPowerDes;             // Autosized nominal power for reporting
         Real64 NomPowerUser;            // Hardsized nominal power for reporting
         Real64 MassFlowDes;             // Design air mass flow rate
@@ -997,7 +997,7 @@ namespace Humidifiers {
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
-        static std::string const RoutineName("ControlHumidifier");
+        thread_local static std::string const RoutineName("ControlHumidifier");
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         // na
@@ -1058,7 +1058,7 @@ namespace Humidifiers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcElecSteamHumidifier");
+        thread_local static std::string const RoutineName("CalcElecSteamHumidifier");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1169,7 +1169,7 @@ namespace Humidifiers {
         using Psychrometrics::RhoH2O;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("CalcGasSteamHumidifier");
+        thread_local static std::string const RoutineName("CalcGasSteamHumidifier");
         Real64 const TSteam(100.0); // saturated steam temperature generated by Humidifier [C]
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
