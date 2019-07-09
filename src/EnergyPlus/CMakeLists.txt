@@ -8,12 +8,14 @@ INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/third_party/FMI2/ )
 #INCLUDE_DIRECTORIES("${JAVA_INCLUDE_PATH}")
 #INCLUDE_DIRECTORIES("${JAVA_INCLUDE_PATH2}")
 
-# Don't reconfigure this file when moving from PROFILE_GENERATE to PROFILE_USE
-if(NOT PROFILE_USE)
-  configure_file( DataStringGlobals.in.cc "${CMAKE_CURRENT_BINARY_DIR}/DataStringGlobals.cc" )
-  configure_file( ConfiguredFunctions.in.cc "${CMAKE_CURRENT_BINARY_DIR}/ConfiguredFunctions.cc" )
-  file( WRITE "${CMAKE_CURRENT_BINARY_DIR}/EmbeddedEpJSONSchema.cc" "Will be filled in later by GenerateEmbeddedEpJSONSchema" )
+if(WIN32)
+  configure_file( energyplus.rc.in "${CMAKE_CURRENT_BINARY_DIR}/energyplus.rc" )
+  configure_file( energyplusapi.rc.in "${CMAKE_CURRENT_BINARY_DIR}/energyplusapi.rc" )
 endif()
+
+configure_file( DataStringGlobals.in.cc "${CMAKE_CURRENT_BINARY_DIR}/DataStringGlobals.cc" )
+configure_file( ConfiguredFunctions.in.cc "${CMAKE_CURRENT_BINARY_DIR}/ConfiguredFunctions.cc" )
+file( WRITE "${CMAKE_CURRENT_BINARY_DIR}/EmbeddedEpJSONSchema.cc" "Will be filled in later by GenerateEmbeddedEpJSONSchema" )
 
 SET( SRC
   "${PROJECT_SOURCE_DIR}/third_party/milo/dtoa.h"
@@ -22,8 +24,6 @@ SET( SRC
   "${PROJECT_SOURCE_DIR}/third_party/milo/ieee754.h"
   AirflowNetworkBalanceManager.cc
   AirflowNetworkBalanceManager.hh
-  AirflowNetworkSolver.cc
-  AirflowNetworkSolver.hh
   AirTerminalUnit.hh
   BaseboardElectric.cc
   BaseboardElectric.hh
@@ -79,8 +79,6 @@ SET( SRC
   DataAirLoop.hh
   DataAirSystems.cc
   DataAirSystems.hh
-  DataAirflowNetwork.cc
-  DataAirflowNetwork.hh
   DataBSDFWindow.cc
   DataBSDFWindow.hh
   DataBranchAirLoopPlant.cc
@@ -480,6 +478,8 @@ SET( SRC
   ReportCoilSelection.hh
   ReportSizingManager.cc
   ReportSizingManager.hh
+  ResultsSchema.cc
+  ResultsSchema.hh
   ReturnAirPathManager.cc
   ReturnAirPathManager.hh
   RoomAirModelAirflowNetwork.cc
@@ -596,6 +596,9 @@ SET( SRC
   WaterToAirHeatPump.hh
   WaterToAirHeatPumpSimple.cc
   WaterToAirHeatPumpSimple.hh
+  WaterToWaterHeatPumpEIR.cc
+  WaterToWaterHeatPumpEIR.hh
+  WaterToWaterHeatPumps.hh
   WaterUse.cc
   WaterUse.hh
   WeatherManager.cc
@@ -648,12 +651,15 @@ add_custom_target( GenerateEmbeddedEpJSONSchema
                    WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
                    DEPENDS generate_embeddedable_epJSON_schema )
 
+add_subdirectory(AirflowNetwork)
+#message( $<TARGET_PROPERTY:airflownetworklib,INTERFACE_INCLUDE_DIRECTORIES> )
+#include_directories($<TARGET_PROPERTY:airflownetworklib,INTERFACE_INCLUDE_DIRECTORIES>)
 
 # first we will create a static library of EnergyPlus
 # this will be linked statically to create the DLL and also the unit tests
 add_library( energypluslib STATIC ${SRC} )
 
-target_link_libraries( energypluslib objexx sqlite bcvtb epexpat epfmiimport re2 DElight libkiva Windows-CalcEngine)
+target_link_libraries( energypluslib objexx sqlite bcvtb epexpat epfmiimport re2 DElight libkiva Windows-CalcEngine airflownetworklib)
 add_dependencies( energypluslib GenerateEmbeddedEpJSONSchema )
 if(BUILD_GROUND_PLOT)
   set_source_files_properties(HeatBalanceKivaManager.cc PROPERTIES COMPILE_DEFINITIONS GROUND_PLOT)

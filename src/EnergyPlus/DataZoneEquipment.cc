@@ -1,4 +1,4 @@
-// EnergyPlus, Copyright (c) 1996-2018, The Board of Trustees of the University of Illinois,
+// EnergyPlus, Copyright (c) 1996-2019, The Board of Trustees of the University of Illinois,
 // The Regents of the University of California, through Lawrence Berkeley National Laboratory
 // (subject to receipt of any required approvals from the U.S. Dept. of Energy), Oak Ridge
 // National Laboratory, managed by UT-Battelle, Alliance for Sustainable Energy, LLC, and other
@@ -327,7 +327,6 @@ namespace DataZoneEquipment {
         Array1D_string cNumericFields;   // Numeric field names
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        bool IdealLoadsOnEquipmentList;
         int maxEquipCount;
         int numEquipCount;
         int overallEquipCount;
@@ -1101,6 +1100,24 @@ namespace DataZoneEquipment {
                 break;
             }
         }
+        // Set MinAirLoopIterationsAfterFirst for equipment that uses sequenced loads, based on zone equip load distribution scheme
+        int minIterations = DataHVACGlobals::MinAirLoopIterationsAfterFirst;
+        if (this->LoadDistScheme == DataZoneEquipment::LoadDist::SequentialLoading) {
+            // Sequential needs one extra iterations up to the highest airterminal unit equipment number
+            minIterations = max(coolingPriority, heatingPriority, minIterations);
+        }
+        else if (this->LoadDistScheme == DataZoneEquipment::LoadDist::UniformLoading) {
+            // Uniform needs one extra iteration which is the default
+        }
+        else if (this->LoadDistScheme == DataZoneEquipment::LoadDist::UniformPLRLoading) {
+            // UniformPLR needs two extra iterations, regardless of unit equipment number
+            minIterations = max(2, minIterations);
+        }
+        else if (this->LoadDistScheme == DataZoneEquipment::LoadDist::SequentialUniformPLRLoading) {
+            // SequentialUniformPLR needs one extra iterations up to the highest airterminal unit equipment number plus one more
+            minIterations = max((coolingPriority + 1), (heatingPriority + 1), minIterations);
+        }
+        DataHVACGlobals::MinAirLoopIterationsAfterFirst = minIterations;
     }
 
 } // namespace DataZoneEquipment
