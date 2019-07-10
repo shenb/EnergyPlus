@@ -60,11 +60,11 @@ namespace HysteresisPhaseChange {
     struct PhaseChangeStates
     {
         // keeping these as ints to allow output variable reporting; could refine later into enum class
-        thread_local static const int LIQUID = -2;
-        thread_local static const int MELTING = -1;
-        thread_local static const int TRANSITION = 0;
-        thread_local static const int FREEZING = 1;
-        thread_local static const int CRYSTALLIZED = 2;
+        static const int LIQUID = -2;
+        static const int MELTING = -1;
+        static const int TRANSITION = 0;
+        static const int FREEZING = 1;
+        static const int CRYSTALLIZED = 2;
     };
 
     thread_local extern int numHysteresisModels;
