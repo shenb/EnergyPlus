@@ -139,6 +139,158 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
       result.emplace(i,std::move(var));
     }
     ++i;
+    {
+      Variable var;
+      var.type = VariableType::QGAIRAD_FLOW;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_QGaiRad_flow"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Radiative sensible heat gain added to the zone"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","input"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","Power"));
+      var.real_attributes.emplace_back(std::make_pair("unit","W"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","0.0"));
+
+      var.value = 0.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
+    {
+      Variable var;
+      var.type = VariableType::QLAT_FLOW;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_QLat_flow"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Latent heat gain added to the zone"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","Power"));
+      var.real_attributes.emplace_back(std::make_pair("unit","W"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+
+      // TODO exchange this variable with real EnergyPlus data
+      var.value = 0.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
+    {
+      Variable var;
+      var.type = VariableType::QPEO_FLOW;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_QPeo_flow"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Heat gain due to people"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","Power"));
+      var.real_attributes.emplace_back(std::make_pair("unit","W"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+
+      // TODO exchange this variable with real EnergyPlus data
+      var.value = 0.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
+    {
+      Variable var;
+      var.type = VariableType::TAVEINLET;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_TAveInlet"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Average of inlets medium temperatures carried by the mass flow rates"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","input"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","ThermodynamicTemperature"));
+      var.real_attributes.emplace_back(std::make_pair("unit","degC"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","21.0"));
+
+      var.value = 21.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
+    {
+      Variable var;
+      var.type = VariableType::TRAD;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_TRad"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Average radiative temperature in the room"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","discrete"));
+      var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","ThermodynamicTemperature"));
+      var.real_attributes.emplace_back(std::make_pair("unit","degC"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+
+      // TODO exchange this variable with real EnergyPlus data
+      var.value = 21.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
+    {
+      Variable var;
+      var.type = VariableType::X;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_X"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Water vapor mass fraction in kg water/kg dry air"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","input"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+
+      var.real_attributes.emplace_back(std::make_pair("unit","1"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("min","0"));
+      var.real_attributes.emplace_back(std::make_pair("start","0.0"));
+
+      // TODO exchange this variable with real EnergyPlus data
+      var.value = 0.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
+    {
+      Variable var;
+      var.type = VariableType::MINLETS_FLOW;
+      var.key = zone;
+
+      var.scalar_attributes.emplace_back(std::make_pair("name",zone + "_mInlets_flow"));
+      var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+      var.scalar_attributes.emplace_back(std::make_pair("description","Sum of positive mass flow rates into the zone for all air inlets (including infiltration)"));
+      var.scalar_attributes.emplace_back(std::make_pair("causality","input"));
+      var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+
+      var.real_attributes.emplace_back(std::make_pair("quantity","MassFlowRate"));
+      var.real_attributes.emplace_back(std::make_pair("unit","kg/s"));
+      var.real_attributes.emplace_back(std::make_pair("relativeQuantity","false"));
+      var.real_attributes.emplace_back(std::make_pair("start","0.0"));
+
+      // TODO exchange this variable with real EnergyPlus data
+      var.value = 0.0;
+
+      result.emplace(i,std::move(var));
+    }
+    ++i;
   }
 
   return result;

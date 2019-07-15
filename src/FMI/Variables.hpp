@@ -10,7 +10,20 @@
 namespace EnergyPlus {
 namespace FMI {
 
-enum class VariableType { T, V, AFLO, MSENFAC, QCONSEN_FLOW };
+enum class VariableType { 
+  T, 
+  V, 
+  AFLO, 
+  MSENFAC, 
+  QCONSEN_FLOW, 
+  QGAIRAD_FLOW,
+  QLAT_FLOW,
+  QPEO_FLOW,
+  TAVEINLET,
+  TRAD,
+  X,
+  MINLETS_FLOW
+};
 
 using VariableAttribute = std::pair<std::string, std::string>;
 
