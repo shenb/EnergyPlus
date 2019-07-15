@@ -80,13 +80,13 @@ namespace IntegratedHeatPump {
     using General::RoundSigDigits;
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local bool GetCoilsInputFlag(true);
+    EP_GLOBAL bool GetCoilsInputFlag(true);
 
     // Object Data
-    thread_local Array1D<IntegratedHeatPumpData> IntegratedHeatPumps;
+    EP_GLOBAL Array1D<IntegratedHeatPumpData> IntegratedHeatPumps;
 
     void clear_state()
     {
@@ -1108,7 +1108,7 @@ namespace IntegratedHeatPump {
         using VariableSpeedCoils::VarSpeedCoil;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetIHPInput: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetIHPInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int DXCoilNum; // No of IHP DX system
@@ -1931,7 +1931,7 @@ namespace IntegratedHeatPump {
         using VariableSpeedCoils::SizeVarSpeedCoil;
         using VariableSpeedCoils::VarSpeedCoil;
 
-        thread_local static bool ErrorsFound(false); // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false); // If errors detected in input
         Real64 RatedCapacity(0.0);      // rated building cooling load
 
         // Obtains and Allocates AS-IHP related parameters from input file

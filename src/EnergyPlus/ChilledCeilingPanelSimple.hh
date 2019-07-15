@@ -64,37 +64,37 @@ namespace CoolingPanelSimple {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local extern std::string const cCMO_CoolingPanel_Simple;
+    EP_GLOBAL extern std::string const cCMO_CoolingPanel_Simple;
     // Control types:
-    thread_local extern int const MATControl;                // Controls system using mean air temperature
-    thread_local extern int const MRTControl;                // Controls system using mean radiant temperature
-    thread_local extern int const OperativeControl;          // Controls system using operative temperature
-    thread_local extern int const ODBControl;                // Controls system using outside air dry-bulb temperature
-    thread_local extern int const OWBControl;                // Controls system using outside air wet-bulb temperature
-    thread_local extern int const ZoneTotalLoadControl;      // Controls system using remaining zone total load
-    thread_local extern int const ZoneConvectiveLoadControl; // Controls system using remaining zone convective load
+    EP_GLOBAL extern int const MATControl;                // Controls system using mean air temperature
+    EP_GLOBAL extern int const MRTControl;                // Controls system using mean radiant temperature
+    EP_GLOBAL extern int const OperativeControl;          // Controls system using operative temperature
+    EP_GLOBAL extern int const ODBControl;                // Controls system using outside air dry-bulb temperature
+    EP_GLOBAL extern int const OWBControl;                // Controls system using outside air wet-bulb temperature
+    EP_GLOBAL extern int const ZoneTotalLoadControl;      // Controls system using remaining zone total load
+    EP_GLOBAL extern int const ZoneConvectiveLoadControl; // Controls system using remaining zone convective load
     // Condensation control types:
-    thread_local extern int const CondCtrlNone;      // Condensation control--none, so system never shuts down
-    thread_local extern int const CondCtrlSimpleOff; // Condensation control--simple off, system shuts off when condensation predicted
-    thread_local extern int const CondCtrlVariedOff; // Condensation control--variable off, system modulates to keep running if possible
+    EP_GLOBAL extern int const CondCtrlNone;      // Condensation control--none, so system never shuts down
+    EP_GLOBAL extern int const CondCtrlSimpleOff; // Condensation control--simple off, system shuts off when condensation predicted
+    EP_GLOBAL extern int const CondCtrlVariedOff; // Condensation control--variable off, system modulates to keep running if possible
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumCoolingPanels;
-    thread_local extern Array1D<Real64> CoolingPanelSource;   // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> CoolingPanelSrcAvg;   // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    EP_GLOBAL extern int NumCoolingPanels;
+    EP_GLOBAL extern Array1D<Real64> CoolingPanelSource;   // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> CoolingPanelSrcAvg;   // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
 
     // Record keeping variables used to calculate CoolingPanelSrcAvg locally
-    thread_local extern Array1D<Real64> LastCoolingPanelSrc; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastSysTimeElapsed;  // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastTimeStepSys;     // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern Array1D_bool SetLoopIndexFlag; // get loop number flag
+    EP_GLOBAL extern Array1D<Real64> LastCoolingPanelSrc; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed;  // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;     // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool SetLoopIndexFlag; // get loop number flag
 
     // Autosizing variables
-    thread_local extern Array1D_bool MySizeFlagCoolPanel;
+    EP_GLOBAL extern Array1D_bool MySizeFlagCoolPanel;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Simple Chilled Ceiling Panel
 
@@ -192,8 +192,8 @@ namespace CoolingPanelSimple {
     };
 
     // Object Data
-    thread_local extern Array1D<CoolingPanelParams> CoolingPanel;
-    thread_local extern Array1D<CoolingPanelSysNumericFieldData> CoolingPanelSysNumericFields;
+    EP_GLOBAL extern Array1D<CoolingPanelParams> CoolingPanel;
+    EP_GLOBAL extern Array1D<CoolingPanelSysNumericFieldData> CoolingPanelSysNumericFields;
 
     // Functions
 

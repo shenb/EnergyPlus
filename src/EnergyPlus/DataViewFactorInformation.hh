@@ -93,7 +93,7 @@ namespace DataViewFactorInformation {
     };
 
     // Object Data
-    thread_local extern Array1D<ZoneViewFactorInformation> ZoneInfo;
+    EP_GLOBAL extern Array1D<ZoneViewFactorInformation> ZoneInfo;
 
 } // namespace DataViewFactorInformation
 

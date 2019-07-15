@@ -66,43 +66,43 @@ namespace DataPhotovoltaics {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern std::string const cPVGeneratorObjectName;
-    thread_local extern std::string const cPVSimplePerfObjectName;
-    thread_local extern std::string const cPVEquiv1DiodePerfObjectName;
-    thread_local extern std::string const cPVSandiaPerfObjectName;
+    EP_GLOBAL extern std::string const cPVGeneratorObjectName;
+    EP_GLOBAL extern std::string const cPVSimplePerfObjectName;
+    EP_GLOBAL extern std::string const cPVEquiv1DiodePerfObjectName;
+    EP_GLOBAL extern std::string const cPVSandiaPerfObjectName;
 
-    thread_local extern int const iNotYetSetPVModel;
-    thread_local extern int const iSimplePVModel;
-    thread_local extern int const iTRNSYSPVModel;
-    thread_local extern int const iSandiaPVModel;
+    EP_GLOBAL extern int const iNotYetSetPVModel;
+    EP_GLOBAL extern int const iSimplePVModel;
+    EP_GLOBAL extern int const iTRNSYSPVModel;
+    EP_GLOBAL extern int const iSandiaPVModel;
 
-    thread_local extern int const iNotYetSetCellIntegration;                // cell temp method not set
-    thread_local extern int const iDecoupledCellIntegration;                // cell temp method based on energy balance
-    thread_local extern int const iDecoupledUllebergDynamicCellIntegration; // cell temp method based on energy bal with capacity
-    thread_local extern int const iSurfaceOutsideFaceCellIntegration;       // cell temp method based on coupling to E+'s heat balance
-    thread_local extern int const iTranspiredCollectorCellIntegration;      // cell temp method based on coupling to unglazed transpired co
-    thread_local extern int const iExteriorVentedCavityCellIntegration;     // cell temp method based on coupling to nat vent exterior cavi
-    thread_local extern int const iPVTSolarCollectorCellIntegration;        // cell temp method based on coupling to PVT model
+    EP_GLOBAL extern int const iNotYetSetCellIntegration;                // cell temp method not set
+    EP_GLOBAL extern int const iDecoupledCellIntegration;                // cell temp method based on energy balance
+    EP_GLOBAL extern int const iDecoupledUllebergDynamicCellIntegration; // cell temp method based on energy bal with capacity
+    EP_GLOBAL extern int const iSurfaceOutsideFaceCellIntegration;       // cell temp method based on coupling to E+'s heat balance
+    EP_GLOBAL extern int const iTranspiredCollectorCellIntegration;      // cell temp method based on coupling to unglazed transpired co
+    EP_GLOBAL extern int const iExteriorVentedCavityCellIntegration;     // cell temp method based on coupling to nat vent exterior cavi
+    EP_GLOBAL extern int const iPVTSolarCollectorCellIntegration;        // cell temp method based on coupling to PVT model
 
-    thread_local extern int const FixedEfficiency;     // simple PV, constant efficiency
-    thread_local extern int const ScheduledEfficiency; // simpel PV, scheduled efficiency
+    EP_GLOBAL extern int const FixedEfficiency;     // simple PV, constant efficiency
+    EP_GLOBAL extern int const ScheduledEfficiency; // simpel PV, scheduled efficiency
 
-    thread_local extern int const CrystallineSiPVCells;
-    thread_local extern int const AmorphousSiPVCells;
+    EP_GLOBAL extern int const CrystallineSiPVCells;
+    EP_GLOBAL extern int const AmorphousSiPVCells;
 
-    thread_local extern Real64 const MinIrradiance; // [W/m2] Assume no operation if Ic is below this number (W/m2)
+    EP_GLOBAL extern Real64 const MinIrradiance; // [W/m2] Assume no operation if Ic is below this number (W/m2)
     // DERIVED TYPE DEFINITIONS
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumPVs;                 // count of number of PV generators
-    thread_local extern int Num1DiodePVModuleTypes; // count for Equivalent one-diode model
-    thread_local extern int NumSimplePVModuleTypes; // count of number of input objs for simple model
-    thread_local extern int NumSNLPVModuleTypes;    // count of number of input objs for Sandia model
+    EP_GLOBAL extern int NumPVs;                 // count of number of PV generators
+    EP_GLOBAL extern int Num1DiodePVModuleTypes; // count for Equivalent one-diode model
+    EP_GLOBAL extern int NumSimplePVModuleTypes; // count of number of input objs for simple model
+    EP_GLOBAL extern int NumSNLPVModuleTypes;    // count of number of input objs for Sandia model
 
-    thread_local extern Real64 ShuntResistance; // old "RSH" in common block of trnsys code
+    EP_GLOBAL extern Real64 ShuntResistance; // old "RSH" in common block of trnsys code
 
     // Types
 
@@ -342,7 +342,7 @@ namespace DataPhotovoltaics {
     };
 
     // Object Data
-    thread_local extern Array1D<PVArrayStruct> PVarray;
+    EP_GLOBAL extern Array1D<PVArrayStruct> PVarray;
 
 } // namespace DataPhotovoltaics
 

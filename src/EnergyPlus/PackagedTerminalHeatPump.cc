@@ -149,68 +149,68 @@ namespace PackagedTerminalHeatPump {
 
     namespace {
         // clear_state variables
-        thread_local static bool MyOneTimeFlag(true); // initialization flag
+        EP_GLOBAL static bool MyOneTimeFlag(true); // initialization flag
     }                                    // namespace
 
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    thread_local int const On(1);  // normal compressor operation
-    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL int const On(1);  // normal compressor operation
+    EP_GLOBAL int const Off(0); // signal DXCoil that compressor shouldn't run
 
     // Last mode of operation
-    thread_local int const CoolingMode(1); // last compressor operating mode was in cooling
-    thread_local int const HeatingMode(2); // last compressor operating mode was in heating
+    EP_GLOBAL int const CoolingMode(1); // last compressor operating mode was in cooling
+    EP_GLOBAL int const HeatingMode(2); // last compressor operating mode was in heating
 
     // Airflow control for contant fan mode
-    thread_local int const UseCompressorOnFlow(1);  // set compressor OFF air flow rate equal to compressor ON air flow rate
-    thread_local int const UseCompressorOffFlow(2); // set compressor OFF air flow rate equal to user defined value
+    EP_GLOBAL int const UseCompressorOnFlow(1);  // set compressor OFF air flow rate equal to compressor ON air flow rate
+    EP_GLOBAL int const UseCompressorOffFlow(2); // set compressor OFF air flow rate equal to user defined value
 
     // Unit type
-    thread_local int const PTHPUnit(1);   // equivalent to PackagedTerminal:HeatPump:AirToAir
-    thread_local int const PTACUnit(2);   // equivalent to PackagedTerminal:AirConditioner
-    thread_local int const PTWSHPUnit(3); // equivalent to WaterToAirHeatPump
+    EP_GLOBAL int const PTHPUnit(1);   // equivalent to PackagedTerminal:HeatPump:AirToAir
+    EP_GLOBAL int const PTACUnit(2);   // equivalent to PackagedTerminal:AirConditioner
+    EP_GLOBAL int const PTWSHPUnit(3); // equivalent to WaterToAirHeatPump
 
     // control type
-    thread_local int const None(1);       // no special capacity control
-    thread_local int const CCM_ASHRAE(2); // capacity control based on ASHRAE Standard 90.1
+    EP_GLOBAL int const None(1);       // no special capacity control
+    EP_GLOBAL int const CCM_ASHRAE(2); // capacity control based on ASHRAE Standard 90.1
 
-    thread_local static std::string const fluidNameSteam("STEAM");
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const fluidNameSteam("STEAM");
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
-    thread_local Real64 SupHeaterLoad(0.0);     // load to be met by supplemental heater [W]
-    thread_local int NumPTHP(0);                // total number of PTHP's
-    thread_local int NumPTAC(0);                // total number of PTAC's
-    thread_local int NumPTWSHP(0);              // total number of PTWSHP's
-    thread_local int NumPTUs(0);                // total number of PTHP and PTAC units
-    thread_local Real64 CompOnMassFlow(0.0);    // Supply air mass flow rate w/ compressor ON
-    thread_local Real64 OACompOnMassFlow(0.0);  // OA mass flow rate w/ compressor ON
-    thread_local Real64 CompOffMassFlow(0.0);   // Supply air mass flow rate w/ compressor OFF
-    thread_local Real64 OACompOffMassFlow(0.0); // OA mass flow rate w/ compressor OFF
-    thread_local Real64 CompOnFlowRatio(0.0);   // fan flow ratio when coil on
-    thread_local Real64 CompOffFlowRatio(0.0);  // fan flow ratio when coil off
-    thread_local Real64 FanSpeedRatio(0.0);     // ratio of air flow ratio passed to fan object
-    thread_local bool GetPTUnitInputFlag(true); // First time, input is "gotten"
-    thread_local Real64 SaveCompressorPLR(0.0); // holds compressor PLR from active DX coil
-    thread_local Real64 SteamDensity(0.0);      // density of steam at 100C, used for steam heating coils
-    thread_local bool HeatingLoad(false);       // defines a heating load on PTUnit
-    thread_local bool CoolingLoad(false);       // defines a cooling load on PTUnit
-    thread_local Real64 MinWaterFlow(0.0);      // minimum water flow for heating [kg/s]
-    thread_local Real64 TempSteamIn(100.0);     // steam coil steam inlet temperature
+    EP_GLOBAL Real64 SupHeaterLoad(0.0);     // load to be met by supplemental heater [W]
+    EP_GLOBAL int NumPTHP(0);                // total number of PTHP's
+    EP_GLOBAL int NumPTAC(0);                // total number of PTAC's
+    EP_GLOBAL int NumPTWSHP(0);              // total number of PTWSHP's
+    EP_GLOBAL int NumPTUs(0);                // total number of PTHP and PTAC units
+    EP_GLOBAL Real64 CompOnMassFlow(0.0);    // Supply air mass flow rate w/ compressor ON
+    EP_GLOBAL Real64 OACompOnMassFlow(0.0);  // OA mass flow rate w/ compressor ON
+    EP_GLOBAL Real64 CompOffMassFlow(0.0);   // Supply air mass flow rate w/ compressor OFF
+    EP_GLOBAL Real64 OACompOffMassFlow(0.0); // OA mass flow rate w/ compressor OFF
+    EP_GLOBAL Real64 CompOnFlowRatio(0.0);   // fan flow ratio when coil on
+    EP_GLOBAL Real64 CompOffFlowRatio(0.0);  // fan flow ratio when coil off
+    EP_GLOBAL Real64 FanSpeedRatio(0.0);     // ratio of air flow ratio passed to fan object
+    EP_GLOBAL bool GetPTUnitInputFlag(true); // First time, input is "gotten"
+    EP_GLOBAL Real64 SaveCompressorPLR(0.0); // holds compressor PLR from active DX coil
+    EP_GLOBAL Real64 SteamDensity(0.0);      // density of steam at 100C, used for steam heating coils
+    EP_GLOBAL bool HeatingLoad(false);       // defines a heating load on PTUnit
+    EP_GLOBAL bool CoolingLoad(false);       // defines a cooling load on PTUnit
+    EP_GLOBAL Real64 MinWaterFlow(0.0);      // minimum water flow for heating [kg/s]
+    EP_GLOBAL Real64 TempSteamIn(100.0);     // steam coil steam inlet temperature
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // modules for variable speed heat pump
 
     // Object Data
-    thread_local Array1D<PTUnitData> PTUnit;
-    thread_local std::unordered_map<std::string, std::string> PTUnitUniqueNames;
-    thread_local Array1D<PTUnitNumericFieldData> PTUnitUNumericFields; // holds VRF TU numeric input fields character field name
+    EP_GLOBAL Array1D<PTUnitData> PTUnit;
+    EP_GLOBAL std::unordered_map<std::string, std::string> PTUnitUniqueNames;
+    EP_GLOBAL Array1D<PTUnitNumericFieldData> PTUnitUNumericFields; // holds VRF TU numeric input fields character field name
 
     // Functions
     void clear_state()
@@ -592,8 +592,8 @@ namespace PackagedTerminalHeatPump {
         using WaterToAirHeatPumpSimple::SetSimpleWSHPData;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetPTUnit: "); // include trailing blank space
-        thread_local static std::string const RoutineNameFull("GetPackagedTerminalHeatPumpInput");
+        EP_GLOBAL static std::string const RoutineName("GetPTUnit: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineNameFull("GetPackagedTerminalHeatPumpInput");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PTUnitIndex;             // loop index
@@ -626,10 +626,10 @@ namespace PackagedTerminalHeatPump {
         int MaxNumbers;                  // Maximum number of numeric fields in all objects
         int NumFields;                   // Total number of fields in object
         int IOStatus;                    // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
         bool IsNotOK;                    // Flag to verify name
         std::string CurrentModuleObject; // Object type for getting and error messages
-        thread_local static bool errFlag(false);      // Error flag returned during CALL to mining functions
+        EP_GLOBAL static bool errFlag(false);      // Error flag returned during CALL to mining functions
         Real64 FanVolFlow;               // maximum supply air volumetric flow rate of fan
         int TempNodeNum;                 // dummy variable to set up HW coil water inlet node
         int SteamIndex;                  // dummy variable to set up steam coil steam inlet density
@@ -3732,8 +3732,8 @@ namespace PackagedTerminalHeatPump {
         Real64 SupHeaterLoad;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitPTUnit");
-        thread_local static std::string const RoutineNameSpace(" InitPTUnit");
+        EP_GLOBAL static std::string const RoutineName("InitPTUnit");
+        EP_GLOBAL static std::string const RoutineNameSpace(" InitPTUnit");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InNode;                                    // inlet node number in PTHP loop
@@ -3743,13 +3743,13 @@ namespace PackagedTerminalHeatPump {
         Real64 RhoAir;                                 // air density at InNode
         Real64 PartLoadFrac;                           // compressor part load fraction
         Real64 CoilMaxVolFlowRate;                     // water or steam max volumetric water flow rate
-        thread_local static bool ZoneEquipmentListNotChecked(true); // False after the Zone Equipment List has been checked for items
+        EP_GLOBAL static bool ZoneEquipmentListNotChecked(true); // False after the Zone Equipment List has been checked for items
         int Loop;
-        thread_local static Array1D_bool MyEnvrnFlag; // used for initializations each begin environment flag
-        thread_local static Array1D_bool MySizeFlag;  // used for sizing PTHP inputs one time
-        thread_local static Array1D_bool MyFanFlag;   // used for sizing PTHP fan inputs one time
-        thread_local static Array1D_bool MyPlantScanFlag;
-        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag; // used for initializations each begin environment flag
+        EP_GLOBAL static Array1D_bool MySizeFlag;  // used for sizing PTHP inputs one time
+        EP_GLOBAL static Array1D_bool MyFanFlag;   // used for sizing PTHP fan inputs one time
+        EP_GLOBAL static Array1D_bool MyPlantScanFlag;
+        EP_GLOBAL static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         Real64 QActual;                   // actual PTAC steam heating coil load met (W)
         bool ErrorsFound;                 // flag returned from mining call
         Real64 QToCoolSetPt;
@@ -4792,7 +4792,7 @@ namespace PackagedTerminalHeatPump {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizePTUnit: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("SizePTUnit: "); // include trailing blank space
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5487,7 +5487,7 @@ namespace PackagedTerminalHeatPump {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const MaxIte(500);    // maximum number of iterations
         Real64 const MinPLF(0.0); // minimum part load factor allowed
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5501,7 +5501,7 @@ namespace PackagedTerminalHeatPump {
         Real64 NoCompOutput;           // output when no active compressor [W]
         Real64 ErrorToler;             // error tolerance
         int SolFla;                    // Flag of RegulaFalsi solver
-        thread_local static Array1D<Real64> Par(8); // Parameters passed to RegulaFalsi
+        EP_GLOBAL static Array1D<Real64> Par(8); // Parameters passed to RegulaFalsi
         std::string IterNum;           // Max number of iterations for warning message
         Real64 CpAir;                  // air specific heat
         Real64 OutsideDryBulbTemp;     // Outside air temperature at external node height
@@ -5815,9 +5815,9 @@ namespace PackagedTerminalHeatPump {
         Real64 mdot;               // local temporary for mass flow rate
         Real64 MaxHotWaterFlow;    // coil maximum hot water mass flow rate, kg/s
         Real64 HotWaterMdot;       // actual hot water mass flow rate
-        thread_local static Array1D<Real64> Par(3);
+        EP_GLOBAL static Array1D<Real64> Par(3);
         int SolFlag;
-        thread_local static int ATMixOutNode(0); // outlet node of ATM Mixer
+        EP_GLOBAL static int ATMixOutNode(0); // outlet node of ATM Mixer
 
         // Tuned Named constants to avoid heap allocation when passed to Optional args
         bool const True(true);
@@ -7128,18 +7128,18 @@ namespace PackagedTerminalHeatPump {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Real64 PartLoadFrac(0.0);   // compressor part load fraction
-        thread_local static Real64 SpeedRatio(0.0);     // compressor speed ratio
+        EP_GLOBAL static Real64 PartLoadFrac(0.0);   // compressor part load fraction
+        EP_GLOBAL static Real64 SpeedRatio(0.0);     // compressor speed ratio
         bool UnitOn;                       // TRUE if unit is on
         int OutletNode;                    // MSHP air outlet node
         int InletNode;                     // MSHP air inlet node
         Real64 AirMassFlow;                // air mass flow rate [kg/s]
         Real64 QTotUnitOut;                // capacity output
-        thread_local static int SpeedNum(1);            // Speed number
+        EP_GLOBAL static int SpeedNum(1);            // Speed number
         Real64 QSensUnitOut;               // sensible capacity output
         Real64 QLatUnitOut;                // latent capacity output
         int CompOp;                        // compressor operation; 1=on, 0=off
-        thread_local static Real64 TotalZoneLatentLoad; // Total ZONE heating load (not including outside air)
+        EP_GLOBAL static Real64 TotalZoneLatentLoad; // Total ZONE heating load (not including outside air)
 
         // zero the fan, DX coils, and supplemental electric heater electricity consumption
 
@@ -7331,11 +7331,11 @@ namespace PackagedTerminalHeatPump {
         Real64 LatOutput;               // latent capacity output
         Real64 ErrorToler;              // error tolerance
         int SolFla;                     // Flag of RegulaFalsi solver
-        thread_local static Array1D<Real64> Par(11); // Parameters passed to RegulaFalsi
+        EP_GLOBAL static Array1D<Real64> Par(11); // Parameters passed to RegulaFalsi
         Real64 CpAir;                   // air specific heat
         int i;                          // Speed index
-        thread_local static int ErrCountCyc(0);      // Counter used to minimize the occurrence of output warnings
-        thread_local static int ErrCountVar(0);      // Counter used to minimize the occurrence of output warnings
+        EP_GLOBAL static int ErrCountCyc(0);      // Counter used to minimize the occurrence of output warnings
+        EP_GLOBAL static int ErrCountVar(0);      // Counter used to minimize the occurrence of output warnings
         Real64 mdot;                    // coil fluid mass flow rate (kg/s)
 
         // FLOW
@@ -7985,7 +7985,7 @@ namespace PackagedTerminalHeatPump {
         using WaterToAirHeatPumpSimple::SimWatertoAirHPSimple;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcVarSpeedHeatPump: "); // for error messages
+        EP_GLOBAL static std::string const RoutineName("CalcVarSpeedHeatPump: "); // for error messages
         Real64 const ErrTolerance(0.001);                               // convergence limit for hotwater coil
         int const SolveMaxIter(50);
 
@@ -8003,9 +8003,9 @@ namespace PackagedTerminalHeatPump {
         Real64 mdot;               // local temporary for mass flow rate
         Real64 MaxHotWaterFlow;    // coil maximum hot water mass flow rate, kg/s
         Real64 HotWaterMdot;       // actual hot water mass flow rate
-        thread_local static Array1D<Real64> Par(3);
+        EP_GLOBAL static Array1D<Real64> Par(3);
         int SolFlag;
-        thread_local static int ATMixOutNode(0); // outlet node of ATM Mixer
+        EP_GLOBAL static int ATMixOutNode(0); // outlet node of ATM Mixer
 
         // FLOW
 
@@ -8439,8 +8439,8 @@ namespace PackagedTerminalHeatPump {
         int InletNode;                          // inlet node number for PTUnitNum
         int OutsideAirNode;                     // outside air node number in PTHP loop
         int AirRelNode;                         // relief air node number in PTHP loop
-        thread_local static Real64 AverageUnitMassFlow(0.0); // average supply air mass flow rate over time step
-        thread_local static Real64 AverageOAMassFlow(0.0);   // average outdoor air mass flow rate over time step
+        EP_GLOBAL static Real64 AverageUnitMassFlow(0.0); // average supply air mass flow rate over time step
+        EP_GLOBAL static Real64 AverageOAMassFlow(0.0);   // average outdoor air mass flow rate over time step
 
         MSHPMassFlowRateLow = 0.0;  // Mass flow rate at low speed
         MSHPMassFlowRateHigh = 0.0; // Mass flow rate at high speed

@@ -70,117 +70,117 @@ namespace DataSizing {
     // MODULE PARAMETER DEFINITIONS:
 
     // parameters for outside air flow method
-    thread_local extern int const NumOAFlowMethods;
+    EP_GLOBAL extern int const NumOAFlowMethods;
 
-    thread_local extern int const OAFlowNone;
-    thread_local extern int const OAFlowPPer;
-    thread_local extern int const OAFlow;
-    thread_local extern int const OAFlowPerArea;
-    thread_local extern int const OAFlowACH;
-    thread_local extern int const OAFlowSum;
-    thread_local extern int const OAFlowMax;
+    EP_GLOBAL extern int const OAFlowNone;
+    EP_GLOBAL extern int const OAFlowPPer;
+    EP_GLOBAL extern int const OAFlow;
+    EP_GLOBAL extern int const OAFlowPerArea;
+    EP_GLOBAL extern int const OAFlowACH;
+    EP_GLOBAL extern int const OAFlowSum;
+    EP_GLOBAL extern int const OAFlowMax;
 
-    thread_local extern Array1D_string const cOAFlowMethodTypes;
+    EP_GLOBAL extern Array1D_string const cOAFlowMethodTypes;
 
     // parameters for outside air
-    thread_local extern int const AllOA;
-    thread_local extern int const MinOA;
+    EP_GLOBAL extern int const AllOA;
+    EP_GLOBAL extern int const MinOA;
 
     // parameters for loop fluid type
-    thread_local extern int const HeatingLoop;
-    thread_local extern int const CoolingLoop;
-    thread_local extern int const CondenserLoop;
-    thread_local extern int const SteamLoop;
+    EP_GLOBAL extern int const HeatingLoop;
+    EP_GLOBAL extern int const CoolingLoop;
+    EP_GLOBAL extern int const CondenserLoop;
+    EP_GLOBAL extern int const SteamLoop;
 
     // paramters for sizing
-    thread_local extern int const NonCoincident;
-    thread_local extern int const Coincident;
+    EP_GLOBAL extern int const NonCoincident;
+    EP_GLOBAL extern int const Coincident;
 
     // parameters for Cooling Peak Load Type
-    thread_local extern int const SensibleCoolingLoad;
-    thread_local extern int const TotalCoolingLoad;
+    EP_GLOBAL extern int const SensibleCoolingLoad;
+    EP_GLOBAL extern int const TotalCoolingLoad;
 
     // parameters for Central Cooling Capacity Control Method
-    thread_local extern int const VAV;
-    thread_local extern int const Bypass;
-    thread_local extern int const VT;
-    thread_local extern int const OnOff;
+    EP_GLOBAL extern int const VAV;
+    EP_GLOBAL extern int const Bypass;
+    EP_GLOBAL extern int const VT;
+    EP_GLOBAL extern int const OnOff;
 
     // paramters for supply air flow rate method
-    thread_local extern int const SupplyAirTemperature;
-    thread_local extern int const TemperatureDifference;
+    EP_GLOBAL extern int const SupplyAirTemperature;
+    EP_GLOBAL extern int const TemperatureDifference;
 
     // paramters for sizing
-    thread_local extern int const FromDDCalc;
-    thread_local extern int const InpDesAirFlow;
-    thread_local extern int const DesAirFlowWithLim;
+    EP_GLOBAL extern int const FromDDCalc;
+    EP_GLOBAL extern int const InpDesAirFlow;
+    EP_GLOBAL extern int const DesAirFlowWithLim;
 
     // parameters for DOAs control method
-    thread_local extern int const DOANeutralSup;
-    thread_local extern int const DOANeutralDehumSup;
-    thread_local extern int const DOACoolSup;
+    EP_GLOBAL extern int const DOANeutralSup;
+    EP_GLOBAL extern int const DOANeutralDehumSup;
+    EP_GLOBAL extern int const DOACoolSup;
 
     // parameters for Type of Load to Size On
-    thread_local extern int const Sensible;
-    thread_local extern int const Latent;
-    thread_local extern int const Total;
-    thread_local extern int const Ventilation;
+    EP_GLOBAL extern int const Sensible;
+    EP_GLOBAL extern int const Latent;
+    EP_GLOBAL extern int const Total;
+    EP_GLOBAL extern int const Ventilation;
 
     // parameter for autosize
-    thread_local extern Real64 const AutoSize;
+    EP_GLOBAL extern Real64 const AutoSize;
 
     // parameter for (time-of-peak) sizing format
-    thread_local extern ObjexxFCL::gio::Fmt PeakHrMinFmt;
+    EP_GLOBAL extern ObjexxFCL::gio::Fmt PeakHrMinFmt;
 
     // Zone Outdoor Air Method
-    thread_local extern int const ZOAM_FlowPerPerson; // set the outdoor air flow rate based on number of people in the zone
-    thread_local extern int const ZOAM_FlowPerZone;   // sum the outdoor air flow rate per zone based on user input
-    thread_local extern int const ZOAM_FlowPerArea;   // sum the outdoor air flow rate based on zone area
-    thread_local extern int const ZOAM_FlowPerACH;    // sum the outdoor air flow rate based on number of air changes for the zone
-    thread_local extern int const ZOAM_Sum;           // sum the outdoor air flow rate of the people component and the space floor area component
-    thread_local extern int const ZOAM_Max;           // use the maximum of the outdoor air flow rate of the people component and
+    EP_GLOBAL extern int const ZOAM_FlowPerPerson; // set the outdoor air flow rate based on number of people in the zone
+    EP_GLOBAL extern int const ZOAM_FlowPerZone;   // sum the outdoor air flow rate per zone based on user input
+    EP_GLOBAL extern int const ZOAM_FlowPerArea;   // sum the outdoor air flow rate based on zone area
+    EP_GLOBAL extern int const ZOAM_FlowPerACH;    // sum the outdoor air flow rate based on number of air changes for the zone
+    EP_GLOBAL extern int const ZOAM_Sum;           // sum the outdoor air flow rate of the people component and the space floor area component
+    EP_GLOBAL extern int const ZOAM_Max;           // use the maximum of the outdoor air flow rate of the people component and
     // the space floor area component
-    thread_local extern int const ZOAM_IAQP;                      // Use ASHRAE Standard 62.1-2007 IAQP to calculate the zone level outdoor air flow rates
-    thread_local extern int const ZOAM_ProportionalControlSchOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
+    EP_GLOBAL extern int const ZOAM_IAQP;                      // Use ASHRAE Standard 62.1-2007 IAQP to calculate the zone level outdoor air flow rates
+    EP_GLOBAL extern int const ZOAM_ProportionalControlSchOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
                                                      // to calculate the zone level outdoor air flow rates based on scheduled occupancy
-    thread_local extern int const ZOAM_ProportionalControlDesOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
+    EP_GLOBAL extern int const ZOAM_ProportionalControlDesOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
                                                      // to calculate the zone level outdoor air flow rates based on design occupancy
 
     // System Outdoor Air Method
-    thread_local extern int const SOAM_ZoneSum; // Sum the outdoor air flow rates of all zones
-    thread_local extern int const SOAM_VRP;     // Use ASHRAE Standard 62.1-2007 to calculate the system level outdoor air flow rates
+    EP_GLOBAL extern int const SOAM_ZoneSum; // Sum the outdoor air flow rates of all zones
+    EP_GLOBAL extern int const SOAM_VRP;     // Use ASHRAE Standard 62.1-2007 to calculate the system level outdoor air flow rates
     //  considering the zone air distribution effectiveness and the system ventilation efficiency
-    thread_local extern int const SOAM_IAQP; // Use ASHRAE Standard 62.1-2007 IAQP to calculate the system level outdoor air flow rates
+    EP_GLOBAL extern int const SOAM_IAQP; // Use ASHRAE Standard 62.1-2007 IAQP to calculate the system level outdoor air flow rates
     // based on the CO2 setpoint
-    thread_local extern int const SOAM_ProportionalControlSchOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
+    EP_GLOBAL extern int const SOAM_ProportionalControlSchOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
     // to calculate the system level outdoor air flow rates based on scheduled occupancy
-    thread_local extern int const SOAM_ProportionalControlDesOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
+    EP_GLOBAL extern int const SOAM_ProportionalControlDesOcc; // Use ASHRAE Standard 62.1-2004 or Trane Engineer's newsletter (volume 34-5)
     // to calculate the system level outdoor air flow rates based on design occupancy
-    thread_local extern int const SOAM_IAQPGC; // Use ASHRAE Standard 62.1-2004 IAQP to calculate the system level outdoor air flow rates
+    EP_GLOBAL extern int const SOAM_IAQPGC; // Use ASHRAE Standard 62.1-2004 IAQP to calculate the system level outdoor air flow rates
     // based on the generic contaminant setpoint
-    thread_local extern int const SOAM_IAQPCOM; // Take the maximum outdoor air rate from both CO2 and generic contaminant controls
+    EP_GLOBAL extern int const SOAM_IAQPCOM; // Take the maximum outdoor air rate from both CO2 and generic contaminant controls
     // based on the generic contaminant setpoint
-    thread_local extern int const SOAM_ProportionalControlDesOARate; // Calculate the system level outdoor air flow rates based on design OA rate
+    EP_GLOBAL extern int const SOAM_ProportionalControlDesOARate; // Calculate the system level outdoor air flow rates based on design OA rate
 
     // Zone HVAC Equipment Supply Air Sizing Option
-    thread_local extern int const None;
-    thread_local extern int const SupplyAirFlowRate;
-    thread_local extern int const FlowPerFloorArea;
-    thread_local extern int const FractionOfAutosizedCoolingAirflow;
-    thread_local extern int const FractionOfAutosizedHeatingAirflow;
-    thread_local extern int const FlowPerCoolingCapacity;
-    thread_local extern int const FlowPerHeatingCapacity;
-    thread_local extern int const CoolingDesignCapacity;
-    thread_local extern int const HeatingDesignCapacity;
-    thread_local extern int const CapacityPerFloorArea;
-    thread_local extern int const FractionOfAutosizedCoolingCapacity;
-    thread_local extern int const FractionOfAutosizedHeatingCapacity;
+    EP_GLOBAL extern int const None;
+    EP_GLOBAL extern int const SupplyAirFlowRate;
+    EP_GLOBAL extern int const FlowPerFloorArea;
+    EP_GLOBAL extern int const FractionOfAutosizedCoolingAirflow;
+    EP_GLOBAL extern int const FractionOfAutosizedHeatingAirflow;
+    EP_GLOBAL extern int const FlowPerCoolingCapacity;
+    EP_GLOBAL extern int const FlowPerHeatingCapacity;
+    EP_GLOBAL extern int const CoolingDesignCapacity;
+    EP_GLOBAL extern int const HeatingDesignCapacity;
+    EP_GLOBAL extern int const CapacityPerFloorArea;
+    EP_GLOBAL extern int const FractionOfAutosizedCoolingCapacity;
+    EP_GLOBAL extern int const FractionOfAutosizedHeatingCapacity;
 
     // Plant Coincident sizing factor options
-    thread_local extern int const NoSizingFactorMode;
-    thread_local extern int const GlobalHeatingSizingFactorMode;
-    thread_local extern int const GlobalCoolingSizingFactorMode;
-    thread_local extern int const LoopComponentSizingFactorMode;
+    EP_GLOBAL extern int const NoSizingFactorMode;
+    EP_GLOBAL extern int const GlobalHeatingSizingFactorMode;
+    EP_GLOBAL extern int const GlobalCoolingSizingFactorMode;
+    EP_GLOBAL extern int const LoopComponentSizingFactorMode;
 
     enum class zoneFanPlacement
     {
@@ -203,123 +203,123 @@ namespace DataSizing {
     //  using user input system flow rates.
     //  before applying user input sys flow rates.
 
-    thread_local extern int NumOARequirements;                     // Number of OA Requirements objects
-    thread_local extern int NumZoneAirDistribution;                // Number of zone air distribution objects
-    thread_local extern int NumZoneSizingInput;                    // Number of Zone Sizing objects
-    thread_local extern int NumSysSizInput;                        // Number of System Sizing objects
-    thread_local extern int NumPltSizInput;                        // Number of Plant Sizing objects
-    thread_local extern int CurSysNum;                             // Current Air System index (0 if not in air loop)
-    thread_local extern int CurOASysNum;                           // Current outside air system index (0 if not in OA Sys)
-    thread_local extern int CurZoneEqNum;                          // Current Zone Equipment index (0 if not simulating ZoneEq)
-    thread_local extern int CurTermUnitSizingNum;                  // Current terminal unit sizing index for TermUnitSizing and TermUnitFinalZoneSizing
-    thread_local extern int CurBranchNum;                          // Index of branch being simulated (or 0 if not air loop)
-    thread_local extern int CurDuctType;                           // Duct type of current branch
-    thread_local extern int CurLoopNum;                            // the current plant loop index
-    thread_local extern int CurCondLoopNum;                        // the current condenser loop number
-    thread_local extern int CurEnvirNumSimDay;                     // current environment number for day simulated
-    thread_local extern int CurOverallSimDay;                      // current day of simulation
-    thread_local extern int NumTimeStepsInAvg;                     // number of time steps in the averaging window for the design flow and load sequences
-    thread_local extern int SaveNumPlantComps;                     // Number of components using water as an energy source or sink (e.g. water coils)
-    thread_local extern int DataTotCapCurveIndex;                  // index to total capacity as a function of temperature curve
-    thread_local extern Real64 DataTotCapCurveValue;               // value of total capacity as a function of temperature curve for CoilVRF_FluidTCtrl_*
-    thread_local extern int DataPltSizCoolNum;                     // index to cooling plant sizing data
-    thread_local extern int DataPltSizHeatNum;                     // index to heating plant sizing data
-    thread_local extern int DataWaterLoopNum;                      // index to plant water loop
-    thread_local extern int DataCoilNum;                           // index to coil object
-    thread_local extern int DataFanOpMode;                         // fan operating mode (ContFanCycCoil or CycFanCycCoil)
-    thread_local extern bool DataCoilIsSuppHeater;                 // TRUE if heating coil used as supplemental heater
-    thread_local extern bool DataIsDXCoil;                         // TRUE if direct-expansion coil
-    thread_local extern bool DataAutosizable;                      // TRUE if component is autosizable
-    thread_local extern bool DataEMSOverrideON;                    // boolean determines if user relies on EMS to override autosizing
-    thread_local extern bool TermUnitSingDuct;                     // TRUE if a non-induction single duct terminal unit
-    thread_local extern bool TermUnitPIU;                          // TRUE if a powered induction terminal unit
-    thread_local extern bool TermUnitIU;                           // TRUE if an unpowered induction terminal unit
-    thread_local extern bool ZoneEqFanCoil;                        // TRUE if a 4 pipe fan coil unit is being simulated
-    thread_local extern bool ZoneEqOutdoorAirUnit;                 // TRUE if an OutdoorAirUnit is being simulated
-    thread_local extern bool ZoneEqUnitHeater;                     // TRUE if a unit heater is being simulated
-    thread_local extern bool ZoneEqUnitVent;                       // TRUE if a unit ventilator is being simulated
-    thread_local extern bool ZoneEqVentedSlab;                     // TRUE if a ventilated slab is being simulated
-    thread_local extern bool ZoneEqDXCoil;                         // TRUE if a ZoneHVAC DX coil is being simulated
-    thread_local extern bool ZoneEqUnitarySys;                     // TRUE if a zone UnitarySystem is being simulated
-    thread_local extern bool ZoneCoolingOnlyFan;                   // TRUE if a ZoneHVAC DX cooling coil is only coil in parent
-    thread_local extern bool ZoneHeatingOnlyFan;                   // TRUE if zone unit only does heating and contains a fam (such as Unit Heater)
-    thread_local extern bool SysSizingRunDone;                     // True if a system sizing run is successfully completed.
-    thread_local extern bool ZoneSizingRunDone;                    // True if a zone sizing run has been successfully completed.
-    thread_local extern bool DataErrorsFound;                      // used for simulation termination when errors are found
-    thread_local extern bool DataAutosizable;                      // TRUE if component is autosizable
-    thread_local extern bool DataEMSOverrideON;                    // boolean determines if user relies on EMS to override autosizing
-    thread_local extern bool DataScalableSizingON;                 // boolean determines scalable zone flow sizing is specified
-    thread_local extern bool DataScalableCapSizingON;              // boolean determines scalable zone capacity sizing is specified
-    thread_local extern bool DataSysScalableFlowSizingON;          // boolean determines scalable system flow sizing is specified
-    thread_local extern bool DataSysScalableCapSizingON;           // boolean determines scalable system capacity sizing is specified
-    thread_local extern Real64 DataCoilSizingAirInTemp;            // saves sizing data for use in coil object reporting
-    thread_local extern Real64 DataCoilSizingAirInHumRat;          // saves sizing data for use in coil object reporting
-    thread_local extern Real64 DataCoilSizingAirOutTemp;           // saves sizing data for use in coil object reporting
-    thread_local extern Real64 DataCoilSizingAirOutHumRat;         // saves sizing data for use in coil object reporting
-    thread_local extern Real64 DataCoilSizingFanCoolLoad;          // saves sizing data for use in coil object reporting
-    thread_local extern Real64 DataCoilSizingCapFT;                // saves sizing data for use in coil object reporting
-    thread_local extern bool DataDesAccountForFanHeat;             // include fan heat when true
-    thread_local extern Real64 DataDesInletWaterTemp;              // coil inlet water temperture used for warning messages
-    thread_local extern Real64 DataDesInletAirHumRat;              // coil inlet air humidity ratio used for warning messages
-    thread_local extern Real64 DataDesInletAirTemp;                // coil inlet air temperature used for warning messages
-    thread_local extern Real64 DataDesOutletAirTemp;               // coil outlet air temperature used for sizing
-    thread_local extern Real64 DataDesOutletAirHumRat;             // coil air outlet humidity ratio used in sizing calculations [kg water / kg dry air]
-    thread_local extern Real64 DataCoolCoilCap;                    // cooling coil capacity used for sizing with scalable inputs
-    thread_local extern Real64 DataFlowUsedForSizing;              // air flow rate used for sizing with scalable inputs [m3/s]
-    thread_local extern Real64 DataAirFlowUsedForSizing;           // air flow rate used for sizing with scalable inputs [m3/s]
-    thread_local extern Real64 DataWaterFlowUsedForSizing;         // water flow rate used for sizing with scalable inputs [m3/s]
-    thread_local extern Real64 DataCapacityUsedForSizing;          // capacity used for sizing with scalable inputs [W]
-    thread_local extern Real64 DataDesignCoilCapacity;             // calculated capacity of coil at end of UA calculation
-    thread_local extern Real64 DataHeatSizeRatio;                  // heating coil size as a ratio of cooling coil capacity
-    thread_local extern Real64 DataEMSOverride;                    // value of EMS variable used to override autosizing
-    thread_local extern Real64 DataBypassFrac;                     // value of bypass fraction for Coil:Cooling:DX:TwoStageWithHumidityControlMode coils
-    thread_local extern Real64 DataFracOfAutosizedCoolingAirflow;  // fraction of design cooling supply air flow rate
-    thread_local extern Real64 DataFracOfAutosizedHeatingAirflow;  // fraction of design heating supply air flow rate
-    thread_local extern Real64 DataFlowPerCoolingCapacity;         // cooling supply air flow per unit cooling capacity
-    thread_local extern Real64 DataFlowPerHeatingCapacity;         // heating supply air flow per unit heating capacity
-    thread_local extern Real64 DataFracOfAutosizedCoolingCapacity; // fraction of autosized cooling capacity
-    thread_local extern Real64 DataFracOfAutosizedHeatingCapacity; // fraction of autosized heating capacit
-    thread_local extern Real64 DataAutosizedCoolingCapacity;       // Autosized cooling capacity used for multiplying flow per capacity to get flow rate
-    thread_local extern Real64 DataAutosizedHeatingCapacity;       // Autosized heating capacit used for multiplying flow per capacity to get flow rate
-    thread_local extern Real64 DataConstantUsedForSizing;          // base value used for sizing inputs that are ratios of other inputs
-    thread_local extern Real64 DataFractionUsedForSizing;          // fractional value of base value used for sizing inputs that are ratios of other inputs
-    thread_local extern Real64 DataNonZoneNonAirloopValue;         // used when equipment is not located in a zone or airloop
-    thread_local extern int DataZoneUsedForSizing;                 // pointer to control zone for air loop equipment
-    thread_local extern int DataZoneNumber;                        // a pointer to a zone served by zoneHVAC equipment
-    thread_local extern int NumZoneHVACSizing;                     // Number of design specification zone HVAC sizing objects
-    thread_local extern int NumAirTerminalSizingSpec;              // Number of design specification air terminal sizing objects
-    thread_local extern int NumAirTerminalUnits;                   // Number of air terminal units (same as total number of zone inlet nodes)
-    thread_local extern bool TermUnitSingDuct;                     // TRUE if a non-induction single duct terminal unit
-    thread_local extern bool TermUnitPIU;                          // TRUE if a powered induction terminal unit
-    thread_local extern bool TermUnitIU;                           // TRUE if an unpowered induction terminal unit
-    thread_local extern bool ZoneEqFanCoil;                        // TRUE if a 4 pipe fan coil unit is being simulated
-    thread_local extern bool ZoneEqUnitVent;                       // TRUE if a unit ventilator unit is being simulated
-    thread_local extern bool ZoneEqDXCoil;                         // TRUE if a ZoneHVAC DX coil is being simulated
-    thread_local extern bool ZoneCoolingOnlyFan;                   // TRUE if a ZoneHVAC DX cooling coil is only coil in parent
-    thread_local extern bool ZoneHeatingOnlyFan;                   // TRUE if zone unit only does heating and contains a fam (such as Unit Heater)
-    thread_local extern bool SysSizingRunDone;                     // True if a system sizing run is successfully completed.
-    thread_local extern bool ZoneSizingRunDone;                    // True if a zone sizing run has been successfully completed.
-    thread_local extern Real64 AutoVsHardSizingThreshold;          // criteria threshold used to determine if user hard size and autosize disagree 10%
-    thread_local extern Real64 AutoVsHardSizingDeltaTempThreshold; // temperature criteria threshold for autosize versus hard size [C]
-    thread_local extern Real64 DXCoolCap;                          // The ARI cooling capacity of a DX unit.
-    thread_local extern Real64 UnitaryHeatCap;                     // the heating capacity of a unitary system
-    thread_local extern Real64 SuppHeatCap;                        // the heating capacity of the supplemental heater in a unitary system
-    thread_local extern Real64 GlobalHeatSizingFactor;             // the global heating sizing ratio
-    thread_local extern Real64 GlobalCoolSizingFactor;             // the global cooling sizing ratio
-    thread_local extern Array1D<Real64> ZoneSizThermSetPtHi;       // highest zone thermostat setpoint during zone sizing calcs
-    thread_local extern Array1D<Real64> ZoneSizThermSetPtLo;       // lowest zone thermostat setpoint during zone sizing calcs
-    thread_local extern Array1D_string CoolPeakDateHrMin;          // date:hr:min of cooling peak
-    thread_local extern Array1D_string HeatPeakDateHrMin;          // date:hr:min of heating peak
-    thread_local extern char SizingFileColSep;                     // Character to separate columns in sizing outputs
-    thread_local extern int DataDesicDehumNum;                     // index to desiccant dehumidifier
-    thread_local extern bool DataDesicRegCoil;                     // TRUE if heating coil desiccant regeneration coil
-    thread_local extern bool HRFlowSizingFlag;                     // True, if it is a heat recovery heat exchanger flow sizing
-    thread_local extern Real64 DataWaterCoilSizCoolDeltaT;         // used for sizing cooling coil water design flow rate
-    thread_local extern Real64 DataWaterCoilSizHeatDeltaT;         // used for sizing heating coil water design flow rate
-    thread_local extern bool DataNomCapInpMeth;                    // True if heating coil is sized by CoilPerfInpMeth == NomCap
-    thread_local extern int DataFanEnumType;                       // Fan type used during sizing
-    thread_local extern int DataFanIndex;                          // Fan index used during sizing
-    thread_local extern zoneFanPlacement DataFanPlacement;         // identifies location of fan wrt coil
+    EP_GLOBAL extern int NumOARequirements;                     // Number of OA Requirements objects
+    EP_GLOBAL extern int NumZoneAirDistribution;                // Number of zone air distribution objects
+    EP_GLOBAL extern int NumZoneSizingInput;                    // Number of Zone Sizing objects
+    EP_GLOBAL extern int NumSysSizInput;                        // Number of System Sizing objects
+    EP_GLOBAL extern int NumPltSizInput;                        // Number of Plant Sizing objects
+    EP_GLOBAL extern int CurSysNum;                             // Current Air System index (0 if not in air loop)
+    EP_GLOBAL extern int CurOASysNum;                           // Current outside air system index (0 if not in OA Sys)
+    EP_GLOBAL extern int CurZoneEqNum;                          // Current Zone Equipment index (0 if not simulating ZoneEq)
+    EP_GLOBAL extern int CurTermUnitSizingNum;                  // Current terminal unit sizing index for TermUnitSizing and TermUnitFinalZoneSizing
+    EP_GLOBAL extern int CurBranchNum;                          // Index of branch being simulated (or 0 if not air loop)
+    EP_GLOBAL extern int CurDuctType;                           // Duct type of current branch
+    EP_GLOBAL extern int CurLoopNum;                            // the current plant loop index
+    EP_GLOBAL extern int CurCondLoopNum;                        // the current condenser loop number
+    EP_GLOBAL extern int CurEnvirNumSimDay;                     // current environment number for day simulated
+    EP_GLOBAL extern int CurOverallSimDay;                      // current day of simulation
+    EP_GLOBAL extern int NumTimeStepsInAvg;                     // number of time steps in the averaging window for the design flow and load sequences
+    EP_GLOBAL extern int SaveNumPlantComps;                     // Number of components using water as an energy source or sink (e.g. water coils)
+    EP_GLOBAL extern int DataTotCapCurveIndex;                  // index to total capacity as a function of temperature curve
+    EP_GLOBAL extern Real64 DataTotCapCurveValue;               // value of total capacity as a function of temperature curve for CoilVRF_FluidTCtrl_*
+    EP_GLOBAL extern int DataPltSizCoolNum;                     // index to cooling plant sizing data
+    EP_GLOBAL extern int DataPltSizHeatNum;                     // index to heating plant sizing data
+    EP_GLOBAL extern int DataWaterLoopNum;                      // index to plant water loop
+    EP_GLOBAL extern int DataCoilNum;                           // index to coil object
+    EP_GLOBAL extern int DataFanOpMode;                         // fan operating mode (ContFanCycCoil or CycFanCycCoil)
+    EP_GLOBAL extern bool DataCoilIsSuppHeater;                 // TRUE if heating coil used as supplemental heater
+    EP_GLOBAL extern bool DataIsDXCoil;                         // TRUE if direct-expansion coil
+    EP_GLOBAL extern bool DataAutosizable;                      // TRUE if component is autosizable
+    EP_GLOBAL extern bool DataEMSOverrideON;                    // boolean determines if user relies on EMS to override autosizing
+    EP_GLOBAL extern bool TermUnitSingDuct;                     // TRUE if a non-induction single duct terminal unit
+    EP_GLOBAL extern bool TermUnitPIU;                          // TRUE if a powered induction terminal unit
+    EP_GLOBAL extern bool TermUnitIU;                           // TRUE if an unpowered induction terminal unit
+    EP_GLOBAL extern bool ZoneEqFanCoil;                        // TRUE if a 4 pipe fan coil unit is being simulated
+    EP_GLOBAL extern bool ZoneEqOutdoorAirUnit;                 // TRUE if an OutdoorAirUnit is being simulated
+    EP_GLOBAL extern bool ZoneEqUnitHeater;                     // TRUE if a unit heater is being simulated
+    EP_GLOBAL extern bool ZoneEqUnitVent;                       // TRUE if a unit ventilator is being simulated
+    EP_GLOBAL extern bool ZoneEqVentedSlab;                     // TRUE if a ventilated slab is being simulated
+    EP_GLOBAL extern bool ZoneEqDXCoil;                         // TRUE if a ZoneHVAC DX coil is being simulated
+    EP_GLOBAL extern bool ZoneEqUnitarySys;                     // TRUE if a zone UnitarySystem is being simulated
+    EP_GLOBAL extern bool ZoneCoolingOnlyFan;                   // TRUE if a ZoneHVAC DX cooling coil is only coil in parent
+    EP_GLOBAL extern bool ZoneHeatingOnlyFan;                   // TRUE if zone unit only does heating and contains a fam (such as Unit Heater)
+    EP_GLOBAL extern bool SysSizingRunDone;                     // True if a system sizing run is successfully completed.
+    EP_GLOBAL extern bool ZoneSizingRunDone;                    // True if a zone sizing run has been successfully completed.
+    EP_GLOBAL extern bool DataErrorsFound;                      // used for simulation termination when errors are found
+    EP_GLOBAL extern bool DataAutosizable;                      // TRUE if component is autosizable
+    EP_GLOBAL extern bool DataEMSOverrideON;                    // boolean determines if user relies on EMS to override autosizing
+    EP_GLOBAL extern bool DataScalableSizingON;                 // boolean determines scalable zone flow sizing is specified
+    EP_GLOBAL extern bool DataScalableCapSizingON;              // boolean determines scalable zone capacity sizing is specified
+    EP_GLOBAL extern bool DataSysScalableFlowSizingON;          // boolean determines scalable system flow sizing is specified
+    EP_GLOBAL extern bool DataSysScalableCapSizingON;           // boolean determines scalable system capacity sizing is specified
+    EP_GLOBAL extern Real64 DataCoilSizingAirInTemp;            // saves sizing data for use in coil object reporting
+    EP_GLOBAL extern Real64 DataCoilSizingAirInHumRat;          // saves sizing data for use in coil object reporting
+    EP_GLOBAL extern Real64 DataCoilSizingAirOutTemp;           // saves sizing data for use in coil object reporting
+    EP_GLOBAL extern Real64 DataCoilSizingAirOutHumRat;         // saves sizing data for use in coil object reporting
+    EP_GLOBAL extern Real64 DataCoilSizingFanCoolLoad;          // saves sizing data for use in coil object reporting
+    EP_GLOBAL extern Real64 DataCoilSizingCapFT;                // saves sizing data for use in coil object reporting
+    EP_GLOBAL extern bool DataDesAccountForFanHeat;             // include fan heat when true
+    EP_GLOBAL extern Real64 DataDesInletWaterTemp;              // coil inlet water temperture used for warning messages
+    EP_GLOBAL extern Real64 DataDesInletAirHumRat;              // coil inlet air humidity ratio used for warning messages
+    EP_GLOBAL extern Real64 DataDesInletAirTemp;                // coil inlet air temperature used for warning messages
+    EP_GLOBAL extern Real64 DataDesOutletAirTemp;               // coil outlet air temperature used for sizing
+    EP_GLOBAL extern Real64 DataDesOutletAirHumRat;             // coil air outlet humidity ratio used in sizing calculations [kg water / kg dry air]
+    EP_GLOBAL extern Real64 DataCoolCoilCap;                    // cooling coil capacity used for sizing with scalable inputs
+    EP_GLOBAL extern Real64 DataFlowUsedForSizing;              // air flow rate used for sizing with scalable inputs [m3/s]
+    EP_GLOBAL extern Real64 DataAirFlowUsedForSizing;           // air flow rate used for sizing with scalable inputs [m3/s]
+    EP_GLOBAL extern Real64 DataWaterFlowUsedForSizing;         // water flow rate used for sizing with scalable inputs [m3/s]
+    EP_GLOBAL extern Real64 DataCapacityUsedForSizing;          // capacity used for sizing with scalable inputs [W]
+    EP_GLOBAL extern Real64 DataDesignCoilCapacity;             // calculated capacity of coil at end of UA calculation
+    EP_GLOBAL extern Real64 DataHeatSizeRatio;                  // heating coil size as a ratio of cooling coil capacity
+    EP_GLOBAL extern Real64 DataEMSOverride;                    // value of EMS variable used to override autosizing
+    EP_GLOBAL extern Real64 DataBypassFrac;                     // value of bypass fraction for Coil:Cooling:DX:TwoStageWithHumidityControlMode coils
+    EP_GLOBAL extern Real64 DataFracOfAutosizedCoolingAirflow;  // fraction of design cooling supply air flow rate
+    EP_GLOBAL extern Real64 DataFracOfAutosizedHeatingAirflow;  // fraction of design heating supply air flow rate
+    EP_GLOBAL extern Real64 DataFlowPerCoolingCapacity;         // cooling supply air flow per unit cooling capacity
+    EP_GLOBAL extern Real64 DataFlowPerHeatingCapacity;         // heating supply air flow per unit heating capacity
+    EP_GLOBAL extern Real64 DataFracOfAutosizedCoolingCapacity; // fraction of autosized cooling capacity
+    EP_GLOBAL extern Real64 DataFracOfAutosizedHeatingCapacity; // fraction of autosized heating capacit
+    EP_GLOBAL extern Real64 DataAutosizedCoolingCapacity;       // Autosized cooling capacity used for multiplying flow per capacity to get flow rate
+    EP_GLOBAL extern Real64 DataAutosizedHeatingCapacity;       // Autosized heating capacit used for multiplying flow per capacity to get flow rate
+    EP_GLOBAL extern Real64 DataConstantUsedForSizing;          // base value used for sizing inputs that are ratios of other inputs
+    EP_GLOBAL extern Real64 DataFractionUsedForSizing;          // fractional value of base value used for sizing inputs that are ratios of other inputs
+    EP_GLOBAL extern Real64 DataNonZoneNonAirloopValue;         // used when equipment is not located in a zone or airloop
+    EP_GLOBAL extern int DataZoneUsedForSizing;                 // pointer to control zone for air loop equipment
+    EP_GLOBAL extern int DataZoneNumber;                        // a pointer to a zone served by zoneHVAC equipment
+    EP_GLOBAL extern int NumZoneHVACSizing;                     // Number of design specification zone HVAC sizing objects
+    EP_GLOBAL extern int NumAirTerminalSizingSpec;              // Number of design specification air terminal sizing objects
+    EP_GLOBAL extern int NumAirTerminalUnits;                   // Number of air terminal units (same as total number of zone inlet nodes)
+    EP_GLOBAL extern bool TermUnitSingDuct;                     // TRUE if a non-induction single duct terminal unit
+    EP_GLOBAL extern bool TermUnitPIU;                          // TRUE if a powered induction terminal unit
+    EP_GLOBAL extern bool TermUnitIU;                           // TRUE if an unpowered induction terminal unit
+    EP_GLOBAL extern bool ZoneEqFanCoil;                        // TRUE if a 4 pipe fan coil unit is being simulated
+    EP_GLOBAL extern bool ZoneEqUnitVent;                       // TRUE if a unit ventilator unit is being simulated
+    EP_GLOBAL extern bool ZoneEqDXCoil;                         // TRUE if a ZoneHVAC DX coil is being simulated
+    EP_GLOBAL extern bool ZoneCoolingOnlyFan;                   // TRUE if a ZoneHVAC DX cooling coil is only coil in parent
+    EP_GLOBAL extern bool ZoneHeatingOnlyFan;                   // TRUE if zone unit only does heating and contains a fam (such as Unit Heater)
+    EP_GLOBAL extern bool SysSizingRunDone;                     // True if a system sizing run is successfully completed.
+    EP_GLOBAL extern bool ZoneSizingRunDone;                    // True if a zone sizing run has been successfully completed.
+    EP_GLOBAL extern Real64 AutoVsHardSizingThreshold;          // criteria threshold used to determine if user hard size and autosize disagree 10%
+    EP_GLOBAL extern Real64 AutoVsHardSizingDeltaTempThreshold; // temperature criteria threshold for autosize versus hard size [C]
+    EP_GLOBAL extern Real64 DXCoolCap;                          // The ARI cooling capacity of a DX unit.
+    EP_GLOBAL extern Real64 UnitaryHeatCap;                     // the heating capacity of a unitary system
+    EP_GLOBAL extern Real64 SuppHeatCap;                        // the heating capacity of the supplemental heater in a unitary system
+    EP_GLOBAL extern Real64 GlobalHeatSizingFactor;             // the global heating sizing ratio
+    EP_GLOBAL extern Real64 GlobalCoolSizingFactor;             // the global cooling sizing ratio
+    EP_GLOBAL extern Array1D<Real64> ZoneSizThermSetPtHi;       // highest zone thermostat setpoint during zone sizing calcs
+    EP_GLOBAL extern Array1D<Real64> ZoneSizThermSetPtLo;       // lowest zone thermostat setpoint during zone sizing calcs
+    EP_GLOBAL extern Array1D_string CoolPeakDateHrMin;          // date:hr:min of cooling peak
+    EP_GLOBAL extern Array1D_string HeatPeakDateHrMin;          // date:hr:min of heating peak
+    EP_GLOBAL extern char SizingFileColSep;                     // Character to separate columns in sizing outputs
+    EP_GLOBAL extern int DataDesicDehumNum;                     // index to desiccant dehumidifier
+    EP_GLOBAL extern bool DataDesicRegCoil;                     // TRUE if heating coil desiccant regeneration coil
+    EP_GLOBAL extern bool HRFlowSizingFlag;                     // True, if it is a heat recovery heat exchanger flow sizing
+    EP_GLOBAL extern Real64 DataWaterCoilSizCoolDeltaT;         // used for sizing cooling coil water design flow rate
+    EP_GLOBAL extern Real64 DataWaterCoilSizHeatDeltaT;         // used for sizing heating coil water design flow rate
+    EP_GLOBAL extern bool DataNomCapInpMeth;                    // True if heating coil is sized by CoilPerfInpMeth == NomCap
+    EP_GLOBAL extern int DataFanEnumType;                       // Fan type used during sizing
+    EP_GLOBAL extern int DataFanIndex;                          // Fan index used during sizing
+    EP_GLOBAL extern zoneFanPlacement DataFanPlacement;         // identifies location of fan wrt coil
 
     // Types
 
@@ -1152,78 +1152,78 @@ namespace DataSizing {
     };
 
     // Object Data
-    thread_local extern Array1D<OARequirementsData> OARequirements;
-    thread_local extern Array1D<ZoneAirDistributionData> ZoneAirDistribution;
-    thread_local extern Array1D<ZoneSizingInputData> ZoneSizingInput;             // Input data for zone sizing
-    thread_local extern Array2D<ZoneSizingData> ZoneSizing;                       // Data for zone sizing (all data, all design)
-    thread_local extern Array1D<ZoneSizingData> FinalZoneSizing;                  // Final data for zone sizing including effects
-    thread_local extern Array2D<ZoneSizingData> CalcZoneSizing;                   // Data for zone sizing (all data)
-    thread_local extern Array1D<ZoneSizingData> CalcFinalZoneSizing;              // Final data for zone sizing (calculated only)
-    thread_local extern Array1D<ZoneSizingData> TermUnitFinalZoneSizing;          // Final data for sizing terminal units
-    thread_local extern Array1D<SystemSizingInputData> SysSizInput;               // Input data array for system sizing object
-    thread_local extern Array2D<SystemSizingData> SysSizing;                      // Data array for system sizing (all data)
-    thread_local extern Array1D<SystemSizingData> FinalSysSizing;                 // Data array for system sizing (max heat/cool)
-    thread_local extern Array1D<SystemSizingData> CalcSysSizing;                  // Data array for system sizing (max heat/cool)
-    thread_local extern Array1D<TermUnitSizingData> TermUnitSizing;               // Data added in sizing routines
-    thread_local extern Array1D<ZoneEqSizingData> ZoneEqSizing;                   // Data added in zone eq component sizing routines
-    thread_local extern Array1D<ZoneEqSizingData> UnitarySysEqSizing;             // Data added in unitary system sizing routines
-    thread_local extern Array1D<ZoneEqSizingData> OASysEqSizing;                  // Data added in unitary system sizing routines
-    thread_local extern Array1D<PlantSizingData> PlantSizData;                    // Input data array for plant sizing
-    thread_local extern Array1D<DesDayWeathData> DesDayWeath;                     // design day weather saved at major time step
-    thread_local extern Array1D<CompDesWaterFlowData> CompDesWaterFlow;           // array to store components' design water flow
-    thread_local extern Array1D<SysSizPeakDDNumData> SysSizPeakDDNum;             // data array for peak des day indices
-    thread_local extern Array1D<ZoneHVACSizingData> ZoneHVACSizing;               // Input data for zone HVAC sizing
-    thread_local extern Array1D<AirTerminalSizingSpecData> AirTerminalSizingSpec; // Input data for air terminal sizing
+    EP_GLOBAL extern Array1D<OARequirementsData> OARequirements;
+    EP_GLOBAL extern Array1D<ZoneAirDistributionData> ZoneAirDistribution;
+    EP_GLOBAL extern Array1D<ZoneSizingInputData> ZoneSizingInput;             // Input data for zone sizing
+    EP_GLOBAL extern Array2D<ZoneSizingData> ZoneSizing;                       // Data for zone sizing (all data, all design)
+    EP_GLOBAL extern Array1D<ZoneSizingData> FinalZoneSizing;                  // Final data for zone sizing including effects
+    EP_GLOBAL extern Array2D<ZoneSizingData> CalcZoneSizing;                   // Data for zone sizing (all data)
+    EP_GLOBAL extern Array1D<ZoneSizingData> CalcFinalZoneSizing;              // Final data for zone sizing (calculated only)
+    EP_GLOBAL extern Array1D<ZoneSizingData> TermUnitFinalZoneSizing;          // Final data for sizing terminal units
+    EP_GLOBAL extern Array1D<SystemSizingInputData> SysSizInput;               // Input data array for system sizing object
+    EP_GLOBAL extern Array2D<SystemSizingData> SysSizing;                      // Data array for system sizing (all data)
+    EP_GLOBAL extern Array1D<SystemSizingData> FinalSysSizing;                 // Data array for system sizing (max heat/cool)
+    EP_GLOBAL extern Array1D<SystemSizingData> CalcSysSizing;                  // Data array for system sizing (max heat/cool)
+    EP_GLOBAL extern Array1D<TermUnitSizingData> TermUnitSizing;               // Data added in sizing routines
+    EP_GLOBAL extern Array1D<ZoneEqSizingData> ZoneEqSizing;                   // Data added in zone eq component sizing routines
+    EP_GLOBAL extern Array1D<ZoneEqSizingData> UnitarySysEqSizing;             // Data added in unitary system sizing routines
+    EP_GLOBAL extern Array1D<ZoneEqSizingData> OASysEqSizing;                  // Data added in unitary system sizing routines
+    EP_GLOBAL extern Array1D<PlantSizingData> PlantSizData;                    // Input data array for plant sizing
+    EP_GLOBAL extern Array1D<DesDayWeathData> DesDayWeath;                     // design day weather saved at major time step
+    EP_GLOBAL extern Array1D<CompDesWaterFlowData> CompDesWaterFlow;           // array to store components' design water flow
+    EP_GLOBAL extern Array1D<SysSizPeakDDNumData> SysSizPeakDDNum;             // data array for peak des day indices
+    EP_GLOBAL extern Array1D<ZoneHVACSizingData> ZoneHVACSizing;               // Input data for zone HVAC sizing
+    EP_GLOBAL extern Array1D<AirTerminalSizingSpecData> AirTerminalSizingSpec; // Input data for air terminal sizing
     // used only for Facility Load Component Summary
-    thread_local extern Array1D<FacilitySizingData> CalcFacilitySizing; // Data for facility sizing
-    thread_local extern FacilitySizingData CalcFinalFacilitySizing;     // Final data for facility sizing
-    thread_local extern Array1D<Real64> VbzByZone;                      // saved value of ZoneOAUnc which is Vbz used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VdzClgByZone;    // saved value of cooling based ZoneSA which is Vdz used in 62.1 tabular report (also used for zone level
+    EP_GLOBAL extern Array1D<FacilitySizingData> CalcFacilitySizing; // Data for facility sizing
+    EP_GLOBAL extern FacilitySizingData CalcFinalFacilitySizing;     // Final data for facility sizing
+    EP_GLOBAL extern Array1D<Real64> VbzByZone;                      // saved value of ZoneOAUnc which is Vbz used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VdzClgByZone;    // saved value of cooling based ZoneSA which is Vdz used in 62.1 tabular report (also used for zone level
                                             // Vps) Vdz includes secondary flows and primary flows
-    thread_local extern Array1D<Real64> VdzMinClgByZone; // minimum discarge flow for cooling, Vdz includes secondary and primary flows for dual path
-    thread_local extern Array1D<Real64> VdzHtgByZone;    // saved value of heating based ZoneSA which is Vdz used in 62.1 tabular report (also used for zone level
+    EP_GLOBAL extern Array1D<Real64> VdzMinClgByZone; // minimum discarge flow for cooling, Vdz includes secondary and primary flows for dual path
+    EP_GLOBAL extern Array1D<Real64> VdzHtgByZone;    // saved value of heating based ZoneSA which is Vdz used in 62.1 tabular report (also used for zone level
                                             // Vps) Vdz includes secondary flows and primary flows
-    thread_local extern Array1D<Real64> VdzMinHtgByZone; // minimum discharge flow for heating, Vdz includes secondary and primary flows for dual path
-    thread_local extern Array1D<Real64> ZdzClgByZone;    // minimum discharge outdoor-air fraction for cooling
-    thread_local extern Array1D<Real64> ZdzHtgByZone;    // minimum discharge outdoor-air fraction for heating
-    thread_local extern Array1D<Real64> VpzClgByZone;    // saved value of cooling based ZonePA which is Vpz used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VpzMinClgByZone; // saved value of minimum cooling based ZonePA which is VpzClg-min used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VpzHtgByZone;    // saved value of heating based ZonePA which is Vpz used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VpzMinHtgByZone; // saved value of minimum heating based ZonePA which is VpzHtg-min used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VpzClgSumBySys;  // sum of saved value of cooling based ZonePA which is Vpz-sum used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VpzHtgSumBySys;  // sum of saved value of heating based ZonePA which is Vpz-sum used in 62.1 tabular report
-    thread_local extern Array1D<Real64> PzSumBySys;      // sum of design people for system, Pz_sum
-    thread_local extern Array1D<Real64> PsBySys;         // sum of peak concurrent people by system, Ps
-    thread_local extern Array1D<Real64> DBySys;          // Population Diversity by system
-    thread_local extern Array1D<Real64> SumRpxPzBySys;   // Sum of per person OA times number of people by system, No D yet
-    thread_local extern Array1D<Real64> SumRaxAzBySys;   // sum of per area OA time zone area by system, does not get altered by D
-    thread_local extern Array1D<std::string> PeakPsOccurrenceDateTimeStringBySys;    // string describing date and time when Ps peak occurs
-    thread_local extern Array1D<std::string> PeakPsOccurrenceEnvironmentStringBySys; // string describing Environment when Ps peak occurs
+    EP_GLOBAL extern Array1D<Real64> VdzMinHtgByZone; // minimum discharge flow for heating, Vdz includes secondary and primary flows for dual path
+    EP_GLOBAL extern Array1D<Real64> ZdzClgByZone;    // minimum discharge outdoor-air fraction for cooling
+    EP_GLOBAL extern Array1D<Real64> ZdzHtgByZone;    // minimum discharge outdoor-air fraction for heating
+    EP_GLOBAL extern Array1D<Real64> VpzClgByZone;    // saved value of cooling based ZonePA which is Vpz used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VpzMinClgByZone; // saved value of minimum cooling based ZonePA which is VpzClg-min used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VpzHtgByZone;    // saved value of heating based ZonePA which is Vpz used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VpzMinHtgByZone; // saved value of minimum heating based ZonePA which is VpzHtg-min used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VpzClgSumBySys;  // sum of saved value of cooling based ZonePA which is Vpz-sum used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VpzHtgSumBySys;  // sum of saved value of heating based ZonePA which is Vpz-sum used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> PzSumBySys;      // sum of design people for system, Pz_sum
+    EP_GLOBAL extern Array1D<Real64> PsBySys;         // sum of peak concurrent people by system, Ps
+    EP_GLOBAL extern Array1D<Real64> DBySys;          // Population Diversity by system
+    EP_GLOBAL extern Array1D<Real64> SumRpxPzBySys;   // Sum of per person OA times number of people by system, No D yet
+    EP_GLOBAL extern Array1D<Real64> SumRaxAzBySys;   // sum of per area OA time zone area by system, does not get altered by D
+    EP_GLOBAL extern Array1D<std::string> PeakPsOccurrenceDateTimeStringBySys;    // string describing date and time when Ps peak occurs
+    EP_GLOBAL extern Array1D<std::string> PeakPsOccurrenceEnvironmentStringBySys; // string describing Environment when Ps peak occurs
 
-    thread_local extern Array1D<Real64> VouBySys; // uncorrected system outdoor air requirement, for std 62.1 VRP
+    EP_GLOBAL extern Array1D<Real64> VouBySys; // uncorrected system outdoor air requirement, for std 62.1 VRP
 
-    thread_local extern Array1D<Real64> VpsClgBySys;       // System primary airflow Vps, for cooling for std 62.1 VRP
-    thread_local extern Array1D<Real64> VpsHtgBySys;       // system primary airflow Vps, for heating for std 62.1 VRP
-    thread_local extern Array1D<Real64> FaByZoneHeat;      // saved value of Fa used in 62.1 tabular report
-    thread_local extern Array1D<Real64> FbByZoneCool;      // saved value of Fb used in 62.1 tabular report
-    thread_local extern Array1D<Real64> FbByZoneHeat;      // saved value of Fb used in 62.1 tabular report
-    thread_local extern Array1D<Real64> FcByZoneCool;      // saved value of Fc used in 62.1 tabular report
-    thread_local extern Array1D<Real64> FcByZoneHeat;      // saved value of Fc used in 62.1 tabular report
-    thread_local extern Array1D<Real64> XsBySysCool;       // saved value of Xs used in 62.1 tabular report
-    thread_local extern Array1D<Real64> XsBySysHeat;       // saved value of Xs used in 62.1 tabular report
-    thread_local extern Array1D<Real64> EvzByZoneCool;     // saved value of Evz (zone vent effy) used in 62.1 tabular report
-    thread_local extern Array1D<Real64> EvzByZoneHeat;     // saved value of Evz (zone vent effy) used in 62.1 tabular report
-    thread_local extern Array1D<Real64> EvzByZoneCoolPrev; // saved value of Evz (zone vent effy) used in 62.1 tabular report
-    thread_local extern Array1D<Real64> EvzByZoneHeatPrev; // saved value of Evz (zone vent effy) used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VotClgBySys;       // saved value of cooling ventilation required at primary AHU, used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VotHtgBySys;       // saved value of heating ventilation required at primary AHU, used in 62.1 tabular report
-    thread_local extern Array1D<Real64> VozSumClgBySys;    // saved value of cooling ventilation required at clg zones
-    thread_local extern Array1D<Real64> VozSumHtgBySys;    // saved value of heating ventilation required at htg zones
-    thread_local extern Array1D<Real64> TotCoolCapTemp;    // scratch variable used for calulating peak load [W]
-    thread_local extern Array1D<Real64> EvzMinBySysHeat;   // saved value of EvzMin used in 62.1 tabular report
-    thread_local extern Array1D<Real64> EvzMinBySysCool;   // saved value of EvzMin used in 62.1 tabular report
-    thread_local extern Array1D<Real64> FaByZoneCool;      // triggers allocation in UpdateSysSizing
-    thread_local extern Array1D<Real64> SensCoolCapTemp;   // triggers allocation in UpdateSysSizing
+    EP_GLOBAL extern Array1D<Real64> VpsClgBySys;       // System primary airflow Vps, for cooling for std 62.1 VRP
+    EP_GLOBAL extern Array1D<Real64> VpsHtgBySys;       // system primary airflow Vps, for heating for std 62.1 VRP
+    EP_GLOBAL extern Array1D<Real64> FaByZoneHeat;      // saved value of Fa used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> FbByZoneCool;      // saved value of Fb used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> FbByZoneHeat;      // saved value of Fb used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> FcByZoneCool;      // saved value of Fc used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> FcByZoneHeat;      // saved value of Fc used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> XsBySysCool;       // saved value of Xs used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> XsBySysHeat;       // saved value of Xs used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> EvzByZoneCool;     // saved value of Evz (zone vent effy) used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> EvzByZoneHeat;     // saved value of Evz (zone vent effy) used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> EvzByZoneCoolPrev; // saved value of Evz (zone vent effy) used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> EvzByZoneHeatPrev; // saved value of Evz (zone vent effy) used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VotClgBySys;       // saved value of cooling ventilation required at primary AHU, used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VotHtgBySys;       // saved value of heating ventilation required at primary AHU, used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> VozSumClgBySys;    // saved value of cooling ventilation required at clg zones
+    EP_GLOBAL extern Array1D<Real64> VozSumHtgBySys;    // saved value of heating ventilation required at htg zones
+    EP_GLOBAL extern Array1D<Real64> TotCoolCapTemp;    // scratch variable used for calulating peak load [W]
+    EP_GLOBAL extern Array1D<Real64> EvzMinBySysHeat;   // saved value of EvzMin used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> EvzMinBySysCool;   // saved value of EvzMin used in 62.1 tabular report
+    EP_GLOBAL extern Array1D<Real64> FaByZoneCool;      // triggers allocation in UpdateSysSizing
+    EP_GLOBAL extern Array1D<Real64> SensCoolCapTemp;   // triggers allocation in UpdateSysSizing
 
     // Clears the global data in DataSizing.
     // Needed for unit tests, should not be normally called.

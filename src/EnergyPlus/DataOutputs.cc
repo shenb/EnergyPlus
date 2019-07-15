@@ -83,8 +83,8 @@ namespace DataOutputs {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const NumMonthlyReports(63);
-    thread_local Array1D_string const MonthlyNamedReports(NumMonthlyReports,
+    EP_GLOBAL int const NumMonthlyReports(63);
+    EP_GLOBAL Array1D_string const MonthlyNamedReports(NumMonthlyReports,
                                              {"ZONECOOLINGSUMMARYMONTHLY",
                                               "ZONEHEATINGSUMMARYMONTHLY",
                                               "ZONEELECTRICSUMMARYMONTHLY",
@@ -152,18 +152,18 @@ namespace DataOutputs {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int MaxConsideredOutputVariables(0); // Max Array size for OutputVariable pre-scanned
-    thread_local int NumConsideredOutputVariables(0); // Number of variables - pre-scanned, allowed for output
-    thread_local int iNumberOfRecords;                // Number of records in input
-    thread_local int iNumberOfDefaultedFields;        // number of defaulted fields
-    thread_local int iTotalFieldsWithDefaults;        // number of fields that can be defaulted
-    thread_local int iNumberOfAutoSizedFields;        // number of autosized fields
-    thread_local int iTotalAutoSizableFields;         // number of fields that can be autosized
-    thread_local int iNumberOfAutoCalcedFields;       // number of autocalculated fields
-    thread_local int iTotalAutoCalculatableFields;    // number of fields that can be autocalculated
+    EP_GLOBAL int MaxConsideredOutputVariables(0); // Max Array size for OutputVariable pre-scanned
+    EP_GLOBAL int NumConsideredOutputVariables(0); // Number of variables - pre-scanned, allowed for output
+    EP_GLOBAL int iNumberOfRecords;                // Number of records in input
+    EP_GLOBAL int iNumberOfDefaultedFields;        // number of defaulted fields
+    EP_GLOBAL int iTotalFieldsWithDefaults;        // number of fields that can be defaulted
+    EP_GLOBAL int iNumberOfAutoSizedFields;        // number of autosized fields
+    EP_GLOBAL int iTotalAutoSizableFields;         // number of fields that can be autosized
+    EP_GLOBAL int iNumberOfAutoCalcedFields;       // number of autocalculated fields
+    EP_GLOBAL int iTotalAutoCalculatableFields;    // number of fields that can be autocalculated
 
     // Object Data
-    thread_local std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables,
+    EP_GLOBAL std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables,
                                                       UtilityRoutines::case_insensitive_hasher,
                                                       UtilityRoutines::case_insensitive_comparator>,
                        UtilityRoutines::case_insensitive_hasher,

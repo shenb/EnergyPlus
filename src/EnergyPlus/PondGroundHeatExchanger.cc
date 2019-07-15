@@ -127,17 +127,17 @@ namespace PondGroundHeatExchanger {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
-    thread_local static std::string const fluidNameWater("WATER");
-    thread_local Real64 const SmallNum(1.0e-30);         // Very small number to avoid div0 errors
-    thread_local Real64 const StefBoltzmann(5.6697e-08); // Stefan-Boltzmann constant
+    EP_GLOBAL static std::string const BlankString;
+    EP_GLOBAL static std::string const fluidNameWater("WATER");
+    EP_GLOBAL Real64 const SmallNum(1.0e-30);         // Very small number to avoid div0 errors
+    EP_GLOBAL Real64 const StefBoltzmann(5.6697e-08); // Stefan-Boltzmann constant
     //  REAL(r64), PARAMETER :: KelvinConv    = KelvinConv           ! Conversion from Celsius to Kelvin
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
     // utility variables initialized once
-    thread_local int NumOfPondGHEs(0); // Number of pond ground heat exchangers
+    EP_GLOBAL int NumOfPondGHEs(0); // Number of pond ground heat exchangers
     // Utility variables - initialized for each instance of a pond
     // Real64 nsvOutletTemp( 0.0 ); // water outlet temperature
     // Real64 PondTemp( 0.0 ); // pond temperature
@@ -151,12 +151,12 @@ namespace PondGroundHeatExchanger {
     // int InletNodeNum( 0 ); // inlet node number
     // int OutletNodeNum( 0 ); // oulet node number
     // temperature object was input.
-    thread_local bool GetInputFlag(true);
+    EP_GLOBAL bool GetInputFlag(true);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PlantPondGroundHeatExchangers
 
     // Object Data
-    thread_local Array1D<PondGroundHeatExchangerData> PondGHE;
+    EP_GLOBAL Array1D<PondGroundHeatExchangerData> PondGHE;
 
     void PondGroundHeatExchangerData::simulate(const PlantLocation &EP_UNUSED(calledFromLocation),
                                                bool const FirstHVACIteration,
@@ -226,7 +226,7 @@ namespace PondGroundHeatExchanger {
         using namespace DataLoopNode;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input,
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input,
         // fatal at end of routine
         int IOStatus;   // Used in GetObjectItem
         int Item;       // Item to be "gotten"
@@ -435,7 +435,7 @@ namespace PondGroundHeatExchanger {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const DesignVelocity(0.5); // Hypothetical design max pipe velocity [m/s]
         Real64 const PondHeight(0.0);     // for now
-        thread_local static std::string const RoutineName("InitPondGroundHeatExchanger");
+        EP_GLOBAL static std::string const RoutineName("InitPondGroundHeatExchanger");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -556,7 +556,7 @@ namespace PondGroundHeatExchanger {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcPondGroundHeatExchanger");
+        EP_GLOBAL static std::string const RoutineName("CalcPondGroundHeatExchanger");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -666,7 +666,7 @@ namespace PondGroundHeatExchanger {
         Real64 const PrantlAir(0.71); // Prantl number for air - assumed constant
         Real64 const SchmidtAir(0.6); // Schmidt number for air - assumed constant
         Real64 const PondHeight(0.0); // for now
-        thread_local static std::string const RoutineName("PondGroundHeatExchanger:CalcTotalFlux");
+        EP_GLOBAL static std::string const RoutineName("PondGroundHeatExchanger:CalcTotalFlux");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -905,7 +905,7 @@ namespace PondGroundHeatExchanger {
         // FUNCTION PARAMETER DEFINITIONS:
         Real64 const MaxLaminarRe(2300.0); // Maximum Reynolds number for laminar flow
         Real64 const GravConst(9.81);      // gravitational constant - should be fixed!
-        thread_local static std::string const CalledFrom("PondGroundHeatExchanger:CalcEffectiveness");
+        EP_GLOBAL static std::string const CalledFrom("PondGroundHeatExchanger:CalcEffectiveness");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1056,7 +1056,7 @@ namespace PondGroundHeatExchanger {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("PondGroundHeatExchanger:Update");
+        EP_GLOBAL static std::string const RoutineName("PondGroundHeatExchanger:Update");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

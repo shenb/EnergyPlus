@@ -67,7 +67,7 @@ namespace HysteresisPhaseChange {
         static const int CRYSTALLIZED = 2;
     };
 
-    thread_local extern int numHysteresisModels;
+    EP_GLOBAL extern int numHysteresisModels;
 
     class HysteresisPhaseChange
     {
@@ -132,7 +132,7 @@ namespace HysteresisPhaseChange {
         }
     };
 
-    thread_local extern std::vector<HysteresisPhaseChange> hysteresisPhaseChangeModels;
+    EP_GLOBAL extern std::vector<HysteresisPhaseChange> hysteresisPhaseChangeModels;
 
     void readAllHysteresisModels();
 

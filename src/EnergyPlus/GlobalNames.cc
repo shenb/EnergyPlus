@@ -88,24 +88,24 @@ namespace GlobalNames {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumChillers(0);
-    thread_local int NumBoilers(0);
-    thread_local int NumBaseboards(0);
-    thread_local int NumCoils(0);
-    thread_local int numAirDistUnits(0);
-    thread_local int CurMaxChillers(0);
-    thread_local int CurMaxBoilers(0);
-    thread_local int CurMaxBaseboards(0);
-    thread_local int CurMaxCoils(0);
+    EP_GLOBAL int NumChillers(0);
+    EP_GLOBAL int NumBoilers(0);
+    EP_GLOBAL int NumBaseboards(0);
+    EP_GLOBAL int NumCoils(0);
+    EP_GLOBAL int numAirDistUnits(0);
+    EP_GLOBAL int CurMaxChillers(0);
+    EP_GLOBAL int CurMaxBoilers(0);
+    EP_GLOBAL int CurMaxBaseboards(0);
+    EP_GLOBAL int CurMaxCoils(0);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE GlobalNames:
 
     // Object Data
-    thread_local std::unordered_map<std::string, std::string> ChillerNames;
-    thread_local std::unordered_map<std::string, std::string> BoilerNames;
-    thread_local std::unordered_map<std::string, std::string> BaseboardNames;
-    thread_local std::unordered_map<std::string, std::string> CoilNames;
-    thread_local std::unordered_map<std::string, std::string> aDUNames;
+    EP_GLOBAL std::unordered_map<std::string, std::string> ChillerNames;
+    EP_GLOBAL std::unordered_map<std::string, std::string> BoilerNames;
+    EP_GLOBAL std::unordered_map<std::string, std::string> BaseboardNames;
+    EP_GLOBAL std::unordered_map<std::string, std::string> CoilNames;
+    EP_GLOBAL std::unordered_map<std::string, std::string> aDUNames;
 
     // Functions
 

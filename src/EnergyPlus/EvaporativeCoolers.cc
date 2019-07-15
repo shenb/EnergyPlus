@@ -134,37 +134,37 @@ namespace EvaporativeCoolers {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const WaterSupplyFromMains(101);
-    thread_local int const WaterSupplyFromTank(102);
+    EP_GLOBAL int const WaterSupplyFromMains(101);
+    EP_GLOBAL int const WaterSupplyFromTank(102);
 
-    thread_local int const BlowThruFan(50);
-    thread_local int const DrawThruFan(51);
+    EP_GLOBAL int const BlowThruFan(50);
+    EP_GLOBAL int const DrawThruFan(51);
 
-    thread_local int const ZoneTemperatureDeadBandOnOffCycling(20);
-    thread_local int const ZoneCoolingLoadOnOffCycling(21);
-    thread_local int const ZoneCoolingLoadVariableSpeedFan(22);
+    EP_GLOBAL int const ZoneTemperatureDeadBandOnOffCycling(20);
+    EP_GLOBAL int const ZoneCoolingLoadOnOffCycling(21);
+    EP_GLOBAL int const ZoneCoolingLoadVariableSpeedFan(22);
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local bool GetInputEvapComponentsFlag(true); // Flag set to make sure you get input once
-    thread_local int NumEvapCool(0);                    // The Number of Evap Coolers found in the Input
-    thread_local Array1D_bool MySizeFlag;
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL bool GetInputEvapComponentsFlag(true); // Flag set to make sure you get input once
+    EP_GLOBAL int NumEvapCool(0);                    // The Number of Evap Coolers found in the Input
+    EP_GLOBAL Array1D_bool MySizeFlag;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
-    thread_local int NumZoneEvapUnits(0);
-    thread_local Array1D_bool CheckZoneEvapUnitName;
-    thread_local bool GetInputZoneEvapUnit(true);
+    EP_GLOBAL int NumZoneEvapUnits(0);
+    EP_GLOBAL Array1D_bool CheckZoneEvapUnitName;
+    EP_GLOBAL bool GetInputZoneEvapUnit(true);
 
     // Indirect Evaporative Coolers Research Special Operating Modes
-    thread_local int const None(0);            // the indirect evaporative cooler Research Special is scheduled off or turned off
-    thread_local int const DryModulated(1);    // the indirect evaporative cooler Research Special is modulated in Dry Mode
-    thread_local int const DryFull(2);         // the indirect evaporative cooler Research Special is run in full capacity in Dry Mode
-    thread_local int const DryWetModulated(3); // the indirect evaporative cooler Research Special is modulated in Dry Mode or wet Mode
-    thread_local int const WetModulated(4);    // the indirect evaporative cooler Research Special is modulated in wet Mode
-    thread_local int const WetFull(5);         // the indirect evaporative cooler Research Special is run in full capacity in Wet Mode
+    EP_GLOBAL int const None(0);            // the indirect evaporative cooler Research Special is scheduled off or turned off
+    EP_GLOBAL int const DryModulated(1);    // the indirect evaporative cooler Research Special is modulated in Dry Mode
+    EP_GLOBAL int const DryFull(2);         // the indirect evaporative cooler Research Special is run in full capacity in Dry Mode
+    EP_GLOBAL int const DryWetModulated(3); // the indirect evaporative cooler Research Special is modulated in Dry Mode or wet Mode
+    EP_GLOBAL int const WetModulated(4);    // the indirect evaporative cooler Research Special is modulated in wet Mode
+    EP_GLOBAL int const WetFull(5);         // the indirect evaporative cooler Research Special is run in full capacity in Wet Mode
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE EvapCoolers
 
@@ -173,10 +173,10 @@ namespace EvaporativeCoolers {
     // zone unit routines
 
     // Object Data
-    thread_local Array1D<EvapConditions> EvapCond;
-    thread_local std::unordered_map<std::string, std::string> UniqueEvapCondNames;
-    thread_local Array1D<ZoneEvapCoolerUnitStruct> ZoneEvapUnit;
-    thread_local Array1D<ZoneEvapCoolerUnitFieldData> ZoneEvapCoolerUnitFields;
+    EP_GLOBAL Array1D<EvapConditions> EvapCond;
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueEvapCondNames;
+    EP_GLOBAL Array1D<ZoneEvapCoolerUnitStruct> ZoneEvapUnit;
+    EP_GLOBAL Array1D<ZoneEvapCoolerUnitFieldData> ZoneEvapCoolerUnitFields;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -299,7 +299,7 @@ namespace EvaporativeCoolers {
         int NumAlphas;
         int NumNums;
         int IOStat;
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
 
         GetInputEvapComponentsFlag = false;
         // Start getting the input data
@@ -957,9 +957,9 @@ namespace EvaporativeCoolers {
         int ControlNode;
         int OutNode;
         int EvapUnitNum;
-        thread_local static bool MySetPointCheckFlag(true);
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static bool localSetPointCheck(false);
+        EP_GLOBAL static bool MySetPointCheckFlag(true);
+        EP_GLOBAL static bool MyOneTimeFlag(true);
+        EP_GLOBAL static bool localSetPointCheck(false);
 
         if (MyOneTimeFlag) {
             MySizeFlag.dimension(NumEvapCool, true);
@@ -1104,10 +1104,10 @@ namespace EvaporativeCoolers {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool CoolerOnOApath(false);
-        thread_local static bool CoolerOnMainAirLoop(false);
-        thread_local static int AirSysBranchLoop(0);
-        thread_local static int BranchComp(0);
+        EP_GLOBAL static bool CoolerOnOApath(false);
+        EP_GLOBAL static bool CoolerOnMainAirLoop(false);
+        EP_GLOBAL static int AirSysBranchLoop(0);
+        EP_GLOBAL static int BranchComp(0);
         bool HardSizeNoDesRun;          // Indicator to a hard-sized field with no design sizing data
         bool IsAutoSize;                // Indicator to autosize
         Real64 IndirectVolFlowRateDes;  // Autosized volume flow rate for reporting
@@ -2249,9 +2249,9 @@ namespace EvaporativeCoolers {
         Real64 PurgeHumRat;
         Real64 PurgeEnthalpy;
         Real64 PurgeTemp;
-        thread_local static Real64 BlowDownVdot(0.0);
-        thread_local static Real64 DriftVdot(0.0);
-        thread_local static Real64 EvapVdot(0.0);
+        EP_GLOBAL static Real64 BlowDownVdot(0.0);
+        EP_GLOBAL static Real64 DriftVdot(0.0);
+        EP_GLOBAL static Real64 EvapVdot(0.0);
 
         // If the Evaporative Cooler  is operating there should be some mass flow rate
         //  Also the evap cooler has to be scheduled to be available
@@ -2503,9 +2503,9 @@ namespace EvaporativeCoolers {
         Real64 RhoWater;
         Real64 RhoAir; // Density of the primary side air
         Real64 MassFlowRateSecMin;
-        thread_local static Real64 BlowDownVdot(0.0);
-        thread_local static Real64 DriftVdot(0.0);
-        thread_local static Real64 EvapVdot(0.0);
+        EP_GLOBAL static Real64 BlowDownVdot(0.0);
+        EP_GLOBAL static Real64 DriftVdot(0.0);
+        EP_GLOBAL static Real64 EvapVdot(0.0);
 
         FlowRatioSecDry = 0.0;
         FlowRatioSecWet = 0.0;
@@ -3273,9 +3273,9 @@ namespace EvaporativeCoolers {
         Real64 MassFlowRateSysDesign;  // primary air design mass flow rate
         Real64 MassFlowRateSys;        // primary air current mass flow rate
         int InletNode;                 // inlet node number
-        thread_local static Real64 BlowDownVdot(0.0);
-        thread_local static Real64 DriftVdot(0.0);
-        thread_local static Real64 EvapVdot(0.0);
+        EP_GLOBAL static Real64 BlowDownVdot(0.0);
+        EP_GLOBAL static Real64 DriftVdot(0.0);
+        EP_GLOBAL static Real64 EvapVdot(0.0);
         bool EvapCoolerOperatingLimitFlag(false);
 
         EvapCoolerOperatingLimitFlag = false;
@@ -3447,7 +3447,7 @@ namespace EvaporativeCoolers {
         int InletNode;
         int OutletNodeSec;
         int InletNodeSec;
-        thread_local static Real64 AvailWaterRate(0.0);
+        EP_GLOBAL static Real64 AvailWaterRate(0.0);
 
         OutletNode = EvapCond(EvapCoolNum).OutletNode;
         InletNode = EvapCond(EvapCoolNum).InletNode;
@@ -3644,7 +3644,7 @@ namespace EvaporativeCoolers {
         using NodeInputManager::GetOnlySingleNode;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetInputZoneEvaporativeCoolerUnit: ");
+        EP_GLOBAL static std::string const RoutineName("GetInputZoneEvaporativeCoolerUnit: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         std::string CurrentModuleObject; // Object type for getting and error messages
@@ -3660,7 +3660,7 @@ namespace EvaporativeCoolers {
         int MaxNumbers;                  // Maximum number of numeric fields in all objects
         int NumFields;                   // Total number of fields in object
         int IOStatus;                    // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
         bool errFlag;
         Real64 FanVolFlow;
         int UnitLoop;
@@ -4072,7 +4072,7 @@ namespace EvaporativeCoolers {
         using General::TrimSigDigits;
 
         // Locals
-        thread_local static Array1D_bool MySizeFlag;
+        EP_GLOBAL static Array1D_bool MySizeFlag;
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
@@ -4086,12 +4086,12 @@ namespace EvaporativeCoolers {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyOneTimeFlag(true); // one time flag
-        thread_local static Array1D_bool MyEnvrnFlag;
-        thread_local static Array1D_bool MyFanFlag;
-        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        EP_GLOBAL static bool MyOneTimeFlag(true); // one time flag
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;
+        EP_GLOBAL static Array1D_bool MyFanFlag;
+        EP_GLOBAL static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         int Loop;
-        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        EP_GLOBAL static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         Real64 TimeElapsed;
 
         if (MyOneTimeFlag) {
@@ -4283,7 +4283,7 @@ namespace EvaporativeCoolers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeZoneEvaporativeCoolerUnit: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("SizeZoneEvaporativeCoolerUnit: "); // include trailing blank space
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -4804,7 +4804,7 @@ namespace EvaporativeCoolers {
         Real64 MinHumRat;
         Array1D<Real64> Par(5); // Parameters passed to RegulaFalsi
         Real64 FanSpeedRatio;
-        thread_local static Real64 ErrorToler(0.001); // error tolerance
+        EP_GLOBAL static Real64 ErrorToler(0.001); // error tolerance
         int SolFla;                      // Flag of RegulaFalsi solver
         Real64 FullFlowSensibleOutputProvided;
 

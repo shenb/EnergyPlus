@@ -99,26 +99,26 @@ namespace EMSManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const iTemperatureSetPoint(101);      // integer for node setpoint control type
-    thread_local int const iTemperatureMinSetPoint(102);   // integer for node setpoint control type
-    thread_local int const iTemperatureMaxSetPoint(103);   // integer for node setpoint control type
-    thread_local int const iHumidityRatioSetPoint(104);    // integer for node setpoint control type
-    thread_local int const iHumidityRatioMinSetPoint(105); // integer for node setpoint control type
-    thread_local int const iHumidityRatioMaxSetPoint(106); // integer for node setpoint control type
-    thread_local int const iMassFlowRateSetPoint(107);     // integer for node setpoint control type
-    thread_local int const iMassFlowRateMinSetPoint(108);  // integer for node setpoint control type
-    thread_local int const iMassFlowRateMaxSetPoint(109);  // integer for node setpoint control type
+    EP_GLOBAL int const iTemperatureSetPoint(101);      // integer for node setpoint control type
+    EP_GLOBAL int const iTemperatureMinSetPoint(102);   // integer for node setpoint control type
+    EP_GLOBAL int const iTemperatureMaxSetPoint(103);   // integer for node setpoint control type
+    EP_GLOBAL int const iHumidityRatioSetPoint(104);    // integer for node setpoint control type
+    EP_GLOBAL int const iHumidityRatioMinSetPoint(105); // integer for node setpoint control type
+    EP_GLOBAL int const iHumidityRatioMaxSetPoint(106); // integer for node setpoint control type
+    EP_GLOBAL int const iMassFlowRateSetPoint(107);     // integer for node setpoint control type
+    EP_GLOBAL int const iMassFlowRateMinSetPoint(108);  // integer for node setpoint control type
+    EP_GLOBAL int const iMassFlowRateMaxSetPoint(109);  // integer for node setpoint control type
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local bool GetEMSUserInput(true); // Flag to prevent input from being read multiple times
-    thread_local bool ZoneThermostatActuatorsHaveBeenSetup(false);
-    thread_local bool FinishProcessingUserInput(true); // Flag to indicate still need to process input
+    EP_GLOBAL bool GetEMSUserInput(true); // Flag to prevent input from being read multiple times
+    EP_GLOBAL bool ZoneThermostatActuatorsHaveBeenSetup(false);
+    EP_GLOBAL bool FinishProcessingUserInput(true); // Flag to indicate still need to process input
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -584,7 +584,7 @@ namespace EMSManager {
         int IOStat; // IO Status when calling get input subroutine
         //  CHARACTER(len=MaxNameLength), DIMENSION(99) :: AlphArray  ! Character string data  ! 99 should really be some kind of constant
         //  REAL(r64), DIMENSION(1)          :: NumArray  ! Numeric data
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         //  CHARACTER(len=MaxNameLength)   :: objNameMsg = ' '
         Array1D_string cAlphaFieldNames;
         Array1D_string cNumericFieldNames;
@@ -604,9 +604,9 @@ namespace EMSManager {
         int InternVarNum;              // do loop counter for internal variables used (outer)
         int InternalVarAvailNum;       // do loop counter for internal variables available (inner)
         int Loop;                      // do loop counter
-        thread_local static int MaxNumAlphas(0);    // argument for call to GetObjectDefMaxArgs
-        thread_local static int MaxNumNumbers(0);   // argument for call to GetObjectDefMaxArgs
-        thread_local static int TotalArgs(0);       // argument for call to GetObjectDefMaxArgs
+        EP_GLOBAL static int MaxNumAlphas(0);    // argument for call to GetObjectDefMaxArgs
+        EP_GLOBAL static int MaxNumNumbers(0);   // argument for call to GetObjectDefMaxArgs
+        EP_GLOBAL static int TotalArgs(0);       // argument for call to GetObjectDefMaxArgs
         bool errFlag;
 
         // FLOW:
@@ -1076,7 +1076,7 @@ namespace EMSManager {
         //  INTEGER :: VariableNum  ! local do loop index
         int VarIndex;
         int VarType;
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         int ActuatorNum;
         bool FoundObjectType;
         bool FoundObjectName;
@@ -1360,7 +1360,7 @@ namespace EMSManager {
         // note this executes after final processing and sizing-related calling points may already execute Erl programs
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -1417,7 +1417,7 @@ namespace EMSManager {
         // mine structure and write to eio file
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -1492,7 +1492,7 @@ namespace EMSManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int LoopNode;       // local do loop index
-        thread_local static bool lDummy; // not going to setup a pointer to logical control //Fix Changed to static: Passed to SetupEMSActuator as source of
+        EP_GLOBAL static bool lDummy; // not going to setup a pointer to logical control //Fix Changed to static: Passed to SetupEMSActuator as source of
                             // persistent Reference
         // (could this ever cause a fault?) // It caused illegal memory access/corruption
         // make it optional in Setup call?
@@ -1617,10 +1617,10 @@ namespace EMSManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // na
-        thread_local static int TrendNum(0); // local loop counter
-        thread_local static int ErlVarNum(0);
-        thread_local static int TrendDepth(0);
-        thread_local static Real64 currentVal(0.0);
+        EP_GLOBAL static int TrendNum(0); // local loop counter
+        EP_GLOBAL static int ErlVarNum(0);
+        EP_GLOBAL static int TrendDepth(0);
+        EP_GLOBAL static Real64 currentVal(0.0);
 
         // checks with quick return if no updates needed.
         if (!AnyEnergyManagementSystemInModel) return;
@@ -1657,11 +1657,11 @@ namespace EMSManager {
         using DataLoopNode::NodeID;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int Loop(0); // local do loop index
+        EP_GLOBAL static int Loop(0); // local do loop index
         std::string cControlTypeName;
         std::string cComponentTypeName;
         std::string cNodeName;
-        thread_local static bool FoundControl(false);
+        EP_GLOBAL static bool FoundControl(false);
 
         FoundControl = false;
 
@@ -1753,9 +1753,9 @@ namespace EMSManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int numAirLoops(0);
-        thread_local static int Loop(0);
-        thread_local static bool lDummy; // Fix Changed to static: Passed to SetupEMSActuator as source of persistent Reference
+        EP_GLOBAL static int numAirLoops(0);
+        EP_GLOBAL static int Loop(0);
+        EP_GLOBAL static bool lDummy; // Fix Changed to static: Passed to SetupEMSActuator as source of persistent Reference
 
         lDummy = false;
 
@@ -1812,7 +1812,7 @@ namespace EMSManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int loopSurfNum(0); // local do loop index
+        EP_GLOBAL static int loopSurfNum(0); // local do loop index
 
         for (loopSurfNum = 1; loopSurfNum <= TotSurfaces; ++loopSurfNum) {
 
@@ -1883,7 +1883,7 @@ namespace EMSManager {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int Loop(0); // local do loop index
+        EP_GLOBAL static int Loop(0); // local do loop index
 
         for (Loop = 1; Loop <= NumTempControlledZones; ++Loop) {
             SetupEMSActuator("Zone Temperature Control",

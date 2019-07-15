@@ -85,83 +85,83 @@ namespace DataGlobals {
     // Data
     // -only module should be available to other modules and routines.
     // Thus, all variables in this module must be PUBLIC.
-    thread_local bool runReadVars(false);
-    thread_local bool DDOnlySimulation(false);
-    thread_local bool AnnualSimulation(false);
-    thread_local bool outputEpJSONConversion(false);
-    thread_local bool isEpJSON(false);
-    thread_local bool isCBOR(false);
-    thread_local bool isMsgPack(false);
-    thread_local bool preserveIDFOrder(true);
+    EP_GLOBAL bool runReadVars(false);
+    EP_GLOBAL bool DDOnlySimulation(false);
+    EP_GLOBAL bool AnnualSimulation(false);
+    EP_GLOBAL bool outputEpJSONConversion(false);
+    EP_GLOBAL bool isEpJSON(false);
+    EP_GLOBAL bool isCBOR(false);
+    EP_GLOBAL bool isMsgPack(false);
+    EP_GLOBAL bool preserveIDFOrder(true);
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const BeginDay(1);
-    thread_local int const DuringDay(2);
-    thread_local int const EndDay(3);
-    thread_local int const EndZoneSizingCalc(4);
-    thread_local int const EndSysSizingCalc(5);
+    EP_GLOBAL int const BeginDay(1);
+    EP_GLOBAL int const DuringDay(2);
+    EP_GLOBAL int const EndDay(3);
+    EP_GLOBAL int const EndZoneSizingCalc(4);
+    EP_GLOBAL int const EndSysSizingCalc(5);
 
     // Parameters for KindOfSim
-    thread_local int const ksDesignDay(1);
-    thread_local int const ksRunPeriodDesign(2);
-    thread_local int const ksRunPeriodWeather(3);
-    thread_local int const ksHVACSizeDesignDay(4);       // a regular design day run during HVAC Sizing Simulation
-    thread_local int const ksHVACSizeRunPeriodDesign(5); // a weather period design day run during HVAC Sizing Simulation
-    thread_local int const ksReadAllWeatherData(6);      // a weather period for reading all weather data prior to the simulation
+    EP_GLOBAL int const ksDesignDay(1);
+    EP_GLOBAL int const ksRunPeriodDesign(2);
+    EP_GLOBAL int const ksRunPeriodWeather(3);
+    EP_GLOBAL int const ksHVACSizeDesignDay(4);       // a regular design day run during HVAC Sizing Simulation
+    EP_GLOBAL int const ksHVACSizeRunPeriodDesign(5); // a weather period design day run during HVAC Sizing Simulation
+    EP_GLOBAL int const ksReadAllWeatherData(6);      // a weather period for reading all weather data prior to the simulation
 
-    thread_local int const ZoneTSReporting(1); // value for Zone Time Step Reporting (UpdateDataAndReport)
-    thread_local int const HVACTSReporting(2); // value for HVAC Time Step Reporting (UpdateDataAndReport)
+    EP_GLOBAL int const ZoneTSReporting(1); // value for Zone Time Step Reporting (UpdateDataAndReport)
+    EP_GLOBAL int const HVACTSReporting(2); // value for HVAC Time Step Reporting (UpdateDataAndReport)
 
-    thread_local Real64 const MaxEXPArg(709.78);       // maximum exponent in EXP() function
-    thread_local Real64 const Pi(3.14159265358979324); // Pi 3.1415926535897932384626435
-    thread_local Real64 const PiOvr2(Pi / 2.0);        // Pi/2
-    thread_local Real64 const TwoPi(2.0 * Pi);         // 2*Pi 6.2831853071795864769252868
-    thread_local Real64 const GravityConstant(9.807);
-    thread_local Real64 const DegToRadians(Pi / 180.0);           // Conversion for Degrees to Radians
-    thread_local Real64 const RadToDeg(180.0 / Pi);               // Conversion for Radians to Degrees
-    thread_local Real64 const SecInHour(3600.0);                  // Conversion for hours to seconds
-    thread_local Real64 const HoursInDay(24.0);                   // Number of Hours in Day
-    thread_local Real64 const SecsInDay(SecInHour *HoursInDay);   // Number of seconds in Day
-    thread_local Real64 const BigNumber(HUGE_(1.0));              // Max Number real used for initializations
-    thread_local Real64 const rTinyValue(EPSILON(1.0));           // Tiny value to replace use of TINY(x)
-    thread_local std::string::size_type const MaxNameLength(100); // Maximum Name Length in Characters -- should be the same
+    EP_GLOBAL Real64 const MaxEXPArg(709.78);       // maximum exponent in EXP() function
+    EP_GLOBAL Real64 const Pi(3.14159265358979324); // Pi 3.1415926535897932384626435
+    EP_GLOBAL Real64 const PiOvr2(Pi / 2.0);        // Pi/2
+    EP_GLOBAL Real64 const TwoPi(2.0 * Pi);         // 2*Pi 6.2831853071795864769252868
+    EP_GLOBAL Real64 const GravityConstant(9.807);
+    EP_GLOBAL Real64 const DegToRadians(Pi / 180.0);           // Conversion for Degrees to Radians
+    EP_GLOBAL Real64 const RadToDeg(180.0 / Pi);               // Conversion for Radians to Degrees
+    EP_GLOBAL Real64 const SecInHour(3600.0);                  // Conversion for hours to seconds
+    EP_GLOBAL Real64 const HoursInDay(24.0);                   // Number of Hours in Day
+    EP_GLOBAL Real64 const SecsInDay(SecInHour *HoursInDay);   // Number of seconds in Day
+    EP_GLOBAL Real64 const BigNumber(HUGE_(1.0));              // Max Number real used for initializations
+    EP_GLOBAL Real64 const rTinyValue(EPSILON(1.0));           // Tiny value to replace use of TINY(x)
+    EP_GLOBAL std::string::size_type const MaxNameLength(100); // Maximum Name Length in Characters -- should be the same
     // as MaxAlphaArgLength in InputProcessor module
 
-    thread_local Real64 const KelvinConv(273.15);       // Conversion factor for C to K and K to C
-    thread_local Real64 const InitConvTemp(5.05);       // [deg C], standard init vol to mass flow conversion temp
-    thread_local Real64 const AutoCalculate(-99999.0);  // automatically calculate some fields.
-    thread_local Real64 const CWInitConvTemp(5.05);     // [deg C], standard init chilled water vol to mass flow conversion temp
-    thread_local Real64 const HWInitConvTemp(60.0);     // [deg C], standard init hot water vol to mass flow conversion temp
-    thread_local Real64 const SteamInitConvTemp(100.0); // [deg C], standard init steam vol to mass flow conversion temp
+    EP_GLOBAL Real64 const KelvinConv(273.15);       // Conversion factor for C to K and K to C
+    EP_GLOBAL Real64 const InitConvTemp(5.05);       // [deg C], standard init vol to mass flow conversion temp
+    EP_GLOBAL Real64 const AutoCalculate(-99999.0);  // automatically calculate some fields.
+    EP_GLOBAL Real64 const CWInitConvTemp(5.05);     // [deg C], standard init chilled water vol to mass flow conversion temp
+    EP_GLOBAL Real64 const HWInitConvTemp(60.0);     // [deg C], standard init hot water vol to mass flow conversion temp
+    EP_GLOBAL Real64 const SteamInitConvTemp(100.0); // [deg C], standard init steam vol to mass flow conversion temp
 
-    thread_local Real64 const StefanBoltzmann(5.6697E-8);     // Stefan-Boltzmann constant in W/(m2*K4)
-    thread_local Real64 const UniversalGasConst(8314.462175); // (J/mol*K)
+    EP_GLOBAL Real64 const StefanBoltzmann(5.6697E-8);     // Stefan-Boltzmann constant in W/(m2*K4)
+    EP_GLOBAL Real64 const UniversalGasConst(8314.462175); // (J/mol*K)
 
-    thread_local Real64 const convertJtoGJ(1.0E-9); // Conversion factor for J to GJ
+    EP_GLOBAL Real64 const convertJtoGJ(1.0E-9); // Conversion factor for J to GJ
 
     // Parameters for EMS Calling Points
-    thread_local int const emsCallFromZoneSizing(1);                           // Identity where EMS called from
-    thread_local int const emsCallFromSystemSizing(2);                         // Identity where EMS called from
-    thread_local int const emsCallFromBeginNewEvironment(3);                   // Identity where EMS called from
-    thread_local int const emsCallFromBeginNewEvironmentAfterWarmUp(4);        // Identity where EMS called from
-    thread_local int const emsCallFromBeginTimestepBeforePredictor(5);         // Identity where EMS called from
-    thread_local int const emsCallFromBeforeHVACManagers(6);                   // Identity where EMS called from
-    thread_local int const emsCallFromAfterHVACManagers(7);                    // Identity where EMS called from
-    thread_local int const emsCallFromHVACIterationLoop(8);                    // Identity where EMS called from
-    thread_local int const emsCallFromEndSystemTimestepBeforeHVACReporting(9); // Identity where EMS called from
-    thread_local int const emsCallFromEndSystemTimestepAfterHVACReporting(10); // Identity where EMS called from
-    thread_local int const emsCallFromEndZoneTimestepBeforeZoneReporting(11);  // Identity where EMS called from
-    thread_local int const emsCallFromEndZoneTimestepAfterZoneReporting(12);   // Identity where EMS called from
-    thread_local int const emsCallFromSetupSimulation(13);                     // identify where EMS called from,
+    EP_GLOBAL int const emsCallFromZoneSizing(1);                           // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromSystemSizing(2);                         // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromBeginNewEvironment(3);                   // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromBeginNewEvironmentAfterWarmUp(4);        // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromBeginTimestepBeforePredictor(5);         // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromBeforeHVACManagers(6);                   // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromAfterHVACManagers(7);                    // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromHVACIterationLoop(8);                    // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromEndSystemTimestepBeforeHVACReporting(9); // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromEndSystemTimestepAfterHVACReporting(10); // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromEndZoneTimestepBeforeZoneReporting(11);  // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromEndZoneTimestepAfterZoneReporting(12);   // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromSetupSimulation(13);                     // identify where EMS called from,
     // this is for input processing only
-    thread_local int const emsCallFromExternalInterface(14);         // Identity where EMS called from
-    thread_local int const emsCallFromComponentGetInput(15);         // EMS called from end of get input for a component
-    thread_local int const emsCallFromUserDefinedComponentModel(16); // EMS called from inside a custom user component model
-    thread_local int const emsCallFromUnitarySystemSizing(17);       // EMS called from unitary system compound component
-    thread_local int const emsCallFromBeginZoneTimestepBeforeInitHeatBalance(18); // Identity where EMS called from
-    thread_local int const emsCallFromBeginZoneTimestepAfterInitHeatBalance(19); // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromExternalInterface(14);         // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromComponentGetInput(15);         // EMS called from end of get input for a component
+    EP_GLOBAL int const emsCallFromUserDefinedComponentModel(16); // EMS called from inside a custom user component model
+    EP_GLOBAL int const emsCallFromUnitarySystemSizing(17);       // EMS called from unitary system compound component
+    EP_GLOBAL int const emsCallFromBeginZoneTimestepBeforeInitHeatBalance(18); // Identity where EMS called from
+    EP_GLOBAL int const emsCallFromBeginZoneTimestepAfterInitHeatBalance(19); // Identity where EMS called from
 
-    thread_local int const ScheduleAlwaysOn(-1); // Value when passed to schedule routines gives back 1.0 (on)
+    EP_GLOBAL int const ScheduleAlwaysOn(-1); // Value when passed to schedule routines gives back 1.0 (on)
 
     // DERIVED TYPE DEFINITIONS:
     // na
@@ -171,98 +171,98 @@ namespace DataGlobals {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local bool BeginDayFlag(false);           // True at the start of each day, False after first time step in day
-    thread_local bool BeginEnvrnFlag(false);         // True at the start of each environment, False after first time step in environ
-    thread_local bool BeginHourFlag(false);          // True at the start of each hour, False after first time step in hour
-    thread_local bool BeginSimFlag(false);           // True until any actual simulation (full or sizing) has begun, False after first time step
-    thread_local bool BeginFullSimFlag(false);       // True until full simulation has begun, False after first time step
-    thread_local bool BeginTimeStepFlag(false);      // True at the start of each time step, False after first subtime step of time step
-    thread_local int DayOfSim(0);                    // Counter for days (during the simulation)
-    thread_local std::string DayOfSimChr("0");       // Counter for days (during the simulation) (character -- for reporting)
-    thread_local int CalendarYear(0);                // Calendar year of the current day of simulation
-    thread_local std::string CalendarYearChr;        // Calendar year of the current day of simulation (character -- for reporting)
-    thread_local bool EndEnvrnFlag(false);           // True at the end of each environment (last time step of last hour of last day of environ)
-    thread_local bool EndDesignDayEnvrnsFlag(false); // True at the end of the last design day environment
+    EP_GLOBAL bool BeginDayFlag(false);           // True at the start of each day, False after first time step in day
+    EP_GLOBAL bool BeginEnvrnFlag(false);         // True at the start of each environment, False after first time step in environ
+    EP_GLOBAL bool BeginHourFlag(false);          // True at the start of each hour, False after first time step in hour
+    EP_GLOBAL bool BeginSimFlag(false);           // True until any actual simulation (full or sizing) has begun, False after first time step
+    EP_GLOBAL bool BeginFullSimFlag(false);       // True until full simulation has begun, False after first time step
+    EP_GLOBAL bool BeginTimeStepFlag(false);      // True at the start of each time step, False after first subtime step of time step
+    EP_GLOBAL int DayOfSim(0);                    // Counter for days (during the simulation)
+    EP_GLOBAL std::string DayOfSimChr("0");       // Counter for days (during the simulation) (character -- for reporting)
+    EP_GLOBAL int CalendarYear(0);                // Calendar year of the current day of simulation
+    EP_GLOBAL std::string CalendarYearChr;        // Calendar year of the current day of simulation (character -- for reporting)
+    EP_GLOBAL bool EndEnvrnFlag(false);           // True at the end of each environment (last time step of last hour of last day of environ)
+    EP_GLOBAL bool EndDesignDayEnvrnsFlag(false); // True at the end of the last design day environment
     // (last time step of last hour of last day of environ which is a design day)
-    thread_local bool EndDayFlag(false);            // True at the end of each day (last time step of last hour of day)
-    thread_local bool EndHourFlag(false);           // True at the end of each hour (last time step of hour)
-    thread_local int PreviousHour(0);               // Previous Hour Index
-    thread_local int HourOfDay(0);                  // Counter for hours in a simulation day
-    thread_local Real64 WeightPreviousHour(0.0);    // Weighting of value for previous hour
-    thread_local Real64 WeightNow(0.0);             // Weighting of value for current hour
-    thread_local int NumOfDayInEnvrn(0);            // Number of days in the simulation for a particular environment
-    thread_local int NumOfTimeStepInHour(0);        // Number of time steps in each hour of the simulation
-    thread_local int NumOfZones(0);                 // Total number of Zones for simulation
-    thread_local int TimeStep(0);                   // Counter for time steps (fractional hours)
-    thread_local Real64 TimeStepZone(0.0);          // Zone time step in fractional hours
-    thread_local bool WarmupFlag(false);            // True during the warmup portion of a simulation
-    thread_local int OutputFileStandard(0);         // Unit number for the standard output file (hourly data only)
-    thread_local std::ostream *eso_stream(nullptr); // Internal stream used for eso output (used for performance)
-    thread_local JsonOutputStreams jsonOutputStreams;
-    thread_local int OutputStandardError(0);                      // Unit number for the standard error output file
-    thread_local std::ostream *err_stream(nullptr);               // Internal stream used for err output (used for performance)
-    thread_local int StdOutputRecordCount(0);                     // Count of Standard output records
-    thread_local int OutputFileInits(0);                          // Unit number for the standard Initialization output file
-    thread_local std::ostream *eio_stream(nullptr);               // Internal stream used for eio output (used for unit tests)
-    thread_local int OutputFileDebug(0);                          // Unit number for debug outputs
-    thread_local int OutputFileZoneSizing(0);                     // Unit number of zone sizing calc output file
-    thread_local int OutputFileSysSizing(0);                      // Unit number of system sizing calc output file
-    thread_local int OutputFileMeters(0);                         // Unit number for meters output
-    thread_local std::ostream *mtr_stream(nullptr);               // Internal stream used for mtr output (used for performance)
-    thread_local int OutputFileShadingFrac(0);                    // Unit number for shading output
-    thread_local int StdMeterRecordCount(0);                      // Count of Meter output records
-    thread_local int OutputFileBNDetails(0);                      // Unit number for Branch-Node Details
-    thread_local int OutputDElightIn(0);                          // Unit number for the DElight In file
-    thread_local std::ostream *delightin_stream(nullptr);         // Internal stream used for DElight In file
-    thread_local bool ZoneSizingCalc(false);                      // TRUE if zone sizing calculation
-    thread_local bool SysSizingCalc(false);                       // TRUE if system sizing calculation
-    thread_local bool DoZoneSizing(false);                        // User input in SimulationControl object
-    thread_local bool DoSystemSizing(false);                      // User input in SimulationControl object
-    thread_local bool DoPlantSizing(false);                       // User input in SimulationControl object
-    thread_local bool DoDesDaySim(false);                         // User input in SimulationControl object
-    thread_local bool DoWeathSim(false);                          // User input in SimulationControl object
-    thread_local bool DoHVACSizingSimulation(false);              // User input in SimulationControl object
-    thread_local int HVACSizingSimMaxIterations(0);               // User input in SimulationControl object
-    thread_local bool WeathSimReq(false);                         // Input has a RunPeriod request
-    thread_local int KindOfSim(0);                                // See parameters. (ksDesignDay, ksRunPeriodDesign, ksRunPeriodWeather)
-    thread_local bool DoOutputReporting(false);                   // TRUE if variables to be written out
-    thread_local bool DoingSizing(false);                         // TRUE when "sizing" is being performed (some error messages won't be displayed)
-    thread_local bool DoingHVACSizingSimulations(false);          // true when HVAC Sizing Simulations are being performed.
-    thread_local bool DoingInputProcessing(false);                // TRUE when "IP" is being performed (some error messages are cached)
-    thread_local bool DisplayAllWarnings(false);                  // True when selection for  "DisplayAllWarnings" is entered (turns on other warning flags)
-    thread_local bool DisplayExtraWarnings(false);                // True when selection for  "DisplayExtraWarnings" is entered
-    thread_local bool DisplayUnusedObjects(false);                // True when selection for  "DisplayUnusedObjects" is entered
-    thread_local bool DisplayUnusedSchedules(false);              // True when selection for  "DisplayUnusedSchedules" is entered
-    thread_local bool DisplayAdvancedReportVariables(false);      // True when selection for  "DisplayAdvancedReportVariables" is entered
-    thread_local bool DisplayZoneAirHeatBalanceOffBalance(false); // True when selection for  "DisplayZoneAirHeatBalanceOffBalance" is entered
-    thread_local bool DisplayInputInAudit(false);                 // True when environmental variable "DisplayInputInAudit" is used
-    thread_local bool CreateMinimalSurfaceVariables(false);       // True when selection for  "CreateMinimalSurfaceVariables" is entered
-    thread_local Real64 CurrentTime(0.0);                         // CurrentTime, in fractional hours, from start of day. Uses Loads time step.
-    thread_local int SimTimeSteps(0);                             // Number of (Loads) timesteps since beginning of run period (environment).
-    thread_local int MinutesPerTimeStep(0);                       // Minutes per time step calculated from NumTimeStepInHour (number of minutes per load time step)
-    thread_local Real64 TimeStepZoneSec(0.0);                     // Seconds per time step
-    thread_local bool MetersHaveBeenInitialized(false);
-    thread_local bool KickOffSimulation(false);                 // Kick off simulation -- meaning run each environment for 1 or 2 time steps.
-    thread_local bool KickOffSizing(false);                     // Kick off sizing -- meaning run each environment for 1 or 2 time steps.
-    thread_local bool RedoSizesHVACSimulation(false);           // doing kick off simulation for redoing sizes as part of sizing
-    thread_local bool FinalSizingHVACSizingSimIteration(false); // when doing HVAC sizing Simulation
-    thread_local bool AnyEnergyManagementSystemInModel(false);  // true if there is any EMS or Erl in model.  otherwise false
-    thread_local bool AnyLocalEnvironmentsInModel(false);       // true if there is any local environmental data objected defined in model, otherwise false
-    thread_local bool AnyPlantInModel(false);                   // true if there are any plant or condenser loops in model, otherwise false
-    thread_local int CacheIPErrorFile(0);                       // Cache IP errors until IDF processing done.
-    thread_local bool AnyIdealCondEntSetPointInModel(false);    // true if there is any ideal condenser entering set point manager in model.
-    thread_local bool RunOptCondEntTemp(false);                 // true if the ideal condenser entering set point optimization is running
-    thread_local bool CompLoadReportIsReq(false);               // true if the extra sizing calcs are performed to create a "pulse" for the load component report
-    thread_local bool isPulseZoneSizing(false);                 // true during the set of zone sizing calcs that include the "pulse" for the load component report
-    thread_local int OutputFileZonePulse(0); // file handle for special zone sizing report that contains the result of the "pulse" for the load component report
-    thread_local bool doLoadComponentPulseNow(false); // true for the time step that is the "pulse" for the load component report
-    thread_local bool ShowDecayCurvesInEIO(false);    // true if the Radiant to Convective Decay Curves should appear in the EIO file
-    thread_local bool AnySlabsInModel(false);         // true if there are any zone-coupled ground domains in the input file
-    thread_local bool AnyBasementsInModel(false);     // true if there are any basements in the input file
+    EP_GLOBAL bool EndDayFlag(false);            // True at the end of each day (last time step of last hour of day)
+    EP_GLOBAL bool EndHourFlag(false);           // True at the end of each hour (last time step of hour)
+    EP_GLOBAL int PreviousHour(0);               // Previous Hour Index
+    EP_GLOBAL int HourOfDay(0);                  // Counter for hours in a simulation day
+    EP_GLOBAL Real64 WeightPreviousHour(0.0);    // Weighting of value for previous hour
+    EP_GLOBAL Real64 WeightNow(0.0);             // Weighting of value for current hour
+    EP_GLOBAL int NumOfDayInEnvrn(0);            // Number of days in the simulation for a particular environment
+    EP_GLOBAL int NumOfTimeStepInHour(0);        // Number of time steps in each hour of the simulation
+    EP_GLOBAL int NumOfZones(0);                 // Total number of Zones for simulation
+    EP_GLOBAL int TimeStep(0);                   // Counter for time steps (fractional hours)
+    EP_GLOBAL Real64 TimeStepZone(0.0);          // Zone time step in fractional hours
+    EP_GLOBAL bool WarmupFlag(false);            // True during the warmup portion of a simulation
+    EP_GLOBAL int OutputFileStandard(0);         // Unit number for the standard output file (hourly data only)
+    EP_GLOBAL std::ostream *eso_stream(nullptr); // Internal stream used for eso output (used for performance)
+    EP_GLOBAL JsonOutputStreams jsonOutputStreams;
+    EP_GLOBAL int OutputStandardError(0);                      // Unit number for the standard error output file
+    EP_GLOBAL std::ostream *err_stream(nullptr);               // Internal stream used for err output (used for performance)
+    EP_GLOBAL int StdOutputRecordCount(0);                     // Count of Standard output records
+    EP_GLOBAL int OutputFileInits(0);                          // Unit number for the standard Initialization output file
+    EP_GLOBAL std::ostream *eio_stream(nullptr);               // Internal stream used for eio output (used for unit tests)
+    EP_GLOBAL int OutputFileDebug(0);                          // Unit number for debug outputs
+    EP_GLOBAL int OutputFileZoneSizing(0);                     // Unit number of zone sizing calc output file
+    EP_GLOBAL int OutputFileSysSizing(0);                      // Unit number of system sizing calc output file
+    EP_GLOBAL int OutputFileMeters(0);                         // Unit number for meters output
+    EP_GLOBAL std::ostream *mtr_stream(nullptr);               // Internal stream used for mtr output (used for performance)
+    EP_GLOBAL int OutputFileShadingFrac(0);                    // Unit number for shading output
+    EP_GLOBAL int StdMeterRecordCount(0);                      // Count of Meter output records
+    EP_GLOBAL int OutputFileBNDetails(0);                      // Unit number for Branch-Node Details
+    EP_GLOBAL int OutputDElightIn(0);                          // Unit number for the DElight In file
+    EP_GLOBAL std::ostream *delightin_stream(nullptr);         // Internal stream used for DElight In file
+    EP_GLOBAL bool ZoneSizingCalc(false);                      // TRUE if zone sizing calculation
+    EP_GLOBAL bool SysSizingCalc(false);                       // TRUE if system sizing calculation
+    EP_GLOBAL bool DoZoneSizing(false);                        // User input in SimulationControl object
+    EP_GLOBAL bool DoSystemSizing(false);                      // User input in SimulationControl object
+    EP_GLOBAL bool DoPlantSizing(false);                       // User input in SimulationControl object
+    EP_GLOBAL bool DoDesDaySim(false);                         // User input in SimulationControl object
+    EP_GLOBAL bool DoWeathSim(false);                          // User input in SimulationControl object
+    EP_GLOBAL bool DoHVACSizingSimulation(false);              // User input in SimulationControl object
+    EP_GLOBAL int HVACSizingSimMaxIterations(0);               // User input in SimulationControl object
+    EP_GLOBAL bool WeathSimReq(false);                         // Input has a RunPeriod request
+    EP_GLOBAL int KindOfSim(0);                                // See parameters. (ksDesignDay, ksRunPeriodDesign, ksRunPeriodWeather)
+    EP_GLOBAL bool DoOutputReporting(false);                   // TRUE if variables to be written out
+    EP_GLOBAL bool DoingSizing(false);                         // TRUE when "sizing" is being performed (some error messages won't be displayed)
+    EP_GLOBAL bool DoingHVACSizingSimulations(false);          // true when HVAC Sizing Simulations are being performed.
+    EP_GLOBAL bool DoingInputProcessing(false);                // TRUE when "IP" is being performed (some error messages are cached)
+    EP_GLOBAL bool DisplayAllWarnings(false);                  // True when selection for  "DisplayAllWarnings" is entered (turns on other warning flags)
+    EP_GLOBAL bool DisplayExtraWarnings(false);                // True when selection for  "DisplayExtraWarnings" is entered
+    EP_GLOBAL bool DisplayUnusedObjects(false);                // True when selection for  "DisplayUnusedObjects" is entered
+    EP_GLOBAL bool DisplayUnusedSchedules(false);              // True when selection for  "DisplayUnusedSchedules" is entered
+    EP_GLOBAL bool DisplayAdvancedReportVariables(false);      // True when selection for  "DisplayAdvancedReportVariables" is entered
+    EP_GLOBAL bool DisplayZoneAirHeatBalanceOffBalance(false); // True when selection for  "DisplayZoneAirHeatBalanceOffBalance" is entered
+    EP_GLOBAL bool DisplayInputInAudit(false);                 // True when environmental variable "DisplayInputInAudit" is used
+    EP_GLOBAL bool CreateMinimalSurfaceVariables(false);       // True when selection for  "CreateMinimalSurfaceVariables" is entered
+    EP_GLOBAL Real64 CurrentTime(0.0);                         // CurrentTime, in fractional hours, from start of day. Uses Loads time step.
+    EP_GLOBAL int SimTimeSteps(0);                             // Number of (Loads) timesteps since beginning of run period (environment).
+    EP_GLOBAL int MinutesPerTimeStep(0);                       // Minutes per time step calculated from NumTimeStepInHour (number of minutes per load time step)
+    EP_GLOBAL Real64 TimeStepZoneSec(0.0);                     // Seconds per time step
+    EP_GLOBAL bool MetersHaveBeenInitialized(false);
+    EP_GLOBAL bool KickOffSimulation(false);                 // Kick off simulation -- meaning run each environment for 1 or 2 time steps.
+    EP_GLOBAL bool KickOffSizing(false);                     // Kick off sizing -- meaning run each environment for 1 or 2 time steps.
+    EP_GLOBAL bool RedoSizesHVACSimulation(false);           // doing kick off simulation for redoing sizes as part of sizing
+    EP_GLOBAL bool FinalSizingHVACSizingSimIteration(false); // when doing HVAC sizing Simulation
+    EP_GLOBAL bool AnyEnergyManagementSystemInModel(false);  // true if there is any EMS or Erl in model.  otherwise false
+    EP_GLOBAL bool AnyLocalEnvironmentsInModel(false);       // true if there is any local environmental data objected defined in model, otherwise false
+    EP_GLOBAL bool AnyPlantInModel(false);                   // true if there are any plant or condenser loops in model, otherwise false
+    EP_GLOBAL int CacheIPErrorFile(0);                       // Cache IP errors until IDF processing done.
+    EP_GLOBAL bool AnyIdealCondEntSetPointInModel(false);    // true if there is any ideal condenser entering set point manager in model.
+    EP_GLOBAL bool RunOptCondEntTemp(false);                 // true if the ideal condenser entering set point optimization is running
+    EP_GLOBAL bool CompLoadReportIsReq(false);               // true if the extra sizing calcs are performed to create a "pulse" for the load component report
+    EP_GLOBAL bool isPulseZoneSizing(false);                 // true during the set of zone sizing calcs that include the "pulse" for the load component report
+    EP_GLOBAL int OutputFileZonePulse(0); // file handle for special zone sizing report that contains the result of the "pulse" for the load component report
+    EP_GLOBAL bool doLoadComponentPulseNow(false); // true for the time step that is the "pulse" for the load component report
+    EP_GLOBAL bool ShowDecayCurvesInEIO(false);    // true if the Radiant to Convective Decay Curves should appear in the EIO file
+    EP_GLOBAL bool AnySlabsInModel(false);         // true if there are any zone-coupled ground domains in the input file
+    EP_GLOBAL bool AnyBasementsInModel(false);     // true if there are any basements in the input file
 
-    thread_local int Progress(0); // current progress (0-100)
-    thread_local void (*fProgressPtr)(int const);
-    thread_local void (*fMessagePtr)(std::string const &);
+    EP_GLOBAL int Progress(0); // current progress (0-100)
+    EP_GLOBAL void (*fProgressPtr)(int const);
+    EP_GLOBAL void (*fMessagePtr)(std::string const &);
 
     // Clears the global data in DataGlobals.
     // Needed for unit tests, should not be normally called.

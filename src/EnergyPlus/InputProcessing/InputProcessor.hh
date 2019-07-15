@@ -269,7 +269,7 @@ private:
 
 }; // InputProcessor
 
-thread_local extern std::unique_ptr<InputProcessor> inputProcessor;
+EP_GLOBAL extern std::unique_ptr<InputProcessor> inputProcessor;
 } // namespace EnergyPlus
 
 #endif

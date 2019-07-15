@@ -62,113 +62,113 @@ namespace DataStringGlobals {
     // -only module should be available to other modules and routines.
     // Thus, all variables in this module must be PUBLIC.
 
-    thread_local extern std::string outputAuditFileName;
-    thread_local extern std::string outputBndFileName;
-    thread_local extern std::string outputDxfFileName;
-    thread_local extern std::string outputEioFileName;
-    thread_local extern std::string outputEndFileName;
-    thread_local extern std::string outputErrFileName;
-    thread_local extern std::string outputEsoFileName;
+    EP_GLOBAL extern std::string outputAuditFileName;
+    EP_GLOBAL extern std::string outputBndFileName;
+    EP_GLOBAL extern std::string outputDxfFileName;
+    EP_GLOBAL extern std::string outputEioFileName;
+    EP_GLOBAL extern std::string outputEndFileName;
+    EP_GLOBAL extern std::string outputErrFileName;
+    EP_GLOBAL extern std::string outputEsoFileName;
 
-    thread_local extern std::string outputJsonFileName;
-    thread_local extern std::string outputTSHvacJsonFileName;
-    thread_local extern std::string outputTSZoneJsonFileName;
-    thread_local extern std::string outputTSJsonFileName;
-    thread_local extern std::string outputYRJsonFileName;
-    thread_local extern std::string outputMNJsonFileName;
-    thread_local extern std::string outputDYJsonFileName;
-    thread_local extern std::string outputHRJsonFileName;
-    thread_local extern std::string outputSMJsonFileName;
-    thread_local extern std::string outputCborFileName;
-    thread_local extern std::string outputTSHvacCborFileName;
-    thread_local extern std::string outputTSZoneCborFileName;
-    thread_local extern std::string outputTSCborFileName;
-    thread_local extern std::string outputYRCborFileName;
-    thread_local extern std::string outputMNCborFileName;
-    thread_local extern std::string outputDYCborFileName;
-    thread_local extern std::string outputHRCborFileName;
-    thread_local extern std::string outputSMCborFileName;
-    thread_local extern std::string outputMsgPackFileName;
-    thread_local extern std::string outputTSHvacMsgPackFileName;
-    thread_local extern std::string outputTSZoneMsgPackFileName;
-    thread_local extern std::string outputTSMsgPackFileName;
-    thread_local extern std::string outputYRMsgPackFileName;
-    thread_local extern std::string outputMNMsgPackFileName;
-    thread_local extern std::string outputDYMsgPackFileName;
-    thread_local extern std::string outputHRMsgPackFileName;
-    thread_local extern std::string outputSMMsgPackFileName;
+    EP_GLOBAL extern std::string outputJsonFileName;
+    EP_GLOBAL extern std::string outputTSHvacJsonFileName;
+    EP_GLOBAL extern std::string outputTSZoneJsonFileName;
+    EP_GLOBAL extern std::string outputTSJsonFileName;
+    EP_GLOBAL extern std::string outputYRJsonFileName;
+    EP_GLOBAL extern std::string outputMNJsonFileName;
+    EP_GLOBAL extern std::string outputDYJsonFileName;
+    EP_GLOBAL extern std::string outputHRJsonFileName;
+    EP_GLOBAL extern std::string outputSMJsonFileName;
+    EP_GLOBAL extern std::string outputCborFileName;
+    EP_GLOBAL extern std::string outputTSHvacCborFileName;
+    EP_GLOBAL extern std::string outputTSZoneCborFileName;
+    EP_GLOBAL extern std::string outputTSCborFileName;
+    EP_GLOBAL extern std::string outputYRCborFileName;
+    EP_GLOBAL extern std::string outputMNCborFileName;
+    EP_GLOBAL extern std::string outputDYCborFileName;
+    EP_GLOBAL extern std::string outputHRCborFileName;
+    EP_GLOBAL extern std::string outputSMCborFileName;
+    EP_GLOBAL extern std::string outputMsgPackFileName;
+    EP_GLOBAL extern std::string outputTSHvacMsgPackFileName;
+    EP_GLOBAL extern std::string outputTSZoneMsgPackFileName;
+    EP_GLOBAL extern std::string outputTSMsgPackFileName;
+    EP_GLOBAL extern std::string outputYRMsgPackFileName;
+    EP_GLOBAL extern std::string outputMNMsgPackFileName;
+    EP_GLOBAL extern std::string outputDYMsgPackFileName;
+    EP_GLOBAL extern std::string outputHRMsgPackFileName;
+    EP_GLOBAL extern std::string outputSMMsgPackFileName;
 
-    thread_local extern std::string outputMtdFileName;
-    thread_local extern std::string outputMddFileName;
-    thread_local extern std::string outputMtrFileName;
-    thread_local extern std::string outputRddFileName;
-    thread_local extern std::string outputShdFileName;
-    thread_local extern std::string outputTblCsvFileName;
-    thread_local extern std::string outputTblHtmFileName;
-    thread_local extern std::string outputTblTabFileName;
-    thread_local extern std::string outputTblTxtFileName;
-    thread_local extern std::string outputTblXmlFileName;
-    thread_local extern std::string inputFileName;
-    thread_local extern std::string inputIddFileName;
-    thread_local extern std::string inputEpJSONSchemaFileName;
-    thread_local extern std::string inputEpJSONSchemaFileName;
-    thread_local extern std::string inputWeatherFileName;
-    thread_local extern std::string outputAdsFileName;
-    thread_local extern std::string outputDfsFileName;
-    thread_local extern std::string outputGLHEFileName;
-    thread_local extern std::string outputDelightInFileName;
-    thread_local extern std::string outputDelightOutFileName;
-    thread_local extern std::string outputDelightEldmpFileName;
-    thread_local extern std::string outputDelightDfdmpFileName;
-    thread_local extern std::string outputMapTabFileName;
-    thread_local extern std::string outputMapCsvFileName;
-    thread_local extern std::string outputMapTxtFileName;
-    thread_local extern std::string outputEddFileName;
-    thread_local extern std::string outputIperrFileName;
-    thread_local extern std::string outputDbgFileName;
-    thread_local extern std::string outputSlnFileName;
-    thread_local extern std::string outputSciFileName;
-    thread_local extern std::string outputWrlFileName;
-    thread_local extern std::string outputZszCsvFileName;
-    thread_local extern std::string outputZszTabFileName;
-    thread_local extern std::string outputZszTxtFileName;
-    thread_local extern std::string outputSszCsvFileName;
-    thread_local extern std::string outputSszTabFileName;
-    thread_local extern std::string outputSszTxtFileName;
-    thread_local extern std::string outputScreenCsvFileName;
-    thread_local extern std::string outputSqlFileName;
-    thread_local extern std::string outputSqliteErrFileName;
-    thread_local extern std::string EnergyPlusIniFileName;
-    thread_local extern std::string inStatFileName;
-    thread_local extern std::string TarcogIterationsFileName;
-    thread_local extern std::string eplusADSFileName;
-    thread_local extern std::string outputCsvFileName;
-    thread_local extern std::string outputMtrCsvFileName;
-    thread_local extern std::string outputRvauditFileName;
-    thread_local extern std::string outputExtShdFracFileName;
+    EP_GLOBAL extern std::string outputMtdFileName;
+    EP_GLOBAL extern std::string outputMddFileName;
+    EP_GLOBAL extern std::string outputMtrFileName;
+    EP_GLOBAL extern std::string outputRddFileName;
+    EP_GLOBAL extern std::string outputShdFileName;
+    EP_GLOBAL extern std::string outputTblCsvFileName;
+    EP_GLOBAL extern std::string outputTblHtmFileName;
+    EP_GLOBAL extern std::string outputTblTabFileName;
+    EP_GLOBAL extern std::string outputTblTxtFileName;
+    EP_GLOBAL extern std::string outputTblXmlFileName;
+    EP_GLOBAL extern std::string inputFileName;
+    EP_GLOBAL extern std::string inputIddFileName;
+    EP_GLOBAL extern std::string inputEpJSONSchemaFileName;
+    EP_GLOBAL extern std::string inputEpJSONSchemaFileName;
+    EP_GLOBAL extern std::string inputWeatherFileName;
+    EP_GLOBAL extern std::string outputAdsFileName;
+    EP_GLOBAL extern std::string outputDfsFileName;
+    EP_GLOBAL extern std::string outputGLHEFileName;
+    EP_GLOBAL extern std::string outputDelightInFileName;
+    EP_GLOBAL extern std::string outputDelightOutFileName;
+    EP_GLOBAL extern std::string outputDelightEldmpFileName;
+    EP_GLOBAL extern std::string outputDelightDfdmpFileName;
+    EP_GLOBAL extern std::string outputMapTabFileName;
+    EP_GLOBAL extern std::string outputMapCsvFileName;
+    EP_GLOBAL extern std::string outputMapTxtFileName;
+    EP_GLOBAL extern std::string outputEddFileName;
+    EP_GLOBAL extern std::string outputIperrFileName;
+    EP_GLOBAL extern std::string outputDbgFileName;
+    EP_GLOBAL extern std::string outputSlnFileName;
+    EP_GLOBAL extern std::string outputSciFileName;
+    EP_GLOBAL extern std::string outputWrlFileName;
+    EP_GLOBAL extern std::string outputZszCsvFileName;
+    EP_GLOBAL extern std::string outputZszTabFileName;
+    EP_GLOBAL extern std::string outputZszTxtFileName;
+    EP_GLOBAL extern std::string outputSszCsvFileName;
+    EP_GLOBAL extern std::string outputSszTabFileName;
+    EP_GLOBAL extern std::string outputSszTxtFileName;
+    EP_GLOBAL extern std::string outputScreenCsvFileName;
+    EP_GLOBAL extern std::string outputSqlFileName;
+    EP_GLOBAL extern std::string outputSqliteErrFileName;
+    EP_GLOBAL extern std::string EnergyPlusIniFileName;
+    EP_GLOBAL extern std::string inStatFileName;
+    EP_GLOBAL extern std::string TarcogIterationsFileName;
+    EP_GLOBAL extern std::string eplusADSFileName;
+    EP_GLOBAL extern std::string outputCsvFileName;
+    EP_GLOBAL extern std::string outputMtrCsvFileName;
+    EP_GLOBAL extern std::string outputRvauditFileName;
+    EP_GLOBAL extern std::string outputExtShdFracFileName;
 
-    thread_local extern std::string weatherFileNameOnly;
-    thread_local extern std::string idfDirPathName;
-    thread_local extern std::string outDirPathName;
-    thread_local extern std::string idfFileNameOnly;
-    thread_local extern std::string inputDirPathName;
-    thread_local extern std::string outputDirPathName;
-    thread_local extern std::string inputFileNameOnly;
-    thread_local extern std::string exeDirectory;
+    EP_GLOBAL extern std::string weatherFileNameOnly;
+    EP_GLOBAL extern std::string idfDirPathName;
+    EP_GLOBAL extern std::string outDirPathName;
+    EP_GLOBAL extern std::string idfFileNameOnly;
+    EP_GLOBAL extern std::string inputDirPathName;
+    EP_GLOBAL extern std::string outputDirPathName;
+    EP_GLOBAL extern std::string inputFileNameOnly;
+    EP_GLOBAL extern std::string exeDirectory;
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern std::string const UpperCase;
-    thread_local extern std::string const LowerCase;
-    thread_local extern std::string const AccentedUpperCase;
-    thread_local extern std::string const AccentedLowerCase;
-    thread_local extern std::string const AllCase;
-    thread_local extern std::string const NL; // Platform newline
-    thread_local extern char const pathChar;
-    thread_local extern char const altpathChar;
-    thread_local extern char const CharComma;     // comma
-    thread_local extern char const CharSemicolon; // semicolon
-    thread_local extern char const CharTab;       // tab
-    thread_local extern char const CharSpace;     // space
+    EP_GLOBAL extern std::string const UpperCase;
+    EP_GLOBAL extern std::string const LowerCase;
+    EP_GLOBAL extern std::string const AccentedUpperCase;
+    EP_GLOBAL extern std::string const AccentedLowerCase;
+    EP_GLOBAL extern std::string const AllCase;
+    EP_GLOBAL extern std::string const NL; // Platform newline
+    EP_GLOBAL extern char const pathChar;
+    EP_GLOBAL extern char const altpathChar;
+    EP_GLOBAL extern char const CharComma;     // comma
+    EP_GLOBAL extern char const CharSemicolon; // semicolon
+    EP_GLOBAL extern char const CharTab;       // tab
+    EP_GLOBAL extern char const CharSpace;     // space
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -177,13 +177,13 @@ namespace DataStringGlobals {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern std::string ProgramPath;          // Path for Program from INI file
-    thread_local extern std::string CurrentWorkingFolder; // Current working directory for run
-    thread_local extern std::string FullName;             // Full name of file to open, including path
-    thread_local extern std::string IDDVerString;         // Version information from the IDD (line 1)
-    thread_local extern std::string VerString;            // String that represents version information
-    thread_local extern std::string MatchVersion;         // String to be matched by Version object
-    thread_local extern std::string CurrentDateTime;      // For printing current date and time at start of run
+    EP_GLOBAL extern std::string ProgramPath;          // Path for Program from INI file
+    EP_GLOBAL extern std::string CurrentWorkingFolder; // Current working directory for run
+    EP_GLOBAL extern std::string FullName;             // Full name of file to open, including path
+    EP_GLOBAL extern std::string IDDVerString;         // Version information from the IDD (line 1)
+    EP_GLOBAL extern std::string VerString;            // String that represents version information
+    EP_GLOBAL extern std::string MatchVersion;         // String to be matched by Version object
+    EP_GLOBAL extern std::string CurrentDateTime;      // For printing current date and time at start of run
 
     // Functions
     void clear_state();

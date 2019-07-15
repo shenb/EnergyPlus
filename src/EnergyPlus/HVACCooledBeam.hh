@@ -63,19 +63,19 @@ namespace HVACCooledBeam {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const Passive_Cooled_Beam;
-    thread_local extern int const Active_Cooled_Beam;
-    thread_local extern Real64 const NomMassFlowPerBeam; // nominal water mass flow rate per beam [kg/s]
-    thread_local extern Real64 const MinWaterVel;        // minimum water velocity [m/s]
-    thread_local extern Real64 const Coeff2;
+    EP_GLOBAL extern int const Passive_Cooled_Beam;
+    EP_GLOBAL extern int const Active_Cooled_Beam;
+    EP_GLOBAL extern Real64 const NomMassFlowPerBeam; // nominal water mass flow rate per beam [kg/s]
+    EP_GLOBAL extern Real64 const MinWaterVel;        // minimum water velocity [m/s]
+    EP_GLOBAL extern Real64 const Coeff2;
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // INTEGER :: NumPassiveCB = 0
     // INTEGER :: NumActiveCB = 0
-    thread_local extern int NumCB;
+    EP_GLOBAL extern int NumCB;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HVACCooledBeam:
 
@@ -152,7 +152,7 @@ namespace HVACCooledBeam {
     };
 
     // Object Data
-    thread_local extern Array1D<CoolBeamData> CoolBeam;
+    EP_GLOBAL extern Array1D<CoolBeamData> CoolBeam;
 
     // Functions
 

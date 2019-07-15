@@ -90,9 +90,9 @@ namespace ResultsFramework {
     using OutputProcessor::RealVariableType;
     using OutputProcessor::RealVariables;
 
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
-    thread_local std::unique_ptr<ResultsSchema> OutputSchema(new ResultsSchema);
+    EP_GLOBAL std::unique_ptr<ResultsSchema> OutputSchema(new ResultsSchema);
 
     // trim string
     std::string trim(std::string str)

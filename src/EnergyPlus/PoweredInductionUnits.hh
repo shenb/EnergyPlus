@@ -63,22 +63,22 @@ namespace PoweredInductionUnits {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const SingleDuct_SeriesPIU_Reheat;
-    thread_local extern int const SingleDuct_ParallelPIU_Reheat;
+    EP_GLOBAL extern int const SingleDuct_SeriesPIU_Reheat;
+    EP_GLOBAL extern int const SingleDuct_ParallelPIU_Reheat;
     // coil types in this module
-    thread_local extern int const HCoilType_Gas;
-    thread_local extern int const HCoilType_Electric;
-    thread_local extern int const HCoilType_SimpleHeating;
-    thread_local extern int const HCoilType_SteamAirHeating;
+    EP_GLOBAL extern int const HCoilType_Gas;
+    EP_GLOBAL extern int const HCoilType_Electric;
+    EP_GLOBAL extern int const HCoilType_SimpleHeating;
+    EP_GLOBAL extern int const HCoilType_SteamAirHeating;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
-    thread_local extern int NumPIUs;
-    thread_local extern int NumSeriesPIUs;
-    thread_local extern int NumParallelPIUs;
+    EP_GLOBAL extern int NumPIUs;
+    EP_GLOBAL extern int NumSeriesPIUs;
+    EP_GLOBAL extern int NumParallelPIUs;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -164,7 +164,7 @@ namespace PoweredInductionUnits {
     };
 
     // Object Data
-    thread_local extern Array1D<PowIndUnitData> PIU;
+    EP_GLOBAL extern Array1D<PowIndUnitData> PIU;
 
     // Functions
 

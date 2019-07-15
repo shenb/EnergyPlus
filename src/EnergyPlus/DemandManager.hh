@@ -63,39 +63,39 @@ namespace DemandManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const ManagerTypeExtLights;
-    thread_local extern int const ManagerTypeLights;
-    thread_local extern int const ManagerTypeElecEquip;
-    thread_local extern int const ManagerTypeThermostats;
-    thread_local extern int const ManagerTypeVentilation;
+    EP_GLOBAL extern int const ManagerTypeExtLights;
+    EP_GLOBAL extern int const ManagerTypeLights;
+    EP_GLOBAL extern int const ManagerTypeElecEquip;
+    EP_GLOBAL extern int const ManagerTypeThermostats;
+    EP_GLOBAL extern int const ManagerTypeVentilation;
 
-    thread_local extern int const ManagerPrioritySequential;
-    thread_local extern int const ManagerPriorityOptimal;
-    thread_local extern int const ManagerPriorityAll;
+    EP_GLOBAL extern int const ManagerPrioritySequential;
+    EP_GLOBAL extern int const ManagerPriorityOptimal;
+    EP_GLOBAL extern int const ManagerPriorityAll;
 
-    thread_local extern int const ManagerLimitOff;
-    thread_local extern int const ManagerLimitFixed;
-    thread_local extern int const ManagerLimitVariable;
+    EP_GLOBAL extern int const ManagerLimitOff;
+    EP_GLOBAL extern int const ManagerLimitFixed;
+    EP_GLOBAL extern int const ManagerLimitVariable;
 
-    thread_local extern int const ManagerSelectionAll;
-    thread_local extern int const ManagerSelectionMany;
-    thread_local extern int const ManagerSelectionOne;
+    EP_GLOBAL extern int const ManagerSelectionAll;
+    EP_GLOBAL extern int const ManagerSelectionMany;
+    EP_GLOBAL extern int const ManagerSelectionOne;
 
-    thread_local extern int const CheckCanReduce;
-    thread_local extern int const SetLimit;
-    thread_local extern int const ClearLimit;
+    EP_GLOBAL extern int const CheckCanReduce;
+    EP_GLOBAL extern int const SetLimit;
+    EP_GLOBAL extern int const ClearLimit;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumDemandManagerList;
-    thread_local extern int NumDemandMgr;
-    thread_local extern int DemandManagerExtIterations;
-    thread_local extern int DemandManagerHBIterations;
-    thread_local extern int DemandManagerHVACIterations;
-    thread_local extern bool GetInput; // Flag to prevent input from being read multiple times
+    EP_GLOBAL extern int NumDemandManagerList;
+    EP_GLOBAL extern int NumDemandMgr;
+    EP_GLOBAL extern int DemandManagerExtIterations;
+    EP_GLOBAL extern int DemandManagerHBIterations;
+    EP_GLOBAL extern int DemandManagerHVACIterations;
+    EP_GLOBAL extern bool GetInput; // Flag to prevent input from being read multiple times
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -176,8 +176,8 @@ namespace DemandManager {
     };
 
     // Object Data
-    thread_local extern Array1D<DemandManagerListData> DemandManagerList;
-    thread_local extern Array1D<DemandManagerData> DemandMgr;
+    EP_GLOBAL extern Array1D<DemandManagerListData> DemandManagerList;
+    EP_GLOBAL extern Array1D<DemandManagerData> DemandMgr;
 
     // Functions
 

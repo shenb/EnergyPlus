@@ -97,21 +97,21 @@ namespace BaseboardElectric {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local std::string const cCMO_BBRadiator_Electric("ZoneHVAC:Baseboard:Convective:Electric");
-    thread_local Real64 const SimpConvAirFlowSpeed(0.5); // m/s
+    EP_GLOBAL std::string const cCMO_BBRadiator_Electric("ZoneHVAC:Baseboard:Convective:Electric");
+    EP_GLOBAL Real64 const SimpConvAirFlowSpeed(0.5); // m/s
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumBaseboards(0);
-    thread_local Array1D_bool MySizeFlag;
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL int NumBaseboards(0);
+    EP_GLOBAL Array1D_bool MySizeFlag;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
     // Object Data
-    thread_local Array1D<BaseboardParams> Baseboard;
-    thread_local Array1D<BaseboardNumericFieldData> BaseboardNumericFields;
+    EP_GLOBAL Array1D<BaseboardParams> Baseboard;
+    EP_GLOBAL Array1D<BaseboardNumericFieldData> BaseboardNumericFields;
 
     // Functions
 
@@ -161,7 +161,7 @@ namespace BaseboardElectric {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         int BaseboardNum;               // index of unit in baseboard array
-        thread_local static bool GetInputFlag(true); // one time get input flag
+        EP_GLOBAL static bool GetInputFlag(true); // one time get input flag
         Real64 QZnReq;                  // zone load not yet satisfied
 
         if (GetInputFlag) {
@@ -238,7 +238,7 @@ namespace BaseboardElectric {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetBaseboardInput: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetBaseboardInput: "); // include trailing blank space
         int const iHeatCAPMAlphaNum(3);                              // get input index to baseboard heating capacity sizing method
         int const iHeatDesignCapacityNumericNum(1);                  // get input index to baseboard heating capacity
         int const iHeatCapacityPerFloorAreaNumericNum(2);            // get input index to baseboard heating capacity per floor area sizing
@@ -258,7 +258,7 @@ namespace BaseboardElectric {
         int NumAlphas;
         int NumNums;
         int IOStat;
-        thread_local static bool ErrorsFound(false); // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false); // If errors detected in input
 
         int CtrlZone;         // index to constrolled zone number
         int ZoneEquipTypeNum; // index to zone equipment in a zone equipment list
@@ -477,10 +477,10 @@ namespace BaseboardElectric {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNode;
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        EP_GLOBAL static bool MyOneTimeFlag(true);
+        EP_GLOBAL static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;
-        thread_local static Array1D_bool MyEnvrnFlag;
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;
 
         // Do the one time initializations
         if (MyOneTimeFlag) {
@@ -555,7 +555,7 @@ namespace BaseboardElectric {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeElectricBaseboard");
+        EP_GLOBAL static std::string const RoutineName("SizeElectricBaseboard");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

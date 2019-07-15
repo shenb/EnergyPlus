@@ -73,98 +73,98 @@ namespace SolarShading {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // General Parameters...
-    thread_local extern Real64 const SmallIncrement; // Small increment added for shading/sunlit area calculations.
-    thread_local extern Real64 const HCMULT;         // Multiplier used to change meters to .01 millimeters for homogeneous coordinates.
+    EP_GLOBAL extern Real64 const SmallIncrement; // Small increment added for shading/sunlit area calculations.
+    EP_GLOBAL extern Real64 const HCMULT;         // Multiplier used to change meters to .01 millimeters for homogeneous coordinates.
     // Homogeneous Coordinates are represented in integers (64 bit). This changes the surface coordinates from meters
     // to .01 millimeters -- making that the resolution for shadowing, polygon clipping, etc.
-    thread_local extern Real64 const sqHCMULT;     // Square of HCMult used in Homogeneous coordinates
-    thread_local extern Real64 const sqHCMULT_fac; // ( 0.5 / sqHCMULT ) factor
-    thread_local extern Real64 const kHCMULT;      // half of inverse square of HCMult used in Homogeneous coordinates
+    EP_GLOBAL extern Real64 const sqHCMULT;     // Square of HCMult used in Homogeneous coordinates
+    EP_GLOBAL extern Real64 const sqHCMULT_fac; // ( 0.5 / sqHCMULT ) factor
+    EP_GLOBAL extern Real64 const kHCMULT;      // half of inverse square of HCMult used in Homogeneous coordinates
 
     // Parameters for use with the variable OverlapStatus...
-    thread_local extern int const NoOverlap;
-    thread_local extern int const FirstSurfWithinSecond;
-    thread_local extern int const SecondSurfWithinFirst;
-    thread_local extern int const PartialOverlap;
-    thread_local extern int const TooManyVertices;
-    thread_local extern int const TooManyFigures;
-    thread_local extern Array1D_string const cOverLapStatus;
+    EP_GLOBAL extern int const NoOverlap;
+    EP_GLOBAL extern int const FirstSurfWithinSecond;
+    EP_GLOBAL extern int const SecondSurfWithinFirst;
+    EP_GLOBAL extern int const PartialOverlap;
+    EP_GLOBAL extern int const TooManyVertices;
+    EP_GLOBAL extern int const TooManyFigures;
+    EP_GLOBAL extern Array1D_string const cOverLapStatus;
 
     // DERIVED TYPE DEFINITIONS:
     // INTERFACE BLOCK SPECIFICATIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int MaxHCV; // Maximum number of HC vertices
+    EP_GLOBAL extern int MaxHCV; // Maximum number of HC vertices
     // (needs to be based on maxnumvertices)
-    thread_local extern int MaxHCS; // 200      ! Maximum number of HC surfaces (was 56)
+    EP_GLOBAL extern int MaxHCS; // 200      ! Maximum number of HC surfaces (was 56)
     // Following are initially set in AllocateModuleArrays
-    thread_local extern int MAXHCArrayBounds;    // Bounds based on Max Number of Vertices in surfaces
-    thread_local extern int MAXHCArrayIncrement; // Increment based on Max Number of Vertices in surfaces
+    EP_GLOBAL extern int MAXHCArrayBounds;    // Bounds based on Max Number of Vertices in surfaces
+    EP_GLOBAL extern int MAXHCArrayIncrement; // Increment based on Max Number of Vertices in surfaces
     // The following variable should be re-engineered to lower in module hierarchy but need more analysis
-    thread_local extern int NVS; // Number of vertices of the shadow/clipped surface
-    thread_local extern int NumVertInShadowOrClippedSurface;
-    thread_local extern int CurrentSurfaceBeingShadowed;
-    thread_local extern int CurrentShadowingSurface;
-    thread_local extern int OverlapStatus; // Results of overlap calculation:
+    EP_GLOBAL extern int NVS; // Number of vertices of the shadow/clipped surface
+    EP_GLOBAL extern int NumVertInShadowOrClippedSurface;
+    EP_GLOBAL extern int CurrentSurfaceBeingShadowed;
+    EP_GLOBAL extern int CurrentShadowingSurface;
+    EP_GLOBAL extern int OverlapStatus; // Results of overlap calculation:
     // 1=No overlap; 2=NS1 completely within NS2
     // 3=NS2 completely within NS1; 4=Partial overlap
 
-    thread_local extern Array1D<Real64> CTHETA;     // Cosine of angle of incidence of sun's rays on surface NS
-    thread_local extern int FBKSHC;                 // HC location of first back surface
-    thread_local extern int FGSSHC;                 // HC location of first general shadowing surface
-    thread_local extern int FINSHC;                 // HC location of first back surface overlap
-    thread_local extern int FRVLHC;                 // HC location of first reveal surface
-    thread_local extern int FSBSHC;                 // HC location of first subsurface
-    thread_local extern int LOCHCA;                 // Location of highest data in the HC arrays
-    thread_local extern int NBKSHC;                 // Number of back surfaces in the HC arrays
-    thread_local extern int NGSSHC;                 // Number of general shadowing surfaces in the HC arrays
-    thread_local extern int NINSHC;                 // Number of back surface overlaps in the HC arrays
-    thread_local extern int NRVLHC;                 // Number of reveal surfaces in HC array
-    thread_local extern int NSBSHC;                 // Number of subsurfaces in the HC arrays
-    thread_local extern bool CalcSkyDifShading;     // True when sky diffuse solar shading is
-    thread_local extern int ShadowingCalcFrequency; // Frequency for Shadowing Calculations
-    thread_local extern int ShadowingDaysLeft;      // Days left in current shadowing period
-    thread_local extern bool debugging;
-    thread_local extern std::ofstream shd_stream; // Shading file stream
-    thread_local extern Array1D_int HCNS;         // Surface number of back surface HC figures
-    thread_local extern Array1D_int HCNV;         // Number of vertices of each HC figure
-    thread_local extern Array2D<Int64> HCA;       // 'A' homogeneous coordinates of sides
-    thread_local extern Array2D<Int64> HCB;       // 'B' homogeneous coordinates of sides
-    thread_local extern Array2D<Int64> HCC;       // 'C' homogeneous coordinates of sides
-    thread_local extern Array2D<Int64> HCX;       // 'X' homogeneous coordinates of vertices of figure.
-    thread_local extern Array2D<Int64> HCY;       // 'Y' homogeneous coordinates of vertices of figure.
-    thread_local extern Array3D_int WindowRevealStatus;
-    thread_local extern Array1D<Real64> HCAREA; // Area of each HC figure.  Sign Convention:  Base Surface
+    EP_GLOBAL extern Array1D<Real64> CTHETA;     // Cosine of angle of incidence of sun's rays on surface NS
+    EP_GLOBAL extern int FBKSHC;                 // HC location of first back surface
+    EP_GLOBAL extern int FGSSHC;                 // HC location of first general shadowing surface
+    EP_GLOBAL extern int FINSHC;                 // HC location of first back surface overlap
+    EP_GLOBAL extern int FRVLHC;                 // HC location of first reveal surface
+    EP_GLOBAL extern int FSBSHC;                 // HC location of first subsurface
+    EP_GLOBAL extern int LOCHCA;                 // Location of highest data in the HC arrays
+    EP_GLOBAL extern int NBKSHC;                 // Number of back surfaces in the HC arrays
+    EP_GLOBAL extern int NGSSHC;                 // Number of general shadowing surfaces in the HC arrays
+    EP_GLOBAL extern int NINSHC;                 // Number of back surface overlaps in the HC arrays
+    EP_GLOBAL extern int NRVLHC;                 // Number of reveal surfaces in HC array
+    EP_GLOBAL extern int NSBSHC;                 // Number of subsurfaces in the HC arrays
+    EP_GLOBAL extern bool CalcSkyDifShading;     // True when sky diffuse solar shading is
+    EP_GLOBAL extern int ShadowingCalcFrequency; // Frequency for Shadowing Calculations
+    EP_GLOBAL extern int ShadowingDaysLeft;      // Days left in current shadowing period
+    EP_GLOBAL extern bool debugging;
+    EP_GLOBAL extern std::ofstream shd_stream; // Shading file stream
+    EP_GLOBAL extern Array1D_int HCNS;         // Surface number of back surface HC figures
+    EP_GLOBAL extern Array1D_int HCNV;         // Number of vertices of each HC figure
+    EP_GLOBAL extern Array2D<Int64> HCA;       // 'A' homogeneous coordinates of sides
+    EP_GLOBAL extern Array2D<Int64> HCB;       // 'B' homogeneous coordinates of sides
+    EP_GLOBAL extern Array2D<Int64> HCC;       // 'C' homogeneous coordinates of sides
+    EP_GLOBAL extern Array2D<Int64> HCX;       // 'X' homogeneous coordinates of vertices of figure.
+    EP_GLOBAL extern Array2D<Int64> HCY;       // 'Y' homogeneous coordinates of vertices of figure.
+    EP_GLOBAL extern Array3D_int WindowRevealStatus;
+    EP_GLOBAL extern Array1D<Real64> HCAREA; // Area of each HC figure.  Sign Convention:  Base Surface
     // - Positive, Shadow - Negative, Overlap between two shadows
     // - positive, etc., so that sum of HC areas=base sunlit area
-    thread_local extern Array1D<Real64> HCT;    // Transmittance of each HC figure
-    thread_local extern Array1D<Real64> ISABSF; // For simple interior solar distribution (in which all beam
+    EP_GLOBAL extern Array1D<Real64> HCT;    // Transmittance of each HC figure
+    EP_GLOBAL extern Array1D<Real64> ISABSF; // For simple interior solar distribution (in which all beam
     // radiation entering zone is assumed to strike the floor),
     // fraction of beam radiation absorbed by each floor surface
-    thread_local extern Array1D<Real64> SAREA; // Sunlit area of heat transfer surface HTS
+    EP_GLOBAL extern Array1D<Real64> SAREA; // Sunlit area of heat transfer surface HTS
     // Excludes multiplier for windows
     // Shadowing combinations data structure...See ShadowingCombinations type
-    thread_local extern int NumTooManyFigures;
-    thread_local extern int NumTooManyVertices;
-    thread_local extern int NumBaseSubSurround;
-    thread_local extern Array1D<Real64> SUNCOS;   // Direction cosines of solar position
-    thread_local extern Real64 XShadowProjection; // X projection of a shadow (formerly called C)
-    thread_local extern Real64 YShadowProjection; // Y projection of a shadow (formerly called S)
-    thread_local extern Array1D<Real64> XTEMP;    // Temporary 'X' values for HC vertices of the overlap
-    thread_local extern Array1D<Real64> XVC;      // X-vertices of the clipped figure
-    thread_local extern Array1D<Real64> XVS;      // X-vertices of the shadow
-    thread_local extern Array1D<Real64> YTEMP;    // Temporary 'Y' values for HC vertices of the overlap
-    thread_local extern Array1D<Real64> YVC;      // Y-vertices of the clipped figure
-    thread_local extern Array1D<Real64> YVS;      // Y-vertices of the shadow
-    thread_local extern Array1D<Real64> ZVC;      // Z-vertices of the clipped figure
+    EP_GLOBAL extern int NumTooManyFigures;
+    EP_GLOBAL extern int NumTooManyVertices;
+    EP_GLOBAL extern int NumBaseSubSurround;
+    EP_GLOBAL extern Array1D<Real64> SUNCOS;   // Direction cosines of solar position
+    EP_GLOBAL extern Real64 XShadowProjection; // X projection of a shadow (formerly called C)
+    EP_GLOBAL extern Real64 YShadowProjection; // Y projection of a shadow (formerly called S)
+    EP_GLOBAL extern Array1D<Real64> XTEMP;    // Temporary 'X' values for HC vertices of the overlap
+    EP_GLOBAL extern Array1D<Real64> XVC;      // X-vertices of the clipped figure
+    EP_GLOBAL extern Array1D<Real64> XVS;      // X-vertices of the shadow
+    EP_GLOBAL extern Array1D<Real64> YTEMP;    // Temporary 'Y' values for HC vertices of the overlap
+    EP_GLOBAL extern Array1D<Real64> YVC;      // Y-vertices of the clipped figure
+    EP_GLOBAL extern Array1D<Real64> YVS;      // Y-vertices of the shadow
+    EP_GLOBAL extern Array1D<Real64> ZVC;      // Z-vertices of the clipped figure
     // Used in Sutherland Hodman poly clipping
-    thread_local extern Array1D<Real64> ATEMP;  // Temporary 'A' values for HC vertices of the overlap
-    thread_local extern Array1D<Real64> BTEMP;  // Temporary 'B' values for HC vertices of the overlap
-    thread_local extern Array1D<Real64> CTEMP;  // Temporary 'C' values for HC vertices of the overlap
-    thread_local extern Array1D<Real64> XTEMP1; // Temporary 'X' values for HC vertices of the overlap
-    thread_local extern Array1D<Real64> YTEMP1; // Temporary 'Y' values for HC vertices of the overlap
-    thread_local extern int maxNumberOfFigures;
+    EP_GLOBAL extern Array1D<Real64> ATEMP;  // Temporary 'A' values for HC vertices of the overlap
+    EP_GLOBAL extern Array1D<Real64> BTEMP;  // Temporary 'B' values for HC vertices of the overlap
+    EP_GLOBAL extern Array1D<Real64> CTEMP;  // Temporary 'C' values for HC vertices of the overlap
+    EP_GLOBAL extern Array1D<Real64> XTEMP1; // Temporary 'X' values for HC vertices of the overlap
+    EP_GLOBAL extern Array1D<Real64> YTEMP1; // Temporary 'Y' values for HC vertices of the overlap
+    EP_GLOBAL extern int maxNumberOfFigures;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SolarShading
 
@@ -184,9 +184,9 @@ namespace SolarShading {
     };
 
     // Object Data
-    thread_local extern Array1D<SurfaceErrorTracking> TrackTooManyFigures;
-    thread_local extern Array1D<SurfaceErrorTracking> TrackTooManyVertices;
-    thread_local extern Array1D<SurfaceErrorTracking> TrackBaseSubSurround;
+    EP_GLOBAL extern Array1D<SurfaceErrorTracking> TrackTooManyFigures;
+    EP_GLOBAL extern Array1D<SurfaceErrorTracking> TrackTooManyVertices;
+    EP_GLOBAL extern Array1D<SurfaceErrorTracking> TrackBaseSubSurround;
 
     // Functions
     void clear_state();

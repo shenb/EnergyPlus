@@ -65,14 +65,14 @@ namespace ZoneContaminantPredictorCorrector {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern bool GetZoneAirContamInputFlag; // True when need to get input
-    thread_local extern int TotGCGenConstant;           // Number of constant generic contaminant sources and sinks
-    thread_local extern int TotGCGenPDriven;            // Number of pressure driven generic contaminant sources and sinks
-    thread_local extern int TotGCGenCutoff;             // Number of cutoff model generic contaminant sources and sinks
-    thread_local extern int TotGCGenDecay;              // Number of decay model generic contaminant sources and sinks
-    thread_local extern int TotGCBLDiff;                // Number of boudary layer diffusion generic contaminant model
-    thread_local extern int TotGCDVS;                   // Number of deposition velocity sink generic contaminant model
-    thread_local extern int TotGCDRS;                   // Number of deposition rate sink generic contaminant model
+    EP_GLOBAL extern bool GetZoneAirContamInputFlag; // True when need to get input
+    EP_GLOBAL extern int TotGCGenConstant;           // Number of constant generic contaminant sources and sinks
+    EP_GLOBAL extern int TotGCGenPDriven;            // Number of pressure driven generic contaminant sources and sinks
+    EP_GLOBAL extern int TotGCGenCutoff;             // Number of cutoff model generic contaminant sources and sinks
+    EP_GLOBAL extern int TotGCGenDecay;              // Number of decay model generic contaminant sources and sinks
+    EP_GLOBAL extern int TotGCBLDiff;                // Number of boudary layer diffusion generic contaminant model
+    EP_GLOBAL extern int TotGCDVS;                   // Number of deposition velocity sink generic contaminant model
+    EP_GLOBAL extern int TotGCDRS;                   // Number of deposition rate sink generic contaminant model
 
     // SUBROUTINE SPECIFICATIONS:
 

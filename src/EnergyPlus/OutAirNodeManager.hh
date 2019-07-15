@@ -65,9 +65,9 @@ namespace OutAirNodeManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern Array1D_int OutsideAirNodeList; // List of all outside air inlet nodes
-    thread_local extern int NumOutsideAirNodes;         // Number of single outside air nodes
-    thread_local extern bool GetOutAirNodesInputFlag;   // Flag set to make sure you get input once
+    EP_GLOBAL extern Array1D_int OutsideAirNodeList; // List of all outside air inlet nodes
+    EP_GLOBAL extern int NumOutsideAirNodes;         // Number of single outside air nodes
+    EP_GLOBAL extern bool GetOutAirNodesInputFlag;   // Flag set to make sure you get input once
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OutAirNodeManager
 

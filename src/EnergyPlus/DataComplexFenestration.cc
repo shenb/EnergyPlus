@@ -66,39 +66,39 @@ namespace DataComplexFenestration {
 
     // Data
     // Parameters for complex shade
-    thread_local int const csVenetianHorizontal(1);
-    thread_local int const csWoven(2);
-    thread_local int const csPerforated(3);
-    thread_local int const csOtherShadingType(4);
-    thread_local int const csBSDF(5);
-    thread_local int const csVenetianVertical(6);
+    EP_GLOBAL int const csVenetianHorizontal(1);
+    EP_GLOBAL int const csWoven(2);
+    EP_GLOBAL int const csPerforated(3);
+    EP_GLOBAL int const csOtherShadingType(4);
+    EP_GLOBAL int const csBSDF(5);
+    EP_GLOBAL int const csVenetianVertical(6);
 
     // Parameters for gas definitions
-    thread_local int const GasCoeffsCustom(0);
-    thread_local int const GasCoeffsAir(1);
-    thread_local int const GasCoeffsArgon(2);
-    thread_local int const GasCoeffsKrypton(3);
-    thread_local int const GasCoeffsXenon(4);
+    EP_GLOBAL int const GasCoeffsCustom(0);
+    EP_GLOBAL int const GasCoeffsAir(1);
+    EP_GLOBAL int const GasCoeffsArgon(2);
+    EP_GLOBAL int const GasCoeffsKrypton(3);
+    EP_GLOBAL int const GasCoeffsXenon(4);
 
     // Parameters for Thermal Algorithm
     // INTEGER, PARAMETER :: taTarcog = 0
     // INTEGER, PARAMETER :: taWinkelmann = 1
 
     // Parameters for calculation standard
-    thread_local int const csISO15099(1);
-    thread_local int const csEN673Declared(2);
-    thread_local int const csEN673Design(3);
+    EP_GLOBAL int const csISO15099(1);
+    EP_GLOBAL int const csEN673Declared(2);
+    EP_GLOBAL int const csEN673Design(3);
 
     // Parameters for thermal model
-    thread_local int const tmISO15099(0);
-    thread_local int const tmScaledCavityWidth(1);
-    thread_local int const tmConvectiveScalarModel_NoSDThickness(2);
-    thread_local int const tmConvectiveScalarModel_WithSDThickness(3);
+    EP_GLOBAL int const tmISO15099(0);
+    EP_GLOBAL int const tmScaledCavityWidth(1);
+    EP_GLOBAL int const tmConvectiveScalarModel_NoSDThickness(2);
+    EP_GLOBAL int const tmConvectiveScalarModel_WithSDThickness(3);
 
     // Parameters for deflection model
-    thread_local int const dmNoDeflection(0);
-    thread_local int const dmTemperatureAndPressureInput(1);
-    thread_local int const dmMeasuredDeflection(2);
+    EP_GLOBAL int const dmNoDeflection(0);
+    EP_GLOBAL int const dmTemperatureAndPressureInput(1);
+    EP_GLOBAL int const dmMeasuredDeflection(2);
 
 } // namespace DataComplexFenestration
 

@@ -82,8 +82,8 @@ namespace MoistureBalanceEMPDManager {
         }
     };
 
-    thread_local extern Array1D<EMPDReportVarsData> EMPDReportVars; // Array of structs that hold the empd report vars data, one for each surface.
-    thread_local extern bool InitEnvrnFlag;
+    EP_GLOBAL extern Array1D<EMPDReportVarsData> EMPDReportVars; // Array of structs that hold the empd report vars data, one for each surface.
+    EP_GLOBAL extern bool InitEnvrnFlag;
 
     // SUBROUTINE SPECIFICATION FOR MODULE MoistureBalanceEMPDManager
 

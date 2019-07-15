@@ -61,12 +61,12 @@ namespace EnergyPlus {
 namespace PlantLoopSolver {
 
     // MODULE VARIABLE DEFINITIONS
-    thread_local extern Real64 InitialDemandToLoopSetPoint;
-    thread_local extern Real64 CurrentAlterationsToDemand;
-    thread_local extern Real64 UpdatedDemandToLoopSetPoint;
-    thread_local extern Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
-    thread_local extern Real64 InitialDemandToLoopSetPointSAVED;
-    thread_local extern int RefrigIndex; // Index denoting refrigerant used (possibly steam)
+    EP_GLOBAL extern Real64 InitialDemandToLoopSetPoint;
+    EP_GLOBAL extern Real64 CurrentAlterationsToDemand;
+    EP_GLOBAL extern Real64 UpdatedDemandToLoopSetPoint;
+    EP_GLOBAL extern Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
+    EP_GLOBAL extern Real64 InitialDemandToLoopSetPointSAVED;
+    EP_GLOBAL extern int RefrigIndex; // Index denoting refrigerant used (possibly steam)
 
     struct Location
     {

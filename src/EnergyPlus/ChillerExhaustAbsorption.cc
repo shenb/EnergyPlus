@@ -130,15 +130,15 @@ namespace ChillerExhaustAbsorption {
     using Psychrometrics::RhoH2O;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumExhaustAbsorbers(0); // number of Absorption Chillers specified in input
+    EP_GLOBAL int NumExhaustAbsorbers(0); // number of Absorption Chillers specified in input
 
     // This type holds the output from the algorithm i.e., the Report Variables
 
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // Object Data
-    thread_local Array1D<ExhaustAbsorberSpecs> ExhaustAbsorber; // dimension to number of machines
-    thread_local Array1D<ReportVars> ExhaustAbsorberReport;
+    EP_GLOBAL Array1D<ExhaustAbsorberSpecs> ExhaustAbsorber; // dimension to number of machines
+    EP_GLOBAL Array1D<ReportVars> ExhaustAbsorberReport;
 
     // Functions
     namespace {
@@ -147,13 +147,13 @@ namespace ChillerExhaustAbsorption {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local Real64 Sim_HeatCap(0.0); // W - nominal heating capacity
-        thread_local bool Sim_GetInput(true); // then TRUE, calls subroutine to read input file.
-        thread_local bool Init_MyOneTimeFlag(true);
-        thread_local Array1D_bool Init_MyEnvrnFlag;
-        thread_local Array1D_bool Init_MyPlantScanFlag;
-        thread_local Real64 Calc_oldCondSupplyTemp(0.0); // save the last iteration value of leaving condenser water temperature
-        thread_local bool Get_ErrorsFound(false);
+        EP_GLOBAL Real64 Sim_HeatCap(0.0); // W - nominal heating capacity
+        EP_GLOBAL bool Sim_GetInput(true); // then TRUE, calls subroutine to read input file.
+        EP_GLOBAL bool Init_MyOneTimeFlag(true);
+        EP_GLOBAL Array1D_bool Init_MyEnvrnFlag;
+        EP_GLOBAL Array1D_bool Init_MyPlantScanFlag;
+        EP_GLOBAL Real64 Calc_oldCondSupplyTemp(0.0); // save the last iteration value of leaving condenser water temperature
+        EP_GLOBAL bool Get_ErrorsFound(false);
     } // namespace
 
     void SimExhaustAbsorber(std::string const &EP_UNUSED(AbsorberType), // type of Absorber
@@ -2017,7 +2017,7 @@ namespace ChillerExhaustAbsorption {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const AbsLeavingTemp(176.667); // C - Minimum temperature leaving the Chiller absorber (350 F)
-        thread_local static std::string const RoutineName("CalcExhaustAbsorberHeaterModel");
+        EP_GLOBAL static std::string const RoutineName("CalcExhaustAbsorberHeaterModel");
         // INTEGER    :: ExhTempLTAbsLeavingTempCount      = 0        ! Counter for exhaust temp < absorber leaving air temp warning messages
         // INTERFACE BLOCK SPECIFICATIONS
         // na

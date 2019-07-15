@@ -146,35 +146,35 @@ namespace WindowAC {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const WindowAC_UnitType(1);
-    thread_local std::string const cWindowAC_UnitType("ZoneHVAC:WindowAirConditioner");
-    thread_local Array1D_string const cWindowAC_UnitTypes(1, cWindowAC_UnitType);
+    EP_GLOBAL int const WindowAC_UnitType(1);
+    EP_GLOBAL std::string const cWindowAC_UnitType("ZoneHVAC:WindowAirConditioner");
+    EP_GLOBAL Array1D_string const cWindowAC_UnitTypes(1, cWindowAC_UnitType);
 
     // Compressor operation
-    thread_local int const On(1);  // normal compressor operation
-    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL int const On(1);  // normal compressor operation
+    EP_GLOBAL int const Off(0); // signal DXCoil that compressor shouldn't run
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
     namespace {
-        thread_local bool MyOneTimeFlag(true);
-        thread_local bool ZoneEquipmentListChecked(false);
+        EP_GLOBAL bool MyOneTimeFlag(true);
+        EP_GLOBAL bool ZoneEquipmentListChecked(false);
     } // namespace
 
-    thread_local int NumWindAC(0);
-    thread_local int NumWindACCyc(0);
-    thread_local Array1D_bool MySizeFlag;
-    thread_local bool GetWindowACInputFlag(true); // First time, input is "gotten"
-    thread_local bool CoolingLoad(false);         // defines a cooling load
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL int NumWindAC(0);
+    EP_GLOBAL int NumWindACCyc(0);
+    EP_GLOBAL Array1D_bool MySizeFlag;
+    EP_GLOBAL bool GetWindowACInputFlag(true); // First time, input is "gotten"
+    EP_GLOBAL bool CoolingLoad(false);         // defines a cooling load
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    thread_local Array1D<WindACData> WindAC;
-    thread_local Array1D<WindACNumericFieldData> WindACNumericFields; // holds window AC numeric input fields character field name
+    EP_GLOBAL Array1D<WindACData> WindAC;
+    EP_GLOBAL Array1D<WindACNumericFieldData> WindACNumericFields; // holds window AC numeric input fields character field name
 
     // Functions
 
@@ -338,7 +338,7 @@ namespace WindowAC {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetWindowAC: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetWindowAC: "); // include trailing blank space
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -357,9 +357,9 @@ namespace WindowAC {
         int NumNumbers;                  // Number of Numbers for each GetObjectItem call
         Array1D_int OANodeNums(4);       // Node numbers of Outdoor air mixer (OA, EA, RA, MA)
         int IOStatus;                    // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
-        thread_local static bool errFlag(false);      // Local error flag for GetOAMixerNodeNums
-        thread_local static bool FanErrFlag(false);   // Error flag used in GetFanIndex call
+        EP_GLOBAL static bool ErrorsFound(false);  // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool errFlag(false);      // Local error flag for GetOAMixerNodeNums
+        EP_GLOBAL static bool FanErrFlag(false);   // Error flag used in GetFanIndex call
         Real64 FanVolFlow;               // Fan volumetric flow rate
         bool CoilNodeErrFlag;            // Used in error messages for mining coil outlet node number
         std::string CurrentModuleObject; // Object type for getting and error messages
@@ -369,7 +369,7 @@ namespace WindowAC {
         Array1D<Real64> Numbers;         // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        EP_GLOBAL static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //  INTEGER                              :: FanType           ! Integer index for Fan type
         int CtrlZone;          // index to loop counter
         int NodeNum;           // index to loop counter
@@ -867,8 +867,8 @@ namespace WindowAC {
         // static bool ZoneEquipmentListChecked( false ); // True after the Zone Equipment List has been checked for items
         ////////////////////////////////////////////////////////////////////////////////////
         int Loop;                         // loop counter
-        thread_local static Array1D_bool MyEnvrnFlag;  // one time initialization flag
-        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;  // one time initialization flag
+        EP_GLOBAL static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
         Real64 QToCoolSetPt;              // sensible load to cooling setpoint (W)
         Real64 NoCompOutput;              // sensible load delivered with compressor off (W)
 
@@ -1024,7 +1024,7 @@ namespace WindowAC {
         using ReportSizingManager::RequestSizing;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeWindowAC: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("SizeWindowAC: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 MaxAirVolFlowDes;  // Autosized maximum air flow for reporting

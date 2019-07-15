@@ -62,7 +62,7 @@ namespace HybridUnitaryAirConditioners {
 
     using HybridEvapCoolingModel::CSetting;
     using HybridEvapCoolingModel::Model;
-    thread_local extern Array1D<Model> ZoneHybridUnitaryAirConditioner;
+    EP_GLOBAL extern Array1D<Model> ZoneHybridUnitaryAirConditioner;
 
     // MODULE PARAMETER DEFINITIONS
     void SimZoneHybridUnitaryAirConditioners(std::string const &CompName,    // name of the packaged terminal heat pump

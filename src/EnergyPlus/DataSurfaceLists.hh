@@ -74,9 +74,9 @@ namespace DataSurfaceLists {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumOfSurfaceLists;        // Number of surface lists in the user input file
-    thread_local extern int NumOfSurfListVentSlab;    // Number of surface lists in the user input file
-    thread_local extern bool SurfaceListInputsFilled; // Set to TRUE after first pass through air loop
+    EP_GLOBAL extern int NumOfSurfaceLists;        // Number of surface lists in the user input file
+    EP_GLOBAL extern int NumOfSurfListVentSlab;    // Number of surface lists in the user input file
+    EP_GLOBAL extern bool SurfaceListInputsFilled; // Set to TRUE after first pass through air loop
 
     //  CHARACTER(len=*), PARAMETER :: CurrentModuleObject = ' '
     // SUBROUTINE SPECIFICATIONS FOR MODULE DataSurfaceLists
@@ -120,8 +120,8 @@ namespace DataSurfaceLists {
     };
 
     // Object Data
-    thread_local extern Array1D<SurfaceListData> SurfList;
-    thread_local extern Array1D<SlabListData> SlabList;
+    EP_GLOBAL extern Array1D<SurfaceListData> SurfList;
+    EP_GLOBAL extern Array1D<SlabListData> SlabList;
 
     // Functions
 

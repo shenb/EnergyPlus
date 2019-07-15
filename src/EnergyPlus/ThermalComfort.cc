@@ -135,124 +135,124 @@ namespace ThermalComfort {
 
     namespace {
         // clear_state variables
-        thread_local bool FirstTimeFlag(true);                // Flag set to make sure you get input once
-        thread_local bool FirstTimeSurfaceWeightedFlag(true); // Flag set to make sure certain calcs related to surface weighted option are only done once
+        EP_GLOBAL bool FirstTimeFlag(true);                // Flag set to make sure you get input once
+        EP_GLOBAL bool FirstTimeSurfaceWeightedFlag(true); // Flag set to make sure certain calcs related to surface weighted option are only done once
     }                                            // namespace
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local Real64 const TAbsConv(KelvinConv); // Converter for absolute temperature
-    thread_local Real64 const ActLevelConv(58.2);   // Converter for activity level (1Met = 58.2 W/m2)
-    thread_local Real64 const BodySurfArea(1.8);    // Dubois body surface area of the human body (m2)
-    thread_local Real64 const RadSurfEff(0.72);     // Fraction of surface effective for radiation
-    thread_local Real64 const StefanBoltz(5.67e-8); // Stefan-Boltzmann constant (W/m2K4)
+    EP_GLOBAL Real64 const TAbsConv(KelvinConv); // Converter for absolute temperature
+    EP_GLOBAL Real64 const ActLevelConv(58.2);   // Converter for activity level (1Met = 58.2 W/m2)
+    EP_GLOBAL Real64 const BodySurfArea(1.8);    // Dubois body surface area of the human body (m2)
+    EP_GLOBAL Real64 const RadSurfEff(0.72);     // Fraction of surface effective for radiation
+    EP_GLOBAL Real64 const StefanBoltz(5.67e-8); // Stefan-Boltzmann constant (W/m2K4)
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Real64 AbsAirTemp(0.0);                // Absolute air temperature; K
-    thread_local Real64 AbsCloSurfTemp(0.0);            // Absolute clothing surface temperature; K
-    thread_local Real64 AbsRadTemp(0.0);                // Absolute radiant temperature; K
-    thread_local Real64 AcclPattern(0.0);               // The pattern of acclimation
-    thread_local Real64 ActLevel(0.0);                  // Metabolic rate; w/m2
-    thread_local Real64 AirVel(0.0);                    // Air velocity; m/s
-    thread_local Real64 AirTemp(0.0);                   // Air temperature; C
-    thread_local Real64 CloBodyRat(0.0);                // Ratio of clothed body
-    thread_local Real64 CloInsul(0.0);                  // Clothing insulation
-    thread_local Real64 CloPermeatEff(0.0);             // Clothing permeation efficiency
-    thread_local Real64 CloSurfTemp(0.0);               // Clothing surface temperature; K
-    thread_local Real64 CloThermEff(0.0);               // The Burton thermal efficiency factor for clothing
-    thread_local Real64 CloUnit(0.0);                   // Clothing unit; CLO
-    thread_local Real64 ConvHeatLoss(0.0);              // Convective heat loss
-    thread_local Real64 CoreTempChange(0.0);            // Temperature change of core in 1 minute
-    thread_local Real64 CoreTemp(0.0);                  // Body core temperature
-    thread_local Real64 CoreTempNeut(0.0);              // Body core temperature of neutral state
-    thread_local Real64 CoreThermCap(0.0);              // Thermal capacity of core
-    thread_local Real64 DryHeatLoss(0.0);               // Heat loss from clothing surface due to both convection and radiation
-    thread_local Real64 DryRespHeatLoss(0.0);           // Dry respiration heat loss
-    thread_local Real64 EvapHeatLoss(0.0);              // Evaporative heat loss from skin
-    thread_local Real64 EvapHeatLossDiff(0.0);          // Evaporative heat loss due to moisture diffusion through skin
-    thread_local Real64 EvapHeatLossMax(0.0);           // Maximum evaporative heat loss
-    thread_local Real64 EvapHeatLossRegComf(0.0);       // Evaporative heat loss due to regulatory sweating at the state of comfort
-    thread_local Real64 EvapHeatLossRegSweat(0.0);      // Evaporative heat loss from regulatory sweating
-    thread_local Real64 EvapHeatLossSweat(0.0);         // Evaporative heat loss from the sweat secreted
-    thread_local Real64 EvapHeatLossSweatPrev(0.0);     // Old value of evaporative heat loss from the sweat secreted (KSU)
-    thread_local Real64 H(0.0);                         // Combined heat transfer coefficient
-    thread_local Real64 Hc(0.0);                        // Convective heat transfer coeffiency
-    thread_local Real64 HcFor(0.0);                     // Convective heat transfer coeffiency - Forced
-    thread_local Real64 HcNat(0.0);                     // Convective heat transfer coeffiency - Natural
-    thread_local Real64 HeatFlow(0.0);                  // Heat flow from core to skin
-    thread_local Real64 Hr(0.0);                        // Radiant heat transfer coeffiency
-    thread_local Real64 IntHeatProd(0.0);               // Internal heat production
-    thread_local int IterNum(0);                        // Number of iteration
-    thread_local Real64 LatRespHeatLoss(0.0);           // Latent respiration heat loss
-    thread_local int MaxZoneNum(0);                     // Number of zones
-    thread_local int MRTCalcType(0);                    // The type of MRT calculation (ZoneAveraged or SurfaceWeighted)
-    thread_local Real64 OpTemp(0.0);                    // Operative temperature
-    thread_local int PeopleNum(0);                      // People number
-    thread_local Real64 RadHeatLoss(0.0);               // Radiant heat loss
-    thread_local Real64 RadTemp(0.0);                   // Radiant temperature; C
-    thread_local Real64 RelHum(0.0);                    // Relative humidity; Fraction
-    thread_local Real64 RespHeatLoss(0.0);              // The rate of respiratory heat loss
-    thread_local Real64 SatSkinVapPress(0.0);           // Saturated vapor pressure at skin temperature
-    thread_local Real64 ShivResponse(0.0);              // Metalbolic heat production due to shivering
-    thread_local Real64 SkinComfTemp(0.0);              // Skin temperature required to achieve thermal comfort; C
-    thread_local Real64 SkinComfVPress(0.0);            // Saturated water vapor pressure at required skin temperature; Torr
-    thread_local Real64 SkinTemp(0.0);                  // Skin temperature
-    thread_local Real64 SkinTempChange(0.0);            // Temperature change of skin in 1 minute
-    thread_local Real64 SkinTempNeut(0.0);              // Skin temperature at neutral state
-    thread_local Real64 SkinThermCap(0.0);              // Thermal capacity of Skin
-    thread_local Real64 SkinWetDiff(0.0);               // Skin wettedness for nonsweating portion of skin
-    thread_local Real64 SkinWetSweat(0.0);              // Skin wettedness required to evaporate regulatory sweat
-    thread_local Real64 SkinWetTot(0.0);                // Total skin wettedness
-    thread_local Real64 SkinVapPress(0.0);              // Vapor pressure at skin
-    thread_local Real64 SurfaceTemp(0.0);               // Surface temperature when MRTType is 'SurfaceWeighted'
-    thread_local Real64 ThermCndct(0.0);                // Thermal conductance of skin
-    thread_local Real64 ThermSensTransCoef(0.0);        // Theraml sensation coefficient for PMV
-    thread_local Real64 Time(0.0);                      // Time, hr
-    thread_local Real64 TimeChange(0.0);                // Change of time, hr
-    thread_local Real64 VapPress(0.0);                  // Vapor pressure; Torr  ?? BG Oct 2005 humm, this should be kPa
-    thread_local Real64 VasoconstrictFac(0.0);          // Constriction factor of blood vessel
-    thread_local Real64 VasodilationFac(0.0);           // Dilation factor of blood vessel
-    thread_local Real64 WorkEff(0.0);                   // Energy cosumption by external work; w/m2
-    thread_local int ZoneNum(0);                        // Zone number
-    thread_local Real64 TemporarySixAMTemperature(0.0); // Temperature at 6am
+    EP_GLOBAL Real64 AbsAirTemp(0.0);                // Absolute air temperature; K
+    EP_GLOBAL Real64 AbsCloSurfTemp(0.0);            // Absolute clothing surface temperature; K
+    EP_GLOBAL Real64 AbsRadTemp(0.0);                // Absolute radiant temperature; K
+    EP_GLOBAL Real64 AcclPattern(0.0);               // The pattern of acclimation
+    EP_GLOBAL Real64 ActLevel(0.0);                  // Metabolic rate; w/m2
+    EP_GLOBAL Real64 AirVel(0.0);                    // Air velocity; m/s
+    EP_GLOBAL Real64 AirTemp(0.0);                   // Air temperature; C
+    EP_GLOBAL Real64 CloBodyRat(0.0);                // Ratio of clothed body
+    EP_GLOBAL Real64 CloInsul(0.0);                  // Clothing insulation
+    EP_GLOBAL Real64 CloPermeatEff(0.0);             // Clothing permeation efficiency
+    EP_GLOBAL Real64 CloSurfTemp(0.0);               // Clothing surface temperature; K
+    EP_GLOBAL Real64 CloThermEff(0.0);               // The Burton thermal efficiency factor for clothing
+    EP_GLOBAL Real64 CloUnit(0.0);                   // Clothing unit; CLO
+    EP_GLOBAL Real64 ConvHeatLoss(0.0);              // Convective heat loss
+    EP_GLOBAL Real64 CoreTempChange(0.0);            // Temperature change of core in 1 minute
+    EP_GLOBAL Real64 CoreTemp(0.0);                  // Body core temperature
+    EP_GLOBAL Real64 CoreTempNeut(0.0);              // Body core temperature of neutral state
+    EP_GLOBAL Real64 CoreThermCap(0.0);              // Thermal capacity of core
+    EP_GLOBAL Real64 DryHeatLoss(0.0);               // Heat loss from clothing surface due to both convection and radiation
+    EP_GLOBAL Real64 DryRespHeatLoss(0.0);           // Dry respiration heat loss
+    EP_GLOBAL Real64 EvapHeatLoss(0.0);              // Evaporative heat loss from skin
+    EP_GLOBAL Real64 EvapHeatLossDiff(0.0);          // Evaporative heat loss due to moisture diffusion through skin
+    EP_GLOBAL Real64 EvapHeatLossMax(0.0);           // Maximum evaporative heat loss
+    EP_GLOBAL Real64 EvapHeatLossRegComf(0.0);       // Evaporative heat loss due to regulatory sweating at the state of comfort
+    EP_GLOBAL Real64 EvapHeatLossRegSweat(0.0);      // Evaporative heat loss from regulatory sweating
+    EP_GLOBAL Real64 EvapHeatLossSweat(0.0);         // Evaporative heat loss from the sweat secreted
+    EP_GLOBAL Real64 EvapHeatLossSweatPrev(0.0);     // Old value of evaporative heat loss from the sweat secreted (KSU)
+    EP_GLOBAL Real64 H(0.0);                         // Combined heat transfer coefficient
+    EP_GLOBAL Real64 Hc(0.0);                        // Convective heat transfer coeffiency
+    EP_GLOBAL Real64 HcFor(0.0);                     // Convective heat transfer coeffiency - Forced
+    EP_GLOBAL Real64 HcNat(0.0);                     // Convective heat transfer coeffiency - Natural
+    EP_GLOBAL Real64 HeatFlow(0.0);                  // Heat flow from core to skin
+    EP_GLOBAL Real64 Hr(0.0);                        // Radiant heat transfer coeffiency
+    EP_GLOBAL Real64 IntHeatProd(0.0);               // Internal heat production
+    EP_GLOBAL int IterNum(0);                        // Number of iteration
+    EP_GLOBAL Real64 LatRespHeatLoss(0.0);           // Latent respiration heat loss
+    EP_GLOBAL int MaxZoneNum(0);                     // Number of zones
+    EP_GLOBAL int MRTCalcType(0);                    // The type of MRT calculation (ZoneAveraged or SurfaceWeighted)
+    EP_GLOBAL Real64 OpTemp(0.0);                    // Operative temperature
+    EP_GLOBAL int PeopleNum(0);                      // People number
+    EP_GLOBAL Real64 RadHeatLoss(0.0);               // Radiant heat loss
+    EP_GLOBAL Real64 RadTemp(0.0);                   // Radiant temperature; C
+    EP_GLOBAL Real64 RelHum(0.0);                    // Relative humidity; Fraction
+    EP_GLOBAL Real64 RespHeatLoss(0.0);              // The rate of respiratory heat loss
+    EP_GLOBAL Real64 SatSkinVapPress(0.0);           // Saturated vapor pressure at skin temperature
+    EP_GLOBAL Real64 ShivResponse(0.0);              // Metalbolic heat production due to shivering
+    EP_GLOBAL Real64 SkinComfTemp(0.0);              // Skin temperature required to achieve thermal comfort; C
+    EP_GLOBAL Real64 SkinComfVPress(0.0);            // Saturated water vapor pressure at required skin temperature; Torr
+    EP_GLOBAL Real64 SkinTemp(0.0);                  // Skin temperature
+    EP_GLOBAL Real64 SkinTempChange(0.0);            // Temperature change of skin in 1 minute
+    EP_GLOBAL Real64 SkinTempNeut(0.0);              // Skin temperature at neutral state
+    EP_GLOBAL Real64 SkinThermCap(0.0);              // Thermal capacity of Skin
+    EP_GLOBAL Real64 SkinWetDiff(0.0);               // Skin wettedness for nonsweating portion of skin
+    EP_GLOBAL Real64 SkinWetSweat(0.0);              // Skin wettedness required to evaporate regulatory sweat
+    EP_GLOBAL Real64 SkinWetTot(0.0);                // Total skin wettedness
+    EP_GLOBAL Real64 SkinVapPress(0.0);              // Vapor pressure at skin
+    EP_GLOBAL Real64 SurfaceTemp(0.0);               // Surface temperature when MRTType is 'SurfaceWeighted'
+    EP_GLOBAL Real64 ThermCndct(0.0);                // Thermal conductance of skin
+    EP_GLOBAL Real64 ThermSensTransCoef(0.0);        // Theraml sensation coefficient for PMV
+    EP_GLOBAL Real64 Time(0.0);                      // Time, hr
+    EP_GLOBAL Real64 TimeChange(0.0);                // Change of time, hr
+    EP_GLOBAL Real64 VapPress(0.0);                  // Vapor pressure; Torr  ?? BG Oct 2005 humm, this should be kPa
+    EP_GLOBAL Real64 VasoconstrictFac(0.0);          // Constriction factor of blood vessel
+    EP_GLOBAL Real64 VasodilationFac(0.0);           // Dilation factor of blood vessel
+    EP_GLOBAL Real64 WorkEff(0.0);                   // Energy cosumption by external work; w/m2
+    EP_GLOBAL int ZoneNum(0);                        // Zone number
+    EP_GLOBAL Real64 TemporarySixAMTemperature(0.0); // Temperature at 6am
 
     // time that any zone is not comfortable based on simple ASHRAE 55 using summer clothes
-    thread_local Real64 AnyZoneTimeNotSimpleASH55Summer(0.0);
+    EP_GLOBAL Real64 AnyZoneTimeNotSimpleASH55Summer(0.0);
     // time that any zone is not comfortable based on simple ASHRAE 55 using winter clothes
-    thread_local Real64 AnyZoneTimeNotSimpleASH55Winter(0.0);
+    EP_GLOBAL Real64 AnyZoneTimeNotSimpleASH55Winter(0.0);
     // time that any zone is not comfortable based on simple ASHRAE 55 using summer or winter clothes
-    thread_local Real64 AnyZoneTimeNotSimpleASH55Either(0.0);
+    EP_GLOBAL Real64 AnyZoneTimeNotSimpleASH55Either(0.0);
 
     // time that any zone has unmet met loads
-    thread_local Real64 AnyZoneNotMetHeating(0.0);
-    thread_local Real64 AnyZoneNotMetCooling(0.0);
-    thread_local Real64 AnyZoneNotMetHeatingOccupied(0.0);
-    thread_local Real64 AnyZoneNotMetCoolingOccupied(0.0);
-    thread_local Real64 AnyZoneNotMetOccupied(0.0);
+    EP_GLOBAL Real64 AnyZoneNotMetHeating(0.0);
+    EP_GLOBAL Real64 AnyZoneNotMetCooling(0.0);
+    EP_GLOBAL Real64 AnyZoneNotMetHeatingOccupied(0.0);
+    EP_GLOBAL Real64 AnyZoneNotMetCoolingOccupied(0.0);
+    EP_GLOBAL Real64 AnyZoneNotMetOccupied(0.0);
     // total time from beginning of simulation AnyZoneTimeNotSimpleASH55
-    thread_local Real64 TotalAnyZoneTimeNotSimpleASH55Summer(0.0);
-    thread_local Real64 TotalAnyZoneTimeNotSimpleASH55Winter(0.0);
-    thread_local Real64 TotalAnyZoneTimeNotSimpleASH55Either(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneTimeNotSimpleASH55Summer(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneTimeNotSimpleASH55Winter(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneTimeNotSimpleASH55Either(0.0);
     // total time from beginning of simulation any zone not met
-    thread_local Real64 TotalAnyZoneNotMetHeating(0.0);
-    thread_local Real64 TotalAnyZoneNotMetCooling(0.0);
-    thread_local Real64 TotalAnyZoneNotMetHeatingOccupied(0.0);
-    thread_local Real64 TotalAnyZoneNotMetCoolingOccupied(0.0);
-    thread_local Real64 TotalAnyZoneNotMetOccupied(0.0);
-    thread_local Array1D<Real64> ZoneOccHrs;
-    thread_local bool useEpwData(false);
-    thread_local Array1D<Real64> DailyAveOutTemp(30, 0.0);
+    EP_GLOBAL Real64 TotalAnyZoneNotMetHeating(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneNotMetCooling(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneNotMetHeatingOccupied(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneNotMetCoolingOccupied(0.0);
+    EP_GLOBAL Real64 TotalAnyZoneNotMetOccupied(0.0);
+    EP_GLOBAL Array1D<Real64> ZoneOccHrs;
+    EP_GLOBAL bool useEpwData(false);
+    EP_GLOBAL Array1D<Real64> DailyAveOutTemp(30, 0.0);
 
     // Subroutine Specifications for the Thermal Comfort module
 
     // Object Data
-    thread_local Array1D<ThermalComfortInASH55Type> ThermalComfortInASH55;
-    thread_local Array1D<ThermalComfortSetPointType> ThermalComfortSetPoint;
-    thread_local Array1D<ThermalComfortDataType> ThermalComfortData;
-    thread_local Array1D<AngleFactorData> AngleFactorList; // Angle Factor List data for each Angle Factor List
+    EP_GLOBAL Array1D<ThermalComfortInASH55Type> ThermalComfortInASH55;
+    EP_GLOBAL Array1D<ThermalComfortSetPointType> ThermalComfortSetPoint;
+    EP_GLOBAL Array1D<ThermalComfortDataType> ThermalComfortData;
+    EP_GLOBAL Array1D<AngleFactorData> AngleFactorList; // Angle Factor List data for each Angle Factor List
 
-    thread_local Real64 runningAverageASH(0.0);
+    EP_GLOBAL Real64 runningAverageASH(0.0);
 
     // Functions
     void clear_state()
@@ -358,8 +358,8 @@ namespace ThermalComfort {
         //     DATE WRITTEN   February 2000
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ASH55Flag(false);
-        thread_local static bool CEN15251Flag(false);
+        EP_GLOBAL static bool ASH55Flag(false);
+        EP_GLOBAL static bool CEN15251Flag(false);
 
         if (FirstTimeFlag) {
             InitThermalComfort(); // Mainly sets up output stuff
@@ -1393,9 +1393,9 @@ namespace ThermalComfort {
         Real64 const CloEmiss(0.8); // Clothing Emissivity
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Array1D<Real64> Coeff(2);      // Coefficients used in Range-Kutta's Method
-        thread_local static Array1D<Real64> Temp(2);       // Temperature
-        thread_local static Array1D<Real64> TempChange(2); // Change of temperature
+        EP_GLOBAL static Array1D<Real64> Coeff(2);      // Coefficients used in Range-Kutta's Method
+        EP_GLOBAL static Array1D<Real64> Temp(2);       // Temperature
+        EP_GLOBAL static Array1D<Real64> TempChange(2); // Change of temperature
         Real64 BodyWt;                        // Weight of body, kg
         Real64 DayNum;                        // Number of days of acclimation
         int NumDay;                           // Loop counter for DayNum
@@ -1783,7 +1783,7 @@ namespace ThermalComfort {
         int J;
         Real64 B;
         Real64 H2;
-        thread_local static Array1D<Real64> const A(2, {0.29289321881345, 1.70710678118654});
+        EP_GLOBAL static Array1D<Real64> const A(2, {0.29289321881345, 1.70710678118654});
 
         H2 = 0.5 * H;
 
@@ -1837,7 +1837,7 @@ namespace ThermalComfort {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AllAngleFacSummed;       // Sum of angle factors in each zone
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;
         int Item;                  // Item to be "gotten"
         int NumAlphas;             // Number of Alphas from InputProcessor
@@ -2022,9 +2022,9 @@ namespace ThermalComfort {
         int SurfNum2;                     // surface number used in "for" loop
         int ZoneNum2;                     // zone number index
         Real64 SumAET;                    // Intermediate calculational variable (area*emissivity*T) sum
-        thread_local static Array1D<Real64> SurfaceAE; // Product of area and emissivity for each surface
-        thread_local static Array1D<Real64> ZoneAESum; // Sum of area times emissivity for all zone surfaces
-        thread_local static bool FirstTimeError;       // Only report the error message one time
+        EP_GLOBAL static Array1D<Real64> SurfaceAE; // Product of area and emissivity for each surface
+        EP_GLOBAL static Array1D<Real64> ZoneAESum; // Sum of area times emissivity for all zone surfaces
+        EP_GLOBAL static bool FirstTimeError;       // Only report the error message one time
 
         // Initialize ZoneAESum for all zones and SurfaceAE for all surfaces at the start of the simulation
         if (FirstTimeSurfaceWeightedFlag) {
@@ -2600,22 +2600,22 @@ namespace ThermalComfort {
         using OutputReportTabular::StrToReal;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         std::string lineIn;
         std::string lineAvg;
         std::string epwLine;
-        thread_local static Real64 avgDryBulbASH(0.0);
+        EP_GLOBAL static Real64 avgDryBulbASH(0.0);
         Real64 dryBulb;
-        thread_local static Array1D<Real64> monthlyTemp(12, 0.0);
+        EP_GLOBAL static Array1D<Real64> monthlyTemp(12, 0.0);
         Real64 tComf;
         Real64 numOccupants;
         int statFile;
         int epwFile;
         bool statFileExists;
         bool epwFileExists;
-        thread_local static bool useStatData(false);
+        EP_GLOBAL static bool useStatData(false);
         int readStat;
         int jStartDay;
         int calcStartDay;
@@ -2908,22 +2908,22 @@ namespace ThermalComfort {
         using OutputReportTabular::StrToReal;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Real64 const alpha(0.8);
-        thread_local static Array1D<Real64> const alpha_pow({pow_6(alpha), pow_5(alpha), pow_4(alpha), pow_3(alpha), pow_2(alpha), alpha, 1.0}); // alpha^(7-i)
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static Real64 const alpha(0.8);
+        EP_GLOBAL static Array1D<Real64> const alpha_pow({pow_6(alpha), pow_5(alpha), pow_4(alpha), pow_3(alpha), pow_2(alpha), alpha, 1.0}); // alpha^(7-i)
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         std::string epwLine;
-        thread_local static Real64 avgDryBulbCEN(0.0);
+        EP_GLOBAL static Real64 avgDryBulbCEN(0.0);
         Real64 dryBulb;
         Real64 tComf;
         Real64 tComfLow;
-        thread_local static Real64 runningAverageCEN(0.0);
+        EP_GLOBAL static Real64 runningAverageCEN(0.0);
         Real64 numOccupants;
         int epwFile;
         bool epwFileExists;
-        thread_local static bool useEpwData(false);
-        thread_local static bool firstDaySet(false); // first day is set with initiate -- so do not update
+        EP_GLOBAL static bool useEpwData(false);
+        EP_GLOBAL static bool firstDaySet(false); // first day is set with initiate -- so do not update
         int readStat;
         int jStartDay;
         int calcStartDay;

@@ -114,7 +114,7 @@ namespace ConductionTransferFunctionCalc {
     // nodes per construction.  This limit is a compromise between faster,
     // less accurate solutions and slower, possibly more accurate answers.
 
-    thread_local int const NumOfPerpendNodes(7); // Number of nodes in the direction
+    EP_GLOBAL int const NumOfPerpendNodes(7); // Number of nodes in the direction
     // perpendicular to the main direction of heat transfer.  This is only used
     // when a two-dimensional solution has been requested for a construction
     // with a heat source/sink.
@@ -126,26 +126,26 @@ namespace ConductionTransferFunctionCalc {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array2D<Real64> AExp; // Exponential of AMat
-    thread_local Array2D<Real64> AInv; // Inverse of AMat
-    thread_local Array2D<Real64> AMat; // "A" matrix from Seem's dissertation
+    EP_GLOBAL Array2D<Real64> AExp; // Exponential of AMat
+    EP_GLOBAL Array2D<Real64> AInv; // Inverse of AMat
+    EP_GLOBAL Array2D<Real64> AMat; // "A" matrix from Seem's dissertation
     // (constant coefficients of linear system)
-    thread_local Array1D<Real64> BMat(3); // "B" matrix of state space method (non-zero elements)
-    thread_local Array1D<Real64> CMat(2); // "C" matrix of state space method (non-zero elements)
-    thread_local Array1D<Real64> DMat(2); // "D" matrix of state space method (non-zero elements)
-    thread_local Array1D<Real64> e;       // Coefficients for the surface flux history term
-    thread_local Array2D<Real64> Gamma1;  // Intermediate calculation array corresponding to a term
+    EP_GLOBAL Array1D<Real64> BMat(3); // "B" matrix of state space method (non-zero elements)
+    EP_GLOBAL Array1D<Real64> CMat(2); // "C" matrix of state space method (non-zero elements)
+    EP_GLOBAL Array1D<Real64> DMat(2); // "D" matrix of state space method (non-zero elements)
+    EP_GLOBAL Array1D<Real64> e;       // Coefficients for the surface flux history term
+    EP_GLOBAL Array2D<Real64> Gamma1;  // Intermediate calculation array corresponding to a term
     // in Seem's dissertation
-    thread_local Array2D<Real64> Gamma2; // Intermediate calculation array corresponding to a term
+    EP_GLOBAL Array2D<Real64> Gamma2; // Intermediate calculation array corresponding to a term
     // in Seem's dissertation
-    thread_local int NodeSource;   // Node at which a source or sink is present
-    thread_local int NodeUserTemp; // Node where user wishes to calculate a temperature
+    EP_GLOBAL int NodeSource;   // Node at which a source or sink is present
+    EP_GLOBAL int NodeUserTemp; // Node where user wishes to calculate a temperature
     // (for constructions with sources/sinks only)
-    thread_local int rcmax;                // Total number of nodes in the construct (<= MaxTotNodes)
-    thread_local Array3D<Real64> s;        // Coefficients for the surface temperature history terms
-    thread_local Array2D<Real64> s0(3, 4); // Coefficients for the current surface temperature terms
-    thread_local Real64 TinyLimit;
-    thread_local Array2D<Real64> IdenMatrix; // Identity Matrix
+    EP_GLOBAL int rcmax;                // Total number of nodes in the construct (<= MaxTotNodes)
+    EP_GLOBAL Array3D<Real64> s;        // Coefficients for the surface temperature history terms
+    EP_GLOBAL Array2D<Real64> s0(3, 4); // Coefficients for the current surface temperature terms
+    EP_GLOBAL Real64 TinyLimit;
+    EP_GLOBAL Array2D<Real64> IdenMatrix; // Identity Matrix
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ConductionTransferFunctionCalc
 
@@ -278,7 +278,7 @@ namespace ConductionTransferFunctionCalc {
         Real64 dxtmp;                             // Intermediate calculation variable ( = 1/dx/cap)
         Real64 dyn;                               // Nodal spacing in the direction perpendicular to the main direction
         // of heat transfer (only valid for a 2-D solution)
-        thread_local static bool ErrorsFound(false); // Flag for input error condition
+        EP_GLOBAL static bool ErrorsFound(false); // Flag for input error condition
         int HistTerm;                   // Loop counter
         int ipts1;                      // Intermediate calculation for number of nodes per layer
         int ir;                         // Loop control for constructing Identity Matrix
@@ -2158,15 +2158,15 @@ namespace ConductionTransferFunctionCalc {
         int I;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_700("(' Construction CTF,',A,3(',',I4),',',F8.3,',',G15.4,4(',',F8.3),',',A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_701("(' Material CTF Summary,',A,',',F8.4,',',F14.3,',',F11.3,',',F13.3,',',G12.4)");
-        thread_local static ObjexxFCL::gio::Fmt Format_702("(' Material:Air,',A,',',G12.4)");
-        thread_local static ObjexxFCL::gio::Fmt Format_703("(' CTF,',I4,4(',',G20.8))");
-        thread_local static ObjexxFCL::gio::Fmt Format_704("(' CTF,',I4,3(',',G20.8))");
-        thread_local static ObjexxFCL::gio::Fmt Format_705("(' QTF,',I4,2(',',G20.8))");
-        thread_local static ObjexxFCL::gio::Fmt Format_706("(' Source/Sink Loc Internal Temp QTF,',I4,3(',',G20.8))");
-        thread_local static ObjexxFCL::gio::Fmt Format_707("(' User Loc Internal Temp QTF,',I4,3(',',G20.8))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_700("(' Construction CTF,',A,3(',',I4),',',F8.3,',',G15.4,4(',',F8.3),',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_701("(' Material CTF Summary,',A,',',F8.4,',',F14.3,',',F11.3,',',F13.3,',',G12.4)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_702("(' Material:Air,',A,',',G12.4)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_703("(' CTF,',I4,4(',',G20.8))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_704("(' CTF,',I4,3(',',G20.8))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_705("(' QTF,',I4,2(',',G20.8))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_706("(' Source/Sink Loc Internal Temp QTF,',I4,3(',',G20.8))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_707("(' User Loc Internal Temp QTF,',I4,3(',',G20.8))");
 
         ScanForReports("Constructions", DoReport, "Constructions");
 

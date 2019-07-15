@@ -67,31 +67,31 @@ namespace RuntimeLanguageProcessor {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const MaxErrors;
+    EP_GLOBAL extern int const MaxErrors;
 
     // keyword parameters for types of Erl statements
-    thread_local extern int const KeywordNone;     // statement type not set
-    thread_local extern int const KeywordReturn;   // Return statement, as in leave program
-    thread_local extern int const KeywordGoto;     // Goto statement, used in parsing to manage IF-ElseIf-Else-EndIf and nesting
-    thread_local extern int const KeywordSet;      // Set statement, as in assign RHS to LHS
-    thread_local extern int const KeywordRun;      // Run statement, used to call a subroutine from a main program
-    thread_local extern int const KeywordIf;       // If statement, begins an IF-ElseIf-Else-EndIf logic block
-    thread_local extern int const KeywordElseIf;   // ElseIf statement, begins an ElseIf block
-    thread_local extern int const KeywordElse;     // Else statement, begins an Else block
-    thread_local extern int const KeywordEndIf;    // EndIf statement, terminates an IF-ElseIf-Else-EndIf logic block
-    thread_local extern int const KeywordWhile;    // While statement, begins a While block
-    thread_local extern int const KeywordEndWhile; // EndWhile statement, terminates a While block
+    EP_GLOBAL extern int const KeywordNone;     // statement type not set
+    EP_GLOBAL extern int const KeywordReturn;   // Return statement, as in leave program
+    EP_GLOBAL extern int const KeywordGoto;     // Goto statement, used in parsing to manage IF-ElseIf-Else-EndIf and nesting
+    EP_GLOBAL extern int const KeywordSet;      // Set statement, as in assign RHS to LHS
+    EP_GLOBAL extern int const KeywordRun;      // Run statement, used to call a subroutine from a main program
+    EP_GLOBAL extern int const KeywordIf;       // If statement, begins an IF-ElseIf-Else-EndIf logic block
+    EP_GLOBAL extern int const KeywordElseIf;   // ElseIf statement, begins an ElseIf block
+    EP_GLOBAL extern int const KeywordElse;     // Else statement, begins an Else block
+    EP_GLOBAL extern int const KeywordEndIf;    // EndIf statement, terminates an IF-ElseIf-Else-EndIf logic block
+    EP_GLOBAL extern int const KeywordWhile;    // While statement, begins a While block
+    EP_GLOBAL extern int const KeywordEndWhile; // EndWhile statement, terminates a While block
 
     // token type parameters for Erl code parsing
-    thread_local extern int const TokenNumber;     // matches the ValueNumber
-    thread_local extern int const TokenVariable;   // matches the ValueVariable
-    thread_local extern int const TokenExpression; // matches the ValueExpression
-    thread_local extern int const TokenOperator;   // includes basic operators and built-in functions.
+    EP_GLOBAL extern int const TokenNumber;     // matches the ValueNumber
+    EP_GLOBAL extern int const TokenVariable;   // matches the ValueVariable
+    EP_GLOBAL extern int const TokenExpression; // matches the ValueExpression
+    EP_GLOBAL extern int const TokenOperator;   // includes basic operators and built-in functions.
 
-    thread_local extern int const TokenParenthesis; // parenthesis token
+    EP_GLOBAL extern int const TokenParenthesis; // parenthesis token
 
-    thread_local extern int const ParenthesisLeft;  // indicates left side parenthesis found in parsing
-    thread_local extern int const ParenthesisRight; // indicates right side parenthesis found in parsing
+    EP_GLOBAL extern int const ParenthesisLeft;  // indicates left side parenthesis found in parsing
+    EP_GLOBAL extern int const ParenthesisRight; // indicates right side parenthesis found in parsing
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -101,37 +101,37 @@ namespace RuntimeLanguageProcessor {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern bool GetInput;
-    thread_local extern bool InitializeOnce;
-    thread_local extern bool MyEnvrnFlag;
+    EP_GLOBAL extern bool GetInput;
+    EP_GLOBAL extern bool InitializeOnce;
+    EP_GLOBAL extern bool MyEnvrnFlag;
 
     // index pointer references to dynamic built-in variables
-    thread_local extern int NullVariableNum;
-    thread_local extern int FalseVariableNum;
-    thread_local extern int TrueVariableNum;
-    thread_local extern int OffVariableNum;
-    thread_local extern int OnVariableNum;
-    thread_local extern int PiVariableNum;
-    thread_local extern Array1D_int CurveIndexVariableNums;
-    thread_local extern Array1D_int ConstructionIndexVariableNums;
-    thread_local extern int YearVariableNum;
-    thread_local extern int MonthVariableNum;
-    thread_local extern int DayOfMonthVariableNum;
-    thread_local extern int DayOfWeekVariableNum;
-    thread_local extern int DayOfYearVariableNum;
-    thread_local extern int HourVariableNum;
-    thread_local extern int MinuteVariableNum;
-    thread_local extern int HolidayVariableNum;
-    thread_local extern int DSTVariableNum;
-    thread_local extern int CurrentTimeVariableNum;
-    thread_local extern int SunIsUpVariableNum;
-    thread_local extern int IsRainingVariableNum;
-    thread_local extern int SystemTimeStepVariableNum;
-    thread_local extern int ZoneTimeStepVariableNum;
-    thread_local extern int CurrentEnvironmentPeriodNum;
-    thread_local extern int ActualDateAndTimeNum;
-    thread_local extern int ActualTimeNum;
-    thread_local extern int WarmUpFlagNum;
+    EP_GLOBAL extern int NullVariableNum;
+    EP_GLOBAL extern int FalseVariableNum;
+    EP_GLOBAL extern int TrueVariableNum;
+    EP_GLOBAL extern int OffVariableNum;
+    EP_GLOBAL extern int OnVariableNum;
+    EP_GLOBAL extern int PiVariableNum;
+    EP_GLOBAL extern Array1D_int CurveIndexVariableNums;
+    EP_GLOBAL extern Array1D_int ConstructionIndexVariableNums;
+    EP_GLOBAL extern int YearVariableNum;
+    EP_GLOBAL extern int MonthVariableNum;
+    EP_GLOBAL extern int DayOfMonthVariableNum;
+    EP_GLOBAL extern int DayOfWeekVariableNum;
+    EP_GLOBAL extern int DayOfYearVariableNum;
+    EP_GLOBAL extern int HourVariableNum;
+    EP_GLOBAL extern int MinuteVariableNum;
+    EP_GLOBAL extern int HolidayVariableNum;
+    EP_GLOBAL extern int DSTVariableNum;
+    EP_GLOBAL extern int CurrentTimeVariableNum;
+    EP_GLOBAL extern int SunIsUpVariableNum;
+    EP_GLOBAL extern int IsRainingVariableNum;
+    EP_GLOBAL extern int SystemTimeStepVariableNum;
+    EP_GLOBAL extern int ZoneTimeStepVariableNum;
+    EP_GLOBAL extern int CurrentEnvironmentPeriodNum;
+    EP_GLOBAL extern int ActualDateAndTimeNum;
+    EP_GLOBAL extern int ActualTimeNum;
+    EP_GLOBAL extern int WarmUpFlagNum;
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -170,7 +170,7 @@ namespace RuntimeLanguageProcessor {
     };
 
     // Object Data
-    thread_local extern Array1D<RuntimeReportVarType> RuntimeReportVar;
+    EP_GLOBAL extern Array1D<RuntimeReportVarType> RuntimeReportVar;
 
     // Functions
     void clear_state();

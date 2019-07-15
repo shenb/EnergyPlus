@@ -131,59 +131,59 @@ namespace CurveManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // Curve Type parameters, these can differ from object types (e.g. a CurveType_TableOneIV can be linear, quadratic, etc)
-    thread_local int const Linear(1);
-    thread_local int const BiLinear(2);
-    thread_local int const Quadratic(3);
-    thread_local int const BiQuadratic(4);
-    thread_local int const Cubic(5);
-    thread_local int const QuadraticLinear(6);
-    thread_local int const BiCubic(7);
-    thread_local int const TriQuadratic(8);
-    thread_local int const Exponent(9);
-    thread_local int const Quartic(10);
-    thread_local int const FanPressureRise(11);
-    thread_local int const ExponentialSkewNormal(12);
-    thread_local int const Sigmoid(13);
-    thread_local int const RectangularHyperbola1(14);
-    thread_local int const RectangularHyperbola2(15);
-    thread_local int const ExponentialDecay(16);
-    thread_local int const DoubleExponentialDecay(17);
-    thread_local int const QuadLinear(18);
-    thread_local int const CubicLinear(19);
-    thread_local int const ChillerPartLoadWithLift(20);
+    EP_GLOBAL int const Linear(1);
+    EP_GLOBAL int const BiLinear(2);
+    EP_GLOBAL int const Quadratic(3);
+    EP_GLOBAL int const BiQuadratic(4);
+    EP_GLOBAL int const Cubic(5);
+    EP_GLOBAL int const QuadraticLinear(6);
+    EP_GLOBAL int const BiCubic(7);
+    EP_GLOBAL int const TriQuadratic(8);
+    EP_GLOBAL int const Exponent(9);
+    EP_GLOBAL int const Quartic(10);
+    EP_GLOBAL int const FanPressureRise(11);
+    EP_GLOBAL int const ExponentialSkewNormal(12);
+    EP_GLOBAL int const Sigmoid(13);
+    EP_GLOBAL int const RectangularHyperbola1(14);
+    EP_GLOBAL int const RectangularHyperbola2(15);
+    EP_GLOBAL int const ExponentialDecay(16);
+    EP_GLOBAL int const DoubleExponentialDecay(17);
+    EP_GLOBAL int const QuadLinear(18);
+    EP_GLOBAL int const CubicLinear(19);
+    EP_GLOBAL int const ChillerPartLoadWithLift(20);
 
     // Interpolation Types
-    thread_local int const LinearInterpolationOfTable(1);
-    thread_local int const LagrangeInterpolationLinearExtrapolation(2);
-    thread_local int const EvaluateCurveToLimits(3);
+    EP_GLOBAL int const LinearInterpolationOfTable(1);
+    EP_GLOBAL int const LagrangeInterpolationLinearExtrapolation(2);
+    EP_GLOBAL int const EvaluateCurveToLimits(3);
 
     // Data Format
-    thread_local int const SINGLELINEINDEPENDENTVARIABLEWITHMATRIX(1);
+    EP_GLOBAL int const SINGLELINEINDEPENDENTVARIABLEWITHMATRIX(1);
 
     // Sort Order
-    thread_local int const ASCENDING(1);
-    thread_local int const DESCENDING(2);
+    EP_GLOBAL int const ASCENDING(1);
+    EP_GLOBAL int const DESCENDING(2);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local int NumCurves(0);              // Autodesk Was used unintialized in InitCurveReporting
-    thread_local bool GetCurvesInputFlag(true); // First time, input is "gotten"
+    EP_GLOBAL int NumCurves(0);              // Autodesk Was used unintialized in InitCurveReporting
+    EP_GLOBAL bool GetCurvesInputFlag(true); // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    thread_local Array1D<PerfomanceCurveData> PerfCurve;
-    thread_local Array1D<PerfCurveTableDataStruct> PerfCurveTableData;
-    thread_local Array1D<TableDataStruct> TableData;
-    thread_local Array1D<TableDataStruct> TempTableData;
-    thread_local Array1D<TableDataStruct> Temp2TableData;
-    thread_local Array1D<TableLookupData> TableLookup;
-    thread_local std::unordered_map<std::string, std::string> UniqueCurveNames;
+    EP_GLOBAL Array1D<PerfomanceCurveData> PerfCurve;
+    EP_GLOBAL Array1D<PerfCurveTableDataStruct> PerfCurveTableData;
+    EP_GLOBAL Array1D<TableDataStruct> TableData;
+    EP_GLOBAL Array1D<TableDataStruct> TempTableData;
+    EP_GLOBAL Array1D<TableDataStruct> Temp2TableData;
+    EP_GLOBAL Array1D<TableLookupData> TableLookup;
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueCurveNames;
 
     // Functions
 
@@ -293,7 +293,7 @@ namespace CurveManager {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyBeginTimeStepFlag;
+        EP_GLOBAL static bool MyBeginTimeStepFlag;
 
         // need to be careful on where and how resetting curve outputs to some "iactive value" is done
         // EMS can intercept curves and modify output
@@ -411,13 +411,13 @@ namespace CurveManager {
         int NumNumbers;                  // Number of Numbers for each GetObjectItem call
         int IOStatus;                    // Used in GetObjectItem
         std::string CurrentModuleObject; // for ease in renaming.
-        thread_local static int MaxTableNums(0);      // Maximum number of numeric input fields in Tables
-        thread_local static int MaxTableData(0);      // Maximum number of numeric input field pairs in Tables
-        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        EP_GLOBAL static int MaxTableNums(0);      // Maximum number of numeric input fields in Tables
+        EP_GLOBAL static int MaxTableData(0);      // Maximum number of numeric input field pairs in Tables
+        EP_GLOBAL static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //   certain object in the input file
-        thread_local static int TableNum(0);        // Index to TableData structure
-        thread_local static int TableDataIndex(0);  // Loop counter for table data
-        thread_local static int NumTableEntries(0); // Number of data pairs in table data
+        EP_GLOBAL static int TableNum(0);        // Index to TableData structure
+        EP_GLOBAL static int TableDataIndex(0);  // Loop counter for table data
+        EP_GLOBAL static int NumTableEntries(0); // Number of data pairs in table data
         int NumXVar;
         int NumX2Var;
         Array1D<Real64> XVar;
@@ -3271,8 +3271,8 @@ namespace CurveManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3303,7 +3303,7 @@ namespace CurveManager {
         int TotalDataSets;
         int NumbersOffset;
         int BaseOffset;
-        thread_local static bool WriteHeaderOnce(true); // eio header file write flag
+        EP_GLOBAL static bool WriteHeaderOnce(true); // eio header file write flag
         std::string CharTableData;         // used to echo each line of table data read in to eio file
         bool EchoTableDataToEio;           // logical set equal to global and used to report to eio file
         bool FileExists;
@@ -3311,12 +3311,12 @@ namespace CurveManager {
         non_adv.na_on(); // For non-advancing list-directed output
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_140("('! Reading external file tabular data for ',A,' \"',A,'\"')");
-        thread_local static ObjexxFCL::gio::Fmt Format_150("('! Reading tabular data for ',A,' \"',A,'\"')");
-        thread_local static ObjexxFCL::gio::Fmt Format_110("('! <READING LOOKUP TABLE DATA>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_130("('READING LOOKUP TABLE DATA')");
-        thread_local static ObjexxFCL::gio::Fmt Format_131("('END READING LOOKUP TABLE DATA')");
-        thread_local static ObjexxFCL::gio::Fmt Format_160("(1X,10(I2,:,2X))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_140("('! Reading external file tabular data for ',A,' \"',A,'\"')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_150("('! Reading tabular data for ',A,' \"',A,'\"')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_110("('! <READING LOOKUP TABLE DATA>')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_130("('READING LOOKUP TABLE DATA')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_131("('END READING LOOKUP TABLE DATA')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_160("(1X,10(I2,:,2X))");
 
         // Autodesk:Uninit Initialize variables used uninitialized
         TotalDataSets = 0; // Autodesk:Uninit Force default initialization
@@ -4455,7 +4455,7 @@ namespace CurveManager {
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
 
-        thread_local static Real64 const sqrt_2_inv(1.0 / std::sqrt(2.0));
+        EP_GLOBAL static Real64 const sqrt_2_inv(1.0 / std::sqrt(2.0));
 
         Real64 CoeffZ1;         // cpw22Aug2010 Coefficient Z1 in exponential skew normal curve
         Real64 CoeffZ2;         // cpw22Aug2010 Coefficient Z2 in exponential skew normal curve
@@ -5236,35 +5236,35 @@ namespace CurveManager {
         Array1D<Real64> Results; // performance curve coefficients
         Array2D<Real64> A;       // linear algebra matrix
         std::string StrCurve;    // string representation of curve type
-        thread_local static bool WriteHeaderOnce(true);
+        EP_GLOBAL static bool WriteHeaderOnce(true);
         bool EchoTableDataToEio; // logical set equal to global and used to report to eio file
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_110("('! <CREATING NEW CURVE OBJECT>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_130("('CREATING NEW CURVE OBJECT')");
-        thread_local static ObjexxFCL::gio::Fmt Format_140("('! Input as ',A,' \"',A,'\"')");
-        thread_local static ObjexxFCL::gio::Fmt Format_150("('! RSquared       = ',A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_160("('! Standard Error = ',A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_170("('! Sample Size    = ',A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_180("('Curve:',A,',')");
-        thread_local static ObjexxFCL::gio::Fmt Format_190("('FromTable_',A,',  !- Name')");
-        thread_local static ObjexxFCL::gio::Fmt Format_200("('  ',A,',  !- Coefficient1 Constant')");
-        thread_local static ObjexxFCL::gio::Fmt Format_210("('  ',A,',  !- Coefficient2 x')");
-        thread_local static ObjexxFCL::gio::Fmt Format_300("('  ',A,',  !- Minimum Value of x')");
-        thread_local static ObjexxFCL::gio::Fmt Format_310("('  ',A,',  !- Maximum Value of x')");
-        thread_local static ObjexxFCL::gio::Fmt Format_340("('  ',A,',  !- Minimum Curve Output')");
-        thread_local static ObjexxFCL::gio::Fmt Format_350("('  ',A,';  !- Maximum Curve Output')");
-        thread_local static ObjexxFCL::gio::Fmt Format_360("('END CREATING NEW CURVE OBJECT')");
-        thread_local static ObjexxFCL::gio::Fmt Format_220("('  ',A,',  !- Coefficient3 x**2')");
-        thread_local static ObjexxFCL::gio::Fmt Format_230("('  ',A,',  !- !- Coefficient4 x**3')");
-        thread_local static ObjexxFCL::gio::Fmt Format_240("('  ',A,',  !- Coefficient4 y')");
-        thread_local static ObjexxFCL::gio::Fmt Format_250("('  ',A,',  !- !- Coefficient5 x**4')");
-        thread_local static ObjexxFCL::gio::Fmt Format_260("('  ',A,',  !- Coefficient5 y**2')");
-        thread_local static ObjexxFCL::gio::Fmt Format_270("('  ',A,',  !- Coefficient5 xy')");
-        thread_local static ObjexxFCL::gio::Fmt Format_280("('  ',A,',  !- Coefficient6 x*y')");
-        thread_local static ObjexxFCL::gio::Fmt Format_290("('  ',A,',  !- Coefficient6 x**2y')");
-        thread_local static ObjexxFCL::gio::Fmt Format_320("('  ',A,',  !- Minimum Value of y')");
-        thread_local static ObjexxFCL::gio::Fmt Format_330("('  ',A,',  !- Maximum Value of y')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_110("('! <CREATING NEW CURVE OBJECT>')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_130("('CREATING NEW CURVE OBJECT')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_140("('! Input as ',A,' \"',A,'\"')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_150("('! RSquared       = ',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_160("('! Standard Error = ',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_170("('! Sample Size    = ',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_180("('Curve:',A,',')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_190("('FromTable_',A,',  !- Name')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_200("('  ',A,',  !- Coefficient1 Constant')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_210("('  ',A,',  !- Coefficient2 x')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_300("('  ',A,',  !- Minimum Value of x')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_310("('  ',A,',  !- Maximum Value of x')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_340("('  ',A,',  !- Minimum Curve Output')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_350("('  ',A,';  !- Maximum Curve Output')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_360("('END CREATING NEW CURVE OBJECT')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_220("('  ',A,',  !- Coefficient3 x**2')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_230("('  ',A,',  !- !- Coefficient4 x**3')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_240("('  ',A,',  !- Coefficient4 y')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_250("('  ',A,',  !- !- Coefficient5 x**4')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_260("('  ',A,',  !- Coefficient5 y**2')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_270("('  ',A,',  !- Coefficient5 xy')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_280("('  ',A,',  !- Coefficient6 x*y')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_290("('  ',A,',  !- Coefficient6 x**2y')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_320("('  ',A,',  !- Minimum Value of y')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_330("('  ',A,',  !- Maximum Value of y')");
 
         EchoTableDataToEio = DisplayAdvancedReportVariables;
 
@@ -6168,7 +6168,7 @@ namespace CurveManager {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const CurveObjectName("Curve:Functional:PressureDrop");
+        EP_GLOBAL static std::string const CurveObjectName("Curve:Functional:PressureDrop");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumPressure;
@@ -6177,7 +6177,7 @@ namespace CurveManager {
         int NumAlphas;                // Number of Alphas for each GetObjectItem call
         int NumNumbers;               // Number of Numbers for each GetObjectItem call
         int IOStatus;                 // Used in GetObjectItem
-        thread_local static bool ErrsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrsFound(false); // Set to true if errors in input, fatal at end of routine
         int CurveNum;
 
         NumPressure = inputProcessor->getNumObjectsFound(CurveObjectName);
@@ -6447,7 +6447,7 @@ namespace CurveManager {
         Real64 Term3;
         std::string RR;
         std::string Re;
-        thread_local static bool FrictionFactorErrorHasOccurred(false);
+        EP_GLOBAL static bool FrictionFactorErrorHasOccurred(false);
 
         // Check for no flow before calculating values
         if (ReynoldsNumber == 0.0) {

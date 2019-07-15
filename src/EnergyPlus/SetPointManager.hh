@@ -65,104 +65,104 @@ namespace SetPointManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const MaxTemp;
-    thread_local extern int const MinTemp;
-    thread_local extern int const TempFirst;
-    thread_local extern int const FlowFirst;
-    thread_local extern int const iRefTempType_WetBulb;
-    thread_local extern int const iRefTempType_DryBulb;
-    thread_local extern int const iRefGroundTempObjType_BuildingSurface;
-    thread_local extern int const iRefGroundTempObjType_Shallow;
-    thread_local extern int const iRefGroundTempObjType_Deep;
-    thread_local extern int const iRefGroundTempObjType_FCfactorMethod;
+    EP_GLOBAL extern int const MaxTemp;
+    EP_GLOBAL extern int const MinTemp;
+    EP_GLOBAL extern int const TempFirst;
+    EP_GLOBAL extern int const FlowFirst;
+    EP_GLOBAL extern int const iRefTempType_WetBulb;
+    EP_GLOBAL extern int const iRefTempType_DryBulb;
+    EP_GLOBAL extern int const iRefGroundTempObjType_BuildingSurface;
+    EP_GLOBAL extern int const iRefGroundTempObjType_Shallow;
+    EP_GLOBAL extern int const iRefGroundTempObjType_Deep;
+    EP_GLOBAL extern int const iRefGroundTempObjType_FCfactorMethod;
 
     // following are used to reduce string comparisons related to CtrlVarType
-    thread_local extern int const iCtrlVarType_Temp;        // control type 'Temperature'
-    thread_local extern int const iCtrlVarType_MaxTemp;     // control type 'MaximumTemperature'
-    thread_local extern int const iCtrlVarType_MinTemp;     // control type 'MinimumTemperature'
-    thread_local extern int const iCtrlVarType_HumRat;      // control Type 'HumidityRatio'
-    thread_local extern int const iCtrlVarType_MaxHumRat;   // control Type 'MaximumHumidityRatio'
-    thread_local extern int const iCtrlVarType_MinHumRat;   // control Type 'MinimumHumidityRatio'
-    thread_local extern int const iCtrlVarType_MassFlow;    // control type 'MassFlowRate'
-    thread_local extern int const iCtrlVarType_MaxMassFlow; // control Type 'MaximumMassFlowRate'
-    thread_local extern int const iCtrlVarType_MinMassFlow; // control Type 'MinimumMassFlowRate'
+    EP_GLOBAL extern int const iCtrlVarType_Temp;        // control type 'Temperature'
+    EP_GLOBAL extern int const iCtrlVarType_MaxTemp;     // control type 'MaximumTemperature'
+    EP_GLOBAL extern int const iCtrlVarType_MinTemp;     // control type 'MinimumTemperature'
+    EP_GLOBAL extern int const iCtrlVarType_HumRat;      // control Type 'HumidityRatio'
+    EP_GLOBAL extern int const iCtrlVarType_MaxHumRat;   // control Type 'MaximumHumidityRatio'
+    EP_GLOBAL extern int const iCtrlVarType_MinHumRat;   // control Type 'MinimumHumidityRatio'
+    EP_GLOBAL extern int const iCtrlVarType_MassFlow;    // control type 'MassFlowRate'
+    EP_GLOBAL extern int const iCtrlVarType_MaxMassFlow; // control Type 'MaximumMassFlowRate'
+    EP_GLOBAL extern int const iCtrlVarType_MinMassFlow; // control Type 'MinimumMassFlowRate'
 
-    thread_local extern int const NumValidCtrlTypes;
-    thread_local extern Array1D_string const cValidCtrlTypes;
+    EP_GLOBAL extern int const NumValidCtrlTypes;
+    EP_GLOBAL extern Array1D_string const cValidCtrlTypes;
 
     // following are used to reduce string comparisons related to CtrlVarType
-    thread_local extern int const iSPMType_Scheduled;
-    thread_local extern int const iSPMType_ScheduledDual;
-    thread_local extern int const iSPMType_OutsideAir;
-    thread_local extern int const iSPMType_SZReheat;
-    thread_local extern int const iSPMType_SZHeating;
-    thread_local extern int const iSPMType_SZCooling;
-    thread_local extern int const iSPMType_SZMinHum;
-    thread_local extern int const iSPMType_SZMaxHum;
-    thread_local extern int const iSPMType_MixedAir;
-    thread_local extern int const iSPMType_OutsideAirPretreat;
-    thread_local extern int const iSPMType_Warmest;
-    thread_local extern int const iSPMType_Coldest;
-    thread_local extern int const iSPMType_WarmestTempFlow;
-    thread_local extern int const iSPMType_RAB;
-    thread_local extern int const iSPMType_MZCoolingAverage;
-    thread_local extern int const iSPMType_MZHeatingAverage;
-    thread_local extern int const iSPMType_MZMinHumAverage;
-    thread_local extern int const iSPMType_MZMaxHumAverage;
-    thread_local extern int const iSPMType_MZMinHum;
-    thread_local extern int const iSPMType_MZMaxHum;
-    thread_local extern int const iSPMType_FollowOATemp;
-    thread_local extern int const iSPMType_FollowSysNodeTemp;
-    thread_local extern int const iSPMType_GroundTemp;
-    thread_local extern int const iSPMType_CondEntReset;
-    thread_local extern int const iSPMType_IdealCondEntReset;
-    thread_local extern int const iSPMType_SZOneStageCooling;
-    thread_local extern int const iSPMType_SZOneStageHeating;
-    thread_local extern int const iSPMType_ReturnWaterResetChW;
-    thread_local extern int const iSPMType_ReturnWaterResetHW;
+    EP_GLOBAL extern int const iSPMType_Scheduled;
+    EP_GLOBAL extern int const iSPMType_ScheduledDual;
+    EP_GLOBAL extern int const iSPMType_OutsideAir;
+    EP_GLOBAL extern int const iSPMType_SZReheat;
+    EP_GLOBAL extern int const iSPMType_SZHeating;
+    EP_GLOBAL extern int const iSPMType_SZCooling;
+    EP_GLOBAL extern int const iSPMType_SZMinHum;
+    EP_GLOBAL extern int const iSPMType_SZMaxHum;
+    EP_GLOBAL extern int const iSPMType_MixedAir;
+    EP_GLOBAL extern int const iSPMType_OutsideAirPretreat;
+    EP_GLOBAL extern int const iSPMType_Warmest;
+    EP_GLOBAL extern int const iSPMType_Coldest;
+    EP_GLOBAL extern int const iSPMType_WarmestTempFlow;
+    EP_GLOBAL extern int const iSPMType_RAB;
+    EP_GLOBAL extern int const iSPMType_MZCoolingAverage;
+    EP_GLOBAL extern int const iSPMType_MZHeatingAverage;
+    EP_GLOBAL extern int const iSPMType_MZMinHumAverage;
+    EP_GLOBAL extern int const iSPMType_MZMaxHumAverage;
+    EP_GLOBAL extern int const iSPMType_MZMinHum;
+    EP_GLOBAL extern int const iSPMType_MZMaxHum;
+    EP_GLOBAL extern int const iSPMType_FollowOATemp;
+    EP_GLOBAL extern int const iSPMType_FollowSysNodeTemp;
+    EP_GLOBAL extern int const iSPMType_GroundTemp;
+    EP_GLOBAL extern int const iSPMType_CondEntReset;
+    EP_GLOBAL extern int const iSPMType_IdealCondEntReset;
+    EP_GLOBAL extern int const iSPMType_SZOneStageCooling;
+    EP_GLOBAL extern int const iSPMType_SZOneStageHeating;
+    EP_GLOBAL extern int const iSPMType_ReturnWaterResetChW;
+    EP_GLOBAL extern int const iSPMType_ReturnWaterResetHW;
 
-    thread_local extern int const NumValidSPMTypes;
-    thread_local extern Array1D_string const cValidSPMTypes;
+    EP_GLOBAL extern int const NumValidSPMTypes;
+    EP_GLOBAL extern Array1D_string const cValidSPMTypes;
 
     // Type declarations in SetPointManager module
 
     // This one is used for conflicting node checks and is DEALLOCATED at the end of VerifySetPointManagers
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumAllSetPtMgrs;                 // Number of all Setpoint Managers found in input
-    thread_local extern int NumSchSetPtMgrs;                 // Number of Scheduled Setpoint Managers found in input
-    thread_local extern int NumDualSchSetPtMgrs;             // Number of Scheduled Dual Setpoint Managers found in input
-    thread_local extern int NumOutAirSetPtMgrs;              // Number of Outside Air Setpoint Managers found in input
-    thread_local extern int NumSZRhSetPtMgrs;                // number of single zone reheat setpoint managers
-    thread_local extern int NumSZHtSetPtMgrs;                // number of single zone heating setpoint managers
-    thread_local extern int NumSZClSetPtMgrs;                // number of single zone cooling setpoint managers
-    thread_local extern int NumSZMinHumSetPtMgrs;            // number of Single Zone Minimum Humidity Setpoint Managers
-    thread_local extern int NumSZMaxHumSetPtMgrs;            // number of Single Zone Maximum Humidity Setpoint Managers
-    thread_local extern int NumMixedAirSetPtMgrs;            // number of mixed air setpoint managers
-    thread_local extern int NumOAPretreatSetPtMgrs;          // number of outside air pretreat setpoint managers
-    thread_local extern int NumWarmestSetPtMgrs;             // number of Warmest setpoint managers
-    thread_local extern int NumColdestSetPtMgrs;             // number of Coldest setpoint managers
-    thread_local extern int NumWarmestSetPtMgrsTempFlow;     // number of Warmest Temp Flow setpoint managers
-    thread_local extern int NumRABFlowSetPtMgrs;             // number of return air bypass temperature-based flow setpoint manager
-    thread_local extern int NumMZClgAverageSetPtMgrs;        // number of Multizone:Cooling:Average setpoint managers
-    thread_local extern int NumMZHtgAverageSetPtMgrs;        // number of Multizone:Heating:Average setpoint managers
-    thread_local extern int NumMZAverageMinHumSetPtMgrs;     // number of MultiZone:MinimumHumidity:Average setpoint managers
-    thread_local extern int NumMZAverageMaxHumSetPtMgrs;     // number of MultiZone:MaximumHumidity:Average setpoint managers
-    thread_local extern int NumMZMinHumSetPtMgrs;            // number of MultiZone:Humidity:Minimum setpoint managers
-    thread_local extern int NumMZMaxHumSetPtMgrs;            // number of MultiZone:Humidity:Maximum setpoint managers
-    thread_local extern int NumFollowOATempSetPtMgrs;        // number of SetpointManager:FollowOutdoorAirTemperature setpoint managers
-    thread_local extern int NumFollowSysNodeTempSetPtMgrs;   // number of SetpointManager:FollowSystemNodeTemperature setpoint managers
-    thread_local extern int NumGroundTempSetPtMgrs;          // number of SetpointManager:FollowGroundTemperature setpoint managers
-    thread_local extern int NumCondEntSetPtMgrs;             // number of Condenser Entering Reset setpoint managers
-    thread_local extern int NumIdealCondEntSetPtMgrs;        // number of Ideal Condenser Entering Temperature setpoint managers
-    thread_local extern int NumSZOneStageCoolingSetPtMgrs;   // number of single zone one stage cooling setpoint managers
-    thread_local extern int NumSZOneStageHeatingSetPtMgrs;   // number of singel zone one stage heating setpoint managers
-    thread_local extern int NumReturnWaterResetChWSetPtMgrs; // number of chilled-water return water reset setpoint managers
-    thread_local extern int NumReturnWaterResetHWSetPtMgrs;  // number of hot-water return water reset setpoint managers
-    thread_local extern int NumSchTESSetPtMgrs;              // Number of TES Scheduled Setpoint Managers found in input
+    EP_GLOBAL extern int NumAllSetPtMgrs;                 // Number of all Setpoint Managers found in input
+    EP_GLOBAL extern int NumSchSetPtMgrs;                 // Number of Scheduled Setpoint Managers found in input
+    EP_GLOBAL extern int NumDualSchSetPtMgrs;             // Number of Scheduled Dual Setpoint Managers found in input
+    EP_GLOBAL extern int NumOutAirSetPtMgrs;              // Number of Outside Air Setpoint Managers found in input
+    EP_GLOBAL extern int NumSZRhSetPtMgrs;                // number of single zone reheat setpoint managers
+    EP_GLOBAL extern int NumSZHtSetPtMgrs;                // number of single zone heating setpoint managers
+    EP_GLOBAL extern int NumSZClSetPtMgrs;                // number of single zone cooling setpoint managers
+    EP_GLOBAL extern int NumSZMinHumSetPtMgrs;            // number of Single Zone Minimum Humidity Setpoint Managers
+    EP_GLOBAL extern int NumSZMaxHumSetPtMgrs;            // number of Single Zone Maximum Humidity Setpoint Managers
+    EP_GLOBAL extern int NumMixedAirSetPtMgrs;            // number of mixed air setpoint managers
+    EP_GLOBAL extern int NumOAPretreatSetPtMgrs;          // number of outside air pretreat setpoint managers
+    EP_GLOBAL extern int NumWarmestSetPtMgrs;             // number of Warmest setpoint managers
+    EP_GLOBAL extern int NumColdestSetPtMgrs;             // number of Coldest setpoint managers
+    EP_GLOBAL extern int NumWarmestSetPtMgrsTempFlow;     // number of Warmest Temp Flow setpoint managers
+    EP_GLOBAL extern int NumRABFlowSetPtMgrs;             // number of return air bypass temperature-based flow setpoint manager
+    EP_GLOBAL extern int NumMZClgAverageSetPtMgrs;        // number of Multizone:Cooling:Average setpoint managers
+    EP_GLOBAL extern int NumMZHtgAverageSetPtMgrs;        // number of Multizone:Heating:Average setpoint managers
+    EP_GLOBAL extern int NumMZAverageMinHumSetPtMgrs;     // number of MultiZone:MinimumHumidity:Average setpoint managers
+    EP_GLOBAL extern int NumMZAverageMaxHumSetPtMgrs;     // number of MultiZone:MaximumHumidity:Average setpoint managers
+    EP_GLOBAL extern int NumMZMinHumSetPtMgrs;            // number of MultiZone:Humidity:Minimum setpoint managers
+    EP_GLOBAL extern int NumMZMaxHumSetPtMgrs;            // number of MultiZone:Humidity:Maximum setpoint managers
+    EP_GLOBAL extern int NumFollowOATempSetPtMgrs;        // number of SetpointManager:FollowOutdoorAirTemperature setpoint managers
+    EP_GLOBAL extern int NumFollowSysNodeTempSetPtMgrs;   // number of SetpointManager:FollowSystemNodeTemperature setpoint managers
+    EP_GLOBAL extern int NumGroundTempSetPtMgrs;          // number of SetpointManager:FollowGroundTemperature setpoint managers
+    EP_GLOBAL extern int NumCondEntSetPtMgrs;             // number of Condenser Entering Reset setpoint managers
+    EP_GLOBAL extern int NumIdealCondEntSetPtMgrs;        // number of Ideal Condenser Entering Temperature setpoint managers
+    EP_GLOBAL extern int NumSZOneStageCoolingSetPtMgrs;   // number of single zone one stage cooling setpoint managers
+    EP_GLOBAL extern int NumSZOneStageHeatingSetPtMgrs;   // number of singel zone one stage heating setpoint managers
+    EP_GLOBAL extern int NumReturnWaterResetChWSetPtMgrs; // number of chilled-water return water reset setpoint managers
+    EP_GLOBAL extern int NumReturnWaterResetHWSetPtMgrs;  // number of hot-water return water reset setpoint managers
+    EP_GLOBAL extern int NumSchTESSetPtMgrs;              // Number of TES Scheduled Setpoint Managers found in input
 
-    thread_local extern bool ManagerOn;
-    thread_local extern bool GetInputFlag; // First time, input is "gotten"
+    EP_GLOBAL extern bool ManagerOn;
+    EP_GLOBAL extern bool GetInputFlag; // First time, input is "gotten"
 
     // temperature-based flow control manager
     // Average Cooling Set Pt Mgr
@@ -995,37 +995,37 @@ namespace SetPointManager {
     };
 
     // Object Data
-    thread_local extern Array1D<DataSetPointManager> AllSetPtMgr;                                    // Array for all Setpoint Manager data(warnings)
-    thread_local extern Array1D<DefineScheduledSetPointManager> SchSetPtMgr;                         // Array for Scheduled Setpoint Manager data
-    thread_local extern Array1D<DefineSchedDualSetPointManager> DualSchSetPtMgr;                     // Dual Scheduled Setpoint Manager data
-    thread_local extern Array1D<DefineOutsideAirSetPointManager> OutAirSetPtMgr;                     // Array for Outside Air Setpoint Manager data
-    thread_local extern Array1D<DefineSZReheatSetPointManager> SingZoneRhSetPtMgr;                   // Array for SZRH Set Pt Mgr
-    thread_local extern Array1D<DefineSZHeatingSetPointManager> SingZoneHtSetPtMgr;                  // Array for SZ Heating Set Pt Mgr
-    thread_local extern Array1D<DefineSZCoolingSetPointManager> SingZoneClSetPtMgr;                  // Array for SZ Cooling Set Pt Mgr
-    thread_local extern Array1D<DefineSZMinHumSetPointManager> SZMinHumSetPtMgr;                     // Array for SZ Min Hum Set Pt Mgr
-    thread_local extern Array1D<DefineSZMaxHumSetPointManager> SZMaxHumSetPtMgr;                     // Array for SZ Max Hum Set Pt Mgr
-    thread_local extern Array1D<DefineMixedAirSetPointManager> MixedAirSetPtMgr;                     // Array for Mixed Air Set Pt Mgr
-    thread_local extern Array1D<DefineOAPretreatSetPointManager> OAPretreatSetPtMgr;                 // Array for OA Pretreat Set Pt Mgr
-    thread_local extern Array1D<DefineWarmestSetPointManager> WarmestSetPtMgr;                       // Array for Warmest Set Pt Mgr
-    thread_local extern Array1D<DefineColdestSetPointManager> ColdestSetPtMgr;                       // Array for Coldest Set Pt Mgr
-    thread_local extern Array1D<DefWarmestSetPtManagerTempFlow> WarmestSetPtMgrTempFlow;             // Array for Warmest Set Pt Mgr
-    thread_local extern Array1D<DefRABFlowSetPointManager> RABFlowSetPtMgr;                          // Array for return air bypass
-    thread_local extern Array1D<DefMultiZoneAverageCoolingSetPointManager> MZAverageCoolingSetPtMgr; // Array for MultiZone
-    thread_local extern Array1D<DefMultiZoneAverageHeatingSetPointManager> MZAverageHeatingSetPtMgr; // Array for MultiZone
-    thread_local extern Array1D<DefMultiZoneAverageMinHumSetPointManager> MZAverageMinHumSetPtMgr;   // Array for MultiZone
-    thread_local extern Array1D<DefMultiZoneAverageMaxHumSetPointManager> MZAverageMaxHumSetPtMgr;   // Array for MultiZone
-    thread_local extern Array1D<DefMultiZoneMinHumSetPointManager> MZMinHumSetPtMgr;                 // Multizone min humidity rat Set Pt Mgr
-    thread_local extern Array1D<DefMultiZoneMaxHumSetPointManager> MZMaxHumSetPtMgr;                 // Multizone max humidity rat Set Pt Mgr
-    thread_local extern Array1D<DefineFollowOATempSetPointManager> FollowOATempSetPtMgr;             // Array for Follow Outdoor Air
-    thread_local extern Array1D<DefineFollowSysNodeTempSetPointManager> FollowSysNodeTempSetPtMgr;   // Array for Follow System
-    thread_local extern Array1D<DefineGroundTempSetPointManager> GroundTempSetPtMgr;                 // Array for Ground Temp Setpoint
-    thread_local extern Array1D<DefineCondEntSetPointManager> CondEntSetPtMgr;                       // Condenser Entering Water Set Pt Mgr
-    thread_local extern Array1D<DefineIdealCondEntSetPointManager> IdealCondEntSetPtMgr;             // Ideal Condenser Entering Set Pt Mgr
-    thread_local extern Array1D<DefineSZOneStageCoolinggSetPointManager> SZOneStageCoolingSetPtMgr;  // single zone 1 stage cool
-    thread_local extern Array1D<DefineSZOneStageHeatingSetPointManager> SZOneStageHeatingSetPtMgr;   // single zone 1 stage heat
-    thread_local extern Array1D<DefineReturnWaterChWSetPointManager> ReturnWaterResetChWSetPtMgr;    // return water reset
-    thread_local extern Array1D<DefineReturnWaterHWSetPointManager> ReturnWaterResetHWSetPtMgr;      // hot-water return reset
-    thread_local extern Array1D<DefineScheduledTESSetPointManager> SchTESSetPtMgr;                   // Array for Scheduled Setpoint Manager data
+    EP_GLOBAL extern Array1D<DataSetPointManager> AllSetPtMgr;                                    // Array for all Setpoint Manager data(warnings)
+    EP_GLOBAL extern Array1D<DefineScheduledSetPointManager> SchSetPtMgr;                         // Array for Scheduled Setpoint Manager data
+    EP_GLOBAL extern Array1D<DefineSchedDualSetPointManager> DualSchSetPtMgr;                     // Dual Scheduled Setpoint Manager data
+    EP_GLOBAL extern Array1D<DefineOutsideAirSetPointManager> OutAirSetPtMgr;                     // Array for Outside Air Setpoint Manager data
+    EP_GLOBAL extern Array1D<DefineSZReheatSetPointManager> SingZoneRhSetPtMgr;                   // Array for SZRH Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineSZHeatingSetPointManager> SingZoneHtSetPtMgr;                  // Array for SZ Heating Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineSZCoolingSetPointManager> SingZoneClSetPtMgr;                  // Array for SZ Cooling Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineSZMinHumSetPointManager> SZMinHumSetPtMgr;                     // Array for SZ Min Hum Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineSZMaxHumSetPointManager> SZMaxHumSetPtMgr;                     // Array for SZ Max Hum Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineMixedAirSetPointManager> MixedAirSetPtMgr;                     // Array for Mixed Air Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineOAPretreatSetPointManager> OAPretreatSetPtMgr;                 // Array for OA Pretreat Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineWarmestSetPointManager> WarmestSetPtMgr;                       // Array for Warmest Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineColdestSetPointManager> ColdestSetPtMgr;                       // Array for Coldest Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefWarmestSetPtManagerTempFlow> WarmestSetPtMgrTempFlow;             // Array for Warmest Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefRABFlowSetPointManager> RABFlowSetPtMgr;                          // Array for return air bypass
+    EP_GLOBAL extern Array1D<DefMultiZoneAverageCoolingSetPointManager> MZAverageCoolingSetPtMgr; // Array for MultiZone
+    EP_GLOBAL extern Array1D<DefMultiZoneAverageHeatingSetPointManager> MZAverageHeatingSetPtMgr; // Array for MultiZone
+    EP_GLOBAL extern Array1D<DefMultiZoneAverageMinHumSetPointManager> MZAverageMinHumSetPtMgr;   // Array for MultiZone
+    EP_GLOBAL extern Array1D<DefMultiZoneAverageMaxHumSetPointManager> MZAverageMaxHumSetPtMgr;   // Array for MultiZone
+    EP_GLOBAL extern Array1D<DefMultiZoneMinHumSetPointManager> MZMinHumSetPtMgr;                 // Multizone min humidity rat Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefMultiZoneMaxHumSetPointManager> MZMaxHumSetPtMgr;                 // Multizone max humidity rat Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineFollowOATempSetPointManager> FollowOATempSetPtMgr;             // Array for Follow Outdoor Air
+    EP_GLOBAL extern Array1D<DefineFollowSysNodeTempSetPointManager> FollowSysNodeTempSetPtMgr;   // Array for Follow System
+    EP_GLOBAL extern Array1D<DefineGroundTempSetPointManager> GroundTempSetPtMgr;                 // Array for Ground Temp Setpoint
+    EP_GLOBAL extern Array1D<DefineCondEntSetPointManager> CondEntSetPtMgr;                       // Condenser Entering Water Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineIdealCondEntSetPointManager> IdealCondEntSetPtMgr;             // Ideal Condenser Entering Set Pt Mgr
+    EP_GLOBAL extern Array1D<DefineSZOneStageCoolinggSetPointManager> SZOneStageCoolingSetPtMgr;  // single zone 1 stage cool
+    EP_GLOBAL extern Array1D<DefineSZOneStageHeatingSetPointManager> SZOneStageHeatingSetPtMgr;   // single zone 1 stage heat
+    EP_GLOBAL extern Array1D<DefineReturnWaterChWSetPointManager> ReturnWaterResetChWSetPtMgr;    // return water reset
+    EP_GLOBAL extern Array1D<DefineReturnWaterHWSetPointManager> ReturnWaterResetHWSetPtMgr;      // hot-water return reset
+    EP_GLOBAL extern Array1D<DefineScheduledTESSetPointManager> SchTESSetPtMgr;                   // Array for Scheduled Setpoint Manager data
 
     // Functions
 

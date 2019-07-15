@@ -146,13 +146,13 @@ namespace ZoneTempPredictorCorrector {
     // INTEGER, PUBLIC, PARAMETER :: iPushZoneTimestepHistories    = 5
     // INTEGER, PUBLIC, PARAMETER :: iPushSystemTimestepHistories  = 6
 
-    thread_local Array1D_string const ValidControlTypes(4,
+    EP_GLOBAL Array1D_string const ValidControlTypes(4,
                                            {"ThermostatSetpoint:SingleHeating",
                                             "ThermostatSetpoint:SingleCooling",
                                             "ThermostatSetpoint:SingleHeatingOrCooling",
                                             "ThermostatSetpoint:DualSetpoint"});
 
-    thread_local Array1D_string const ValidComfortControlTypes(12,
+    EP_GLOBAL Array1D_string const ValidComfortControlTypes(12,
                                                   {"ThermostatSetpoint:ThermalComfort:Fanger:SingleHeating",
                                                    "ThermostatSetpoint:ThermalComfort:Fanger:SingleCooling",
                                                    "ThermostatSetpoint:ThermalComfort:Fanger:SingleHeatingOrCooling",
@@ -166,7 +166,7 @@ namespace ZoneTempPredictorCorrector {
                                                    "ThermostatSetpoint:ThermalComfort:KSU:SingleHeatingOrCooling",
                                                    "ThermostatSetpoint:ThermalComfort:KSU:DualSetpoint"});
 
-    thread_local Array1D_string const cZControlTypes(6,
+    EP_GLOBAL Array1D_string const cZControlTypes(6,
                                         {"ZoneControl:Thermostat",
                                          "ZoneControl:Thermostat:ThermalComfort",
                                          "ZoneControl:Thermostat:OperativeTemperature",
@@ -174,7 +174,7 @@ namespace ZoneTempPredictorCorrector {
                                          "ZoneControl:Thermostat:TemperatureAndHumidity",
                                          "ZoneControl:Thermostat:StagedDualSetpoint"});
 
-    thread_local Array1D_string const AdaptiveComfortModelTypes(8,
+    EP_GLOBAL Array1D_string const AdaptiveComfortModelTypes(8,
                                                    {"None",
                                                     "AdaptiveASH55CentralLine",
                                                     "AdaptiveASH5590PercentUpperLine",
@@ -184,48 +184,48 @@ namespace ZoneTempPredictorCorrector {
                                                     "AdaptiveCEN15251CategoryIIUpperLine",
                                                     "AdaptiveCEN15251CategoryIIIUpperLine"});
 
-    thread_local int const iZC_TStat(1);
-    thread_local int const iZC_TCTStat(2);
-    thread_local int const iZC_OTTStat(3);
-    thread_local int const iZC_HStat(4);
-    thread_local int const iZC_TandHStat(5);
-    thread_local int const iZC_StagedDual(6);
-    thread_local Array1D_int const iZControlTypes(6, {iZC_TStat, iZC_TCTStat, iZC_OTTStat, iZC_HStat, iZC_TandHStat, iZC_StagedDual});
+    EP_GLOBAL int const iZC_TStat(1);
+    EP_GLOBAL int const iZC_TCTStat(2);
+    EP_GLOBAL int const iZC_OTTStat(3);
+    EP_GLOBAL int const iZC_HStat(4);
+    EP_GLOBAL int const iZC_TandHStat(5);
+    EP_GLOBAL int const iZC_StagedDual(6);
+    EP_GLOBAL Array1D_int const iZControlTypes(6, {iZC_TStat, iZC_TCTStat, iZC_OTTStat, iZC_HStat, iZC_TandHStat, iZC_StagedDual});
 
-    thread_local int const ADAP_NONE(1);
-    thread_local int const ASH55_CENTRAL(2);
-    thread_local int const ASH55_UPPER_90(3);
-    thread_local int const ASH55_UPPER_80(4);
-    thread_local int const CEN15251_CENTRAL(5);
-    thread_local int const CEN15251_UPPER_I(6);
-    thread_local int const CEN15251_UPPER_II(7);
-    thread_local int const CEN15251_UPPER_III(8);
+    EP_GLOBAL int const ADAP_NONE(1);
+    EP_GLOBAL int const ASH55_CENTRAL(2);
+    EP_GLOBAL int const ASH55_UPPER_90(3);
+    EP_GLOBAL int const ASH55_UPPER_80(4);
+    EP_GLOBAL int const CEN15251_CENTRAL(5);
+    EP_GLOBAL int const CEN15251_UPPER_I(6);
+    EP_GLOBAL int const CEN15251_UPPER_II(7);
+    EP_GLOBAL int const CEN15251_UPPER_III(8);
 
     // The numbers are used to access zone comfort control type, see ValidComfortControlTypes
-    thread_local int const SglHeatSetPoint(1);
-    thread_local int const SglCoolSetPoint(2);
-    thread_local int const SglHCSetPoint(3);
-    thread_local int const DualSetPoint(4);
-    thread_local int const SglHeatSetPointFanger(1);
-    thread_local int const SglCoolSetPointFanger(2);
-    thread_local int const SglHCSetPointFanger(3);
-    thread_local int const DualSetPointFanger(4);
-    thread_local int const SglHeatSetPointPierce(5);
-    thread_local int const SglCoolSetPointPierce(6);
-    thread_local int const SglHCSetPointPierce(7);
-    thread_local int const DualSetPointPierce(8);
-    thread_local int const SglHeatSetPointKSU(9);
-    thread_local int const SglCoolSetPointKSU(10);
-    thread_local int const SglHCSetPointKSU(11);
-    thread_local int const DualSetPointKSU(12);
+    EP_GLOBAL int const SglHeatSetPoint(1);
+    EP_GLOBAL int const SglCoolSetPoint(2);
+    EP_GLOBAL int const SglHCSetPoint(3);
+    EP_GLOBAL int const DualSetPoint(4);
+    EP_GLOBAL int const SglHeatSetPointFanger(1);
+    EP_GLOBAL int const SglCoolSetPointFanger(2);
+    EP_GLOBAL int const SglHCSetPointFanger(3);
+    EP_GLOBAL int const DualSetPointFanger(4);
+    EP_GLOBAL int const SglHeatSetPointPierce(5);
+    EP_GLOBAL int const SglCoolSetPointPierce(6);
+    EP_GLOBAL int const SglHCSetPointPierce(7);
+    EP_GLOBAL int const DualSetPointPierce(8);
+    EP_GLOBAL int const SglHeatSetPointKSU(9);
+    EP_GLOBAL int const SglCoolSetPointKSU(10);
+    EP_GLOBAL int const SglHCSetPointKSU(11);
+    EP_GLOBAL int const DualSetPointKSU(12);
 
     // Average method parameter with multiple people objects in a zone
-    thread_local int const AverageMethodNum_NO(0);  // No multiple people objects
-    thread_local int const AverageMethodNum_SPE(1); // Specific people object
-    thread_local int const AverageMethodNum_OBJ(2); // People object average
-    thread_local int const AverageMethodNum_PEO(3); // People number average
+    EP_GLOBAL int const AverageMethodNum_NO(0);  // No multiple people objects
+    EP_GLOBAL int const AverageMethodNum_SPE(1); // Specific people object
+    EP_GLOBAL int const AverageMethodNum_OBJ(2); // People object average
+    EP_GLOBAL int const AverageMethodNum_PEO(3); // People number average
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -234,21 +234,21 @@ namespace ZoneTempPredictorCorrector {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local int NumSingleTempHeatingControls(0);
-    thread_local int NumSingleTempCoolingControls(0);
-    thread_local int NumSingleTempHeatCoolControls(0);
-    thread_local int NumDualTempHeatCoolControls(0);
+    EP_GLOBAL int NumSingleTempHeatingControls(0);
+    EP_GLOBAL int NumSingleTempCoolingControls(0);
+    EP_GLOBAL int NumSingleTempHeatCoolControls(0);
+    EP_GLOBAL int NumDualTempHeatCoolControls(0);
 
     // Number of Thermal comfort control types
-    thread_local int NumSingleFangerHeatingControls(0);
-    thread_local int NumSingleFangerCoolingControls(0);
-    thread_local int NumSingleFangerHeatCoolControls(0);
-    thread_local int NumDualFangerHeatCoolControls(0);
+    EP_GLOBAL int NumSingleFangerHeatingControls(0);
+    EP_GLOBAL int NumSingleFangerCoolingControls(0);
+    EP_GLOBAL int NumSingleFangerHeatCoolControls(0);
+    EP_GLOBAL int NumDualFangerHeatCoolControls(0);
 
     // Number of zone with staged controlled objects
-    thread_local int NumStageCtrZone(0);
+    EP_GLOBAL int NumStageCtrZone(0);
     // Number of zone with on/off thermostat
-    thread_local int NumOnOffCtrZone(0);
+    EP_GLOBAL int NumOnOffCtrZone(0);
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -256,33 +256,33 @@ namespace ZoneTempPredictorCorrector {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool InitZoneAirSetPointsOneTimeFlag(true);
-        thread_local bool SetupOscillationOutputFlag(true);
+        EP_GLOBAL bool InitZoneAirSetPointsOneTimeFlag(true);
+        EP_GLOBAL bool SetupOscillationOutputFlag(true);
     } // namespace
-    thread_local Array1D<Real64> ZoneSetPointLast;
-    thread_local Array1D<Real64> TempIndZnLd;
-    thread_local Array1D<Real64> TempDepZnLd;
-    thread_local Array1D<Real64> ZoneAirRelHum; // Zone relative humidity in percent
+    EP_GLOBAL Array1D<Real64> ZoneSetPointLast;
+    EP_GLOBAL Array1D<Real64> TempIndZnLd;
+    EP_GLOBAL Array1D<Real64> TempDepZnLd;
+    EP_GLOBAL Array1D<Real64> ZoneAirRelHum; // Zone relative humidity in percent
 
     // Zone temperature history - used only for oscillation test
-    thread_local Array2D<Real64> ZoneTempHist;
-    thread_local Array1D<Real64> ZoneTempOscillate;
-    thread_local Real64 AnyZoneTempOscillate;
+    EP_GLOBAL Array2D<Real64> ZoneTempHist;
+    EP_GLOBAL Array1D<Real64> ZoneTempOscillate;
+    EP_GLOBAL Real64 AnyZoneTempOscillate;
 
     // SUBROUTINE SPECIFICATIONS:
 
     // Object Data
-    thread_local std::unordered_set<std::string> HumidityControlZoneUniqueNames;
-    thread_local Array1D<ZoneTempControlType> SetPointSingleHeating;
-    thread_local Array1D<ZoneTempControlType> SetPointSingleCooling;
-    thread_local Array1D<ZoneTempControlType> SetPointSingleHeatCool;
-    thread_local Array1D<ZoneTempControlType> SetPointDualHeatCool;
-    thread_local Array1D<ZoneComfortFangerControlType> SetPointSingleHeatingFanger;
-    thread_local Array1D<ZoneComfortFangerControlType> SetPointSingleCoolingFanger;
-    thread_local Array1D<ZoneComfortFangerControlType> SetPointSingleHeatCoolFanger;
-    thread_local Array1D<ZoneComfortFangerControlType> SetPointDualHeatCoolFanger;
-    thread_local AdaptiveComfortDailySetPointSchedule AdapComfortDailySetPointSchedule;
-    thread_local Array1D<Real64> AdapComfortSetPointSummerDesDay(7, -1);
+    EP_GLOBAL std::unordered_set<std::string> HumidityControlZoneUniqueNames;
+    EP_GLOBAL Array1D<ZoneTempControlType> SetPointSingleHeating;
+    EP_GLOBAL Array1D<ZoneTempControlType> SetPointSingleCooling;
+    EP_GLOBAL Array1D<ZoneTempControlType> SetPointSingleHeatCool;
+    EP_GLOBAL Array1D<ZoneTempControlType> SetPointDualHeatCool;
+    EP_GLOBAL Array1D<ZoneComfortFangerControlType> SetPointSingleHeatingFanger;
+    EP_GLOBAL Array1D<ZoneComfortFangerControlType> SetPointSingleCoolingFanger;
+    EP_GLOBAL Array1D<ZoneComfortFangerControlType> SetPointSingleHeatCoolFanger;
+    EP_GLOBAL Array1D<ZoneComfortFangerControlType> SetPointDualHeatCoolFanger;
+    EP_GLOBAL AdaptiveComfortDailySetPointSchedule AdapComfortDailySetPointSchedule;
+    EP_GLOBAL Array1D<Real64> AdapComfortSetPointSummerDesDay(7, -1);
 
     // Functions
     void clear_state()
@@ -409,7 +409,7 @@ namespace ZoneTempPredictorCorrector {
         using WeatherManager::NumDaysInYear;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetZoneAirSetpoints: ");
+        EP_GLOBAL static std::string const RoutineName("GetZoneAirSetpoints: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int TempControlledZoneNum; // The Splitter that you are currently loading input into
@@ -423,7 +423,7 @@ namespace ZoneTempPredictorCorrector {
         int IOStat;
         // unused1208  REAL(r64), DIMENSION(2) :: NumArray
         // unused1208  CHARACTER(len=MaxNameLength), DIMENSION(29) :: AlphArray
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         bool errFlag;
         int CTIndex;
         int HumidControlledZoneNum; // The Humidity Controller that information is being loaded into
@@ -490,9 +490,9 @@ namespace ZoneTempPredictorCorrector {
         Array1D<NeededComfortControlTypes> TComfortControlTypes;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_700("('! <Zone Volume Capacitance Multiplier>, Sensible Heat Capacity Multiplier, Moisture Capacity Multiplier, "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_700("('! <Zone Volume Capacitance Multiplier>, Sensible Heat Capacity Multiplier, Moisture Capacity Multiplier, "
                                    "','Carbon Dioxide Capacity Multiplier, Generic Contaminant Capacity Multiplier')");
-        thread_local static ObjexxFCL::gio::Fmt Format_701("('Zone Volume Capacitance Multiplier,',F8.3,' ,',F8.3,',',F8.3,',',F8.3)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_701("('Zone Volume Capacitance Multiplier,',F8.3,' ,',F8.3,',',F8.3,',',F8.3)");
 
         // FLOW:
         cCurrentModuleObject = cZControlTypes(iZC_TStat);
@@ -2515,7 +2515,7 @@ namespace ZoneTempPredictorCorrector {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -2738,7 +2738,7 @@ namespace ZoneTempPredictorCorrector {
         // Locals
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitZoneAirSetpoints: ");
+        EP_GLOBAL static std::string const RoutineName("InitZoneAirSetpoints: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Loop;
@@ -2746,10 +2746,10 @@ namespace ZoneTempPredictorCorrector {
         //////////// hoisted into namespace changed to InitZoneAirSetPointsOneTimeFlag////////////
         // static bool MyOneTimeFlag( true );
         //////////////////////////////////////
-        thread_local static bool MyEnvrnFlag(true);
-        thread_local static bool MyDayFlag(true);
-        thread_local static bool ErrorsFound(false);
-        thread_local static bool ControlledZonesChecked(false);
+        EP_GLOBAL static bool MyEnvrnFlag(true);
+        EP_GLOBAL static bool MyDayFlag(true);
+        EP_GLOBAL static bool ErrorsFound(false);
+        EP_GLOBAL static bool ControlledZonesChecked(false);
         bool FirstSurfFlag;
         int TRefFlag; // Flag for Reference Temperature process in Zones
         int SurfNum;
@@ -4439,7 +4439,7 @@ namespace ZoneTempPredictorCorrector {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcPredictedHumidityRatio");
+        EP_GLOBAL static std::string const RoutineName("CalcPredictedHumidityRatio");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 LatentGain; // Zone latent load
@@ -4821,26 +4821,26 @@ namespace ZoneTempPredictorCorrector {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CorrectZoneAirTemp");
+        EP_GLOBAL static std::string const RoutineName("CorrectZoneAirTemp");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CpAir;                              // specific heat of air
-        thread_local static Real64 SumIntGain(0.0);             // Zone sum of convective internal gains
-        thread_local static Real64 SumIntGainExceptPeople(0.0); // Zone sum of convective internal gains except for convective heat from people, HybridModel
-        thread_local static Real64 SumHA(0.0);                  // Zone sum of Hc*Area
-        thread_local static Real64 SumHATsurf(0.0);             // Zone sum of Hc*Area*Tsurf
-        thread_local static Real64 SumHATref(0.0);              // Zone sum of Hc*Area*Tref, for ceiling diffuser convection correlation
-        thread_local static Real64 SumMCp(0.0);                 // Zone sum of MassFlowRate*Cp
-        thread_local static Real64 SumMCpT(0.0);                // Zone sum of MassFlowRate*Cp*T
-        thread_local static Real64 SumSysMCp(0.0);              // Zone sum of air system MassFlowRate*Cp
-        thread_local static Real64 SumSysMCpT(0.0);             // Zone sum of air system MassFlowRate*Cp*T
-        thread_local static Real64 ZoneEnthalpyIn(0.0);         // Zone inlet air enthalpy
-        thread_local static Real64 TempDepCoef(0.0);            // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
-        thread_local static Real64 TempIndCoef(0.0);            // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
-        thread_local static Real64 AirCap(0.0);                 // Formerly CoefAirrat, coef in zone temp eqn with dim of "air power capacity"
-        thread_local static Real64 SNLoad(0.0);                 // Sensible load calculated for zone in watts and then loaded in report variables
-        thread_local static int ZoneNum(0);
-        thread_local static int ZoneNodeNum(0); // System node number for air flow through zone either by system or as a plenum
+        EP_GLOBAL static Real64 SumIntGain(0.0);             // Zone sum of convective internal gains
+        EP_GLOBAL static Real64 SumIntGainExceptPeople(0.0); // Zone sum of convective internal gains except for convective heat from people, HybridModel
+        EP_GLOBAL static Real64 SumHA(0.0);                  // Zone sum of Hc*Area
+        EP_GLOBAL static Real64 SumHATsurf(0.0);             // Zone sum of Hc*Area*Tsurf
+        EP_GLOBAL static Real64 SumHATref(0.0);              // Zone sum of Hc*Area*Tref, for ceiling diffuser convection correlation
+        EP_GLOBAL static Real64 SumMCp(0.0);                 // Zone sum of MassFlowRate*Cp
+        EP_GLOBAL static Real64 SumMCpT(0.0);                // Zone sum of MassFlowRate*Cp*T
+        EP_GLOBAL static Real64 SumSysMCp(0.0);              // Zone sum of air system MassFlowRate*Cp
+        EP_GLOBAL static Real64 SumSysMCpT(0.0);             // Zone sum of air system MassFlowRate*Cp*T
+        EP_GLOBAL static Real64 ZoneEnthalpyIn(0.0);         // Zone inlet air enthalpy
+        EP_GLOBAL static Real64 TempDepCoef(0.0);            // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
+        EP_GLOBAL static Real64 TempIndCoef(0.0);            // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
+        EP_GLOBAL static Real64 AirCap(0.0);                 // Formerly CoefAirrat, coef in zone temp eqn with dim of "air power capacity"
+        EP_GLOBAL static Real64 SNLoad(0.0);                 // Sensible load calculated for zone in watts and then loaded in report variables
+        EP_GLOBAL static int ZoneNum(0);
+        EP_GLOBAL static int ZoneNodeNum(0); // System node number for air flow through zone either by system or as a plenum
 
         //  LOGICAL,SAVE   :: OneTimeFlag = .TRUE.
         // unusd1208  LOGICAL,SAVE   :: MyEnvrnFlag = .TRUE.
@@ -5229,7 +5229,7 @@ namespace ZoneTempPredictorCorrector {
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
-        thread_local static std::string const CorrectZoneAirTemp("CorrectZoneAirTemp");
+        EP_GLOBAL static std::string const CorrectZoneAirTemp("CorrectZoneAirTemp");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ZoneNum;
@@ -5512,7 +5512,7 @@ namespace ZoneTempPredictorCorrector {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CorrectZoneHumRat");
+        EP_GLOBAL static std::string const RoutineName("CorrectZoneHumRat");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NodeNum;
@@ -5806,13 +5806,13 @@ namespace ZoneTempPredictorCorrector {
         using DataEnvironment::DayOfYear;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InverseModelTemperature");
+        EP_GLOBAL static std::string const RoutineName("InverseModelTemperature");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CpAir;                   // specific heat of air
-        thread_local static Real64 TempDepCoef(0.0); // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
-        thread_local static Real64 TempIndCoef(0.0); // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
-        thread_local static Real64 AirCapHM(0.0);    // Air power capacity for hybrid modeling
+        EP_GLOBAL static Real64 TempDepCoef(0.0); // Formerly CoefSumha, coef in zone temp equation with dimensions of h*A
+        EP_GLOBAL static Real64 TempIndCoef(0.0); // Formerly CoefSumhat, coef in zone temp equation with dimensions of h*A(T1
+        EP_GLOBAL static Real64 AirCapHM(0.0);    // Air power capacity for hybrid modeling
 
         Real64 AA(0.0);
         Real64 BB(0.0);
@@ -5847,7 +5847,7 @@ namespace ZoneTempPredictorCorrector {
                                                                  // the System Time Increment
             if (HybridModelZone(ZoneNum).InfiltrationCalc_T && UseZoneTimeStepHistory) {
 
-                thread_local static std::string const RoutineNameInfiltration("CalcAirFlowSimple:Infiltration");
+                EP_GLOBAL static std::string const RoutineNameInfiltration("CalcAirFlowSimple:Infiltration");
 
                 if (HybridModelZone(ZoneNum).IncludeSystemSupplyParameters) {
                     Zone(ZoneNum).ZoneMeasuredSupplyAirTemperature =
@@ -6055,7 +6055,7 @@ namespace ZoneTempPredictorCorrector {
         using DataEnvironment::DayOfYear;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InverseModelHumidity");
+        EP_GLOBAL static std::string const RoutineName("InverseModelHumidity");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AA(0.0);
@@ -7125,7 +7125,7 @@ namespace ZoneTempPredictorCorrector {
         Real64 NumberOccupants;
         Real64 Tset;
 
-        thread_local static bool FirstTimeFlag(true); // Flag set to make sure you get input once
+        EP_GLOBAL static bool FirstTimeFlag(true); // Flag set to make sure you get input once
 
         // FLOW:
         // Call thermal comfort module to read zone control comfort object
@@ -7481,10 +7481,10 @@ namespace ZoneTempPredictorCorrector {
         Real64 PMVMax;          // Calculated PMV value
         Array1D<Real64> Par(2); // Passed parameter for RegularFalsi function
         int SolFla;             // feed back flag from SolveRoot
-        thread_local static int IterLimitExceededNum1(0);
-        thread_local static int IterLimitErrIndex1(0);
-        thread_local static int IterLimitExceededNum2(0);
-        thread_local static int IterLimitErrIndex2(0);
+        EP_GLOBAL static int IterLimitExceededNum1(0);
+        EP_GLOBAL static int IterLimitErrIndex1(0);
+        EP_GLOBAL static int IterLimitExceededNum2(0);
+        EP_GLOBAL static int IterLimitErrIndex2(0);
 
         Tmin = ComfortControlledZone(ComfortControlNum).TdbMinSetPoint;
         Tmax = ComfortControlledZone(ComfortControlNum).TdbMaxSetPoint;

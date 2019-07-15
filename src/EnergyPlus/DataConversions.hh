@@ -61,30 +61,30 @@ namespace DataConversions {
 
     // MODULE PARAMETER DEFINITIONS:
     // REAL(r64), PARAMETER:: CFC     =4.184D0            ! Specific Heat:  BTU/(LB*R) * CFC = KJ/(KG*K)
-    thread_local extern Real64 const CFC; // Specific Heat:  BTU/(LB*R) * CFC = KJ/(KG*K)
+    EP_GLOBAL extern Real64 const CFC; // Specific Heat:  BTU/(LB*R) * CFC = KJ/(KG*K)
     //  above is listed in July 1976 publication as "International Table"
-    thread_local extern Real64 const CFL; // Length:         FT * CFL = M
-    thread_local extern Real64 const CFM; // Mass:           LB * CFM = KG
+    EP_GLOBAL extern Real64 const CFL; // Length:         FT * CFL = M
+    EP_GLOBAL extern Real64 const CFM; // Mass:           LB * CFM = KG
     // REAL(r64), PARAMETER:: CFP     =249.082D0          ! Pressure:       IN-H2O * CFP = N/M**2
     // above is listed in July 1976 publication as in-water at 39.2 deg F
-    thread_local extern Real64 const CFP; // Pressure:       IN-H2O * CFP = N/M**2
+    EP_GLOBAL extern Real64 const CFP; // Pressure:       IN-H2O * CFP = N/M**2
     //  above is listed in July 1976 publication as in-water at 60 deg F
-    thread_local extern Real64 const DELTMP; // Temperature:    (F + DELTMP) * CFT = C
-    thread_local extern Real64 const CFA;    // Area:           FT**2 * CFA = M**2
-    thread_local extern Real64 const CFT;    // Temperature:    R * CFT = K
-    thread_local extern Real64 const CFV;    // Volume:         FT**3 * CFV = M**3
-    thread_local extern Real64 const CFE;    // Energy:         BTU * CFE = W-HR
-    thread_local extern Real64 const CFD;    // Density:        LB/FT**3 * CFD = KG/M**3
-    thread_local extern Real64 const CFH;    // Enthalpy:       BTU/LB * CFH = J/KG
-    thread_local extern Real64 const CFK;    // Conductivity:   BTU/(HR*FT*R) * CFK = W/(M*K)
-    thread_local extern Real64 const CFMF;   // Mass Flow:      LB/HR * CFMF = KG/SEC
-    thread_local extern Real64 const CFQ;    // Power:          BTU/HR * CFQ = W
-    thread_local extern Real64 const CFU;    // U-Value:        BTU/(HR*FT**2*R) * CFU = W/(M**2*K)
+    EP_GLOBAL extern Real64 const DELTMP; // Temperature:    (F + DELTMP) * CFT = C
+    EP_GLOBAL extern Real64 const CFA;    // Area:           FT**2 * CFA = M**2
+    EP_GLOBAL extern Real64 const CFT;    // Temperature:    R * CFT = K
+    EP_GLOBAL extern Real64 const CFV;    // Volume:         FT**3 * CFV = M**3
+    EP_GLOBAL extern Real64 const CFE;    // Energy:         BTU * CFE = W-HR
+    EP_GLOBAL extern Real64 const CFD;    // Density:        LB/FT**3 * CFD = KG/M**3
+    EP_GLOBAL extern Real64 const CFH;    // Enthalpy:       BTU/LB * CFH = J/KG
+    EP_GLOBAL extern Real64 const CFK;    // Conductivity:   BTU/(HR*FT*R) * CFK = W/(M*K)
+    EP_GLOBAL extern Real64 const CFMF;   // Mass Flow:      LB/HR * CFMF = KG/SEC
+    EP_GLOBAL extern Real64 const CFQ;    // Power:          BTU/HR * CFQ = W
+    EP_GLOBAL extern Real64 const CFU;    // U-Value:        BTU/(HR*FT**2*R) * CFU = W/(M**2*K)
     // Note:  R-Value = 1/U-Value
-    thread_local extern Real64 const CFS;   // Speed:          FT/MIN * CFS = M/SEC
-    thread_local extern Real64 const CFVF;  // Volume Flow:    FT**3/MIN * CFVF = M**3/SEC
-    thread_local extern Real64 const CFHF;  // Heat Flux:      BTU/(HR*FT**2) * CFHF = W/M**2
-    thread_local extern Real64 const CFTMP; // Temperature:    Same as DELTMP
+    EP_GLOBAL extern Real64 const CFS;   // Speed:          FT/MIN * CFS = M/SEC
+    EP_GLOBAL extern Real64 const CFVF;  // Volume Flow:    FT**3/MIN * CFVF = M**3/SEC
+    EP_GLOBAL extern Real64 const CFHF;  // Heat Flux:      BTU/(HR*FT**2) * CFHF = W/M**2
+    EP_GLOBAL extern Real64 const CFTMP; // Temperature:    Same as DELTMP
 
 } // namespace DataConversions
 

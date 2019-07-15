@@ -99,24 +99,24 @@ namespace MixerComponent {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local Real64 const MassFlowTol(0.001);
+    EP_GLOBAL Real64 const MassFlowTol(0.001);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumMixers(0); // The Number of Mixers found in the Input
-    thread_local int LoopInletNode(0);
-    thread_local int LoopOutletNode(0);
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL int NumMixers(0); // The Number of Mixers found in the Input
+    EP_GLOBAL int LoopInletNode(0);
+    EP_GLOBAL int LoopOutletNode(0);
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Mixers
 
     // Object Data
-    thread_local Array1D<MixerConditions> MixerCond;
+    EP_GLOBAL Array1D<MixerConditions> MixerCond;
 
     namespace {
-        thread_local bool SimAirMixerInputFlag(true);
-        thread_local bool GetZoneMixerIndexInputFlag(true);
+        EP_GLOBAL bool SimAirMixerInputFlag(true);
+        EP_GLOBAL bool GetZoneMixerIndexInputFlag(true);
     } // namespace
 
     // MODULE SUBROUTINES:
@@ -223,7 +223,7 @@ namespace MixerComponent {
         using NodeInputManager::GetOnlySingleNode;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetMixerInput: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetMixerInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int MixerNum; // The Mixer that you are currently loading input into
@@ -231,7 +231,7 @@ namespace MixerComponent {
         int NumNums;
         int NodeNum;
         int IOStat;
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         int NumParams;
         int InNodeNum1;
         int InNodeNum2;

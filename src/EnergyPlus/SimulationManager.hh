@@ -65,8 +65,8 @@ namespace SimulationManager {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool RunPeriodsInInput;
-    thread_local extern bool RunControlInInput;
+    EP_GLOBAL extern bool RunPeriodsInInput;
+    EP_GLOBAL extern bool RunControlInInput;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SimulationManager
 

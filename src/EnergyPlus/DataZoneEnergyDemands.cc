@@ -70,16 +70,16 @@ namespace DataZoneEnergyDemands {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local Array1D_bool DeadBandOrSetback; // true if zone temperature is in the thermostat deadband
+    EP_GLOBAL Array1D_bool DeadBandOrSetback; // true if zone temperature is in the thermostat deadband
     // before any heating / cooling done
-    thread_local Array1D_bool Setback; // true if zone temperature has increased
+    EP_GLOBAL Array1D_bool Setback; // true if zone temperature has increased
     // from previous setting
-    thread_local Array1D_bool CurDeadBandOrSetback; // same as above except updated after each piece of zone equipment
+    EP_GLOBAL Array1D_bool CurDeadBandOrSetback; // same as above except updated after each piece of zone equipment
     // in a zone is simulated
 
     // Object Data
-    thread_local Array1D<ZoneSystemDemandData> ZoneSysEnergyDemand;
-    thread_local Array1D<ZoneSystemMoistureDemand> ZoneSysMoistureDemand;
+    EP_GLOBAL Array1D<ZoneSystemDemandData> ZoneSysEnergyDemand;
+    EP_GLOBAL Array1D<ZoneSystemMoistureDemand> ZoneSysMoistureDemand;
 
     void clear_state()
     {

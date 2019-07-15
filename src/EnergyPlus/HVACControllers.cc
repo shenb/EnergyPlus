@@ -191,22 +191,22 @@ namespace HVACControllers {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Number of significant digits to display in error messages for floating-point numbers
-    thread_local Real64 const SomeFloatingPoint(1.0);
-    thread_local int const NumSigDigits(PRECISION(SomeFloatingPoint));
+    EP_GLOBAL Real64 const SomeFloatingPoint(1.0);
+    EP_GLOBAL int const NumSigDigits(PRECISION(SomeFloatingPoint));
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // Parameters for controls used here
-    thread_local int const iNoControlVariable(0);
-    thread_local int const iTemperature(1);
-    thread_local int const iHumidityRatio(2);
-    thread_local int const iTemperatureAndHumidityRatio(3);
-    thread_local int const iFlow(4);
+    EP_GLOBAL int const iNoControlVariable(0);
+    EP_GLOBAL int const iTemperature(1);
+    EP_GLOBAL int const iHumidityRatio(2);
+    EP_GLOBAL int const iTemperatureAndHumidityRatio(3);
+    EP_GLOBAL int const iFlow(4);
 
-    thread_local int const CoilType_Cooling(1);
-    thread_local int const CoilType_Heating(2);
+    EP_GLOBAL int const CoilType_Cooling(1);
+    EP_GLOBAL int const CoilType_Heating(2);
 
-    thread_local Array1D_string const
+    EP_GLOBAL Array1D_string const
         ControlVariableTypes({0, 4}, {"No control variable", "Temperature", "Humidity ratio", "Temperature and humidity ratio", "Flow rate"});
 
     // DERIVED TYPE DEFINITIONS
@@ -218,14 +218,14 @@ namespace HVACControllers {
     // Type describing an air loop's runtime statistics over the course of the simulation
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumControllers(0);  // The number of controllers found in the Input
-    thread_local int NumAirLoopStats(0); // Same size as NumPrimaryAirSys if controllers
+    EP_GLOBAL int NumControllers(0);  // The number of controllers found in the Input
+    EP_GLOBAL int NumAirLoopStats(0); // Same size as NumPrimaryAirSys if controllers
     // are defined, 0 otherwise.
     // all controllers per air loop
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // Flag set to make sure you get input once
-    thread_local bool GetControllerInputFlag(true);
+    EP_GLOBAL bool GetControllerInputFlag(true);
 
     // SUBROUTINE Specifications for the Module
     // Driver/Manager Routines
@@ -251,20 +251,20 @@ namespace HVACControllers {
     // Misc routines
 
     // Object Data
-    thread_local Array1D<ControllerPropsType> ControllerProps;
-    thread_local Array1D<RootFinderDataType> RootFinders;
-    thread_local Array1D<AirLoopStatsType> AirLoopStats; // Statistics array to analyze computational profile for
+    EP_GLOBAL Array1D<ControllerPropsType> ControllerProps;
+    EP_GLOBAL Array1D<RootFinderDataType> RootFinders;
+    EP_GLOBAL Array1D<AirLoopStatsType> AirLoopStats; // Statistics array to analyze computational profile for
 
     namespace {
-        thread_local bool InitControllerOneTimeFlag(true);
-        thread_local bool InitControllerSetPointCheckFlag(true);
+        EP_GLOBAL bool InitControllerOneTimeFlag(true);
+        EP_GLOBAL bool InitControllerSetPointCheckFlag(true);
     } // namespace
 
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-    thread_local static ObjexxFCL::gio::Fmt fmtAA("(A,A)");
-    thread_local static ObjexxFCL::gio::Fmt fmtAAA("(A,A,A)");
-    thread_local static ObjexxFCL::gio::Fmt fmtAAAA("(A,A,A,A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtAA("(A,A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtAAA("(A,A,A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtAAAA("(A,A,A,A)");
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -568,7 +568,7 @@ namespace HVACControllers {
         using WaterCoils::CheckForSensorAndSetPointNode;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("HVACControllers: GetControllerInput: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("HVACControllers: GetControllerInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Num; // The Controller that you are currently loading input into
@@ -586,7 +586,7 @@ namespace HVACControllers {
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
         std::string CurrentModuleObject; // for ease in getting objects
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         int iNodeType;             // for checking actuator node type
         bool NodeNotFound;         // flag true if the sensor node is on the coil air outlet node
         bool EMSSetPointErrorFlag; // flag true is EMS is used to set node setpoints
@@ -963,14 +963,14 @@ namespace HVACControllers {
         using SetPointManager::iCtrlVarType_MaxHumRat;
         using SetPointManager::iCtrlVarType_MinHumRat;
 
-        thread_local static std::string const RoutineName("InitController");
+        EP_GLOBAL static std::string const RoutineName("InitController");
 
         int ActuatedNode;
         int SensedNode;
         int ControllerIndex;
-        thread_local static Array1D_bool MyEnvrnFlag;
-        thread_local static Array1D_bool MySizeFlag;
-        thread_local static Array1D_bool MyPlantIndexsFlag;
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;
+        EP_GLOBAL static Array1D_bool MySizeFlag;
+        EP_GLOBAL static Array1D_bool MyPlantIndexsFlag;
         Real64 rho; // local fluid density
 
         if (InitControllerOneTimeFlag) {
@@ -3024,7 +3024,7 @@ namespace HVACControllers {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int TraceFileUnit(0);
+        EP_GLOBAL static int TraceFileUnit(0);
 
         // Open and write column header in trace file for each individual controller
         TraceFileUnit = GetNewUnitNumber();

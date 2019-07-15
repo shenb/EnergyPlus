@@ -367,19 +367,19 @@ private:
     sqlite3_stmt *m_simulationUpdateStmt;
     sqlite3_stmt *m_simulationDataUpdateStmt;
 
-    thread_local static const int LocalReportEach;     //  Write out each time UpdatedataandLocalReport is called
-    thread_local static const int LocalReportTimeStep; //  Write out at 'EndTimeStepFlag'
-    thread_local static const int LocalReportHourly;   //  Write out at 'EndHourFlag'
-    thread_local static const int LocalReportDaily;    //  Write out at 'EndDayFlag'
-    thread_local static const int LocalReportMonthly;  //  Write out at end of month (must be determined)
-    thread_local static const int LocalReportSim;      //  Write out once per environment 'EndEnvrnFlag'
-    thread_local static const int LocalReportYearly;   //  Write out once per year
-    thread_local static const int ReportNameId;
-    thread_local static const int ReportForStringId;
-    thread_local static const int TableNameId;
-    thread_local static const int RowNameId;
-    thread_local static const int ColumnNameId;
-    thread_local static const int UnitsId;
+    EP_GLOBAL static const int LocalReportEach;     //  Write out each time UpdatedataandLocalReport is called
+    EP_GLOBAL static const int LocalReportTimeStep; //  Write out at 'EndTimeStepFlag'
+    EP_GLOBAL static const int LocalReportHourly;   //  Write out at 'EndHourFlag'
+    EP_GLOBAL static const int LocalReportDaily;    //  Write out at 'EndDayFlag'
+    EP_GLOBAL static const int LocalReportMonthly;  //  Write out at end of month (must be determined)
+    EP_GLOBAL static const int LocalReportSim;      //  Write out once per environment 'EndEnvrnFlag'
+    EP_GLOBAL static const int LocalReportYearly;   //  Write out once per year
+    EP_GLOBAL static const int ReportNameId;
+    EP_GLOBAL static const int ReportForStringId;
+    EP_GLOBAL static const int TableNameId;
+    EP_GLOBAL static const int RowNameId;
+    EP_GLOBAL static const int ColumnNameId;
+    EP_GLOBAL static const int UnitsId;
 
     class SQLiteData : public SQLiteProcedures
     {
@@ -989,7 +989,7 @@ private:
     std::vector<std::unique_ptr<SQLite::RoomAirModel>> roomAirModels;
 };
 
-thread_local extern std::unique_ptr<SQLite> sqlite;
+EP_GLOBAL extern std::unique_ptr<SQLite> sqlite;
 
 std::unique_ptr<SQLite> CreateSQLiteDatabase();
 

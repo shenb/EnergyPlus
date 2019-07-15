@@ -64,8 +64,8 @@ namespace RoomAirModelManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern bool GetUCSDDVDataFlag; // UCSD
-    thread_local extern bool GetAirModelData;   // Used to "get" all air model data
+    EP_GLOBAL extern bool GetUCSDDVDataFlag; // UCSD
+    EP_GLOBAL extern bool GetAirModelData;   // Used to "get" all air model data
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 

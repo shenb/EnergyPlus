@@ -126,48 +126,48 @@ namespace EvaporativeFluidCoolers {
     using Psychrometrics::PsyWFnTdbH;
     using Psychrometrics::PsyWFnTdbTwbPb;
 
-    thread_local std::string const cEvapFluidCooler_SingleSpeed("EvaporativeFluidCooler:SingleSpeed");
-    thread_local std::string const cEvapFluidCooler_TwoSpeed("EvaporativeFluidCooler:TwoSpeed");
+    EP_GLOBAL std::string const cEvapFluidCooler_SingleSpeed("EvaporativeFluidCooler:SingleSpeed");
+    EP_GLOBAL std::string const cEvapFluidCooler_TwoSpeed("EvaporativeFluidCooler:TwoSpeed");
 
-    thread_local int const EvapLossByUserFactor(80);
-    thread_local int const EvapLossByMoistTheory(81);
+    EP_GLOBAL int const EvapLossByUserFactor(80);
+    EP_GLOBAL int const EvapLossByMoistTheory(81);
 
-    thread_local int const BlowdownByConcentration(90);
-    thread_local int const BlowdownBySchedule(91);
+    EP_GLOBAL int const BlowdownByConcentration(90);
+    EP_GLOBAL int const BlowdownBySchedule(91);
 
-    thread_local int const PIM_StandardDesignCapacity(1);
-    thread_local int const PIM_UFactor(2);
-    thread_local int const PIM_UserSpecifiedDesignCapacity(3);
+    EP_GLOBAL int const PIM_StandardDesignCapacity(1);
+    EP_GLOBAL int const PIM_UFactor(2);
+    EP_GLOBAL int const PIM_UserSpecifiedDesignCapacity(3);
 
-    thread_local int const EvapFluidCooler_SingleSpeed(1);
-    thread_local int const EvapFluidCooler_TwoSpeed(2);
+    EP_GLOBAL int const EvapFluidCooler_SingleSpeed(1);
+    EP_GLOBAL int const EvapFluidCooler_TwoSpeed(2);
 
-    thread_local static std::string const BlankString;
-    thread_local bool GetEvapFluidCoolerInputFlag(true);
+    EP_GLOBAL static std::string const BlankString;
+    EP_GLOBAL bool GetEvapFluidCoolerInputFlag(true);
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumSimpleEvapFluidCoolers(0); // Number of similar evaporative fluid coolers
+    EP_GLOBAL int NumSimpleEvapFluidCoolers(0); // Number of similar evaporative fluid coolers
 
     // The following block of variables are used to carry model results for a evaporative fluid cooler instance
     //   across sim, update, and report routines.  Simulation manager must be careful
     //   in models with multiple evaporative fluid coolers.
 
-    thread_local Real64 InletWaterTemp(0.0);    // CW temperature at evaporative fluid cooler inlet
-    thread_local Real64 OutletWaterTemp(0.0);   // CW temperature at evaporative fluid cooler outlet
-    thread_local int WaterInletNode(0);         // Node number at evaporative fluid cooler inlet
-    thread_local int WaterOutletNode(0);        // Node number at evaporative fluid cooler outlet
-    thread_local Real64 WaterMassFlowRate(0.0); // WaterMassFlowRate through evaporative fluid cooler
+    EP_GLOBAL Real64 InletWaterTemp(0.0);    // CW temperature at evaporative fluid cooler inlet
+    EP_GLOBAL Real64 OutletWaterTemp(0.0);   // CW temperature at evaporative fluid cooler outlet
+    EP_GLOBAL int WaterInletNode(0);         // Node number at evaporative fluid cooler inlet
+    EP_GLOBAL int WaterOutletNode(0);        // Node number at evaporative fluid cooler outlet
+    EP_GLOBAL Real64 WaterMassFlowRate(0.0); // WaterMassFlowRate through evaporative fluid cooler
     // DSU this is plant level stuff now REAL(r64)   :: EvapFluidCoolerMassFlowRateMax     = 0.0d0    ! Max Hardware Mass Flow Rate
     // DSU this is plant level stuff now REAL(r64)   :: EvapFluidCoolerMassFlowRateMin     = 0.0d0    ! Min Hardware Mass Flow Rate
     // DSU this is plant level stuff now REAL(r64)   :: LoopMassFlowRateMaxAvail = 0.0d0    ! Max Loop Mass Flow Rate available
     // DSU this is plant level stuff now REAL(r64)   :: LoopMassFlowRateMinAvail = 0.0d0    ! Min Loop Mass Flow Rate available
-    thread_local Real64 Qactual(0.0);          // Evaporative fluid cooler heat transfer
-    thread_local Real64 FanPower(0.0);         // Evaporative fluid cooler fan power used
-    thread_local Real64 AirFlowRateRatio(0.0); // Ratio of air flow rate through VS evaporative fluid cooler
+    EP_GLOBAL Real64 Qactual(0.0);          // Evaporative fluid cooler heat transfer
+    EP_GLOBAL Real64 FanPower(0.0);         // Evaporative fluid cooler fan power used
+    EP_GLOBAL Real64 AirFlowRateRatio(0.0); // Ratio of air flow rate through VS evaporative fluid cooler
     // to design air flow rate
-    thread_local Real64 WaterUsage(0.0); // Evaporative fluid cooler water usage (m3/s)
+    EP_GLOBAL Real64 WaterUsage(0.0); // Evaporative fluid cooler water usage (m3/s)
 
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE EvaporativeFluidCoolers
 
@@ -181,10 +181,10 @@ namespace EvaporativeFluidCoolers {
     // Update routines to check convergence and update nodes
 
     // Object Data
-    thread_local Array1D<EvapFluidCoolerspecs> SimpleEvapFluidCooler; // dimension to number of machines
-    thread_local std::unordered_map<std::string, std::string> UniqueSimpleEvapFluidCoolerNames;
-    thread_local Array1D<EvapFluidCoolerInletConds> SimpleEvapFluidCoolerInlet; // inlet conditions
-    thread_local Array1D<ReportVars> SimpleEvapFluidCoolerReport;               // report variables
+    EP_GLOBAL Array1D<EvapFluidCoolerspecs> SimpleEvapFluidCooler; // dimension to number of machines
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueSimpleEvapFluidCoolerNames;
+    EP_GLOBAL Array1D<EvapFluidCoolerInletConds> SimpleEvapFluidCoolerInlet; // inlet conditions
+    EP_GLOBAL Array1D<ReportVars> SimpleEvapFluidCoolerReport;               // report variables
 
     // MODULE SUBROUTINES:
 
@@ -361,7 +361,7 @@ namespace EvaporativeFluidCoolers {
         int NumAlphas;                        // Number of elements in the alpha array
         int NumNums;                          // Number of elements in the numeric array
         int IOStat;                           // IO Status when calling get input subroutine
-        thread_local static bool ErrorsFound(false);       // Logical flag set .TRUE. if errors found while getting input data
+        EP_GLOBAL static bool ErrorsFound(false);       // Logical flag set .TRUE. if errors found while getting input data
         Array1D<Real64> NumArray(25);         // Numeric input data array
         Array1D_string AlphArray(13);         // Character string input data array
         std::string FluidName;
@@ -1346,13 +1346,13 @@ namespace EvaporativeFluidCoolers {
         using Psychrometrics::PsyTwbFnTdbWPb;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitEvapFluidCooler");
+        EP_GLOBAL static std::string const RoutineName("InitEvapFluidCooler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ErrorsFound(false); // Flag if input data errors are found
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static Array1D_bool MyEnvrnFlag;
-        thread_local static Array1D_bool OneTimeFlagForEachEvapFluidCooler;
+        EP_GLOBAL static bool ErrorsFound(false); // Flag if input data errors are found
+        EP_GLOBAL static bool MyOneTimeFlag(true);
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;
+        EP_GLOBAL static Array1D_bool OneTimeFlagForEachEvapFluidCooler;
         int TypeOf_Num(0);
         int LoopNum;
         int LoopSideNum;
@@ -1523,7 +1523,7 @@ namespace EvaporativeFluidCoolers {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const MaxIte(500);    // Maximum number of iterations
         Real64 const Acc(0.0001); // Accuracy of result
-        thread_local static std::string const CalledFrom("SizeEvapFluidCooler");
+        EP_GLOBAL static std::string const CalledFrom("SizeEvapFluidCooler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizCondNum;               // Plant Sizing index for condenser loop
@@ -2354,9 +2354,9 @@ namespace EvaporativeFluidCoolers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcSingleSpeedEvapFluidCooler");
+        EP_GLOBAL static std::string const RoutineName("CalcSingleSpeedEvapFluidCooler");
         int const MaxIteration(100); // Maximum fluid bypass iteration calculations
-        thread_local static std::string const MaxItChar("100");
+        EP_GLOBAL static std::string const MaxItChar("100");
         Real64 const BypassFractionThreshold(0.01); // Threshold to stop bypass iteration
         Real64 const OWTLowerLimit(0.0);            // The limit of evaporative fluid cooler exit fluid temperature used
         // in the fluid bypass calculation to avoid fluid freezing. For water,
@@ -2581,7 +2581,7 @@ namespace EvaporativeFluidCoolers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcTwoSpeedEvapFluidCooler");
+        EP_GLOBAL static std::string const RoutineName("CalcTwoSpeedEvapFluidCooler");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2707,7 +2707,7 @@ namespace EvaporativeFluidCoolers {
         Real64 const WetBulbTolerance(0.00001); // Maximum error for exiting wet-bulb temperature between iterations
         // [delta K/K]
         Real64 const DeltaTwbTolerance(0.001); // Maximum error (tolerance) in DeltaTwb for iteration convergence [C]
-        thread_local static std::string const RoutineName("SimSimpleEvapFluidCooler");
+        EP_GLOBAL static std::string const RoutineName("SimSimpleEvapFluidCooler");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2903,7 +2903,7 @@ namespace EvaporativeFluidCoolers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalculateWaterUseage");
+        EP_GLOBAL static std::string const RoutineName("CalculateWaterUseage");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2915,9 +2915,9 @@ namespace EvaporativeFluidCoolers {
         Real64 AirDensity;
         Real64 AirMassFlowRate;
         Real64 AvailTankVdot;
-        thread_local static Real64 BlowDownVdot(0.0);
-        thread_local static Real64 DriftVdot(0.0);
-        thread_local static Real64 EvapVdot(0.0);
+        EP_GLOBAL static Real64 BlowDownVdot(0.0);
+        EP_GLOBAL static Real64 DriftVdot(0.0);
+        EP_GLOBAL static Real64 EvapVdot(0.0);
         Real64 InletAirEnthalpy;
         Real64 InSpecificHumRat;
         Real64 OutSpecificHumRat;
@@ -3081,7 +3081,7 @@ namespace EvaporativeFluidCoolers {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt LowTempFmt("(' ',F6.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt LowTempFmt("(' ',F6.2)");
         Real64 const TempAllowance(0.02); // Minimum difference b/w fluid cooler water outlet temp and
         // minimum condenser loop temp [C]
 

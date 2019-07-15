@@ -95,7 +95,7 @@ namespace DataTimings {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const MaxTimingStringLength(250); // string length for timing string array
+    EP_GLOBAL int const MaxTimingStringLength(250); // string length for timing string array
 
     // DERIVED TYPE DEFINITIONS
 
@@ -103,20 +103,20 @@ namespace DataTimings {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumTimingElements(0);
-    thread_local int MaxTimingElements(0);
-    thread_local Real64 dailyWeatherTime;
-    thread_local Real64 dailyExteriorEnergyUseTime;
-    thread_local Real64 dailyHeatBalanceTime;
-    thread_local Real64 hbdailyInit;
-    thread_local Real64 hbdailyOutSurf;
-    thread_local Real64 hbdailyInSurf;
-    thread_local Real64 hbdailyHVAC;
-    thread_local Real64 hbdailyRep;
-    thread_local Real64 clockrate;
-    thread_local bool lprocessingInputTiming(false);
-    thread_local bool lmanageSimulationTiming(false);
-    thread_local bool lcloseoutReportingTiming(false);
+    EP_GLOBAL int NumTimingElements(0);
+    EP_GLOBAL int MaxTimingElements(0);
+    EP_GLOBAL Real64 dailyWeatherTime;
+    EP_GLOBAL Real64 dailyExteriorEnergyUseTime;
+    EP_GLOBAL Real64 dailyHeatBalanceTime;
+    EP_GLOBAL Real64 hbdailyInit;
+    EP_GLOBAL Real64 hbdailyOutSurf;
+    EP_GLOBAL Real64 hbdailyInSurf;
+    EP_GLOBAL Real64 hbdailyHVAC;
+    EP_GLOBAL Real64 hbdailyRep;
+    EP_GLOBAL Real64 clockrate;
+    EP_GLOBAL bool lprocessingInputTiming(false);
+    EP_GLOBAL bool lmanageSimulationTiming(false);
+    EP_GLOBAL bool lcloseoutReportingTiming(false);
 
     // Following for calls to routines
 #ifdef EP_Count_Calls
@@ -139,7 +139,7 @@ namespace DataTimings {
 #endif
 
     // Object Data
-    thread_local Array1D<timings> Timing;
+    EP_GLOBAL Array1D<timings> Timing;
 
     // Functions
 
@@ -361,7 +361,7 @@ namespace DataTimings {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

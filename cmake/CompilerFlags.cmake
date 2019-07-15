@@ -6,6 +6,12 @@ ADD_CXX_DEBUG_DEFINITIONS("-DOBJEXXFCL_ARRAY_INIT_DEBUG") # Initialize ObjexxFCL
 # Make sure expat is compiled as a static library
 ADD_DEFINITIONS("-DXML_STATIC")
 
+# Enable / disable thread_local storage
+# See macro definition in EnergyPlus.hh
+if(ENABLE_THREAD_LOCAL)
+  add_definitions(-DENABLE_THREAD_LOCAL)
+endif()
+
 IF ( MSVC AND NOT ( "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel" ) ) # Visual C++ (VS 2013)
 
     # Disabled Warnings: Enable some of these as more serious warnings are addressed

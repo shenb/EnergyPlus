@@ -127,114 +127,114 @@ namespace SystemReports {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const NoHeatNoCool(0);
-    thread_local int const CoolingOnly(1);
-    thread_local int const HeatingOnly(2);
-    thread_local int const HeatAndCool(3);
-    thread_local int const MaxSetBackCount(3);
+    EP_GLOBAL int const NoHeatNoCool(0);
+    EP_GLOBAL int const CoolingOnly(1);
+    EP_GLOBAL int const HeatingOnly(2);
+    EP_GLOBAL int const HeatAndCool(3);
+    EP_GLOBAL int const MaxSetBackCount(3);
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
     // Ventilation Report Variables
-    thread_local Array1D<Real64> MaxCoolingLoadMetByVent;
-    thread_local Array1D<Real64> MaxCoolingLoadAddedByVent;
-    thread_local Array1D<Real64> MaxOvercoolingByVent;
-    thread_local Array1D<Real64> MaxHeatingLoadMetByVent;
-    thread_local Array1D<Real64> MaxHeatingLoadAddedByVent;
-    thread_local Array1D<Real64> MaxOverheatingByVent;
-    thread_local Array1D<Real64> MaxNoLoadHeatingByVent;
-    thread_local Array1D<Real64> MaxNoLoadCoolingByVent;
+    EP_GLOBAL Array1D<Real64> MaxCoolingLoadMetByVent;
+    EP_GLOBAL Array1D<Real64> MaxCoolingLoadAddedByVent;
+    EP_GLOBAL Array1D<Real64> MaxOvercoolingByVent;
+    EP_GLOBAL Array1D<Real64> MaxHeatingLoadMetByVent;
+    EP_GLOBAL Array1D<Real64> MaxHeatingLoadAddedByVent;
+    EP_GLOBAL Array1D<Real64> MaxOverheatingByVent;
+    EP_GLOBAL Array1D<Real64> MaxNoLoadHeatingByVent;
+    EP_GLOBAL Array1D<Real64> MaxNoLoadCoolingByVent;
 
-    thread_local Array1D<Real64> RemMaxCoolingLoadMetByVent;
-    thread_local Array1D<Real64> RemMaxCoolingLoadAddedByVent;
-    thread_local Array1D<Real64> RemMaxOvercoolingByVent;
-    thread_local Array1D<Real64> RemMaxHeatingLoadMetByVent;
-    thread_local Array1D<Real64> RemMaxHeatingLoadAddedByVent;
-    thread_local Array1D<Real64> RemMaxOverheatingByVent;
-    thread_local Array1D<Real64> RemMaxNoLoadHeatingByVent;
-    thread_local Array1D<Real64> RemMaxNoLoadCoolingByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxCoolingLoadMetByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxCoolingLoadAddedByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxOvercoolingByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxHeatingLoadMetByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxHeatingLoadAddedByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxOverheatingByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxNoLoadHeatingByVent;
+    EP_GLOBAL Array1D<Real64> RemMaxNoLoadCoolingByVent;
 
-    thread_local Array1D<Real64> LastMaxCoolingLoadMetByVent;
-    thread_local Array1D<Real64> LastMaxCoolingLoadAddedByVent;
-    thread_local Array1D<Real64> LastMaxOvercoolingByVent;
-    thread_local Array1D<Real64> LastMaxHeatingLoadMetByVent;
-    thread_local Array1D<Real64> LastMaxHeatingLoadAddedByVent;
-    thread_local Array1D<Real64> LastMaxOverheatingByVent;
-    thread_local Array1D<Real64> LastMaxNoLoadHeatingByVent;
-    thread_local Array1D<Real64> LastMaxNoLoadCoolingByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxCoolingLoadMetByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxCoolingLoadAddedByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxOvercoolingByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxHeatingLoadMetByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxHeatingLoadAddedByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxOverheatingByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxNoLoadHeatingByVent;
+    EP_GLOBAL Array1D<Real64> LastMaxNoLoadCoolingByVent;
 
-    thread_local Array1D<Real64> SysTotZoneLoadHTNG;
-    thread_local Array1D<Real64> SysTotZoneLoadCLNG;
-    thread_local Array1D<Real64> SysOALoadHTNG;
-    thread_local Array1D<Real64> SysOALoadCLNG;
-    thread_local Array1D<Real64> SysTotHTNG;
-    thread_local Array1D<Real64> SysTotCLNG;
+    EP_GLOBAL Array1D<Real64> SysTotZoneLoadHTNG;
+    EP_GLOBAL Array1D<Real64> SysTotZoneLoadCLNG;
+    EP_GLOBAL Array1D<Real64> SysOALoadHTNG;
+    EP_GLOBAL Array1D<Real64> SysOALoadCLNG;
+    EP_GLOBAL Array1D<Real64> SysTotHTNG;
+    EP_GLOBAL Array1D<Real64> SysTotCLNG;
 
-    thread_local Array1D<Real64> SysTotH2OHOT;
-    thread_local Array1D<Real64> SysTotH2OCOLD;
-    thread_local Array1D<Real64> SysTotElec;
-    thread_local Array1D<Real64> SysTotGas;
-    thread_local Array1D<Real64> SysTotSteam;
+    EP_GLOBAL Array1D<Real64> SysTotH2OHOT;
+    EP_GLOBAL Array1D<Real64> SysTotH2OCOLD;
+    EP_GLOBAL Array1D<Real64> SysTotElec;
+    EP_GLOBAL Array1D<Real64> SysTotGas;
+    EP_GLOBAL Array1D<Real64> SysTotSteam;
 
-    thread_local Array1D<Real64> SysHumidHTNG;
-    thread_local Array1D<Real64> SysHumidElec;
-    thread_local Array1D<Real64> SysHumidGas;
-    thread_local Array1D<Real64> SysEvapCLNG;
-    thread_local Array1D<Real64> SysEvapElec;
-    thread_local Array1D<Real64> SysHeatExHTNG;
-    thread_local Array1D<Real64> SysHeatExCLNG;
-    thread_local Array1D<Real64> DesDehumidCLNG;
-    thread_local Array1D<Real64> DesDehumidElec;
-    thread_local Array1D<Real64> SysSolarCollectHeating;
-    thread_local Array1D<Real64> SysSolarCollectCooling;
-    thread_local Array1D<Real64> SysUserDefinedTerminalHeating;
-    thread_local Array1D<Real64> SysUserDefinedTerminalCooling;
+    EP_GLOBAL Array1D<Real64> SysHumidHTNG;
+    EP_GLOBAL Array1D<Real64> SysHumidElec;
+    EP_GLOBAL Array1D<Real64> SysHumidGas;
+    EP_GLOBAL Array1D<Real64> SysEvapCLNG;
+    EP_GLOBAL Array1D<Real64> SysEvapElec;
+    EP_GLOBAL Array1D<Real64> SysHeatExHTNG;
+    EP_GLOBAL Array1D<Real64> SysHeatExCLNG;
+    EP_GLOBAL Array1D<Real64> DesDehumidCLNG;
+    EP_GLOBAL Array1D<Real64> DesDehumidElec;
+    EP_GLOBAL Array1D<Real64> SysSolarCollectHeating;
+    EP_GLOBAL Array1D<Real64> SysSolarCollectCooling;
+    EP_GLOBAL Array1D<Real64> SysUserDefinedTerminalHeating;
+    EP_GLOBAL Array1D<Real64> SysUserDefinedTerminalCooling;
 
-    thread_local Array1D<Real64> SysFANCompHTNG;
-    thread_local Array1D<Real64> SysFANCompElec;
-    thread_local Array1D<Real64> SysCCCompCLNG;
-    thread_local Array1D<Real64> SysCCCompH2OCOLD;
-    thread_local Array1D<Real64> SysCCCompElec;
-    thread_local Array1D<Real64> SysHCCompH2OHOT;
-    thread_local Array1D<Real64> SysHCCompElec;
-    thread_local Array1D<Real64> SysHCCompElecRes;
-    thread_local Array1D<Real64> SysHCCompHTNG;
-    thread_local Array1D<Real64> SysHCCompGas;
-    thread_local Array1D<Real64> SysHCCompSteam;
-    thread_local Array1D<Real64> SysDomesticH20;
+    EP_GLOBAL Array1D<Real64> SysFANCompHTNG;
+    EP_GLOBAL Array1D<Real64> SysFANCompElec;
+    EP_GLOBAL Array1D<Real64> SysCCCompCLNG;
+    EP_GLOBAL Array1D<Real64> SysCCCompH2OCOLD;
+    EP_GLOBAL Array1D<Real64> SysCCCompElec;
+    EP_GLOBAL Array1D<Real64> SysHCCompH2OHOT;
+    EP_GLOBAL Array1D<Real64> SysHCCompElec;
+    EP_GLOBAL Array1D<Real64> SysHCCompElecRes;
+    EP_GLOBAL Array1D<Real64> SysHCCompHTNG;
+    EP_GLOBAL Array1D<Real64> SysHCCompGas;
+    EP_GLOBAL Array1D<Real64> SysHCCompSteam;
+    EP_GLOBAL Array1D<Real64> SysDomesticH20;
 
-    thread_local Array1D<Real64> ZoneOAMassFlow;       // zone mech vent mass flow rate {kg/s}
-    thread_local Array1D<Real64> ZoneOAMass;           // zone mech vent total mass for time {kg}
-    thread_local Array1D<Real64> ZoneOAVolFlowStdRho;  // zone mech vent volume flow rate at standard density {m3/s}
-    thread_local Array1D<Real64> ZoneOAVolStdRho;      // zone mech vent total volume OA at standard density {m3/s}
-    thread_local Array1D<Real64> ZoneOAVolFlowCrntRho; // zone mech vent volume flow rate at current density {m3/s}
-    thread_local Array1D<Real64> ZoneOAVolCrntRho;     // zone mech vent total volume OA at current density {m3/s}
-    thread_local Array1D<Real64> ZoneMechACH;          // zone mech vent air changes per hour {ACH}
+    EP_GLOBAL Array1D<Real64> ZoneOAMassFlow;       // zone mech vent mass flow rate {kg/s}
+    EP_GLOBAL Array1D<Real64> ZoneOAMass;           // zone mech vent total mass for time {kg}
+    EP_GLOBAL Array1D<Real64> ZoneOAVolFlowStdRho;  // zone mech vent volume flow rate at standard density {m3/s}
+    EP_GLOBAL Array1D<Real64> ZoneOAVolStdRho;      // zone mech vent total volume OA at standard density {m3/s}
+    EP_GLOBAL Array1D<Real64> ZoneOAVolFlowCrntRho; // zone mech vent volume flow rate at current density {m3/s}
+    EP_GLOBAL Array1D<Real64> ZoneOAVolCrntRho;     // zone mech vent total volume OA at current density {m3/s}
+    EP_GLOBAL Array1D<Real64> ZoneMechACH;          // zone mech vent air changes per hour {ACH}
 
-    thread_local bool AirLoopLoadsReportEnabled(true);
-    thread_local bool VentLoadsReportEnabled(true);
-    thread_local bool VentEnergyReportEnabled(false);
-    thread_local bool VentReportStructureCreated(false);
-    thread_local int TotalLoopConnects(0); // Total number of loop connections
-    thread_local int MaxLoopArraySize(100);
-    thread_local int MaxCompArraySize(500);
-    thread_local int DBFlag(0);
+    EP_GLOBAL bool AirLoopLoadsReportEnabled(true);
+    EP_GLOBAL bool VentLoadsReportEnabled(true);
+    EP_GLOBAL bool VentEnergyReportEnabled(false);
+    EP_GLOBAL bool VentReportStructureCreated(false);
+    EP_GLOBAL int TotalLoopConnects(0); // Total number of loop connections
+    EP_GLOBAL int MaxLoopArraySize(100);
+    EP_GLOBAL int MaxCompArraySize(500);
+    EP_GLOBAL int DBFlag(0);
 
-    thread_local Array1D_int SetBackCounter;
-    thread_local Array1D_int HeatCoolFlag;
-    thread_local Array1D_int FirstHeatCoolFlag;
-    thread_local Array1D_int FirstHeatCoolHour;
-    thread_local Array1D_int LastHeatCoolFlag;
-    thread_local Array1D_int LastHeatCoolHour;
-    thread_local Array1D_bool AirLoopCalcDone;
-    thread_local Array1D_bool NoLoadFlag;
-    thread_local Array1D_bool UnmetLoadFlag;
+    EP_GLOBAL Array1D_int SetBackCounter;
+    EP_GLOBAL Array1D_int HeatCoolFlag;
+    EP_GLOBAL Array1D_int FirstHeatCoolFlag;
+    EP_GLOBAL Array1D_int FirstHeatCoolHour;
+    EP_GLOBAL Array1D_int LastHeatCoolFlag;
+    EP_GLOBAL Array1D_int LastHeatCoolHour;
+    EP_GLOBAL Array1D_bool AirLoopCalcDone;
+    EP_GLOBAL Array1D_bool NoLoadFlag;
+    EP_GLOBAL Array1D_bool UnmetLoadFlag;
 
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SystemReports
 
@@ -243,7 +243,7 @@ namespace SystemReports {
     // Reporting routines for module
 
     // Object Data
-    thread_local Array1D<SummarizeLoads> Vent;
+    EP_GLOBAL Array1D<SummarizeLoads> Vent;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -318,7 +318,7 @@ namespace SystemReports {
         std::string CompType;
         std::string CompName;
         bool MatchFound;
-        thread_local static bool OneTimeFlag(true); // Flag set to make sure you initialize reports one time
+        EP_GLOBAL static bool OneTimeFlag(true); // Flag set to make sure you initialize reports one time
         bool ConnectionFlag(false);
 
         if (!VentReportStructureCreated) return;
@@ -1241,7 +1241,7 @@ namespace SystemReports {
         int DemandSideCompNum;
         int SupplySideCompNum;
         int DemandSideLoopType;
-        thread_local static bool OneTimeFlag(true); // Flag set to make sure you initialize reports one time
+        EP_GLOBAL static bool OneTimeFlag(true); // Flag set to make sure you initialize reports one time
         bool found;
         //		int countloop;
 
@@ -1258,7 +1258,7 @@ namespace SystemReports {
         };
 
         // Object Data
-        thread_local static Array1D<IdentifyLoop> LoopStack;
+        EP_GLOBAL static Array1D<IdentifyLoop> LoopStack;
 
         return; // Autodesk:? Is this routine now an intentional NOOP?
 
@@ -1420,9 +1420,9 @@ namespace SystemReports {
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
-        thread_local static bool OneTimeFlag(true);
-        thread_local static int ArrayLimit(100);
-        thread_local static int ArrayCounter(1);
+        EP_GLOBAL static bool OneTimeFlag(true);
+        EP_GLOBAL static int ArrayLimit(100);
+        EP_GLOBAL static int ArrayCounter(1);
 
         if (OneTimeFlag) {
             ZoneCompToPlant.allocate(ArrayLimit);
@@ -1502,9 +1502,9 @@ namespace SystemReports {
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
-        thread_local static bool OneTimeFlag(true);
-        thread_local static int ArrayLimit(100);
-        thread_local static int ArrayCounter(1);
+        EP_GLOBAL static bool OneTimeFlag(true);
+        EP_GLOBAL static int ArrayLimit(100);
+        EP_GLOBAL static int ArrayCounter(1);
 
         if (OneTimeFlag) {
             ZoneSubCompToPlant.allocate(ArrayLimit);
@@ -1588,9 +1588,9 @@ namespace SystemReports {
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
-        thread_local static bool OneTimeFlag(true);
-        thread_local static int ArrayLimit(100);
-        thread_local static int ArrayCounter(1);
+        EP_GLOBAL static bool OneTimeFlag(true);
+        EP_GLOBAL static int ArrayLimit(100);
+        EP_GLOBAL static int ArrayCounter(1);
 
         if (OneTimeFlag) {
             ZoneSubSubCompToPlant.allocate(ArrayLimit);
@@ -1676,9 +1676,9 @@ namespace SystemReports {
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
-        thread_local static bool OneTimeFlag(true);
-        thread_local static int ArrayLimit(100);
-        thread_local static int ArrayCounter(1);
+        EP_GLOBAL static bool OneTimeFlag(true);
+        EP_GLOBAL static int ArrayLimit(100);
+        EP_GLOBAL static int ArrayCounter(1);
 
         if (OneTimeFlag) {
             AirSysCompToPlant.allocate(ArrayLimit);
@@ -1762,9 +1762,9 @@ namespace SystemReports {
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
-        thread_local static bool OneTimeFlag(true);
-        thread_local static int ArrayLimit(100);
-        thread_local static int ArrayCounter(1);
+        EP_GLOBAL static bool OneTimeFlag(true);
+        EP_GLOBAL static int ArrayLimit(100);
+        EP_GLOBAL static int ArrayCounter(1);
 
         if (OneTimeFlag) {
             AirSysSubCompToPlant.allocate(ArrayLimit);
@@ -1852,9 +1852,9 @@ namespace SystemReports {
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
-        thread_local static bool OneTimeFlag(true);
-        thread_local static int ArrayLimit(100);
-        thread_local static int ArrayCounter(1);
+        EP_GLOBAL static bool OneTimeFlag(true);
+        EP_GLOBAL static int ArrayLimit(100);
+        EP_GLOBAL static int ArrayCounter(1);
 
         if (OneTimeFlag) {
             AirSysSubSubCompToPlant.allocate(ArrayLimit);
@@ -3924,7 +3924,7 @@ namespace SystemReports {
             Unknown_ComponentType
         };
 
-        thread_local static std::unordered_map<std::string, ComponentTypes> const component_map = {
+        EP_GLOBAL static std::unordered_map<std::string, ComponentTypes> const component_map = {
             {"AIRLOOPHVAC:OUTDOORAIRSYSTEM", AIRLOOPHVAC_OUTDOORAIRSYSTEM},
             {"AIRLOOPHVAC:UNITARY:FURNACE:HEATCOOL", AIRLOOPHVAC_UNITARY_FURNACE_HEATCOOL},
             {"AIRLOOPHVAC:UNITARY:FURNACE:HEATONLY", AIRLOOPHVAC_UNITARY_FURNACE_HEATONLY},
@@ -4017,7 +4017,7 @@ namespace SystemReports {
         // DERIVED TYPE DEFINITIONS
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int NumCompTypes(0);
+        EP_GLOBAL static int NumCompTypes(0);
         int found;
 
         struct CompTypeError
@@ -4033,7 +4033,7 @@ namespace SystemReports {
         };
 
         // Object Data
-        thread_local static Array1D<CompTypeError> CompTypeErrors(100);
+        EP_GLOBAL static Array1D<CompTypeError> CompTypeErrors(100);
 
         if (!AirLoopLoadsReportEnabled) return;
 
@@ -5069,7 +5069,7 @@ namespace SystemReports {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const errstring("**error**");
+        EP_GLOBAL static std::string const errstring("**error**");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -5089,22 +5089,22 @@ namespace SystemReports {
         std::string ChrOut5;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_701("(A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_706("('! <#AirLoopHVACs>,<Number of AirLoopHVACs>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_707("(1X,A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_708(
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_701("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_706("('! <#AirLoopHVACs>,<Number of AirLoopHVACs>')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_707("(1X,A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_708(
             "('! <AirLoopHVAC>,<Air Loop Name>,<# Return Nodes>,<# Supply Nodes>,','<# Zones Cooled>,<# Zones Heated>,<Outdoor Air Used>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_709("('! <AirLoop Return Connections>,<Connection Count>,<AirLoopHVAC Name>,','<Zn Eqp Return Node #>,<Zn Eqp Return "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_709("('! <AirLoop Return Connections>,<Connection Count>,<AirLoopHVAC Name>,','<Zn Eqp Return Node #>,<Zn Eqp Return "
                                    "Node Name>,','<AirLoop Return Node #>,<Air Loop Return Node Name>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_710("('! <AirLoop Supply Connections>,<Connection Count>,<AirLoopHVAC Name>,','<Zn Eqp Supply Node #>,<Zn Eqp Supply "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_710("('! <AirLoop Supply Connections>,<Connection Count>,<AirLoopHVAC Name>,','<Zn Eqp Supply Node #>,<Zn Eqp Supply "
                                    "Node Name>,','<AirLoop Supply Node #>,<Air Loop Supply Node Name>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_711("('! <Cooled Zone Info>,<Cooled Zone Count>,<Cooled Zone Name>,','<Cooled Zone Inlet Node #>,<Cooled Zone Inlet "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_711("('! <Cooled Zone Info>,<Cooled Zone Count>,<Cooled Zone Name>,','<Cooled Zone Inlet Node #>,<Cooled Zone Inlet "
                                    "Node Name>,<AirLoopHVAC Name>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_712("('! <Heated Zone Info>,<Heated Zone Count>,<Heated Zone Name>,','<Heated Zone Inlet Node #>,<Heated Zone Inlet "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_712("('! <Heated Zone Info>,<Heated Zone Count>,<Heated Zone Name>,','<Heated Zone Inlet Node #>,<Heated Zone Inlet "
                                    "Node Name>,<AirLoopHVAC Name>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_714("('! <Outdoor Air Connections>,<OA Inlet Node #>,<OA Return Air Inlet Node Name>,','<OA Outlet Node #>,<OA Mixed "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_714("('! <Outdoor Air Connections>,<OA Inlet Node #>,<OA Return Air Inlet Node Name>,','<OA Outlet Node #>,<OA Mixed "
                                    "Air Outlet Node Name>,<AirLoopHVAC Name>'s)");
-        thread_local static ObjexxFCL::gio::Fmt Format_713("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_713("(A)");
 
         ObjexxFCL::gio::write(OutputFileBNDetails, Format_701) << "! ===============================================================";
         ObjexxFCL::gio::write(OutputFileBNDetails, Format_706);

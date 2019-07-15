@@ -64,35 +64,35 @@ namespace ChillerAbsorption {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // chiller flow modes
-    thread_local extern int const FlowModeNotSet;
-    thread_local extern int const ConstantFlow;
-    thread_local extern int const NotModulated;
-    thread_local extern int const LeavingSetPointModulated;
+    EP_GLOBAL extern int const FlowModeNotSet;
+    EP_GLOBAL extern int const ConstantFlow;
+    EP_GLOBAL extern int const NotModulated;
+    EP_GLOBAL extern int const LeavingSetPointModulated;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumBLASTAbsorbers; // number of Absorption Chillers specified in input
+    EP_GLOBAL extern int NumBLASTAbsorbers; // number of Absorption Chillers specified in input
 
-    thread_local extern Real64 CondMassFlowRate;    // Kg/s - condenser mass flow rate, water side
-    thread_local extern Real64 EvapMassFlowRate;    // Kg/s - evaporator mass flow rate, water side
-    thread_local extern Real64 SteamMassFlowRate;   // Kg/s - steam mass flow rate, water side
-    thread_local extern Real64 CondOutletTemp;      // C - condenser outlet temperature, water side
-    thread_local extern Real64 EvapOutletTemp;      // C - evaporator outlet temperature, water side
-    thread_local extern Real64 GenOutletTemp;       // C - generator fluid outlet temperature
-    thread_local extern Real64 SteamOutletEnthalpy; // J/kg - generator fluid outlet enthalpy
-    thread_local extern Real64 PumpingPower;        // W - rate of Absorber energy use
-    thread_local extern Real64 PumpingEnergy;       // J - Absorber energy use
-    thread_local extern Real64 QGenerator;          // W - rate of Absorber steam use
-    thread_local extern Real64 GeneratorEnergy;     // J - Absorber steam use
-    thread_local extern Real64 QEvaporator;         // W - rate of heat transfer to the evaporator coil
-    thread_local extern Real64 EvaporatorEnergy;    // J - heat transfer to the evaporator coil
-    thread_local extern Real64 QCondenser;          // W - rate of heat transfer to the condenser coil
-    thread_local extern Real64 CondenserEnergy;     // J - heat transfer to the condenser coil
+    EP_GLOBAL extern Real64 CondMassFlowRate;    // Kg/s - condenser mass flow rate, water side
+    EP_GLOBAL extern Real64 EvapMassFlowRate;    // Kg/s - evaporator mass flow rate, water side
+    EP_GLOBAL extern Real64 SteamMassFlowRate;   // Kg/s - steam mass flow rate, water side
+    EP_GLOBAL extern Real64 CondOutletTemp;      // C - condenser outlet temperature, water side
+    EP_GLOBAL extern Real64 EvapOutletTemp;      // C - evaporator outlet temperature, water side
+    EP_GLOBAL extern Real64 GenOutletTemp;       // C - generator fluid outlet temperature
+    EP_GLOBAL extern Real64 SteamOutletEnthalpy; // J/kg - generator fluid outlet enthalpy
+    EP_GLOBAL extern Real64 PumpingPower;        // W - rate of Absorber energy use
+    EP_GLOBAL extern Real64 PumpingEnergy;       // J - Absorber energy use
+    EP_GLOBAL extern Real64 QGenerator;          // W - rate of Absorber steam use
+    EP_GLOBAL extern Real64 GeneratorEnergy;     // J - Absorber steam use
+    EP_GLOBAL extern Real64 QEvaporator;         // W - rate of heat transfer to the evaporator coil
+    EP_GLOBAL extern Real64 EvaporatorEnergy;    // J - heat transfer to the evaporator coil
+    EP_GLOBAL extern Real64 QCondenser;          // W - rate of heat transfer to the condenser coil
+    EP_GLOBAL extern Real64 CondenserEnergy;     // J - heat transfer to the condenser coil
 
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
-    thread_local extern bool GetInput; // When TRUE, calls subroutine to read input file
+    EP_GLOBAL extern bool GetInput; // When TRUE, calls subroutine to read input file
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
 
@@ -205,8 +205,8 @@ namespace ChillerAbsorption {
     };
 
     // Object Data
-    thread_local extern Array1D<BLASTAbsorberSpecs> BLASTAbsorber; // dimension to number of machines
-    thread_local extern Array1D<ReportVars> BLASTAbsorberReport;
+    EP_GLOBAL extern Array1D<BLASTAbsorberSpecs> BLASTAbsorber; // dimension to number of machines
+    EP_GLOBAL extern Array1D<ReportVars> BLASTAbsorberReport;
 
     // Functions
 

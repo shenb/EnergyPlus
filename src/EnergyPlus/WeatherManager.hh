@@ -71,53 +71,53 @@ namespace WeatherManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Following are Date Types read in from EPW file or IDF
-    thread_local extern int const InvalidDate;
-    thread_local extern int const MonthDay;
-    thread_local extern int const NthDayInMonth;
-    thread_local extern int const LastDayInMonth;
+    EP_GLOBAL extern int const InvalidDate;
+    EP_GLOBAL extern int const MonthDay;
+    EP_GLOBAL extern int const NthDayInMonth;
+    EP_GLOBAL extern int const LastDayInMonth;
 
-    thread_local extern int const ScheduleMethod;                   // Constant for water mains temperatures calculation methods
-    thread_local extern int const CorrelationMethod;                // Constant for water mains temperatures calculation methods
-    thread_local extern int const CorrelationFromWeatherFileMethod; // Constant for water mains temperatures calculation methods
+    EP_GLOBAL extern int const ScheduleMethod;                   // Constant for water mains temperatures calculation methods
+    EP_GLOBAL extern int const CorrelationMethod;                // Constant for water mains temperatures calculation methods
+    EP_GLOBAL extern int const CorrelationFromWeatherFileMethod; // Constant for water mains temperatures calculation methods
 
-    thread_local extern int const InvalidWeatherFile;
-    thread_local extern int const EPlusWeatherFile;
+    EP_GLOBAL extern int const InvalidWeatherFile;
+    EP_GLOBAL extern int const EPlusWeatherFile;
 
-    thread_local extern int const ASHRAE_ClearSky;     // Design Day solar model ASHRAE ClearSky (default)
-    thread_local extern int const Zhang_Huang;         // Design Day solar model Zhang Huang
-    thread_local extern int const SolarModel_Schedule; // Design Day solar model (beam and diffuse) from user entered schedule
-    thread_local extern int const ASHRAE_Tau;          // Design Day solar model ASHRAE tau (per 2009 HOF)
-    thread_local extern int const ASHRAE_Tau2017;      // Design Day solar model ASHRAE tau (per 2013 and 2017 HOF)
+    EP_GLOBAL extern int const ASHRAE_ClearSky;     // Design Day solar model ASHRAE ClearSky (default)
+    EP_GLOBAL extern int const Zhang_Huang;         // Design Day solar model Zhang Huang
+    EP_GLOBAL extern int const SolarModel_Schedule; // Design Day solar model (beam and diffuse) from user entered schedule
+    EP_GLOBAL extern int const ASHRAE_Tau;          // Design Day solar model ASHRAE tau (per 2009 HOF)
+    EP_GLOBAL extern int const ASHRAE_Tau2017;      // Design Day solar model ASHRAE tau (per 2013 and 2017 HOF)
 
-    thread_local extern int const DDHumIndType_WetBulb;   // Design Day Humidity Indicating Type = Wetbulb (default)
-    thread_local extern int const DDHumIndType_DewPoint;  // Design Day Humidity Indicating Type = Dewpoint
-    thread_local extern int const DDHumIndType_Enthalpy;  // Design Day Humidity Indicating Type = Enthalpy
-    thread_local extern int const DDHumIndType_HumRatio;  // Design Day Humidity Indicating Type = Humidity Ratio
-    thread_local extern int const DDHumIndType_RelHumSch; // Design Day Humidity Indicating Type = relhum schedule
-    thread_local extern int const DDHumIndType_WBProfDef; // Design Day Humidity Indicating Type = Wetbulb default profile
-    thread_local extern int const DDHumIndType_WBProfDif; // Design Day Humidity Indicating Type = Wetbulb difference profile
-    thread_local extern int const DDHumIndType_WBProfMul; // Design Day Humidity Indicating Type = Wetbulb multiplier profile
-    thread_local extern int const DDHumIndType_Count;     // # of DDHumIndTypes
+    EP_GLOBAL extern int const DDHumIndType_WetBulb;   // Design Day Humidity Indicating Type = Wetbulb (default)
+    EP_GLOBAL extern int const DDHumIndType_DewPoint;  // Design Day Humidity Indicating Type = Dewpoint
+    EP_GLOBAL extern int const DDHumIndType_Enthalpy;  // Design Day Humidity Indicating Type = Enthalpy
+    EP_GLOBAL extern int const DDHumIndType_HumRatio;  // Design Day Humidity Indicating Type = Humidity Ratio
+    EP_GLOBAL extern int const DDHumIndType_RelHumSch; // Design Day Humidity Indicating Type = relhum schedule
+    EP_GLOBAL extern int const DDHumIndType_WBProfDef; // Design Day Humidity Indicating Type = Wetbulb default profile
+    EP_GLOBAL extern int const DDHumIndType_WBProfDif; // Design Day Humidity Indicating Type = Wetbulb difference profile
+    EP_GLOBAL extern int const DDHumIndType_WBProfMul; // Design Day Humidity Indicating Type = Wetbulb multiplier profile
+    EP_GLOBAL extern int const DDHumIndType_Count;     // # of DDHumIndTypes
 
-    thread_local extern int const DDDBRangeType_Default;    // Design Day DryBulb Range Type = Default Multipliers
-    thread_local extern int const DDDBRangeType_Multiplier; // Design Day DryBulb Range Type = Multiplier Schedule
-    thread_local extern int const DDDBRangeType_Difference; // Design Day DryBulb Range Type = Difference Schedule
-    thread_local extern int const DDDBRangeType_Profile;    // Design Day DryBulb Range Type = Temperature Profile
+    EP_GLOBAL extern int const DDDBRangeType_Default;    // Design Day DryBulb Range Type = Default Multipliers
+    EP_GLOBAL extern int const DDDBRangeType_Multiplier; // Design Day DryBulb Range Type = Multiplier Schedule
+    EP_GLOBAL extern int const DDDBRangeType_Difference; // Design Day DryBulb Range Type = Difference Schedule
+    EP_GLOBAL extern int const DDDBRangeType_Profile;    // Design Day DryBulb Range Type = Temperature Profile
 
-    thread_local extern int const WP_ScheduleValue;  // User entered Schedule value for Weather Property
-    thread_local extern int const WP_DryBulbDelta;   // User entered DryBulb difference Schedule value for Weather Property
-    thread_local extern int const WP_DewPointDelta;  // User entered Dewpoint difference Schedule value for Weather Property
-    thread_local extern int const WP_SkyTAlgorithmA; // place holder
+    EP_GLOBAL extern int const WP_ScheduleValue;  // User entered Schedule value for Weather Property
+    EP_GLOBAL extern int const WP_DryBulbDelta;   // User entered DryBulb difference Schedule value for Weather Property
+    EP_GLOBAL extern int const WP_DewPointDelta;  // User entered Dewpoint difference Schedule value for Weather Property
+    EP_GLOBAL extern int const WP_SkyTAlgorithmA; // place holder
 
-    thread_local extern int const GregorianToJulian; // JGDate argument for Gregorian to Julian Date conversion
-    thread_local extern int const JulianToGregorian; // JGDate argument for Julian to Gregorian Date conversion
+    EP_GLOBAL extern int const GregorianToJulian; // JGDate argument for Gregorian to Julian Date conversion
+    EP_GLOBAL extern int const JulianToGregorian; // JGDate argument for Julian to Gregorian Date conversion
 
-    thread_local extern Real64 const Sigma;   // Stefan-Boltzmann constant
-    thread_local extern Real64 const TKelvin; // conversion from Kelvin to Celsius
+    EP_GLOBAL extern Real64 const Sigma;   // Stefan-Boltzmann constant
+    EP_GLOBAL extern Real64 const TKelvin; // conversion from Kelvin to Celsius
 
-    thread_local extern Array1D_string const DaysOfWeek;
+    EP_GLOBAL extern Array1D_string const DaysOfWeek;
 
-    thread_local extern bool Debugout;
+    EP_GLOBAL extern bool Debugout;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -126,134 +126,134 @@ namespace WeatherManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int const NumDaysInYear;
-    thread_local extern int EnvironmentReportNbr;         // Report number for the environment stamp
-    thread_local extern std::string EnvironmentReportChr; // Report number for the environment stamp (character -- for printing)
-    thread_local extern int TimeStampReportNbr;           // Report number for the time stamp
-    thread_local extern std::string TimeStampReportChr;   // Report number for the time stamp (character -- for printing)
-    thread_local extern int WeatherDataReport;            // Report number for the weather data
-    thread_local extern bool WeatherFileExists;           // Set to true if a weather file exists
-    thread_local extern std::string LocationTitle;        // Location Title from input File
-    thread_local extern bool LocationGathered;            // flag to show if Location exists on Input File (we assume one is there and
+    EP_GLOBAL extern int const NumDaysInYear;
+    EP_GLOBAL extern int EnvironmentReportNbr;         // Report number for the environment stamp
+    EP_GLOBAL extern std::string EnvironmentReportChr; // Report number for the environment stamp (character -- for printing)
+    EP_GLOBAL extern int TimeStampReportNbr;           // Report number for the time stamp
+    EP_GLOBAL extern std::string TimeStampReportChr;   // Report number for the time stamp (character -- for printing)
+    EP_GLOBAL extern int WeatherDataReport;            // Report number for the weather data
+    EP_GLOBAL extern bool WeatherFileExists;           // Set to true if a weather file exists
+    EP_GLOBAL extern std::string LocationTitle;        // Location Title from input File
+    EP_GLOBAL extern bool LocationGathered;            // flag to show if Location exists on Input File (we assume one is there and
     // correct on weather file)
 
-    thread_local extern Real64 WeatherFileLatitude;
-    thread_local extern Real64 WeatherFileLongitude;
-    thread_local extern Real64 WeatherFileTimeZone;
-    thread_local extern Real64 WeatherFileElevation;
-    thread_local extern int WeatherFileUnitNumber;                  // File unit number for the weather file
-    thread_local extern Array1D<Real64> GroundTempsFCFromEPWHeader; // F or C factor method
-    thread_local extern Array1D<Real64> GroundReflectances;         // User Specified Ground Reflectances
-    thread_local extern Real64 SnowGndRefModifier;                  // Modifier to ground reflectance during snow
-    thread_local extern Real64 SnowGndRefModifierForDayltg;         // Modifier to ground reflectance during snow for daylighting
-    thread_local extern int WaterMainsTempsMethod;                  // Water mains temperature calculation method
-    thread_local extern int WaterMainsTempsSchedule;                // Water mains temperature schedule
-    thread_local extern Real64 WaterMainsTempsAnnualAvgAirTemp;     // Annual average outdoor air temperature (C)
-    thread_local extern Real64 WaterMainsTempsMaxDiffAirTemp;       // Maximum difference in monthly average outdoor air temperatures (deltaC)
-    thread_local extern std::string WaterMainsTempsScheduleName;    // water mains tempeature schedule name
-    thread_local extern bool wthFCGroundTemps;
-    thread_local extern Real64 RainAmount;
-    thread_local extern Real64 SnowAmount;
+    EP_GLOBAL extern Real64 WeatherFileLatitude;
+    EP_GLOBAL extern Real64 WeatherFileLongitude;
+    EP_GLOBAL extern Real64 WeatherFileTimeZone;
+    EP_GLOBAL extern Real64 WeatherFileElevation;
+    EP_GLOBAL extern int WeatherFileUnitNumber;                  // File unit number for the weather file
+    EP_GLOBAL extern Array1D<Real64> GroundTempsFCFromEPWHeader; // F or C factor method
+    EP_GLOBAL extern Array1D<Real64> GroundReflectances;         // User Specified Ground Reflectances
+    EP_GLOBAL extern Real64 SnowGndRefModifier;                  // Modifier to ground reflectance during snow
+    EP_GLOBAL extern Real64 SnowGndRefModifierForDayltg;         // Modifier to ground reflectance during snow for daylighting
+    EP_GLOBAL extern int WaterMainsTempsMethod;                  // Water mains temperature calculation method
+    EP_GLOBAL extern int WaterMainsTempsSchedule;                // Water mains temperature schedule
+    EP_GLOBAL extern Real64 WaterMainsTempsAnnualAvgAirTemp;     // Annual average outdoor air temperature (C)
+    EP_GLOBAL extern Real64 WaterMainsTempsMaxDiffAirTemp;       // Maximum difference in monthly average outdoor air temperatures (deltaC)
+    EP_GLOBAL extern std::string WaterMainsTempsScheduleName;    // water mains tempeature schedule name
+    EP_GLOBAL extern bool wthFCGroundTemps;
+    EP_GLOBAL extern Real64 RainAmount;
+    EP_GLOBAL extern Real64 SnowAmount;
 
-    thread_local extern int TotRunPers;    // Total number of Run Periods (Weather data) to Setup
-    thread_local extern int TotRunDesPers; // Total number of Run Design Periods (Weather data) to Setup
+    EP_GLOBAL extern int TotRunPers;    // Total number of Run Periods (Weather data) to Setup
+    EP_GLOBAL extern int TotRunDesPers; // Total number of Run Design Periods (Weather data) to Setup
 
-    thread_local extern int NumSpecialDays;
-    thread_local extern Array1D_int SpecialDayTypes; // To hold holiday types given in input file
-    thread_local extern Array1D_int WeekDayTypes;    // To hold Week day types using specified first day
-    thread_local extern Array1D_int DSTIndex;        // To hold DST Index based on weather file or input
+    EP_GLOBAL extern int NumSpecialDays;
+    EP_GLOBAL extern Array1D_int SpecialDayTypes; // To hold holiday types given in input file
+    EP_GLOBAL extern Array1D_int WeekDayTypes;    // To hold Week day types using specified first day
+    EP_GLOBAL extern Array1D_int DSTIndex;        // To hold DST Index based on weather file or input
 
-    thread_local extern int NumDataPeriods;
+    EP_GLOBAL extern int NumDataPeriods;
 
-    thread_local extern int NumIntervalsPerHour;
+    EP_GLOBAL extern int NumIntervalsPerHour;
 
-    thread_local extern bool UseDaylightSaving;         // True if user says to use Weather File specified DaylightSaving Period
-    thread_local extern bool UseSpecialDays;            // True if user says to use Weather File specified Special Days for current RunPeriod
-    thread_local extern bool UseRainValues;             // True if rain values from weather file are to be used
-    thread_local extern bool UseSnowValues;             // True if snow values from weather file are to be used
-    thread_local extern bool EPWDaylightSaving;         // True if a DaylightSaving Time Period is input (EPW files)
-    thread_local extern bool IDFDaylightSaving;         // True if a DaylightSaving Time Period is input (IDF files)
-    thread_local extern bool DaylightSavingIsActive;    // True if a DaylightSavingPeriod should be used for Environment
-    thread_local extern bool WFAllowsLeapYears;         // True if the Weather File (WF) header has "Yes" for Leap Years
-    thread_local extern int WFLeapYearInd;              // Indicator for current Weather file "Leap Year", used in DayOfYear calculations and others.
-    thread_local extern int curSimDayForEndOfRunPeriod; // normal=number days in sim, but different when repeating runperiods or multi-year files
-    thread_local extern int Envrn;                      // Counter for environments
-    thread_local extern int NumOfEnvrn;                 // Number of environments to be simulated
-    thread_local extern int NumEPWTypExtSets;           // Number of Typical/Extreme on weather file.
-    thread_local extern int NumWPSkyTemperatures;       // Number of WeatherProperty:SkyTemperature items in input file
+    EP_GLOBAL extern bool UseDaylightSaving;         // True if user says to use Weather File specified DaylightSaving Period
+    EP_GLOBAL extern bool UseSpecialDays;            // True if user says to use Weather File specified Special Days for current RunPeriod
+    EP_GLOBAL extern bool UseRainValues;             // True if rain values from weather file are to be used
+    EP_GLOBAL extern bool UseSnowValues;             // True if snow values from weather file are to be used
+    EP_GLOBAL extern bool EPWDaylightSaving;         // True if a DaylightSaving Time Period is input (EPW files)
+    EP_GLOBAL extern bool IDFDaylightSaving;         // True if a DaylightSaving Time Period is input (IDF files)
+    EP_GLOBAL extern bool DaylightSavingIsActive;    // True if a DaylightSavingPeriod should be used for Environment
+    EP_GLOBAL extern bool WFAllowsLeapYears;         // True if the Weather File (WF) header has "Yes" for Leap Years
+    EP_GLOBAL extern int WFLeapYearInd;              // Indicator for current Weather file "Leap Year", used in DayOfYear calculations and others.
+    EP_GLOBAL extern int curSimDayForEndOfRunPeriod; // normal=number days in sim, but different when repeating runperiods or multi-year files
+    EP_GLOBAL extern int Envrn;                      // Counter for environments
+    EP_GLOBAL extern int NumOfEnvrn;                 // Number of environments to be simulated
+    EP_GLOBAL extern int NumEPWTypExtSets;           // Number of Typical/Extreme on weather file.
+    EP_GLOBAL extern int NumWPSkyTemperatures;       // Number of WeatherProperty:SkyTemperature items in input file
 
-    thread_local extern Array2D_bool TodayIsRain;             // Rain indicator, true=rain
-    thread_local extern Array2D_bool TodayIsSnow;             // Snow indicator, true=snow
-    thread_local extern Array2D<Real64> TodayRainAmount;      // ficitious indicator of Rain
-    thread_local extern Array2D<Real64> TodaySnowAmount;      // ficitious indicator of Snow
-    thread_local extern Array2D<Real64> TodayOutDryBulbTemp;  // Dry bulb temperature of outside air
-    thread_local extern Array2D<Real64> TodayOutWetBulbTemp;  // Wet bulb temperature of outside air
-    thread_local extern Array2D<Real64> TodayOutDewPointTemp; // Dew Point Temperature of outside air
-    thread_local extern Array2D<Real64> TodayOutBaroPress;    // Barometric pressure of outside air
-    thread_local extern Array2D<Real64> TodayOutHumRat;       // Humidity ratio of outside air
-    thread_local extern Array2D<Real64> TodayOutRelHum;       // Relative Humidity of outside air
-    thread_local extern Array2D<Real64> TodayWindSpeed;       // Wind speed of outside air
-    thread_local extern Array2D<Real64> TodayWindDir;         // Wind direction of outside air
-    thread_local extern Array2D<Real64> TodaySkyTemp;         // Sky temperature
-    thread_local extern Array2D<Real64> TodayHorizIRSky;      // Horizontal IR from Sky
-    thread_local extern Array2D<Real64> TodayBeamSolarRad;    // Direct normal solar irradiance
-    thread_local extern Array2D<Real64> TodayDifSolarRad;     // Sky diffuse horizontal solar irradiance
-    thread_local extern Array2D<Real64> TodayAlbedo;          // Albedo
-    thread_local extern Array2D<Real64> TodayLiquidPrecip;    // Liquid Precipitation Depth (mm)
+    EP_GLOBAL extern Array2D_bool TodayIsRain;             // Rain indicator, true=rain
+    EP_GLOBAL extern Array2D_bool TodayIsSnow;             // Snow indicator, true=snow
+    EP_GLOBAL extern Array2D<Real64> TodayRainAmount;      // ficitious indicator of Rain
+    EP_GLOBAL extern Array2D<Real64> TodaySnowAmount;      // ficitious indicator of Snow
+    EP_GLOBAL extern Array2D<Real64> TodayOutDryBulbTemp;  // Dry bulb temperature of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayOutWetBulbTemp;  // Wet bulb temperature of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayOutDewPointTemp; // Dew Point Temperature of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayOutBaroPress;    // Barometric pressure of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayOutHumRat;       // Humidity ratio of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayOutRelHum;       // Relative Humidity of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayWindSpeed;       // Wind speed of outside air
+    EP_GLOBAL extern Array2D<Real64> TodayWindDir;         // Wind direction of outside air
+    EP_GLOBAL extern Array2D<Real64> TodaySkyTemp;         // Sky temperature
+    EP_GLOBAL extern Array2D<Real64> TodayHorizIRSky;      // Horizontal IR from Sky
+    EP_GLOBAL extern Array2D<Real64> TodayBeamSolarRad;    // Direct normal solar irradiance
+    EP_GLOBAL extern Array2D<Real64> TodayDifSolarRad;     // Sky diffuse horizontal solar irradiance
+    EP_GLOBAL extern Array2D<Real64> TodayAlbedo;          // Albedo
+    EP_GLOBAL extern Array2D<Real64> TodayLiquidPrecip;    // Liquid Precipitation Depth (mm)
 
-    thread_local extern Array2D_bool TomorrowIsRain;             // Rain indicator, true=rain
-    thread_local extern Array2D_bool TomorrowIsSnow;             // Snow indicator, true=snow
-    thread_local extern Array2D<Real64> TomorrowRainAmount;      // ficitious indicator of Rain
-    thread_local extern Array2D<Real64> TomorrowSnowAmount;      // ficitious indicator of Snow
-    thread_local extern Array2D<Real64> TomorrowOutDryBulbTemp;  // Dry bulb temperature of outside air
-    thread_local extern Array2D<Real64> TomorrowOutDewPointTemp; // Dew Point Temperature of outside air
-    thread_local extern Array2D<Real64> TomorrowOutBaroPress;    // Barometric pressure of outside air
-    thread_local extern Array2D<Real64> TomorrowOutRelHum;       // Relative Humidity of outside air
-    thread_local extern Array2D<Real64> TomorrowWindSpeed;       // Wind speed of outside air
-    thread_local extern Array2D<Real64> TomorrowWindDir;         // Wind direction of outside air
-    thread_local extern Array2D<Real64> TomorrowSkyTemp;         // Sky temperature
-    thread_local extern Array2D<Real64> TomorrowHorizIRSky;      // Horizontal IR from Sky
-    thread_local extern Array2D<Real64> TomorrowBeamSolarRad;    // Direct normal solar irradiance
-    thread_local extern Array2D<Real64> TomorrowDifSolarRad;     // Sky diffuse horizontal solar irradiance
-    thread_local extern Array2D<Real64> TomorrowAlbedo;          // Albedo
-    thread_local extern Array2D<Real64> TomorrowLiquidPrecip;    // Liquid Precipitation Depth
+    EP_GLOBAL extern Array2D_bool TomorrowIsRain;             // Rain indicator, true=rain
+    EP_GLOBAL extern Array2D_bool TomorrowIsSnow;             // Snow indicator, true=snow
+    EP_GLOBAL extern Array2D<Real64> TomorrowRainAmount;      // ficitious indicator of Rain
+    EP_GLOBAL extern Array2D<Real64> TomorrowSnowAmount;      // ficitious indicator of Snow
+    EP_GLOBAL extern Array2D<Real64> TomorrowOutDryBulbTemp;  // Dry bulb temperature of outside air
+    EP_GLOBAL extern Array2D<Real64> TomorrowOutDewPointTemp; // Dew Point Temperature of outside air
+    EP_GLOBAL extern Array2D<Real64> TomorrowOutBaroPress;    // Barometric pressure of outside air
+    EP_GLOBAL extern Array2D<Real64> TomorrowOutRelHum;       // Relative Humidity of outside air
+    EP_GLOBAL extern Array2D<Real64> TomorrowWindSpeed;       // Wind speed of outside air
+    EP_GLOBAL extern Array2D<Real64> TomorrowWindDir;         // Wind direction of outside air
+    EP_GLOBAL extern Array2D<Real64> TomorrowSkyTemp;         // Sky temperature
+    EP_GLOBAL extern Array2D<Real64> TomorrowHorizIRSky;      // Horizontal IR from Sky
+    EP_GLOBAL extern Array2D<Real64> TomorrowBeamSolarRad;    // Direct normal solar irradiance
+    EP_GLOBAL extern Array2D<Real64> TomorrowDifSolarRad;     // Sky diffuse horizontal solar irradiance
+    EP_GLOBAL extern Array2D<Real64> TomorrowAlbedo;          // Albedo
+    EP_GLOBAL extern Array2D<Real64> TomorrowLiquidPrecip;    // Liquid Precipitation Depth
 
-    thread_local extern Array3D<Real64> DDDBRngModifier;  // Design Day Dry-bulb Temperature Range Modifier
-    thread_local extern Array3D<Real64> DDHumIndModifier; // Design Day relative humidity values
+    EP_GLOBAL extern Array3D<Real64> DDDBRngModifier;  // Design Day Dry-bulb Temperature Range Modifier
+    EP_GLOBAL extern Array3D<Real64> DDHumIndModifier; // Design Day relative humidity values
     //   or wet-bulb modifiers (per HumIndType)
-    thread_local extern Array3D<Real64> DDBeamSolarValues;    // Design Day Beam Solar Values
-    thread_local extern Array3D<Real64> DDDiffuseSolarValues; // Design Day Relative Humidity Values
+    EP_GLOBAL extern Array3D<Real64> DDBeamSolarValues;    // Design Day Beam Solar Values
+    EP_GLOBAL extern Array3D<Real64> DDDiffuseSolarValues; // Design Day Relative Humidity Values
 
-    thread_local extern Array3D<Real64> DDSkyTempScheduleValues; // Sky temperature - DesignDay input
+    EP_GLOBAL extern Array3D<Real64> DDSkyTempScheduleValues; // Sky temperature - DesignDay input
 
-    thread_local extern int RptIsRain;  // Rain Report Value
-    thread_local extern int RptIsSnow;  // Snow Report Value
-    thread_local extern int RptDayType; // DayType Report Value
+    EP_GLOBAL extern int RptIsRain;  // Rain Report Value
+    EP_GLOBAL extern int RptIsSnow;  // Snow Report Value
+    EP_GLOBAL extern int RptDayType; // DayType Report Value
 
-    thread_local extern Real64 HrAngle;                                       // Current Hour Angle
-    thread_local extern Real64 SolarAltitudeAngle;                            // Angle of Solar Altitude (degrees)
-    thread_local extern Real64 SolarAzimuthAngle;                             // Angle of Solar Azimuth (degrees)
-    thread_local extern Real64 HorizIRSky;                                    // Horizontal Infrared Radiation Intensity (W/m2)
-    thread_local extern Real64 TimeStepFraction;                              // Fraction of hour each time step represents
-    thread_local extern Array1D<Real64> SPSiteDryBulbRangeModScheduleValue;   // reporting Drybulb Temperature Range Modifier Schedule Value
-    thread_local extern Array1D<Real64> SPSiteHumidityConditionScheduleValue; // reporting Humidity Condition Schedule Value
-    thread_local extern Array1D<Real64> SPSiteBeamSolarScheduleValue;         // reporting Beam Solar Schedule Value
-    thread_local extern Array1D<Real64> SPSiteDiffuseSolarScheduleValue;      // reporting Diffuse Solar Schedule Value
-    thread_local extern Array1D<Real64> SPSiteSkyTemperatureScheduleValue;    // reporting SkyTemperature Modifier Schedule Value
-    thread_local extern Array1D_int SPSiteScheduleNamePtr;                    // SP Site Schedule Name Ptrs
-    thread_local extern Array1D_string SPSiteScheduleUnits;                   // SP Site Schedule Units
-    thread_local extern int NumSPSiteScheduleNamePtrs;                        // Number of SP Site Schedules (DesignDay only)
-    thread_local extern int NumMissing;                                       // Number of hours of missing data
-    thread_local extern Array1D<Real64> Interpolation;                        // Interpolation values based on Number of Time Steps in Hour
-    thread_local extern Array1D<Real64> SolarInterpolation;                   // Solar Interpolation values based on
+    EP_GLOBAL extern Real64 HrAngle;                                       // Current Hour Angle
+    EP_GLOBAL extern Real64 SolarAltitudeAngle;                            // Angle of Solar Altitude (degrees)
+    EP_GLOBAL extern Real64 SolarAzimuthAngle;                             // Angle of Solar Azimuth (degrees)
+    EP_GLOBAL extern Real64 HorizIRSky;                                    // Horizontal Infrared Radiation Intensity (W/m2)
+    EP_GLOBAL extern Real64 TimeStepFraction;                              // Fraction of hour each time step represents
+    EP_GLOBAL extern Array1D<Real64> SPSiteDryBulbRangeModScheduleValue;   // reporting Drybulb Temperature Range Modifier Schedule Value
+    EP_GLOBAL extern Array1D<Real64> SPSiteHumidityConditionScheduleValue; // reporting Humidity Condition Schedule Value
+    EP_GLOBAL extern Array1D<Real64> SPSiteBeamSolarScheduleValue;         // reporting Beam Solar Schedule Value
+    EP_GLOBAL extern Array1D<Real64> SPSiteDiffuseSolarScheduleValue;      // reporting Diffuse Solar Schedule Value
+    EP_GLOBAL extern Array1D<Real64> SPSiteSkyTemperatureScheduleValue;    // reporting SkyTemperature Modifier Schedule Value
+    EP_GLOBAL extern Array1D_int SPSiteScheduleNamePtr;                    // SP Site Schedule Name Ptrs
+    EP_GLOBAL extern Array1D_string SPSiteScheduleUnits;                   // SP Site Schedule Units
+    EP_GLOBAL extern int NumSPSiteScheduleNamePtrs;                        // Number of SP Site Schedules (DesignDay only)
+    EP_GLOBAL extern int NumMissing;                                       // Number of hours of missing data
+    EP_GLOBAL extern Array1D<Real64> Interpolation;                        // Interpolation values based on Number of Time Steps in Hour
+    EP_GLOBAL extern Array1D<Real64> SolarInterpolation;                   // Solar Interpolation values based on
     //      Number of Time Steps in Hour
-    thread_local extern Array1D_int EndDayOfMonth;
-    thread_local extern bool ErrorInWeatherFile;           // Set to TRUE when there is a problem with dates
-    thread_local extern int LeapYearAdd;                   // Set during environment if leap year is active (adds 1 to number days in Feb)
-    thread_local extern bool DatesShouldBeReset;           // True when weekdays should be reset
-    thread_local extern bool StartDatesCycleShouldBeReset; // True when start dates on repeat should be reset
-    thread_local extern bool Jan1DatesShouldBeReset;       // True if Jan 1 should signal reset of dates
-    thread_local extern bool RPReadAllWeatherData;         // True if need to read all weather data prior to simulation
+    EP_GLOBAL extern Array1D_int EndDayOfMonth;
+    EP_GLOBAL extern bool ErrorInWeatherFile;           // Set to TRUE when there is a problem with dates
+    EP_GLOBAL extern int LeapYearAdd;                   // Set during environment if leap year is active (adds 1 to number days in Feb)
+    EP_GLOBAL extern bool DatesShouldBeReset;           // True when weekdays should be reset
+    EP_GLOBAL extern bool StartDatesCycleShouldBeReset; // True when start dates on repeat should be reset
+    EP_GLOBAL extern bool Jan1DatesShouldBeReset;       // True if Jan 1 should signal reset of dates
+    EP_GLOBAL extern bool RPReadAllWeatherData;         // True if need to read all weather data prior to simulation
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE WeatherManager
     // PUBLIC  ProcessDateString
@@ -639,37 +639,37 @@ namespace WeatherManager {
         {
         }
     };
-    thread_local extern std::vector<UnderwaterBoundary> underwaterBoundaries;
+    EP_GLOBAL extern std::vector<UnderwaterBoundary> underwaterBoundaries;
 
     // Object Data
-    thread_local extern DayWeatherVariables TodayVariables; // Today's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year for
+    EP_GLOBAL extern DayWeatherVariables TodayVariables; // Today's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year for
                                                // weather data | Year of weather data | Month of weather data | Day of month for weather data | Day of
                                                // week for weather data | Daylight Saving Time Period indicator (0=no,1=yes) | Holiday indicator (0=no
                                                // holiday, non-zero=holiday type) | Sine of the solar declination angle | Cosine of the solar
                                                // declination angle | Value of the equation of time formula
-    thread_local extern DayWeatherVariables TomorrowVariables; // Tomorrow's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year
+    EP_GLOBAL extern DayWeatherVariables TomorrowVariables; // Tomorrow's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of year
                                                   // for weather data | Year of weather data | Month of weather data | Day of month for weather data |
                                                   // Day of week for weather data | Daylight Saving Time Period indicator (0=no,1=yes) | Holiday
                                                   // indicator (0=no holiday, non-zero=holiday type) | Sine of the solar declination angle | Cosine of
                                                   // the solar declination angle | Value of the equation of time formula
-    thread_local extern Array1D<DayWeatherVariables> DesignDay; // Design day environments
-    thread_local extern MissingData Missing; // Dry Bulb Temperature (C) | Dew Point Temperature (C) | Relative Humidity (%) | Atmospheric Pressure (Pa) | Wind
+    EP_GLOBAL extern Array1D<DayWeatherVariables> DesignDay; // Design day environments
+    EP_GLOBAL extern MissingData Missing; // Dry Bulb Temperature (C) | Dew Point Temperature (C) | Relative Humidity (%) | Atmospheric Pressure (Pa) | Wind
                                 // Direction (deg) | Wind Speed/Velocity (m/s) | Total Sky Cover (tenths) | Opaque Sky Cover (tenths) | Visibility
                                 // (km) | Ceiling Height (m) | Precipitable Water (mm) | Aerosol Optical Depth | Snow Depth (cm) | Number of Days
                                 // since last snow | Albedo | Rain/Liquid Precipitation (mm)
-    thread_local extern MissingDataCounts Missed;
-    thread_local extern RangeDataCounts OutOfRange;
-    thread_local extern Array1D<DesignDayData> DesDayInput;   // Design day Input Data
-    thread_local extern Array1D<EnvironmentData> Environment; // Environment data
-    thread_local extern Array1D<RunPeriodData> RunPeriodInput;
-    thread_local extern Array1D<RunPeriodData> RunPeriodDesignInput;
-    thread_local extern Array1D<TypicalExtremeData> TypicalExtremePeriods;
-    thread_local extern DaylightSavingPeriodData EPWDST; // Daylight Saving Period Data from EPW file
-    thread_local extern DaylightSavingPeriodData IDFDST; // Daylight Saving Period Data from IDF file
-    thread_local extern DaylightSavingPeriodData DST;    // Daylight Saving Period Data, if active
-    thread_local extern Array1D<WeatherProperties> WPSkyTemperature;
-    thread_local extern Array1D<SpecialDayData> SpecialDays;
-    thread_local extern Array1D<DataPeriodData> DataPeriods;
+    EP_GLOBAL extern MissingDataCounts Missed;
+    EP_GLOBAL extern RangeDataCounts OutOfRange;
+    EP_GLOBAL extern Array1D<DesignDayData> DesDayInput;   // Design day Input Data
+    EP_GLOBAL extern Array1D<EnvironmentData> Environment; // Environment data
+    EP_GLOBAL extern Array1D<RunPeriodData> RunPeriodInput;
+    EP_GLOBAL extern Array1D<RunPeriodData> RunPeriodDesignInput;
+    EP_GLOBAL extern Array1D<TypicalExtremeData> TypicalExtremePeriods;
+    EP_GLOBAL extern DaylightSavingPeriodData EPWDST; // Daylight Saving Period Data from EPW file
+    EP_GLOBAL extern DaylightSavingPeriodData IDFDST; // Daylight Saving Period Data from IDF file
+    EP_GLOBAL extern DaylightSavingPeriodData DST;    // Daylight Saving Period Data, if active
+    EP_GLOBAL extern Array1D<WeatherProperties> WPSkyTemperature;
+    EP_GLOBAL extern Array1D<SpecialDayData> SpecialDays;
+    EP_GLOBAL extern Array1D<DataPeriodData> DataPeriods;
 
     // Functions
     void clear_state();
@@ -929,7 +929,7 @@ namespace WeatherManager {
         void CalcAnnualAndMonthlyDryBulbTemp(); // true if this is CorrelationFromWeatherFile
     };
 
-    thread_local extern AnnualMonthlyDryBulbWeatherData OADryBulbAverage;
+    EP_GLOBAL extern AnnualMonthlyDryBulbWeatherData OADryBulbAverage;
 
     void ReportWaterMainsTempParameters();
 

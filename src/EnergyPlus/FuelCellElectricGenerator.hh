@@ -64,8 +64,8 @@ namespace FuelCellElectricGenerator {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetFuelCellInput; // When TRUE, calls subroutine to read input file.
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool GetFuelCellInput; // When TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE FuelCell ElectricGenerator
 

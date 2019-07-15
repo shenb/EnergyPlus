@@ -96,17 +96,17 @@ namespace EarthTube {
     using namespace Psychrometrics;
 
     // MODULE VARIABLES DECLARATIONS:
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
-    thread_local int TotEarthTube(0); // Total EarthTube Statements in input
+    EP_GLOBAL int TotEarthTube(0); // Total EarthTube Statements in input
     // Parameters for Ventilation
-    thread_local int const NaturalEarthTube(0);
-    thread_local int const IntakeEarthTube(1);
-    thread_local int const ExhaustEarthTube(2);
+    EP_GLOBAL int const NaturalEarthTube(0);
+    EP_GLOBAL int const IntakeEarthTube(1);
+    EP_GLOBAL int const ExhaustEarthTube(2);
 
     // Object Data
-    thread_local Array1D<EarthTubeData> EarthTubeSys;
-    thread_local Array1D<EarthTubeZoneReportVars> ZnRptET;
+    EP_GLOBAL Array1D<EarthTubeData> EarthTubeSys;
+    EP_GLOBAL Array1D<EarthTubeZoneReportVars> ZnRptET;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -133,8 +133,8 @@ namespace EarthTube {
         // the other drivers and simulation algorithms.
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool GetInputFlag(true);
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool GetInputFlag(true);
+        EP_GLOBAL static bool ErrorsFound(false);
 
         // Obtains and Allocates heat balance related parameters from input file
         if (GetInputFlag) {
@@ -533,7 +533,7 @@ namespace EarthTube {
         Real64 AirMassFlowRate;      // Actual Mass Flow Rate of Air inside Pipe
         Real64 AirSpecHeat;          // Specific Heat of Air
         Real64 AirDensity;           // Density of Air
-        thread_local static Array1D<Real64> EVF;  // DESIGN EARTHTUBE FLOW RATE (M**3/SEC)
+        EP_GLOBAL static Array1D<Real64> EVF;  // DESIGN EARTHTUBE FLOW RATE (M**3/SEC)
 
         // Allocate the EVF array
         if (!allocated(EVF)) EVF.allocate(NumOfZones);

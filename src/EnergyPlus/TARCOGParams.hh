@@ -58,117 +58,117 @@ namespace TARCOGParams {
     // Data
     // REAL(r64), parameter :: StefanBoltzmannConst    = 5.6697d-8     ! Stefan-Boltzman constant (5.6697e-8 [W/m^2K^4])
     // REAL(r64), parameter :: GravityConstant = 9.807d0
-    thread_local extern Real64 const e;
+    EP_GLOBAL extern Real64 const e;
     // REAL(r64), parameter :: MaxHr = 100  ! used in iterations in case temperatures on surfaces reaches identical values
-    thread_local extern Real64 const DeflectionRelaxation;  // Deflection relaxation parameter
-    thread_local extern int const DeflectionMaxIterations;  // maximum number of deflection iterations
-    thread_local extern Real64 const DeflectionErrorMargin; // maximum temperature difference on layers for deflection iterations
+    EP_GLOBAL extern Real64 const DeflectionRelaxation;  // Deflection relaxation parameter
+    EP_GLOBAL extern int const DeflectionMaxIterations;  // maximum number of deflection iterations
+    EP_GLOBAL extern Real64 const DeflectionErrorMargin; // maximum temperature difference on layers for deflection iterations
     // pi is moved to gasses since it is used there now
     // REAL(r64), parameter :: pi       = 3.14159265358979323846d0
 
-    thread_local extern int const maxpan; // maximum number of monolithic glazing layers (100)
+    EP_GLOBAL extern int const maxpan; // maximum number of monolithic glazing layers (100)
     // integer, parameter :: maxlay   = 1000         ! maximum number of layers (including laminates) (1000)
-    thread_local extern int const maxlay;   // maximum number of layers (including laminates) (100)
-    thread_local extern int const MaxGap;   // maximum number of gaps (between layers)
-    thread_local extern int const maxlay1;  // maximum number of 'gaps', including in and out (maxlay+1)
-    thread_local extern int const maxlay2;  // maximum number of glass surfaces (maxlay*2)
-    thread_local extern int const maxlay3;  // maximum number of ? (maxlay2+1)
-    thread_local extern int const maxlay4;  // maximum number of ? (maxlay*4)
-    thread_local extern int const maxslice; // maximum nuber of slices (100)
+    EP_GLOBAL extern int const maxlay;   // maximum number of layers (including laminates) (100)
+    EP_GLOBAL extern int const MaxGap;   // maximum number of gaps (between layers)
+    EP_GLOBAL extern int const maxlay1;  // maximum number of 'gaps', including in and out (maxlay+1)
+    EP_GLOBAL extern int const maxlay2;  // maximum number of glass surfaces (maxlay*2)
+    EP_GLOBAL extern int const maxlay3;  // maximum number of ? (maxlay2+1)
+    EP_GLOBAL extern int const maxlay4;  // maximum number of ? (maxlay*4)
+    EP_GLOBAL extern int const maxslice; // maximum nuber of slices (100)
 
     // integer, parameter :: MaxThetaArray = 200     ! maximum number for theta array
 
     // Debug flags
-    thread_local extern int const noDebug;
-    thread_local extern int const appendResultsToFile;
-    thread_local extern int const resultsToNewFile;
-    thread_local extern int const saveIntermediateResults; // this will create new file
+    EP_GLOBAL extern int const noDebug;
+    EP_GLOBAL extern int const appendResultsToFile;
+    EP_GLOBAL extern int const resultsToNewFile;
+    EP_GLOBAL extern int const saveIntermediateResults; // this will create new file
 
-    thread_local extern int const minDebugFlag;
-    thread_local extern int const maxDebugFlag;
+    EP_GLOBAL extern int const minDebugFlag;
+    EP_GLOBAL extern int const maxDebugFlag;
 
     // to keep info that certain file is not open for writing
-    thread_local extern int const statusClosed;
+    EP_GLOBAL extern int const statusClosed;
 
     //  Layer types:
-    thread_local extern int const SPECULAR;
-    thread_local extern int const VENETBLIND_VERT;
-    thread_local extern int const WOVSHADE;
-    thread_local extern int const PERFORATED;
-    thread_local extern int const DIFFSHADE;
-    thread_local extern int const BSDF;
-    thread_local extern int const VENETBLIND_HORIZ;
+    EP_GLOBAL extern int const SPECULAR;
+    EP_GLOBAL extern int const VENETBLIND_VERT;
+    EP_GLOBAL extern int const WOVSHADE;
+    EP_GLOBAL extern int const PERFORATED;
+    EP_GLOBAL extern int const DIFFSHADE;
+    EP_GLOBAL extern int const BSDF;
+    EP_GLOBAL extern int const VENETBLIND_HORIZ;
 
-    thread_local extern int const MinLayType;
-    thread_local extern int const MaxLayType;
+    EP_GLOBAL extern int const MinLayType;
+    EP_GLOBAL extern int const MaxLayType;
 
     //  Thermal models:
-    thread_local extern int const THERM_MOD_ISO15099;
-    thread_local extern int const THERM_MOD_SCW;
-    thread_local extern int const THERM_MOD_CSM;
+    EP_GLOBAL extern int const THERM_MOD_ISO15099;
+    EP_GLOBAL extern int const THERM_MOD_SCW;
+    EP_GLOBAL extern int const THERM_MOD_CSM;
 
-    thread_local extern int const MinThermalMode;
-    thread_local extern int const MaxThermalMode;
+    EP_GLOBAL extern int const MinThermalMode;
+    EP_GLOBAL extern int const MaxThermalMode;
 
-    thread_local extern int const NO_SupportPillar;
-    thread_local extern int const YES_SupportPillar;
+    EP_GLOBAL extern int const NO_SupportPillar;
+    EP_GLOBAL extern int const YES_SupportPillar;
 
     // Deflection parameters
-    thread_local extern int const NO_DEFLECTION_CALCULATION;
-    thread_local extern int const DEFLECTION_CALC_TEMPERATURE;
-    thread_local extern int const DEFLECTION_CALC_GAP_WIDTHS;
+    EP_GLOBAL extern int const NO_DEFLECTION_CALCULATION;
+    EP_GLOBAL extern int const DEFLECTION_CALC_TEMPERATURE;
+    EP_GLOBAL extern int const DEFLECTION_CALC_GAP_WIDTHS;
 
     // definition of parameters for deflection sum.  These parameters define maximum number of loop to which sum
     // will perform. By equation, these numbers will go to infinite and some test showed that going to nmax and mmax
     // values would produce enough precision
-    thread_local extern int const mmax; // top m value for which "deflection sum" will be calculated
-    thread_local extern int const nmax; // top n value for which "deflection sum" will be calculated
+    EP_GLOBAL extern int const mmax; // top m value for which "deflection sum" will be calculated
+    EP_GLOBAL extern int const nmax; // top n value for which "deflection sum" will be calculated
 
     //  CalcForcedVentilation flag:
     //  0 = Skip forced ventilation calc
     //  1 = Allow forced ventilation calc
-    thread_local extern int const CalcForcedVentilation;
+    EP_GLOBAL extern int const CalcForcedVentilation;
 
     //  Calculation outcome
-    thread_local extern int const CALC_UNKNOWN;
-    thread_local extern int const CALC_OK;
-    thread_local extern int const CALC_DIVERGE;
-    thread_local extern int const CALC_OSC_OK;
+    EP_GLOBAL extern int const CALC_UNKNOWN;
+    EP_GLOBAL extern int const CALC_OK;
+    EP_GLOBAL extern int const CALC_DIVERGE;
+    EP_GLOBAL extern int const CALC_OSC_OK;
 
-    thread_local extern int const NumOfIterations;
+    EP_GLOBAL extern int const NumOfIterations;
 
     // Program will examine convergence parameter in each iteration.  That convergence parameter should decrease each time.
     // In case that is not happening program will tolerate certain number of tries before declare convergence
     // (or decrease relaxation parameter)
-    thread_local extern int const NumOfTries;
+    EP_GLOBAL extern int const NumOfTries;
     // integer, parameter :: NewtonIterations = 75 ! shows when to swith to Newton
-    thread_local extern Real64 const RelaxationStart;    // Has to be between 0 and 1
-    thread_local extern Real64 const RelaxationDecrease; // Step for which relaxation parameter will decrease
+    EP_GLOBAL extern Real64 const RelaxationStart;    // Has to be between 0 and 1
+    EP_GLOBAL extern Real64 const RelaxationDecrease; // Step for which relaxation parameter will decrease
 
     // Convergence parameters
-    thread_local extern Real64 const tempCorrection;       // used in case outside or inside temperature approaches tamb or troom
-    thread_local extern Real64 const ConvergenceTolerance; // tolerance used within iterations
+    EP_GLOBAL extern Real64 const tempCorrection;       // used in case outside or inside temperature approaches tamb or troom
+    EP_GLOBAL extern Real64 const ConvergenceTolerance; // tolerance used within iterations
 
     // Airflow iterations
-    thread_local extern Real64 const AirflowConvergenceTolerance;
-    thread_local extern Real64 const AirflowRelaxationParameter;
+    EP_GLOBAL extern Real64 const AirflowConvergenceTolerance;
+    EP_GLOBAL extern Real64 const AirflowRelaxationParameter;
 
-    thread_local extern Real64 const TemperatureQuessDiff; // in case outside and inside temperatures are identical
+    EP_GLOBAL extern Real64 const TemperatureQuessDiff; // in case outside and inside temperatures are identical
 
-    thread_local extern Real64 const C1_VENET_HORIZONTAL;
-    thread_local extern Real64 const C2_VENET_HORIZONTAL;
-    thread_local extern Real64 const C3_VENET_HORIZONTAL;
-    thread_local extern Real64 const C4_VENET_HORIZONTAL;
+    EP_GLOBAL extern Real64 const C1_VENET_HORIZONTAL;
+    EP_GLOBAL extern Real64 const C2_VENET_HORIZONTAL;
+    EP_GLOBAL extern Real64 const C3_VENET_HORIZONTAL;
+    EP_GLOBAL extern Real64 const C4_VENET_HORIZONTAL;
 
-    thread_local extern Real64 const C1_VENET_VERTICAL;
-    thread_local extern Real64 const C2_VENET_VERTICAL;
-    thread_local extern Real64 const C3_VENET_VERTICAL;
-    thread_local extern Real64 const C4_VENET_VERTICAL;
+    EP_GLOBAL extern Real64 const C1_VENET_VERTICAL;
+    EP_GLOBAL extern Real64 const C2_VENET_VERTICAL;
+    EP_GLOBAL extern Real64 const C3_VENET_VERTICAL;
+    EP_GLOBAL extern Real64 const C4_VENET_VERTICAL;
 
-    thread_local extern Real64 const C1_SHADE;
-    thread_local extern Real64 const C2_SHADE;
-    thread_local extern Real64 const C3_SHADE;
-    thread_local extern Real64 const C4_SHADE;
+    EP_GLOBAL extern Real64 const C1_SHADE;
+    EP_GLOBAL extern Real64 const C2_SHADE;
+    EP_GLOBAL extern Real64 const C3_SHADE;
+    EP_GLOBAL extern Real64 const C4_SHADE;
 
 } // namespace TARCOGParams
 

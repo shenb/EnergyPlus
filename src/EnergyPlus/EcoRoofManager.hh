@@ -64,18 +64,18 @@ namespace EcoRoofManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern Real64 CumRunoff; // Cumulative runoff, updated each time step (m) mult by roof area to get volume
-    thread_local extern Real64 CumET;     // Cumulative evapotranspiration from soil and plants (m)
-    thread_local extern Real64 CumPrecip;
-    thread_local extern Real64 CumIrrigation; // Cumulative irrigation, updated each time step (m) mult by roof area to get volume
-    thread_local extern Real64 CurrentRunoff;
-    thread_local extern Real64 CurrentET;
-    thread_local extern Real64 CurrentPrecipitation; // units of (m) per timestep
-    thread_local extern Real64 CurrentIrrigation;    // units of (m) per timestep
+    EP_GLOBAL extern Real64 CumRunoff; // Cumulative runoff, updated each time step (m) mult by roof area to get volume
+    EP_GLOBAL extern Real64 CumET;     // Cumulative evapotranspiration from soil and plants (m)
+    EP_GLOBAL extern Real64 CumPrecip;
+    EP_GLOBAL extern Real64 CumIrrigation; // Cumulative irrigation, updated each time step (m) mult by roof area to get volume
+    EP_GLOBAL extern Real64 CurrentRunoff;
+    EP_GLOBAL extern Real64 CurrentET;
+    EP_GLOBAL extern Real64 CurrentPrecipitation; // units of (m) per timestep
+    EP_GLOBAL extern Real64 CurrentIrrigation;    // units of (m) per timestep
 
-    thread_local extern Real64 Tfold; // leaf temperature from the previous time step
-    thread_local extern Real64 Tgold; // ground temperature from the previous time step
-    thread_local extern bool EcoRoofbeginFlag;
+    EP_GLOBAL extern Real64 Tfold; // leaf temperature from the previous time step
+    EP_GLOBAL extern Real64 Tgold; // ground temperature from the previous time step
+    EP_GLOBAL extern bool EcoRoofbeginFlag;
 
     // Functions
 

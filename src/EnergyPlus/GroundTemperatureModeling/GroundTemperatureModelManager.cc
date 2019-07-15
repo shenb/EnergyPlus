@@ -66,15 +66,15 @@ namespace EnergyPlus {
 
 namespace GroundTemperatureManager {
 
-    thread_local int const objectType_KusudaGroundTemp(1);
-    thread_local int const objectType_FiniteDiffGroundTemp(2);
-    thread_local int const objectType_SiteBuildingSurfaceGroundTemp(3);
-    thread_local int const objectType_SiteShallowGroundTemp(4);
-    thread_local int const objectType_SiteDeepGroundTemp(5);
-    thread_local int const objectType_SiteFCFactorMethodGroundTemp(6);
-    thread_local int const objectType_XingGroundTemp(7);
+    EP_GLOBAL int const objectType_KusudaGroundTemp(1);
+    EP_GLOBAL int const objectType_FiniteDiffGroundTemp(2);
+    EP_GLOBAL int const objectType_SiteBuildingSurfaceGroundTemp(3);
+    EP_GLOBAL int const objectType_SiteShallowGroundTemp(4);
+    EP_GLOBAL int const objectType_SiteDeepGroundTemp(5);
+    EP_GLOBAL int const objectType_SiteFCFactorMethodGroundTemp(6);
+    EP_GLOBAL int const objectType_XingGroundTemp(7);
 
-    thread_local Array1D_string const CurrentModuleObjects(7,
+    EP_GLOBAL Array1D_string const CurrentModuleObjects(7,
                                               {"Site:GroundTemperature:Undisturbed:KusudaAchenbach",
                                                "Site:GroundTemperature:Undisturbed:FiniteDifference",
                                                "Site:GroundTemperature:BuildingSurface",
@@ -83,7 +83,7 @@ namespace GroundTemperatureManager {
                                                "Site:GroundTemperature:FCfactorMethod",
                                                "Site:GroundTemperature:Undisturbed:Xing"});
 
-    thread_local std::vector<std::shared_ptr<BaseGroundTempsModel>> groundTempModels;
+    EP_GLOBAL std::vector<std::shared_ptr<BaseGroundTempsModel>> groundTempModels;
 
     //******************************************************************************
 

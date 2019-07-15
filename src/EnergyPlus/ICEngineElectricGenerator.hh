@@ -65,16 +65,16 @@ namespace ICEngineElectricGenerator {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern Real64 const ReferenceTemp; // Reference temperature by which lower heating
+    EP_GLOBAL extern Real64 const ReferenceTemp; // Reference temperature by which lower heating
     // value is reported.  This should be subtracted
     // off of when calculated exhaust energies.
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumICEngineGenerators; // number of IC ENGINE Generators specified in input
-    thread_local extern bool GetICEInput;          // When TRUE, calls subroutine to read input file.
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumICEngineGenerators; // number of IC ENGINE Generators specified in input
+    EP_GLOBAL extern bool GetICEInput;          // When TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE IC ENGINEElectricGenerator
 
     // Types
@@ -186,8 +186,8 @@ namespace ICEngineElectricGenerator {
     };
 
     // Object Data
-    thread_local extern Array1D<ICEngineGeneratorSpecs> ICEngineGenerator; // dimension to number of machines
-    thread_local extern Array1D<ReportVars> ICEngineGeneratorReport;
+    EP_GLOBAL extern Array1D<ICEngineGeneratorSpecs> ICEngineGenerator; // dimension to number of machines
+    EP_GLOBAL extern Array1D<ReportVars> ICEngineGeneratorReport;
 
     // Functions
 

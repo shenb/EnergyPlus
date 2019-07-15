@@ -108,44 +108,44 @@ namespace EconomicLifeCycleCost {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const disConvBeginOfYear(1);
-    thread_local int const disConvMidYear(2);
-    thread_local int const disConvEndOfYear(3);
+    EP_GLOBAL int const disConvBeginOfYear(1);
+    EP_GLOBAL int const disConvMidYear(2);
+    EP_GLOBAL int const disConvEndOfYear(3);
 
-    thread_local int const inflAppConstantDollar(1);
-    thread_local int const inflAppCurrentDollar(2);
+    EP_GLOBAL int const inflAppConstantDollar(1);
+    EP_GLOBAL int const inflAppCurrentDollar(2);
 
     // ModifiedAcceleratedCostRecoverySystem or Straight Line
-    thread_local int const depMethMACRS3(1);
-    thread_local int const depMethMACRS5(2);
-    thread_local int const depMethMACRS7(3);
-    thread_local int const depMethMACRS10(4);
-    thread_local int const depMethMACRS15(5);
-    thread_local int const depMethMACRS20(6);
-    thread_local int const depMethStraight27(7);
-    thread_local int const depMethStraight31(8);
-    thread_local int const depMethStraight39(9);
-    thread_local int const depMethStraight40(10);
-    thread_local int const depMethNone(11);
+    EP_GLOBAL int const depMethMACRS3(1);
+    EP_GLOBAL int const depMethMACRS5(2);
+    EP_GLOBAL int const depMethMACRS7(3);
+    EP_GLOBAL int const depMethMACRS10(4);
+    EP_GLOBAL int const depMethMACRS15(5);
+    EP_GLOBAL int const depMethMACRS20(6);
+    EP_GLOBAL int const depMethStraight27(7);
+    EP_GLOBAL int const depMethStraight31(8);
+    EP_GLOBAL int const depMethStraight39(9);
+    EP_GLOBAL int const depMethStraight40(10);
+    EP_GLOBAL int const depMethNone(11);
 
-    thread_local int const costCatMaintenance(1);
-    thread_local int const costCatRepair(2);
-    thread_local int const costCatOperation(3);
-    thread_local int const costCatReplacement(4);
-    thread_local int const costCatMinorOverhaul(5);
-    thread_local int const costCatMajorOverhaul(6);
-    thread_local int const costCatOtherOperational(7);
-    thread_local int const costCatConstruction(8);
-    thread_local int const costCatSalvage(9);
-    thread_local int const costCatOtherCapital(10);
-    thread_local int const costCatWater(11);
-    thread_local int const costCatEnergy(12);
-    thread_local int const costCatTotEnergy(13);
-    thread_local int const costCatTotOper(14);
-    thread_local int const costCatTotCaptl(15);
-    thread_local int const costCatTotGrand(16);
+    EP_GLOBAL int const costCatMaintenance(1);
+    EP_GLOBAL int const costCatRepair(2);
+    EP_GLOBAL int const costCatOperation(3);
+    EP_GLOBAL int const costCatReplacement(4);
+    EP_GLOBAL int const costCatMinorOverhaul(5);
+    EP_GLOBAL int const costCatMajorOverhaul(6);
+    EP_GLOBAL int const costCatOtherOperational(7);
+    EP_GLOBAL int const costCatConstruction(8);
+    EP_GLOBAL int const costCatSalvage(9);
+    EP_GLOBAL int const costCatOtherCapital(10);
+    EP_GLOBAL int const costCatWater(11);
+    EP_GLOBAL int const costCatEnergy(12);
+    EP_GLOBAL int const costCatTotEnergy(13);
+    EP_GLOBAL int const costCatTotOper(14);
+    EP_GLOBAL int const costCatTotCaptl(15);
+    EP_GLOBAL int const costCatTotGrand(16);
 
-    thread_local int const countOfCostCat(16); // count of the number of cost categories
+    EP_GLOBAL int const countOfCostCat(16); // count of the number of cost categories
 
     // The NIST supplement includes UPV* factors for
     //   Electricity
@@ -155,8 +155,8 @@ namespace EconomicLifeCycleCost {
     //   Residual oil
     //   Coal
 
-    thread_local int const startServicePeriod(1);
-    thread_local int const startBasePeriod(2);
+    EP_GLOBAL int const startServicePeriod(1);
+    EP_GLOBAL int const startBasePeriod(2);
 
     // DERIVED TYPE DEFINITIONS:
     // na
@@ -164,65 +164,65 @@ namespace EconomicLifeCycleCost {
     // MODULE VARIABLE DECLARATIONS:
 
     // related to LifeCycleCost:Parameters
-    thread_local bool LCCparamPresent(false);                  // If a LifeCycleCost:Parameters object is present
-    thread_local std::string LCCname;                          // Name
-    thread_local int discountConvension(disConvEndOfYear);     // Discounting Convention
-    thread_local int inflationApproach(inflAppConstantDollar); // Inflation Approach
-    thread_local Real64 realDiscountRate(0.0);                 // Real Discount Rate
-    thread_local Real64 nominalDiscountRate(0.0);              // Nominal Discount Rate
-    thread_local Real64 inflation(0.0);                        // Inflation
-    thread_local int baseDateMonth(0);                         // Base Date Month (1=Jan, 12=Dec)
-    thread_local int baseDateYear(0);                          // Base Date Year  1900-2100
-    thread_local int serviceDateMonth(0);                      // Service Date Month (1=Jan, 12=Dec)
-    thread_local int serviceDateYear(0);                       // Service Date Year 1900-2100
-    thread_local int lengthStudyYears(0);                      // Length of Study Period in Years
-    thread_local int lengthStudyTotalMonths(0);                // Length of Study expressed in months (years x 12)
-    thread_local Real64 taxRate(0.0);                          // Tax rate
-    thread_local int depreciationMethod(depMethNone);          // Depreciation Method
+    EP_GLOBAL bool LCCparamPresent(false);                  // If a LifeCycleCost:Parameters object is present
+    EP_GLOBAL std::string LCCname;                          // Name
+    EP_GLOBAL int discountConvension(disConvEndOfYear);     // Discounting Convention
+    EP_GLOBAL int inflationApproach(inflAppConstantDollar); // Inflation Approach
+    EP_GLOBAL Real64 realDiscountRate(0.0);                 // Real Discount Rate
+    EP_GLOBAL Real64 nominalDiscountRate(0.0);              // Nominal Discount Rate
+    EP_GLOBAL Real64 inflation(0.0);                        // Inflation
+    EP_GLOBAL int baseDateMonth(0);                         // Base Date Month (1=Jan, 12=Dec)
+    EP_GLOBAL int baseDateYear(0);                          // Base Date Year  1900-2100
+    EP_GLOBAL int serviceDateMonth(0);                      // Service Date Month (1=Jan, 12=Dec)
+    EP_GLOBAL int serviceDateYear(0);                       // Service Date Year 1900-2100
+    EP_GLOBAL int lengthStudyYears(0);                      // Length of Study Period in Years
+    EP_GLOBAL int lengthStudyTotalMonths(0);                // Length of Study expressed in months (years x 12)
+    EP_GLOBAL Real64 taxRate(0.0);                          // Tax rate
+    EP_GLOBAL int depreciationMethod(depMethNone);          // Depreciation Method
     // derived
-    thread_local int lastDateMonth(0); // Last Date Month (the month before the base date month)
-    thread_local int lastDateYear(0);  // Last Date Year (base date year + length of study period in years)
+    EP_GLOBAL int lastDateMonth(0); // Last Date Month (the month before the base date month)
+    EP_GLOBAL int lastDateYear(0);  // Last Date Year (base date year + length of study period in years)
 
-    thread_local int numRecurringCosts(0);
+    EP_GLOBAL int numRecurringCosts(0);
 
-    thread_local int numNonrecurringCost(0);
+    EP_GLOBAL int numNonrecurringCost(0);
 
-    thread_local int numUsePriceEscalation(0);
+    EP_GLOBAL int numUsePriceEscalation(0);
 
-    thread_local int numUseAdjustment(0);
+    EP_GLOBAL int numUseAdjustment(0);
 
-    thread_local int numCashFlow;
-    thread_local int const skRecurring(1);
-    thread_local int const skNonrecurring(2);
-    thread_local int const skResource(3);
-    thread_local int const skSum(4);
-    thread_local int const pvkEnergy(1);
-    thread_local int const pvkNonEnergy(2);
-    thread_local int const pvkNotComputed(3);
-    thread_local int numResourcesUsed;
+    EP_GLOBAL int numCashFlow;
+    EP_GLOBAL int const skRecurring(1);
+    EP_GLOBAL int const skNonrecurring(2);
+    EP_GLOBAL int const skResource(3);
+    EP_GLOBAL int const skSum(4);
+    EP_GLOBAL int const pvkEnergy(1);
+    EP_GLOBAL int const pvkNonEnergy(2);
+    EP_GLOBAL int const pvkNotComputed(3);
+    EP_GLOBAL int numResourcesUsed;
 
     // present value factors
-    thread_local Array1D<Real64> SPV;
-    thread_local Array2D<Real64> energySPV; // yearly equivalent to FEMP UPV* values
+    EP_GLOBAL Array1D<Real64> SPV;
+    EP_GLOBAL Array2D<Real64> energySPV; // yearly equivalent to FEMP UPV* values
 
     // arrays related to computing after tax cashflow and present value
-    thread_local Array1D<Real64> DepreciatedCapital;
-    thread_local Array1D<Real64> TaxableIncome;
-    thread_local Array1D<Real64> Taxes;
-    thread_local Array1D<Real64> AfterTaxCashFlow;
-    thread_local Array1D<Real64> AfterTaxPresentValue;
+    EP_GLOBAL Array1D<Real64> DepreciatedCapital;
+    EP_GLOBAL Array1D<Real64> TaxableIncome;
+    EP_GLOBAL Array1D<Real64> Taxes;
+    EP_GLOBAL Array1D<Real64> AfterTaxCashFlow;
+    EP_GLOBAL Array1D<Real64> AfterTaxPresentValue;
 
-    thread_local Array1D_string const
+    EP_GLOBAL Array1D_string const
         MonthNames(12, {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"});
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
     // Object Data
-    thread_local Array1D<RecurringCostsType> RecurringCosts;
-    thread_local Array1D<NonrecurringCostType> NonrecurringCost;
-    thread_local Array1D<UsePriceEscalationType> UsePriceEscalation;
-    thread_local Array1D<UseAdjustmentType> UseAdjustment;
-    thread_local Array1D<CashFlowType> CashFlow;
+    EP_GLOBAL Array1D<RecurringCostsType> RecurringCosts;
+    EP_GLOBAL Array1D<NonrecurringCostType> NonrecurringCost;
+    EP_GLOBAL Array1D<UsePriceEscalationType> UsePriceEscalation;
+    EP_GLOBAL Array1D<UseAdjustmentType> UseAdjustment;
+    EP_GLOBAL Array1D<CashFlowType> CashFlow;
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -230,20 +230,20 @@ namespace EconomicLifeCycleCost {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool GetInput_GetLifeCycleCostInput(true);
+        EP_GLOBAL bool GetInput_GetLifeCycleCostInput(true);
 
         // from former statics in GetInputLifeCycleCostUsePriceEscalation()
-        thread_local int UsePriceEscalation_escStartYear(0);
-        thread_local int UsePriceEscalation_escNumYears(0);
-        thread_local int UsePriceEscalation_escEndYear(0);
-        thread_local int UsePriceEscalation_earlierEndYear(0);
-        thread_local int UsePriceEscalation_laterStartYear(0);
-        thread_local int UsePriceEscalation_curEsc(0);
-        thread_local int UsePriceEscalation_curFld(0);
+        EP_GLOBAL int UsePriceEscalation_escStartYear(0);
+        EP_GLOBAL int UsePriceEscalation_escNumYears(0);
+        EP_GLOBAL int UsePriceEscalation_escEndYear(0);
+        EP_GLOBAL int UsePriceEscalation_earlierEndYear(0);
+        EP_GLOBAL int UsePriceEscalation_laterStartYear(0);
+        EP_GLOBAL int UsePriceEscalation_curEsc(0);
+        EP_GLOBAL int UsePriceEscalation_curFld(0);
 
         // from former statics in ExpressAsCashFlows
-        thread_local int ExpressAsCashFlows_baseMonths1900(0);    // number of months since 1900 for base period
-        thread_local int ExpressAsCashFlows_serviceMonths1900(0); // number of months since 1900 for service period
+        EP_GLOBAL int ExpressAsCashFlows_baseMonths1900(0);    // number of months since 1900 for base period
+        EP_GLOBAL int ExpressAsCashFlows_serviceMonths1900(0); // number of months since 1900 for service period
 
     } // namespace
 

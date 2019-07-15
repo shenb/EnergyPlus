@@ -80,11 +80,11 @@ namespace DataDElight {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local Real64 const M2FT(3.280840);       // Length:   Meters * M2FT = Feet
-    thread_local Real64 const FT22M2(0.09290304);   // Area:     SquareFeet * FT22M2 = SquareMeter
-    thread_local Real64 const M22FT2(1.0 / FT22M2); // Area:     SquareMeter * M22FT2 = SquareFeet
-    thread_local Real64 const M32FT3(35.3147);      // Volume:       CubicMeter * M32FT3 = CubicFeet
-    thread_local Real64 const LUX2FC(0.09290304);   // Illuminance:  Lux * LUX2FC = Footcandles
+    EP_GLOBAL Real64 const M2FT(3.280840);       // Length:   Meters * M2FT = Feet
+    EP_GLOBAL Real64 const FT22M2(0.09290304);   // Area:     SquareFeet * FT22M2 = SquareMeter
+    EP_GLOBAL Real64 const M22FT2(1.0 / FT22M2); // Area:     SquareMeter * M22FT2 = SquareFeet
+    EP_GLOBAL Real64 const M32FT3(35.3147);      // Volume:       CubicMeter * M32FT3 = CubicFeet
+    EP_GLOBAL Real64 const LUX2FC(0.09290304);   // Illuminance:  Lux * LUX2FC = Footcandles
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na

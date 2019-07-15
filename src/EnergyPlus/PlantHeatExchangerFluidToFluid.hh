@@ -63,41 +63,41 @@ namespace PlantHeatExchangerFluidToFluid {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const CrossFlowBothUnMixed;
-    thread_local extern int const CrossFlowBothMixed;
-    thread_local extern int const CrossFlowSupplyLoopMixedDemandLoopUnMixed;
-    thread_local extern int const CrossFlowSupplyLoopUnMixedDemandLoopMixed;
-    thread_local extern int const CounterFlow;
-    thread_local extern int const ParallelFlow;
-    thread_local extern int const Ideal;
+    EP_GLOBAL extern int const CrossFlowBothUnMixed;
+    EP_GLOBAL extern int const CrossFlowBothMixed;
+    EP_GLOBAL extern int const CrossFlowSupplyLoopMixedDemandLoopUnMixed;
+    EP_GLOBAL extern int const CrossFlowSupplyLoopUnMixedDemandLoopMixed;
+    EP_GLOBAL extern int const CounterFlow;
+    EP_GLOBAL extern int const ParallelFlow;
+    EP_GLOBAL extern int const Ideal;
 
-    thread_local extern int const UncontrolledOn;
-    thread_local extern int const OperationSchemeModulated;
-    thread_local extern int const OperationSchemeOnOff;
-    thread_local extern int const HeatingSetPointModulated;
-    thread_local extern int const HeatingSetPointOnOff;
-    thread_local extern int const CoolingSetPointModulated;
-    thread_local extern int const CoolingSetPointOnOff;
-    thread_local extern int const DualDeadBandSetPointModulated;
-    thread_local extern int const DualDeadBandSetPointOnOff;
-    thread_local extern int const CoolingDifferentialOnOff;
-    thread_local extern int const CoolingSetPointOnOffWithComponentOverride;
-    thread_local extern int const TrackComponentOnOff;
+    EP_GLOBAL extern int const UncontrolledOn;
+    EP_GLOBAL extern int const OperationSchemeModulated;
+    EP_GLOBAL extern int const OperationSchemeOnOff;
+    EP_GLOBAL extern int const HeatingSetPointModulated;
+    EP_GLOBAL extern int const HeatingSetPointOnOff;
+    EP_GLOBAL extern int const CoolingSetPointModulated;
+    EP_GLOBAL extern int const CoolingSetPointOnOff;
+    EP_GLOBAL extern int const DualDeadBandSetPointModulated;
+    EP_GLOBAL extern int const DualDeadBandSetPointOnOff;
+    EP_GLOBAL extern int const CoolingDifferentialOnOff;
+    EP_GLOBAL extern int const CoolingSetPointOnOffWithComponentOverride;
+    EP_GLOBAL extern int const TrackComponentOnOff;
 
-    thread_local extern int const WetBulbTemperature;
-    thread_local extern int const DryBulbTemperature;
-    thread_local extern int const LoopTemperature;
+    EP_GLOBAL extern int const WetBulbTemperature;
+    EP_GLOBAL extern int const DryBulbTemperature;
+    EP_GLOBAL extern int const LoopTemperature;
 
-    thread_local extern int const HeatingSupplySideLoop;
-    thread_local extern int const CoolingSupplySideLoop;
+    EP_GLOBAL extern int const HeatingSupplySideLoop;
+    EP_GLOBAL extern int const CoolingSupplySideLoop;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern std::string ComponentClassName;
-    thread_local extern int NumberOfPlantFluidHXs;
-    thread_local extern bool GetInput;
-    thread_local extern Array1D_bool CheckFluidHXs;
+    EP_GLOBAL extern std::string ComponentClassName;
+    EP_GLOBAL extern int NumberOfPlantFluidHXs;
+    EP_GLOBAL extern bool GetInput;
+    EP_GLOBAL extern Array1D_bool CheckFluidHXs;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -191,7 +191,7 @@ namespace PlantHeatExchangerFluidToFluid {
     };
 
     // Object Data
-    thread_local extern Array1D<HeatExchangerStruct> FluidHX;
+    EP_GLOBAL extern Array1D<HeatExchangerStruct> FluidHX;
 
     // Functions
 

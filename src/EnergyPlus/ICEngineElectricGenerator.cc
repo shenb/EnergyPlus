@@ -99,18 +99,18 @@ namespace ICEngineElectricGenerator {
     using General::RoundSigDigits;
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local Real64 const ReferenceTemp(25.0); // Reference temperature by which lower heating
+    EP_GLOBAL Real64 const ReferenceTemp(25.0); // Reference temperature by which lower heating
     // value is reported.  This should be subtracted
     // off of when calculated exhaust energies.
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumICEngineGenerators(0); // number of IC ENGINE Generators specified in input
-    thread_local bool GetICEInput(true);       // When TRUE, calls subroutine to read input file.
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL int NumICEngineGenerators(0); // number of IC ENGINE Generators specified in input
+    EP_GLOBAL bool GetICEInput(true);       // When TRUE, calls subroutine to read input file.
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // Object Data
-    thread_local Array1D<ICEngineGeneratorSpecs> ICEngineGenerator; // dimension to number of machines
-    thread_local Array1D<ReportVars> ICEngineGeneratorReport;
+    EP_GLOBAL Array1D<ICEngineGeneratorSpecs> ICEngineGenerator; // dimension to number of machines
+    EP_GLOBAL Array1D<ReportVars> ICEngineGeneratorReport;
 
     void SimICEngineGenerator(int const EP_UNUSED(GeneratorType), // type of Generator
                               std::string const &GeneratorName,   // user specified name of Generator
@@ -302,7 +302,7 @@ namespace ICEngineElectricGenerator {
         int IOStat;                     // IO Status when calling get input subroutine
         Array1D_string AlphArray(10);   // character string data
         Array1D<Real64> NumArray(11);   // numeric data
-        thread_local static bool ErrorsFound(false); // error flag
+        EP_GLOBAL static bool ErrorsFound(false); // error flag
         Real64 xValue;                  // test curve limits
 
         // FLOW
@@ -671,7 +671,7 @@ namespace ICEngineElectricGenerator {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const ExhaustCP(1.047); // Exhaust Gas Specific Heat (J/kg-K)
         Real64 const KJtoJ(1000.0);    // convert Kjoules to joules
-        thread_local static std::string const RoutineName("CalcICEngineGeneratorModel");
+        EP_GLOBAL static std::string const RoutineName("CalcICEngineGeneratorModel");
 
         // DERIVED TYPE DEFINITIONS
 
@@ -898,7 +898,7 @@ namespace ICEngineElectricGenerator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcICEngineGeneratorModel");
+        EP_GLOBAL static std::string const RoutineName("CalcICEngineGeneratorModel");
 
         // DERIVED TYPE DEFINITIONS
         // na
@@ -996,7 +996,7 @@ namespace ICEngineElectricGenerator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitICEngineGenerators");
+        EP_GLOBAL static std::string const RoutineName("InitICEngineGenerators");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1007,11 +1007,11 @@ namespace ICEngineElectricGenerator {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int HeatRecInletNode;            // inlet node number in heat recovery loop
         int HeatRecOutletNode;           // outlet node number in heat recovery loop
-        thread_local static bool MyOneTimeFlag(true); // Initialization flag
+        EP_GLOBAL static bool MyOneTimeFlag(true); // Initialization flag
 
-        thread_local static Array1D_bool MyEnvrnFlag; // Used for initializations each begin environment flag
-        thread_local static Array1D_bool MyPlantScanFlag;
-        thread_local static Array1D_bool MySizeAndNodeInitFlag;
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag; // Used for initializations each begin environment flag
+        EP_GLOBAL static Array1D_bool MyPlantScanFlag;
+        EP_GLOBAL static Array1D_bool MySizeAndNodeInitFlag;
         Real64 mdot;
         Real64 rho;
         bool errFlag;

@@ -57,37 +57,37 @@ namespace UnitarySystems {
 
     void clear_state();
 
-    thread_local extern int numUnitarySystems;
-    thread_local extern bool economizerFlag;      // holds air loop economizer status
-    thread_local extern bool SuppHeatingCoilFlag; // set to TRUE when simulating supplemental heating coil
+    EP_GLOBAL extern int numUnitarySystems;
+    EP_GLOBAL extern bool economizerFlag;      // holds air loop economizer status
+    EP_GLOBAL extern bool SuppHeatingCoilFlag; // set to TRUE when simulating supplemental heating coil
 
     // why are these external?
     // Last mode of operation
-    thread_local extern int const CoolingMode;  // last compressor operating mode was in cooling
-    thread_local extern int const HeatingMode;  // last compressor operating mode was in heating
-    thread_local extern bool HeatingLoad;       // True when zone needs heating
-    thread_local extern bool CoolingLoad;       // True when zone needs cooling
-    thread_local extern Real64 MoistureLoad;    // Dehumidification Load (W)
-    thread_local extern Real64 CompOnMassFlow;  // Supply air mass flow rate w/ compressor ON [kg/s]
-    thread_local extern Real64 CompOffMassFlow; // Supply air mass flow rate w/ compressor OFF [kg/s]
+    EP_GLOBAL extern int const CoolingMode;  // last compressor operating mode was in cooling
+    EP_GLOBAL extern int const HeatingMode;  // last compressor operating mode was in heating
+    EP_GLOBAL extern bool HeatingLoad;       // True when zone needs heating
+    EP_GLOBAL extern bool CoolingLoad;       // True when zone needs cooling
+    EP_GLOBAL extern Real64 MoistureLoad;    // Dehumidification Load (W)
+    EP_GLOBAL extern Real64 CompOnMassFlow;  // Supply air mass flow rate w/ compressor ON [kg/s]
+    EP_GLOBAL extern Real64 CompOffMassFlow; // Supply air mass flow rate w/ compressor OFF [kg/s]
 
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL extern int const On;  // normal compressor operation
+    EP_GLOBAL extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // Coil type for SimWater and SimSteamCoil
-    thread_local extern int const CoolingCoil;
-    thread_local extern int const HeatingCoil;
-    thread_local extern int const SuppHeatCoil;
+    EP_GLOBAL extern int const CoolingCoil;
+    EP_GLOBAL extern int const HeatingCoil;
+    EP_GLOBAL extern int const SuppHeatCoil;
 
     // Supply Air Sizing Option
-    thread_local extern int const None;
-    thread_local extern int const SupplyAirFlowRate;
-    thread_local extern int const FlowPerFloorArea;
-    thread_local extern int const FractionOfAutoSizedCoolingValue;
-    thread_local extern int const FractionOfAutoSizedHeatingValue;
-    thread_local extern int const FlowPerCoolingCapacity;
-    thread_local extern int const FlowPerHeatingCapacity;
+    EP_GLOBAL extern int const None;
+    EP_GLOBAL extern int const SupplyAirFlowRate;
+    EP_GLOBAL extern int const FlowPerFloorArea;
+    EP_GLOBAL extern int const FractionOfAutoSizedCoolingValue;
+    EP_GLOBAL extern int const FractionOfAutoSizedHeatingValue;
+    EP_GLOBAL extern int const FlowPerCoolingCapacity;
+    EP_GLOBAL extern int const FlowPerHeatingCapacity;
 
     struct DesignSpecMSHP
     {
@@ -774,8 +774,8 @@ namespace UnitarySystems {
         );
     };
 
-    thread_local extern std::vector<UnitarySys> unitarySys;
-    thread_local extern std::vector<DesignSpecMSHP> designSpecMSHP;
+    EP_GLOBAL extern std::vector<UnitarySys> unitarySys;
+    EP_GLOBAL extern std::vector<DesignSpecMSHP> designSpecMSHP;
     int getDesignSpecMSHPIndex(std::string const &objectName);
     int getUnitarySystemIndex(std::string const &objectName);
 

@@ -65,45 +65,45 @@ namespace PurchasedAirManager {
     // MODULE PARAMETER DEFINITIONS:
     // MODULE PARAMETER DEFINITIONS:
     // Heating and Cooling Limit type parameters
-    thread_local extern int const NoLimit;
-    thread_local extern int const LimitFlowRate;
-    thread_local extern int const LimitCapacity;
-    thread_local extern int const LimitFlowRateAndCapacity;
-    thread_local extern Array1D_string const cLimitType;
+    EP_GLOBAL extern int const NoLimit;
+    EP_GLOBAL extern int const LimitFlowRate;
+    EP_GLOBAL extern int const LimitCapacity;
+    EP_GLOBAL extern int const LimitFlowRateAndCapacity;
+    EP_GLOBAL extern Array1D_string const cLimitType;
     // Dehumidification and Humidification control type parameters
-    thread_local extern int const None;
-    thread_local extern int const ConstantSensibleHeatRatio;
-    thread_local extern int const Humidistat;
-    thread_local extern int const ConstantSupplyHumidityRatio;
+    EP_GLOBAL extern int const None;
+    EP_GLOBAL extern int const ConstantSensibleHeatRatio;
+    EP_GLOBAL extern int const Humidistat;
+    EP_GLOBAL extern int const ConstantSupplyHumidityRatio;
     // Demand controlled ventilation type parameters
-    thread_local extern int const NoDCV;
-    thread_local extern int const OccupancySchedule;
-    thread_local extern int const CO2SetPoint;
+    EP_GLOBAL extern int const NoDCV;
+    EP_GLOBAL extern int const OccupancySchedule;
+    EP_GLOBAL extern int const CO2SetPoint;
     // Outdoor air economizer type parameters
-    thread_local extern int const NoEconomizer;
-    thread_local extern int const DifferentialDryBulb;
-    thread_local extern int const DifferentialEnthalpy;
+    EP_GLOBAL extern int const NoEconomizer;
+    EP_GLOBAL extern int const DifferentialDryBulb;
+    EP_GLOBAL extern int const DifferentialEnthalpy;
     // Heat recovery type parameters
-    thread_local extern int const NoHeatRecovery;
-    thread_local extern int const Sensible;
-    thread_local extern int const Enthalpy;
+    EP_GLOBAL extern int const NoHeatRecovery;
+    EP_GLOBAL extern int const Sensible;
+    EP_GLOBAL extern int const Enthalpy;
     // Operating mode parameters
-    thread_local extern int const Off;
-    thread_local extern int const Heat;
-    thread_local extern int const Cool;
-    thread_local extern int const DeadBand;
+    EP_GLOBAL extern int const Off;
+    EP_GLOBAL extern int const Heat;
+    EP_GLOBAL extern int const Cool;
+    EP_GLOBAL extern int const DeadBand;
     // Delta humidity ratio limit, 0.00025 equals delta between 45F dewpoint and 46F dewpoint
     // used to prevent dividing by near zero
-    thread_local extern Real64 const SmallDeltaHumRat;
+    EP_GLOBAL extern Real64 const SmallDeltaHumRat;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumPurchAir;
-    thread_local extern int NumPlenumArrays; // total number of plenum arrays
-    thread_local extern bool GetPurchAirInputFlag;
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumPurchAir;
+    EP_GLOBAL extern int NumPlenumArrays; // total number of plenum arrays
+    EP_GLOBAL extern bool GetPurchAirInputFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE PurchasedAir:
 
     // Types
@@ -299,9 +299,9 @@ namespace PurchasedAirManager {
     };
 
     // Object Data
-    thread_local extern Array1D<ZonePurchasedAir> PurchAir;                      // Used to specify purchased air parameters
-    thread_local extern Array1D<PurchAirNumericFieldData> PurchAirNumericFields; // Used to save the indices of scalable sizing object for zone HVAC
-    thread_local extern Array1D<PurchAirPlenumArrayData> PurchAirPlenumArrays;   // Used to save the indices of scalable sizing object for zone HVAC
+    EP_GLOBAL extern Array1D<ZonePurchasedAir> PurchAir;                      // Used to specify purchased air parameters
+    EP_GLOBAL extern Array1D<PurchAirNumericFieldData> PurchAirNumericFields; // Used to save the indices of scalable sizing object for zone HVAC
+    EP_GLOBAL extern Array1D<PurchAirPlenumArrayData> PurchAirPlenumArrays;   // Used to save the indices of scalable sizing object for zone HVAC
 
     // Functions
 

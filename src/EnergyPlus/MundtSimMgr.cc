@@ -97,11 +97,11 @@ namespace MundtSimMgr {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local Real64 const CpAir(1005.0);   // Specific heat of air
-    thread_local Real64 const MinSlope(0.001); // Bound on result from Mundt model
-    thread_local Real64 const MaxSlope(5.0);   // Bound on result from Mundt Model
+    EP_GLOBAL Real64 const CpAir(1005.0);   // Specific heat of air
+    EP_GLOBAL Real64 const MinSlope(0.001); // Bound on result from Mundt model
+    EP_GLOBAL Real64 const MaxSlope(5.0);   // Bound on result from Mundt Model
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // MODULE DERIVED TYPE DEFINITIONS:
 
@@ -109,26 +109,26 @@ namespace MundtSimMgr {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D_int FloorSurfSetIDs;     // fixed variable for floors
-    thread_local Array1D_int TheseSurfIDs;        // temporary working variable
-    thread_local int MundtCeilAirID(0);           // air node index in AirDataManager
-    thread_local int MundtFootAirID(0);           // air node index in AirDataManager
-    thread_local int SupplyNodeID(0);             // air node index in AirDataManager
-    thread_local int TstatNodeID(0);              // air node index in AirDataManager
-    thread_local int ReturnNodeID(0);             // air node index in AirDataManager
-    thread_local int NumRoomNodes(0);             // number of nodes connected to walls
-    thread_local int NumFloorSurfs(0);            // total number of surfaces for floor
-    thread_local Array1D_int RoomNodeIDs;         // ids of the first NumRoomNode Air Nodes
-    thread_local Array1D_int ID1dSurf;            // numbers used to identify surfaces
-    thread_local int MundtZoneNum(0);             // index of zones using Mundt model
-    thread_local Real64 ZoneHeight(0.0);          // zone height
-    thread_local Real64 ZoneFloorArea(0.0);       // zone floor area
-    thread_local Real64 QventCool(0.0);           // heat gain due to ventilation
-    thread_local Real64 ConvIntGain(0.0);         // heat gain due to internal gains
-    thread_local Real64 SupplyAirTemp(0.0);       // supply air temperature
-    thread_local Real64 SupplyAirVolumeRate(0.0); // supply air volume flowrate
-    thread_local Real64 ZoneAirDensity(0.0);      // zone air density
-    thread_local Real64 QsysCoolTot(0.0);         // zone sensible cooling load
+    EP_GLOBAL Array1D_int FloorSurfSetIDs;     // fixed variable for floors
+    EP_GLOBAL Array1D_int TheseSurfIDs;        // temporary working variable
+    EP_GLOBAL int MundtCeilAirID(0);           // air node index in AirDataManager
+    EP_GLOBAL int MundtFootAirID(0);           // air node index in AirDataManager
+    EP_GLOBAL int SupplyNodeID(0);             // air node index in AirDataManager
+    EP_GLOBAL int TstatNodeID(0);              // air node index in AirDataManager
+    EP_GLOBAL int ReturnNodeID(0);             // air node index in AirDataManager
+    EP_GLOBAL int NumRoomNodes(0);             // number of nodes connected to walls
+    EP_GLOBAL int NumFloorSurfs(0);            // total number of surfaces for floor
+    EP_GLOBAL Array1D_int RoomNodeIDs;         // ids of the first NumRoomNode Air Nodes
+    EP_GLOBAL Array1D_int ID1dSurf;            // numbers used to identify surfaces
+    EP_GLOBAL int MundtZoneNum(0);             // index of zones using Mundt model
+    EP_GLOBAL Real64 ZoneHeight(0.0);          // zone height
+    EP_GLOBAL Real64 ZoneFloorArea(0.0);       // zone floor area
+    EP_GLOBAL Real64 QventCool(0.0);           // heat gain due to ventilation
+    EP_GLOBAL Real64 ConvIntGain(0.0);         // heat gain due to internal gains
+    EP_GLOBAL Real64 SupplyAirTemp(0.0);       // supply air temperature
+    EP_GLOBAL Real64 SupplyAirVolumeRate(0.0); // supply air volume flowrate
+    EP_GLOBAL Real64 ZoneAirDensity(0.0);      // zone air density
+    EP_GLOBAL Real64 QsysCoolTot(0.0);         // zone sensible cooling load
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE MundtSimMgr
 
@@ -139,10 +139,10 @@ namespace MundtSimMgr {
     // Routines for actual calculations in Mundt model
 
     // Object Data
-    thread_local Array1D<DefineZoneData> ZoneData;            // zone data
-    thread_local Array2D<DefineLinearModelNode> LineNode;     // air nodes
-    thread_local Array2D<DefineSurfaceSettings> MundtAirSurf; // surfaces
-    thread_local Array1D<DefineSurfaceSettings> FloorSurf;    // floor
+    EP_GLOBAL Array1D<DefineZoneData> ZoneData;            // zone data
+    EP_GLOBAL Array2D<DefineLinearModelNode> LineNode;     // air nodes
+    EP_GLOBAL Array2D<DefineSurfaceSettings> MundtAirSurf; // surfaces
+    EP_GLOBAL Array1D<DefineSurfaceSettings> FloorSurf;    // floor
 
     // MODULE SUBROUTINES:
 
@@ -183,7 +183,7 @@ namespace MundtSimMgr {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         // na
-        thread_local static bool FirstTimeFlag(true); // Used for allocating arrays
+        EP_GLOBAL static bool FirstTimeFlag(true); // Used for allocating arrays
         bool ErrorsFound;
 
         // FLOW:

@@ -69,10 +69,10 @@ namespace ZoneEquipmentManager {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D<Real64> AvgData; // scratch array for storing averaged data
-    thread_local extern int NumOfTimeStepInDay; // number of zone time steps in a day
-    thread_local extern bool GetZoneEquipmentInputFlag;
-    thread_local extern bool SizeZoneEquipmentOneTimeFlag;
+    EP_GLOBAL extern Array1D<Real64> AvgData; // scratch array for storing averaged data
+    EP_GLOBAL extern int NumOfTimeStepInDay; // number of zone time steps in a day
+    EP_GLOBAL extern bool GetZoneEquipmentInputFlag;
+    EP_GLOBAL extern bool SizeZoneEquipmentOneTimeFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ZoneEquipmentManager
 
@@ -95,7 +95,7 @@ namespace ZoneEquipmentManager {
     };
 
     // Object Data
-    thread_local extern Array1D<SimulationOrder> PrioritySimOrder;
+    EP_GLOBAL extern Array1D<SimulationOrder> PrioritySimOrder;
 
     // Functions
     void clear_state();

@@ -94,46 +94,46 @@ namespace DataSystemVariables {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const iASCII_CR(13);   // endline value when just CR instead of CR/LF
-    thread_local int const iUnicode_end(0); // endline value when Unicode file
-    thread_local char const tabchar('\t');
-    thread_local int const GoodIOStatValue(0);         // good value for IOStat during reads/writes
-    thread_local int const MaxTimingStringLength(250); // string length for timing string array
+    EP_GLOBAL int const iASCII_CR(13);   // endline value when just CR instead of CR/LF
+    EP_GLOBAL int const iUnicode_end(0); // endline value when Unicode file
+    EP_GLOBAL char const tabchar('\t');
+    EP_GLOBAL int const GoodIOStatValue(0);         // good value for IOStat during reads/writes
+    EP_GLOBAL int const MaxTimingStringLength(250); // string length for timing string array
 
-    thread_local std::string const DDOnlyEnvVar("DDONLY");       // Only run design days
-    thread_local std::string const ReverseDDEnvVar("REVERSEDD"); // Reverse DD during run
-    thread_local std::string const DisableGLHECachingEnvVar("DISABLEGLHECACHING");
-    thread_local std::string const FullAnnualSimulation("FULLANNUALRUN"); // Generate annual run
-    thread_local std::string const cDeveloperFlag("DeveloperFlag");
-    thread_local std::string const cDisplayAllWarnings("DisplayAllWarnings");
-    thread_local std::string const cDisplayExtraWarnings("DisplayExtraWarnings");
-    thread_local std::string const cDisplayAdvancedReportVariables("DisplayAdvancedReportVariables");
-    thread_local std::string const cDisplayUnusedObjects("DisplayUnusedObjects");
-    thread_local std::string const cDisplayUnusedSchedules("DisplayUnusedSchedules");
-    thread_local std::string const cDisplayZoneAirHeatBalanceOffBalance("DisplayZoneAirHeatBalanceOffBalance");
-    thread_local std::string const cSortIDD("SortIDD");
-    thread_local std::string const cReportDuringWarmup("ReportDuringWarmup");
-    thread_local std::string const cReportDuringHVACSizingSimulation("REPORTDURINGHVACSIZINGSIMULATION");
-    thread_local std::string const cIgnoreSolarRadiation("IgnoreSolarRadiation");
-    thread_local std::string const cIgnoreBeamRadiation("IgnoreBeamRadiation");
-    thread_local std::string const cIgnoreDiffuseRadiation("IgnoreDiffuseRadiation");
-    thread_local std::string const cSutherlandHodgman("SutherlandHodgman");
-    thread_local std::string const cMinimalSurfaceVariables("CreateMinimalSurfaceVariables");
-    thread_local std::string const cMinimalShadowing("MinimalShadowing");
-    thread_local std::string const cNumActiveSims("cntActv");
-    thread_local std::string const cInputPath1("epin");       // EP-Launch setting.  Full path + project name
-    thread_local std::string const cInputPath2("input_path"); // RunEplus.bat setting.  Full path
-    thread_local std::string const cProgramPath("program_path");
-    thread_local std::string const cTimingFlag("TimingFlag");
-    thread_local std::string const TrackAirLoopEnvVar("TRACK_AIRLOOP"); // To generate a file with runtime statistics
+    EP_GLOBAL std::string const DDOnlyEnvVar("DDONLY");       // Only run design days
+    EP_GLOBAL std::string const ReverseDDEnvVar("REVERSEDD"); // Reverse DD during run
+    EP_GLOBAL std::string const DisableGLHECachingEnvVar("DISABLEGLHECACHING");
+    EP_GLOBAL std::string const FullAnnualSimulation("FULLANNUALRUN"); // Generate annual run
+    EP_GLOBAL std::string const cDeveloperFlag("DeveloperFlag");
+    EP_GLOBAL std::string const cDisplayAllWarnings("DisplayAllWarnings");
+    EP_GLOBAL std::string const cDisplayExtraWarnings("DisplayExtraWarnings");
+    EP_GLOBAL std::string const cDisplayAdvancedReportVariables("DisplayAdvancedReportVariables");
+    EP_GLOBAL std::string const cDisplayUnusedObjects("DisplayUnusedObjects");
+    EP_GLOBAL std::string const cDisplayUnusedSchedules("DisplayUnusedSchedules");
+    EP_GLOBAL std::string const cDisplayZoneAirHeatBalanceOffBalance("DisplayZoneAirHeatBalanceOffBalance");
+    EP_GLOBAL std::string const cSortIDD("SortIDD");
+    EP_GLOBAL std::string const cReportDuringWarmup("ReportDuringWarmup");
+    EP_GLOBAL std::string const cReportDuringHVACSizingSimulation("REPORTDURINGHVACSIZINGSIMULATION");
+    EP_GLOBAL std::string const cIgnoreSolarRadiation("IgnoreSolarRadiation");
+    EP_GLOBAL std::string const cIgnoreBeamRadiation("IgnoreBeamRadiation");
+    EP_GLOBAL std::string const cIgnoreDiffuseRadiation("IgnoreDiffuseRadiation");
+    EP_GLOBAL std::string const cSutherlandHodgman("SutherlandHodgman");
+    EP_GLOBAL std::string const cMinimalSurfaceVariables("CreateMinimalSurfaceVariables");
+    EP_GLOBAL std::string const cMinimalShadowing("MinimalShadowing");
+    EP_GLOBAL std::string const cNumActiveSims("cntActv");
+    EP_GLOBAL std::string const cInputPath1("epin");       // EP-Launch setting.  Full path + project name
+    EP_GLOBAL std::string const cInputPath2("input_path"); // RunEplus.bat setting.  Full path
+    EP_GLOBAL std::string const cProgramPath("program_path");
+    EP_GLOBAL std::string const cTimingFlag("TimingFlag");
+    EP_GLOBAL std::string const TrackAirLoopEnvVar("TRACK_AIRLOOP"); // To generate a file with runtime statistics
     // for each controller on each air loop
-    thread_local std::string const TraceAirLoopEnvVar("TRACE_AIRLOOP"); // To generate a trace file with the converged
+    EP_GLOBAL std::string const TraceAirLoopEnvVar("TRACE_AIRLOOP"); // To generate a trace file with the converged
     // solutions of all controllers on each air loop at each call to SimAirLoop()
-    thread_local std::string const TraceHVACControllerEnvVar("TRACE_HVACCONTROLLER"); // To generate a trace file for
+    EP_GLOBAL std::string const TraceHVACControllerEnvVar("TRACE_HVACCONTROLLER"); // To generate a trace file for
     //  each individual HVAC controller with all controller iterations
 
-    thread_local std::string const MinReportFrequencyEnvVar("MINREPORTFREQUENCY"); // environment var for reporting frequency.
-    thread_local std::string const
+    EP_GLOBAL std::string const MinReportFrequencyEnvVar("MINREPORTFREQUENCY"); // environment var for reporting frequency.
+    EP_GLOBAL std::string const
         cDisplayInputInAuditEnvVar("DISPLAYINPUTINAUDIT"); // environmental variable that enables the echoing of the input file into the audit file
 
     // DERIVED TYPE DEFINITIONS
@@ -143,56 +143,56 @@ namespace DataSystemVariables {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local bool DDOnly(false);                           // TRUE if design days (sizingperiod:*) only are to be run.
-    thread_local bool ReverseDD(false);                        // TRUE if reverse design days (reordering sizingperiod:*) are to be run.
-    thread_local bool DisableGLHECaching(false);               // TRUE if caching is to be disabled, for example, during unit tests.
-    thread_local bool FullAnnualRun(false);                    // TRUE if full annual simulation is to be run.
-    thread_local bool DeveloperFlag(false);                    // TRUE if developer flag is turned on. (turns on more displays to console)
-    thread_local bool TimingFlag(false);                       // TRUE if timing flag is turned on. (turns on more timing displays to console)
-    thread_local bool SutherlandHodgman(true);                 // TRUE if SutherlandHodgman algorithm for polygon clipping is to be used.
-    thread_local bool DetailedSkyDiffuseAlgorithm(false);      // use detailed diffuse shading algorithm for sky (shading transmittance varies)
-    thread_local bool DetailedSolarTimestepIntegration(false); // when true, use detailed timestep integration for all solar,shading, etc.
-    thread_local bool TrackAirLoopEnvFlag(false);              // If TRUE generates a file with runtime statistics for each HVAC
+    EP_GLOBAL bool DDOnly(false);                           // TRUE if design days (sizingperiod:*) only are to be run.
+    EP_GLOBAL bool ReverseDD(false);                        // TRUE if reverse design days (reordering sizingperiod:*) are to be run.
+    EP_GLOBAL bool DisableGLHECaching(false);               // TRUE if caching is to be disabled, for example, during unit tests.
+    EP_GLOBAL bool FullAnnualRun(false);                    // TRUE if full annual simulation is to be run.
+    EP_GLOBAL bool DeveloperFlag(false);                    // TRUE if developer flag is turned on. (turns on more displays to console)
+    EP_GLOBAL bool TimingFlag(false);                       // TRUE if timing flag is turned on. (turns on more timing displays to console)
+    EP_GLOBAL bool SutherlandHodgman(true);                 // TRUE if SutherlandHodgman algorithm for polygon clipping is to be used.
+    EP_GLOBAL bool DetailedSkyDiffuseAlgorithm(false);      // use detailed diffuse shading algorithm for sky (shading transmittance varies)
+    EP_GLOBAL bool DetailedSolarTimestepIntegration(false); // when true, use detailed timestep integration for all solar,shading, etc.
+    EP_GLOBAL bool TrackAirLoopEnvFlag(false);              // If TRUE generates a file with runtime statistics for each HVAC
     //  controller on each air loop
-    thread_local bool TraceAirLoopEnvFlag(false); // If TRUE generates a trace file with the converged solutions of all
+    EP_GLOBAL bool TraceAirLoopEnvFlag(false); // If TRUE generates a trace file with the converged solutions of all
     // HVAC controllers on each air loop at each call to SimAirLoop()
-    thread_local bool TraceHVACControllerEnvFlag(false); // If TRUE generates a trace file for each individual HVAC
+    EP_GLOBAL bool TraceHVACControllerEnvFlag(false); // If TRUE generates a trace file for each individual HVAC
     // controller with all controller iterations
-    thread_local bool ReportDuringWarmup(false);                      // True when the report outputs even during warmup
-    thread_local bool ReportDuringHVACSizingSimulation(false);        // true when reporting outputs during HVAC sizing Simulation
-    thread_local bool ReportDetailedWarmupConvergence(false);         // True when the detailed warmup convergence is requested
-    thread_local bool UpdateDataDuringWarmupExternalInterface(false); // variable sets in the external interface.
-    thread_local bool UseScheduledSunlitFrac(false);                  // when true, the sunlit fraction for all surfaces are imported from schedule inputs
-    thread_local bool ReportExtShadingSunlitFrac(false);              // when true, the sunlit fraction for all surfaces are exported as a csv format output
-    thread_local bool UseImportedSunlitFrac(false);                   // when true, the sunlit fraction for all surfaces are imported altogether as a CSV/JSON file
+    EP_GLOBAL bool ReportDuringWarmup(false);                      // True when the report outputs even during warmup
+    EP_GLOBAL bool ReportDuringHVACSizingSimulation(false);        // true when reporting outputs during HVAC sizing Simulation
+    EP_GLOBAL bool ReportDetailedWarmupConvergence(false);         // True when the detailed warmup convergence is requested
+    EP_GLOBAL bool UpdateDataDuringWarmupExternalInterface(false); // variable sets in the external interface.
+    EP_GLOBAL bool UseScheduledSunlitFrac(false);                  // when true, the sunlit fraction for all surfaces are imported from schedule inputs
+    EP_GLOBAL bool ReportExtShadingSunlitFrac(false);              // when true, the sunlit fraction for all surfaces are exported as a csv format output
+    EP_GLOBAL bool UseImportedSunlitFrac(false);                   // when true, the sunlit fraction for all surfaces are imported altogether as a CSV/JSON file
 
-    thread_local bool DisableGroupSelfShading(false); // when true, defined shadowing surfaces group is ignored when calculating sunlit fraction
-    thread_local bool DisableAllSelfShading(false);   // when true, all external shadowing surfaces is ignored when calculating sunlit fraction
+    EP_GLOBAL bool DisableGroupSelfShading(false); // when true, defined shadowing surfaces group is ignored when calculating sunlit fraction
+    EP_GLOBAL bool DisableAllSelfShading(false);   // when true, all external shadowing surfaces is ignored when calculating sunlit fraction
 
     // This update the value during the warmup added for FMI
-    thread_local Real64 Elapsed_Time(0.0);       // For showing elapsed time at end of run
-    thread_local Real64 Time_Start(0.0);         // Call to CPU_Time for start time of simulation
-    thread_local Real64 Time_Finish(0.0);        // Call to CPU_Time for end time of simulation
-    thread_local std::string MinReportFrequency; // String for minimum reporting frequency
-    thread_local bool SortedIDD(true);           // after processing, use sorted IDD to obtain Defs, etc.
-    thread_local bool lMinimalShadowing(false);  // TRUE if MinimalShadowing is to override Solar Distribution flag
-    thread_local std::string TempFullFileName;
-    thread_local std::string envinputpath1;
-    thread_local std::string envinputpath2;
-    thread_local std::string envprogrampath;
-    thread_local bool TestAllPaths(false);
-    thread_local int iEnvSetThreads(0);
-    thread_local bool lEnvSetThreadsInput(false);
-    thread_local int iepEnvSetThreads(0);
-    thread_local bool lepSetThreadsInput(false);
-    thread_local int iIDFSetThreads(0);
-    thread_local bool lIDFSetThreadsInput(false);
-    thread_local int inumActiveSims(1);
-    thread_local bool lnumActiveSims(false);
-    thread_local int MaxNumberOfThreads(1);
-    thread_local int NumberIntRadThreads(1);
-    thread_local int iNominalTotSurfaces(0);
-    thread_local bool Threading(false);
+    EP_GLOBAL Real64 Elapsed_Time(0.0);       // For showing elapsed time at end of run
+    EP_GLOBAL Real64 Time_Start(0.0);         // Call to CPU_Time for start time of simulation
+    EP_GLOBAL Real64 Time_Finish(0.0);        // Call to CPU_Time for end time of simulation
+    EP_GLOBAL std::string MinReportFrequency; // String for minimum reporting frequency
+    EP_GLOBAL bool SortedIDD(true);           // after processing, use sorted IDD to obtain Defs, etc.
+    EP_GLOBAL bool lMinimalShadowing(false);  // TRUE if MinimalShadowing is to override Solar Distribution flag
+    EP_GLOBAL std::string TempFullFileName;
+    EP_GLOBAL std::string envinputpath1;
+    EP_GLOBAL std::string envinputpath2;
+    EP_GLOBAL std::string envprogrampath;
+    EP_GLOBAL bool TestAllPaths(false);
+    EP_GLOBAL int iEnvSetThreads(0);
+    EP_GLOBAL bool lEnvSetThreadsInput(false);
+    EP_GLOBAL int iepEnvSetThreads(0);
+    EP_GLOBAL bool lepSetThreadsInput(false);
+    EP_GLOBAL int iIDFSetThreads(0);
+    EP_GLOBAL bool lIDFSetThreadsInput(false);
+    EP_GLOBAL int inumActiveSims(1);
+    EP_GLOBAL bool lnumActiveSims(false);
+    EP_GLOBAL int MaxNumberOfThreads(1);
+    EP_GLOBAL int NumberIntRadThreads(1);
+    EP_GLOBAL int iNominalTotSurfaces(0);
+    EP_GLOBAL bool Threading(false);
 
     // Functions
 
@@ -226,8 +226,8 @@ namespace DataSystemVariables {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const blank;
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static std::string const blank;
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -237,8 +237,8 @@ namespace DataSystemVariables {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool FileExist(false);    // initialize to false, then override to true if present
-        thread_local static int EchoInputFile; // found unit number for "eplusout.audit"
-        thread_local static bool firstTime(true);
+        EP_GLOBAL static int EchoInputFile; // found unit number for "eplusout.audit"
+        EP_GLOBAL static bool firstTime(true);
         std::string InputFileName; // save for changing out path characters
         std::string::size_type pos;
 

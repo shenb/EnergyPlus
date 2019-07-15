@@ -95,9 +95,9 @@ extern "C" {
 namespace EnergyPlus {
 
 namespace UtilityRoutines {
-    thread_local bool outputErrorHeader(true);
-    thread_local ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL bool outputErrorHeader(true);
+    EP_GLOBAL ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL ObjexxFCL::gio::Fmt fmtA("(A)");
 
     Real64 ProcessNumber(std::string const &String, bool &ErrorFlag)
     {
@@ -125,7 +125,7 @@ namespace UtilityRoutines {
         // List directed Fortran input/output.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const ValidNumerics("0123456789.+-EeDd");
+        EP_GLOBAL static std::string const ValidNumerics("0123456789.+-EeDd");
 
         Real64 rProcessNumber = 0.0;
         //  Make sure the string has all what we think numerics should have
@@ -481,9 +481,9 @@ int AbortEnergyPlus()
     // SUBROUTINE ARGUMENT DEFINITIONS:
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local static ObjexxFCL::gio::Fmt OutFmt("('Press ENTER to continue after reading above message>')");
-    thread_local static ObjexxFCL::gio::Fmt ETimeFmt("(I2.2,'hr ',I2.2,'min ',F5.2,'sec')");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt OutFmt("('Press ENTER to continue after reading above message>')");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt ETimeFmt("(I2.2,'hr ',I2.2,'min ',F5.2,'sec')");
 
     // INTERFACE BLOCK SPECIFICATIONS
 
@@ -798,8 +798,8 @@ int EndEnergyPlus()
     // na
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-    thread_local static ObjexxFCL::gio::Fmt ETimeFmt("(I2.2,'hr ',I2.2,'min ',F5.2,'sec')");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt ETimeFmt("(I2.2,'hr ',I2.2,'min ',F5.2,'sec')");
 
     // INTERFACE BLOCK SPECIFICATIONS
 
@@ -1914,8 +1914,8 @@ void ShowErrorMessage(std::string const &ErrorMessage, Optional_int OutUnit1, Op
     // SUBROUTINE ARGUMENT DEFINITIONS:
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    thread_local static ObjexxFCL::gio::Fmt ErrorFormat("(2X,A)");
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt ErrorFormat("(2X,A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na
@@ -2035,7 +2035,7 @@ void ShowRecurringErrors()
     // na
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    thread_local static std::string const StatMessageStart(" **   ~~~   ** ");
+    EP_GLOBAL static std::string const StatMessageStart(" **   ~~~   ** ");
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na

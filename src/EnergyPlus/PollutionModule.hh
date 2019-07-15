@@ -63,17 +63,17 @@ namespace PollutionModule {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const ElecPollFactor;
-    thread_local extern int const NatGasPollFactor;
-    thread_local extern int const FuelOil1PollFactor;
-    thread_local extern int const FuelOil2PollFactor;
-    thread_local extern int const CoalPollFactor;
-    thread_local extern int const GasolinePollFactor;
-    thread_local extern int const PropanePollFactor;
-    thread_local extern int const DieselPollFactor;
-    thread_local extern int const OtherFuel1PollFactor;
-    thread_local extern int const OtherFuel2PollFactor;
-    thread_local extern int const PollFactorNumTypes;
+    EP_GLOBAL extern int const ElecPollFactor;
+    EP_GLOBAL extern int const NatGasPollFactor;
+    EP_GLOBAL extern int const FuelOil1PollFactor;
+    EP_GLOBAL extern int const FuelOil2PollFactor;
+    EP_GLOBAL extern int const CoalPollFactor;
+    EP_GLOBAL extern int const GasolinePollFactor;
+    EP_GLOBAL extern int const PropanePollFactor;
+    EP_GLOBAL extern int const DieselPollFactor;
+    EP_GLOBAL extern int const OtherFuel1PollFactor;
+    EP_GLOBAL extern int const OtherFuel2PollFactor;
+    EP_GLOBAL extern int const PollFactorNumTypes;
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -88,10 +88,10 @@ namespace PollutionModule {
     // Facility Meter Indexes
     // Facility Meter Values used in Pollution Calcs
 
-    thread_local extern bool PollutionReportSetup;
-    thread_local extern bool GetInputFlagPollution;
-    thread_local extern int NumEnvImpactFactors;
-    thread_local extern int NumFuelFactors;
+    EP_GLOBAL extern bool PollutionReportSetup;
+    EP_GLOBAL extern bool GetInputFlagPollution;
+    EP_GLOBAL extern int NumEnvImpactFactors;
+    EP_GLOBAL extern int NumFuelFactors;
 
     //         Subroutine Specifications for the Module
 
@@ -417,8 +417,8 @@ namespace PollutionModule {
     };
 
     // Object Data
-    thread_local extern PollutionProps Pollution;
-    thread_local extern FuelTypeProps FuelType;
+    EP_GLOBAL extern PollutionProps Pollution;
+    EP_GLOBAL extern FuelTypeProps FuelType;
 
     // Functions
 

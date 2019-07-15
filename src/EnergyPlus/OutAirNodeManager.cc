@@ -101,15 +101,15 @@ namespace OutAirNodeManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // Type declarations in OutAirNodeManager module
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local Array1D_int OutsideAirNodeList;     // List of all outside air inlet nodes
-    thread_local int NumOutsideAirNodes(0);          // Number of single outside air nodes
-    thread_local bool GetOutAirNodesInputFlag(true); // Flag set to make sure you get input once
+    EP_GLOBAL Array1D_int OutsideAirNodeList;     // List of all outside air inlet nodes
+    EP_GLOBAL int NumOutsideAirNodes(0);          // Number of single outside air nodes
+    EP_GLOBAL bool GetOutAirNodesInputFlag(true); // Flag set to make sure you get input once
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE OutAirNodeManager
 
@@ -183,7 +183,7 @@ namespace OutAirNodeManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetOutAirNodesInput: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetOutAirNodesInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumOutAirInletNodeLists;
@@ -213,9 +213,9 @@ namespace OutAirNodeManager {
         Array1D<Real64> Numbers;         // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        thread_local static int MaxNums(0);           // Maximum number of numeric input fields
-        thread_local static int MaxAlphas(0);         // Maximum number of alpha input fields
-        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        EP_GLOBAL static int MaxNums(0);           // Maximum number of numeric input fields
+        EP_GLOBAL static int MaxAlphas(0);         // Maximum number of alpha input fields
+        EP_GLOBAL static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
 
         NumOutAirInletNodeLists = inputProcessor->getNumObjectsFound("OutdoorAir:NodeList");
         NumOutsideAirNodeSingles = inputProcessor->getNumObjectsFound("OutdoorAir:Node");
@@ -540,7 +540,7 @@ namespace OutAirNodeManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Array1D_int TmpNums;
         int DummyNumber;
-        thread_local static bool errFlag(false);
+        EP_GLOBAL static bool errFlag(false);
 
         if (GetOutAirNodesInputFlag) { // First time subroutine has been entered
             GetOutAirNodesInput();     // Get Out Air Nodes data

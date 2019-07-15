@@ -59,6 +59,12 @@
 // UNUSED( foo );
 #define EP_UNUSED(expr)
 
+#ifdef ENABLE_THREAD_LOCAL
+  #define EP_GLOBAL thread_local
+#else
+  #define EP_GLOBAL
+#endif
+
 // ObjexxFCL
 #include <ObjexxFCL/Array1.fwd.hh>
 #include <ObjexxFCL/Array1A.fwd.hh>

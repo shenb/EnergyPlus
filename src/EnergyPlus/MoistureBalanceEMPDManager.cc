@@ -125,8 +125,8 @@ namespace MoistureBalanceEMPDManager {
 
     // Data
     // MODULE VARIABLE and Function DECLARATIONs
-    thread_local Array1D<EMPDReportVarsData> EMPDReportVars; // Array of structs that hold the empd report vars data, one for each surface.
-    thread_local bool InitEnvrnFlag(true);
+    EP_GLOBAL Array1D<EMPDReportVarsData> EMPDReportVars; // Array of structs that hold the empd report vars data, one for each surface.
+    EP_GLOBAL bool InitEnvrnFlag(true);
 
     // SUBROUTINE SPECIFICATION FOR MODULE MoistureBalanceEMPDManager
     //******************************************************************************
@@ -192,7 +192,7 @@ namespace MoistureBalanceEMPDManager {
         int MaterialNumAlpha;             // Number of material alpha names being passed
         int MaterialNumProp;              // Number of material properties being passed
         Array1D<Real64> MaterialProps(9); // Temporary array to transfer material properties
-        thread_local static bool ErrorsFound(false);   // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false);   // If errors detected in input
 
         int EMPDMat; // EMPD Moisture Material additional properties for each base material
         int Loop;
@@ -201,7 +201,7 @@ namespace MoistureBalanceEMPDManager {
         int MatNum;            // Material number at interior layer
         int ConstrNum;         // Construction number
         Array1D_bool EMPDzone; // EMPD property check for each zone
-        thread_local static int ErrCount(0);
+        EP_GLOBAL static int ErrCount(0);
 
         // Load the additional EMPD Material properties
         cCurrentModuleObject = "MaterialProperty:MoisturePenetrationDepth:Settings";
@@ -476,7 +476,7 @@ namespace MoistureBalanceEMPDManager {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         // Real64 const Lam( 2500000.0 ); // Heat of vaporization (J/kg)
-        thread_local static std::string const RoutineName("CalcMoistureEMPD");
+        EP_GLOBAL static std::string const RoutineName("CalcMoistureEMPD");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -496,7 +496,7 @@ namespace MoistureBalanceEMPDManager {
         Real64 RVaver; // Average zone vapor density
         Real64 dU_dRH;
         int Flag; // Convergence flag (0 - converged)
-        thread_local static bool OneTimeFlag(true);
+        EP_GLOBAL static bool OneTimeFlag(true);
         Real64 PVsurf;        // Surface vapor pressure
         Real64 PV_surf_layer; // Vapor pressure of surface layer
         Real64 PV_deep_layer;
@@ -771,7 +771,7 @@ namespace MoistureBalanceEMPDManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -786,7 +786,7 @@ namespace MoistureBalanceEMPDManager {
         int MatNum;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_700("(' Construction EMPD, ',A,', ',F8.4,', ',4(F8.4,', '),F8.4,', ',F8.4,', ',F8.4,', ',F8.4)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_700("(' Construction EMPD, ',A,', ',F8.4,', ',4(F8.4,', '),F8.4,', ',F8.4,', ',F8.4,', ',F8.4)");
 
         ScanForReports("Constructions", DoReport, "Constructions");
 

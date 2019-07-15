@@ -63,26 +63,26 @@ namespace SteamBaseboardRadiator {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern std::string const cCMO_BBRadiator_Steam;
+    EP_GLOBAL extern std::string const cCMO_BBRadiator_Steam;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumSteamBaseboards;
-    thread_local extern int SteamIndex;
+    EP_GLOBAL extern int NumSteamBaseboards;
+    EP_GLOBAL extern int SteamIndex;
 
-    thread_local extern Array1D<Real64> QBBSteamRadSource;    // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> QBBSteamRadSrcAvg;    // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone
+    EP_GLOBAL extern Array1D<Real64> QBBSteamRadSource;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> QBBSteamRadSrcAvg;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone
     // with no source
 
     // Record keeping variables used to calculate QBBRadSrcAvg locally
-    thread_local extern Array1D<Real64> LastQBBSteamRadSrc; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern Array1D_bool SetLoopIndexFlag; // get loop number flag
+    EP_GLOBAL extern Array1D<Real64> LastQBBSteamRadSrc; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool SetLoopIndexFlag; // get loop number flag
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
@@ -166,8 +166,8 @@ namespace SteamBaseboardRadiator {
     };
 
     // Object Data
-    thread_local extern Array1D<SteamBaseboardParams> SteamBaseboard;
-    thread_local extern Array1D<SteamBaseboardNumericFieldData> SteamBaseboardNumericFields;
+    EP_GLOBAL extern Array1D<SteamBaseboardParams> SteamBaseboard;
+    EP_GLOBAL extern Array1D<SteamBaseboardNumericFieldData> SteamBaseboardNumericFields;
 
     // Functions
 

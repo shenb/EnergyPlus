@@ -70,43 +70,43 @@ namespace FanCoilUnits {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local extern std::string const cMO_FanCoil;
+    EP_GLOBAL extern std::string const cMO_FanCoil;
 
     // coil operation
-    thread_local extern int const On;  // normal coil operation
-    thread_local extern int const Off; // signal coil shouldn't run
+    EP_GLOBAL extern int const On;  // normal coil operation
+    EP_GLOBAL extern int const Off; // signal coil shouldn't run
 
     // coil type units supported in this module
-    thread_local extern int const FanCoilUnit_4Pipe;
+    EP_GLOBAL extern int const FanCoilUnit_4Pipe;
 
-    thread_local extern int const CCoil_Water;
-    thread_local extern int const CCoil_Detailed;
-    thread_local extern int const CCoil_HXAssist;
+    EP_GLOBAL extern int const CCoil_Water;
+    EP_GLOBAL extern int const CCoil_Detailed;
+    EP_GLOBAL extern int const CCoil_HXAssist;
 
-    thread_local extern int const HCoil_Water;
-    thread_local extern int const HCoil_Electric;
+    EP_GLOBAL extern int const HCoil_Water;
+    EP_GLOBAL extern int const HCoil_Electric;
 
     // capacity control method supported in this module
-    thread_local extern int const CCM_ConsFanVarFlow;
-    thread_local extern int const CCM_CycFan;
-    thread_local extern int const CCM_VarFanVarFlow;
-    thread_local extern int const CCM_VarFanConsFlow;
-    thread_local extern int const CCM_MultiSpeedFan;
-    thread_local extern int const CCM_ASHRAE;
+    EP_GLOBAL extern int const CCM_ConsFanVarFlow;
+    EP_GLOBAL extern int const CCM_CycFan;
+    EP_GLOBAL extern int const CCM_VarFanVarFlow;
+    EP_GLOBAL extern int const CCM_VarFanConsFlow;
+    EP_GLOBAL extern int const CCM_MultiSpeedFan;
+    EP_GLOBAL extern int const CCM_ASHRAE;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumFanCoils;
-    thread_local extern int Num4PipeFanCoils;
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern bool GetFanCoilInputFlag; // First time, input is "gotten"
-    thread_local extern Real64 FanFlowRatio;
-    thread_local extern bool HeatingLoad;         // True when zone needs heating
-    thread_local extern bool CoolingLoad;         // True when zone needs cooling
-    thread_local extern Real64 const Small5WLoad; // load threshold 5.0 W
+    EP_GLOBAL extern int NumFanCoils;
+    EP_GLOBAL extern int Num4PipeFanCoils;
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool GetFanCoilInputFlag; // First time, input is "gotten"
+    EP_GLOBAL extern Real64 FanFlowRatio;
+    EP_GLOBAL extern bool HeatingLoad;         // True when zone needs heating
+    EP_GLOBAL extern bool CoolingLoad;         // True when zone needs cooling
+    EP_GLOBAL extern Real64 const Small5WLoad; // load threshold 5.0 W
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -290,8 +290,8 @@ namespace FanCoilUnits {
     };
 
     // Object Data
-    thread_local extern Array1D<FanCoilData> FanCoil;
-    thread_local extern Array1D<FanCoilNumericFieldData> FanCoilNumericFields;
+    EP_GLOBAL extern Array1D<FanCoilData> FanCoil;
+    EP_GLOBAL extern Array1D<FanCoilNumericFieldData> FanCoilNumericFields;
 
     // Functions
 

@@ -102,10 +102,10 @@ namespace HybridUnitaryAirConditioners {
     using CurveManager::GetCurveMinMaxValues;
     using HybridEvapCoolingModel::CMode;
 
-    thread_local Array1D<Model> ZoneHybridUnitaryAirConditioner;
-    thread_local int NumZoneHybridEvap(0);
-    thread_local Array1D_bool CheckZoneHybridEvapName;
-    thread_local bool GetInputZoneHybridEvap(true);
+    EP_GLOBAL Array1D<Model> ZoneHybridUnitaryAirConditioner;
+    EP_GLOBAL int NumZoneHybridEvap(0);
+    EP_GLOBAL Array1D_bool CheckZoneHybridEvapName;
+    EP_GLOBAL bool GetInputZoneHybridEvap(true);
     // Begin routines for zone HVAC Hybrid Evaporative cooler unit
     //_______________________________________________________________________________________________________________________
     //***************
@@ -209,12 +209,12 @@ namespace HybridUnitaryAirConditioners {
         using Fans::GetFanVolFlow;
 
         // Locals
-        thread_local static Array1D_bool MySizeFlag;
+        EP_GLOBAL static Array1D_bool MySizeFlag;
 
-        thread_local static bool HybridCoolOneTimeFlag(true); // one time flag
-        thread_local static Array1D_bool MyEnvrnFlag;
-        thread_local static Array1D_bool MyFanFlag;
-        thread_local static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
+        EP_GLOBAL static bool HybridCoolOneTimeFlag(true); // one time flag
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;
+        EP_GLOBAL static Array1D_bool MyFanFlag;
+        EP_GLOBAL static Array1D_bool MyZoneEqFlag; // used to set up zone equipment availability managers
 
         int InletNode;
 
@@ -424,13 +424,13 @@ namespace HybridUnitaryAirConditioners {
         int MaxNumbers;                   // Maximum number of numeric fields in all objects
         int NumFields;                    // Total number of fields in object
         int IOStatus;                     // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false);   // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false);   // Set to true if errors in input, fatal at end of routine
         bool IsNotOK;                     // Flag to verify name
         bool IsBlank;                     // Flag for blank name
         int UnitLoop;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetInputZoneEvaporativeCoolerUnit: ");
+        EP_GLOBAL static std::string const RoutineName("GetInputZoneEvaporativeCoolerUnit: ");
         MaxNumbers = 0;
         MaxAlphas = 0;
         CurrentModuleObject = "ZoneHVAC:HybridUnitaryHVAC";

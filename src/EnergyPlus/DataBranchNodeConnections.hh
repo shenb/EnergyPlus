@@ -68,16 +68,16 @@ namespace DataBranchNodeConnections {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumCompSets;             // Number of Component Sets found in branches
-    thread_local extern int NumNodeConnectionErrors; // Count of node connection errors
+    EP_GLOBAL extern int NumCompSets;             // Number of Component Sets found in branches
+    EP_GLOBAL extern int NumNodeConnectionErrors; // Count of node connection errors
 
-    thread_local extern int NumOfNodeConnections;
-    thread_local extern int MaxNumOfNodeConnections;
-    thread_local extern int NodeConnectionAlloc;
-    thread_local extern int NumOfActualParents;
-    thread_local extern int NumOfAirTerminalNodes;
-    thread_local extern int MaxNumOfAirTerminalNodes;
-    thread_local extern int EqNodeConnectionAlloc;
+    EP_GLOBAL extern int NumOfNodeConnections;
+    EP_GLOBAL extern int MaxNumOfNodeConnections;
+    EP_GLOBAL extern int NodeConnectionAlloc;
+    EP_GLOBAL extern int NumOfActualParents;
+    EP_GLOBAL extern int NumOfAirTerminalNodes;
+    EP_GLOBAL extern int MaxNumOfAirTerminalNodes;
+    EP_GLOBAL extern int EqNodeConnectionAlloc;
 
     // Types
 
@@ -148,11 +148,11 @@ namespace DataBranchNodeConnections {
     };
 
     // Object Data
-    thread_local extern Array1D<ComponentListData> CompSets;
-    thread_local extern Array1D<ParentListData> ParentNodeList;
-    thread_local extern Array1D<NodeConnectionDef> NodeConnections;
-    thread_local extern Array1D<EqNodeConnectionDef> AirTerminalNodeConnections;
-    thread_local extern Array1D_bool NonConnectedNodes;
+    EP_GLOBAL extern Array1D<ComponentListData> CompSets;
+    EP_GLOBAL extern Array1D<ParentListData> ParentNodeList;
+    EP_GLOBAL extern Array1D<NodeConnectionDef> NodeConnections;
+    EP_GLOBAL extern Array1D<EqNodeConnectionDef> AirTerminalNodeConnections;
+    EP_GLOBAL extern Array1D_bool NonConnectedNodes;
 
     // Clears the global data in DataBranchNodeConnections.
     // Needed for unit tests, should not be normally called.

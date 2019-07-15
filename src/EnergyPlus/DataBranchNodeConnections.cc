@@ -77,28 +77,28 @@ namespace DataBranchNodeConnections {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumCompSets(0);             // Number of Component Sets found in branches
-    thread_local int NumNodeConnectionErrors(0); // Count of node connection errors
+    EP_GLOBAL int NumCompSets(0);             // Number of Component Sets found in branches
+    EP_GLOBAL int NumNodeConnectionErrors(0); // Count of node connection errors
 
-    thread_local int NumOfNodeConnections(0);
-    thread_local int MaxNumOfNodeConnections(0);
-    thread_local int NodeConnectionAlloc(1000);
-    thread_local int NumOfActualParents(0);
-    thread_local int NumOfAirTerminalNodes(0);
-    thread_local int MaxNumOfAirTerminalNodes(0);
-    thread_local int EqNodeConnectionAlloc(100);
+    EP_GLOBAL int NumOfNodeConnections(0);
+    EP_GLOBAL int MaxNumOfNodeConnections(0);
+    EP_GLOBAL int NodeConnectionAlloc(1000);
+    EP_GLOBAL int NumOfActualParents(0);
+    EP_GLOBAL int NumOfAirTerminalNodes(0);
+    EP_GLOBAL int MaxNumOfAirTerminalNodes(0);
+    EP_GLOBAL int EqNodeConnectionAlloc(100);
 
     // Object Data
-    thread_local Array1D<ComponentListData> CompSets;
-    thread_local Array1D<ParentListData> ParentNodeList;
-    thread_local Array1D<NodeConnectionDef> NodeConnections;
-    thread_local Array1D<EqNodeConnectionDef> AirTerminalNodeConnections;
-    thread_local Array1D_bool NonConnectedNodes;
+    EP_GLOBAL Array1D<ComponentListData> CompSets;
+    EP_GLOBAL Array1D<ParentListData> ParentNodeList;
+    EP_GLOBAL Array1D<NodeConnectionDef> NodeConnections;
+    EP_GLOBAL Array1D<EqNodeConnectionDef> AirTerminalNodeConnections;
+    EP_GLOBAL Array1D_bool NonConnectedNodes;
 
     // Clears the global data in DataBranchNodeConnections.
     // Needed for unit tests, should not be normally called.

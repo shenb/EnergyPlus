@@ -67,100 +67,100 @@ namespace HVACVariableRefrigerantFlow {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL extern int const On;  // normal compressor operation
+    EP_GLOBAL extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // Heat Recovery System used
-    thread_local extern int const No;  // Heat Pump mode only
-    thread_local extern int const Yes; // Heat Pump or Heat Recovery Mode (not available at this time)
+    EP_GLOBAL extern int const No;  // Heat Pump mode only
+    EP_GLOBAL extern int const Yes; // Heat Pump or Heat Recovery Mode (not available at this time)
 
     // Defrost strategy
-    thread_local extern int const ReverseCycle; // uses reverse cycle defrost strategy
-    thread_local extern int const Resistive;    // uses electric resistance heater for defrost
+    EP_GLOBAL extern int const ReverseCycle; // uses reverse cycle defrost strategy
+    EP_GLOBAL extern int const Resistive;    // uses electric resistance heater for defrost
 
     // Defrost control
-    thread_local extern int const Timed;    // defrost cycle is timed
-    thread_local extern int const OnDemand; // defrost cycle occurs only when required
+    EP_GLOBAL extern int const Timed;    // defrost cycle is timed
+    EP_GLOBAL extern int const OnDemand; // defrost cycle occurs only when required
 
     // Thermostat Priority Control Type
-    thread_local extern int const LoadPriority;             // total of zone loads dictate operation in cooling or heating
-    thread_local extern int const ZonePriority;             // # of zones requireing cooling or heating dictate operation in cooling or heating
-    thread_local extern int const ThermostatOffsetPriority; // zone with largest deviation from setpoint dictates operation
-    thread_local extern int const ScheduledPriority;        // cooling and heating modes are scheduled
-    thread_local extern int const MasterThermostatPriority; // Master zone thermostat dictates operation
-    thread_local extern int const FirstOnPriority;          // first unit to respond dictates operation (not used at this time)
+    EP_GLOBAL extern int const LoadPriority;             // total of zone loads dictate operation in cooling or heating
+    EP_GLOBAL extern int const ZonePriority;             // # of zones requireing cooling or heating dictate operation in cooling or heating
+    EP_GLOBAL extern int const ThermostatOffsetPriority; // zone with largest deviation from setpoint dictates operation
+    EP_GLOBAL extern int const ScheduledPriority;        // cooling and heating modes are scheduled
+    EP_GLOBAL extern int const MasterThermostatPriority; // Master zone thermostat dictates operation
+    EP_GLOBAL extern int const FirstOnPriority;          // first unit to respond dictates operation (not used at this time)
 
     // Water Systems
-    thread_local extern int const CondensateDiscarded; // default mode where water is "lost"
-    thread_local extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
+    EP_GLOBAL extern int const CondensateDiscarded; // default mode where water is "lost"
+    EP_GLOBAL extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
 
-    thread_local extern int const WaterSupplyFromMains; // mains water line used as water source
-    thread_local extern int const WaterSupplyFromTank;  // storage tank used as water source
+    EP_GLOBAL extern int const WaterSupplyFromMains; // mains water line used as water source
+    EP_GLOBAL extern int const WaterSupplyFromTank;  // storage tank used as water source
 
-    thread_local extern Real64 const MaxCap; // limit of zone terminal unit capacity
+    EP_GLOBAL extern Real64 const MaxCap; // limit of zone terminal unit capacity
 
     // VRF System Types (strings used in integer conversions)
-    thread_local extern int const NumVRFSystemTypes;
-    thread_local extern int const VRF_HeatPump;
-    thread_local extern Array1D_string const cVRFTypes;
+    EP_GLOBAL extern int const NumVRFSystemTypes;
+    EP_GLOBAL extern int const VRF_HeatPump;
+    EP_GLOBAL extern Array1D_string const cVRFTypes;
 
-    thread_local extern int const NumValidFuelTypes;
-    thread_local extern Array1D_string const cValidFuelTypes;
+    EP_GLOBAL extern int const NumValidFuelTypes;
+    EP_GLOBAL extern Array1D_string const cValidFuelTypes;
 
     // Fuel Types
-    thread_local extern int const FuelTypeElectric;   // Fuel type for electricity
-    thread_local extern int const FuelTypeNaturalGas; // Fuel type for natural gas
-    thread_local extern int const FuelTypePropaneGas; // Fuel type for propane gas
-    thread_local extern int const FuelTypeDiesel;     // Fuel type for diesel
-    thread_local extern int const FuelTypeGasoline;   // Fuel type for gasoline
-    thread_local extern int const FuelTypeFuelOil1;   // Fuel type for fuel oil #1
-    thread_local extern int const FuelTypeFuelOil2;   // Fuel type for fuel oil #2
-    thread_local extern int const FuelTypeOtherFuel1; // Fuel type for other fuel #1
-    thread_local extern int const FuelTypeOtherFuel2; // Fuel type for other fuel #2
+    EP_GLOBAL extern int const FuelTypeElectric;   // Fuel type for electricity
+    EP_GLOBAL extern int const FuelTypeNaturalGas; // Fuel type for natural gas
+    EP_GLOBAL extern int const FuelTypePropaneGas; // Fuel type for propane gas
+    EP_GLOBAL extern int const FuelTypeDiesel;     // Fuel type for diesel
+    EP_GLOBAL extern int const FuelTypeGasoline;   // Fuel type for gasoline
+    EP_GLOBAL extern int const FuelTypeFuelOil1;   // Fuel type for fuel oil #1
+    EP_GLOBAL extern int const FuelTypeFuelOil2;   // Fuel type for fuel oil #2
+    EP_GLOBAL extern int const FuelTypeOtherFuel1; // Fuel type for other fuel #1
+    EP_GLOBAL extern int const FuelTypeOtherFuel2; // Fuel type for other fuel #2
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetVRFInputFlag;                 // Flag set to make sure you get input once
-    thread_local extern bool MyOneTimeFlag;                   // One time flag used to allocate MyEnvrnFlag and MySizeFlag
-    thread_local extern bool MyOneTimeSizeFlag;               // One time flag used to allocate MyEnvrnFlag and MySizeFlag
-    thread_local extern Array1D_bool CheckEquipName;          // Flag set to check equipment connections once
-    thread_local extern bool ZoneEquipmentListNotChecked;     // False after the Zone Equipment List has been checked for items
-    thread_local extern Array1D_bool MyEnvrnFlag;             // Flag for initializing at beginning of each new environment
-    thread_local extern Array1D_bool MySizeFlag;              // False after TU has been sized
-    thread_local extern Array1D_bool MyBeginTimeStepFlag;     // Flag to sense beginning of time step
-    thread_local extern Array1D_bool MyVRFFlag;               // used for sizing VRF inputs one time
-    thread_local extern Array1D_bool MyVRFCondFlag;           // used to reset timer counter
-    thread_local extern Array1D_bool MyZoneEqFlag;            // used to set up zone equipment availability managers
-    thread_local extern int NumVRFCond;                       // total number of VRF condensers (All VRF Algorithm Types)
-    thread_local extern int NumVRFCond_SysCurve;              // total number of VRF condensers with VRF Algorithm Type 1
-    thread_local extern int NumVRFCond_FluidTCtrl;            // total number of VRF condensers with VRF Algorithm Type 2
-    thread_local extern int NumVRFTU;                         // total number of VRF terminal units
-    thread_local extern int NumVRFTULists;                    // The number of VRF TU lists
-    thread_local extern Real64 CompOnMassFlow;                // Supply air mass flow rate w/ compressor ON
-    thread_local extern Real64 OACompOnMassFlow;              // OA mass flow rate w/ compressor ON
-    thread_local extern Real64 CompOffMassFlow;               // Supply air mass flow rate w/ compressor OFF
-    thread_local extern Real64 OACompOffMassFlow;             // OA mass flow rate w/ compressor OFF
-    thread_local extern Real64 CompOnFlowRatio;               // fan flow ratio when coil on
-    thread_local extern Real64 CompOffFlowRatio;              // fan flow ratio when coil off
-    thread_local extern Real64 FanSpeedRatio;                 // ratio of air flow ratio passed to fan object
-    thread_local extern Array1D_bool HeatingLoad;             // defines a heating load on VRFTerminalUnits
-    thread_local extern Array1D_bool CoolingLoad;             // defines a cooling load on VRFTerminalUnits
-    thread_local extern Array1D_bool LastModeHeating;         // defines last mode was heating mode
-    thread_local extern Array1D_bool LastModeCooling;         // defines last mode was cooling mode
-    thread_local extern Array1D<Real64> MaxCoolingCapacity;   // maximum capacity of any terminal unit
-    thread_local extern Array1D<Real64> MaxHeatingCapacity;   // maximum capacity of any terminal unit
-    thread_local extern Array1D<Real64> CoolCombinationRatio; // ratio of terminal unit capacity to VRF condenser capacity
-    thread_local extern Array1D<Real64> HeatCombinationRatio; // ratio of terminal unit capacity to VRF condenser capacity
-    thread_local extern Real64 LoopDXCoolCoilRTF;             // holds value of DX cooling coil RTF
-    thread_local extern Real64 LoopDXHeatCoilRTF;             // holds value of DX heating coil RTF
-    thread_local extern Real64 CondenserWaterMassFlowRate;    // VRF water-cooled condenser mass flow rate (kg/s)
-    thread_local extern Array1D_int NumCoolingLoads;          // number of TU's requesting cooling
-    thread_local extern Array1D_int NumHeatingLoads;          // number of TU's requesting heating
-    thread_local extern Array1D<Real64> MaxDeltaT;            // maximum zone temperature difference from setpoint
-    thread_local extern Array1D<Real64> MinDeltaT;            // minimum zone temperature difference from setpoint
-    thread_local extern Array1D<Real64> SumCoolingLoads;      // sum of cooling loads
-    thread_local extern Array1D<Real64> SumHeatingLoads;      // sum of heating loads
+    EP_GLOBAL extern bool GetVRFInputFlag;                 // Flag set to make sure you get input once
+    EP_GLOBAL extern bool MyOneTimeFlag;                   // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+    EP_GLOBAL extern bool MyOneTimeSizeFlag;               // One time flag used to allocate MyEnvrnFlag and MySizeFlag
+    EP_GLOBAL extern Array1D_bool CheckEquipName;          // Flag set to check equipment connections once
+    EP_GLOBAL extern bool ZoneEquipmentListNotChecked;     // False after the Zone Equipment List has been checked for items
+    EP_GLOBAL extern Array1D_bool MyEnvrnFlag;             // Flag for initializing at beginning of each new environment
+    EP_GLOBAL extern Array1D_bool MySizeFlag;              // False after TU has been sized
+    EP_GLOBAL extern Array1D_bool MyBeginTimeStepFlag;     // Flag to sense beginning of time step
+    EP_GLOBAL extern Array1D_bool MyVRFFlag;               // used for sizing VRF inputs one time
+    EP_GLOBAL extern Array1D_bool MyVRFCondFlag;           // used to reset timer counter
+    EP_GLOBAL extern Array1D_bool MyZoneEqFlag;            // used to set up zone equipment availability managers
+    EP_GLOBAL extern int NumVRFCond;                       // total number of VRF condensers (All VRF Algorithm Types)
+    EP_GLOBAL extern int NumVRFCond_SysCurve;              // total number of VRF condensers with VRF Algorithm Type 1
+    EP_GLOBAL extern int NumVRFCond_FluidTCtrl;            // total number of VRF condensers with VRF Algorithm Type 2
+    EP_GLOBAL extern int NumVRFTU;                         // total number of VRF terminal units
+    EP_GLOBAL extern int NumVRFTULists;                    // The number of VRF TU lists
+    EP_GLOBAL extern Real64 CompOnMassFlow;                // Supply air mass flow rate w/ compressor ON
+    EP_GLOBAL extern Real64 OACompOnMassFlow;              // OA mass flow rate w/ compressor ON
+    EP_GLOBAL extern Real64 CompOffMassFlow;               // Supply air mass flow rate w/ compressor OFF
+    EP_GLOBAL extern Real64 OACompOffMassFlow;             // OA mass flow rate w/ compressor OFF
+    EP_GLOBAL extern Real64 CompOnFlowRatio;               // fan flow ratio when coil on
+    EP_GLOBAL extern Real64 CompOffFlowRatio;              // fan flow ratio when coil off
+    EP_GLOBAL extern Real64 FanSpeedRatio;                 // ratio of air flow ratio passed to fan object
+    EP_GLOBAL extern Array1D_bool HeatingLoad;             // defines a heating load on VRFTerminalUnits
+    EP_GLOBAL extern Array1D_bool CoolingLoad;             // defines a cooling load on VRFTerminalUnits
+    EP_GLOBAL extern Array1D_bool LastModeHeating;         // defines last mode was heating mode
+    EP_GLOBAL extern Array1D_bool LastModeCooling;         // defines last mode was cooling mode
+    EP_GLOBAL extern Array1D<Real64> MaxCoolingCapacity;   // maximum capacity of any terminal unit
+    EP_GLOBAL extern Array1D<Real64> MaxHeatingCapacity;   // maximum capacity of any terminal unit
+    EP_GLOBAL extern Array1D<Real64> CoolCombinationRatio; // ratio of terminal unit capacity to VRF condenser capacity
+    EP_GLOBAL extern Array1D<Real64> HeatCombinationRatio; // ratio of terminal unit capacity to VRF condenser capacity
+    EP_GLOBAL extern Real64 LoopDXCoolCoilRTF;             // holds value of DX cooling coil RTF
+    EP_GLOBAL extern Real64 LoopDXHeatCoilRTF;             // holds value of DX heating coil RTF
+    EP_GLOBAL extern Real64 CondenserWaterMassFlowRate;    // VRF water-cooled condenser mass flow rate (kg/s)
+    EP_GLOBAL extern Array1D_int NumCoolingLoads;          // number of TU's requesting cooling
+    EP_GLOBAL extern Array1D_int NumHeatingLoads;          // number of TU's requesting heating
+    EP_GLOBAL extern Array1D<Real64> MaxDeltaT;            // maximum zone temperature difference from setpoint
+    EP_GLOBAL extern Array1D<Real64> MinDeltaT;            // minimum zone temperature difference from setpoint
+    EP_GLOBAL extern Array1D<Real64> SumCoolingLoads;      // sum of cooling loads
+    EP_GLOBAL extern Array1D<Real64> SumHeatingLoads;      // sum of heating loads
 
     // Subroutine Specifications for the Module
     struct VRFCondenserEquipment
@@ -834,10 +834,10 @@ namespace HVACVariableRefrigerantFlow {
     };
 
     // Object Data
-    thread_local extern Array1D<VRFCondenserEquipment> VRF;                // AirConditioner:VariableRefrigerantFlow object
-    thread_local extern Array1D<VRFTerminalUnitEquipment> VRFTU;           // ZoneHVAC:TerminalUnit:VariableRefrigerantFlow object
-    thread_local extern Array1D<TerminalUnitListData> TerminalUnitList;    // zoneTerminalUnitList object
-    thread_local extern Array1D<VRFTUNumericFieldData> VRFTUNumericFields; // holds VRF TU numeric input fields character field name
+    EP_GLOBAL extern Array1D<VRFCondenserEquipment> VRF;                // AirConditioner:VariableRefrigerantFlow object
+    EP_GLOBAL extern Array1D<VRFTerminalUnitEquipment> VRFTU;           // ZoneHVAC:TerminalUnit:VariableRefrigerantFlow object
+    EP_GLOBAL extern Array1D<TerminalUnitListData> TerminalUnitList;    // zoneTerminalUnitList object
+    EP_GLOBAL extern Array1D<VRFTUNumericFieldData> VRFTUNumericFields; // holds VRF TU numeric input fields character field name
 
     // Functions
 

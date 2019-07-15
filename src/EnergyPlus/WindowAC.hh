@@ -63,24 +63,24 @@ namespace WindowAC {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const WindowAC_UnitType;
-    thread_local extern std::string const cWindowAC_UnitType;
-    thread_local extern Array1D_string const cWindowAC_UnitTypes;
+    EP_GLOBAL extern int const WindowAC_UnitType;
+    EP_GLOBAL extern std::string const cWindowAC_UnitType;
+    EP_GLOBAL extern Array1D_string const cWindowAC_UnitTypes;
 
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL extern int const On;  // normal compressor operation
+    EP_GLOBAL extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumWindAC;
-    thread_local extern int NumWindACCyc;
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern bool GetWindowACInputFlag; // First time, input is "gotten"
-    thread_local extern bool CoolingLoad;          // defines a cooling load
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumWindAC;
+    EP_GLOBAL extern int NumWindACCyc;
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern bool GetWindowACInputFlag; // First time, input is "gotten"
+    EP_GLOBAL extern bool CoolingLoad;          // defines a cooling load
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -172,8 +172,8 @@ namespace WindowAC {
     };
 
     // Object Data
-    thread_local extern Array1D<WindACData> WindAC;
-    thread_local extern Array1D<WindACNumericFieldData> WindACNumericFields; // holds window AC numeric input fields character field name
+    EP_GLOBAL extern Array1D<WindACData> WindAC;
+    EP_GLOBAL extern Array1D<WindACNumericFieldData> WindACNumericFields; // holds window AC numeric input fields character field name
 
     // Functions
 

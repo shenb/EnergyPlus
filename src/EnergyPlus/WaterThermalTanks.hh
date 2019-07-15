@@ -63,101 +63,101 @@ namespace WaterThermalTanks {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern std::string const cMixedWHModuleObj;
-    thread_local extern std::string const cStratifiedWHModuleObj;
-    thread_local extern std::string const cMixedCWTankModuleObj;
-    thread_local extern std::string const cStratifiedCWTankModuleObj;
+    EP_GLOBAL extern std::string const cMixedWHModuleObj;
+    EP_GLOBAL extern std::string const cStratifiedWHModuleObj;
+    EP_GLOBAL extern std::string const cMixedCWTankModuleObj;
+    EP_GLOBAL extern std::string const cStratifiedCWTankModuleObj;
 
-    thread_local extern int const HeatMode;  // heating source is on, source will not turn off until setpoint temp is reached
-    thread_local extern int const FloatMode; // heating source is off, source will not turn on until cutin temp is reached
-    thread_local extern int const VentMode;  // tank temp is above maximum temperature and water is venting
-    thread_local extern int const CoolMode;  // cooling source is on, source will not turn off until setpoint temp is reached
+    EP_GLOBAL extern int const HeatMode;  // heating source is on, source will not turn off until setpoint temp is reached
+    EP_GLOBAL extern int const FloatMode; // heating source is off, source will not turn on until cutin temp is reached
+    EP_GLOBAL extern int const VentMode;  // tank temp is above maximum temperature and water is venting
+    EP_GLOBAL extern int const CoolMode;  // cooling source is on, source will not turn off until setpoint temp is reached
 
-    thread_local extern int const AmbientTempSchedule;   // ambient temperature around tank (or HPWH inlet air) is scheduled
-    thread_local extern int const AmbientTempZone;       // tank is located in a zone or HPWH inlet air is zone air only
-    thread_local extern int const AmbientTempOutsideAir; // tank is located outdoors or HPWH inlet air is outdoor air only
-    thread_local extern int const AmbientTempZoneAndOA;  // applicable to HPWH only, inlet air is mixture of OA and zone air
+    EP_GLOBAL extern int const AmbientTempSchedule;   // ambient temperature around tank (or HPWH inlet air) is scheduled
+    EP_GLOBAL extern int const AmbientTempZone;       // tank is located in a zone or HPWH inlet air is zone air only
+    EP_GLOBAL extern int const AmbientTempOutsideAir; // tank is located outdoors or HPWH inlet air is outdoor air only
+    EP_GLOBAL extern int const AmbientTempZoneAndOA;  // applicable to HPWH only, inlet air is mixture of OA and zone air
 
-    thread_local extern int const CrankcaseTempSchedule; // temperature controlling compressor crankcase heater is scheduled
-    thread_local extern int const CrankcaseTempZone;     // temperature controlling compressor crankcase heater is zone air
-    thread_local extern int const CrankcaseTempExterior; // temperature controlling compressor crankcase heater is outdoor air
+    EP_GLOBAL extern int const CrankcaseTempSchedule; // temperature controlling compressor crankcase heater is scheduled
+    EP_GLOBAL extern int const CrankcaseTempZone;     // temperature controlling compressor crankcase heater is zone air
+    EP_GLOBAL extern int const CrankcaseTempExterior; // temperature controlling compressor crankcase heater is outdoor air
 
-    thread_local extern int const ControlTypeCycle;    // water heater only, cycling heating source control
-    thread_local extern int const ControlTypeModulate; // water heater only, modulating heating source control
+    EP_GLOBAL extern int const ControlTypeCycle;    // water heater only, cycling heating source control
+    EP_GLOBAL extern int const ControlTypeModulate; // water heater only, modulating heating source control
 
-    thread_local extern int const TankShapeVertCylinder;  // tank shape is a vertical cylinder
-    thread_local extern int const TankShapeHorizCylinder; // tank shape is a horizontal cylinder
-    thread_local extern int const TankShapeOther;         // tank shape has an arbitrary perimeter shape
+    EP_GLOBAL extern int const TankShapeVertCylinder;  // tank shape is a vertical cylinder
+    EP_GLOBAL extern int const TankShapeHorizCylinder; // tank shape is a horizontal cylinder
+    EP_GLOBAL extern int const TankShapeOther;         // tank shape has an arbitrary perimeter shape
 
-    thread_local extern int const PriorityMasterSlave;  // water heater only, master-slave priority control of heater elements
-    thread_local extern int const PrioritySimultaneous; // water heater only, simultaneous control of heater elements
+    EP_GLOBAL extern int const PriorityMasterSlave;  // water heater only, master-slave priority control of heater elements
+    EP_GLOBAL extern int const PrioritySimultaneous; // water heater only, simultaneous control of heater elements
 
-    thread_local extern int const InletModeFixed;   // water heater only, inlet water always enters at the user-specified height
-    thread_local extern int const InletModeSeeking; // water heater only, inlet water seeks out the node with the closest temperature
+    EP_GLOBAL extern int const InletModeFixed;   // water heater only, inlet water always enters at the user-specified height
+    EP_GLOBAL extern int const InletModeSeeking; // water heater only, inlet water seeks out the node with the closest temperature
 
     // integer parameter for water heater
-    thread_local extern int const MixedWaterHeater;      // WaterHeater:Mixed
-    thread_local extern int const StratifiedWaterHeater; // WaterHeater:Stratified
+    EP_GLOBAL extern int const MixedWaterHeater;      // WaterHeater:Mixed
+    EP_GLOBAL extern int const StratifiedWaterHeater; // WaterHeater:Stratified
     // stovall, next line never used because all desuperheater coils used in mixed water heater types
-    thread_local extern int const CoilWaterDesuperHeater;        // Coil:WaterHeating:Desuperheater
-    thread_local extern int const MixedChilledWaterStorage;      // 'ThermalStorage:ChilledWater:Mixed'
-    thread_local extern int const StratifiedChilledWaterStorage; // 'ThermalStorage:ChilledWater:Stratified'
+    EP_GLOBAL extern int const CoilWaterDesuperHeater;        // Coil:WaterHeating:Desuperheater
+    EP_GLOBAL extern int const MixedChilledWaterStorage;      // 'ThermalStorage:ChilledWater:Mixed'
+    EP_GLOBAL extern int const StratifiedChilledWaterStorage; // 'ThermalStorage:ChilledWater:Stratified'
 
     // reclaim heat object types for Coil:WaterHeating:Desuperheater object
-    thread_local extern int const COMPRESSORRACK_REFRIGERATEDCASE; // reclaim heating source is refrigerated case compressor rack
-    thread_local extern int const COIL_DX_COOLING;                 // reclaim heating source is DX cooling coil
-    thread_local extern int const COIL_DX_MULTISPEED;              // reclaim heating source is DX multispeed coil
-    thread_local extern int const COIL_DX_MULTIMODE;               // reclaim heating source is DX multimode coil
-    thread_local extern int const CONDENSER_REFRIGERATION;         // reclaim heating source is detailed refrigeration system condenser
-    thread_local extern int const COIL_DX_VARIABLE_COOLING;        // reclaim heating source is Variable Speed DX cooling coil
+    EP_GLOBAL extern int const COMPRESSORRACK_REFRIGERATEDCASE; // reclaim heating source is refrigerated case compressor rack
+    EP_GLOBAL extern int const COIL_DX_COOLING;                 // reclaim heating source is DX cooling coil
+    EP_GLOBAL extern int const COIL_DX_MULTISPEED;              // reclaim heating source is DX multispeed coil
+    EP_GLOBAL extern int const COIL_DX_MULTIMODE;               // reclaim heating source is DX multimode coil
+    EP_GLOBAL extern int const CONDENSER_REFRIGERATION;         // reclaim heating source is detailed refrigeration system condenser
+    EP_GLOBAL extern int const COIL_DX_VARIABLE_COOLING;        // reclaim heating source is Variable Speed DX cooling coil
 
-    thread_local extern int const UseSide;    // Indicates Use side of water heater
-    thread_local extern int const SourceSide; // Indicates Source side of water heater
+    EP_GLOBAL extern int const UseSide;    // Indicates Use side of water heater
+    EP_GLOBAL extern int const SourceSide; // Indicates Source side of water heater
 
-    thread_local extern int const SizeNotSet;
-    thread_local extern int const SizePeakDraw;
-    thread_local extern int const SizeResidentialMin;
-    thread_local extern int const SizePerPerson;
-    thread_local extern int const SizePerFloorArea;
-    thread_local extern int const SizePerUnit;
-    thread_local extern int const SizePerSolarColArea;
+    EP_GLOBAL extern int const SizeNotSet;
+    EP_GLOBAL extern int const SizePeakDraw;
+    EP_GLOBAL extern int const SizeResidentialMin;
+    EP_GLOBAL extern int const SizePerPerson;
+    EP_GLOBAL extern int const SizePerFloorArea;
+    EP_GLOBAL extern int const SizePerUnit;
+    EP_GLOBAL extern int const SizePerSolarColArea;
 
-    thread_local extern int const HPWHControlNotSet;
-    thread_local extern int const Heater1HPWHControl;
-    thread_local extern int const Heater2HPWHControl;
-    thread_local extern int const SourceInletHPWHControl;
-    thread_local extern int const SourceOutletHPWHControl;
-    thread_local extern int const UseInletHPWHControl;
-    thread_local extern int const UseOutletHPWHControl;
+    EP_GLOBAL extern int const HPWHControlNotSet;
+    EP_GLOBAL extern int const Heater1HPWHControl;
+    EP_GLOBAL extern int const Heater2HPWHControl;
+    EP_GLOBAL extern int const SourceInletHPWHControl;
+    EP_GLOBAL extern int const SourceOutletHPWHControl;
+    EP_GLOBAL extern int const UseInletHPWHControl;
+    EP_GLOBAL extern int const UseOutletHPWHControl;
 
-    thread_local extern int const SourceSideStorageTank;
-    thread_local extern int const SourceSideIndirectHeatPrimarySetpoint;
-    thread_local extern int const SourceSideIndirectHeatAltSetpoint;
+    EP_GLOBAL extern int const SourceSideStorageTank;
+    EP_GLOBAL extern int const SourceSideIndirectHeatPrimarySetpoint;
+    EP_GLOBAL extern int const SourceSideIndirectHeatAltSetpoint;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
-    thread_local extern Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
-    thread_local extern Array1D_bool MyHPSizeFlag;    // Used to report autosize info in Init
-    thread_local extern Array1D_bool CheckWTTEquipName;
-    thread_local extern Array1D_bool CheckHPWHEquipName;
+    EP_GLOBAL extern Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
+    EP_GLOBAL extern Array1D_bool MyHPSizeFlag;    // Used to report autosize info in Init
+    EP_GLOBAL extern Array1D_bool CheckWTTEquipName;
+    EP_GLOBAL extern Array1D_bool CheckHPWHEquipName;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumChilledWaterMixed;        // number of mixed chilled water tanks
-    thread_local extern int NumChilledWaterStratified;   // number of stratified chilled water tanks
-    thread_local extern int NumWaterHeaterMixed;         // number of mixed water heaters
-    thread_local extern int NumWaterHeaterStratified;    // number of stratified water heaters
-    thread_local extern int NumWaterThermalTank;         // total number of water thermal tanks, hot and cold (MIXED + STRATIFIED)
-    thread_local extern int NumWaterHeaterDesuperheater; // number of desuperheater heating coils
-    thread_local extern int NumHeatPumpWaterHeater;      // number of heat pump water heaters
+    EP_GLOBAL extern int NumChilledWaterMixed;        // number of mixed chilled water tanks
+    EP_GLOBAL extern int NumChilledWaterStratified;   // number of stratified chilled water tanks
+    EP_GLOBAL extern int NumWaterHeaterMixed;         // number of mixed water heaters
+    EP_GLOBAL extern int NumWaterHeaterStratified;    // number of stratified water heaters
+    EP_GLOBAL extern int NumWaterThermalTank;         // total number of water thermal tanks, hot and cold (MIXED + STRATIFIED)
+    EP_GLOBAL extern int NumWaterHeaterDesuperheater; // number of desuperheater heating coils
+    EP_GLOBAL extern int NumHeatPumpWaterHeater;      // number of heat pump water heaters
     // INTEGER :: MaxCyclesErrorCount           =0 ! error counter for water heater that cycles more than max during time step
 
-    thread_local extern Real64 HPPartLoadRatio;            // part load ratio of HPWH
-    thread_local extern bool GetWaterThermalTankInputFlag; // Calls to Water Heater from multiple places in code
-    thread_local extern Real64 MixerInletAirSchedule;      // output of inlet air mixer node schedule
-    thread_local extern Real64 MdotAir;                    // mass flow rate of evaporator air, kg/s
-    thread_local extern int NumWaterHeaterSizing;          // Number of sizing/design objects for water heaters.
-    thread_local extern Array1D_bool AlreadyRated;         // control so we don't repeat again
+    EP_GLOBAL extern Real64 HPPartLoadRatio;            // part load ratio of HPWH
+    EP_GLOBAL extern bool GetWaterThermalTankInputFlag; // Calls to Water Heater from multiple places in code
+    EP_GLOBAL extern Real64 MixerInletAirSchedule;      // output of inlet air mixer node schedule
+    EP_GLOBAL extern Real64 MdotAir;                    // mass flow rate of evaporator air, kg/s
+    EP_GLOBAL extern int NumWaterHeaterSizing;          // Number of sizing/design objects for water heaters.
+    EP_GLOBAL extern Array1D_bool AlreadyRated;         // control so we don't repeat again
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -670,9 +670,9 @@ namespace WaterThermalTanks {
     };
 
     // Object Data
-    thread_local extern Array1D<WaterThermalTankData> WaterThermalTank;
-    thread_local extern Array1D<HeatPumpWaterHeaterData> HPWaterHeater;
-    thread_local extern Array1D<WaterHeaterDesuperheaterData> WaterHeaterDesuperheater;
+    EP_GLOBAL extern Array1D<WaterThermalTankData> WaterThermalTank;
+    EP_GLOBAL extern Array1D<HeatPumpWaterHeaterData> HPWaterHeater;
+    EP_GLOBAL extern Array1D<WaterHeaterDesuperheaterData> WaterHeaterDesuperheater;
 
     // Functions
 

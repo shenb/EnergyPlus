@@ -118,48 +118,48 @@ namespace SystemAvailabilityManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
-    thread_local int const MaxDayTypes(12);
-    thread_local int const StayOff(0);
-    thread_local int const CycleOnAny(1);
-    thread_local int const CycleOnControlZone(2);
-    thread_local int const ZoneFansOnly(3);
-    thread_local int const CycleOnAnyCoolingOrHeatingZone(4);
-    thread_local int const CycleOnAnyCoolingZone(5);
-    thread_local int const CycleOnAnyHeatingZone(6);
-    thread_local int const CycleOnAnyHeatingZoneFansOnly(7);
+    EP_GLOBAL int const MaxDayTypes(12);
+    EP_GLOBAL int const StayOff(0);
+    EP_GLOBAL int const CycleOnAny(1);
+    EP_GLOBAL int const CycleOnControlZone(2);
+    EP_GLOBAL int const ZoneFansOnly(3);
+    EP_GLOBAL int const CycleOnAnyCoolingOrHeatingZone(4);
+    EP_GLOBAL int const CycleOnAnyCoolingZone(5);
+    EP_GLOBAL int const CycleOnAnyHeatingZone(6);
+    EP_GLOBAL int const CycleOnAnyHeatingZoneFansOnly(7);
 
     // Cycling Run Time Control Type
-    thread_local int const FixedRunTime(1);
-    thread_local int const Thermostat(2);
-    thread_local int const ThermostatWithMinimumRunTime(3);
+    EP_GLOBAL int const FixedRunTime(1);
+    EP_GLOBAL int const Thermostat(2);
+    EP_GLOBAL int const ThermostatWithMinimumRunTime(3);
 
     // Optimum start parameter definations
-    thread_local int const ControlZone(4);
-    thread_local int const MaximumOfZoneList(5);
+    EP_GLOBAL int const ControlZone(4);
+    EP_GLOBAL int const MaximumOfZoneList(5);
 
-    thread_local int const ConstantTemperatureGradient(0);
-    thread_local int const AdaptiveTemperatureGradient(1);
-    thread_local int const AdaptiveASHRAE(2);
-    thread_local int const ConstantStartTime(3);
+    EP_GLOBAL int const ConstantTemperatureGradient(0);
+    EP_GLOBAL int const AdaptiveTemperatureGradient(1);
+    EP_GLOBAL int const AdaptiveASHRAE(2);
+    EP_GLOBAL int const ConstantStartTime(3);
 
     // Hybrid Ventilation parameters
-    thread_local int const HybridVentMode_No(0);       // No hybrid ventilation control
-    thread_local int const HybridVentMode_Temp(1);     // Temperature control
-    thread_local int const HybridVentMode_Enth(2);     // Enthalpy control
-    thread_local int const HybridVentMode_DewPoint(3); // Dew point control
-    thread_local int const HybridVentMode_OA(4);       // Outdoor air control
-    thread_local int const HybridVentMode_OperT80(5);  // Operative temperature control with 80% acceptability limits
-    thread_local int const HybridVentMode_OperT90(6);  // Operative temperature control with 90% acceptability limits
-    thread_local int const HybridVentMode_CO2(7);      // CO2 control
+    EP_GLOBAL int const HybridVentMode_No(0);       // No hybrid ventilation control
+    EP_GLOBAL int const HybridVentMode_Temp(1);     // Temperature control
+    EP_GLOBAL int const HybridVentMode_Enth(2);     // Enthalpy control
+    EP_GLOBAL int const HybridVentMode_DewPoint(3); // Dew point control
+    EP_GLOBAL int const HybridVentMode_OA(4);       // Outdoor air control
+    EP_GLOBAL int const HybridVentMode_OperT80(5);  // Operative temperature control with 80% acceptability limits
+    EP_GLOBAL int const HybridVentMode_OperT90(6);  // Operative temperature control with 90% acceptability limits
+    EP_GLOBAL int const HybridVentMode_CO2(7);      // CO2 control
 
-    thread_local int const HybridVentCtrl_NoAction(0); // No hybrid ventilation control
-    thread_local int const HybridVentCtrl_Open(1);     // Open windows or doors
-    thread_local int const HybridVentCtrl_Close(2);    // Close windows or doors
+    EP_GLOBAL int const HybridVentCtrl_NoAction(0); // No hybrid ventilation control
+    EP_GLOBAL int const HybridVentCtrl_Open(1);     // Open windows or doors
+    EP_GLOBAL int const HybridVentCtrl_Close(2);    // Close windows or doors
 
-    thread_local int const NumValidSysAvailManagerTypes(12);
-    thread_local Array1D_string const cValidSysAvailManagerTypes(NumValidSysAvailManagerTypes,
+    EP_GLOBAL int const NumValidSysAvailManagerTypes(12);
+    EP_GLOBAL Array1D_string const cValidSysAvailManagerTypes(NumValidSysAvailManagerTypes,
                                                     {"AvailabilityManager:Scheduled",
                                                      "AvailabilityManager:ScheduledOn",
                                                      "AvailabilityManager:ScheduledOff",
@@ -172,20 +172,20 @@ namespace SystemAvailabilityManager {
                                                      "AvailabilityManager:NightVentilation",
                                                      "AvailabilityManager:HybridVentilation",
                                                      "AvailabilityManager:OptimumStart"});
-    thread_local int const SysAvailMgr_Scheduled(1);
-    thread_local int const SysAvailMgr_ScheduledOn(2);
-    thread_local int const SysAvailMgr_ScheduledOff(3);
-    thread_local int const SysAvailMgr_NightCycle(4);
-    thread_local int const SysAvailMgr_DiffThermo(5);
-    thread_local int const SysAvailMgr_HiTempTOff(6);
-    thread_local int const SysAvailMgr_HiTempTOn(7);
-    thread_local int const SysAvailMgr_LoTempTOff(8);
-    thread_local int const SysAvailMgr_LoTempTOn(9);
-    thread_local int const SysAvailMgr_NightVent(10);
-    thread_local int const SysAvailMgr_HybridVent(11);
+    EP_GLOBAL int const SysAvailMgr_Scheduled(1);
+    EP_GLOBAL int const SysAvailMgr_ScheduledOn(2);
+    EP_GLOBAL int const SysAvailMgr_ScheduledOff(3);
+    EP_GLOBAL int const SysAvailMgr_NightCycle(4);
+    EP_GLOBAL int const SysAvailMgr_DiffThermo(5);
+    EP_GLOBAL int const SysAvailMgr_HiTempTOff(6);
+    EP_GLOBAL int const SysAvailMgr_HiTempTOn(7);
+    EP_GLOBAL int const SysAvailMgr_LoTempTOff(8);
+    EP_GLOBAL int const SysAvailMgr_LoTempTOn(9);
+    EP_GLOBAL int const SysAvailMgr_NightVent(10);
+    EP_GLOBAL int const SysAvailMgr_HybridVent(11);
 
-    thread_local int const SysAvailMgr_OptimumStart(12);
-    thread_local Array1D_int const ValidSysAvailManagerTypes(NumValidSysAvailManagerTypes,
+    EP_GLOBAL int const SysAvailMgr_OptimumStart(12);
+    EP_GLOBAL Array1D_int const ValidSysAvailManagerTypes(NumValidSysAvailManagerTypes,
                                                 {SysAvailMgr_Scheduled,
                                                  SysAvailMgr_ScheduledOn,
                                                  SysAvailMgr_ScheduledOff,
@@ -204,26 +204,26 @@ namespace SystemAvailabilityManager {
 
     // MODULE VARIABLE DECLARATIONS
 
-    thread_local int NumSchedSysAvailMgrs(0);
-    thread_local int NumSchedOnSysAvailMgrs(0);
-    thread_local int NumSchedOffSysAvailMgrs(0);
-    thread_local int NumNCycSysAvailMgrs(0);
-    thread_local int NumDiffTSysAvailMgrs(0);
-    thread_local int NumHiTurnOffSysAvailMgrs(0);
-    thread_local int NumHiTurnOnSysAvailMgrs(0);
-    thread_local int NumLoTurnOffSysAvailMgrs(0);
-    thread_local int NumLoTurnOnSysAvailMgrs(0);
-    thread_local int NumNVentSysAvailMgrs(0);
-    thread_local int NumAvailManagerLists(0);
-    thread_local bool GetAvailListsInput(true);
-    thread_local bool GetAvailMgrInputFlag(true); // First time, input is "gotten"
-    thread_local bool GetHybridInputFlag(true);   // Flag set to make sure you get input once
-    thread_local int NumOptStartSysAvailMgrs(0);
-    thread_local bool BeginOfDayResetFlag(true);
+    EP_GLOBAL int NumSchedSysAvailMgrs(0);
+    EP_GLOBAL int NumSchedOnSysAvailMgrs(0);
+    EP_GLOBAL int NumSchedOffSysAvailMgrs(0);
+    EP_GLOBAL int NumNCycSysAvailMgrs(0);
+    EP_GLOBAL int NumDiffTSysAvailMgrs(0);
+    EP_GLOBAL int NumHiTurnOffSysAvailMgrs(0);
+    EP_GLOBAL int NumHiTurnOnSysAvailMgrs(0);
+    EP_GLOBAL int NumLoTurnOffSysAvailMgrs(0);
+    EP_GLOBAL int NumLoTurnOnSysAvailMgrs(0);
+    EP_GLOBAL int NumNVentSysAvailMgrs(0);
+    EP_GLOBAL int NumAvailManagerLists(0);
+    EP_GLOBAL bool GetAvailListsInput(true);
+    EP_GLOBAL bool GetAvailMgrInputFlag(true); // First time, input is "gotten"
+    EP_GLOBAL bool GetHybridInputFlag(true);   // Flag set to make sure you get input once
+    EP_GLOBAL int NumOptStartSysAvailMgrs(0);
+    EP_GLOBAL bool BeginOfDayResetFlag(true);
 
-    thread_local Real64 CurrentEndTime(0.0);     // Current end time
-    thread_local Real64 CurrentEndTimeLast(0.0); // last end time
-    thread_local Real64 TimeStepSysLast(0.0);    // last system time step
+    EP_GLOBAL Real64 CurrentEndTime(0.0);     // Current end time
+    EP_GLOBAL Real64 CurrentEndTimeLast(0.0); // last end time
+    EP_GLOBAL Real64 TimeStepSysLast(0.0);    // last system time step
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -231,30 +231,30 @@ namespace SystemAvailabilityManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool InitSysAvailManagers_MyOneTimeFlag(true);
-        thread_local bool CalcNCycSysAvailMgr_OneTimeFlag(true);
-        thread_local Array1D<Real64> OptStart_AdaTempGradTrdHeat; // Heating temp gradient for previous days - used in CalcOptStartSysAvailMgr
-        thread_local Array1D<Real64> OptStart_AdaTempGradTrdCool; // Cooling temp gradient for previous days - used in CalcOptStartSysAvailMgr
+        EP_GLOBAL bool InitSysAvailManagers_MyOneTimeFlag(true);
+        EP_GLOBAL bool CalcNCycSysAvailMgr_OneTimeFlag(true);
+        EP_GLOBAL Array1D<Real64> OptStart_AdaTempGradTrdHeat; // Heating temp gradient for previous days - used in CalcOptStartSysAvailMgr
+        EP_GLOBAL Array1D<Real64> OptStart_AdaTempGradTrdCool; // Cooling temp gradient for previous days - used in CalcOptStartSysAvailMgr
     }                                                // namespace
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    thread_local Array1D<DefineSchedSysAvailManager> SchedSysAvailMgrData;
-    thread_local Array1D<DefineSchedOnSysAvailManager> SchedOnSysAvailMgrData;
-    thread_local Array1D<DefineSchedOffSysAvailManager> SchedOffSysAvailMgrData;
-    thread_local Array1D<DefineNightCycSysAvailManager> NCycSysAvailMgrData;
-    thread_local Array1D<DefineDiffTSysAvailManager> DiffTSysAvailMgrData;
-    thread_local Array1D<DefineHiLoSysAvailManager> HiTurnOffSysAvailMgrData;
-    thread_local Array1D<DefineHiLoSysAvailManager> HiTurnOnSysAvailMgrData;
-    thread_local Array1D<DefineHiLoSysAvailManager> LoTurnOffSysAvailMgrData;
-    thread_local Array1D<DefineHiLoSysAvailManager> LoTurnOnSysAvailMgrData;
-    thread_local Array1D<DefineNightVentSysAvailManager> NVentSysAvailMgrData;
-    thread_local Array1D<DefineHybridVentSysAvailManager> HybridVentSysAvailMgrData;
-    thread_local Array1D<SysAvailManagerList> SysAvailMgrListData;
-    thread_local Array1D<DefineOptStartSysAvailManager> OptStartSysAvailMgrData;
-    thread_local Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffCooling;
-    thread_local Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffHeating;
+    EP_GLOBAL Array1D<DefineSchedSysAvailManager> SchedSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineSchedOnSysAvailManager> SchedOnSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineSchedOffSysAvailManager> SchedOffSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineNightCycSysAvailManager> NCycSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineDiffTSysAvailManager> DiffTSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineHiLoSysAvailManager> HiTurnOffSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineHiLoSysAvailManager> HiTurnOnSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineHiLoSysAvailManager> LoTurnOffSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineHiLoSysAvailManager> LoTurnOnSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineNightVentSysAvailManager> NVentSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineHybridVentSysAvailManager> HybridVentSysAvailMgrData;
+    EP_GLOBAL Array1D<SysAvailManagerList> SysAvailMgrListData;
+    EP_GLOBAL Array1D<DefineOptStartSysAvailManager> OptStartSysAvailMgrData;
+    EP_GLOBAL Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffCooling;
+    EP_GLOBAL Array1D<DefineASHRAEAdaptiveOptimumStartCoeffs> ASHRAEOptSCoeffHeating;
 
     // Functions
     void clear_state()
@@ -348,7 +348,7 @@ namespace SystemAvailabilityManager {
         int ZoneEquipType;           // Type of ZoneHVAC:* component
         int CompNum;                 // Index of ZoneHVAC:* component
         int ZoneCompAvailMgrNum;     // Index of availability manager associated with the ZoneHVAC:* component
-        thread_local static int DummyArgument(1); // This variable is used when SimSysAvailManager is called for a ZoneHVAC:* component
+        EP_GLOBAL static int DummyArgument(1); // This variable is used when SimSysAvailManager is called for a ZoneHVAC:* component
 
         if (GetAvailMgrInputFlag) {
             GetSysAvailManagerInputs();
@@ -510,7 +510,7 @@ namespace SystemAvailabilityManager {
         using DataZoneEquipment::NumValidSysAvailZoneComponents;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetSysAvailManagerInputs: "); // include trailing blank
+        EP_GLOBAL static std::string const RoutineName("GetSysAvailManagerInputs: "); // include trailing blank
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Array1D_string cAlphaFieldNames;
@@ -526,7 +526,7 @@ namespace SystemAvailabilityManager {
         int maxNumbers;                 // maximum number of numbers for this set of objects
         int numArgs;                    // maximum number of arguments for this set of objects
         int IOStatus;                   // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int SysAvailNum;                // DO loop index for all System Availability Managers
         int CyclingTimeSteps;
         int ZoneEquipType;
@@ -2270,7 +2270,7 @@ namespace SystemAvailabilityManager {
         int CtrldZoneNum;
         int ZoneNum;
         Real64 TempTol;
-        thread_local static Array1D_bool ZoneCompNCControlType;
+        EP_GLOBAL static Array1D_bool ZoneCompNCControlType;
         int CyclingRunTimeControlType;
 
         if (present(ZoneEquipType)) {
@@ -4137,13 +4137,13 @@ namespace SystemAvailabilityManager {
         using DataContaminantBalance::Contaminant;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetHybridVentilationInputs: "); // include trailing blank
+        EP_GLOBAL static std::string const RoutineName("GetHybridVentilationInputs: "); // include trailing blank
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int SysAvailNum;                // DO loop index for all System Availability Managers
         Real64 SchedMin;                // Minimum value specified in a schedule
         Real64 SchedMax;                // Maximum value specified in a schedule
@@ -4651,11 +4651,11 @@ namespace SystemAvailabilityManager {
         using DataZoneEquipment::ZoneEquipConfig;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyOneTimeFlag(true); // One time flag
-        thread_local static bool MyEnvrnFlag(true);
+        EP_GLOBAL static bool MyOneTimeFlag(true); // One time flag
+        EP_GLOBAL static bool MyEnvrnFlag(true);
         int SysAvailNum;                // DO loop index for Sys Avail Manager objects
         int ControlledZoneNum;          // Index into the ZoneEquipConfig array
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int AirLoopNum;                 // Air loop number
         int ControlMode;                // Hybrid control mode
         int AirLoopCount;               // Air loop name count

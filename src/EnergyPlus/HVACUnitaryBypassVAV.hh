@@ -64,44 +64,44 @@ namespace HVACUnitaryBypassVAV {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    thread_local extern int const On;  // Normal compressor operation
-    thread_local extern int const Off; // Signal DXCoil that compressor should not run
+    EP_GLOBAL extern int const On;  // Normal compressor operation
+    EP_GLOBAL extern int const Off; // Signal DXCoil that compressor should not run
 
     // Dehumidification control modes (DehumidControlMode) for Multimode units only
-    thread_local extern int const DehumidControl_None;
-    thread_local extern int const DehumidControl_Multimode;
-    thread_local extern int const DehumidControl_CoolReheat;
+    EP_GLOBAL extern int const DehumidControl_None;
+    EP_GLOBAL extern int const DehumidControl_Multimode;
+    EP_GLOBAL extern int const DehumidControl_CoolReheat;
 
     // Mode of operation
-    thread_local extern int const CoolingMode; // System operating mode is cooling
-    thread_local extern int const HeatingMode; // System operating mode is heating
+    EP_GLOBAL extern int const CoolingMode; // System operating mode is cooling
+    EP_GLOBAL extern int const HeatingMode; // System operating mode is heating
 
     // Priority control mode (prioritized thermostat signal)
-    thread_local extern int const CoolingPriority; // Controls CBVAV system based on cooling priority
-    thread_local extern int const HeatingPriority; // Controls CBVAV system based on heating priority
-    thread_local extern int const ZonePriority;    // Controls CBVAV system based on zone priority
+    EP_GLOBAL extern int const CoolingPriority; // Controls CBVAV system based on cooling priority
+    EP_GLOBAL extern int const HeatingPriority; // Controls CBVAV system based on heating priority
+    EP_GLOBAL extern int const ZonePriority;    // Controls CBVAV system based on zone priority
 
     // Airflow control for contant fan mode
-    thread_local extern int const UseCompressorOnFlow;  // Set compressor OFF air flow rate equal to compressor ON air flow rate
-    thread_local extern int const UseCompressorOffFlow; // Set compressor OFF air flow rate equal to user defined value
+    EP_GLOBAL extern int const UseCompressorOnFlow;  // Set compressor OFF air flow rate equal to compressor ON air flow rate
+    EP_GLOBAL extern int const UseCompressorOffFlow; // Set compressor OFF air flow rate equal to user defined value
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumCBVAV;                  // Number of CBVAV systems in input file
-    thread_local extern Real64 CompOnMassFlow;         // System air mass flow rate w/ compressor ON
-    thread_local extern Real64 OACompOnMassFlow;       // OA mass flow rate w/ compressor ON
-    thread_local extern Real64 CompOffMassFlow;        // System air mass flow rate w/ compressor OFF
-    thread_local extern Real64 OACompOffMassFlow;      // OA mass flow rate w/ compressor OFF
-    thread_local extern Real64 CompOnFlowRatio;        // fan flow ratio when coil on
-    thread_local extern Real64 CompOffFlowRatio;       // fan flow ratio when coil off
-    thread_local extern Real64 FanSpeedRatio;          // ratio of air flow ratio passed to fan object
-    thread_local extern Real64 BypassDuctFlowFraction; // Fraction of unit mass flow that returns to inlet of CBVAV unit through bypass duct
-    thread_local extern Real64 PartLoadFrac;           // Compressor part-load fraction
-    thread_local extern Real64 SaveCompressorPLR;      // Holds DX compressor PLR from active DX coil
-    thread_local extern Real64 TempSteamIn;            // steam coil steam inlet temperature
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumCBVAV;                  // Number of CBVAV systems in input file
+    EP_GLOBAL extern Real64 CompOnMassFlow;         // System air mass flow rate w/ compressor ON
+    EP_GLOBAL extern Real64 OACompOnMassFlow;       // OA mass flow rate w/ compressor ON
+    EP_GLOBAL extern Real64 CompOffMassFlow;        // System air mass flow rate w/ compressor OFF
+    EP_GLOBAL extern Real64 OACompOffMassFlow;      // OA mass flow rate w/ compressor OFF
+    EP_GLOBAL extern Real64 CompOnFlowRatio;        // fan flow ratio when coil on
+    EP_GLOBAL extern Real64 CompOffFlowRatio;       // fan flow ratio when coil off
+    EP_GLOBAL extern Real64 FanSpeedRatio;          // ratio of air flow ratio passed to fan object
+    EP_GLOBAL extern Real64 BypassDuctFlowFraction; // Fraction of unit mass flow that returns to inlet of CBVAV unit through bypass duct
+    EP_GLOBAL extern Real64 PartLoadFrac;           // Compressor part-load fraction
+    EP_GLOBAL extern Real64 SaveCompressorPLR;      // Holds DX compressor PLR from active DX coil
+    EP_GLOBAL extern Real64 TempSteamIn;            // steam coil steam inlet temperature
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -289,8 +289,8 @@ namespace HVACUnitaryBypassVAV {
     };
 
     // Object Data
-    thread_local extern Array1D<CBVAVData> CBVAV;
-    thread_local extern bool GetInputFlag; // Flag set to make sure you get input once
+    EP_GLOBAL extern Array1D<CBVAVData> CBVAV;
+    EP_GLOBAL extern bool GetInputFlag; // Flag set to make sure you get input once
 
     // Functions
 

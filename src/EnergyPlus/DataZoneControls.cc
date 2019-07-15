@@ -86,28 +86,28 @@ namespace DataZoneControls {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumTempControlledZones(0);
-    thread_local int NumHumidityControlZones(0);
-    thread_local int NumComfortControlledZones(0);
-    thread_local int NumTStatStatements(0);
-    thread_local int NumComfortTStatStatements(0);
-    thread_local int NumOpTempControlledZones(0);           // number of zones with operative temp control
-    thread_local int NumTempAndHumidityControlledZones(0);  // number of zones with over cool control
-    thread_local bool AnyOpTempControl(false);              // flag set true if any zones have op temp control
-    thread_local bool AnyZoneTempAndHumidityControl(false); // flag set true if any zones have over cool control
-    thread_local Array1D_bool StageZoneLogic;               // Logical array, A zone with staged thermostat = .TRUE.
-    thread_local Array1D<Real64> OccRoomTSetPointHeat;      // occupied heating set point for optimum start period
-    thread_local Array1D<Real64> OccRoomTSetPointCool;      // occupied cooling set point for optimum start period
-    thread_local bool GetZoneAirStatsInputFlag(true);       // True when need to get input
+    EP_GLOBAL int NumTempControlledZones(0);
+    EP_GLOBAL int NumHumidityControlZones(0);
+    EP_GLOBAL int NumComfortControlledZones(0);
+    EP_GLOBAL int NumTStatStatements(0);
+    EP_GLOBAL int NumComfortTStatStatements(0);
+    EP_GLOBAL int NumOpTempControlledZones(0);           // number of zones with operative temp control
+    EP_GLOBAL int NumTempAndHumidityControlledZones(0);  // number of zones with over cool control
+    EP_GLOBAL bool AnyOpTempControl(false);              // flag set true if any zones have op temp control
+    EP_GLOBAL bool AnyZoneTempAndHumidityControl(false); // flag set true if any zones have over cool control
+    EP_GLOBAL Array1D_bool StageZoneLogic;               // Logical array, A zone with staged thermostat = .TRUE.
+    EP_GLOBAL Array1D<Real64> OccRoomTSetPointHeat;      // occupied heating set point for optimum start period
+    EP_GLOBAL Array1D<Real64> OccRoomTSetPointCool;      // occupied cooling set point for optimum start period
+    EP_GLOBAL bool GetZoneAirStatsInputFlag(true);       // True when need to get input
 
     // Object Data
-    thread_local Array1D<ZoneHumidityControls> HumidityControlZone;
-    thread_local Array1D<ZoneTempControls> TempControlledZone;
-    thread_local Array1D<ZoneComfortControls> ComfortControlledZone;
-    thread_local Array1D<TStatObject> TStatObjects;
-    thread_local Array1D<TStatObject> ComfortTStatObjects;
-    thread_local Array1D<TStatObject> StagedTStatObjects;
-    thread_local Array1D<ZoneStagedControls> StageControlledZone;
+    EP_GLOBAL Array1D<ZoneHumidityControls> HumidityControlZone;
+    EP_GLOBAL Array1D<ZoneTempControls> TempControlledZone;
+    EP_GLOBAL Array1D<ZoneComfortControls> ComfortControlledZone;
+    EP_GLOBAL Array1D<TStatObject> TStatObjects;
+    EP_GLOBAL Array1D<TStatObject> ComfortTStatObjects;
+    EP_GLOBAL Array1D<TStatObject> StagedTStatObjects;
+    EP_GLOBAL Array1D<ZoneStagedControls> StageControlledZone;
 
     // Clears the global data in DataZoneControls.
     // Needed for unit tests, should not be normally called.

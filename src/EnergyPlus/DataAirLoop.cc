@@ -85,19 +85,19 @@ namespace DataAirLoop {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local int NumOASystems(0);                   // Number of Outdoor Air Systems
-    thread_local Real64 LoopDXCoilRTF(0.0); // OnOff fan run time fraction in an HVAC Air Loop
-    thread_local bool AirLoopInputsFilled(false);       // Set to TRUE after first pass through air loop
+    EP_GLOBAL int NumOASystems(0);                   // Number of Outdoor Air Systems
+    EP_GLOBAL Real64 LoopDXCoilRTF(0.0); // OnOff fan run time fraction in an HVAC Air Loop
+    EP_GLOBAL bool AirLoopInputsFilled(false);       // Set to TRUE after first pass through air loop
 
     // Object Data
-    thread_local Array1D<AirLoopZoneEquipConnectData> AirToZoneNodeInfo;
-    thread_local Array1D<AirLoopOutsideAirConnectData> AirToOANodeInfo;
-    thread_local Array1D<DefinePriAirSysAvailMgrs> PriAirSysAvailMgr;
-    thread_local Array1D<AirLooptoZoneData> AirLoopZoneInfo;
-    thread_local Array1D<AirLoopControlData> AirLoopControlInfo;
-    thread_local Array1D<AirLoopFlowData> AirLoopFlow;
-    thread_local Array1D<OutsideAirSysProps> OutsideAirSys;
-    thread_local Array1D<AirLoopAFNData> AirLoopAFNInfo;
+    EP_GLOBAL Array1D<AirLoopZoneEquipConnectData> AirToZoneNodeInfo;
+    EP_GLOBAL Array1D<AirLoopOutsideAirConnectData> AirToOANodeInfo;
+    EP_GLOBAL Array1D<DefinePriAirSysAvailMgrs> PriAirSysAvailMgr;
+    EP_GLOBAL Array1D<AirLooptoZoneData> AirLoopZoneInfo;
+    EP_GLOBAL Array1D<AirLoopControlData> AirLoopControlInfo;
+    EP_GLOBAL Array1D<AirLoopFlowData> AirLoopFlow;
+    EP_GLOBAL Array1D<OutsideAirSysProps> OutsideAirSys;
+    EP_GLOBAL Array1D<AirLoopAFNData> AirLoopAFNInfo;
 
     // Clears the global data in DataAirLoop.
     // Needed for unit tests, should not be normally called.

@@ -64,76 +64,76 @@ namespace VariableSpeedCoils {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local extern Real64 const RatedInletAirTemp;       // 26.6667C or 80F
-    thread_local extern Real64 const RatedInletWetBulbTemp;   // 19.44 or 67F, cooling mode
-    thread_local extern Real64 const RatedInletAirHumRat;     // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
-    thread_local extern Real64 const RatedInletWaterTemp;     // 85 F cooling mode
-    thread_local extern Real64 const RatedAmbAirTemp;         // 95 F cooling mode
-    thread_local extern Real64 const RatedInletAirTempHeat;   // 21.11C or 70F, heating mode
-    thread_local extern Real64 const RatedInletWaterTempHeat; // 21.11C or 70F, heating mode
-    thread_local extern Real64 const RatedAmbAirTempHeat;     // 8.33 or 47F, heating mode
-    thread_local extern Real64 const RatedAmbAirWBHeat;       // 8.33 or 43F, heating mode, rated wet bulb temperature
+    EP_GLOBAL extern Real64 const RatedInletAirTemp;       // 26.6667C or 80F
+    EP_GLOBAL extern Real64 const RatedInletWetBulbTemp;   // 19.44 or 67F, cooling mode
+    EP_GLOBAL extern Real64 const RatedInletAirHumRat;     // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
+    EP_GLOBAL extern Real64 const RatedInletWaterTemp;     // 85 F cooling mode
+    EP_GLOBAL extern Real64 const RatedAmbAirTemp;         // 95 F cooling mode
+    EP_GLOBAL extern Real64 const RatedInletAirTempHeat;   // 21.11C or 70F, heating mode
+    EP_GLOBAL extern Real64 const RatedInletWaterTempHeat; // 21.11C or 70F, heating mode
+    EP_GLOBAL extern Real64 const RatedAmbAirTempHeat;     // 8.33 or 47F, heating mode
+    EP_GLOBAL extern Real64 const RatedAmbAirWBHeat;       // 8.33 or 43F, heating mode, rated wet bulb temperature
 
     // Airflow per total capacity range
-    thread_local extern Real64 const MaxRatedVolFlowPerRatedTotCap; // m3/s per watt = 450 cfm/ton
-    thread_local extern Real64 const MinRatedVolFlowPerRatedTotCap; // m3/s per watt = 300 cfm/ton
-    thread_local extern Real64 const MaxHeatVolFlowPerRatedTotCap;  // m3/s per watt = 600 cfm/ton
-    thread_local extern Real64 const MaxCoolVolFlowPerRatedTotCap;  // m3/s per watt = 500 cfm/ton
-    thread_local extern Real64 const MinOperVolFlowPerRatedTotCap;  // m3/s per watt = 200 cfm/ton
+    EP_GLOBAL extern Real64 const MaxRatedVolFlowPerRatedTotCap; // m3/s per watt = 450 cfm/ton
+    EP_GLOBAL extern Real64 const MinRatedVolFlowPerRatedTotCap; // m3/s per watt = 300 cfm/ton
+    EP_GLOBAL extern Real64 const MaxHeatVolFlowPerRatedTotCap;  // m3/s per watt = 600 cfm/ton
+    EP_GLOBAL extern Real64 const MaxCoolVolFlowPerRatedTotCap;  // m3/s per watt = 500 cfm/ton
+    EP_GLOBAL extern Real64 const MinOperVolFlowPerRatedTotCap;  // m3/s per watt = 200 cfm/ton
 
     // Water Systems
-    thread_local extern int const CondensateDiscarded; // default mode where water is "lost"
-    thread_local extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
+    EP_GLOBAL extern int const CondensateDiscarded; // default mode where water is "lost"
+    EP_GLOBAL extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
 
-    thread_local extern int const WaterSupplyFromMains;
-    thread_local extern int const WaterSupplyFromTank;
+    EP_GLOBAL extern int const WaterSupplyFromMains;
+    EP_GLOBAL extern int const WaterSupplyFromTank;
 
     // Curve Types
-    thread_local extern int const Linear;
-    thread_local extern int const BiLinear;
-    thread_local extern int const Quadratic;
-    thread_local extern int const BiQuadratic;
-    thread_local extern int const Cubic;
+    EP_GLOBAL extern int const Linear;
+    EP_GLOBAL extern int const BiLinear;
+    EP_GLOBAL extern int const Quadratic;
+    EP_GLOBAL extern int const BiQuadratic;
+    EP_GLOBAL extern int const Cubic;
 
     // Defrost strategy (heat pump only)
-    thread_local extern int const ReverseCycle; // uses reverse cycle defrost strategy
-    thread_local extern int const Resistive;    // uses electric resistance heater for defrost
+    EP_GLOBAL extern int const ReverseCycle; // uses reverse cycle defrost strategy
+    EP_GLOBAL extern int const Resistive;    // uses electric resistance heater for defrost
     // Defrost control  (heat pump only)
-    thread_local extern int const Timed;    // defrost cycle is timed
-    thread_local extern int const OnDemand; // defrost cycle occurs only when required
+    EP_GLOBAL extern int const Timed;    // defrost cycle is timed
+    EP_GLOBAL extern int const OnDemand; // defrost cycle occurs only when required
 
-    thread_local extern int const MaxSpedLevels; // Maximum number of speed that supports
+    EP_GLOBAL extern int const MaxSpedLevels; // Maximum number of speed that supports
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
     // Identifier is VarSpeedCoil
-    thread_local extern int NumVarSpeedCoils; // The Number of variable speed Water to Air Heat Pumps and variable dx coils found in the Input
+    EP_GLOBAL extern int NumVarSpeedCoils; // The Number of variable speed Water to Air Heat Pumps and variable dx coils found in the Input
 
-    thread_local extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
+    EP_GLOBAL extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
     // LOGICAL, ALLOCATABLE, DIMENSION(:) :: MySizeFlag
 
-    thread_local extern Real64 SourceSideMassFlowRate; // Source Side Mass flow rate [Kg/s]
-    thread_local extern Real64 SourceSideInletTemp;    // Source Side Inlet Temperature [C]
-    thread_local extern Real64 SourceSideInletEnth;    // Source Side Inlet Enthalpy [J/kg]
-    thread_local extern Real64 LoadSideMassFlowRate;   // Load Side Mass flow rate [Kg/s]
-    thread_local extern Real64 LoadSideInletDBTemp;    // Load Side Inlet Dry Bulb Temp [C]
-    thread_local extern Real64 LoadSideInletWBTemp;    // Load Side Inlet Wet Bulb Temp [C]
-    thread_local extern Real64 LoadSideInletHumRat;    // Load Side Outlet Humidity ratio
-    thread_local extern Real64 LoadSideInletEnth;      // Load Side Inlet Enthalpy [J/kg]
-    thread_local extern Real64 LoadSideOutletDBTemp;   // Load Side Outlet Dry Bulb Temp [C]
-    thread_local extern Real64 LoadSideOutletHumRat;   // Load Side Outlet Humidity ratio
-    thread_local extern Real64 LoadSideOutletEnth;     // Load Side Outlet Enthalpy [J/kg]
-    thread_local extern Real64 QSensible;              // Load side sensible heat transfer rate [W]
-    thread_local extern Real64 QLoadTotal;             // Load side total heat transfer rate [W]
-    thread_local extern Real64 QLatRated;              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
-    thread_local extern Real64 QLatActual;             // Actual Latent Capacity [W]
-    thread_local extern Real64 QSource;                // Source side heat transfer rate [W]
-    thread_local extern Real64 Winput;                 // Power Consumption [W]
-    thread_local extern Real64 PLRCorrLoadSideMdot;    // Load Side Mdot corrected for Part Load Ratio of the unit
+    EP_GLOBAL extern Real64 SourceSideMassFlowRate; // Source Side Mass flow rate [Kg/s]
+    EP_GLOBAL extern Real64 SourceSideInletTemp;    // Source Side Inlet Temperature [C]
+    EP_GLOBAL extern Real64 SourceSideInletEnth;    // Source Side Inlet Enthalpy [J/kg]
+    EP_GLOBAL extern Real64 LoadSideMassFlowRate;   // Load Side Mass flow rate [Kg/s]
+    EP_GLOBAL extern Real64 LoadSideInletDBTemp;    // Load Side Inlet Dry Bulb Temp [C]
+    EP_GLOBAL extern Real64 LoadSideInletWBTemp;    // Load Side Inlet Wet Bulb Temp [C]
+    EP_GLOBAL extern Real64 LoadSideInletHumRat;    // Load Side Outlet Humidity ratio
+    EP_GLOBAL extern Real64 LoadSideInletEnth;      // Load Side Inlet Enthalpy [J/kg]
+    EP_GLOBAL extern Real64 LoadSideOutletDBTemp;   // Load Side Outlet Dry Bulb Temp [C]
+    EP_GLOBAL extern Real64 LoadSideOutletHumRat;   // Load Side Outlet Humidity ratio
+    EP_GLOBAL extern Real64 LoadSideOutletEnth;     // Load Side Outlet Enthalpy [J/kg]
+    EP_GLOBAL extern Real64 QSensible;              // Load side sensible heat transfer rate [W]
+    EP_GLOBAL extern Real64 QLoadTotal;             // Load side total heat transfer rate [W]
+    EP_GLOBAL extern Real64 QLatRated;              // Latent Capacity [W] rated at entering air conditions [Tdb=26.7C Twb=19.4C]
+    EP_GLOBAL extern Real64 QLatActual;             // Actual Latent Capacity [W]
+    EP_GLOBAL extern Real64 QSource;                // Source side heat transfer rate [W]
+    EP_GLOBAL extern Real64 Winput;                 // Power Consumption [W]
+    EP_GLOBAL extern Real64 PLRCorrLoadSideMdot;    // Load Side Mdot corrected for Part Load Ratio of the unit
 
-    thread_local extern Real64 VSHPWHHeatingCapacity; // Used by Heat Pump:Water Heater object as total water heating capacity [W]
-    thread_local extern Real64 VSHPWHHeatingCOP;      // Used by Heat Pump:Water Heater object as water heating COP [W/W]
+    EP_GLOBAL extern Real64 VSHPWHHeatingCapacity; // Used by Heat Pump:Water Heater object as total water heating capacity [W]
+    EP_GLOBAL extern Real64 VSHPWHHeatingCOP;      // Used by Heat Pump:Water Heater object as water heating COP [W/W]
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -367,7 +367,7 @@ namespace VariableSpeedCoils {
     };
 
     // Object Data
-    thread_local extern Array1D<VariableSpeedCoilData> VarSpeedCoil;
+    EP_GLOBAL extern Array1D<VariableSpeedCoilData> VarSpeedCoil;
 
     // Functions
     void clear_state();

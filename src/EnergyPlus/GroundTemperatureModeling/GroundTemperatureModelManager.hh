@@ -63,17 +63,17 @@ namespace EnergyPlus {
 
 namespace GroundTemperatureManager {
 
-    thread_local extern int const objectType_KusudaGroundTemp;
-    thread_local extern int const objectType_FiniteDiffGroundTemp;
-    thread_local extern int const objectType_SiteBuildingSurfaceGroundTemp;
-    thread_local extern int const objectType_SiteShallowGroundTemp;
-    thread_local extern int const objectType_SiteDeepGroundTemp;
-    thread_local extern int const objectType_SiteFCFactorMethodGroundTemp;
-    thread_local extern int const objectType_XingGroundTemp;
+    EP_GLOBAL extern int const objectType_KusudaGroundTemp;
+    EP_GLOBAL extern int const objectType_FiniteDiffGroundTemp;
+    EP_GLOBAL extern int const objectType_SiteBuildingSurfaceGroundTemp;
+    EP_GLOBAL extern int const objectType_SiteShallowGroundTemp;
+    EP_GLOBAL extern int const objectType_SiteDeepGroundTemp;
+    EP_GLOBAL extern int const objectType_SiteFCFactorMethodGroundTemp;
+    EP_GLOBAL extern int const objectType_XingGroundTemp;
 
-    thread_local extern Array1D_string const CurrentModuleObjects;
+    EP_GLOBAL extern Array1D_string const CurrentModuleObjects;
 
-    thread_local extern std::vector<std::shared_ptr<BaseGroundTempsModel>> groundTempModels;
+    EP_GLOBAL extern std::vector<std::shared_ptr<BaseGroundTempsModel>> groundTempModels;
 
     std::shared_ptr<BaseGroundTempsModel> GetGroundTempModelAndInit(std::string const &type, std::string const &name);
 

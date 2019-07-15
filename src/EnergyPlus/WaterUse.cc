@@ -92,27 +92,27 @@ namespace WaterUse {
     using DataGlobals::WarmupFlag;
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const HeatRecoveryHXIdeal(1);
-    thread_local int const HeatRecoveryHXCounterFlow(2);
-    thread_local int const HeatRecoveryHXCrossFlow(3);
+    EP_GLOBAL int const HeatRecoveryHXIdeal(1);
+    EP_GLOBAL int const HeatRecoveryHXCounterFlow(2);
+    EP_GLOBAL int const HeatRecoveryHXCrossFlow(3);
 
-    thread_local int const HeatRecoveryConfigPlant(1);
-    thread_local int const HeatRecoveryConfigEquipment(2);
-    thread_local int const HeatRecoveryConfigPlantAndEquip(3);
+    EP_GLOBAL int const HeatRecoveryConfigPlant(1);
+    EP_GLOBAL int const HeatRecoveryConfigEquipment(2);
+    EP_GLOBAL int const HeatRecoveryConfigPlantAndEquip(3);
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumWaterEquipment(0);
-    thread_local int NumWaterConnections(0);
-    thread_local bool GetWaterUseInputFlag(true);
+    EP_GLOBAL int NumWaterEquipment(0);
+    EP_GLOBAL int NumWaterConnections(0);
+    EP_GLOBAL bool GetWaterUseInputFlag(true);
 
-    thread_local Array1D_bool CheckEquipName;
-    thread_local Array1D_bool CheckPlantLoop;
+    EP_GLOBAL Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckPlantLoop;
 
     // Object Data
-    thread_local Array1D<WaterEquipmentType> WaterEquipment;
-    thread_local Array1D<WaterConnectionsType> WaterConnections;
+    EP_GLOBAL Array1D<WaterEquipmentType> WaterEquipment;
+    EP_GLOBAL Array1D<WaterConnectionsType> WaterConnections;
 
     void clear_state()
     {
@@ -154,8 +154,8 @@ namespace WaterUse {
         int WaterEquipNum;
         int WaterConnNum;
         int NumIteration;
-        thread_local static int MaxIterationsErrorCount;
-        thread_local static bool MyEnvrnFlag(true);
+        EP_GLOBAL static int MaxIterationsErrorCount;
+        EP_GLOBAL static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (GetWaterUseInputFlag) {
@@ -269,8 +269,8 @@ namespace WaterUse {
         //  INTEGER :: WaterEquipNum
         int WaterConnNum;
         int NumIteration;
-        thread_local static int MaxIterationsErrorCount;
-        thread_local static bool MyEnvrnFlag(true);
+        EP_GLOBAL static int MaxIterationsErrorCount;
+        EP_GLOBAL static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (GetWaterUseInputFlag) {
@@ -382,7 +382,7 @@ namespace WaterUse {
         using WaterManager::SetupTankSupplyComponent;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int IOStatus;                   // Used in GetObjectItem
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
@@ -1217,7 +1217,7 @@ namespace WaterUse {
         Real64 FlowMassMax;
         Real64 MoistureMassMax;
 
-        thread_local static std::string const RoutineName("CalcEquipmentDrainTemp");
+        EP_GLOBAL static std::string const RoutineName("CalcEquipmentDrainTemp");
 
         // FLOW:
 
@@ -1309,8 +1309,8 @@ namespace WaterUse {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InletNode;
         int OutletNode;
-        thread_local static bool MyOneTimeFlag(true);      // one time flag                    !DSU
-        thread_local static Array1D_bool SetLoopIndexFlag; // get loop number flag             !DSU
+        EP_GLOBAL static bool MyOneTimeFlag(true);      // one time flag                    !DSU
+        EP_GLOBAL static Array1D_bool SetLoopIndexFlag; // get loop number flag             !DSU
         bool errFlag;
 
         if (MyOneTimeFlag) {                                       // DSU
@@ -1886,7 +1886,7 @@ namespace WaterUse {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int WaterEquipNum;
         int ZoneNum;
-        thread_local static bool MyEnvrnFlag(true);
+        EP_GLOBAL static bool MyEnvrnFlag(true);
 
         // FLOW:
         if (NumWaterEquipment == 0) return;

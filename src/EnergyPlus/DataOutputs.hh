@@ -68,21 +68,21 @@ namespace DataOutputs {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const NumMonthlyReports;
-    thread_local extern Array1D_string const MonthlyNamedReports;
+    EP_GLOBAL extern int const NumMonthlyReports;
+    EP_GLOBAL extern Array1D_string const MonthlyNamedReports;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int MaxConsideredOutputVariables; // Max Array size for OutputVariable pre-scanned
-    thread_local extern int NumConsideredOutputVariables; // Number of variables - pre-scanned, allowed for output
-    thread_local extern int iNumberOfRecords;             // Number of records in input
-    thread_local extern int iNumberOfDefaultedFields;     // number of defaulted fields
-    thread_local extern int iTotalFieldsWithDefaults;     // number of fields that can be defaulted
-    thread_local extern int iNumberOfAutoSizedFields;     // number of autosized fields
-    thread_local extern int iTotalAutoSizableFields;      // number of fields that can be autosized
-    thread_local extern int iNumberOfAutoCalcedFields;    // number of autocalculated fields
-    thread_local extern int iTotalAutoCalculatableFields; // number of fields that can be autocalculated
+    EP_GLOBAL extern int MaxConsideredOutputVariables; // Max Array size for OutputVariable pre-scanned
+    EP_GLOBAL extern int NumConsideredOutputVariables; // Number of variables - pre-scanned, allowed for output
+    EP_GLOBAL extern int iNumberOfRecords;             // Number of records in input
+    EP_GLOBAL extern int iNumberOfDefaultedFields;     // number of defaulted fields
+    EP_GLOBAL extern int iTotalFieldsWithDefaults;     // number of fields that can be defaulted
+    EP_GLOBAL extern int iNumberOfAutoSizedFields;     // number of autosized fields
+    EP_GLOBAL extern int iTotalAutoSizableFields;      // number of fields that can be autosized
+    EP_GLOBAL extern int iNumberOfAutoCalcedFields;    // number of autocalculated fields
+    EP_GLOBAL extern int iTotalAutoCalculatableFields; // number of fields that can be autocalculated
 
     // Types
     struct OutputReportingVariables
@@ -100,7 +100,7 @@ namespace DataOutputs {
 
     // Outer map has a Key of Variable Name, and value is inner map of Key=KeyValue, Value=struct OutputReportingVariables
     // All of the string are considered as case insenstive (If we search for "ZONE MEAN AIR TEMPERATURE" it would find "Zone Mean Air Temperature")
-    thread_local extern std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables,
+    EP_GLOBAL extern std::unordered_map<std::string, std::unordered_map<std::string, OutputReportingVariables,
                                                               UtilityRoutines::case_insensitive_hasher,
                                                               UtilityRoutines::case_insensitive_comparator>,
                                UtilityRoutines::case_insensitive_hasher,

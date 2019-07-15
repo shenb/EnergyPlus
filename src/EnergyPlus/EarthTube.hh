@@ -65,11 +65,11 @@ namespace EarthTube {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLES DECLARATIONS:
-    thread_local extern int TotEarthTube; // Total EarthTube Statements in input
+    EP_GLOBAL extern int TotEarthTube; // Total EarthTube Statements in input
     // Parameters for Ventilation
-    thread_local extern int const NaturalEarthTube;
-    thread_local extern int const IntakeEarthTube;
-    thread_local extern int const ExhaustEarthTube;
+    EP_GLOBAL extern int const NaturalEarthTube;
+    EP_GLOBAL extern int const IntakeEarthTube;
+    EP_GLOBAL extern int const ExhaustEarthTube;
 
     //         Subroutine Specifications for the Heat Balance Module
     // Driver Routines
@@ -158,8 +158,8 @@ namespace EarthTube {
     };
 
     // Object Data
-    thread_local extern Array1D<EarthTubeData> EarthTubeSys;
-    thread_local extern Array1D<EarthTubeZoneReportVars> ZnRptET;
+    EP_GLOBAL extern Array1D<EarthTubeData> EarthTubeSys;
+    EP_GLOBAL extern Array1D<EarthTubeZoneReportVars> ZnRptET;
 
     // Functions
     void clear_state();

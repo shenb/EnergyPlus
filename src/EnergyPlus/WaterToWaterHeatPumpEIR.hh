@@ -168,7 +168,7 @@ namespace EnergyPlus {
             static Real64 subtract(Real64 const a, Real64 const b) {return a - b;}
         };
 
-        thread_local extern std::vector<EIRWaterToWaterHeatPump> eir_wwhp;
+        EP_GLOBAL extern std::vector<EIRWaterToWaterHeatPump> eir_wwhp;
     } // namespace EIRWaterToWaterHeatPumps
 } // namespace EnergyPlus
 

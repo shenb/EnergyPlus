@@ -64,15 +64,15 @@ namespace SurfaceGroundHeatExchanger {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern Real64 const SmallNum;        // Very small number to avoid div0 errors
-    thread_local extern Real64 const StefBoltzmann;   // Stefan-Boltzmann constant
-    thread_local extern Real64 const SurfaceHXHeight; // Surface Height above ground -- used in height dependent calcs.
+    EP_GLOBAL extern Real64 const SmallNum;        // Very small number to avoid div0 errors
+    EP_GLOBAL extern Real64 const StefBoltzmann;   // Stefan-Boltzmann constant
+    EP_GLOBAL extern Real64 const SurfaceHXHeight; // Surface Height above ground -- used in height dependent calcs.
 
-    thread_local extern int const SurfCond_Ground;
-    thread_local extern int const SurfCond_Exposed;
+    EP_GLOBAL extern int const SurfCond_Ground;
+    EP_GLOBAL extern int const SurfCond_Exposed;
 
     namespace loc {
-        thread_local extern int const MaxCTFTerms; // Maximum number of CTF terms allowed to still allow stability //Note Duplicate of DataHeatBalance::MaxCTFTerms
+        EP_GLOBAL extern int const MaxCTFTerms; // Maximum number of CTF terms allowed to still allow stability //Note Duplicate of DataHeatBalance::MaxCTFTerms
                                       // to avoid static initialization order bug: Keep them in sync
     }                                 // namespace loc
 
@@ -89,44 +89,44 @@ namespace SurfaceGroundHeatExchanger {
     // extern int ConstructionNum; // construction index number
     // extern int TopRoughness; // roughness of top layer
     // extern int BtmRoughness; // roughness of bottom layer
-    thread_local extern Real64 nsvInletTemp;  // water inlet temperature
-    thread_local extern Real64 nsvOutletTemp; // water outlet temperature
-    thread_local extern Real64 FlowRate;      // water mass flow rate
-    thread_local extern Real64 TopSurfTemp;   // Top  surface temperature
-    thread_local extern Real64 BtmSurfTemp;   // Bottom  surface temperature
-    thread_local extern Real64 TopSurfFlux;   // Top  surface heat flux
-    thread_local extern Real64 BtmSurfFlux;   // Bottom  surface heat flux
-    thread_local extern Real64 SourceFlux;    // total heat transfer rate, Watts
-    thread_local extern Real64 SourceTemp;    // total heat transfer rate, Watts
-    thread_local extern Real64 TopThermAbs;   // Thermal absortivity of top layer
-    thread_local extern Real64 BtmThermAbs;   // Thermal absortivity of bottom layer
-    thread_local extern Real64 TopSolarAbs;   // Solar absortivity of top layer
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Real64 nsvInletTemp;  // water inlet temperature
+    EP_GLOBAL extern Real64 nsvOutletTemp; // water outlet temperature
+    EP_GLOBAL extern Real64 FlowRate;      // water mass flow rate
+    EP_GLOBAL extern Real64 TopSurfTemp;   // Top  surface temperature
+    EP_GLOBAL extern Real64 BtmSurfTemp;   // Bottom  surface temperature
+    EP_GLOBAL extern Real64 TopSurfFlux;   // Top  surface heat flux
+    EP_GLOBAL extern Real64 BtmSurfFlux;   // Bottom  surface heat flux
+    EP_GLOBAL extern Real64 SourceFlux;    // total heat transfer rate, Watts
+    EP_GLOBAL extern Real64 SourceTemp;    // total heat transfer rate, Watts
+    EP_GLOBAL extern Real64 TopThermAbs;   // Thermal absortivity of top layer
+    EP_GLOBAL extern Real64 BtmThermAbs;   // Thermal absortivity of bottom layer
+    EP_GLOBAL extern Real64 TopSolarAbs;   // Solar absortivity of top layer
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // weather data records updated every zone time step
-    thread_local extern Real64 PastBeamSolarRad;    // Previous beam normal solar irradiance
-    thread_local extern Real64 PastSolarDirCosVert; // Previous vertical component of solar normal
-    thread_local extern Real64 PastDifSolarRad;     // Previous sky diffuse solar horizontal irradiance
-    thread_local extern Real64 PastGroundTemp;      // Previous ground temperature
-    thread_local extern bool PastIsRain;            // Previous Surfaces are wet for this time interval
-    thread_local extern bool PastIsSnow;            // Previous Snow on the ground for this time interval
-    thread_local extern Real64 PastOutBaroPress;    // Previous outdoor air barometric pressure
-    thread_local extern Real64 PastOutDryBulbTemp;  // Previous outdoor air dry bulb temperature
-    thread_local extern Real64 PastOutHumRat;       // Previous outdoor air humidity ratio
-    thread_local extern Real64 PastOutAirDensity;   // Previous outdoor air density
-    thread_local extern Real64 PastOutWetBulbTemp;  // Previous outdoor air wet bulb temperature
-    thread_local extern Real64 PastOutDewPointTemp; // Previous outdoor dewpoint temperature
-    thread_local extern Real64 PastSkyTemp;         // Previous sky temperature
-    thread_local extern Real64 PastWindSpeed;       // Previous outdoor air wind speed
-    thread_local extern Real64 PastCloudFraction;   // Previous Fraction of sky covered by clouds
+    EP_GLOBAL extern Real64 PastBeamSolarRad;    // Previous beam normal solar irradiance
+    EP_GLOBAL extern Real64 PastSolarDirCosVert; // Previous vertical component of solar normal
+    EP_GLOBAL extern Real64 PastDifSolarRad;     // Previous sky diffuse solar horizontal irradiance
+    EP_GLOBAL extern Real64 PastGroundTemp;      // Previous ground temperature
+    EP_GLOBAL extern bool PastIsRain;            // Previous Surfaces are wet for this time interval
+    EP_GLOBAL extern bool PastIsSnow;            // Previous Snow on the ground for this time interval
+    EP_GLOBAL extern Real64 PastOutBaroPress;    // Previous outdoor air barometric pressure
+    EP_GLOBAL extern Real64 PastOutDryBulbTemp;  // Previous outdoor air dry bulb temperature
+    EP_GLOBAL extern Real64 PastOutHumRat;       // Previous outdoor air humidity ratio
+    EP_GLOBAL extern Real64 PastOutAirDensity;   // Previous outdoor air density
+    EP_GLOBAL extern Real64 PastOutWetBulbTemp;  // Previous outdoor air wet bulb temperature
+    EP_GLOBAL extern Real64 PastOutDewPointTemp; // Previous outdoor dewpoint temperature
+    EP_GLOBAL extern Real64 PastSkyTemp;         // Previous sky temperature
+    EP_GLOBAL extern Real64 PastWindSpeed;       // Previous outdoor air wind speed
+    EP_GLOBAL extern Real64 PastCloudFraction;   // Previous Fraction of sky covered by clouds
 
     // get input flag
-    thread_local extern bool GetInputFlag;
+    EP_GLOBAL extern bool GetInputFlag;
 
     // time keeping variables used for keeping track of average flux over each time step
-    thread_local extern Array1D<Real64> QRadSysSrcAvg;      // Average source over the time step
-    thread_local extern Array1D<Real64> LastSysTimeElapsed; // record of system time
-    thread_local extern Array1D<Real64> LastTimeStepSys;    // previous time step size
+    EP_GLOBAL extern Array1D<Real64> QRadSysSrcAvg;      // Average source over the time step
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed; // record of system time
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;    // previous time step size
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PlantSurfaceGroundHeatExchangers
 
@@ -326,7 +326,7 @@ namespace SurfaceGroundHeatExchanger {
     };
 
     // Object Data
-    thread_local extern Array1D<SurfaceGroundHeatExchangerData> SurfaceGHE;
+    EP_GLOBAL extern Array1D<SurfaceGroundHeatExchangerData> SurfaceGHE;
 
     void GetSurfaceGroundHeatExchanger();
 

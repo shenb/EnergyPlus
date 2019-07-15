@@ -61,28 +61,28 @@ namespace EnergyPlus {
 namespace Boilers {
 
     // Boiler normalized efficiency curve types
-    thread_local extern int const Linear;
-    thread_local extern int const BiLinear;
-    thread_local extern int const Quadratic;
-    thread_local extern int const BiQuadratic;
-    thread_local extern int const Cubic;
-    thread_local extern int const QuadraticLinear;
-    thread_local extern int const BiCubic;
+    EP_GLOBAL extern int const Linear;
+    EP_GLOBAL extern int const BiLinear;
+    EP_GLOBAL extern int const Quadratic;
+    EP_GLOBAL extern int const BiQuadratic;
+    EP_GLOBAL extern int const Cubic;
+    EP_GLOBAL extern int const QuadraticLinear;
+    EP_GLOBAL extern int const BiCubic;
 
     // water temperature evaluation method
-    thread_local extern int const BoilerTempModeNotSet;
-    thread_local extern int const EnteringBoilerTemp;
-    thread_local extern int const LeavingBoilerTemp;
+    EP_GLOBAL extern int const BoilerTempModeNotSet;
+    EP_GLOBAL extern int const EnteringBoilerTemp;
+    EP_GLOBAL extern int const LeavingBoilerTemp;
 
     // Boiler flow modes
-    thread_local extern int const FlowModeNotSet;
-    thread_local extern int const ConstantFlow;
-    thread_local extern int const NotModulated;
-    thread_local extern int const LeavingSetPointModulated;
+    EP_GLOBAL extern int const FlowModeNotSet;
+    EP_GLOBAL extern int const ConstantFlow;
+    EP_GLOBAL extern int const NotModulated;
+    EP_GLOBAL extern int const LeavingSetPointModulated;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumBoilers;          // Number of boilers
-    thread_local extern bool GetBoilerInputFlag; // Boiler input flag, false if input is processed
+    EP_GLOBAL extern int NumBoilers;          // Number of boilers
+    EP_GLOBAL extern bool GetBoilerInputFlag; // Boiler input flag, false if input is processed
 
     struct BoilerSpecs : PlantComponent
     {
@@ -185,7 +185,7 @@ namespace Boilers {
         static PlantComponent *factory(std::string const &objectName);
     };
 
-    thread_local extern Array1D<BoilerSpecs> Boiler; // boiler data - dimension to number of machines
+    EP_GLOBAL extern Array1D<BoilerSpecs> Boiler; // boiler data - dimension to number of machines
 
     void clear_state();
 

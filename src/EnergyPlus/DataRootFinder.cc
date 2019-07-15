@@ -80,47 +80,47 @@ namespace DataRootFinder {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const iSlopeNone(0);        // Undefined slope specification
-    thread_local int const iSlopeIncreasing(1);  // For overall increasing function F(X) between min and max points
-    thread_local int const iSlopeDecreasing(-1); // For overall decreasing function F(X) between min and max points
+    EP_GLOBAL int const iSlopeNone(0);        // Undefined slope specification
+    EP_GLOBAL int const iSlopeIncreasing(1);  // For overall increasing function F(X) between min and max points
+    EP_GLOBAL int const iSlopeDecreasing(-1); // For overall decreasing function F(X) between min and max points
 
     // Error because the overall slope appears to be flat between the min and max points,
     // implying that the function might be singular over the interval:
     // F(XMin) == F(XMax)
-    thread_local int const iStatusErrorSingular(-4);
+    EP_GLOBAL int const iStatusErrorSingular(-4);
     // Error because the overall slope assumption is not observed at the min and max points:
     // - for an increasing function F(X), we expect F(XMin) < F(XMax)  otherwise error
     // - for a decreasing function F(X),  we expect F(XMin) > F(XMax)  otherwise error
     // Note that this error status does not detect strict monotonicity at points
     // between the min and max points.
-    thread_local int const iStatusErrorSlope(-3);
+    EP_GLOBAL int const iStatusErrorSlope(-3);
     // Error because the current candidate X does not lie within the current lower an upper points:
     // X < XLower or X > XUpper
-    thread_local int const iStatusErrorBracket(-2);
+    EP_GLOBAL int const iStatusErrorBracket(-2);
     // Error because the current candidate X does not lie within the min and max points:
     // X < XMin or X > XMax
-    thread_local int const iStatusErrorRange(-1);
+    EP_GLOBAL int const iStatusErrorRange(-1);
 
-    thread_local int const iStatusNone(0); // Indeterminate error state (not converged), also default state
-    thread_local int const iStatusOK(1);   // Unconstrained convergence achieved with root solution so that:
+    EP_GLOBAL int const iStatusNone(0); // Indeterminate error state (not converged), also default state
+    EP_GLOBAL int const iStatusOK(1);   // Unconstrained convergence achieved with root solution so that:
     // XMin < XRoot < XMax
-    thread_local int const iStatusOKMin(2);      // Constrained convergence achieved with solution XRoot==XMin
-    thread_local int const iStatusOKMax(3);      // Constrained convergence achieved with solution XRoot==XMax
-    thread_local int const iStatusOKRoundOff(4); // Reached requested tolerance in X variables although Y=F(X) does not
+    EP_GLOBAL int const iStatusOKMin(2);      // Constrained convergence achieved with solution XRoot==XMin
+    EP_GLOBAL int const iStatusOKMax(3);      // Constrained convergence achieved with solution XRoot==XMax
+    EP_GLOBAL int const iStatusOKRoundOff(4); // Reached requested tolerance in X variables although Y=F(X) does not
     // satisfy unconstrained convergence check
 
-    thread_local int const iStatusWarningNonMonotonic(10); // Error because F(X) is not strictly monotonic between the
+    EP_GLOBAL int const iStatusWarningNonMonotonic(10); // Error because F(X) is not strictly monotonic between the
     // lower and upper points
-    thread_local int const iStatusWarningSingular(11); // Error because F(X) == YLower or F(X) == YUpper
+    EP_GLOBAL int const iStatusWarningSingular(11); // Error because F(X) == YLower or F(X) == YUpper
 
-    thread_local int const iMethodNone(-1);         // No solution method (used internally only when root finder is reset)
-    thread_local int const iMethodBracket(0);       // Bracketting mode (used internally only to bracket root)
-    thread_local int const iMethodBisection(1);     // Step performed using bisection method (aka interval halving)
-    thread_local int const iMethodFalsePosition(2); // Step performed using false position method (aka regula falsi)
-    thread_local int const iMethodSecant(3);        // Step performed using secant method
-    thread_local int const iMethodBrent(4);         // Step performed using Brent's method
+    EP_GLOBAL int const iMethodNone(-1);         // No solution method (used internally only when root finder is reset)
+    EP_GLOBAL int const iMethodBracket(0);       // Bracketting mode (used internally only to bracket root)
+    EP_GLOBAL int const iMethodBisection(1);     // Step performed using bisection method (aka interval halving)
+    EP_GLOBAL int const iMethodFalsePosition(2); // Step performed using false position method (aka regula falsi)
+    EP_GLOBAL int const iMethodSecant(3);        // Step performed using secant method
+    EP_GLOBAL int const iMethodBrent(4);         // Step performed using Brent's method
     // Names for each solution method type
-    thread_local Array1D_string const SolutionMethodTypes(
+    EP_GLOBAL Array1D_string const SolutionMethodTypes(
         {-1, 4}, {"No solution method", "Bracketting method", "Bisection method", "False position method", "Secant method", "Brent method"});
 
     // DERIVED TYPE DEFINITIONS

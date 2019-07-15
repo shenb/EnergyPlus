@@ -63,21 +63,21 @@ namespace WaterToAirHeatPump {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const CompressorType_Reciprocating;
-    thread_local extern int const CompressorType_Rotary;
-    thread_local extern int const CompressorType_Scroll;
+    EP_GLOBAL extern int const CompressorType_Reciprocating;
+    EP_GLOBAL extern int const CompressorType_Rotary;
+    EP_GLOBAL extern int const CompressorType_Scroll;
 
     // DERIVED TYPE DEFINITIONS
 
     // Output Variables Type definition
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumWatertoAirHPs; // The Number of Water to Air Heat Pumps found in the Input
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumWatertoAirHPs; // The Number of Water to Air Heat Pumps found in the Input
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
-    thread_local extern int RefrigIndex;        // Refrigerant index
-    thread_local extern int WaterIndex;         // Water index
-    thread_local extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
+    EP_GLOBAL extern int RefrigIndex;        // Refrigerant index
+    EP_GLOBAL extern int WaterIndex;         // Water index
+    EP_GLOBAL extern bool GetCoilsInputFlag; // Flag set to make sure you get input once
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
 
@@ -187,7 +187,7 @@ namespace WaterToAirHeatPump {
     };
 
     // Object Data
-    thread_local extern Array1D<WatertoAirHPEquipConditions> WatertoAirHP;
+    EP_GLOBAL extern Array1D<WatertoAirHPEquipConditions> WatertoAirHP;
 
     // Functions
 

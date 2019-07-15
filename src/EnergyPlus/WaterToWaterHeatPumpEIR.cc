@@ -72,9 +72,9 @@
 namespace EnergyPlus {
     namespace EIRWaterToWaterHeatPumps {
 
-        thread_local bool getInputsWWHP(true);
-        thread_local std::vector<EIRWaterToWaterHeatPump> eir_wwhp;
-        thread_local std::string static const __EQUIP__ = "EIRWaterToWaterHeatPump"; // NOLINT(cert-err58-cpp)
+        EP_GLOBAL bool getInputsWWHP(true);
+        EP_GLOBAL std::vector<EIRWaterToWaterHeatPump> eir_wwhp;
+        EP_GLOBAL std::string static const __EQUIP__ = "EIRWaterToWaterHeatPump"; // NOLINT(cert-err58-cpp)
 
         void EIRWaterToWaterHeatPump::clear_state() {
             getInputsWWHP = true;

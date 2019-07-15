@@ -66,7 +66,7 @@ namespace ThermalChimney {
     // Data
     // DERIVED TYPE DEFINITIONS
 
-    thread_local extern int TotThermalChimney; // Total ThermalChimney Statements in input
+    EP_GLOBAL extern int TotThermalChimney; // Total ThermalChimney Statements in input
 
     // Subroutine Specifications for the Heat Balance Module
     // Driver Routines
@@ -130,9 +130,9 @@ namespace ThermalChimney {
     };
 
     // Object Data
-    thread_local extern Array1D<ThermalChimneyData> ThermalChimneySys;
-    thread_local extern Array1D<ThermChimZnReportVars> ZnRptThermChim;
-    thread_local extern Array1D<ThermChimReportVars> ThermalChimneyReport;
+    EP_GLOBAL extern Array1D<ThermalChimneyData> ThermalChimneySys;
+    EP_GLOBAL extern Array1D<ThermChimZnReportVars> ZnRptThermChim;
+    EP_GLOBAL extern Array1D<ThermChimReportVars> ThermalChimneyReport;
 
     // Functions
 

@@ -91,15 +91,15 @@ namespace MatrixDataManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // INTEGER, PARAMETER :: OneDimensional = 1
-    thread_local int const TwoDimensional(2);
+    EP_GLOBAL int const TwoDimensional(2);
     // INTEGER, PARAMETER :: ThreeDimensional = 3
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
     // DERIVED TYPE DEFINITIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local int NumMats; // number of matracies in input file
+    EP_GLOBAL int NumMats; // number of matracies in input file
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -112,7 +112,7 @@ namespace MatrixDataManager {
     // PUBLIC GetMatrixName
 
     // Object Data
-    thread_local Array1D<MatrixDataStruct> MatData;
+    EP_GLOBAL Array1D<MatrixDataStruct> MatData;
 
     // Functions
 
@@ -139,7 +139,7 @@ namespace MatrixDataManager {
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int NumRows;
         int NumCols;
         int NumElements;
@@ -222,7 +222,7 @@ namespace MatrixDataManager {
         int MatrixIndexPtr; // Function result
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool GetInputFlag(true); // First time, input is "gotten"
+        EP_GLOBAL static bool GetInputFlag(true); // First time, input is "gotten"
 
         if (GetInputFlag) {
             GetMatrixInput();

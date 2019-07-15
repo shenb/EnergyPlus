@@ -71,177 +71,177 @@ namespace DataHeatBalFanSys {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const UseSimpleAirFlow(1);
-    thread_local Real64 const MaxRadHeatFlux(4000.0); // [W/m2] max limit for radiant heat flux at a surface due to HVAC equipment
+    EP_GLOBAL int const UseSimpleAirFlow(1);
+    EP_GLOBAL Real64 const MaxRadHeatFlux(4000.0); // [W/m2] max limit for radiant heat flux at a surface due to HVAC equipment
 
     // Controls for PredictorCorrector
-    thread_local int const iGetZoneSetPoints(1);
-    thread_local int const iPredictStep(2);
-    thread_local int const iCorrectStep(3);
-    thread_local int const iRevertZoneTimestepHistories(4);
-    thread_local int const iPushZoneTimestepHistories(5);
-    thread_local int const iPushSystemTimestepHistories(6);
+    EP_GLOBAL int const iGetZoneSetPoints(1);
+    EP_GLOBAL int const iPredictStep(2);
+    EP_GLOBAL int const iCorrectStep(3);
+    EP_GLOBAL int const iRevertZoneTimestepHistories(4);
+    EP_GLOBAL int const iPushZoneTimestepHistories(5);
+    EP_GLOBAL int const iPushSystemTimestepHistories(6);
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D<Real64> SumConvHTRadSys;         // Sum of convection to zone air from hi temp radiant heaters
-    thread_local Array1D<Real64> SumLatentHTRadSys;       // Sum of latent gains from hi temp radiant heaters
-    thread_local Array1D<Real64> SumConvPool;             // Sum of convection to zone air from pools
-    thread_local Array1D<Real64> SumLatentPool;           // Sum of latent gains from pools
-    thread_local Array1D<Real64> QHTRadSysToPerson;       // Sum of radiant gains to people from hi temp radiant heaters
-    thread_local Array1D<Real64> QHWBaseboardToPerson;    // Sum of radiant gains to people from hot water baseboard heaters
-    thread_local Array1D<Real64> QSteamBaseboardToPerson; // Sum of radiant gains to people from steam baseboard heaters
-    thread_local Array1D<Real64> QElecBaseboardToPerson;  // Sum of radiant gains to people from electric baseboard heaters
-    thread_local Array1D<Real64> QCoolingPanelToPerson;   // Sum of radiant losses to people from cooling panels
+    EP_GLOBAL Array1D<Real64> SumConvHTRadSys;         // Sum of convection to zone air from hi temp radiant heaters
+    EP_GLOBAL Array1D<Real64> SumLatentHTRadSys;       // Sum of latent gains from hi temp radiant heaters
+    EP_GLOBAL Array1D<Real64> SumConvPool;             // Sum of convection to zone air from pools
+    EP_GLOBAL Array1D<Real64> SumLatentPool;           // Sum of latent gains from pools
+    EP_GLOBAL Array1D<Real64> QHTRadSysToPerson;       // Sum of radiant gains to people from hi temp radiant heaters
+    EP_GLOBAL Array1D<Real64> QHWBaseboardToPerson;    // Sum of radiant gains to people from hot water baseboard heaters
+    EP_GLOBAL Array1D<Real64> QSteamBaseboardToPerson; // Sum of radiant gains to people from steam baseboard heaters
+    EP_GLOBAL Array1D<Real64> QElecBaseboardToPerson;  // Sum of radiant gains to people from electric baseboard heaters
+    EP_GLOBAL Array1D<Real64> QCoolingPanelToPerson;   // Sum of radiant losses to people from cooling panels
     // Zone air drybulb conditions variables
-    thread_local Array1D<Real64> ZTAV;         // Zone Air Temperature Averaged over the Zone Time step
-    thread_local Array1D<Real64> MAT;          // MEAN AIR TEMPARATURE (C)
-    thread_local Array1D<Real64> TempTstatAir; // temperature of air near the thermo stat
-    thread_local Array1D<Real64> ZT;           // Zone Air Temperature Averaged over the System Time Increment
-    thread_local Array1D<Real64> XMAT;         // TEMPORARY ZONE TEMPERATURE TO TEST CONVERGENCE
-    thread_local Array1D<Real64> XM2T;
-    thread_local Array1D<Real64> XM3T;
-    thread_local Array1D<Real64> XM4T;
-    thread_local Array1D<Real64> DSXMAT; // Down Stepped MAT history storage
-    thread_local Array1D<Real64> DSXM2T; // Down Stepped MAT history storage
-    thread_local Array1D<Real64> DSXM3T; // Down Stepped MAT history storage
-    thread_local Array1D<Real64> DSXM4T; // Down Stepped MAT history storage
-    thread_local Array1D<Real64> XMPT;   // Zone air temperature at previous time step
+    EP_GLOBAL Array1D<Real64> ZTAV;         // Zone Air Temperature Averaged over the Zone Time step
+    EP_GLOBAL Array1D<Real64> MAT;          // MEAN AIR TEMPARATURE (C)
+    EP_GLOBAL Array1D<Real64> TempTstatAir; // temperature of air near the thermo stat
+    EP_GLOBAL Array1D<Real64> ZT;           // Zone Air Temperature Averaged over the System Time Increment
+    EP_GLOBAL Array1D<Real64> XMAT;         // TEMPORARY ZONE TEMPERATURE TO TEST CONVERGENCE
+    EP_GLOBAL Array1D<Real64> XM2T;
+    EP_GLOBAL Array1D<Real64> XM3T;
+    EP_GLOBAL Array1D<Real64> XM4T;
+    EP_GLOBAL Array1D<Real64> DSXMAT; // Down Stepped MAT history storage
+    EP_GLOBAL Array1D<Real64> DSXM2T; // Down Stepped MAT history storage
+    EP_GLOBAL Array1D<Real64> DSXM3T; // Down Stepped MAT history storage
+    EP_GLOBAL Array1D<Real64> DSXM4T; // Down Stepped MAT history storage
+    EP_GLOBAL Array1D<Real64> XMPT;   // Zone air temperature at previous time step
 
-    thread_local Array1D<Real64> ZTAVComf; // Zone Air Temperature Averaged over the Zone Time step used
+    EP_GLOBAL Array1D<Real64> ZTAVComf; // Zone Air Temperature Averaged over the Zone Time step used
     // in thermal comfort models (currently Fang model only)
-    thread_local Array1D<Real64> ZoneAirHumRatAvgComf; // AIR Humidity Ratio averaged over the zone time
+    EP_GLOBAL Array1D<Real64> ZoneAirHumRatAvgComf; // AIR Humidity Ratio averaged over the zone time
     // step used in thermal comfort models (currently Fang model only)
 
     // Zone Air moisture conditions variables
-    thread_local Array1D<Real64> ZoneAirHumRatAvg;  // AIR Humidity Ratio averaged over the zone time step
-    thread_local Array1D<Real64> ZoneAirHumRat;     // AIR Humidity Ratio
-    thread_local Array1D<Real64> WZoneTimeMinus1;   // Humidity ratio history terms for 3rd order derivative
-    thread_local Array1D<Real64> WZoneTimeMinus2;   // Time Minus 2 Zone Time Steps Term
-    thread_local Array1D<Real64> WZoneTimeMinus3;   // Time Minus 3 Zone Time Steps Term
-    thread_local Array1D<Real64> WZoneTimeMinus4;   // Time Minus 4 Zone Time Steps Term
-    thread_local Array1D<Real64> DSWZoneTimeMinus1; // DownStepped Humidity ratio history terms for 3rd order derivative
-    thread_local Array1D<Real64> DSWZoneTimeMinus2; // DownStepped Time Minus 2 Zone Time Steps Term
-    thread_local Array1D<Real64> DSWZoneTimeMinus3; // DownStepped Time Minus 3 Zone Time Steps Term
-    thread_local Array1D<Real64> DSWZoneTimeMinus4; // DownStepped Time Minus 4 Zone Time Steps Term
-    thread_local Array1D<Real64> WZoneTimeMinusP;   // Humidity ratio history terms at previous time step
+    EP_GLOBAL Array1D<Real64> ZoneAirHumRatAvg;  // AIR Humidity Ratio averaged over the zone time step
+    EP_GLOBAL Array1D<Real64> ZoneAirHumRat;     // AIR Humidity Ratio
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus1;   // Humidity ratio history terms for 3rd order derivative
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus2;   // Time Minus 2 Zone Time Steps Term
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus3;   // Time Minus 3 Zone Time Steps Term
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus4;   // Time Minus 4 Zone Time Steps Term
+    EP_GLOBAL Array1D<Real64> DSWZoneTimeMinus1; // DownStepped Humidity ratio history terms for 3rd order derivative
+    EP_GLOBAL Array1D<Real64> DSWZoneTimeMinus2; // DownStepped Time Minus 2 Zone Time Steps Term
+    EP_GLOBAL Array1D<Real64> DSWZoneTimeMinus3; // DownStepped Time Minus 3 Zone Time Steps Term
+    EP_GLOBAL Array1D<Real64> DSWZoneTimeMinus4; // DownStepped Time Minus 4 Zone Time Steps Term
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinusP;   // Humidity ratio history terms at previous time step
 
-    thread_local Array1D<Real64> ZoneAirHumRatTemp;   // Temp zone air humidity ratio at time plus 1
-    thread_local Array1D<Real64> WZoneTimeMinus1Temp; // Zone air humidity ratio at previous timestep
-    thread_local Array1D<Real64> WZoneTimeMinus2Temp; // Zone air humidity ratio at timestep T-2
-    thread_local Array1D<Real64> WZoneTimeMinus3Temp; // Zone air humidity ratio at timestep T-3
-    thread_local Array1D<Real64> ZoneAirHumRatOld;    // Last Time Steps Zone AIR Humidity Ratio
+    EP_GLOBAL Array1D<Real64> ZoneAirHumRatTemp;   // Temp zone air humidity ratio at time plus 1
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus1Temp; // Zone air humidity ratio at previous timestep
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus2Temp; // Zone air humidity ratio at timestep T-2
+    EP_GLOBAL Array1D<Real64> WZoneTimeMinus3Temp; // Zone air humidity ratio at timestep T-3
+    EP_GLOBAL Array1D<Real64> ZoneAirHumRatOld;    // Last Time Steps Zone AIR Humidity Ratio
 
-    thread_local Array1D<Real64> MCPI;                       // INFILTRATION MASS FLOW * AIR SPECIFIC HEAT
-    thread_local Array1D<Real64> MCPTI;                      // INFILTRATION MASS FLOW * AIR CP * AIR TEMPERATURE
-    thread_local Array1D<Real64> MCPV;                       // VENTILATION MASS FLOW * AIR SPECIFIC HEAT
-    thread_local Array1D<Real64> MCPTV;                      // VENTILATION MASS FLOW * AIR CP * AIR TEMPERATURE
-    thread_local Array1D<Real64> MCPM;                       // Mixing MASS FLOW * AIR SPECIFIC HEAT
-    thread_local Array1D<Real64> MCPTM;                      // Mixing MASS FLOW * AIR CP * AIR TEMPERATURE
-    thread_local Array1D<Real64> MCPE;                       // EARTHTUBE MASS FLOW * AIR SPECIFIC HEAT
-    thread_local Array1D<Real64> EAMFL;                      // OUTDOOR AIR MASS FLOW for EarthTube
-    thread_local Array1D<Real64> EAMFLxHumRat;               // OUTDOOR AIR MASS FLOW * Humidity Ratio for EarthTube (water vapor mass flow)
-    thread_local Array1D<Real64> MCPTE;                      // EARTHTUBE MASS FLOW * AIR CP * AIR TEMPERATURE
-    thread_local Array1D<Real64> MCPC;                       // COOLTOWER MASS FLOW * AIR SPECIFIC HEAT
-    thread_local Array1D<Real64> CTMFL;                      // OUTDOOR AIR MASS FLOW for cooltower
-    thread_local Array1D<Real64> MCPTC;                      // COOLTOWER MASS FLOW * AIR CP * AIR TEMPERATURE
-    thread_local Array1D<Real64> ThermChimAMFL;              // OUTDOOR AIR MASS FLOW for THERMALCHIMNEY
-    thread_local Array1D<Real64> MCPTThermChim;              // THERMALCHIMNEY MASS FLOW * AIR SPECIFIC HEAT
-    thread_local Array1D<Real64> MCPThermChim;               // THERMALCHIMNEY MASS FLOW * AIR CP * AIR TEMPERATURE
-    thread_local Array1D<Real64> ZoneLatentGain;             // Latent Energy from each Zone (People, equipment)
-    thread_local Array1D<Real64> ZoneLatentGainExceptPeople; // Added for hybrid model -- Latent Energy from each Zone (equipment)
-    thread_local Array1D<Real64> OAMFL;                      // OUTDOOR AIR MASS FLOW (M**3/SEC) for infiltration
-    thread_local Array1D<Real64> VAMFL;                      // OUTDOOR AIR MASS FLOW (M**3/SEC) for ventilation
-    thread_local Array1D<Real64> NonAirSystemResponse;       // Convective heat addition rate from non forced air
+    EP_GLOBAL Array1D<Real64> MCPI;                       // INFILTRATION MASS FLOW * AIR SPECIFIC HEAT
+    EP_GLOBAL Array1D<Real64> MCPTI;                      // INFILTRATION MASS FLOW * AIR CP * AIR TEMPERATURE
+    EP_GLOBAL Array1D<Real64> MCPV;                       // VENTILATION MASS FLOW * AIR SPECIFIC HEAT
+    EP_GLOBAL Array1D<Real64> MCPTV;                      // VENTILATION MASS FLOW * AIR CP * AIR TEMPERATURE
+    EP_GLOBAL Array1D<Real64> MCPM;                       // Mixing MASS FLOW * AIR SPECIFIC HEAT
+    EP_GLOBAL Array1D<Real64> MCPTM;                      // Mixing MASS FLOW * AIR CP * AIR TEMPERATURE
+    EP_GLOBAL Array1D<Real64> MCPE;                       // EARTHTUBE MASS FLOW * AIR SPECIFIC HEAT
+    EP_GLOBAL Array1D<Real64> EAMFL;                      // OUTDOOR AIR MASS FLOW for EarthTube
+    EP_GLOBAL Array1D<Real64> EAMFLxHumRat;               // OUTDOOR AIR MASS FLOW * Humidity Ratio for EarthTube (water vapor mass flow)
+    EP_GLOBAL Array1D<Real64> MCPTE;                      // EARTHTUBE MASS FLOW * AIR CP * AIR TEMPERATURE
+    EP_GLOBAL Array1D<Real64> MCPC;                       // COOLTOWER MASS FLOW * AIR SPECIFIC HEAT
+    EP_GLOBAL Array1D<Real64> CTMFL;                      // OUTDOOR AIR MASS FLOW for cooltower
+    EP_GLOBAL Array1D<Real64> MCPTC;                      // COOLTOWER MASS FLOW * AIR CP * AIR TEMPERATURE
+    EP_GLOBAL Array1D<Real64> ThermChimAMFL;              // OUTDOOR AIR MASS FLOW for THERMALCHIMNEY
+    EP_GLOBAL Array1D<Real64> MCPTThermChim;              // THERMALCHIMNEY MASS FLOW * AIR SPECIFIC HEAT
+    EP_GLOBAL Array1D<Real64> MCPThermChim;               // THERMALCHIMNEY MASS FLOW * AIR CP * AIR TEMPERATURE
+    EP_GLOBAL Array1D<Real64> ZoneLatentGain;             // Latent Energy from each Zone (People, equipment)
+    EP_GLOBAL Array1D<Real64> ZoneLatentGainExceptPeople; // Added for hybrid model -- Latent Energy from each Zone (equipment)
+    EP_GLOBAL Array1D<Real64> OAMFL;                      // OUTDOOR AIR MASS FLOW (M**3/SEC) for infiltration
+    EP_GLOBAL Array1D<Real64> VAMFL;                      // OUTDOOR AIR MASS FLOW (M**3/SEC) for ventilation
+    EP_GLOBAL Array1D<Real64> NonAirSystemResponse;       // Convective heat addition rate from non forced air
     // equipment such as baseboards plus heat from lights to
-    thread_local Array1D<Real64> SysDepZoneLoads; // Convective heat addition or subtraction rate from sources that
+    EP_GLOBAL Array1D<Real64> SysDepZoneLoads; // Convective heat addition or subtraction rate from sources that
     // depend on what is happening with the HVAC system. Such as:
     // heat gain from lights to return air when return flow = 0; heat gain
     // from air flow windows to return air when return air flow = 0;
     // and heat removed by return air from refrigeration cases when
     // return air flow = 0.
-    thread_local Array1D<Real64> SysDepZoneLoadsLagged; // SysDepZoneLoads saved to be added to zone heat balance next
+    EP_GLOBAL Array1D<Real64> SysDepZoneLoadsLagged; // SysDepZoneLoads saved to be added to zone heat balance next
     // HVAC time step
-    thread_local Array1D<Real64> MDotCPOA; // Airbalance MASS FLOW * AIR SPECIFIC HEAT used at Air Balance Method = Quadrature in the ZoneAirBalance:OutdoorAir
-    thread_local Array1D<Real64> MDotOA;   // Airbalance MASS FLOW rate used at Air Balance Method = Quadrature in the ZoneAirBalance:OutdoorAir
+    EP_GLOBAL Array1D<Real64> MDotCPOA; // Airbalance MASS FLOW * AIR SPECIFIC HEAT used at Air Balance Method = Quadrature in the ZoneAirBalance:OutdoorAir
+    EP_GLOBAL Array1D<Real64> MDotOA;   // Airbalance MASS FLOW rate used at Air Balance Method = Quadrature in the ZoneAirBalance:OutdoorAir
 
-    thread_local Array1D<Real64> MixingMassFlowZone;    // Mixing MASS FLOW
-    thread_local Array1D<Real64> MixingMassFlowXHumRat; // Mixing MASS FLOW * Humidity Ratio
+    EP_GLOBAL Array1D<Real64> MixingMassFlowZone;    // Mixing MASS FLOW
+    EP_GLOBAL Array1D<Real64> MixingMassFlowXHumRat; // Mixing MASS FLOW * Humidity Ratio
 
-    thread_local Array1D_bool ZoneMassBalanceFlag;  // zone mass flow balance flag
-    thread_local Array1D_bool ZoneInfiltrationFlag; // Zone Infiltration flag
-    thread_local Array1D_int ZoneReOrder;           // zone number reordered for zone mass balance
+    EP_GLOBAL Array1D_bool ZoneMassBalanceFlag;  // zone mass flow balance flag
+    EP_GLOBAL Array1D_bool ZoneInfiltrationFlag; // Zone Infiltration flag
+    EP_GLOBAL Array1D_int ZoneReOrder;           // zone number reordered for zone mass balance
 
     // REAL Variables for the Heat Balance Simulation
 
-    thread_local Array1D<Real64> QRadSysSource;     // Current source/sink for a particular surface (radiant sys)
-    thread_local Array1D<Real64> TCondFDSourceNode; // Temperature of source/sink location in surface from CondFD algo
-    thread_local Array1D<Real64> QPVSysSource;      // Current source/sink for a surface (integrated PV sys)
+    EP_GLOBAL Array1D<Real64> QRadSysSource;     // Current source/sink for a particular surface (radiant sys)
+    EP_GLOBAL Array1D<Real64> TCondFDSourceNode; // Temperature of source/sink location in surface from CondFD algo
+    EP_GLOBAL Array1D<Real64> QPVSysSource;      // Current source/sink for a surface (integrated PV sys)
 
-    thread_local Array1D<Real64> CTFTsrcConstPart; // Constant Outside Portion of the CTF calculation of
+    EP_GLOBAL Array1D<Real64> CTFTsrcConstPart; // Constant Outside Portion of the CTF calculation of
     // temperature at source
-    thread_local Array1D<Real64> CTFTuserConstPart; // Constant Outside Portion of the CTF calculation of
+    EP_GLOBAL Array1D<Real64> CTFTuserConstPart; // Constant Outside Portion of the CTF calculation of
     // temperature at user specified location
-    thread_local Array1D<Real64> QHTRadSysSurf; // Current radiant heat flux at a surface due to the presence
+    EP_GLOBAL Array1D<Real64> QHTRadSysSurf; // Current radiant heat flux at a surface due to the presence
     // of high temperature radiant heaters
-    thread_local Array1D<Real64> QHWBaseboardSurf; // Current radiant heat flux at a surface due to the presence
+    EP_GLOBAL Array1D<Real64> QHWBaseboardSurf; // Current radiant heat flux at a surface due to the presence
     // of hot water baseboard heaters
-    thread_local Array1D<Real64> QSteamBaseboardSurf; // Current radiant heat flux at a surface due to the presence
+    EP_GLOBAL Array1D<Real64> QSteamBaseboardSurf; // Current radiant heat flux at a surface due to the presence
     // of steam baseboard heaters
-    thread_local Array1D<Real64> QElecBaseboardSurf; // Current radiant heat flux at a surface due to the presence
+    EP_GLOBAL Array1D<Real64> QElecBaseboardSurf; // Current radiant heat flux at a surface due to the presence
     // of electric baseboard heaters
-    thread_local Array1D<Real64> QCoolingPanelSurf; // Current radiant heat flux at a surface due to the presence
+    EP_GLOBAL Array1D<Real64> QCoolingPanelSurf; // Current radiant heat flux at a surface due to the presence
     // of simple cooling panels
-    thread_local Array1D<Real64> QRadSurfAFNDuct;     // Current radiant heat flux at a surface due to radiation from AFN ducts
-    thread_local Array1D<Real64> QPoolSurfNumerator;  // Current pool heat flux impact at the surface (numerator of surface heat balance)
-    thread_local Array1D<Real64> PoolHeatTransCoefs;  // Current pool heat transfer coefficients (denominator of surface heat balance)
-    thread_local Array1D<Real64> RadSysTiHBConstCoef; // Inside heat balance coefficient that is constant
-    thread_local Array1D<Real64> RadSysTiHBToutCoef;  // Inside heat balance coefficient that modifies Toutside
-    thread_local Array1D<Real64> RadSysTiHBQsrcCoef;  // Inside heat balance coefficient that modifies source/sink
-    thread_local Array1D<Real64> RadSysToHBConstCoef; // Outside heat balance coefficient that is constant
-    thread_local Array1D<Real64> RadSysToHBTinCoef;   // Outside heat balance coefficient that modifies Toutside
-    thread_local Array1D<Real64> RadSysToHBQsrcCoef;  // Outside heat balance coefficient that modifies source/sink
+    EP_GLOBAL Array1D<Real64> QRadSurfAFNDuct;     // Current radiant heat flux at a surface due to radiation from AFN ducts
+    EP_GLOBAL Array1D<Real64> QPoolSurfNumerator;  // Current pool heat flux impact at the surface (numerator of surface heat balance)
+    EP_GLOBAL Array1D<Real64> PoolHeatTransCoefs;  // Current pool heat transfer coefficients (denominator of surface heat balance)
+    EP_GLOBAL Array1D<Real64> RadSysTiHBConstCoef; // Inside heat balance coefficient that is constant
+    EP_GLOBAL Array1D<Real64> RadSysTiHBToutCoef;  // Inside heat balance coefficient that modifies Toutside
+    EP_GLOBAL Array1D<Real64> RadSysTiHBQsrcCoef;  // Inside heat balance coefficient that modifies source/sink
+    EP_GLOBAL Array1D<Real64> RadSysToHBConstCoef; // Outside heat balance coefficient that is constant
+    EP_GLOBAL Array1D<Real64> RadSysToHBTinCoef;   // Outside heat balance coefficient that modifies Toutside
+    EP_GLOBAL Array1D<Real64> RadSysToHBQsrcCoef;  // Outside heat balance coefficient that modifies source/sink
 
     // Moisture variables to carry info from HB to the Zone Temp Predictor-Corrector for Fan System
-    thread_local Array1D<Real64> SumHmAW;   // SUM OF ZONE AREA*Moist CONVECTION COEFF*INSIDE Humidity Ratio
-    thread_local Array1D<Real64> SumHmARa;  // SUM OF ZONE AREA*Moist CONVECTION COEFF*Rho Air
-    thread_local Array1D<Real64> SumHmARaW; // SUM OF ZONE AREA*Moist CONVECTION COEFF*Rho Air* Inside Humidity Ration
-    thread_local Array1D<Real64> SumHmARaZ;
+    EP_GLOBAL Array1D<Real64> SumHmAW;   // SUM OF ZONE AREA*Moist CONVECTION COEFF*INSIDE Humidity Ratio
+    EP_GLOBAL Array1D<Real64> SumHmARa;  // SUM OF ZONE AREA*Moist CONVECTION COEFF*Rho Air
+    EP_GLOBAL Array1D<Real64> SumHmARaW; // SUM OF ZONE AREA*Moist CONVECTION COEFF*Rho Air* Inside Humidity Ration
+    EP_GLOBAL Array1D<Real64> SumHmARaZ;
 
-    thread_local Array1D<Real64> TempZoneThermostatSetPoint;
-    thread_local Array1D<Real64> AdapComfortCoolingSetPoint;
-    thread_local Array1D<Real64> ZoneThermostatSetPointHi;
-    thread_local Array1D<Real64> ZoneThermostatSetPointLo;
-    thread_local Array1D<Real64> ZoneThermostatSetPointHiAver;
-    thread_local Array1D<Real64> ZoneThermostatSetPointLoAver;
+    EP_GLOBAL Array1D<Real64> TempZoneThermostatSetPoint;
+    EP_GLOBAL Array1D<Real64> AdapComfortCoolingSetPoint;
+    EP_GLOBAL Array1D<Real64> ZoneThermostatSetPointHi;
+    EP_GLOBAL Array1D<Real64> ZoneThermostatSetPointLo;
+    EP_GLOBAL Array1D<Real64> ZoneThermostatSetPointHiAver;
+    EP_GLOBAL Array1D<Real64> ZoneThermostatSetPointLoAver;
 
-    thread_local Array1D<Real64> LoadCorrectionFactor; // PH 3/3/04
+    EP_GLOBAL Array1D<Real64> LoadCorrectionFactor; // PH 3/3/04
 
-    thread_local Array1D<Real64> AIRRAT; // "air power capacity"  PH 3/5/04
-    thread_local Array1D<Real64> ZTM1;   // zone air temperature at previous timestep
-    thread_local Array1D<Real64> ZTM2;   // zone air temperature at timestep T-2
-    thread_local Array1D<Real64> ZTM3;   // zone air temperature at previous T-3
+    EP_GLOBAL Array1D<Real64> AIRRAT; // "air power capacity"  PH 3/5/04
+    EP_GLOBAL Array1D<Real64> ZTM1;   // zone air temperature at previous timestep
+    EP_GLOBAL Array1D<Real64> ZTM2;   // zone air temperature at timestep T-2
+    EP_GLOBAL Array1D<Real64> ZTM3;   // zone air temperature at previous T-3
     // Hybrid Modeling
-    thread_local Array1D<Real64> PreviousMeasuredZT1;     // Hybrid model internal mass multiplier at previous timestep
-    thread_local Array1D<Real64> PreviousMeasuredZT2;     // Hybrid model internal mass multiplier at previous timestep
-    thread_local Array1D<Real64> PreviousMeasuredZT3;     // Hybrid model internal mass multiplier at previous timestep
-    thread_local Array1D<Real64> PreviousMeasuredHumRat1; // Hybrid model zone humidity ratio at previous timestep
-    thread_local Array1D<Real64> PreviousMeasuredHumRat2; // Hybrid model zone humidity ratio at previous timestep
-    thread_local Array1D<Real64> PreviousMeasuredHumRat3; // Hybrid model zone humidity ratio at previous timestep
+    EP_GLOBAL Array1D<Real64> PreviousMeasuredZT1;     // Hybrid model internal mass multiplier at previous timestep
+    EP_GLOBAL Array1D<Real64> PreviousMeasuredZT2;     // Hybrid model internal mass multiplier at previous timestep
+    EP_GLOBAL Array1D<Real64> PreviousMeasuredZT3;     // Hybrid model internal mass multiplier at previous timestep
+    EP_GLOBAL Array1D<Real64> PreviousMeasuredHumRat1; // Hybrid model zone humidity ratio at previous timestep
+    EP_GLOBAL Array1D<Real64> PreviousMeasuredHumRat2; // Hybrid model zone humidity ratio at previous timestep
+    EP_GLOBAL Array1D<Real64> PreviousMeasuredHumRat3; // Hybrid model zone humidity ratio at previous timestep
     // Exact and Euler solutions
-    thread_local Array1D<Real64> ZoneTMX; // TEMPORARY ZONE TEMPERATURE TO TEST CONVERGENCE in Exact and Euler method
-    thread_local Array1D<Real64> ZoneTM2; // TEMPORARY ZONE TEMPERATURE at timestep t-2 in Exact and Euler method
-    thread_local Array1D<Real64> ZoneT1;  // Zone temperature at the previous time step used in Exact and Euler method
-    thread_local Array1D<Real64> ZoneWMX; // TEMPORARY ZONE TEMPERATURE TO TEST CONVERGENCE in Exact and Euler method
-    thread_local Array1D<Real64> ZoneWM2; // TEMPORARY ZONE TEMPERATURE at timestep t-2 in Exact and Euler method
-    thread_local Array1D<Real64> ZoneW1;  // Zone temperature at the previous time step used in Exact and Euler method
+    EP_GLOBAL Array1D<Real64> ZoneTMX; // TEMPORARY ZONE TEMPERATURE TO TEST CONVERGENCE in Exact and Euler method
+    EP_GLOBAL Array1D<Real64> ZoneTM2; // TEMPORARY ZONE TEMPERATURE at timestep t-2 in Exact and Euler method
+    EP_GLOBAL Array1D<Real64> ZoneT1;  // Zone temperature at the previous time step used in Exact and Euler method
+    EP_GLOBAL Array1D<Real64> ZoneWMX; // TEMPORARY ZONE TEMPERATURE TO TEST CONVERGENCE in Exact and Euler method
+    EP_GLOBAL Array1D<Real64> ZoneWM2; // TEMPORARY ZONE TEMPERATURE at timestep t-2 in Exact and Euler method
+    EP_GLOBAL Array1D<Real64> ZoneW1;  // Zone temperature at the previous time step used in Exact and Euler method
 
-    thread_local Array1D_int TempControlType;
-    thread_local Array1D_int ComfortControlType;
+    EP_GLOBAL Array1D_int TempControlType;
+    EP_GLOBAL Array1D_int ComfortControlType;
 
     // Object Data
-    thread_local Array1D<ZoneComfortControlsFangerData> ZoneComfortControlsFanger;
+    EP_GLOBAL Array1D<ZoneComfortControlsFangerData> ZoneComfortControlsFanger;
 
     void clear_state()
     {

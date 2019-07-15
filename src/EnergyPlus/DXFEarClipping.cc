@@ -102,7 +102,7 @@ namespace DXFEarClipping {
 
     // Module variable declarations:
     // na
-    thread_local bool trackit(false);
+    EP_GLOBAL bool trackit(false);
     // Subroutine specifications for module <module_name>:
 
     // rest of routines are private.
@@ -230,7 +230,7 @@ namespace DXFEarClipping {
 
         // Subroutine parameter definitions:
         Real64 const point_tolerance(0.00001);
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // Interface block specifications:
         // na
@@ -271,7 +271,7 @@ namespace DXFEarClipping {
         // unused  double precision :: ang
         // unused  double precision :: val
         std::string line;
-        thread_local static int errcount(0);
+        EP_GLOBAL static int errcount(0);
 
         // Object Data
         Array1D<Vector_2d> vertex(nsides);
@@ -579,7 +579,7 @@ namespace DXFEarClipping {
         // Subroutine argument definitions:
 
         // Subroutine parameter definitions:
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // Interface block specifications:
         // na

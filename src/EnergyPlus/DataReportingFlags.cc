@@ -84,16 +84,16 @@ namespace DataReportingFlags {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumOfWarmupDays(0); // reinitialized for each environment.
-    thread_local std::string cWarmupDay;
-    thread_local bool DisplayPerfSimulationFlag(false);        // True when "Performing Simulation" should be displayed
-    thread_local bool DoWeatherInitReporting(false);           // Init reporting -- items that go onto OutputFileInits
-    thread_local bool PrintEndDataDictionary(false);           // Flag for printing "End of Data Dictionary" on output files
-    thread_local bool IgnoreInteriorWindowTransmission(false); // True when section "IgnoreInteriorWindowTransmission" is entered
-    thread_local bool MakeMirroredDetachedShading(true);       // True (default) when Detached Shading Surfaces should be "mirrored"
-    thread_local bool MakeMirroredAttachedShading(true);       // True (default) when Attached Shading Surfaces should be "mirrored"
-    thread_local bool DebugOutput(false);
-    thread_local bool EvenDuringWarmup(false);
+    EP_GLOBAL int NumOfWarmupDays(0); // reinitialized for each environment.
+    EP_GLOBAL std::string cWarmupDay;
+    EP_GLOBAL bool DisplayPerfSimulationFlag(false);        // True when "Performing Simulation" should be displayed
+    EP_GLOBAL bool DoWeatherInitReporting(false);           // Init reporting -- items that go onto OutputFileInits
+    EP_GLOBAL bool PrintEndDataDictionary(false);           // Flag for printing "End of Data Dictionary" on output files
+    EP_GLOBAL bool IgnoreInteriorWindowTransmission(false); // True when section "IgnoreInteriorWindowTransmission" is entered
+    EP_GLOBAL bool MakeMirroredDetachedShading(true);       // True (default) when Detached Shading Surfaces should be "mirrored"
+    EP_GLOBAL bool MakeMirroredAttachedShading(true);       // True (default) when Attached Shading Surfaces should be "mirrored"
+    EP_GLOBAL bool DebugOutput(false);
+    EP_GLOBAL bool EvenDuringWarmup(false);
 
 } // namespace DataReportingFlags
 

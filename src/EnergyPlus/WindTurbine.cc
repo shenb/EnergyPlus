@@ -110,25 +110,25 @@ namespace WindTurbine {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const HAWT(1); // 'HorizontalAxisWindTurbine'
-    thread_local int const VAWT(2); // 'VerticalAxisWindTurbine'
+    EP_GLOBAL int const HAWT(1); // 'HorizontalAxisWindTurbine'
+    EP_GLOBAL int const VAWT(2); // 'VerticalAxisWindTurbine'
 
-    thread_local int const FSFP(1); // 'FixedSpeedFixedPitch'
-    thread_local int const FSVP(2); // 'FixedSpeedVariablePitch'
-    thread_local int const VSFP(3); // 'VariableSpeedFixedPitch'
-    thread_local int const VSVP(4); // 'VariableSpeedVariablePitch'
+    EP_GLOBAL int const FSFP(1); // 'FixedSpeedFixedPitch'
+    EP_GLOBAL int const FSVP(2); // 'FixedSpeedVariablePitch'
+    EP_GLOBAL int const VSFP(3); // 'VariableSpeedFixedPitch'
+    EP_GLOBAL int const VSVP(4); // 'VariableSpeedVariablePitch'
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLES DECLARATIONS:
-    thread_local int NumWindTurbines(0); // Total wind turbine statements in inputs
+    EP_GLOBAL int NumWindTurbines(0); // Total wind turbine statements in inputs
 
     // Subroutine Specifications for the Heat Balance Module
 
     // Object Data
-    thread_local Array1D<WindTurbineParams> WindTurbineSys;
+    EP_GLOBAL Array1D<WindTurbineParams> WindTurbineSys;
 
     // Functions
 
@@ -154,7 +154,7 @@ namespace WindTurbine {
         using General::TrimSigDigits;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool GetInputFlag(true);
+        EP_GLOBAL static bool GetInputFlag(true);
         int WindTurbineNum;
         // Obtains and allocates heat balance related parameters from input
 
@@ -252,7 +252,7 @@ namespace WindTurbine {
         using ScheduleManager::GetScheduleIndex;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const CurrentModuleObject("Generator:WindTurbine");
+        EP_GLOBAL static std::string const CurrentModuleObject("Generator:WindTurbine");
         Real64 const SysEffDefault(0.835); // Default value of overall system efficiency
         Real64 const MaxTSR(12.0);         // Maximum tip speed ratio
         Real64 const DefaultPC(0.25);      // Default power coefficient
@@ -260,7 +260,7 @@ namespace WindTurbine {
         Real64 const DefaultH(50.0);       // Default of height for local wind speed
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool ErrorsFound(false); // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false); // If errors detected in input
         int WindTurbineNum;             // Wind turbine number
         int NumAlphas;                  // Number of Alphas for each GetobjectItem call
         int NumNumbers;                 // Number of Numbers for each GetobjectItem call
@@ -693,8 +693,8 @@ namespace WindTurbine {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static char const TabChr('\t'); // Tab character
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static char const TabChr('\t'); // Tab character
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -703,7 +703,7 @@ namespace WindTurbine {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyOneTimeFlag(true);
+        EP_GLOBAL static bool MyOneTimeFlag(true);
         int ReadStatus;               // Reading status of stat file
         int statFile;                 // Weather Stat File
         std::string::size_type lnPtr; // scan pointer for Line input
@@ -713,7 +713,7 @@ namespace WindTurbine {
         bool warningShown;            // true if the <365 warning has already been shown
         std::string lineIn;
         Array1D<Real64> MonthWS(12);
-        thread_local static Real64 AnnualTMYWS(0.0); // Annual average wind speed in stat file
+        EP_GLOBAL static Real64 AnnualTMYWS(0.0); // Annual average wind speed in stat file
         Real64 LocalTMYWS;              // Annual average wind speed at the rotor height
 
         // Estimate average annual wind speed once

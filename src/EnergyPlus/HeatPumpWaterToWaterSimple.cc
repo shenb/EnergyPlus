@@ -116,20 +116,20 @@ namespace HeatPumpWaterToWaterSimple {
     using namespace DataLoopNode;
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local std::string const HPEqFitHeating("HeatPump:WatertoWater:EquationFit:Heating");
-    thread_local std::string const HPEqFitHeatingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:HEATING");
-    thread_local std::string const HPEqFitCooling("HeatPump:WatertoWater:EquationFit:Cooling");
-    thread_local std::string const HPEqFitCoolingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:COOLING");
+    EP_GLOBAL std::string const HPEqFitHeating("HeatPump:WatertoWater:EquationFit:Heating");
+    EP_GLOBAL std::string const HPEqFitHeatingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:HEATING");
+    EP_GLOBAL std::string const HPEqFitCooling("HeatPump:WatertoWater:EquationFit:Cooling");
+    EP_GLOBAL std::string const HPEqFitCoolingUC("HEATPUMP:WATERTOWATER:EQUATIONFIT:COOLING");
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumGSHPs(0); // Number of GSHPs specified in input
+    EP_GLOBAL int NumGSHPs(0); // Number of GSHPs specified in input
     namespace {
-        thread_local bool GetInputFlag(true); // then TRUE, calls subroutine to read input file.
+        EP_GLOBAL bool GetInputFlag(true); // then TRUE, calls subroutine to read input file.
     }                            // namespace
 
     // Object Data
-    thread_local Array1D<GshpSpecs> GSHP;
-    thread_local std::unordered_map<std::string, std::string> HeatPumpWaterUniqueNames;
+    EP_GLOBAL Array1D<GshpSpecs> GSHP;
+    EP_GLOBAL std::unordered_map<std::string, std::string> HeatPumpWaterUniqueNames;
 
     void GshpSpecs::clear_state()
     {
@@ -260,7 +260,7 @@ namespace HeatPumpWaterToWaterSimple {
         int NumNums;     // Number of elements in the numeric array
         int IOStat;      // IO Status when calling get input subroutine
 
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
 
         NumCoolCoil = inputProcessor->getNumObjectsFound(HPEqFitCoolingUC);
         NumHeatCoil = inputProcessor->getNumObjectsFound(HPEqFitHeatingUC);
@@ -686,15 +686,15 @@ namespace HeatPumpWaterToWaterSimple {
         using PlantUtilities::SetComponentFlowRate;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitGshp");
+        EP_GLOBAL static std::string const RoutineName("InitGshp");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int LoadSideInletNode;             // Load Side Inlet Node
         int LoadSideOutletNode;            // Load Side Outlet Node
         int SourceSideInletNode;           // Source Side Inlet Node
         int SourceSideOutletNode;          // Source Side Outlet Node
-        thread_local static Real64 CurrentSimTime(0.0); // Current Simulation Time
-        thread_local static Real64 PrevSimTime(0.0);    // Previous Simulation Time
+        EP_GLOBAL static Real64 CurrentSimTime(0.0); // Current Simulation Time
+        EP_GLOBAL static Real64 PrevSimTime(0.0);    // Previous Simulation Time
 
         int LoopNum;
         int LoopSideNum;
@@ -937,7 +937,7 @@ namespace HeatPumpWaterToWaterSimple {
 
         // do sizing related calculations and reporting for cooling heat pumps
         bool errorsFound(false);
-        thread_local static std::string const RoutineName("sizeCoolingWaterToWaterHP");
+        EP_GLOBAL static std::string const RoutineName("sizeCoolingWaterToWaterHP");
         Real64 tmpLoadSideVolFlowRate = this->RatedLoadVolFlowCool;
         Real64 tmpSourceSideVolFlowRate = this->RatedSourceVolFlowCool;
         Real64 tmpCoolingCap = this->RatedCapCool;
@@ -1264,7 +1264,7 @@ namespace HeatPumpWaterToWaterSimple {
 
         // do sizing related calculations and reporting for heating heat pumps
         bool errorsFound(false);
-        thread_local static std::string const RoutineName("sizeHeatingWaterToWaterHP");
+        EP_GLOBAL static std::string const RoutineName("sizeHeatingWaterToWaterHP");
         Real64 tmpLoadSideVolFlowRate = this->RatedLoadVolFlowHeat;
         Real64 tmpSourceSideVolFlowRate = this->RatedSourceVolFlowHeat;
         Real64 tmpHeatingCap = this->RatedCapHeat;
@@ -1608,7 +1608,7 @@ namespace HeatPumpWaterToWaterSimple {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const CelsiustoKelvin(KelvinConv); // Conversion from Celsius to Kelvin
         Real64 const Tref(283.15);                // Reference Temperature for performance curves,10C [K]
-        thread_local static std::string const RoutineName("CalcWatertoWaterHPCooling");
+        EP_GLOBAL static std::string const RoutineName("CalcWatertoWaterHPCooling");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CoolCapRated;               // Rated Cooling Capacity [W]
@@ -1790,7 +1790,7 @@ namespace HeatPumpWaterToWaterSimple {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const CelsiustoKelvin(KelvinConv); // Conversion from Celsius to Kelvin
         Real64 const Tref(283.15);                // Reference Temperature for performance curves,10C [K]
-        thread_local static std::string const RoutineName("CalcWatertoWaterHPHeating");
+        EP_GLOBAL static std::string const RoutineName("CalcWatertoWaterHPHeating");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 

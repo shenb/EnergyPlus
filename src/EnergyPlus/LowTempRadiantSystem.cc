@@ -159,73 +159,73 @@ namespace LowTempRadiantSystem {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // System types:
-    thread_local int const HydronicSystem(1);     // Variable flow hydronic radiant system
-    thread_local int const ConstantFlowSystem(2); // Constant flow, variable (controlled) temperature radiant system
-    thread_local int const ElectricSystem(3);     // Electric resistance radiant heating system
-    thread_local std::string const cHydronicSystem("ZoneHVAC:LowTemperatureRadiant:VariableFlow");
-    thread_local std::string const cConstantFlowSystem("ZoneHVAC:LowTemperatureRadiant:ConstantFlow");
-    thread_local std::string const cElectricSystem("ZoneHVAC:LowTemperatureRadiant:Electric");
+    EP_GLOBAL int const HydronicSystem(1);     // Variable flow hydronic radiant system
+    EP_GLOBAL int const ConstantFlowSystem(2); // Constant flow, variable (controlled) temperature radiant system
+    EP_GLOBAL int const ElectricSystem(3);     // Electric resistance radiant heating system
+    EP_GLOBAL std::string const cHydronicSystem("ZoneHVAC:LowTemperatureRadiant:VariableFlow");
+    EP_GLOBAL std::string const cConstantFlowSystem("ZoneHVAC:LowTemperatureRadiant:ConstantFlow");
+    EP_GLOBAL std::string const cElectricSystem("ZoneHVAC:LowTemperatureRadiant:Electric");
     // Operating modes:
-    thread_local int const NotOperating(0); // Parameter for use with OperatingMode variable, set for heating
-    thread_local int const HeatingMode(1);  // Parameter for use with OperatingMode variable, set for heating
-    thread_local int const CoolingMode(2);  // Parameter for use with OperatingMode variable, set for cooling
+    EP_GLOBAL int const NotOperating(0); // Parameter for use with OperatingMode variable, set for heating
+    EP_GLOBAL int const HeatingMode(1);  // Parameter for use with OperatingMode variable, set for heating
+    EP_GLOBAL int const CoolingMode(2);  // Parameter for use with OperatingMode variable, set for cooling
     // Control types:
-    thread_local int const MATControl(1);       // Controls system using mean air temperature
-    thread_local int const MRTControl(2);       // Controls system using mean radiant temperature
-    thread_local int const OperativeControl(3); // Controls system using operative temperature
-    thread_local int const ODBControl(4);       // Controls system using outside air dry-bulb temperature
-    thread_local int const OWBControl(5);       // Controls system using outside air wet-bulb temperature
+    EP_GLOBAL int const MATControl(1);       // Controls system using mean air temperature
+    EP_GLOBAL int const MRTControl(2);       // Controls system using mean radiant temperature
+    EP_GLOBAL int const OperativeControl(3); // Controls system using operative temperature
+    EP_GLOBAL int const ODBControl(4);       // Controls system using outside air dry-bulb temperature
+    EP_GLOBAL int const OWBControl(5);       // Controls system using outside air wet-bulb temperature
     // Condensation control types:
-    thread_local int const CondCtrlNone(0);      // Condensation control--none, so system never shuts down
-    thread_local int const CondCtrlSimpleOff(1); // Condensation control--simple off, system shuts off when condensation predicted
-    thread_local int const CondCtrlVariedOff(2); // Condensation control--variable off, system modulates to keep running if possible
+    EP_GLOBAL int const CondCtrlNone(0);      // Condensation control--none, so system never shuts down
+    EP_GLOBAL int const CondCtrlSimpleOff(1); // Condensation control--simple off, system shuts off when condensation predicted
+    EP_GLOBAL int const CondCtrlVariedOff(2); // Condensation control--variable off, system modulates to keep running if possible
     // Number of Circuits per Surface Calculation Method
-    thread_local int const OneCircuit(1);          // there is 1 circuit per surface
-    thread_local int const CalculateFromLength(2); // The number of circuits is TubeLength*SurfaceFlowFrac / CircuitLength
-    thread_local std::string const OnePerSurf("OnePerSurface");
-    thread_local std::string const CalcFromLength("CalculateFromCircuitLength");
+    EP_GLOBAL int const OneCircuit(1);          // there is 1 circuit per surface
+    EP_GLOBAL int const CalculateFromLength(2); // The number of circuits is TubeLength*SurfaceFlowFrac / CircuitLength
+    EP_GLOBAL std::string const OnePerSurf("OnePerSurface");
+    EP_GLOBAL std::string const CalcFromLength("CalculateFromCircuitLength");
     // Limit temperatures to indicate that a system cannot heat or cannot cool
-    thread_local Real64 LowTempHeating(-200.0); // Used to indicate that a user does not have a heating control temperature
-    thread_local Real64 HighTempCooling(200.0); // Used to indicate that a user does not have a cooling control temperature
+    EP_GLOBAL Real64 LowTempHeating(-200.0); // Used to indicate that a user does not have a heating control temperature
+    EP_GLOBAL Real64 HighTempCooling(200.0); // Used to indicate that a user does not have a cooling control temperature
 
-    thread_local static std::string const fluidNameWater("WATER");
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const fluidNameWater("WATER");
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
     // Standard, run-of-the-mill variables...
-    thread_local bool GetInputFlag = true;
-    thread_local int NumOfHydrLowTempRadSys(0);        // Number of hydronic low tempererature radiant systems
-    thread_local int NumOfCFloLowTempRadSys(0);        // Number of constant flow (hydronic) low tempererature radiant systems
-    thread_local int NumOfElecLowTempRadSys(0);        // Number of electric low tempererature radiant systems
-    thread_local int CFloCondIterNum(0);               // Number of iterations for a constant flow radiant system--controls variable cond sys ctrl
-    thread_local int TotalNumOfRadSystems(0);          // Total number of low temperature radiant systems
-    thread_local int OperatingMode(0);                 // Used to keep track of whether system is in heating or cooling mode
-    thread_local int MaxCloNumOfSurfaces(0);           // Used to set allocate size in CalcClo routine
-    thread_local bool VarOffCond(false);               // Set to true when in cooling for constant flow system + variable off condensation predicted
-    thread_local bool FirstTimeInit(true);             // Set to true for first pass through init routine then set to false
-    thread_local Real64 LoopReqTemp(0.0);              // Temperature required at the inlet of the pump (from the loop) to meet control logic
-    thread_local Array1D<Real64> QRadSysSrcAvg;        // Average source over the time step for a particular radiant surface
-    thread_local Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
+    EP_GLOBAL bool GetInputFlag = true;
+    EP_GLOBAL int NumOfHydrLowTempRadSys(0);        // Number of hydronic low tempererature radiant systems
+    EP_GLOBAL int NumOfCFloLowTempRadSys(0);        // Number of constant flow (hydronic) low tempererature radiant systems
+    EP_GLOBAL int NumOfElecLowTempRadSys(0);        // Number of electric low tempererature radiant systems
+    EP_GLOBAL int CFloCondIterNum(0);               // Number of iterations for a constant flow radiant system--controls variable cond sys ctrl
+    EP_GLOBAL int TotalNumOfRadSystems(0);          // Total number of low temperature radiant systems
+    EP_GLOBAL int OperatingMode(0);                 // Used to keep track of whether system is in heating or cooling mode
+    EP_GLOBAL int MaxCloNumOfSurfaces(0);           // Used to set allocate size in CalcClo routine
+    EP_GLOBAL bool VarOffCond(false);               // Set to true when in cooling for constant flow system + variable off condensation predicted
+    EP_GLOBAL bool FirstTimeInit(true);             // Set to true for first pass through init routine then set to false
+    EP_GLOBAL Real64 LoopReqTemp(0.0);              // Temperature required at the inlet of the pump (from the loop) to meet control logic
+    EP_GLOBAL Array1D<Real64> QRadSysSrcAvg;        // Average source over the time step for a particular radiant surface
+    EP_GLOBAL Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QRadSysSrcAvg locally
-    thread_local Array1D<Real64> LastQRadSysSrc;     // Need to keep the last value in case we are still iterating
-    thread_local Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL Array1D<Real64> LastQRadSysSrc;     // Need to keep the last value in case we are still iterating
+    EP_GLOBAL Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
     // Autosizing variables
-    thread_local Array1D_bool MySizeFlagHydr;
-    thread_local Array1D_bool MySizeFlagCFlo;
-    thread_local Array1D_bool MySizeFlagElec;
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool MySizeFlagHydr;
+    EP_GLOBAL Array1D_bool MySizeFlagCFlo;
+    EP_GLOBAL Array1D_bool MySizeFlagElec;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // Object Data
-    thread_local Array1D<HydronicRadiantSystemData> HydrRadSys;
-    thread_local Array1D<ConstantFlowRadiantSystemData> CFloRadSys;
-    thread_local Array1D<ElectricRadiantSystemData> ElecRadSys;
-    thread_local Array1D<RadSysTypeData> RadSysTypes;
-    thread_local std::unordered_map<std::string, std::string> LowTempRadUniqueNames;
-    thread_local Array1D<ElecRadSysNumericFieldData> ElecRadSysNumericFields;
-    thread_local Array1D<HydronicRadiantSysNumericFieldData> HydronicRadiantSysNumericFields;
+    EP_GLOBAL Array1D<HydronicRadiantSystemData> HydrRadSys;
+    EP_GLOBAL Array1D<ConstantFlowRadiantSystemData> CFloRadSys;
+    EP_GLOBAL Array1D<ElectricRadiantSystemData> ElecRadSys;
+    EP_GLOBAL Array1D<RadSysTypeData> RadSysTypes;
+    EP_GLOBAL std::unordered_map<std::string, std::string> LowTempRadUniqueNames;
+    EP_GLOBAL Array1D<ElecRadSysNumericFieldData> ElecRadSysNumericFields;
+    EP_GLOBAL Array1D<HydronicRadiantSysNumericFieldData> HydronicRadiantSysNumericFields;
 
     // Functions
 
@@ -377,15 +377,15 @@ namespace LowTempRadiantSystem {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const MinThrottlingRange(0.5); // Smallest throttling range allowed in degrees Celsius
-        thread_local static std::string const MeanAirTemperature("MeanAirTemperature");
-        thread_local static std::string const MeanRadiantTemperature("MeanRadiantTemperature");
-        thread_local static std::string const OperativeTemperature("OperativeTemperature");
-        thread_local static std::string const OutsideAirDryBulbTemperature("OutdoorDryBulbTemperature");
-        thread_local static std::string const OutsideAirWetBulbTemperature("OutdoorWetBulbTemperature");
-        thread_local static std::string const RoutineName("GetLowTempRadiantSystem: "); // include trailing blank space
-        thread_local static std::string const Off("Off");
-        thread_local static std::string const SimpleOff("SimpleOff");
-        thread_local static std::string const VariableOff("VariableOff");
+        EP_GLOBAL static std::string const MeanAirTemperature("MeanAirTemperature");
+        EP_GLOBAL static std::string const MeanRadiantTemperature("MeanRadiantTemperature");
+        EP_GLOBAL static std::string const OperativeTemperature("OperativeTemperature");
+        EP_GLOBAL static std::string const OutsideAirDryBulbTemperature("OutdoorDryBulbTemperature");
+        EP_GLOBAL static std::string const OutsideAirWetBulbTemperature("OutdoorWetBulbTemperature");
+        EP_GLOBAL static std::string const RoutineName("GetLowTempRadiantSystem: "); // include trailing blank space
+        EP_GLOBAL static std::string const Off("Off");
+        EP_GLOBAL static std::string const SimpleOff("SimpleOff");
+        EP_GLOBAL static std::string const VariableOff("VariableOff");
         int const iHeatCAPMAlphaNum(5);             // get input index to Low Temperature Radiant system heating capacity sizing method
         int const iHeatDesignCapacityNumericNum(1); // get input index to Low Temperature Radiant system electric heating capacity
         int const iHeatCapacityPerFloorAreaNumericNum(
@@ -400,7 +400,7 @@ namespace LowTempRadiantSystem {
         Array1D_string cNumericFields;         // Numeric field names
         Array1D_bool AssignedAsRadiantSurface; // Set to true when a surface is part of a radiant system
         int CheckSurfNum;                      // Surface number to check to see if it has already been used by a radiant system
-        thread_local static bool ErrorsFound(false);        // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false);        // Set to true if errors in input, fatal at end of routine
         int GlycolIndex;                       // Index of 'Water' in glycol data structure
         int IOStatus;                          // Used in GetObjectItem
         int Item;                              // Item to be "gotten"
@@ -1675,8 +1675,8 @@ namespace LowTempRadiantSystem {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const ZeroTol(0.0000001); // Smallest non-zero value allowed
-        thread_local static std::string const RoutineName("InitLowTempRadiantSystem");
-        thread_local static ObjexxFCL::gio::Fmt fmtF102("(F10.2)");
+        EP_GLOBAL static std::string const RoutineName("InitLowTempRadiantSystem");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtF102("(F10.2)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CurrentFlowSchedule; // Schedule value for flow fraction in a constant flow radiant system
@@ -1686,15 +1686,15 @@ namespace LowTempRadiantSystem {
         int SurfNum;                // Intermediate variable for keeping track of the surface number
         Real64 TotalEffic;          // Intermediate calculation variable for total pump efficiency
         int ZoneNum;                // Intermediate variable for keeping track of the zone number
-        thread_local static Array1D_bool MyEnvrnFlagHydr;
-        thread_local static Array1D_bool MyEnvrnFlagCFlo;
-        thread_local static Array1D_bool MyEnvrnFlagElec;
-        thread_local static bool MyEnvrnFlagGeneral(true);
-        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        EP_GLOBAL static Array1D_bool MyEnvrnFlagHydr;
+        EP_GLOBAL static Array1D_bool MyEnvrnFlagCFlo;
+        EP_GLOBAL static Array1D_bool MyEnvrnFlagElec;
+        EP_GLOBAL static bool MyEnvrnFlagGeneral(true);
+        EP_GLOBAL static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;
-        thread_local static bool MyOneTimeFlag(true); // Initialization flag
-        thread_local static Array1D_bool MyPlantScanFlagHydr;
-        thread_local static Array1D_bool MyPlantScanFlagCFlo;
+        EP_GLOBAL static bool MyOneTimeFlag(true); // Initialization flag
+        EP_GLOBAL static Array1D_bool MyPlantScanFlagHydr;
+        EP_GLOBAL static Array1D_bool MyPlantScanFlagCFlo;
         Real64 mdot; // local fluid mass flow rate
         Real64 rho;  // local fluid density
         bool errFlag;
@@ -2287,11 +2287,11 @@ namespace LowTempRadiantSystem {
         using ReportSizingManager::RequestSizing;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeLowTempRadiantSystem");
-        thread_local static int const OFF = 0;
-        thread_local static int const ClgHtg = 1;
-        thread_local static int const ClgOnly = 2;
-        thread_local static int const HtgOnly = 3;
+        EP_GLOBAL static std::string const RoutineName("SizeLowTempRadiantSystem");
+        EP_GLOBAL static int const OFF = 0;
+        EP_GLOBAL static int const ClgHtg = 1;
+        EP_GLOBAL static int const ClgOnly = 2;
+        EP_GLOBAL static int const HtgOnly = 3;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizHeatNum(0);    // index of plant sizing object for 1st heating loop
@@ -3775,7 +3775,7 @@ namespace LowTempRadiantSystem {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const LowCpFluidValue(100.0); // lowest allowed Cp fluid value (to avoid dividing by zero) [J/kg-K]
-        thread_local static std::string const RoutineName("CalcLowTempCFloRadiantSystem");
+        EP_GLOBAL static std::string const RoutineName("CalcLowTempCFloRadiantSystem");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CpFluid;         // Specific heat of the fluid in the radiant system
@@ -4323,7 +4323,7 @@ namespace LowTempRadiantSystem {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const TempCheckLimit(0.1); // Maximum allowed temperature difference between outlet temperature calculations
         Real64 const ZeroSystemResp(0.1); // Response below which the system response is really zero
-        thread_local static std::string const RoutineName("CalcLowTempCFloRadSysComps");
+        EP_GLOBAL static std::string const RoutineName("CalcLowTempCFloRadSysComps");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ConstrNum;                // Index for construction number in Construct derived type
@@ -4363,12 +4363,12 @@ namespace LowTempRadiantSystem {
         Real64 Cl;
         // For more info on Ca through Cl, see comments below
 
-        thread_local static Array1D<Real64> Ckj; // Coefficients for individual surfaces within a radiant system
-        thread_local static Array1D<Real64> Cmj;
-        thread_local static Array1D<Real64> WaterTempOut; // Array of outlet water temperatures for
+        EP_GLOBAL static Array1D<Real64> Ckj; // Coefficients for individual surfaces within a radiant system
+        EP_GLOBAL static Array1D<Real64> Cmj;
+        EP_GLOBAL static Array1D<Real64> WaterTempOut; // Array of outlet water temperatures for
                                              // each surface in the radiant system
 
-        thread_local static bool FirstTimeFlag(true); // for setting size of Ckj, Cmj, WaterTempOut arrays
+        EP_GLOBAL static bool FirstTimeFlag(true); // for setting size of Ckj, Cmj, WaterTempOut arrays
 
         // First, apply heat exchanger logic to find the heat source/sink to the system.
         // This involves finding out the heat transfer characteristics of the hydronic
@@ -4954,7 +4954,7 @@ namespace LowTempRadiantSystem {
         using PlantUtilities::SetComponentFlowRate;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("UpdateLowTempRadiantSystem");
+        EP_GLOBAL static std::string const RoutineName("UpdateLowTempRadiantSystem");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 BypassMassFlow;  // Local bypass for a constant flow radiant system (could have recirculation and/or bypass)
@@ -5179,8 +5179,8 @@ namespace LowTempRadiantSystem {
         Real64 const LowerRangeLimit(-300.0); // Low error trigger limit for when model is not working
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool WarnTooLow(false);
-        thread_local static bool WarnTooHigh(false);
+        EP_GLOBAL static bool WarnTooLow(false);
+        EP_GLOBAL static bool WarnTooHigh(false);
 
         WarnTooLow = false;
         WarnTooHigh = false;
@@ -5318,9 +5318,9 @@ namespace LowTempRadiantSystem {
         Real64 const MaxLaminarRe(2300.0); // Maximum Reynolds number for laminar flow
         int const NumOfPropDivisions(13);
         Real64 const MaxExpPower(50.0); // Maximum power after which EXP argument would be zero for DP variables
-        thread_local static Array1D<Real64> const Temps(
+        EP_GLOBAL static Array1D<Real64> const Temps(
             NumOfPropDivisions, {1.85, 6.85, 11.85, 16.85, 21.85, 26.85, 31.85, 36.85, 41.85, 46.85, 51.85, 56.85, 61.85}); // Temperature, in C
-        thread_local static Array1D<Real64> const Mu(NumOfPropDivisions,
+        EP_GLOBAL static Array1D<Real64> const Mu(NumOfPropDivisions,
                                         {0.001652,
                                          0.001422,
                                          0.001225,
@@ -5334,11 +5334,11 @@ namespace LowTempRadiantSystem {
                                          0.000528,
                                          0.000489,
                                          0.000453}); // Viscosity, in Ns/m2
-        thread_local static Array1D<Real64> const Conductivity(
+        EP_GLOBAL static Array1D<Real64> const Conductivity(
             NumOfPropDivisions, {0.574, 0.582, 0.590, 0.598, 0.606, 0.613, 0.620, 0.628, 0.634, 0.640, 0.645, 0.650, 0.656}); // Conductivity, in W/mK
-        thread_local static Array1D<Real64> const Pr(
+        EP_GLOBAL static Array1D<Real64> const Pr(
             NumOfPropDivisions, {12.22, 10.26, 8.81, 7.56, 6.62, 5.83, 5.20, 4.62, 4.16, 3.77, 3.42, 3.15, 2.88}); // Prandtl number (dimensionless)
-        thread_local static std::string const RoutineName("CalcRadSysHXEffectTerm");
+        EP_GLOBAL static std::string const RoutineName("CalcRadSysHXEffectTerm");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Index;
@@ -5581,7 +5581,7 @@ namespace LowTempRadiantSystem {
         using FluidProperties::GetSpecificHeatGlycol;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReportLowTempRadiantSystem");
+        EP_GLOBAL static std::string const RoutineName("ReportLowTempRadiantSystem");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 CpFluid;          // Specific heat of the fluid in the radiant system

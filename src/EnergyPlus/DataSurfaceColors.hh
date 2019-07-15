@@ -61,36 +61,36 @@ namespace DataSurfaceColors {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const NumColors;
-    thread_local extern int const ColorNo_Text;
-    thread_local extern int const ColorNo_Wall;
-    thread_local extern int const ColorNo_Window;
-    thread_local extern int const ColorNo_GlassDoor;
-    thread_local extern int const ColorNo_Door;
-    thread_local extern int const ColorNo_Floor;
-    thread_local extern int const ColorNo_Roof;
-    thread_local extern int const ColorNo_ShdDetBldg;
-    thread_local extern int const ColorNo_ShdDetFix;
-    thread_local extern int const ColorNo_ShdAtt;
-    thread_local extern int const ColorNo_PV;
-    thread_local extern int const ColorNo_TDDDome;
-    thread_local extern int const ColorNo_TDDDiffuser;
-    thread_local extern int const ColorNo_DaylSensor1;
-    thread_local extern int const ColorNo_DaylSensor2;
+    EP_GLOBAL extern int const NumColors;
+    EP_GLOBAL extern int const ColorNo_Text;
+    EP_GLOBAL extern int const ColorNo_Wall;
+    EP_GLOBAL extern int const ColorNo_Window;
+    EP_GLOBAL extern int const ColorNo_GlassDoor;
+    EP_GLOBAL extern int const ColorNo_Door;
+    EP_GLOBAL extern int const ColorNo_Floor;
+    EP_GLOBAL extern int const ColorNo_Roof;
+    EP_GLOBAL extern int const ColorNo_ShdDetBldg;
+    EP_GLOBAL extern int const ColorNo_ShdDetFix;
+    EP_GLOBAL extern int const ColorNo_ShdAtt;
+    EP_GLOBAL extern int const ColorNo_PV;
+    EP_GLOBAL extern int const ColorNo_TDDDome;
+    EP_GLOBAL extern int const ColorNo_TDDDiffuser;
+    EP_GLOBAL extern int const ColorNo_DaylSensor1;
+    EP_GLOBAL extern int const ColorNo_DaylSensor2;
 
-    thread_local extern Array1D_int const defaultcolorno; // text | wall | window | glassdoor | door | floor | roof | detached building shade (moves with building)
+    EP_GLOBAL extern Array1D_int const defaultcolorno; // text | wall | window | glassdoor | door | floor | roof | detached building shade (moves with building)
                                              // | detached building fixed | attached building shading | PV | TDD:Dome | TDD:Diffuser | Daylight Sensor
                                              // 1 | Daylight Sensor 2
 
-    thread_local extern Array1D_string const colorkeys;
+    EP_GLOBAL extern Array1D_string const colorkeys;
 
-    thread_local extern Array1D_int const colorkeyptr;
+    EP_GLOBAL extern Array1D_int const colorkeyptr;
 
     // DERIVED TYPE DEFINITIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D_int DXFcolorno;
+    EP_GLOBAL extern Array1D_int DXFcolorno;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
 

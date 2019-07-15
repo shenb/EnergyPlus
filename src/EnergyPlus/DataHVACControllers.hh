@@ -64,38 +64,38 @@ namespace DataHVACControllers {
 
     // MODULE PARAMETER DEFINITIONS:
 
-    thread_local extern int const ControllerSimple_Type;
-    thread_local extern Array1D_string const ControllerTypes;
+    EP_GLOBAL extern int const ControllerSimple_Type;
+    EP_GLOBAL extern Array1D_string const ControllerTypes;
 
     // Controller action used in modules HVACControllers and ZoneControllers
-    thread_local extern int const iNoAction;
-    thread_local extern int const iReverseAction;
-    thread_local extern int const iNormalAction;
-    thread_local extern Array1D_string const ActionTypes;
+    EP_GLOBAL extern int const iNoAction;
+    EP_GLOBAL extern int const iReverseAction;
+    EP_GLOBAL extern int const iNormalAction;
+    EP_GLOBAL extern Array1D_string const ActionTypes;
 
     // Controller mode used in modules HVACControllers and ZoneControllers
-    thread_local extern int const iModeWrongAction; // Controller error. E.g., bad action
-    thread_local extern int const iModeNone;        // Controller mode not yet determined
-    thread_local extern int const iModeOff;         // Controller off (no air flow in loop)
-    thread_local extern int const iModeInactive;    // Controller inactive (equip not available for current step)
-    thread_local extern int const iModeActive;      // Controller active (schedule>0 and min<actuated<max)
-    thread_local extern int const iModeMinActive;   // Controller active and min-constrained (equip available and actuated=min)
-    thread_local extern int const iModeMaxActive;   // Controller active and max-constrained (equip available and actuated=max)
+    EP_GLOBAL extern int const iModeWrongAction; // Controller error. E.g., bad action
+    EP_GLOBAL extern int const iModeNone;        // Controller mode not yet determined
+    EP_GLOBAL extern int const iModeOff;         // Controller off (no air flow in loop)
+    EP_GLOBAL extern int const iModeInactive;    // Controller inactive (equip not available for current step)
+    EP_GLOBAL extern int const iModeActive;      // Controller active (schedule>0 and min<actuated<max)
+    EP_GLOBAL extern int const iModeMinActive;   // Controller active and min-constrained (equip available and actuated=min)
+    EP_GLOBAL extern int const iModeMaxActive;   // Controller active and max-constrained (equip available and actuated=max)
 
-    thread_local extern int const iFirstMode; // First operating mode in range
-    thread_local extern int const iLastMode;  // Last operating mode in range
-    thread_local extern Array1D_string const ControllerModeTypes;
+    EP_GLOBAL extern int const iFirstMode; // First operating mode in range
+    EP_GLOBAL extern int const iLastMode;  // Last operating mode in range
+    EP_GLOBAL extern Array1D_string const ControllerModeTypes;
 
     // Controller operation used in module HVACControllers
-    thread_local extern int const iControllerOpColdStart;   // Reset for cold start
-    thread_local extern int const iControllerOpWarmRestart; // Reset for warm restart with previous solution
-    thread_local extern int const iControllerOpIterate;     // Check convergence and estimate next guess if needed
-    thread_local extern int const iControllerOpEnd;         // Check convergence only and trace
+    EP_GLOBAL extern int const iControllerOpColdStart;   // Reset for cold start
+    EP_GLOBAL extern int const iControllerOpWarmRestart; // Reset for warm restart with previous solution
+    EP_GLOBAL extern int const iControllerOpIterate;     // Check convergence and estimate next guess if needed
+    EP_GLOBAL extern int const iControllerOpEnd;         // Check convergence only and trace
 
     // Controller restart flag used in module HVACControllers
-    thread_local extern int const iControllerWarmRestartNone;    // Indicates that warm restart was not attempted
-    thread_local extern int const iControllerWarmRestartFail;    // Indicates that warm restart failed
-    thread_local extern int const iControllerWarmRestartSuccess; // Indicates that warm restart was successful
+    EP_GLOBAL extern int const iControllerWarmRestartNone;    // Indicates that warm restart was not attempted
+    EP_GLOBAL extern int const iControllerWarmRestartFail;    // Indicates that warm restart failed
+    EP_GLOBAL extern int const iControllerWarmRestartSuccess; // Indicates that warm restart was successful
 
 } // namespace DataHVACControllers
 

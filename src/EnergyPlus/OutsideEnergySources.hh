@@ -60,7 +60,7 @@ namespace EnergyPlus {
 
 namespace OutsideEnergySources {
 
-    thread_local extern int NumDistrictUnits;
+    EP_GLOBAL extern int NumDistrictUnits;
 
     struct OutsideEnergySourceSpecs : public PlantComponent
     {
@@ -113,7 +113,7 @@ namespace OutsideEnergySources {
     };
 
     // Object Data
-    thread_local extern Array1D<OutsideEnergySourceSpecs> EnergySource;
+    EP_GLOBAL extern Array1D<OutsideEnergySourceSpecs> EnergySource;
 
     // Functions
     void clear_state();

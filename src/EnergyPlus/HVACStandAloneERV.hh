@@ -64,19 +64,19 @@ namespace HVACStandAloneERV {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local extern int const ControllerSimple;
-    thread_local extern int const ControllerOutsideAir;
-    thread_local extern int const ControllerStandAloneERV;
+    EP_GLOBAL extern int const ControllerSimple;
+    EP_GLOBAL extern int const ControllerOutsideAir;
+    EP_GLOBAL extern int const ControllerStandAloneERV;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumStandAloneERVs; // Total number of stand alone ERVs defined in the idf
+    EP_GLOBAL extern int NumStandAloneERVs; // Total number of stand alone ERVs defined in the idf
 
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern bool GetERVInputFlag; // First time, input is "gotten"
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool GetERVInputFlag; // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -169,7 +169,7 @@ namespace HVACStandAloneERV {
     };
 
     // Object Data
-    thread_local extern Array1D<StandAloneERVData> StandAloneERV;
+    EP_GLOBAL extern Array1D<StandAloneERVData> StandAloneERV;
 
     // Functions
 

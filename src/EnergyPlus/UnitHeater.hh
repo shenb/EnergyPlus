@@ -64,22 +64,22 @@ namespace UnitHeater {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern std::string const cMO_UnitHeater;
+    EP_GLOBAL extern std::string const cMO_UnitHeater;
 
     // Character parameters for outside air control types:
-    thread_local extern std::string const ElectricCoil;
-    thread_local extern std::string const GasCoil;
-    thread_local extern std::string const WaterHeatingCoil;
-    thread_local extern std::string const SteamCoil;
+    EP_GLOBAL extern std::string const ElectricCoil;
+    EP_GLOBAL extern std::string const GasCoil;
+    EP_GLOBAL extern std::string const WaterHeatingCoil;
+    EP_GLOBAL extern std::string const SteamCoil;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool HCoilOn;       // TRUE if the heating coil (gas or electric especially) should be running
-    thread_local extern int NumOfUnitHeats; // Number of unit heaters in the input file
-    thread_local extern Real64 QZnReq;      // heating or cooling needed by zone [watts]
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool HCoilOn;       // TRUE if the heating coil (gas or electric especially) should be running
+    EP_GLOBAL extern int NumOfUnitHeats; // Number of unit heaters in the input file
+    EP_GLOBAL extern Real64 QZnReq;      // heating or cooling needed by zone [watts]
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE UnitHeater
 
@@ -168,8 +168,8 @@ namespace UnitHeater {
     };
 
     // Object Data
-    thread_local extern Array1D<UnitHeaterData> UnitHeat;
-    thread_local extern Array1D<UnitHeatNumericFieldData> UnitHeatNumericFields;
+    EP_GLOBAL extern Array1D<UnitHeaterData> UnitHeat;
+    EP_GLOBAL extern Array1D<UnitHeatNumericFieldData> UnitHeatNumericFields;
 
     // Functions
 

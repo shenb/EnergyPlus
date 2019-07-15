@@ -61,48 +61,48 @@ namespace HeatBalanceHAMTManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const ittermax; // Maximum Number of itterations
-    thread_local extern int const adjmax;   // Maximum Number of Adjacent Cells
+    EP_GLOBAL extern int const ittermax; // Maximum Number of itterations
+    EP_GLOBAL extern int const adjmax;   // Maximum Number of Adjacent Cells
 
-    thread_local extern Real64 const wdensity; // Density of water kg.m-3
-    thread_local extern Real64 const wspech;   // Specific Heat Capacity of Water J.kg-1.K-1 (at 20C)
-    thread_local extern Real64 const whv;      // Evaporation enthalpy of water J.kg-1
-    thread_local extern Real64 const convt;    // Temperature convergence limit
-    thread_local extern Real64 const qvplim;   // Maximum latent heat W
-    thread_local extern Real64 const rhmax;    // Maximum RH value
+    EP_GLOBAL extern Real64 const wdensity; // Density of water kg.m-3
+    EP_GLOBAL extern Real64 const wspech;   // Specific Heat Capacity of Water J.kg-1.K-1 (at 20C)
+    EP_GLOBAL extern Real64 const whv;      // Evaporation enthalpy of water J.kg-1
+    EP_GLOBAL extern Real64 const convt;    // Temperature convergence limit
+    EP_GLOBAL extern Real64 const qvplim;   // Maximum latent heat W
+    EP_GLOBAL extern Real64 const rhmax;    // Maximum RH value
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D_int firstcell;
-    thread_local extern Array1D_int lastcell;
-    thread_local extern Array1D_int Extcell;
-    thread_local extern Array1D_int ExtRadcell;
-    thread_local extern Array1D_int ExtConcell;
-    thread_local extern Array1D_int ExtSkycell;
-    thread_local extern Array1D_int ExtGrncell;
-    thread_local extern Array1D_int Intcell;
-    thread_local extern Array1D_int IntConcell;
+    EP_GLOBAL extern Array1D_int firstcell;
+    EP_GLOBAL extern Array1D_int lastcell;
+    EP_GLOBAL extern Array1D_int Extcell;
+    EP_GLOBAL extern Array1D_int ExtRadcell;
+    EP_GLOBAL extern Array1D_int ExtConcell;
+    EP_GLOBAL extern Array1D_int ExtSkycell;
+    EP_GLOBAL extern Array1D_int ExtGrncell;
+    EP_GLOBAL extern Array1D_int Intcell;
+    EP_GLOBAL extern Array1D_int IntConcell;
 
-    thread_local extern Array1D<Real64> watertot;
-    thread_local extern Array1D<Real64> surfrh;
-    thread_local extern Array1D<Real64> surfextrh;
-    thread_local extern Array1D<Real64> surftemp;
-    thread_local extern Array1D<Real64> surfexttemp;
-    thread_local extern Array1D<Real64> surfvp;
+    EP_GLOBAL extern Array1D<Real64> watertot;
+    EP_GLOBAL extern Array1D<Real64> surfrh;
+    EP_GLOBAL extern Array1D<Real64> surfextrh;
+    EP_GLOBAL extern Array1D<Real64> surftemp;
+    EP_GLOBAL extern Array1D<Real64> surfexttemp;
+    EP_GLOBAL extern Array1D<Real64> surfvp;
 
-    thread_local extern Array1D<Real64> extvtc;   // External Surface vapor transfer coefficient
-    thread_local extern Array1D<Real64> intvtc;   // Internal Surface Vapor Transfer Coefficient
-    thread_local extern Array1D_bool extvtcflag;  // External Surface vapor transfer coefficient flag
-    thread_local extern Array1D_bool intvtcflag;  // Internal Surface Vapor Transfer Coefficient flag
-    thread_local extern Array1D_bool MyEnvrnFlag; // Flag to reset surface properties.
+    EP_GLOBAL extern Array1D<Real64> extvtc;   // External Surface vapor transfer coefficient
+    EP_GLOBAL extern Array1D<Real64> intvtc;   // Internal Surface Vapor Transfer Coefficient
+    EP_GLOBAL extern Array1D_bool extvtcflag;  // External Surface vapor transfer coefficient flag
+    EP_GLOBAL extern Array1D_bool intvtcflag;  // Internal Surface Vapor Transfer Coefficient flag
+    EP_GLOBAL extern Array1D_bool MyEnvrnFlag; // Flag to reset surface properties.
 
-    thread_local extern Real64 deltat; // time step in seconds
+    EP_GLOBAL extern Real64 deltat; // time step in seconds
 
-    thread_local extern int TotCellsMax; // Maximum number of cells per material
+    EP_GLOBAL extern int TotCellsMax; // Maximum number of cells per material
 
-    thread_local extern bool latswitch;  // latent heat switch,
-    thread_local extern bool rainswitch; // rain switch,
+    EP_GLOBAL extern bool latswitch;  // latent heat switch,
+    EP_GLOBAL extern bool rainswitch; // rain switch,
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HeatBalanceHAMTManager:
 
@@ -152,7 +152,7 @@ namespace HeatBalanceHAMTManager {
     };
 
     // Object Data
-    thread_local extern Array1D<subcell> cells;
+    EP_GLOBAL extern Array1D<subcell> cells;
 
     // Functions
 

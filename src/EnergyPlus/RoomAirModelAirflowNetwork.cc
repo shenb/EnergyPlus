@@ -135,13 +135,13 @@ namespace RoomAirModelAirflowNetwork {
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    thread_local Array1D<RAFNData> RAFN;
+    EP_GLOBAL Array1D<RAFNData> RAFN;
 
     namespace {
-        thread_local bool InitRoomAirModelAirflowNetworkOneTimeFlag(true);
-        thread_local bool InitRoomAirModelAirflowNetworkOneTimeFlagConf(true);
-        thread_local bool InitRoomAirModelAirflowNetworkEnvrnFlag(true);
-        thread_local bool LoadPredictionRoomAirModelAirflowNetworkOneTimeFlag(true);
+        EP_GLOBAL bool InitRoomAirModelAirflowNetworkOneTimeFlag(true);
+        EP_GLOBAL bool InitRoomAirModelAirflowNetworkOneTimeFlagConf(true);
+        EP_GLOBAL bool InitRoomAirModelAirflowNetworkEnvrnFlag(true);
+        EP_GLOBAL bool LoadPredictionRoomAirModelAirflowNetworkOneTimeFlag(true);
     } // namespace
 
     // Functions

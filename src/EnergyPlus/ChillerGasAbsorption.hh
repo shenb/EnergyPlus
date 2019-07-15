@@ -66,11 +66,11 @@ namespace ChillerGasAbsorption {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumGasAbsorbers; // number of Absorption Chillers specified in input
+    EP_GLOBAL extern int NumGasAbsorbers; // number of Absorption Chillers specified in input
 
     // This type holds the output from the algorithm i.e., the Report Variables
 
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
 
@@ -221,8 +221,8 @@ namespace ChillerGasAbsorption {
     };
 
     // Object Data
-    thread_local extern Array1D<GasAbsorberSpecs> GasAbsorber; // dimension to number of machines
-    thread_local extern Array1D<ReportVars> GasAbsorberReport;
+    EP_GLOBAL extern Array1D<GasAbsorberSpecs> GasAbsorber; // dimension to number of machines
+    EP_GLOBAL extern Array1D<ReportVars> GasAbsorberReport;
 
     // Functions
 

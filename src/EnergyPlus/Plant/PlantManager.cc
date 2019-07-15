@@ -127,18 +127,18 @@ namespace EnergyPlus {
         using PlantLoopSolver::PlantHalfLoopSolver;
 
         // MODULE PARAMETER DEFINITIONS
-        thread_local int const Plant(1);
-        thread_local int const Condenser(2);
-        thread_local int const TempSetPt(1001);
-        thread_local bool InitLoopEquip(true);
-        thread_local bool GetCompSizFac(true);
+        EP_GLOBAL int const Plant(1);
+        EP_GLOBAL int const Condenser(2);
+        EP_GLOBAL int const TempSetPt(1001);
+        EP_GLOBAL bool InitLoopEquip(true);
+        EP_GLOBAL bool GetCompSizFac(true);
 
-        thread_local static std::string const fluidNameSteam("STEAM");
+        EP_GLOBAL static std::string const fluidNameSteam("STEAM");
 
-        thread_local Array1D_int SupplySideInletNode;  // Node number for the supply side inlet
-        thread_local Array1D_int SupplySideOutletNode; // Node number for the supply side outlet
-        thread_local Array1D_int DemandSideInletNode;  // Inlet node on the demand side
-        thread_local TempLoopData TempLoop;            // =(' ',' ',' ',0, , , ,.FALSE.,.FALSE.,.FALSE.,.FALSE.,.FALSE.)
+        EP_GLOBAL Array1D_int SupplySideInletNode;  // Node number for the supply side inlet
+        EP_GLOBAL Array1D_int SupplySideOutletNode; // Node number for the supply side outlet
+        EP_GLOBAL Array1D_int DemandSideInletNode;  // Inlet node on the demand side
+        EP_GLOBAL TempLoopData TempLoop;            // =(' ',' ',' ',0, , , ,.FALSE.,.FALSE.,.FALSE.,.FALSE.,.FALSE.)
 
         void clear_state() {
             InitLoopEquip = true;
@@ -303,7 +303,7 @@ namespace EnergyPlus {
             using SystemAvailabilityManager::GetPlantAvailabilityManager;
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            thread_local static std::string const RoutineName("GetPlant/CondenserLoopData: ");
+            EP_GLOBAL static std::string const RoutineName("GetPlant/CondenserLoopData: ");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int LoopNum;      // DO loop counter for loops
@@ -316,7 +316,7 @@ namespace EnergyPlus {
             int CondLoopNum;
             Array1D_string Alpha(18); // dimension to num of alpha fields in input
             Array1D<Real64> Num(30);  // dimension to num of numeric data fields in input
-            thread_local static bool ErrorsFound(false);
+            EP_GLOBAL static bool ErrorsFound(false);
             std::string LoadingScheme;
             bool ErrFound;
             std::string CurrentModuleObject; // for ease in renaming.
@@ -756,22 +756,22 @@ namespace EnergyPlus {
 
             bool SplitInBranch;
             bool MixerOutBranch;
-            thread_local static bool ErrorsFound(false);
+            EP_GLOBAL static bool ErrorsFound(false);
             bool ASeriesBranchHasPump;
             bool AParallelBranchHasPump;
 
             std::string LoopIdentifier;
 
-            thread_local static Array1D_string BranchNames;     // Branch names from GetBranchList call
-            thread_local static Array1D_string CompTypes;       // Branch names from GetBranchList call
-            thread_local static Array1D_string CompNames;       // Branch names from GetBranchList call
-            thread_local static Array1D_int CompCtrls;          // Branch names from GetBranchList call
-            thread_local static Array1D_string InletNodeNames;  // Node names from GetBranchData call
-            thread_local static Array1D_string OutletNodeNames; // Node names from GetBranchData call
-            thread_local static Array1D_int InletNodeNumbers;   // Node numbers from GetBranchData call
-            thread_local static Array1D_int OutletNodeNumbers;  // Node numbers from GetBranchData call
-            thread_local static Array1D_bool SplitOutBranch;
-            thread_local static Array1D_bool MixerInBranch;
+            EP_GLOBAL static Array1D_string BranchNames;     // Branch names from GetBranchList call
+            EP_GLOBAL static Array1D_string CompTypes;       // Branch names from GetBranchList call
+            EP_GLOBAL static Array1D_string CompNames;       // Branch names from GetBranchList call
+            EP_GLOBAL static Array1D_int CompCtrls;          // Branch names from GetBranchList call
+            EP_GLOBAL static Array1D_string InletNodeNames;  // Node names from GetBranchData call
+            EP_GLOBAL static Array1D_string OutletNodeNames; // Node names from GetBranchData call
+            EP_GLOBAL static Array1D_int InletNodeNumbers;   // Node numbers from GetBranchData call
+            EP_GLOBAL static Array1D_int OutletNodeNumbers;  // Node numbers from GetBranchData call
+            EP_GLOBAL static Array1D_bool SplitOutBranch;
+            EP_GLOBAL static Array1D_bool MixerInBranch;
             bool errFlag;
             int GeneralEquipType;
             int TypeOfNum;
@@ -2312,13 +2312,13 @@ namespace EnergyPlus {
             int CompNum;   // plant side component counter
             int SensedNode;
 
-            thread_local static bool ErrorsFound(false);
+            EP_GLOBAL static bool ErrorsFound(false);
             bool FinishSizingFlag;
 
-            thread_local static bool SupplyEnvrnFlag(true);
-            thread_local static bool MySetPointCheckFlag(true);
+            EP_GLOBAL static bool SupplyEnvrnFlag(true);
+            EP_GLOBAL static bool MySetPointCheckFlag(true);
 
-            thread_local static Array1D_bool PlantLoopSetPointInitFlag;
+            EP_GLOBAL static Array1D_bool PlantLoopSetPointInitFlag;
 
             int HalfLoopNum;
             int passNum;
@@ -2641,8 +2641,8 @@ namespace EnergyPlus {
             // SUBROUTINE PARAMETER DEFINITIONS:
             Real64 const StartQuality(1.0);
             Real64 const StartHumRat(0.0);
-            thread_local static std::string const RoutineNameAlt("InitializeLoops");
-            thread_local static std::string const RoutineName("PlantManager:InitializeLoop");
+            EP_GLOBAL static std::string const RoutineNameAlt("InitializeLoops");
+            EP_GLOBAL static std::string const RoutineName("PlantManager:InitializeLoop");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int LoopNum; // plant loop counter
@@ -2660,7 +2660,7 @@ namespace EnergyPlus {
             int BranchInlet;     // branch inlet node number
             int ComponentInlet;  // component inlet node number
             int ComponentOutlet; // component outlet node number
-            thread_local static bool MyEnvrnFlag(true);
+            EP_GLOBAL static bool MyEnvrnFlag(true);
             Real64 LoopMinMassFlowRate; // minimum allowable loop mass flow rate
             Real64 SteamDensity;
             Real64 SteamTemp;
@@ -3218,7 +3218,7 @@ namespace EnergyPlus {
             bool localInitLoopEquip(true);
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            thread_local static std::string const RoutineName("SizePlantLoop");
+            EP_GLOBAL static std::string const RoutineName("SizePlantLoop");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int PlantSizNum(0);      // index of Plant Sizing data for this loop
@@ -3455,7 +3455,7 @@ namespace EnergyPlus {
             using ReportSizingManager::ReportSizingOutput;
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            thread_local static std::string const RoutineName("ResizePlantLoop");
+            EP_GLOBAL static std::string const RoutineName("ResizePlantLoop");
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
             int PlantSizNum(0);      // index of Plant Sizing data for this loop
@@ -3684,10 +3684,10 @@ namespace EnergyPlus {
             int LoopSideNum;
             int OtherLoopNum;
             int OtherLoopSideNum;
-            thread_local static int OtherLoopCallingIndex(0);
-            thread_local static int OtherLoopDemandSideCallingIndex(0);
-            thread_local static int NewOtherDemandSideCallingIndex(0);
-            thread_local static int newCallingIndex(0);
+            EP_GLOBAL static int OtherLoopCallingIndex(0);
+            EP_GLOBAL static int OtherLoopDemandSideCallingIndex(0);
+            EP_GLOBAL static int NewOtherDemandSideCallingIndex(0);
+            EP_GLOBAL static int newCallingIndex(0);
             bool thisLoopPutsDemandOnAnother;
             int ConnctNum;
 

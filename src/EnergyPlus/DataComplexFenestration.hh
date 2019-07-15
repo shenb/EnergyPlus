@@ -62,39 +62,39 @@ namespace DataComplexFenestration {
 
     // Data
     // Parameters for complex shade
-    thread_local extern int const csVenetianHorizontal;
-    thread_local extern int const csWoven;
-    thread_local extern int const csPerforated;
-    thread_local extern int const csOtherShadingType;
-    thread_local extern int const csBSDF;
-    thread_local extern int const csVenetianVertical;
+    EP_GLOBAL extern int const csVenetianHorizontal;
+    EP_GLOBAL extern int const csWoven;
+    EP_GLOBAL extern int const csPerforated;
+    EP_GLOBAL extern int const csOtherShadingType;
+    EP_GLOBAL extern int const csBSDF;
+    EP_GLOBAL extern int const csVenetianVertical;
 
     // Parameters for gas definitions
-    thread_local extern int const GasCoeffsCustom;
-    thread_local extern int const GasCoeffsAir;
-    thread_local extern int const GasCoeffsArgon;
-    thread_local extern int const GasCoeffsKrypton;
-    thread_local extern int const GasCoeffsXenon;
+    EP_GLOBAL extern int const GasCoeffsCustom;
+    EP_GLOBAL extern int const GasCoeffsAir;
+    EP_GLOBAL extern int const GasCoeffsArgon;
+    EP_GLOBAL extern int const GasCoeffsKrypton;
+    EP_GLOBAL extern int const GasCoeffsXenon;
 
     // Parameters for Thermal Algorithm
     // INTEGER, PARAMETER :: taTarcog = 0
     // INTEGER, PARAMETER :: taWinkelmann = 1
 
     // Parameters for calculation standard
-    thread_local extern int const csISO15099;
-    thread_local extern int const csEN673Declared;
-    thread_local extern int const csEN673Design;
+    EP_GLOBAL extern int const csISO15099;
+    EP_GLOBAL extern int const csEN673Declared;
+    EP_GLOBAL extern int const csEN673Design;
 
     // Parameters for thermal model
-    thread_local extern int const tmISO15099;
-    thread_local extern int const tmScaledCavityWidth;
-    thread_local extern int const tmConvectiveScalarModel_NoSDThickness;
-    thread_local extern int const tmConvectiveScalarModel_WithSDThickness;
+    EP_GLOBAL extern int const tmISO15099;
+    EP_GLOBAL extern int const tmScaledCavityWidth;
+    EP_GLOBAL extern int const tmConvectiveScalarModel_NoSDThickness;
+    EP_GLOBAL extern int const tmConvectiveScalarModel_WithSDThickness;
 
     // Parameters for deflection model
-    thread_local extern int const dmNoDeflection;
-    thread_local extern int const dmTemperatureAndPressureInput;
-    thread_local extern int const dmMeasuredDeflection;
+    EP_GLOBAL extern int const dmNoDeflection;
+    EP_GLOBAL extern int const dmTemperatureAndPressureInput;
+    EP_GLOBAL extern int const dmMeasuredDeflection;
 
     // Types
 

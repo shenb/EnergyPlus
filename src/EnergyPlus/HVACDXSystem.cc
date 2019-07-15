@@ -124,32 +124,32 @@ namespace HVACDXSystem {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local Real64 const MinAirMassFlow(0.001);
+    EP_GLOBAL Real64 const MinAirMassFlow(0.001);
     // Compressor operation
-    thread_local int const On(1);  // normal compressor operation
-    thread_local int const Off(0); // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL int const On(1);  // normal compressor operation
+    EP_GLOBAL int const Off(0); // signal DXCoil that compressor shouldn't run
     // Dehumidification control modes (DehumidControlMode)
-    thread_local int const DehumidControl_None(0);
-    thread_local int const DehumidControl_Multimode(1);
-    thread_local int const DehumidControl_CoolReheat(2);
-    thread_local bool GetInputFlag(true); // Flag to get input only once
+    EP_GLOBAL int const DehumidControl_None(0);
+    EP_GLOBAL int const DehumidControl_Multimode(1);
+    EP_GLOBAL int const DehumidControl_CoolReheat(2);
+    EP_GLOBAL bool GetInputFlag(true); // Flag to get input only once
 
     // packaged TES modes
-    thread_local int const OffMode(0);
-    thread_local int const CoolingOnlyMode(1);
-    thread_local int const CoolingAndChargeMode(2);
-    thread_local int const CoolingAndDischargeMode(3);
-    thread_local int const ChargeOnlyMode(4);
-    thread_local int const DischargeOnlyMode(5);
+    EP_GLOBAL int const OffMode(0);
+    EP_GLOBAL int const CoolingOnlyMode(1);
+    EP_GLOBAL int const CoolingAndChargeMode(2);
+    EP_GLOBAL int const CoolingAndDischargeMode(3);
+    EP_GLOBAL int const ChargeOnlyMode(4);
+    EP_GLOBAL int const DischargeOnlyMode(5);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumDXSystem(0);         // The Number of DXCoolingSystems found in the Input
-    thread_local bool EconomizerFlag(false); // holds air loop economizer status
+    EP_GLOBAL int NumDXSystem(0);         // The Number of DXCoolingSystems found in the Input
+    EP_GLOBAL bool EconomizerFlag(false); // holds air loop economizer status
 
     // Make this type allocatable
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -159,7 +159,7 @@ namespace HVACDXSystem {
     // Update routine to check convergence and update nodes
 
     // Object Data
-    thread_local Array1D<DXCoolingConditions> DXCoolingSystem;
+    EP_GLOBAL Array1D<DXCoolingConditions> DXCoolingSystem;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -216,12 +216,12 @@ namespace HVACDXSystem {
         int InletNodeNum;     // DX System inlet node number
         int OutletNodeNum;    // DX System outlet node number
         // local variables for calling variable speed coil
-        thread_local static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
-        thread_local static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
-        thread_local static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
-        thread_local static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
-        thread_local static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
-        thread_local static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
+        EP_GLOBAL static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
+        EP_GLOBAL static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
+        EP_GLOBAL static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
+        EP_GLOBAL static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
+        EP_GLOBAL static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
+        EP_GLOBAL static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
 
         // Obtains and Allocates DX Cooling System related parameters from input file
         if (GetInputFlag) { // First time subroutine has been entered
@@ -392,9 +392,9 @@ namespace HVACDXSystem {
         int NumAlphas;
         int NumNums;
         int IOStat;
-        thread_local static std::string const RoutineName("GetDXCoolingSystemInput: "); // include trailing blank space
-        thread_local static bool ErrorsFound(false);                                    // If errors detected in input
-        thread_local static bool ErrFound(false);                                       // used for mining functions
+        EP_GLOBAL static std::string const RoutineName("GetDXCoolingSystemInput: "); // include trailing blank space
+        EP_GLOBAL static bool ErrorsFound(false);                                    // If errors detected in input
+        EP_GLOBAL static bool ErrFound(false);                                       // used for mining functions
         bool IsNotOK;                                                      // Flag to verify name
         int DXCoolSysNum;
         bool FanErrorsFound;             // flag returned on fan operating mode check
@@ -407,7 +407,7 @@ namespace HVACDXSystem {
         Array1D<Real64> Numbers;         // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        EP_GLOBAL static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //  certain object in the input file
 
         // Flow
@@ -778,8 +778,8 @@ namespace HVACDXSystem {
         int OutNode;     // outlet node number
         int ControlNode; // control node number
         int DXSysIndex;
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static bool MySetPointCheckFlag(true);
+        EP_GLOBAL static bool MyOneTimeFlag(true);
+        EP_GLOBAL static bool MySetPointCheckFlag(true);
         int OutdoorAirUnitNum;    // "ONLY" for ZoneHVAC:OutdoorAirUnit
         Real64 OAUCoilOutletTemp; // "ONLY" for zoneHVAC:OutdoorAirUnit
         // FLOW:
@@ -3361,7 +3361,7 @@ namespace HVACDXSystem {
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const RunOnSensible(1); // identifier for temperature (sensible load) control
         int const RunOnLatent(2);   // identifier for humidity (latent load) control
-        thread_local static std::string const RoutineName("FrostControlSetPointLimit");
+        EP_GLOBAL static std::string const RoutineName("FrostControlSetPointLimit");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3495,14 +3495,14 @@ namespace HVACDXSystem {
         int CoilIndex;                            // index of this coil
         Real64 OutletAirTemp;                     // outlet air temperature [C]
         int FanOpMode;                            // Supply air fan operating mode
-        thread_local static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
-        thread_local static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
-        thread_local static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
-        thread_local static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
-        thread_local static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
-        thread_local static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
-        thread_local static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
-        thread_local static Real64 SpeedRatio(0.0);            // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
+        EP_GLOBAL static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
+        EP_GLOBAL static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
+        EP_GLOBAL static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
+        EP_GLOBAL static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
+        EP_GLOBAL static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
+        EP_GLOBAL static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
+        EP_GLOBAL static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
+        EP_GLOBAL static Real64 SpeedRatio(0.0);            // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
 
         CoilIndex = int(Par(1));
         FanOpMode = int(Par(5));
@@ -3573,14 +3573,14 @@ namespace HVACDXSystem {
         int CoilIndex;                            // index of this coil
         Real64 OutletAirTemp;                     // outlet air temperature [C]
         int FanOpMode;                            // Supply air fan operating mode
-        thread_local static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
-        thread_local static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
-        thread_local static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
-        thread_local static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
-        thread_local static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
-        thread_local static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
-        thread_local static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
-        thread_local static Real64 PartLoadRatio(1.0);         // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
+        EP_GLOBAL static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
+        EP_GLOBAL static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
+        EP_GLOBAL static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
+        EP_GLOBAL static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
+        EP_GLOBAL static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
+        EP_GLOBAL static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
+        EP_GLOBAL static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
+        EP_GLOBAL static Real64 PartLoadRatio(1.0);         // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
 
         CoilIndex = int(Par(1));
         FanOpMode = int(Par(5));
@@ -3650,14 +3650,14 @@ namespace HVACDXSystem {
         int CoilIndex;                            // index of this coil
         Real64 OutletAirHumRat;                   // outlet air humidity ratio [kg/kg]
         int FanOpMode;                            // Supply air fan operating mode
-        thread_local static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
-        thread_local static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
-        thread_local static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
-        thread_local static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
-        thread_local static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
-        thread_local static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
-        thread_local static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
-        thread_local static Real64 SpeedRatio(0.0);            // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
+        EP_GLOBAL static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
+        EP_GLOBAL static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
+        EP_GLOBAL static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
+        EP_GLOBAL static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
+        EP_GLOBAL static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
+        EP_GLOBAL static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
+        EP_GLOBAL static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
+        EP_GLOBAL static Real64 SpeedRatio(0.0);            // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
 
         CoilIndex = int(Par(1));
         FanOpMode = int(Par(5));
@@ -3729,14 +3729,14 @@ namespace HVACDXSystem {
         int CoilIndex;                            // index of this coil
         Real64 OutletAirHumRat;                   // outlet air humidity ratio [kg/kg]
         int FanOpMode;                            // Supply air fan operating mode
-        thread_local static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
-        thread_local static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
-        thread_local static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
-        thread_local static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
-        thread_local static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
-        thread_local static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
-        thread_local static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
-        thread_local static Real64 PartLoadRatio(1.0);         // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
+        EP_GLOBAL static int SpeedNum(1);                   // speed number of variable speed DX cooling coil
+        EP_GLOBAL static Real64 QZnReq(0.001);              // Zone load (W), input to variable-speed DX coil
+        EP_GLOBAL static Real64 QLatReq(0.0);               // Zone latent load, input to variable-speed DX coil
+        EP_GLOBAL static Real64 MaxONOFFCyclesperHour(4.0); // Maximum cycling rate of heat pump [cycles/hr]
+        EP_GLOBAL static Real64 HPTimeConstant(0.0);        // Heat pump time constant [s]
+        EP_GLOBAL static Real64 FanDelayTime(0.0);          // Fan delay time, time delay for the HP's fan to
+        EP_GLOBAL static Real64 OnOffAirFlowRatio(1.0);     // ratio of compressor on flow to average flow over time step
+        EP_GLOBAL static Real64 PartLoadRatio(1.0);         // SpeedRatio varies between 1.0 (higher speed) and 0.0 (lower speed)
 
         CoilIndex = int(Par(1));
         FanOpMode = int(Par(5));

@@ -128,14 +128,14 @@ namespace ZoneContaminantPredictorCorrector {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local bool GetZoneAirContamInputFlag(true); // True when need to get input
-    thread_local int TotGCGenConstant(0);              // Number of constant generic contaminant sources and sinks
-    thread_local int TotGCGenPDriven(0);               // Number of pressure driven generic contaminant sources and sinks
-    thread_local int TotGCGenCutoff(0);                // Number of cutoff model generic contaminant sources and sinks
-    thread_local int TotGCGenDecay(0);                 // Number of decay model generic contaminant sources and sinks
-    thread_local int TotGCBLDiff(0);                   // Number of boudary layer diffusion generic contaminant model
-    thread_local int TotGCDVS(0);                      // Number of deposition velocity sink generic contaminant model
-    thread_local int TotGCDRS(0);                      // Number of deposition rate sink generic contaminant model
+    EP_GLOBAL bool GetZoneAirContamInputFlag(true); // True when need to get input
+    EP_GLOBAL int TotGCGenConstant(0);              // Number of constant generic contaminant sources and sinks
+    EP_GLOBAL int TotGCGenPDriven(0);               // Number of pressure driven generic contaminant sources and sinks
+    EP_GLOBAL int TotGCGenCutoff(0);                // Number of cutoff model generic contaminant sources and sinks
+    EP_GLOBAL int TotGCGenDecay(0);                 // Number of decay model generic contaminant sources and sinks
+    EP_GLOBAL int TotGCBLDiff(0);                   // Number of boudary layer diffusion generic contaminant model
+    EP_GLOBAL int TotGCDVS(0);                      // Number of deposition velocity sink generic contaminant model
+    EP_GLOBAL int TotGCDRS(0);                      // Number of deposition rate sink generic contaminant model
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -259,7 +259,7 @@ namespace ZoneContaminantPredictorCorrector {
         using ScheduleManager::GetScheduleMinValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetSourcesAndSinks: ");
+        EP_GLOBAL static std::string const RoutineName("GetSourcesAndSinks: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Array1D_string AlphaName;
@@ -273,7 +273,7 @@ namespace ZoneContaminantPredictorCorrector {
         int MaxNumber;
         int Loop;
         int ZonePtr;
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         //  LOGICAL :: ValidScheduleType
         Array1D_bool RepVarSet;
         std::string CurrentModuleObject;
@@ -1143,7 +1143,7 @@ namespace ZoneContaminantPredictorCorrector {
         int IOStat;
         // unused1208  REAL(r64), DIMENSION(2) :: NumArray
         // unused1208  CHARACTER(len=MaxNameLength), DIMENSION(29) :: AlphArray
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         bool ValidScheduleType;
 
         struct NeededControlTypes
@@ -1365,19 +1365,19 @@ namespace ZoneContaminantPredictorCorrector {
         int Loop;
         int ZoneNum;
         int SurfNum;
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static bool MyEnvrnFlag(true);
-        thread_local static bool MyDayFlag(true);
+        EP_GLOBAL static bool MyOneTimeFlag(true);
+        EP_GLOBAL static bool MyEnvrnFlag(true);
+        EP_GLOBAL static bool MyDayFlag(true);
         //  REAL(r64)      :: CO2Gain                  ! Zone CO2 gain
         Real64 GCGain; // Zone generic contaminant gain
         Real64 Pi;     // Pressue at zone i
         Real64 Pj;     // Pressue at zone j
         Real64 Sch;    // Schedule value
         Real64 Cs;     // Surface concentration level for the Boundary Layer Diffusion Controlled Model
-        thread_local static bool MyConfigOneTimeFlag(true);
+        EP_GLOBAL static bool MyConfigOneTimeFlag(true);
         int ContZoneNum;
         int I;
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
 
         // FLOW:
 
@@ -1760,7 +1760,7 @@ namespace ZoneContaminantPredictorCorrector {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("PredictZoneContaminants");
+        EP_GLOBAL static std::string const RoutineName("PredictZoneContaminants");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -2316,7 +2316,7 @@ namespace ZoneContaminantPredictorCorrector {
         using DataEnvironment::DayOfYear;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InverseModelCO2");
+        EP_GLOBAL static std::string const RoutineName("InverseModelCO2");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 AA(0.0);
@@ -2346,7 +2346,7 @@ namespace ZoneContaminantPredictorCorrector {
             ZoneAirCO2(ZoneNum) = Zone(ZoneNum).ZoneMeasuredCO2Concentration;
 
             if (HybridModelZone(ZoneNum).InfiltrationCalc_C && UseZoneTimeStepHistory) {
-                thread_local static std::string const RoutineNameInfiltration("CalcAirFlowSimple:Infiltration");
+                EP_GLOBAL static std::string const RoutineNameInfiltration("CalcAirFlowSimple:Infiltration");
 
                 // Conditionally calculate the CO2-dependent and CO2-independent terms.
                 if (HybridModelZone(ZoneNum).IncludeSystemSupplyParameters) {
@@ -2487,7 +2487,7 @@ namespace ZoneContaminantPredictorCorrector {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CorrectZoneContaminants");
+        EP_GLOBAL static std::string const RoutineName("CorrectZoneContaminants");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

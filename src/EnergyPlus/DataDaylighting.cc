@@ -81,27 +81,27 @@ namespace DataDaylighting {
 
     // MODULE PARAMETER DEFINITIONS:
     // Two kinds of reference points: used directly in daylighting, used to show illuminance map of zone
-    thread_local int const MaxRefPoints(2);       // Maximum number of daylighting reference points, 2
-    thread_local int const MaxMapRefPoints(2500); // Maximum number of Illuminance Map Ref Points
+    EP_GLOBAL int const MaxRefPoints(2);       // Maximum number of daylighting reference points, 2
+    EP_GLOBAL int const MaxMapRefPoints(2500); // Maximum number of Illuminance Map Ref Points
 
-    thread_local int const NotInOrAdjZoneExtWin(0); // Exterior window is not in a Daylighting:Detailed zone
+    EP_GLOBAL int const NotInOrAdjZoneExtWin(0); // Exterior window is not in a Daylighting:Detailed zone
     // or in an adjacent zone with a shared interior window
-    thread_local int const InZoneExtWin(1);  // Exterior window is in a Daylighting:Detailed zone
-    thread_local int const AdjZoneExtWin(2); // Exterior window is in a zone adjacent to a Daylighting:
+    EP_GLOBAL int const InZoneExtWin(1);  // Exterior window is in a Daylighting:Detailed zone
+    EP_GLOBAL int const AdjZoneExtWin(2); // Exterior window is in a zone adjacent to a Daylighting:
     // Detailed zone with which it shares an interior window
 
-    thread_local int const CalledForRefPoint(101);
-    thread_local int const CalledForMapPoint(102);
+    EP_GLOBAL int const CalledForRefPoint(101);
+    EP_GLOBAL int const CalledForMapPoint(102);
 
     // Parameters for "DaylightMethod"
-    thread_local int const NoDaylighting(0);
-    thread_local int const SplitFluxDaylighting(1);
-    thread_local int const DElightDaylighting(2);
+    EP_GLOBAL int const NoDaylighting(0);
+    EP_GLOBAL int const SplitFluxDaylighting(1);
+    EP_GLOBAL int const DElightDaylighting(2);
 
     // Parameters for "Lighting Control Type"
-    thread_local int const Continuous(1);
-    thread_local int const Stepped(2);
-    thread_local int const ContinuousOff(3);
+    EP_GLOBAL int const Continuous(1);
+    EP_GLOBAL int const Stepped(2);
+    EP_GLOBAL int const ContinuousOff(3);
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -110,23 +110,23 @@ namespace DataDaylighting {
     // INTERFACE BLOCK SPECIFICATIONS: na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int TotIllumMaps(0);
-    thread_local int TotRefPoints(0);
-    thread_local bool mapResultsToReport(false); // used when only partial hour has "sun up"
-    thread_local bool mapResultsReported(false); // when no map results are ever reported this will still be false
-    thread_local char MapColSep;                 // Character for separating map columns (tab, space, comma)
+    EP_GLOBAL int TotIllumMaps(0);
+    EP_GLOBAL int TotRefPoints(0);
+    EP_GLOBAL bool mapResultsToReport(false); // used when only partial hour has "sun up"
+    EP_GLOBAL bool mapResultsReported(false); // when no map results are ever reported this will still be false
+    EP_GLOBAL char MapColSep;                 // Character for separating map columns (tab, space, comma)
 
-    thread_local bool DFSReportSizingDays(false);
-    thread_local bool DFSReportAllShadowCalculationDays(false);
+    EP_GLOBAL bool DFSReportSizingDays(false);
+    EP_GLOBAL bool DFSReportAllShadowCalculationDays(false);
 
-    thread_local int TotDElightCFS(0);
+    EP_GLOBAL int TotDElightCFS(0);
 
     // Object Data
-    thread_local Array1D<ZoneDaylightCalc> ZoneDaylight;
-    thread_local Array1D<IllumMapData> IllumMap;
-    thread_local Array1D<MapCalcData> IllumMapCalc;
-    thread_local Array1D<RefPointData> DaylRefPt;
-    thread_local Array1D<DElightComplexFeneData> DElightComplexFene;
+    EP_GLOBAL Array1D<ZoneDaylightCalc> ZoneDaylight;
+    EP_GLOBAL Array1D<IllumMapData> IllumMap;
+    EP_GLOBAL Array1D<MapCalcData> IllumMapCalc;
+    EP_GLOBAL Array1D<RefPointData> DaylRefPt;
+    EP_GLOBAL Array1D<DElightComplexFeneData> DElightComplexFene;
 
 } // namespace DataDaylighting
 

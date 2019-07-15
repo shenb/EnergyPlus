@@ -69,12 +69,12 @@ namespace EnergyPlus {
     namespace PlantPipingSystemsManager {
 
         // MODULE PARAMETER DEFINITIONS:
-        thread_local extern std::string const ObjName_ug_GeneralDomain;
-        thread_local extern std::string const ObjName_Circuit;
-        thread_local extern std::string const ObjName_Segment;
-        thread_local extern std::string const ObjName_HorizTrench;
-        thread_local extern std::string const ObjName_ZoneCoupled_Slab;
-        thread_local extern std::string const ObjName_ZoneCoupled_Basement;
+        EP_GLOBAL extern std::string const ObjName_ug_GeneralDomain;
+        EP_GLOBAL extern std::string const ObjName_Circuit;
+        EP_GLOBAL extern std::string const ObjName_Segment;
+        EP_GLOBAL extern std::string const ObjName_HorizTrench;
+        EP_GLOBAL extern std::string const ObjName_ZoneCoupled_Slab;
+        EP_GLOBAL extern std::string const ObjName_ZoneCoupled_Basement;
 
         // Using/Aliasing
         using namespace GroundTemperatureManager;
@@ -920,9 +920,9 @@ namespace EnergyPlus {
         };
 
         // Object Data
-        thread_local extern std::vector<Domain> domains;
-        thread_local extern std::vector<Circuit> circuits;
-        thread_local extern std::vector<Segment> segments;
+        EP_GLOBAL extern std::vector<Domain> domains;
+        EP_GLOBAL extern std::vector<Circuit> circuits;
+        EP_GLOBAL extern std::vector<Segment> segments;
 
         void clear_state();
 

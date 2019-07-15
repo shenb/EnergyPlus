@@ -65,206 +65,206 @@ namespace EconomicTariff {
     // Data
     // ECONOMCIS:TARIFF enumerated lists
 
-    thread_local extern int const kindUnknown;
-    thread_local extern int const kindTariff;
-    thread_local extern int const kindQualify;
-    thread_local extern int const kindChargeSimple;
-    thread_local extern int const kindChargeBlock;
-    thread_local extern int const kindRatchet;
-    thread_local extern int const kindVariable;
-    thread_local extern int const kindComputation;
-    thread_local extern int const kindCategory;
-    thread_local extern int const kindNative;
-    thread_local extern int const kindAssignCompute;
+    EP_GLOBAL extern int const kindUnknown;
+    EP_GLOBAL extern int const kindTariff;
+    EP_GLOBAL extern int const kindQualify;
+    EP_GLOBAL extern int const kindChargeSimple;
+    EP_GLOBAL extern int const kindChargeBlock;
+    EP_GLOBAL extern int const kindRatchet;
+    EP_GLOBAL extern int const kindVariable;
+    EP_GLOBAL extern int const kindComputation;
+    EP_GLOBAL extern int const kindCategory;
+    EP_GLOBAL extern int const kindNative;
+    EP_GLOBAL extern int const kindAssignCompute;
 
-    thread_local extern int const conversionUSERDEF;
-    thread_local extern int const conversionKWH;
-    thread_local extern int const conversionTHERM;
-    thread_local extern int const conversionMMBTU; // million btu
-    thread_local extern int const conversionMJ;
-    thread_local extern int const conversionKBTU;
-    thread_local extern int const conversionMCF; // thousand cubic feet
-    thread_local extern int const conversionCCF; // hundred cubic feet
-    thread_local extern int const conversionM3;  // cubic meter
-    thread_local extern int const conversionGAL;
-    thread_local extern int const conversionKGAL; // thousand gallons
+    EP_GLOBAL extern int const conversionUSERDEF;
+    EP_GLOBAL extern int const conversionKWH;
+    EP_GLOBAL extern int const conversionTHERM;
+    EP_GLOBAL extern int const conversionMMBTU; // million btu
+    EP_GLOBAL extern int const conversionMJ;
+    EP_GLOBAL extern int const conversionKBTU;
+    EP_GLOBAL extern int const conversionMCF; // thousand cubic feet
+    EP_GLOBAL extern int const conversionCCF; // hundred cubic feet
+    EP_GLOBAL extern int const conversionM3;  // cubic meter
+    EP_GLOBAL extern int const conversionGAL;
+    EP_GLOBAL extern int const conversionKGAL; // thousand gallons
 
-    thread_local extern Array1D_string const convEneStrings;
-    thread_local extern Array1D_string const convDemStrings;
+    EP_GLOBAL extern Array1D_string const convEneStrings;
+    EP_GLOBAL extern Array1D_string const convDemStrings;
 
-    thread_local extern int const demandWindowQuarter;
-    thread_local extern int const demandWindowHalf;
-    thread_local extern int const demandWindowHour;
-    thread_local extern int const demandWindowDay;
-    thread_local extern int const demandWindowWeek;
+    EP_GLOBAL extern int const demandWindowQuarter;
+    EP_GLOBAL extern int const demandWindowHalf;
+    EP_GLOBAL extern int const demandWindowHour;
+    EP_GLOBAL extern int const demandWindowDay;
+    EP_GLOBAL extern int const demandWindowWeek;
 
-    thread_local extern Array1D_string const demWindowStrings;
+    EP_GLOBAL extern Array1D_string const demWindowStrings;
 
-    thread_local extern int const buyFromUtility;
-    thread_local extern int const sellToUtility;
-    thread_local extern int const netMetering;
+    EP_GLOBAL extern int const buyFromUtility;
+    EP_GLOBAL extern int const sellToUtility;
+    EP_GLOBAL extern int const netMetering;
 
     // For several different objects that reference seasons
-    thread_local extern int const seasonWinter;
-    thread_local extern int const seasonSpring;
-    thread_local extern int const seasonSummer;
-    thread_local extern int const seasonFall;
-    thread_local extern int const seasonAnnual;
-    thread_local extern int const seasonMonthly;
+    EP_GLOBAL extern int const seasonWinter;
+    EP_GLOBAL extern int const seasonSpring;
+    EP_GLOBAL extern int const seasonSummer;
+    EP_GLOBAL extern int const seasonFall;
+    EP_GLOBAL extern int const seasonAnnual;
+    EP_GLOBAL extern int const seasonMonthly;
 
     // For AssignVariablePt
-    thread_local extern int const varIsArgument; // if used as a value or on right side of expression
-    thread_local extern int const varIsAssigned; // if variable is assigned to or on left side of expression
+    EP_GLOBAL extern int const varIsArgument; // if used as a value or on right side of expression
+    EP_GLOBAL extern int const varIsAssigned; // if variable is assigned to or on left side of expression
 
     // For ComputeSteps
     // All are negative because all variables are positive
-    thread_local extern int const opSUM;
-    thread_local extern int const opMULTIPLY;
-    thread_local extern int const opSUBTRACT;
-    thread_local extern int const opDIVIDE;
-    thread_local extern int const opABSOLUTE;
-    thread_local extern int const opINTEGER;
-    thread_local extern int const opSIGN;
-    thread_local extern int const opROUND;
-    thread_local extern int const opMAXIMUM;
-    thread_local extern int const opMINIMUM;
-    thread_local extern int const opEXCEEDS;
-    thread_local extern int const opANNUALMINIMUM;
-    thread_local extern int const opANNUALMAXIMUM;
-    thread_local extern int const opANNUALSUM;
-    thread_local extern int const opANNUALAVERAGE;
-    thread_local extern int const opANNUALOR;
-    thread_local extern int const opANNUALAND;
-    thread_local extern int const opANNUALMAXIMUMZERO;
-    thread_local extern int const opANNUALMINIMUMZERO;
-    thread_local extern int const opIF;
-    thread_local extern int const opGREATERTHAN;
-    thread_local extern int const opGREATEREQUAL;
-    thread_local extern int const opLESSTHAN;
-    thread_local extern int const opLESSEQUAL;
-    thread_local extern int const opEQUAL;
-    thread_local extern int const opNOTEQUAL;
-    thread_local extern int const opAND;
-    thread_local extern int const opOR;
-    thread_local extern int const opNOT;
-    thread_local extern int const opADD;
-    thread_local extern int const opNOOP; // no operation - just list the operand variables - shown as FROM
+    EP_GLOBAL extern int const opSUM;
+    EP_GLOBAL extern int const opMULTIPLY;
+    EP_GLOBAL extern int const opSUBTRACT;
+    EP_GLOBAL extern int const opDIVIDE;
+    EP_GLOBAL extern int const opABSOLUTE;
+    EP_GLOBAL extern int const opINTEGER;
+    EP_GLOBAL extern int const opSIGN;
+    EP_GLOBAL extern int const opROUND;
+    EP_GLOBAL extern int const opMAXIMUM;
+    EP_GLOBAL extern int const opMINIMUM;
+    EP_GLOBAL extern int const opEXCEEDS;
+    EP_GLOBAL extern int const opANNUALMINIMUM;
+    EP_GLOBAL extern int const opANNUALMAXIMUM;
+    EP_GLOBAL extern int const opANNUALSUM;
+    EP_GLOBAL extern int const opANNUALAVERAGE;
+    EP_GLOBAL extern int const opANNUALOR;
+    EP_GLOBAL extern int const opANNUALAND;
+    EP_GLOBAL extern int const opANNUALMAXIMUMZERO;
+    EP_GLOBAL extern int const opANNUALMINIMUMZERO;
+    EP_GLOBAL extern int const opIF;
+    EP_GLOBAL extern int const opGREATERTHAN;
+    EP_GLOBAL extern int const opGREATEREQUAL;
+    EP_GLOBAL extern int const opLESSTHAN;
+    EP_GLOBAL extern int const opLESSEQUAL;
+    EP_GLOBAL extern int const opEQUAL;
+    EP_GLOBAL extern int const opNOTEQUAL;
+    EP_GLOBAL extern int const opAND;
+    EP_GLOBAL extern int const opOR;
+    EP_GLOBAL extern int const opNOT;
+    EP_GLOBAL extern int const opADD;
+    EP_GLOBAL extern int const opNOOP; // no operation - just list the operand variables - shown as FROM
 
     // not predefined variable (user defined name - many variables and all objects)
     // used in econvar%specific
-    thread_local extern int const varUserDefined;
-    thread_local extern int const varNotYetDefined;
+    EP_GLOBAL extern int const varUserDefined;
+    EP_GLOBAL extern int const varNotYetDefined;
 
     // category variables (used in econvar%specific)
-    thread_local extern int const catEnergyCharges;
-    thread_local extern int const catDemandCharges;
-    thread_local extern int const catServiceCharges;
-    thread_local extern int const catBasis;
-    thread_local extern int const catAdjustment;
-    thread_local extern int const catSurcharge;
-    thread_local extern int const catSubtotal;
-    thread_local extern int const catTaxes;
-    thread_local extern int const catTotal;
-    thread_local extern int const catNotIncluded;
+    EP_GLOBAL extern int const catEnergyCharges;
+    EP_GLOBAL extern int const catDemandCharges;
+    EP_GLOBAL extern int const catServiceCharges;
+    EP_GLOBAL extern int const catBasis;
+    EP_GLOBAL extern int const catAdjustment;
+    EP_GLOBAL extern int const catSurcharge;
+    EP_GLOBAL extern int const catSubtotal;
+    EP_GLOBAL extern int const catTaxes;
+    EP_GLOBAL extern int const catTotal;
+    EP_GLOBAL extern int const catNotIncluded;
 
     // native variables (based on energy and demands from the simulation) used in econvar%specific
-    thread_local extern int const nativeTotalEnergy;
-    thread_local extern int const nativeTotalDemand;
-    thread_local extern int const nativePeakEnergy;
-    thread_local extern int const nativePeakDemand;
-    thread_local extern int const nativeShoulderEnergy;
-    thread_local extern int const nativeShoulderDemand;
-    thread_local extern int const nativeOffPeakEnergy;
-    thread_local extern int const nativeOffPeakDemand;
-    thread_local extern int const nativeMidPeakEnergy;
-    thread_local extern int const nativeMidPeakDemand;
-    thread_local extern int const nativePeakExceedsOffPeak;
-    thread_local extern int const nativeOffPeakExceedsPeak;
-    thread_local extern int const nativePeakExceedsMidPeak;
-    thread_local extern int const nativeMidPeakExceedsPeak;
-    thread_local extern int const nativePeakExceedsShoulder;
-    thread_local extern int const nativeShoulderExceedsPeak;
-    thread_local extern int const nativeIsWinter;
-    thread_local extern int const nativeIsNotWinter;
-    thread_local extern int const nativeIsSpring;
-    thread_local extern int const nativeIsNotSpring;
-    thread_local extern int const nativeIsSummer;
-    thread_local extern int const nativeIsNotSummer;
-    thread_local extern int const nativeIsAutumn;
-    thread_local extern int const nativeIsNotAutumn;
+    EP_GLOBAL extern int const nativeTotalEnergy;
+    EP_GLOBAL extern int const nativeTotalDemand;
+    EP_GLOBAL extern int const nativePeakEnergy;
+    EP_GLOBAL extern int const nativePeakDemand;
+    EP_GLOBAL extern int const nativeShoulderEnergy;
+    EP_GLOBAL extern int const nativeShoulderDemand;
+    EP_GLOBAL extern int const nativeOffPeakEnergy;
+    EP_GLOBAL extern int const nativeOffPeakDemand;
+    EP_GLOBAL extern int const nativeMidPeakEnergy;
+    EP_GLOBAL extern int const nativeMidPeakDemand;
+    EP_GLOBAL extern int const nativePeakExceedsOffPeak;
+    EP_GLOBAL extern int const nativeOffPeakExceedsPeak;
+    EP_GLOBAL extern int const nativePeakExceedsMidPeak;
+    EP_GLOBAL extern int const nativeMidPeakExceedsPeak;
+    EP_GLOBAL extern int const nativePeakExceedsShoulder;
+    EP_GLOBAL extern int const nativeShoulderExceedsPeak;
+    EP_GLOBAL extern int const nativeIsWinter;
+    EP_GLOBAL extern int const nativeIsNotWinter;
+    EP_GLOBAL extern int const nativeIsSpring;
+    EP_GLOBAL extern int const nativeIsNotSpring;
+    EP_GLOBAL extern int const nativeIsSummer;
+    EP_GLOBAL extern int const nativeIsNotSummer;
+    EP_GLOBAL extern int const nativeIsAutumn;
+    EP_GLOBAL extern int const nativeIsNotAutumn;
 
-    thread_local extern int const nativePeakAndShoulderEnergy;
-    thread_local extern int const nativePeakAndShoulderDemand;
-    thread_local extern int const nativePeakAndMidPeakEnergy;
-    thread_local extern int const nativePeakAndMidPeakDemand;
-    thread_local extern int const nativeShoulderAndOffPeakEnergy;
-    thread_local extern int const nativeShoulderAndOffPeakDemand;
-    thread_local extern int const nativePeakAndOffPeakEnergy;
-    thread_local extern int const nativePeakAndOffPeakDemand;
+    EP_GLOBAL extern int const nativePeakAndShoulderEnergy;
+    EP_GLOBAL extern int const nativePeakAndShoulderDemand;
+    EP_GLOBAL extern int const nativePeakAndMidPeakEnergy;
+    EP_GLOBAL extern int const nativePeakAndMidPeakDemand;
+    EP_GLOBAL extern int const nativeShoulderAndOffPeakEnergy;
+    EP_GLOBAL extern int const nativeShoulderAndOffPeakDemand;
+    EP_GLOBAL extern int const nativePeakAndOffPeakEnergy;
+    EP_GLOBAL extern int const nativePeakAndOffPeakDemand;
 
-    thread_local extern int const nativeRealTimePriceCosts;
-    thread_local extern int const nativeAboveCustomerBaseCosts;
-    thread_local extern int const nativeBelowCustomerBaseCosts;
-    thread_local extern int const nativeAboveCustomerBaseEnergy;
-    thread_local extern int const nativeBelowCustomerBaseEnergy;
+    EP_GLOBAL extern int const nativeRealTimePriceCosts;
+    EP_GLOBAL extern int const nativeAboveCustomerBaseCosts;
+    EP_GLOBAL extern int const nativeBelowCustomerBaseCosts;
+    EP_GLOBAL extern int const nativeAboveCustomerBaseEnergy;
+    EP_GLOBAL extern int const nativeBelowCustomerBaseEnergy;
 
-    thread_local extern int const countPeriod;
-    thread_local extern int const MaxNumMonths;
-    thread_local extern int const maxNumBlk;
+    EP_GLOBAL extern int const countPeriod;
+    EP_GLOBAL extern int const MaxNumMonths;
+    EP_GLOBAL extern int const maxNumBlk;
 
-    thread_local extern int const periodPeak;
-    thread_local extern int const periodShoulder;
-    thread_local extern int const periodOffPeak;
-    thread_local extern int const periodMidPeak;
+    EP_GLOBAL extern int const periodPeak;
+    EP_GLOBAL extern int const periodShoulder;
+    EP_GLOBAL extern int const periodOffPeak;
+    EP_GLOBAL extern int const periodMidPeak;
 
-    thread_local extern int const kindMeterNotElectric; // must be zero because testing of >0 done later.
-    thread_local extern int const kindMeterElecSimple;
-    thread_local extern int const kindMeterElecProduced;
-    thread_local extern int const kindMeterElecPurchased;
-    thread_local extern int const kindMeterElecSurplusSold;
-    thread_local extern int const kindMeterElecNet;
+    EP_GLOBAL extern int const kindMeterNotElectric; // must be zero because testing of >0 done later.
+    EP_GLOBAL extern int const kindMeterElecSimple;
+    EP_GLOBAL extern int const kindMeterElecProduced;
+    EP_GLOBAL extern int const kindMeterElecPurchased;
+    EP_GLOBAL extern int const kindMeterElecSurplusSold;
+    EP_GLOBAL extern int const kindMeterElecNet;
 
-    thread_local extern int const kindMeterNotWater;
-    thread_local extern int const kindMeterWater;
+    EP_GLOBAL extern int const kindMeterNotWater;
+    EP_GLOBAL extern int const kindMeterWater;
 
-    thread_local extern int const kindMeterNotGas;
-    thread_local extern int const kindMeterGas;
+    EP_GLOBAL extern int const kindMeterNotGas;
+    EP_GLOBAL extern int const kindMeterGas;
 
-    thread_local extern int const varUnitTypeEnergy;
-    thread_local extern int const varUnitTypeDemand;
-    thread_local extern int const varUnitTypeDimensionless;
-    thread_local extern int const varUnitTypeCurrency;
+    EP_GLOBAL extern int const varUnitTypeEnergy;
+    EP_GLOBAL extern int const varUnitTypeDemand;
+    EP_GLOBAL extern int const varUnitTypeDimensionless;
+    EP_GLOBAL extern int const varUnitTypeCurrency;
 
     // MODULE PARAMETER DEFINITIONS:
 
-    thread_local extern int numEconVar;
-    thread_local extern int sizeEconVar;
+    EP_GLOBAL extern int numEconVar;
+    EP_GLOBAL extern int sizeEconVar;
 
     // holds the outbound connections for each variable
-    thread_local extern Array1D_int operand; // sized to sizeOperand
-    thread_local extern int numOperand;
-    thread_local extern int sizeOperand;
+    EP_GLOBAL extern Array1D_int operand; // sized to sizeOperand
+    EP_GLOBAL extern int numOperand;
+    EP_GLOBAL extern int sizeOperand;
 
-    thread_local extern int numTariff;
+    EP_GLOBAL extern int numTariff;
 
-    thread_local extern int numQualify;
+    EP_GLOBAL extern int numQualify;
 
-    thread_local extern int numChargeSimple;
+    EP_GLOBAL extern int numChargeSimple;
 
-    thread_local extern int numChargeBlock;
+    EP_GLOBAL extern int numChargeBlock;
 
-    thread_local extern int numRatchet;
+    EP_GLOBAL extern int numRatchet;
 
-    thread_local extern int numComputation;
+    EP_GLOBAL extern int numComputation;
 
     // list of pointers to variable, 0 end of line, negative indicate operations
-    thread_local extern Array1D_int steps;
-    thread_local extern Array1D_int stepsCopy;
-    thread_local extern int numSteps;
-    thread_local extern int sizeSteps;
+    EP_GLOBAL extern Array1D_int steps;
+    EP_GLOBAL extern Array1D_int stepsCopy;
+    EP_GLOBAL extern int numSteps;
+    EP_GLOBAL extern int sizeSteps;
 
-    thread_local extern int topOfStack;
-    thread_local extern int sizeStack;
+    EP_GLOBAL extern int topOfStack;
+    EP_GLOBAL extern int sizeStack;
 
     // MODULE VARIABLE DECLARATIONS:
 
@@ -548,14 +548,14 @@ namespace EconomicTariff {
     };
 
     // Object Data
-    thread_local extern Array1D<EconVarType> econVar;
-    thread_local extern Array1D<TariffType> tariff;
-    thread_local extern Array1D<QualifyType> qualify;
-    thread_local extern Array1D<ChargeSimpleType> chargeSimple;
-    thread_local extern Array1D<ChargeBlockType> chargeBlock;
-    thread_local extern Array1D<RatchetType> ratchet;
-    thread_local extern Array1D<ComputationType> computation;
-    thread_local extern Array1D<StackType> stack;
+    EP_GLOBAL extern Array1D<EconVarType> econVar;
+    EP_GLOBAL extern Array1D<TariffType> tariff;
+    EP_GLOBAL extern Array1D<QualifyType> qualify;
+    EP_GLOBAL extern Array1D<ChargeSimpleType> chargeSimple;
+    EP_GLOBAL extern Array1D<ChargeBlockType> chargeBlock;
+    EP_GLOBAL extern Array1D<RatchetType> ratchet;
+    EP_GLOBAL extern Array1D<ComputationType> computation;
+    EP_GLOBAL extern Array1D<StackType> stack;
 
     // Functions
 

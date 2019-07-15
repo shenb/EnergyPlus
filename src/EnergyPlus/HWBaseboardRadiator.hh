@@ -64,23 +64,23 @@ namespace HWBaseboardRadiator {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
-    thread_local extern std::string const cCMO_BBRadiator_Water;
+    EP_GLOBAL extern std::string const cCMO_BBRadiator_Water;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumHWBaseboards;
-    thread_local extern Array1D<Real64> QBBRadSource;         // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> QBBRadSrcAvg;         // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    EP_GLOBAL extern int NumHWBaseboards;
+    EP_GLOBAL extern Array1D<Real64> QBBRadSource;         // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> QBBRadSrcAvg;         // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
 
     // Record keeping variables used to calculate QBBRadSrcAvg locally
-    thread_local extern Array1D<Real64> LastQBBRadSrc;      // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern Array1D_bool SetLoopIndexFlag; // get loop number flag
+    EP_GLOBAL extern Array1D<Real64> LastQBBRadSrc;      // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool SetLoopIndexFlag; // get loop number flag
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
@@ -171,8 +171,8 @@ namespace HWBaseboardRadiator {
     };
 
     // Object Data
-    thread_local extern Array1D<HWBaseboardParams> HWBaseboard;
-    thread_local extern Array1D<HWBaseboardNumericFieldData> HWBaseboardNumericFields;
+    EP_GLOBAL extern Array1D<HWBaseboardParams> HWBaseboard;
+    EP_GLOBAL extern Array1D<HWBaseboardNumericFieldData> HWBaseboardNumericFields;
 
     // Functions
 

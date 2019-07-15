@@ -62,24 +62,24 @@ namespace EMSManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const iTemperatureSetPoint;      // integer for node setpoint control type
-    thread_local extern int const iTemperatureMinSetPoint;   // integer for node setpoint control type
-    thread_local extern int const iTemperatureMaxSetPoint;   // integer for node setpoint control type
-    thread_local extern int const iHumidityRatioSetPoint;    // integer for node setpoint control type
-    thread_local extern int const iHumidityRatioMinSetPoint; // integer for node setpoint control type
-    thread_local extern int const iHumidityRatioMaxSetPoint; // integer for node setpoint control type
-    thread_local extern int const iMassFlowRateSetPoint;     // integer for node setpoint control type
-    thread_local extern int const iMassFlowRateMinSetPoint;  // integer for node setpoint control type
-    thread_local extern int const iMassFlowRateMaxSetPoint;  // integer for node setpoint control type
+    EP_GLOBAL extern int const iTemperatureSetPoint;      // integer for node setpoint control type
+    EP_GLOBAL extern int const iTemperatureMinSetPoint;   // integer for node setpoint control type
+    EP_GLOBAL extern int const iTemperatureMaxSetPoint;   // integer for node setpoint control type
+    EP_GLOBAL extern int const iHumidityRatioSetPoint;    // integer for node setpoint control type
+    EP_GLOBAL extern int const iHumidityRatioMinSetPoint; // integer for node setpoint control type
+    EP_GLOBAL extern int const iHumidityRatioMaxSetPoint; // integer for node setpoint control type
+    EP_GLOBAL extern int const iMassFlowRateSetPoint;     // integer for node setpoint control type
+    EP_GLOBAL extern int const iMassFlowRateMinSetPoint;  // integer for node setpoint control type
+    EP_GLOBAL extern int const iMassFlowRateMaxSetPoint;  // integer for node setpoint control type
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetEMSUserInput; // Flag to prevent input from being read multiple times
-    thread_local extern bool ZoneThermostatActuatorsHaveBeenSetup;
-    thread_local extern bool FinishProcessingUserInput; // Flag to indicate still need to process input
+    EP_GLOBAL extern bool GetEMSUserInput; // Flag to prevent input from being read multiple times
+    EP_GLOBAL extern bool ZoneThermostatActuatorsHaveBeenSetup;
+    EP_GLOBAL extern bool FinishProcessingUserInput; // Flag to indicate still need to process input
 
     // SUBROUTINE SPECIFICATIONS:
 

@@ -135,30 +135,30 @@ namespace HeatingCoils {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local Real64 const MinAirMassFlow(0.001);
-    thread_local int NumDesuperheaterCoil; // Total number of desuperheater heating coil objects in input
+    EP_GLOBAL Real64 const MinAirMassFlow(0.001);
+    EP_GLOBAL int NumDesuperheaterCoil; // Total number of desuperheater heating coil objects in input
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // reclaim heat object types
-    thread_local int const COMPRESSORRACK_REFRIGERATEDCASE(1);
-    thread_local int const COIL_DX_COOLING(2); // single speed DX
-    thread_local int const COIL_DX_MULTISPEED(3);
-    thread_local int const COIL_DX_MULTIMODE(4);
-    thread_local int const CONDENSER_REFRIGERATION(5);
-    thread_local int const COIL_DX_VARIABLE_COOLING(6);
+    EP_GLOBAL int const COMPRESSORRACK_REFRIGERATEDCASE(1);
+    EP_GLOBAL int const COIL_DX_COOLING(2); // single speed DX
+    EP_GLOBAL int const COIL_DX_MULTISPEED(3);
+    EP_GLOBAL int const COIL_DX_MULTIMODE(4);
+    EP_GLOBAL int const CONDENSER_REFRIGERATION(5);
+    EP_GLOBAL int const COIL_DX_VARIABLE_COOLING(6);
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumHeatingCoils(0); // The Number of HeatingCoils found in the Input
-    thread_local Array1D_bool MySizeFlag;
-    thread_local Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
-    thread_local bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
-    thread_local bool CoilIsSuppHeater(false); // Flag set to indicate the heating coil is a supplemental heater
-    thread_local bool MyOneTimeFlag(true);     // one time initialization flag
-    thread_local Array1D_bool CheckEquipName;
-    thread_local bool InputErrorsFound(false);
+    EP_GLOBAL int NumHeatingCoils(0); // The Number of HeatingCoils found in the Input
+    EP_GLOBAL Array1D_bool MySizeFlag;
+    EP_GLOBAL Array1D_bool ValidSourceType; // Used to determine if a source for a desuperheater heating coil is valid
+    EP_GLOBAL bool GetCoilsInputFlag(true); // Flag set to make sure you get input once
+    EP_GLOBAL bool CoilIsSuppHeater(false); // Flag set to indicate the heating coil is a supplemental heater
+    EP_GLOBAL bool MyOneTimeFlag(true);     // one time initialization flag
+    EP_GLOBAL Array1D_bool CheckEquipName;
+    EP_GLOBAL bool InputErrorsFound(false);
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -176,8 +176,8 @@ namespace HeatingCoils {
     // Utility routines for module
 
     // Object Data
-    thread_local Array1D<HeatingCoilEquipConditions> HeatingCoil;
-    thread_local Array1D<HeatingCoilNumericFieldData> HeatingCoilNumericFields;
+    EP_GLOBAL Array1D<HeatingCoilEquipConditions> HeatingCoil;
+    EP_GLOBAL Array1D<HeatingCoilNumericFieldData> HeatingCoilNumericFields;
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -342,7 +342,7 @@ namespace HeatingCoils {
         using GlobalNames::VerifyUniqueCoilName;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetHeatingCoilInput: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetHeatingCoilInput: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int CoilNum; // The HeatingCoil that you are currently loading input into
@@ -354,7 +354,7 @@ namespace HeatingCoils {
         int FuelCoilNum;
         int DesuperheaterCoilNum;        // Index to desuperheater heating coil
         int RemainingCoils;              // Index for error checking DO loop for desuperheater coils on remaining heating coil
-        thread_local static int SourceIndexNum(0);    // Index to reclaim heating source (condenser) of a specific type
+        EP_GLOBAL static int SourceIndexNum(0);    // Index to reclaim heating source (condenser) of a specific type
         std::string SourceTypeString;    // character string used in error message for desuperheating coil
         std::string SourceNameString;    // character string used in error message for desuperheating coil
         std::string CurrentModuleObject; // for ease in getting objects
@@ -364,9 +364,9 @@ namespace HeatingCoils {
         Array1D<Real64> Numbers;         // Numeric input items for object
         Array1D_bool lAlphaBlanks;       // Logical array, alpha field input BLANK = .TRUE.
         Array1D_bool lNumericBlanks;     // Logical array, numeric field input BLANK = .TRUE.
-        thread_local static int MaxNums(0);           // Maximum number of numeric input fields
-        thread_local static int MaxAlphas(0);         // Maximum number of alpha input fields
-        thread_local static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
+        EP_GLOBAL static int MaxNums(0);           // Maximum number of numeric input fields
+        EP_GLOBAL static int MaxAlphas(0);         // Maximum number of alpha input fields
+        EP_GLOBAL static int TotalArgs(0);         // Total number of alpha and numeric arguments (max) for a
         //  certain object in the input file
         int NumAlphas;
         int NumNums;
@@ -1195,11 +1195,11 @@ namespace HeatingCoils {
         int RackNum;                              // Index to refrigerated case compressor rack
         int CondNum;                              // Index to refrigeration condenser
         int DXCoilNum;                            // Index to DX cooling coil
-        thread_local static int ValidSourceTypeCounter(0);     // Counter used to determine if desuperheater source name is valid
-        thread_local static bool HeatingCoilFatalError(false); // used for error checking
-        thread_local static Array1D_bool MySPTestFlag;         // used for error checking
-        thread_local static Array1D_bool ShowSingleWarning;    // Used for single warning message for desuperheater coil
-        thread_local static Array1D_bool MyEnvrnFlag;          // one time environment flag
+        EP_GLOBAL static int ValidSourceTypeCounter(0);     // Counter used to determine if desuperheater source name is valid
+        EP_GLOBAL static bool HeatingCoilFatalError(false); // used for error checking
+        EP_GLOBAL static Array1D_bool MySPTestFlag;         // used for error checking
+        EP_GLOBAL static Array1D_bool ShowSingleWarning;    // Used for single warning message for desuperheater coil
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;          // one time environment flag
 
         if (MyOneTimeFlag) {
             // initialize the environment and sizing flags
@@ -1393,7 +1393,7 @@ namespace HeatingCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeHeatingCoil: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("SizeHeatingCoil: "); // include trailing blank space
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1773,9 +1773,9 @@ namespace HeatingCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcMultiStageElectricHeatingCoil");
-        thread_local static std::string const RoutineNameAverageLoad("CalcMultiStageElectricHeatingCoil:Averageload");
-        thread_local static std::string const RoutineNameFullLoad("CalcMultiStageElectricHeatingCoil:fullload");
+        EP_GLOBAL static std::string const RoutineName("CalcMultiStageElectricHeatingCoil");
+        EP_GLOBAL static std::string const RoutineNameAverageLoad("CalcMultiStageElectricHeatingCoil:Averageload");
+        EP_GLOBAL static std::string const RoutineNameFullLoad("CalcMultiStageElectricHeatingCoil:fullload");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2205,9 +2205,9 @@ namespace HeatingCoils {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcMultiStageGasHeatingCoil");
-        thread_local static std::string const RoutineNameAverageLoad("CalcMultiStageGasHeatingCoil:Averageload");
-        thread_local static std::string const RoutineNameFullLoad("CalcMultiStageGasHeatingCoil:fullload");
+        EP_GLOBAL static std::string const RoutineName("CalcMultiStageGasHeatingCoil");
+        EP_GLOBAL static std::string const RoutineNameAverageLoad("CalcMultiStageGasHeatingCoil:Averageload");
+        EP_GLOBAL static std::string const RoutineNameFullLoad("CalcMultiStageGasHeatingCoil:fullload");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

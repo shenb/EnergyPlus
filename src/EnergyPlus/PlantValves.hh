@@ -61,7 +61,7 @@ namespace EnergyPlus {
 namespace PlantValves {
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumTemperingValves;
+    EP_GLOBAL extern int NumTemperingValves;
 
     struct TemperValveData : PlantComponent
     {
@@ -112,7 +112,7 @@ namespace PlantValves {
     void GetPlantValvesInput();
 
     // Object Data
-    thread_local extern Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
+    EP_GLOBAL extern Array1D<TemperValveData> TemperValve; // dimension to No. of TemperingValve objects
 
 } // namespace PlantValves
 

@@ -75,13 +75,13 @@ namespace DataAirLoop {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumOASystems;         // Number of Outdoor Air Systems
-    thread_local extern bool AirLoopInputsFilled; // Set to TRUE after first pass through air loop
+    EP_GLOBAL extern int NumOASystems;         // Number of Outdoor Air Systems
+    EP_GLOBAL extern bool AirLoopInputsFilled; // Set to TRUE after first pass through air loop
 
     // Variables specific to AirflowNetwork simulations.
     // Avoid using these for other purposes since these variables are only reset to 0 within AirflowNetworkBalanceManager, line 322.
     // Non-AFN simulations may have multiple air loops and use of these variables may yield unintended results.
-    thread_local extern Real64 LoopDXCoilRTF; // OnOff fan run time fraction in an HVAC Air Loop
+    EP_GLOBAL extern Real64 LoopDXCoilRTF; // OnOff fan run time fraction in an HVAC Air Loop
 
     // Types
 
@@ -292,14 +292,14 @@ namespace DataAirLoop {
     };
 
     // Object Data
-    thread_local extern Array1D<AirLoopZoneEquipConnectData> AirToZoneNodeInfo;
-    thread_local extern Array1D<AirLoopOutsideAirConnectData> AirToOANodeInfo;
-    thread_local extern Array1D<DefinePriAirSysAvailMgrs> PriAirSysAvailMgr;
-    thread_local extern Array1D<AirLooptoZoneData> AirLoopZoneInfo;
-    thread_local extern Array1D<AirLoopControlData> AirLoopControlInfo;
-    thread_local extern Array1D<AirLoopFlowData> AirLoopFlow;
-    thread_local extern Array1D<OutsideAirSysProps> OutsideAirSys;
-    thread_local extern Array1D<AirLoopAFNData> AirLoopAFNInfo;
+    EP_GLOBAL extern Array1D<AirLoopZoneEquipConnectData> AirToZoneNodeInfo;
+    EP_GLOBAL extern Array1D<AirLoopOutsideAirConnectData> AirToOANodeInfo;
+    EP_GLOBAL extern Array1D<DefinePriAirSysAvailMgrs> PriAirSysAvailMgr;
+    EP_GLOBAL extern Array1D<AirLooptoZoneData> AirLoopZoneInfo;
+    EP_GLOBAL extern Array1D<AirLoopControlData> AirLoopControlInfo;
+    EP_GLOBAL extern Array1D<AirLoopFlowData> AirLoopFlow;
+    EP_GLOBAL extern Array1D<OutsideAirSysProps> OutsideAirSys;
+    EP_GLOBAL extern Array1D<AirLoopAFNData> AirLoopAFNInfo;
 
     // Clears the global data in DataAirLoop.
     // Needed for unit tests, should not be normally called.

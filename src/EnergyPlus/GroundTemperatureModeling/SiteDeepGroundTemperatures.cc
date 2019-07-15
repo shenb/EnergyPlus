@@ -63,8 +63,8 @@
 
 namespace EnergyPlus {
 
-thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-thread_local static ObjexxFCL::gio::Fmt fmtAN("(A,$)");
+EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+EP_GLOBAL static ObjexxFCL::gio::Fmt fmtAN("(A,$)");
 
 //******************************************************************************
 

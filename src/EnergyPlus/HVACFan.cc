@@ -77,7 +77,7 @@ namespace EnergyPlus {
 
 namespace HVACFan {
 
-    thread_local std::vector<std::unique_ptr<FanSystem>> fanObjs;
+    EP_GLOBAL std::vector<std::unique_ptr<FanSystem>> fanObjs;
 
     void clearHVACFanObjects()
     {
@@ -230,7 +230,7 @@ namespace HVACFan {
 
     void FanSystem::set_size()
     {
-        thread_local std::string static const routineName = "FanSystem::set_size ";
+        EP_GLOBAL std::string static const routineName = "FanSystem::set_size ";
 
         Real64 tempFlow = designAirVolFlowRate;
         bool bPRINT = true;
@@ -371,7 +371,7 @@ namespace HVACFan {
     // oneTimePowerCurveCheck_( true )
     {
 
-        thread_local std::string const static routineName = "HVACFan constructor ";
+        EP_GLOBAL std::string const static routineName = "HVACFan constructor ";
         int numAlphas;    // Number of elements in the alpha array
         int numNums;      // Number of elements in the numeric array
         int numTotFields; // Total number of alpha and numeric fields

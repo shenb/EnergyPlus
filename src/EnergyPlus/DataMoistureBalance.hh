@@ -71,40 +71,40 @@ namespace DataMoistureBalance {
     // Parameters for the definition and limitation of arrays:
 
     // This is more or less the traditional value from BLAST.
-    thread_local extern Real64 const Lam; // heat of adsorption for building materials
+    EP_GLOBAL extern Real64 const Lam; // heat of adsorption for building materials
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na
 
     // MODULE VARIABLE DECLARATIONS:
     // Public Variables that will also be used in the Moisture Surface Balance
-    thread_local extern Array3D<Real64> FluxH;  // transfer function coeff for calculating the CPF Flux history term
-    thread_local extern Array5D<Real64> IcoefH; // transfer function coeff for calculating the CPF history term
-    thread_local extern Array4D<Real64> Icoef;  // transfer function coeff for calculating the CPF history term
-    thread_local extern Array2D<Real64> DiffC;  // Thermal Diffusivity in combined potential formulation (CPF)
+    EP_GLOBAL extern Array3D<Real64> FluxH;  // transfer function coeff for calculating the CPF Flux history term
+    EP_GLOBAL extern Array5D<Real64> IcoefH; // transfer function coeff for calculating the CPF history term
+    EP_GLOBAL extern Array4D<Real64> Icoef;  // transfer function coeff for calculating the CPF history term
+    EP_GLOBAL extern Array2D<Real64> DiffC;  // Thermal Diffusivity in combined potential formulation (CPF)
     // for each equation
-    thread_local extern Array2D<Real64> mtinc; // # of Moisture transfer function time increment for each equation
-    thread_local extern Array1D<Real64> S1;    // Thermal Diffusivity in combined potential formulation (CPF)
+    EP_GLOBAL extern Array2D<Real64> mtinc; // # of Moisture transfer function time increment for each equation
+    EP_GLOBAL extern Array1D<Real64> S1;    // Thermal Diffusivity in combined potential formulation (CPF)
     // for each equation
-    thread_local extern Array1D<Real64> R2; // Thermal Diffusivity in combined potential formulation (CPF)
+    EP_GLOBAL extern Array1D<Real64> R2; // Thermal Diffusivity in combined potential formulation (CPF)
     // for each equation
-    thread_local extern Array1D<Real64> TempOutsideAirFD; // Temperature outside air for the FD surface
+    EP_GLOBAL extern Array1D<Real64> TempOutsideAirFD; // Temperature outside air for the FD surface
 
-    thread_local extern Array2D_int mhstry; // # of FD History terms for each equation
-    thread_local extern Array1D_int CMTF;   // Type of material layer
-    thread_local extern Array2D_int Nmrf;   // # of Moisture Response Factors for CPF Solution
+    EP_GLOBAL extern Array2D_int mhstry; // # of FD History terms for each equation
+    EP_GLOBAL extern Array1D_int CMTF;   // Type of material layer
+    EP_GLOBAL extern Array2D_int Nmrf;   // # of Moisture Response Factors for CPF Solution
 
     // variables used for MTF moisture implementation
-    thread_local extern Array1D<Real64> RhoVaporAirOut; // Vapor Density outside surface
-    thread_local extern Array1D<Real64> RhoVaporAirIn;  // Vapor Density inside surface
-    thread_local extern Array1D<Real64> HConvExtFD;     // thermal convection coefficient outside surface
-    thread_local extern Array1D<Real64> HMassConvExtFD; // mass convection coefficient outside surface
-    thread_local extern Array1D<Real64> HConvInFD;      // thermal convection coefficient inside surface
-    thread_local extern Array1D<Real64> HMassConvInFD;  // mass convection coefficient inside surface
-    thread_local extern Array1D<Real64> RhoVaporSurfIn; // Vapor Density inside surface
-    thread_local extern Array1D<Real64> HSkyFD;         // Sky Convection Coefficient
-    thread_local extern Array1D<Real64> HGrndFD;        // Ground Convection Coefficient
-    thread_local extern Array1D<Real64> HAirFD;         // Air Convection Coefficient
+    EP_GLOBAL extern Array1D<Real64> RhoVaporAirOut; // Vapor Density outside surface
+    EP_GLOBAL extern Array1D<Real64> RhoVaporAirIn;  // Vapor Density inside surface
+    EP_GLOBAL extern Array1D<Real64> HConvExtFD;     // thermal convection coefficient outside surface
+    EP_GLOBAL extern Array1D<Real64> HMassConvExtFD; // mass convection coefficient outside surface
+    EP_GLOBAL extern Array1D<Real64> HConvInFD;      // thermal convection coefficient inside surface
+    EP_GLOBAL extern Array1D<Real64> HMassConvInFD;  // mass convection coefficient inside surface
+    EP_GLOBAL extern Array1D<Real64> RhoVaporSurfIn; // Vapor Density inside surface
+    EP_GLOBAL extern Array1D<Real64> HSkyFD;         // Sky Convection Coefficient
+    EP_GLOBAL extern Array1D<Real64> HGrndFD;        // Ground Convection Coefficient
+    EP_GLOBAL extern Array1D<Real64> HAirFD;         // Air Convection Coefficient
 
     void clear_state();
 

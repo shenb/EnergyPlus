@@ -70,10 +70,10 @@ namespace SplitterComponent {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetSplitterInputFlag;
+    EP_GLOBAL extern bool GetSplitterInputFlag;
     // Public because Used by SimAirServingZones and the Direct Air Unit
-    thread_local extern int NumSplitters; // The Number of Splitters found in the Input
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumSplitters; // The Number of Splitters found in the Input
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -121,7 +121,7 @@ namespace SplitterComponent {
     };
 
     // Object Data
-    thread_local extern Array1D<SplitterConditions> SplitterCond;
+    EP_GLOBAL extern Array1D<SplitterConditions> SplitterCond;
 
     // Functions
     void clear_state();

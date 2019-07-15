@@ -85,7 +85,7 @@ namespace DataShadowingCombinations {
     // MODULE VARIABLE DECLARATIONS:
 
     // Object Data
-    thread_local Array1D<ShadowingCombinations> ShadowComb;
+    EP_GLOBAL Array1D<ShadowingCombinations> ShadowComb;
 
 } // namespace DataShadowingCombinations
 

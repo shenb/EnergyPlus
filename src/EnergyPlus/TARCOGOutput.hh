@@ -63,33 +63,33 @@ namespace TARCOGOutput {
     // variables:
     // bi...Debug files handles:
     // character(len=1000) :: DebugDir
-    thread_local extern std::string DBGD;
-    thread_local extern std::string FileMode;
-    thread_local extern std::string FilePosition;
-    thread_local extern bool WriteDebugOutput;
-    thread_local extern int DebugMode;
-    thread_local extern int winID;
-    thread_local extern int iguID;
+    EP_GLOBAL extern std::string DBGD;
+    EP_GLOBAL extern std::string FileMode;
+    EP_GLOBAL extern std::string FilePosition;
+    EP_GLOBAL extern bool WriteDebugOutput;
+    EP_GLOBAL extern int DebugMode;
+    EP_GLOBAL extern int winID;
+    EP_GLOBAL extern int iguID;
 
-    thread_local extern int InArgumentsFile;
-    thread_local extern int OutArgumentsFile;
-    thread_local extern int WINCogFile;
+    EP_GLOBAL extern int InArgumentsFile;
+    EP_GLOBAL extern int OutArgumentsFile;
+    EP_GLOBAL extern int WINCogFile;
 
     // Intermediate debug files
-    thread_local extern int IterationCSVFileNumber;
-    thread_local extern int TarcogIterationsFileNumber;
+    EP_GLOBAL extern int IterationCSVFileNumber;
+    EP_GLOBAL extern int TarcogIterationsFileNumber;
 
-    thread_local extern std::string IterationCSVName;
+    EP_GLOBAL extern std::string IterationCSVName;
 
     // integer, parameter :: IterationHHAT = 102
     // character(len=1000)    :: IterationHHATName = 'IterationHHAT.csv'
 
-    thread_local extern std::string WinCogFileName;
+    EP_GLOBAL extern std::string WinCogFileName;
     // character(len=1000)    :: SHGCFileName = 'test.w7'
-    thread_local extern std::string DebugOutputFileName;
+    EP_GLOBAL extern std::string DebugOutputFileName;
 
-    thread_local extern std::string const VersionNumber;
-    thread_local extern std::string const VersionCompileDateCC;
+    EP_GLOBAL extern std::string const VersionNumber;
+    EP_GLOBAL extern std::string const VersionCompileDateCC;
 
     // Functions
 

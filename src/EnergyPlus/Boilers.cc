@@ -98,29 +98,29 @@ namespace Boilers {
     // The BLAST/DOE-2 empirical model based on mfg. data
 
     // Boiler normalized efficiency curve types
-    thread_local int const Linear(1);
-    thread_local int const BiLinear(2);
-    thread_local int const Quadratic(3);
-    thread_local int const BiQuadratic(4);
-    thread_local int const Cubic(5);
-    thread_local int const QuadraticLinear(6);
-    thread_local int const BiCubic(7);
+    EP_GLOBAL int const Linear(1);
+    EP_GLOBAL int const BiLinear(2);
+    EP_GLOBAL int const Quadratic(3);
+    EP_GLOBAL int const BiQuadratic(4);
+    EP_GLOBAL int const Cubic(5);
+    EP_GLOBAL int const QuadraticLinear(6);
+    EP_GLOBAL int const BiCubic(7);
 
     // water temperature evaluation method
-    thread_local int const BoilerTempModeNotSet(100);
-    thread_local int const EnteringBoilerTemp(101);
-    thread_local int const LeavingBoilerTemp(102);
+    EP_GLOBAL int const BoilerTempModeNotSet(100);
+    EP_GLOBAL int const EnteringBoilerTemp(101);
+    EP_GLOBAL int const LeavingBoilerTemp(102);
 
     // Boiler flow modes
-    thread_local int const FlowModeNotSet(200);
-    thread_local int const ConstantFlow(201);
-    thread_local int const NotModulated(202);
-    thread_local int const LeavingSetPointModulated(203);
+    EP_GLOBAL int const FlowModeNotSet(200);
+    EP_GLOBAL int const ConstantFlow(201);
+    EP_GLOBAL int const NotModulated(202);
+    EP_GLOBAL int const LeavingSetPointModulated(203);
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumBoilers(0);
-    thread_local bool GetBoilerInputFlag(true);
-    thread_local Array1D<BoilerSpecs> Boiler;
+    EP_GLOBAL int NumBoilers(0);
+    EP_GLOBAL bool GetBoilerInputFlag(true);
+    EP_GLOBAL Array1D<BoilerSpecs> Boiler;
 
     void clear_state()
     {
@@ -192,7 +192,7 @@ namespace Boilers {
         // standard EnergyPlus input retrieval using input Processor
 
         // Locals
-        thread_local static std::string const RoutineName("GetBoilerInput: ");
+        EP_GLOBAL static std::string const RoutineName("GetBoilerInput: ");
 
         // LOCAL VARIABLES
         bool ErrorsFound(false); // Flag to show errors were found during GetInput
@@ -505,7 +505,7 @@ namespace Boilers {
         // Uses the status flags to trigger initializations.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitBoiler");
+        EP_GLOBAL static std::string const RoutineName("InitBoiler");
 
         // Init more variables
         if (this->MyFlag) {
@@ -627,7 +627,7 @@ namespace Boilers {
         // the hot water flow rate and the hot water loop design delta T.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeBoiler");
+        EP_GLOBAL static std::string const RoutineName("SizeBoiler");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool ErrorsFound(false); // If errors detected in input
@@ -792,7 +792,7 @@ namespace Boilers {
         // load performance
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcBoilerModel");
+        EP_GLOBAL static std::string const RoutineName("CalcBoilerModel");
 
         // clean up some operating conditions, may not be necessary
         this->BoilerLoad = 0.0;

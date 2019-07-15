@@ -67,38 +67,38 @@ namespace PackagedThermalStorageCoil {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // control types
-    thread_local extern int const ScheduledOpModes;   // control over TES modes is via local schedule
-    thread_local extern int const EMSActuatedOpModes; // control over TES modes is via EMS
+    EP_GLOBAL extern int const ScheduledOpModes;   // control over TES modes is via local schedule
+    EP_GLOBAL extern int const EMSActuatedOpModes; // control over TES modes is via EMS
 
     // Control Modes
-    thread_local extern int const OffMode;
-    thread_local extern int const CoolingOnlyMode;
-    thread_local extern int const CoolingAndChargeMode;
-    thread_local extern int const CoolingAndDischargeMode;
-    thread_local extern int const ChargeOnlyMode;
-    thread_local extern int const DischargeOnlyMode;
+    EP_GLOBAL extern int const OffMode;
+    EP_GLOBAL extern int const CoolingOnlyMode;
+    EP_GLOBAL extern int const CoolingAndChargeMode;
+    EP_GLOBAL extern int const CoolingAndDischargeMode;
+    EP_GLOBAL extern int const ChargeOnlyMode;
+    EP_GLOBAL extern int const DischargeOnlyMode;
 
     // storage media
-    thread_local extern int const FluidBased;
-    thread_local extern int const IceBased;
+    EP_GLOBAL extern int const FluidBased;
+    EP_GLOBAL extern int const IceBased;
     // INTEGER, PARAMETER :: UserDefinedFluid = 103
 
     // Water Systems
-    thread_local extern int const CondensateDiscarded; // default mode where water is "lost"
-    thread_local extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
+    EP_GLOBAL extern int const CondensateDiscarded; // default mode where water is "lost"
+    EP_GLOBAL extern int const CondensateToTank;    // collect coil condensate from air and store in water storage tank
 
-    thread_local extern int const WaterSupplyFromMains;
-    thread_local extern int const WaterSupplyFromTank;
+    EP_GLOBAL extern int const WaterSupplyFromMains;
+    EP_GLOBAL extern int const WaterSupplyFromTank;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumTESCoils;
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern bool GetTESInputFlag;
+    EP_GLOBAL extern int NumTESCoils;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool GetTESInputFlag;
 
-    thread_local extern int const DehumidControl_CoolReheat;
+    EP_GLOBAL extern int const DehumidControl_CoolReheat;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -414,7 +414,7 @@ namespace PackagedThermalStorageCoil {
     };
 
     // Object Data
-    thread_local extern Array1D<PackagedTESCoolingCoilStruct> TESCoil;
+    EP_GLOBAL extern Array1D<PackagedTESCoolingCoilStruct> TESCoil;
 
     // Functions
 

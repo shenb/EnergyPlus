@@ -83,24 +83,24 @@ namespace DataSurfaceColors {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const NumColors(15);
-    thread_local int const ColorNo_Text(1);
-    thread_local int const ColorNo_Wall(2);
-    thread_local int const ColorNo_Window(3);
-    thread_local int const ColorNo_GlassDoor(4);
-    thread_local int const ColorNo_Door(5);
-    thread_local int const ColorNo_Floor(6);
-    thread_local int const ColorNo_Roof(7);
-    thread_local int const ColorNo_ShdDetBldg(8);
-    thread_local int const ColorNo_ShdDetFix(9);
-    thread_local int const ColorNo_ShdAtt(10);
-    thread_local int const ColorNo_PV(11);
-    thread_local int const ColorNo_TDDDome(12);
-    thread_local int const ColorNo_TDDDiffuser(13);
-    thread_local int const ColorNo_DaylSensor1(14);
-    thread_local int const ColorNo_DaylSensor2(15);
+    EP_GLOBAL int const NumColors(15);
+    EP_GLOBAL int const ColorNo_Text(1);
+    EP_GLOBAL int const ColorNo_Wall(2);
+    EP_GLOBAL int const ColorNo_Window(3);
+    EP_GLOBAL int const ColorNo_GlassDoor(4);
+    EP_GLOBAL int const ColorNo_Door(5);
+    EP_GLOBAL int const ColorNo_Floor(6);
+    EP_GLOBAL int const ColorNo_Roof(7);
+    EP_GLOBAL int const ColorNo_ShdDetBldg(8);
+    EP_GLOBAL int const ColorNo_ShdDetFix(9);
+    EP_GLOBAL int const ColorNo_ShdAtt(10);
+    EP_GLOBAL int const ColorNo_PV(11);
+    EP_GLOBAL int const ColorNo_TDDDome(12);
+    EP_GLOBAL int const ColorNo_TDDDiffuser(13);
+    EP_GLOBAL int const ColorNo_DaylSensor1(14);
+    EP_GLOBAL int const ColorNo_DaylSensor2(15);
 
-    thread_local Array1D_int const defaultcolorno(NumColors, {3, 43, 143, 143, 45, 8, 15, 195, 9, 13, 174, 143, 143, 10, 5}); // text | wall | window | glassdoor |
+    EP_GLOBAL Array1D_int const defaultcolorno(NumColors, {3, 43, 143, 143, 45, 8, 15, 195, 9, 13, 174, 143, 143, 10, 5}); // text | wall | window | glassdoor |
                                                                                                                  // door | floor | roof | detached
                                                                                                                  // building shade (moves with
                                                                                                                  // building) | detached building
@@ -109,7 +109,7 @@ namespace DataSurfaceColors {
                                                                                                                  // Daylight Sensor 1 | Daylight
                                                                                                                  // Sensor 2
 
-    thread_local Array1D_string const colorkeys(NumColors,
+    EP_GLOBAL Array1D_string const colorkeys(NumColors,
                                    {"Text",
                                     "Walls",
                                     "Windows",
@@ -126,7 +126,7 @@ namespace DataSurfaceColors {
                                     "DaylightReferencePoint1",
                                     "DaylightReferencePoint2"});
 
-    thread_local Array1D_int const colorkeyptr(NumColors,
+    EP_GLOBAL Array1D_int const colorkeyptr(NumColors,
                                   {ColorNo_Text,
                                    ColorNo_Wall,
                                    ColorNo_Window,
@@ -147,7 +147,7 @@ namespace DataSurfaceColors {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D_int DXFcolorno(NumColors, defaultcolorno);
+    EP_GLOBAL Array1D_int DXFcolorno(NumColors, defaultcolorno);
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
 
@@ -210,7 +210,7 @@ namespace DataSurfaceColors {
         // the alphas and numerics required to process the Report:SurfaceColorScheme object.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const CurrentModuleObject("OutputControl:SurfaceColorScheme");
+        EP_GLOBAL static std::string const CurrentModuleObject("OutputControl:SurfaceColorScheme");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;

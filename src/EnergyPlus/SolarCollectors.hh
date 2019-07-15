@@ -65,32 +65,32 @@ namespace SolarCollectors {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Fluid Type Flags
-    thread_local extern int const WATER;
-    thread_local extern int const AIR;
+    EP_GLOBAL extern int const WATER;
+    EP_GLOBAL extern int const AIR;
 
     // Test Correlation Type Flags
-    thread_local extern int const INLET;
-    thread_local extern int const AVERAGE;
-    thread_local extern int const OUTLET;
+    EP_GLOBAL extern int const INLET;
+    EP_GLOBAL extern int const AVERAGE;
+    EP_GLOBAL extern int const OUTLET;
 
     // ICS Collector Type Flag
-    thread_local extern int const ICSRectangularTank;
+    EP_GLOBAL extern int const ICSRectangularTank;
     // INTEGER, PARAMETER :: ICSProgressiveTube = 2
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE TYPE DECLARATIONS:
 
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumOfParameters;
-    thread_local extern int NumOfCollectors;
+    EP_GLOBAL extern int NumOfParameters;
+    EP_GLOBAL extern int NumOfCollectors;
 
-    thread_local extern Array1D<Real64> TransSysSkyDiff; // transmittance of cover system for sky diffuse solar rad.
-    thread_local extern Array1D<Real64> TransSysGrnDiff; // transmittance of cover system for ground diffuse solar rad.
-    thread_local extern Array1D<Real64> RefSysSkyDiff;   // reflectance of cover system for sky diffuse solar rad.
-    thread_local extern Array1D<Real64> RefSysGrnDiff;   // reflectance of cover system for ground diffuse solar rad.
+    EP_GLOBAL extern Array1D<Real64> TransSysSkyDiff; // transmittance of cover system for sky diffuse solar rad.
+    EP_GLOBAL extern Array1D<Real64> TransSysGrnDiff; // transmittance of cover system for ground diffuse solar rad.
+    EP_GLOBAL extern Array1D<Real64> RefSysSkyDiff;   // reflectance of cover system for sky diffuse solar rad.
+    EP_GLOBAL extern Array1D<Real64> RefSysGrnDiff;   // reflectance of cover system for ground diffuse solar rad.
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -234,8 +234,8 @@ namespace SolarCollectors {
     };
 
     // Object Data
-    thread_local extern Array1D<ParametersData> Parameters;
-    thread_local extern Array1D<CollectorData> Collector;
+    EP_GLOBAL extern Array1D<ParametersData> Parameters;
+    EP_GLOBAL extern Array1D<CollectorData> Collector;
 
     // Functions
 

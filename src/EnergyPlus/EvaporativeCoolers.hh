@@ -64,35 +64,35 @@ namespace EvaporativeCoolers {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const WaterSupplyFromMains;
-    thread_local extern int const WaterSupplyFromTank;
+    EP_GLOBAL extern int const WaterSupplyFromMains;
+    EP_GLOBAL extern int const WaterSupplyFromTank;
 
-    thread_local extern int const BlowThruFan;
-    thread_local extern int const DrawThruFan;
+    EP_GLOBAL extern int const BlowThruFan;
+    EP_GLOBAL extern int const DrawThruFan;
 
-    thread_local extern int const ZoneTemperatureDeadBandOnOffCycling;
-    thread_local extern int const ZoneCoolingLoadOnOffCycling;
-    thread_local extern int const ZoneCoolingLoadVariableSpeedFan;
+    EP_GLOBAL extern int const ZoneTemperatureDeadBandOnOffCycling;
+    EP_GLOBAL extern int const ZoneCoolingLoadOnOffCycling;
+    EP_GLOBAL extern int const ZoneCoolingLoadVariableSpeedFan;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetInputEvapComponentsFlag; // Flag set to make sure you get input once
-    thread_local extern int NumEvapCool;                 // The Number of Evap Coolers found in the Input
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool GetInputEvapComponentsFlag; // Flag set to make sure you get input once
+    EP_GLOBAL extern int NumEvapCool;                 // The Number of Evap Coolers found in the Input
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
-    thread_local extern int NumZoneEvapUnits;
-    thread_local extern Array1D_bool CheckZoneEvapUnitName;
-    thread_local extern bool GetInputZoneEvapUnit;
+    EP_GLOBAL extern int NumZoneEvapUnits;
+    EP_GLOBAL extern Array1D_bool CheckZoneEvapUnitName;
+    EP_GLOBAL extern bool GetInputZoneEvapUnit;
 
     // Indirect Evaporative Coolers Research Special Operating Modes
-    thread_local extern int const None;            // the indirect evaporative cooler Research Special is scheduled off or turned off
-    thread_local extern int const DryModulated;    // the evaporative cooler Research Special is modulated in Dry Mode
-    thread_local extern int const DryFull;         // the evaporative cooler Research Special is run in full capacity in Dry Mode
-    thread_local extern int const DryWetModulated; // the evaporative cooler Research Special is modulated in Dry Mode or wet Mode
-    thread_local extern int const WetModulated;    // the evaporative cooler Research Special is modulated in wet Mode
-    thread_local extern int const WetFull;         // the evaporative cooler Research Special is run in full capacity in Wet Mode
+    EP_GLOBAL extern int const None;            // the indirect evaporative cooler Research Special is scheduled off or turned off
+    EP_GLOBAL extern int const DryModulated;    // the evaporative cooler Research Special is modulated in Dry Mode
+    EP_GLOBAL extern int const DryFull;         // the evaporative cooler Research Special is run in full capacity in Dry Mode
+    EP_GLOBAL extern int const DryWetModulated; // the evaporative cooler Research Special is modulated in Dry Mode or wet Mode
+    EP_GLOBAL extern int const WetModulated;    // the evaporative cooler Research Special is modulated in wet Mode
+    EP_GLOBAL extern int const WetFull;         // the evaporative cooler Research Special is run in full capacity in Wet Mode
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE EvapCoolers
 
@@ -318,9 +318,9 @@ namespace EvaporativeCoolers {
     };
 
     // Object Data
-    thread_local extern Array1D<EvapConditions> EvapCond;
-    thread_local extern Array1D<ZoneEvapCoolerUnitStruct> ZoneEvapUnit;
-    thread_local extern Array1D<ZoneEvapCoolerUnitFieldData> ZoneEvapCoolerUnitFields;
+    EP_GLOBAL extern Array1D<EvapConditions> EvapCond;
+    EP_GLOBAL extern Array1D<ZoneEvapCoolerUnitStruct> ZoneEvapUnit;
+    EP_GLOBAL extern Array1D<ZoneEvapCoolerUnitFieldData> ZoneEvapCoolerUnitFields;
 
     // Functions
 

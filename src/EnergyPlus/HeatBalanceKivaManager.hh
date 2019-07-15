@@ -60,10 +60,10 @@
 namespace EnergyPlus {
 namespace HeatBalanceKivaManager {
 
-    thread_local const int KIVAZONE_UNCONTROLLED = 0;
-    thread_local const int KIVAZONE_TEMPCONTROL = 1;
-    thread_local const int KIVAZONE_COMFORTCONTROL = 2;
-    thread_local const int KIVAZONE_STAGEDCONTROL = 3;
+    EP_GLOBAL const int KIVAZONE_UNCONTROLLED = 0;
+    EP_GLOBAL const int KIVAZONE_TEMPCONTROL = 1;
+    EP_GLOBAL const int KIVAZONE_COMFORTCONTROL = 2;
+    EP_GLOBAL const int KIVAZONE_STAGEDCONTROL = 3;
 
     class KivaWeatherData
     {

@@ -68,16 +68,16 @@ namespace BoilerSteam {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Real64 FuelUsed;           // W - Boiler fuel used
-    thread_local extern Real64 BoilerLoad;         // W - Boiler Load
-    thread_local extern Real64 BoilerMassFlowRate; // kg/s - Boiler mass flow rate
-    thread_local extern Real64 BoilerOutletTemp;   // W - Boiler outlet temperature
-    thread_local extern Real64 BoilerMaxPress;
-    thread_local extern int NumBoilers;                // Number of boilers
-    thread_local extern Real64 BoilerMassFlowMaxAvail; // kg/s - Boiler mass flow rate
-    thread_local extern Real64 BoilerMassFlowMinAvail; // kg/s - Boiler mass flow rate
+    EP_GLOBAL extern Real64 FuelUsed;           // W - Boiler fuel used
+    EP_GLOBAL extern Real64 BoilerLoad;         // W - Boiler Load
+    EP_GLOBAL extern Real64 BoilerMassFlowRate; // kg/s - Boiler mass flow rate
+    EP_GLOBAL extern Real64 BoilerOutletTemp;   // W - Boiler outlet temperature
+    EP_GLOBAL extern Real64 BoilerMaxPress;
+    EP_GLOBAL extern int NumBoilers;                // Number of boilers
+    EP_GLOBAL extern Real64 BoilerMassFlowMaxAvail; // kg/s - Boiler mass flow rate
+    EP_GLOBAL extern Real64 BoilerMassFlowMinAvail; // kg/s - Boiler mass flow rate
 
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Boilers
 
@@ -150,8 +150,8 @@ namespace BoilerSteam {
     };
 
     // Object Data
-    thread_local extern Array1D<BoilerSpecs> Boiler; // dimension to number of machines
-    thread_local extern Array1D<ReportVars> BoilerReport;
+    EP_GLOBAL extern Array1D<BoilerSpecs> Boiler; // dimension to number of machines
+    EP_GLOBAL extern Array1D<ReportVars> BoilerReport;
 
     // Functions
 

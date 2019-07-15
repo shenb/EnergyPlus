@@ -63,27 +63,27 @@ namespace Pumps {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const Continuous;   // Pump control type (pump always running)
-    thread_local extern int const Intermittent; // Pump control type (pump runs only when there is a demand)
+    EP_GLOBAL extern int const Continuous;   // Pump control type (pump always running)
+    EP_GLOBAL extern int const Intermittent; // Pump control type (pump runs only when there is a demand)
 
-    thread_local extern int const VFDManual;    // VFD control type (Scheduled RPM)
-    thread_local extern int const VFDAutomatic; // VFD control type (Variable RPM according to flow request)
+    EP_GLOBAL extern int const VFDManual;    // VFD control type (Scheduled RPM)
+    EP_GLOBAL extern int const VFDAutomatic; // VFD control type (Variable RPM according to flow request)
 
-    thread_local extern int const OptimalScheme;    // Control sequencing for pump bank
-    thread_local extern int const SequentialScheme; // Control sequencing for pump bank
-    thread_local extern int const UserDefined;      // Control sequencing for pump bank
+    EP_GLOBAL extern int const OptimalScheme;    // Control sequencing for pump bank
+    EP_GLOBAL extern int const SequentialScheme; // Control sequencing for pump bank
+    EP_GLOBAL extern int const UserDefined;      // Control sequencing for pump bank
 
-    thread_local extern std::string const cPump_VarSpeed;
-    thread_local extern int const Pump_VarSpeed;
-    thread_local extern std::string const cPump_ConSpeed;
-    thread_local extern int const Pump_ConSpeed;
-    thread_local extern std::string const cPump_Cond;
-    thread_local extern int const Pump_Cond;
-    thread_local extern std::string const cPumpBank_VarSpeed;
-    thread_local extern int const PumpBank_VarSpeed;
-    thread_local extern std::string const cPumpBank_ConSpeed;
-    thread_local extern int const PumpBank_ConSpeed;
-    thread_local extern Array1D_string const cPumpTypes;
+    EP_GLOBAL extern std::string const cPump_VarSpeed;
+    EP_GLOBAL extern int const Pump_VarSpeed;
+    EP_GLOBAL extern std::string const cPump_ConSpeed;
+    EP_GLOBAL extern int const Pump_ConSpeed;
+    EP_GLOBAL extern std::string const cPump_Cond;
+    EP_GLOBAL extern int const Pump_Cond;
+    EP_GLOBAL extern std::string const cPumpBank_VarSpeed;
+    EP_GLOBAL extern int const PumpBank_VarSpeed;
+    EP_GLOBAL extern std::string const cPumpBank_ConSpeed;
+    EP_GLOBAL extern int const PumpBank_ConSpeed;
+    EP_GLOBAL extern Array1D_string const cPumpTypes;
 
     enum powerSizingMethodEnum
     {
@@ -94,19 +94,19 @@ namespace Pumps {
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumPumps;         // Num Pumps (used in pump bank)
-    thread_local extern int NumPumpsRunning;  // Num of pumps ON (used in pump bank)
-    thread_local extern int NumPumpsFullLoad; // Num pumps running at full load (used in pump bank)
+    EP_GLOBAL extern int NumPumps;         // Num Pumps (used in pump bank)
+    EP_GLOBAL extern int NumPumpsRunning;  // Num of pumps ON (used in pump bank)
+    EP_GLOBAL extern int NumPumpsFullLoad; // Num pumps running at full load (used in pump bank)
     //  INTEGER       :: NumPumpsPartLoad                   = 0    !Num pumps running at part load (used in pump bank)
 
     // simulation and reporting variables
     //  REAL(r64)           :: OutletTemp                   = 0.0d0  ! pump outlet temperature
-    thread_local extern Real64 PumpMassFlowRate; // mass flow rate at pump inlet node
+    EP_GLOBAL extern Real64 PumpMassFlowRate; // mass flow rate at pump inlet node
     //  REAL(r64)           :: PumpPress                    = 0.0d0  ! For Passing around the steam loops
     //  REAL(r64)           :: PumpQuality                  = 0.0d0  ! For Passing around the steam loops=0.0 here
-    thread_local extern Real64 PumpHeattoFluid; // Pump Power dissipated in fluid stream
-    thread_local extern Real64 Power;           // Pump Electric power
-    thread_local extern Real64 ShaftPower;      // Power passing through pump shaft
+    EP_GLOBAL extern Real64 PumpHeattoFluid; // Pump Power dissipated in fluid stream
+    EP_GLOBAL extern Real64 Power;           // Pump Electric power
+    EP_GLOBAL extern Real64 ShaftPower;      // Power passing through pump shaft
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
 
@@ -246,8 +246,8 @@ namespace Pumps {
     };
 
     // Object Data
-    thread_local extern Array1D<PumpSpecs> PumpEquip;
-    thread_local extern Array1D<ReportVars> PumpEquipReport;
+    EP_GLOBAL extern Array1D<PumpSpecs> PumpEquip;
+    EP_GLOBAL extern Array1D<ReportVars> PumpEquipReport;
 
     // Functions
     void clear_state();

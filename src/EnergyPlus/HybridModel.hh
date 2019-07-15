@@ -65,11 +65,11 @@ namespace HybridModel {
     // MODULE PARAMETER DEFINITIONS
 
     // MODULE VARIABLE TYPE DECLARATIONS:
-    thread_local extern bool FlagHybridModel;    // True if hybrid model is activated
-    thread_local extern bool FlagHybridModel_TM;   // User input IM option - True if hybrid model (thermal mass) is activated
-    thread_local extern bool FlagHybridModel_AI; // User input IM option - True if hybrid model (air infiltration) is activated
-    thread_local extern bool FlagHybridModel_PC;   // User input IM option - True if hybrid model (people count) is activated
-    thread_local extern int NumOfHybridModelZones; // Number of hybrid model zones in the model
+    EP_GLOBAL extern bool FlagHybridModel;    // True if hybrid model is activated
+    EP_GLOBAL extern bool FlagHybridModel_TM;   // User input IM option - True if hybrid model (thermal mass) is activated
+    EP_GLOBAL extern bool FlagHybridModel_AI; // User input IM option - True if hybrid model (air infiltration) is activated
+    EP_GLOBAL extern bool FlagHybridModel_PC;   // User input IM option - True if hybrid model (people count) is activated
+    EP_GLOBAL extern int NumOfHybridModelZones; // Number of hybrid model zones in the model
 
     // SUBROUTINE SPECIFICATIONS:
 
@@ -124,7 +124,7 @@ namespace HybridModel {
     };
 
     // Object Data
-    thread_local extern Array1D<HybridModelProperties> HybridModelZone;
+    EP_GLOBAL extern Array1D<HybridModelProperties> HybridModelZone;
 
     // Functions
 

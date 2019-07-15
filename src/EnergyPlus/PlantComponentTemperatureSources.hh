@@ -63,14 +63,14 @@ namespace PlantComponentTemperatureSources {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const TempSpecType_Constant;
-    thread_local extern int const TempSpecType_Schedule;
+    EP_GLOBAL extern int const TempSpecType_Constant;
+    EP_GLOBAL extern int const TempSpecType_Schedule;
 
     // MODULE DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLES
-    thread_local extern int NumSources;
-    thread_local extern bool GetInput; // then TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern int NumSources;
+    EP_GLOBAL extern bool GetInput; // then TRUE, calls subroutine to read input file.
 
     // MODULE ROUTINES
 
@@ -114,7 +114,7 @@ namespace PlantComponentTemperatureSources {
     };
 
     // Object Data
-    thread_local extern Array1D<WaterSourceSpecs> WaterSource; // dimension to number of machines
+    EP_GLOBAL extern Array1D<WaterSourceSpecs> WaterSource; // dimension to number of machines
 
     // Functions
 

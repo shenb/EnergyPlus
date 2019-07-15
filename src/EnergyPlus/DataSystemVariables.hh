@@ -63,46 +63,46 @@ namespace DataSystemVariables {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const iASCII_CR;    // endline value when just CR instead of CR/LF
-    thread_local extern int const iUnicode_end; // endline value when Unicode file
-    thread_local extern char const tabchar;
-    thread_local extern int const GoodIOStatValue;       // good value for IOStat during reads/writes
-    thread_local extern int const MaxTimingStringLength; // string length for timing string array
+    EP_GLOBAL extern int const iASCII_CR;    // endline value when just CR instead of CR/LF
+    EP_GLOBAL extern int const iUnicode_end; // endline value when Unicode file
+    EP_GLOBAL extern char const tabchar;
+    EP_GLOBAL extern int const GoodIOStatValue;       // good value for IOStat during reads/writes
+    EP_GLOBAL extern int const MaxTimingStringLength; // string length for timing string array
 
-    thread_local extern std::string const DDOnlyEnvVar;             // Only run design days
-    thread_local extern std::string const ReverseDDEnvVar;          // Reverse DD during run
-    thread_local extern std::string const DisableGLHECachingEnvVar; // GLHE Caching
-    thread_local extern std::string const FullAnnualSimulation;     // Generate annual run
-    thread_local extern std::string const cDeveloperFlag;
-    thread_local extern std::string const cDisplayAllWarnings;
-    thread_local extern std::string const cDisplayExtraWarnings;
-    thread_local extern std::string const cDisplayAdvancedReportVariables;
-    thread_local extern std::string const cDisplayUnusedObjects;
-    thread_local extern std::string const cDisplayUnusedSchedules;
-    thread_local extern std::string const cDisplayZoneAirHeatBalanceOffBalance;
-    thread_local extern std::string const cSortIDD;
-    thread_local extern std::string const cReportDuringWarmup;
-    thread_local extern std::string const cReportDuringHVACSizingSimulation;
-    thread_local extern std::string const cIgnoreSolarRadiation;
-    thread_local extern std::string const cIgnoreBeamRadiation;
-    thread_local extern std::string const cIgnoreDiffuseRadiation;
-    thread_local extern std::string const cSutherlandHodgman;
-    thread_local extern std::string const cMinimalSurfaceVariables;
-    thread_local extern std::string const cMinimalShadowing;
-    thread_local extern std::string const cNumActiveSims;
-    thread_local extern std::string const cInputPath1; // EP-Launch setting.  Full path + project name
-    thread_local extern std::string const cInputPath2; // RunEplus.bat setting.  Full path
-    thread_local extern std::string const cProgramPath;
-    thread_local extern std::string const cTimingFlag;
-    thread_local extern std::string const TrackAirLoopEnvVar; // To generate a file with runtime statistics
+    EP_GLOBAL extern std::string const DDOnlyEnvVar;             // Only run design days
+    EP_GLOBAL extern std::string const ReverseDDEnvVar;          // Reverse DD during run
+    EP_GLOBAL extern std::string const DisableGLHECachingEnvVar; // GLHE Caching
+    EP_GLOBAL extern std::string const FullAnnualSimulation;     // Generate annual run
+    EP_GLOBAL extern std::string const cDeveloperFlag;
+    EP_GLOBAL extern std::string const cDisplayAllWarnings;
+    EP_GLOBAL extern std::string const cDisplayExtraWarnings;
+    EP_GLOBAL extern std::string const cDisplayAdvancedReportVariables;
+    EP_GLOBAL extern std::string const cDisplayUnusedObjects;
+    EP_GLOBAL extern std::string const cDisplayUnusedSchedules;
+    EP_GLOBAL extern std::string const cDisplayZoneAirHeatBalanceOffBalance;
+    EP_GLOBAL extern std::string const cSortIDD;
+    EP_GLOBAL extern std::string const cReportDuringWarmup;
+    EP_GLOBAL extern std::string const cReportDuringHVACSizingSimulation;
+    EP_GLOBAL extern std::string const cIgnoreSolarRadiation;
+    EP_GLOBAL extern std::string const cIgnoreBeamRadiation;
+    EP_GLOBAL extern std::string const cIgnoreDiffuseRadiation;
+    EP_GLOBAL extern std::string const cSutherlandHodgman;
+    EP_GLOBAL extern std::string const cMinimalSurfaceVariables;
+    EP_GLOBAL extern std::string const cMinimalShadowing;
+    EP_GLOBAL extern std::string const cNumActiveSims;
+    EP_GLOBAL extern std::string const cInputPath1; // EP-Launch setting.  Full path + project name
+    EP_GLOBAL extern std::string const cInputPath2; // RunEplus.bat setting.  Full path
+    EP_GLOBAL extern std::string const cProgramPath;
+    EP_GLOBAL extern std::string const cTimingFlag;
+    EP_GLOBAL extern std::string const TrackAirLoopEnvVar; // To generate a file with runtime statistics
     // for each controller on each air loop
-    thread_local extern std::string const TraceAirLoopEnvVar; // To generate a trace file with the converged
+    EP_GLOBAL extern std::string const TraceAirLoopEnvVar; // To generate a trace file with the converged
     // solutions of all controllers on each air loop at each call to SimAirLoop()
-    thread_local extern std::string const TraceHVACControllerEnvVar; // To generate a trace file for
+    EP_GLOBAL extern std::string const TraceHVACControllerEnvVar; // To generate a trace file for
     //  each individual HVAC controller with all controller iterations
 
-    thread_local extern std::string const MinReportFrequencyEnvVar;   // environment var for reporting frequency.
-    thread_local extern std::string const cDisplayInputInAuditEnvVar; // environmental variable that enables the echoing of the input file into the audit file
+    EP_GLOBAL extern std::string const MinReportFrequencyEnvVar;   // environment var for reporting frequency.
+    EP_GLOBAL extern std::string const cDisplayInputInAuditEnvVar; // environmental variable that enables the echoing of the input file into the audit file
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -111,56 +111,56 @@ namespace DataSystemVariables {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool DDOnly;                           // TRUE if design days (sizingperiod:*) only are to be run.
-    thread_local extern bool ReverseDD;                        // TRUE if reverse design days (reordering sizingperiod:*) are to be run.
-    thread_local extern bool DisableGLHECaching;               // TRUE if GLHE caching is to be disabled, for example, during unit tests
-    thread_local extern bool FullAnnualRun;                    // TRUE if full annual simulation is to be run.
-    thread_local extern bool DeveloperFlag;                    // TRUE if developer flag is turned on. (turns on more displays to console)
-    thread_local extern bool TimingFlag;                       // TRUE if timing flag is turned on. (turns on more timing displays to console)
-    thread_local extern bool SutherlandHodgman;                // TRUE if SutherlandHodgman algorithm for polygon clipping is to be used.
-    thread_local extern bool DetailedSkyDiffuseAlgorithm;      // use detailed diffuse shading algorithm for sky (shading transmittance varies)
-    thread_local extern bool DetailedSolarTimestepIntegration; // when true, use detailed timestep integration for all solar,shading, etc.
-    thread_local extern bool TrackAirLoopEnvFlag;              // If TRUE generates a file with runtime statistics for each HVAC
+    EP_GLOBAL extern bool DDOnly;                           // TRUE if design days (sizingperiod:*) only are to be run.
+    EP_GLOBAL extern bool ReverseDD;                        // TRUE if reverse design days (reordering sizingperiod:*) are to be run.
+    EP_GLOBAL extern bool DisableGLHECaching;               // TRUE if GLHE caching is to be disabled, for example, during unit tests
+    EP_GLOBAL extern bool FullAnnualRun;                    // TRUE if full annual simulation is to be run.
+    EP_GLOBAL extern bool DeveloperFlag;                    // TRUE if developer flag is turned on. (turns on more displays to console)
+    EP_GLOBAL extern bool TimingFlag;                       // TRUE if timing flag is turned on. (turns on more timing displays to console)
+    EP_GLOBAL extern bool SutherlandHodgman;                // TRUE if SutherlandHodgman algorithm for polygon clipping is to be used.
+    EP_GLOBAL extern bool DetailedSkyDiffuseAlgorithm;      // use detailed diffuse shading algorithm for sky (shading transmittance varies)
+    EP_GLOBAL extern bool DetailedSolarTimestepIntegration; // when true, use detailed timestep integration for all solar,shading, etc.
+    EP_GLOBAL extern bool TrackAirLoopEnvFlag;              // If TRUE generates a file with runtime statistics for each HVAC
     //  controller on each air loop
-    thread_local extern bool TraceAirLoopEnvFlag; // If TRUE generates a trace file with the converged solutions of all
+    EP_GLOBAL extern bool TraceAirLoopEnvFlag; // If TRUE generates a trace file with the converged solutions of all
     // HVAC controllers on each air loop at each call to SimAirLoop()
-    thread_local extern bool TraceHVACControllerEnvFlag; // If TRUE generates a trace file for each individual HVAC
+    EP_GLOBAL extern bool TraceHVACControllerEnvFlag; // If TRUE generates a trace file for each individual HVAC
     // controller with all controller iterations
-    thread_local extern bool ReportDuringWarmup;                      // True when the report outputs even during warmup
-    thread_local extern bool ReportDuringHVACSizingSimulation;        // true when reporting outputs during HVAC sizing Simulation
-    thread_local extern bool ReportDetailedWarmupConvergence;         // True when the detailed warmup convergence is requested
-    thread_local extern bool UpdateDataDuringWarmupExternalInterface; // variable sets in the external interface.
-    thread_local extern bool UseScheduledSunlitFrac;                  // when true, the external shading calculation results will be exported
-    thread_local extern bool ReportExtShadingSunlitFrac;              // when true, the sunlit fraction for all surfaces are exported as a csv format output
-    thread_local extern bool UseImportedSunlitFrac;                   // when true, the sunlit fraction for all surfaces are imported altogether as a CSV file
+    EP_GLOBAL extern bool ReportDuringWarmup;                      // True when the report outputs even during warmup
+    EP_GLOBAL extern bool ReportDuringHVACSizingSimulation;        // true when reporting outputs during HVAC sizing Simulation
+    EP_GLOBAL extern bool ReportDetailedWarmupConvergence;         // True when the detailed warmup convergence is requested
+    EP_GLOBAL extern bool UpdateDataDuringWarmupExternalInterface; // variable sets in the external interface.
+    EP_GLOBAL extern bool UseScheduledSunlitFrac;                  // when true, the external shading calculation results will be exported
+    EP_GLOBAL extern bool ReportExtShadingSunlitFrac;              // when true, the sunlit fraction for all surfaces are exported as a csv format output
+    EP_GLOBAL extern bool UseImportedSunlitFrac;                   // when true, the sunlit fraction for all surfaces are imported altogether as a CSV file
 
-    thread_local extern bool DisableGroupSelfShading; // when true, defined shadowing surfaces group is ignored when calculating sunlit fraction
-    thread_local extern bool DisableAllSelfShading;   // when true, all external shadowing surfaces is ignored when calculating sunlit fraction
+    EP_GLOBAL extern bool DisableGroupSelfShading; // when true, defined shadowing surfaces group is ignored when calculating sunlit fraction
+    EP_GLOBAL extern bool DisableAllSelfShading;   // when true, all external shadowing surfaces is ignored when calculating sunlit fraction
 
     // This update the value during the warmup added for FMI
-    thread_local extern Real64 Elapsed_Time;            // For showing elapsed time at end of run
-    thread_local extern Real64 Time_Start;              // Call to CPU_Time for start time of simulation
-    thread_local extern Real64 Time_Finish;             // Call to CPU_Time for end time of simulation
-    thread_local extern std::string MinReportFrequency; // String for minimum reporting frequency
-    thread_local extern bool SortedIDD;                 // after processing, use sorted IDD to obtain Defs, etc.
-    thread_local extern bool lMinimalShadowing;         // TRUE if MinimalShadowing is to override Solar Distribution flag
-    thread_local extern std::string TempFullFileName;
-    thread_local extern std::string envinputpath1;
-    thread_local extern std::string envinputpath2;
-    thread_local extern std::string envprogrampath;
-    thread_local extern bool TestAllPaths;
-    thread_local extern int iEnvSetThreads;
-    thread_local extern bool lEnvSetThreadsInput;
-    thread_local extern int iepEnvSetThreads;
-    thread_local extern bool lepSetThreadsInput;
-    thread_local extern int iIDFSetThreads;
-    thread_local extern bool lIDFSetThreadsInput;
-    thread_local extern int inumActiveSims;
-    thread_local extern bool lnumActiveSims;
-    thread_local extern int MaxNumberOfThreads;
-    thread_local extern int NumberIntRadThreads;
-    thread_local extern int iNominalTotSurfaces;
-    thread_local extern bool Threading;
+    EP_GLOBAL extern Real64 Elapsed_Time;            // For showing elapsed time at end of run
+    EP_GLOBAL extern Real64 Time_Start;              // Call to CPU_Time for start time of simulation
+    EP_GLOBAL extern Real64 Time_Finish;             // Call to CPU_Time for end time of simulation
+    EP_GLOBAL extern std::string MinReportFrequency; // String for minimum reporting frequency
+    EP_GLOBAL extern bool SortedIDD;                 // after processing, use sorted IDD to obtain Defs, etc.
+    EP_GLOBAL extern bool lMinimalShadowing;         // TRUE if MinimalShadowing is to override Solar Distribution flag
+    EP_GLOBAL extern std::string TempFullFileName;
+    EP_GLOBAL extern std::string envinputpath1;
+    EP_GLOBAL extern std::string envinputpath2;
+    EP_GLOBAL extern std::string envprogrampath;
+    EP_GLOBAL extern bool TestAllPaths;
+    EP_GLOBAL extern int iEnvSetThreads;
+    EP_GLOBAL extern bool lEnvSetThreadsInput;
+    EP_GLOBAL extern int iepEnvSetThreads;
+    EP_GLOBAL extern bool lepSetThreadsInput;
+    EP_GLOBAL extern int iIDFSetThreads;
+    EP_GLOBAL extern bool lIDFSetThreadsInput;
+    EP_GLOBAL extern int inumActiveSims;
+    EP_GLOBAL extern bool lnumActiveSims;
+    EP_GLOBAL extern int MaxNumberOfThreads;
+    EP_GLOBAL extern int NumberIntRadThreads;
+    EP_GLOBAL extern int iNominalTotSurfaces;
+    EP_GLOBAL extern bool Threading;
 
     // Functions
 

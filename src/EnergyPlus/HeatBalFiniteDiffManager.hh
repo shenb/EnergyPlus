@@ -62,30 +62,30 @@ namespace EnergyPlus {
 namespace HeatBalFiniteDiffManager {
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern Real64 const Lambda;
-    thread_local extern Real64 const smalldiff; // Used in places where "equality" tests should not be used.
+    EP_GLOBAL extern Real64 const Lambda;
+    EP_GLOBAL extern Real64 const smalldiff; // Used in places where "equality" tests should not be used.
 
-    thread_local extern int const CrankNicholsonSecondOrder; // original CondFD scheme.  semi implicit, second order in time
-    thread_local extern int const FullyImplicitFirstOrder;   // fully implicit scheme, first order in time.
-    thread_local extern Array1D_string const cCondFDSchemeType;
+    EP_GLOBAL extern int const CrankNicholsonSecondOrder; // original CondFD scheme.  semi implicit, second order in time
+    EP_GLOBAL extern int const FullyImplicitFirstOrder;   // fully implicit scheme, first order in time.
+    EP_GLOBAL extern Array1D_string const cCondFDSchemeType;
 
-    thread_local extern Real64 const TempInitValue; // Initialization value for Temperature
-    thread_local extern Real64 const RhovInitValue; // Initialization value for Rhov
-    thread_local extern Real64 const EnthInitValue; // Initialization value for Enthalpy
+    EP_GLOBAL extern Real64 const TempInitValue; // Initialization value for Temperature
+    EP_GLOBAL extern Real64 const RhovInitValue; // Initialization value for Rhov
+    EP_GLOBAL extern Real64 const EnthInitValue; // Initialization value for Enthalpy
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D<Real64> SigmaR;       // Total Resistance of construction layers
-    thread_local extern Array1D<Real64> SigmaC;       // Total Capacitance of construction layers
-    thread_local extern Array1D<Real64> QHeatInFlux;  // HeatFlux on Surface for reporting
-    thread_local extern Array1D<Real64> QHeatOutFlux; // HeatFlux on Surface for reporting
-    thread_local extern int CondFDSchemeType;         // solution scheme for CondFD - default
-    thread_local extern Real64 SpaceDescritConstant;  // spatial descritization constant,
-    thread_local extern Real64 MinTempLimit;          // lower limit check, degree C
-    thread_local extern Real64 MaxTempLimit;          // upper limit check, degree C
-    thread_local extern int MaxGSiter;                // maximum number of Gauss Seidel iterations
-    thread_local extern Real64 fracTimeStepZone_Hour;
-    thread_local extern bool GetHBFiniteDiffInputFlag;
-    thread_local extern int WarmupSurfTemp;
+    EP_GLOBAL extern Array1D<Real64> SigmaR;       // Total Resistance of construction layers
+    EP_GLOBAL extern Array1D<Real64> SigmaC;       // Total Capacitance of construction layers
+    EP_GLOBAL extern Array1D<Real64> QHeatInFlux;  // HeatFlux on Surface for reporting
+    EP_GLOBAL extern Array1D<Real64> QHeatOutFlux; // HeatFlux on Surface for reporting
+    EP_GLOBAL extern int CondFDSchemeType;         // solution scheme for CondFD - default
+    EP_GLOBAL extern Real64 SpaceDescritConstant;  // spatial descritization constant,
+    EP_GLOBAL extern Real64 MinTempLimit;          // lower limit check, degree C
+    EP_GLOBAL extern Real64 MaxTempLimit;          // upper limit check, degree C
+    EP_GLOBAL extern int MaxGSiter;                // maximum number of Gauss Seidel iterations
+    EP_GLOBAL extern Real64 fracTimeStepZone_Hour;
+    EP_GLOBAL extern bool GetHBFiniteDiffInputFlag;
+    EP_GLOBAL extern int WarmupSurfTemp;
 
     struct ConstructionDataFD
     {
@@ -179,9 +179,9 @@ namespace HeatBalFiniteDiffManager {
 
     // Object Data
 
-    thread_local extern Array1D<ConstructionDataFD> ConstructFD;
-    thread_local extern Array1D<SurfaceDataFD> SurfaceFD;
-    thread_local extern Array1D<MaterialDataFD> MaterialFD;
+    EP_GLOBAL extern Array1D<ConstructionDataFD> ConstructFD;
+    EP_GLOBAL extern Array1D<SurfaceDataFD> SurfaceFD;
+    EP_GLOBAL extern Array1D<MaterialDataFD> MaterialFD;
 
     // Functions
 

@@ -130,9 +130,9 @@ namespace MicroCHPElectricGenerator {
     // MODULE PARAMETER DEFINITIONS
 
     // DERIVED TYPE DEFINITIONS
-    thread_local bool GetMicroCHPInput(true); // When TRUE, calls subroutine to read input file.
-    thread_local Array1D_bool CheckEquipName;
-    thread_local Array1D_bool MySizeFlag;
+    EP_GLOBAL bool GetMicroCHPInput(true); // When TRUE, calls subroutine to read input file.
+    EP_GLOBAL Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool MySizeFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE Combustion ElectricGenerator
 
@@ -249,11 +249,11 @@ namespace MicroCHPElectricGenerator {
         int IOStat;                     // IO Status when calling get input subroutine
         Array1D_string AlphArray(25);   // character string data
         Array1D<Real64> NumArray(200);  // numeric data TODO deal with allocatable for extensible
-        thread_local static bool ErrorsFound(false); // error flag
+        EP_GLOBAL static bool ErrorsFound(false); // error flag
         //  INTEGER       :: thisMicroCHP  !temporary index
         //  INTEGER       :: otherMicroCHP !loop counter and temporary indexer
         //  INTEGER       :: I   ! loop counter
-        thread_local static bool MyOneTimeFlag(true);
+        EP_GLOBAL static bool MyOneTimeFlag(true);
         int CHPParamNum;        // loop count and temporary index
         std::string ObjMSGName; // string for error messages
         int thisParamID;
@@ -746,7 +746,7 @@ namespace MicroCHPElectricGenerator {
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitMicroCHPNoNormalizeGenerators");
+        EP_GLOBAL static std::string const RoutineName("InitMicroCHPNoNormalizeGenerators");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -755,11 +755,11 @@ namespace MicroCHPElectricGenerator {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static int DynaCntrlNum(0);
+        EP_GLOBAL static int DynaCntrlNum(0);
         Real64 TimeElapsed;              // Fraction of the current hour that has elapsed (h)
-        thread_local static bool MyOneTimeFlag(true); // Initialization flag
-        thread_local static Array1D_bool MyEnvrnFlag; // Used for initializations each begin environment flag
-        thread_local static Array1D_bool MyPlantScanFlag;
+        EP_GLOBAL static bool MyOneTimeFlag(true); // Initialization flag
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag; // Used for initializations each begin environment flag
+        EP_GLOBAL static Array1D_bool MyPlantScanFlag;
 
         bool errFlag;
         Real64 mdot; // local temporary for mass flow rate
@@ -971,7 +971,7 @@ namespace MicroCHPElectricGenerator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcMicroCHPNoNormalizeGeneratorModel");
+        EP_GLOBAL static std::string const RoutineName("CalcMicroCHPNoNormalizeGeneratorModel");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -980,38 +980,38 @@ namespace MicroCHPElectricGenerator {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Real64 AllowedLoad(0.0);
-        thread_local static int CurrentOpMode(0);
-        thread_local static Real64 PLRforSubtimestepStartUp(1.0);
-        thread_local static Real64 PLRforSubtimestepShutDown(0.0);
-        thread_local static bool RunFlag(false);
-        thread_local static int DynaCntrlNum(0);
-        thread_local static Real64 Pnetss(0.0);
-        thread_local static Real64 Pstandby(0.0); // power draw during standby, positive here means negative production
-        thread_local static Real64 Pcooler(0.0);  // power draw during cool down, positive here means negative production
+        EP_GLOBAL static Real64 AllowedLoad(0.0);
+        EP_GLOBAL static int CurrentOpMode(0);
+        EP_GLOBAL static Real64 PLRforSubtimestepStartUp(1.0);
+        EP_GLOBAL static Real64 PLRforSubtimestepShutDown(0.0);
+        EP_GLOBAL static bool RunFlag(false);
+        EP_GLOBAL static int DynaCntrlNum(0);
+        EP_GLOBAL static Real64 Pnetss(0.0);
+        EP_GLOBAL static Real64 Pstandby(0.0); // power draw during standby, positive here means negative production
+        EP_GLOBAL static Real64 Pcooler(0.0);  // power draw during cool down, positive here means negative production
         //  REAL(r64)    :: Pnet   = 0.0d0
-        thread_local static Real64 NdotFuel(0.0);
+        EP_GLOBAL static Real64 NdotFuel(0.0);
 
-        thread_local static bool ConstrainedIncreasingNdot(false);
-        thread_local static bool ConstrainedDecreasingNdot(false);
-        thread_local static int i(0);
-        thread_local static Real64 dt(0.0);
-        thread_local static Real64 ElecEff(0.0);
-        thread_local static Real64 MdotAir(0.0);
-        thread_local static Real64 Qgenss(0.0);
-        thread_local static Real64 MdotCW(0.0);
-        thread_local static Real64 TcwIn(0.0);
-        thread_local static Real64 TcwOut(0.0);
-        thread_local static Real64 MdotFuel(0.0);
-        thread_local static Real64 MdotFuelAllowed(0.0);
-        thread_local static Real64 MdotFuelMax(0.0);
-        thread_local static Real64 MdotFuelWarmup(0.0);
-        thread_local static Real64 Pmax(0.0);
-        thread_local static Real64 Qgross(0.0);
-        thread_local static Real64 Teng(0.0);
-        thread_local static Real64 ThermEff(0.0);
-        thread_local static Real64 Cp(0.0); // local fluid specific heat
-        thread_local static Real64 thisAmbientTemp(0.0);
+        EP_GLOBAL static bool ConstrainedIncreasingNdot(false);
+        EP_GLOBAL static bool ConstrainedDecreasingNdot(false);
+        EP_GLOBAL static int i(0);
+        EP_GLOBAL static Real64 dt(0.0);
+        EP_GLOBAL static Real64 ElecEff(0.0);
+        EP_GLOBAL static Real64 MdotAir(0.0);
+        EP_GLOBAL static Real64 Qgenss(0.0);
+        EP_GLOBAL static Real64 MdotCW(0.0);
+        EP_GLOBAL static Real64 TcwIn(0.0);
+        EP_GLOBAL static Real64 TcwOut(0.0);
+        EP_GLOBAL static Real64 MdotFuel(0.0);
+        EP_GLOBAL static Real64 MdotFuelAllowed(0.0);
+        EP_GLOBAL static Real64 MdotFuelMax(0.0);
+        EP_GLOBAL static Real64 MdotFuelWarmup(0.0);
+        EP_GLOBAL static Real64 Pmax(0.0);
+        EP_GLOBAL static Real64 Qgross(0.0);
+        EP_GLOBAL static Real64 Teng(0.0);
+        EP_GLOBAL static Real64 ThermEff(0.0);
+        EP_GLOBAL static Real64 Cp(0.0); // local fluid specific heat
+        EP_GLOBAL static Real64 thisAmbientTemp(0.0);
 
         bool EnergyBalOK; // check for balance to exit loop
 
@@ -1640,7 +1640,7 @@ namespace MicroCHPElectricGenerator {
         Real64 TotalZoneHeatGain;
         int CHPnum;
         //  INTEGER :: ZoneNum
-        thread_local static bool MyEnvrnFlag(true);
+        EP_GLOBAL static bool MyEnvrnFlag(true);
 
         if (NumMicroCHPs == 0) return;
 
@@ -1699,7 +1699,7 @@ namespace MicroCHPElectricGenerator {
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcUpdateHeatRecovery");
+        EP_GLOBAL static std::string const RoutineName("CalcUpdateHeatRecovery");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1819,7 +1819,7 @@ namespace MicroCHPElectricGenerator {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("UpdateMicroCHPGeneratorRecords");
+        EP_GLOBAL static std::string const RoutineName("UpdateMicroCHPGeneratorRecords");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

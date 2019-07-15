@@ -124,16 +124,16 @@ namespace SurfaceGroundHeatExchanger {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local Real64 const SmallNum(1.0e-30);         // Very small number to avoid div0 errors
-    thread_local Real64 const StefBoltzmann(5.6697e-08); // Stefan-Boltzmann constant
-    thread_local Real64 const SurfaceHXHeight(0.0);      // Surface Height above ground -- used in height dependent calcs.
-    thread_local static std::string const BlankString;
+    EP_GLOBAL Real64 const SmallNum(1.0e-30);         // Very small number to avoid div0 errors
+    EP_GLOBAL Real64 const StefBoltzmann(5.6697e-08); // Stefan-Boltzmann constant
+    EP_GLOBAL Real64 const SurfaceHXHeight(0.0);      // Surface Height above ground -- used in height dependent calcs.
+    EP_GLOBAL static std::string const BlankString;
 
-    thread_local int const SurfCond_Ground(1);
-    thread_local int const SurfCond_Exposed(2);
+    EP_GLOBAL int const SurfCond_Ground(1);
+    EP_GLOBAL int const SurfCond_Exposed(2);
 
     namespace loc {
-        thread_local int const MaxCTFTerms(19); // Maximum number of CTF terms allowed to still allow stability //Note Duplicate of DataHeatBalance::MaxCTFTerms to
+        EP_GLOBAL int const MaxCTFTerms(19); // Maximum number of CTF terms allowed to still allow stability //Note Duplicate of DataHeatBalance::MaxCTFTerms to
                                    // avoid static initialization order bug: Keep them in sync
     }                              // namespace loc
 
@@ -141,56 +141,56 @@ namespace SurfaceGroundHeatExchanger {
 
     // MODULE VARIABLE DECLARATIONS:
     // utility variables initialized once
-    thread_local bool NoSurfaceGroundTempObjWarning(true); // This will cause a warning to be issued if no "surface" ground
+    EP_GLOBAL bool NoSurfaceGroundTempObjWarning(true); // This will cause a warning to be issued if no "surface" ground
     // temperature object was input.
     // Utility variables - initialized for each instance of a surface GHE
     // int ConstructionNum( 0 ); // construction index number
     // int TopRoughness( 0 ); // roughness of top layer
     // int BtmRoughness( 0 ); // roughness of bottom layer
-    thread_local Real64 nsvInletTemp(0.0);   // water inlet temperature
-    thread_local Real64 nsvOutletTemp(0.0);  // water outlet temperature
-    thread_local Real64 FlowRate(0.0);       // water mass flow rate
-    thread_local Real64 TopSurfTemp(0.0);    // Top  surface temperature
-    thread_local Real64 BtmSurfTemp(0.0);    // Bottom  surface temperature
-    thread_local Real64 TopSurfFlux(0.0);    // Top  surface heat flux
-    thread_local Real64 BtmSurfFlux(0.0);    // Bottom  surface heat flux
-    thread_local Real64 SourceFlux(0.0);     // total heat transfer rate, Watts
-    thread_local Real64 SourceTemp(0.0);     // total heat transfer rate, Watts
-    thread_local Real64 nsvSurfaceArea(0.0); // surface GHE surface area
-    thread_local Real64 TopThermAbs(0.0);    // Thermal absortivity of top layer
-    thread_local Real64 BtmThermAbs(0.0);    // Thermal absortivity of bottom layer
-    thread_local Real64 TopSolarAbs(0.0);    // Solar absortivity of top layer
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Real64 nsvInletTemp(0.0);   // water inlet temperature
+    EP_GLOBAL Real64 nsvOutletTemp(0.0);  // water outlet temperature
+    EP_GLOBAL Real64 FlowRate(0.0);       // water mass flow rate
+    EP_GLOBAL Real64 TopSurfTemp(0.0);    // Top  surface temperature
+    EP_GLOBAL Real64 BtmSurfTemp(0.0);    // Bottom  surface temperature
+    EP_GLOBAL Real64 TopSurfFlux(0.0);    // Top  surface heat flux
+    EP_GLOBAL Real64 BtmSurfFlux(0.0);    // Bottom  surface heat flux
+    EP_GLOBAL Real64 SourceFlux(0.0);     // total heat transfer rate, Watts
+    EP_GLOBAL Real64 SourceTemp(0.0);     // total heat transfer rate, Watts
+    EP_GLOBAL Real64 nsvSurfaceArea(0.0); // surface GHE surface area
+    EP_GLOBAL Real64 TopThermAbs(0.0);    // Thermal absortivity of top layer
+    EP_GLOBAL Real64 BtmThermAbs(0.0);    // Thermal absortivity of bottom layer
+    EP_GLOBAL Real64 TopSolarAbs(0.0);    // Solar absortivity of top layer
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
     // weather data records updated every zone time step
-    thread_local Real64 PastBeamSolarRad(0.0);    // Previous beam normal solar irradiance
-    thread_local Real64 PastSolarDirCosVert(0.0); // Previous vertical component of solar normal
-    thread_local Real64 PastDifSolarRad(0.0);     // Previous sky diffuse solar horizontal irradiance
-    thread_local Real64 PastGroundTemp(0.0);      // Previous ground temperature
-    thread_local bool PastIsRain(false);          // Previous Surfaces are wet for this time interval
-    thread_local bool PastIsSnow(false);          // Previous Snow on the ground for this time interval
-    thread_local Real64 PastOutBaroPress(0.0);    // Previous outdoor air barometric pressure
-    thread_local Real64 PastOutDryBulbTemp(0.0);  // Previous outdoor air dry bulb temperature
-    thread_local Real64 PastOutHumRat(0.0);       // Previous outdoor air humidity ratio
-    thread_local Real64 PastOutAirDensity(0.0);   // Previous outdoor air density
-    thread_local Real64 PastOutWetBulbTemp(0.0);  // Previous outdoor air wet bulb temperature
-    thread_local Real64 PastOutDewPointTemp(0.0); // Previous outdoor dewpoint temperature
-    thread_local Real64 PastSkyTemp(0.0);         // Previous sky temperature
-    thread_local Real64 PastWindSpeed(0.0);       // Previous outdoor air wind speed
-    thread_local Real64 PastCloudFraction(0.0);   // Previous Fraction of sky covered by clouds
+    EP_GLOBAL Real64 PastBeamSolarRad(0.0);    // Previous beam normal solar irradiance
+    EP_GLOBAL Real64 PastSolarDirCosVert(0.0); // Previous vertical component of solar normal
+    EP_GLOBAL Real64 PastDifSolarRad(0.0);     // Previous sky diffuse solar horizontal irradiance
+    EP_GLOBAL Real64 PastGroundTemp(0.0);      // Previous ground temperature
+    EP_GLOBAL bool PastIsRain(false);          // Previous Surfaces are wet for this time interval
+    EP_GLOBAL bool PastIsSnow(false);          // Previous Snow on the ground for this time interval
+    EP_GLOBAL Real64 PastOutBaroPress(0.0);    // Previous outdoor air barometric pressure
+    EP_GLOBAL Real64 PastOutDryBulbTemp(0.0);  // Previous outdoor air dry bulb temperature
+    EP_GLOBAL Real64 PastOutHumRat(0.0);       // Previous outdoor air humidity ratio
+    EP_GLOBAL Real64 PastOutAirDensity(0.0);   // Previous outdoor air density
+    EP_GLOBAL Real64 PastOutWetBulbTemp(0.0);  // Previous outdoor air wet bulb temperature
+    EP_GLOBAL Real64 PastOutDewPointTemp(0.0); // Previous outdoor dewpoint temperature
+    EP_GLOBAL Real64 PastSkyTemp(0.0);         // Previous sky temperature
+    EP_GLOBAL Real64 PastWindSpeed(0.0);       // Previous outdoor air wind speed
+    EP_GLOBAL Real64 PastCloudFraction(0.0);   // Previous Fraction of sky covered by clouds
 
     // getinput flag
-    thread_local bool GetInputFlag(true);
+    EP_GLOBAL bool GetInputFlag(true);
 
     // time keeping variables used for keeping track of average flux over each time step
-    thread_local Array1D<Real64> QRadSysSrcAvg;      // Average source over the time step
-    thread_local Array1D<Real64> LastSysTimeElapsed; // record of system time
-    thread_local Array1D<Real64> LastTimeStepSys;    // previous time step size
+    EP_GLOBAL Array1D<Real64> QRadSysSrcAvg;      // Average source over the time step
+    EP_GLOBAL Array1D<Real64> LastSysTimeElapsed; // record of system time
+    EP_GLOBAL Array1D<Real64> LastTimeStepSys;    // previous time step size
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PlantSurfaceGroundHeatExchangers
 
     // Object Data
-    thread_local Array1D<SurfaceGroundHeatExchangerData> SurfaceGHE;
+    EP_GLOBAL Array1D<SurfaceGroundHeatExchangerData> SurfaceGHE;
 
     PlantComponent *SurfaceGroundHeatExchangerData::factory(int const EP_UNUSED(objectType), std::string const objectName)
     {
@@ -252,7 +252,7 @@ namespace SurfaceGroundHeatExchanger {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input,
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input,
         // fatal at end of routine
         int IOStatus;   // Used in GetObjectItem
         int Item;       // Item to be "gotten"
@@ -493,7 +493,7 @@ namespace SurfaceGroundHeatExchanger {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const DesignVelocity(0.5); // Hypothetical design max pipe velocity [m/s]
-        thread_local static std::string const RoutineName("InitSurfaceGroundHeatExchanger");
+        EP_GLOBAL static std::string const RoutineName("InitSurfaceGroundHeatExchanger");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -691,10 +691,10 @@ namespace SurfaceGroundHeatExchanger {
         Real64 OldPastFluxTop; // top surface flux - past value used during iteration
         Real64 OldPastFluxBtm; // bottom surface flux - past value used during iteration
         // variables used with current environmental conditions
-        thread_local static Real64 FluxTop; // top surface flux
-        thread_local static Real64 FluxBtm; // bottom surface flux
-        thread_local static Real64 TempBtm; // bottom surface temp
-        thread_local static Real64 TempTop; // top surface temp
+        EP_GLOBAL static Real64 FluxTop; // top surface flux
+        EP_GLOBAL static Real64 FluxBtm; // bottom surface flux
+        EP_GLOBAL static Real64 TempBtm; // bottom surface temp
+        EP_GLOBAL static Real64 TempTop; // top surface temp
         Real64 TempT;          // top surface temp - used in underrelaxation
         Real64 TempB;          // bottom surface temp - used in underrelaxation
         Real64 OldFluxTop;     // top surface flux - value used during iteration
@@ -705,7 +705,7 @@ namespace SurfaceGroundHeatExchanger {
         //  INTEGER, SAVE ::ErrCount1=0
         //  INTEGER, SAVE ::ErrCount2=0
         //  INTEGER, SAVE ::ErrCount3=0
-        thread_local static bool InitializeTempTop(false);
+        EP_GLOBAL static bool InitializeTempTop(false);
         int LoopNum;
         int LoopSideNum;
 
@@ -1265,9 +1265,9 @@ namespace SurfaceGroundHeatExchanger {
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const MaxLaminarRe(2300.0); // Maximum Reynolds number for laminar flow
         int const NumOfPropDivisions(13);  // intervals in property correlation
-        thread_local static Array1D<Real64> const Temps(
+        EP_GLOBAL static Array1D<Real64> const Temps(
             NumOfPropDivisions, {1.85, 6.85, 11.85, 16.85, 21.85, 26.85, 31.85, 36.85, 41.85, 46.85, 51.85, 56.85, 61.85}); // Temperature, in C
-        thread_local static Array1D<Real64> const Mu(NumOfPropDivisions,
+        EP_GLOBAL static Array1D<Real64> const Mu(NumOfPropDivisions,
                                         {0.001652,
                                          0.001422,
                                          0.001225,
@@ -1281,12 +1281,12 @@ namespace SurfaceGroundHeatExchanger {
                                          0.000528,
                                          0.000489,
                                          0.000453}); // Viscosity, in Ns/m2
-        thread_local static Array1D<Real64> const Conductivity(
+        EP_GLOBAL static Array1D<Real64> const Conductivity(
             NumOfPropDivisions, {0.574, 0.582, 0.590, 0.598, 0.606, 0.613, 0.620, 0.628, 0.634, 0.640, 0.645, 0.650, 0.656}); // Conductivity, in W/mK
-        thread_local static Array1D<Real64> const Pr(
+        EP_GLOBAL static Array1D<Real64> const Pr(
             NumOfPropDivisions, {12.22, 10.26, 8.81, 7.56, 6.62, 5.83, 5.20, 4.62, 4.16, 3.77, 3.42, 3.15, 2.88}); // Prandtl number (dimensionless)
         int const WaterIndex(1);
-        thread_local static std::string const RoutineName("SurfaceGroundHeatExchanger:CalcHXEffectTerm");
+        EP_GLOBAL static std::string const RoutineName("SurfaceGroundHeatExchanger:CalcHXEffectTerm");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1577,7 +1577,7 @@ namespace SurfaceGroundHeatExchanger {
         //  INTEGER, INTENT(IN) :: FlowLock            ! flow initialization/condition flag    !DSU
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SurfaceGroundHeatExchanger:Update");
+        EP_GLOBAL static std::string const RoutineName("SurfaceGroundHeatExchanger:Update");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na

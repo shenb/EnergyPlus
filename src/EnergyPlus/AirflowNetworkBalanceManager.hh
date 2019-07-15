@@ -61,66 +61,66 @@ namespace AirflowNetworkBalanceManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const VentCtrNum_None;  // Wrong input
-    thread_local extern int const VentCtrNum_Temp;  // Temperature venting control
-    thread_local extern int const VentCtrNum_Enth;  // Enthalpy venting control
-    thread_local extern int const VentCtrNum_Const; // Constant venting control
-    thread_local extern int const VentCtrNum_ASH55;
-    thread_local extern int const VentCtrNum_CEN15251;
-    thread_local extern int const VentCtrNum_Novent;    // No venting
-    thread_local extern int const VentCtrNum_ZoneLevel; // ZoneLevel control for a heat transfer subsurface
-    thread_local extern int const VentCtrNum_AdjTemp;   // Temperature venting control based on adjacent zone conditions
-    thread_local extern int const VentCtrNum_AdjEnth;   // Enthalpy venting control based on adjacent zone conditions
-    thread_local extern int const NumOfVentCtrTypes;    // Number of zone level venting control types
+    EP_GLOBAL extern int const VentCtrNum_None;  // Wrong input
+    EP_GLOBAL extern int const VentCtrNum_Temp;  // Temperature venting control
+    EP_GLOBAL extern int const VentCtrNum_Enth;  // Enthalpy venting control
+    EP_GLOBAL extern int const VentCtrNum_Const; // Constant venting control
+    EP_GLOBAL extern int const VentCtrNum_ASH55;
+    EP_GLOBAL extern int const VentCtrNum_CEN15251;
+    EP_GLOBAL extern int const VentCtrNum_Novent;    // No venting
+    EP_GLOBAL extern int const VentCtrNum_ZoneLevel; // ZoneLevel control for a heat transfer subsurface
+    EP_GLOBAL extern int const VentCtrNum_AdjTemp;   // Temperature venting control based on adjacent zone conditions
+    EP_GLOBAL extern int const VentCtrNum_AdjEnth;   // Enthalpy venting control based on adjacent zone conditions
+    EP_GLOBAL extern int const NumOfVentCtrTypes;    // Number of zone level venting control types
 
     // DERIVED TYPE DEFINITIONS:
     // Report variables
 
     // MODULE VARIABLE DECLARATIONS:
     // Report variables
-    thread_local extern Array1D<Real64> PZ;
+    EP_GLOBAL extern Array1D<Real64> PZ;
     // Inverse matrix
-    thread_local extern Array1D<Real64> MA;
-    thread_local extern Array1D<Real64> MV;
-    thread_local extern Array1D_int IVEC;
-    thread_local extern Array1D_int SplitterNodeNumbers;
+    EP_GLOBAL extern Array1D<Real64> MA;
+    EP_GLOBAL extern Array1D<Real64> MV;
+    EP_GLOBAL extern Array1D_int IVEC;
+    EP_GLOBAL extern Array1D_int SplitterNodeNumbers;
 
-    thread_local extern bool AirflowNetworkGetInputFlag;
-    thread_local extern int VentilationCtrl;  // Hybrid ventilation control type
-    thread_local extern int NumOfExhaustFans; // Number of exhaust fans
+    EP_GLOBAL extern bool AirflowNetworkGetInputFlag;
+    EP_GLOBAL extern int VentilationCtrl;  // Hybrid ventilation control type
+    EP_GLOBAL extern int NumOfExhaustFans; // Number of exhaust fans
 
-    thread_local extern int NumAirflowNetwork;
-    thread_local extern int AirflowNetworkNumOfDetOpenings;
-    thread_local extern int AirflowNetworkNumOfSimOpenings;
-    thread_local extern int AirflowNetworkNumOfHorOpenings;
-    thread_local extern int AirflowNetworkNumOfSurCracks;
-    thread_local extern int AirflowNetworkNumOfSurELA;
-    thread_local extern int AirflowNetworkNumOfExtNode;
-    thread_local extern int AirflowNetworkNumOfSingleSideZones; // Total number of zones with advanced single sided wind pressure coefficient calculation
-    thread_local extern int DisSysNumOfNodes;
-    thread_local extern int DisSysNumOfLeaks;
-    thread_local extern int DisSysNumOfELRs;
-    thread_local extern int DisSysNumOfDucts;
-    thread_local extern int DysSysNumOfDuctViewFactors;
-    thread_local extern int DisSysNumOfDampers;
-    thread_local extern int DisSysNumOfCVFs;
-    thread_local extern int DisSysNumOfDetFans;
-    thread_local extern int DisSysNumOfCoils;
-    thread_local extern int DisSysNumOfHXs;
-    thread_local extern int DisSysNumOfCPDs;
-    thread_local extern int DisSysNumOfTermUnits;
-    thread_local extern int DisSysNumOfLinks;
-    thread_local extern int NumOfExtNodes;
-    thread_local extern int AirflowNetworkNumOfExtSurfaces;
-    thread_local extern Real64 IncAng;                  // Wind incidence angle relative to facade normal (deg)
-    thread_local extern Array1D<Real64> FacadeAng;      // Facade azimuth angle (for walls, angle of outward normal to facade measured clockwise from North) (deg)
-    thread_local extern int WindDirNum;                 // Wind direction number
-    thread_local extern Real64 WindAng;                 // Wind direction angle (degrees clockwise from North)
-    thread_local extern int SupplyFanInletNode;         // Supply air fan inlet node number
-    thread_local extern int SupplyFanOutletNode;        // Supply air fan outlet node number
-    thread_local extern int SupplyFanType;              // Supply air fan type
-    thread_local extern Real64 OnOffFanRunTimeFraction; // Run time fraction for an On/Off fan flow rate
-    thread_local extern int AirflowNetworkNumOfOccuVentCtrls;
+    EP_GLOBAL extern int NumAirflowNetwork;
+    EP_GLOBAL extern int AirflowNetworkNumOfDetOpenings;
+    EP_GLOBAL extern int AirflowNetworkNumOfSimOpenings;
+    EP_GLOBAL extern int AirflowNetworkNumOfHorOpenings;
+    EP_GLOBAL extern int AirflowNetworkNumOfSurCracks;
+    EP_GLOBAL extern int AirflowNetworkNumOfSurELA;
+    EP_GLOBAL extern int AirflowNetworkNumOfExtNode;
+    EP_GLOBAL extern int AirflowNetworkNumOfSingleSideZones; // Total number of zones with advanced single sided wind pressure coefficient calculation
+    EP_GLOBAL extern int DisSysNumOfNodes;
+    EP_GLOBAL extern int DisSysNumOfLeaks;
+    EP_GLOBAL extern int DisSysNumOfELRs;
+    EP_GLOBAL extern int DisSysNumOfDucts;
+    EP_GLOBAL extern int DysSysNumOfDuctViewFactors;
+    EP_GLOBAL extern int DisSysNumOfDampers;
+    EP_GLOBAL extern int DisSysNumOfCVFs;
+    EP_GLOBAL extern int DisSysNumOfDetFans;
+    EP_GLOBAL extern int DisSysNumOfCoils;
+    EP_GLOBAL extern int DisSysNumOfHXs;
+    EP_GLOBAL extern int DisSysNumOfCPDs;
+    EP_GLOBAL extern int DisSysNumOfTermUnits;
+    EP_GLOBAL extern int DisSysNumOfLinks;
+    EP_GLOBAL extern int NumOfExtNodes;
+    EP_GLOBAL extern int AirflowNetworkNumOfExtSurfaces;
+    EP_GLOBAL extern Real64 IncAng;                  // Wind incidence angle relative to facade normal (deg)
+    EP_GLOBAL extern Array1D<Real64> FacadeAng;      // Facade azimuth angle (for walls, angle of outward normal to facade measured clockwise from North) (deg)
+    EP_GLOBAL extern int WindDirNum;                 // Wind direction number
+    EP_GLOBAL extern Real64 WindAng;                 // Wind direction angle (degrees clockwise from North)
+    EP_GLOBAL extern int SupplyFanInletNode;         // Supply air fan inlet node number
+    EP_GLOBAL extern int SupplyFanOutletNode;        // Supply air fan outlet node number
+    EP_GLOBAL extern int SupplyFanType;              // Supply air fan type
+    EP_GLOBAL extern Real64 OnOffFanRunTimeFraction; // Run time fraction for an On/Off fan flow rate
+    EP_GLOBAL extern int AirflowNetworkNumOfOccuVentCtrls;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE AirflowNetworkBalanceManager:
     // Name Public routines, optionally name Private routines within this module
@@ -162,7 +162,7 @@ namespace AirflowNetworkBalanceManager {
     };
 
     // Object Data
-    thread_local extern Array1D<AirflowNetworkReportVars> AirflowNetworkZnRpt;
+    EP_GLOBAL extern Array1D<AirflowNetworkReportVars> AirflowNetworkZnRpt;
 
     // Functions
 
@@ -283,7 +283,7 @@ namespace AirflowNetworkBalanceManager {
         bool closingProbability(Real64 const TimeCloseDuration); // function to perform calculations of closing probability
     };
 
-    thread_local extern Array1D<OccupantVentilationControlProp> OccupantVentilationControl;
+    EP_GLOBAL extern Array1D<OccupantVentilationControlProp> OccupantVentilationControl;
 
 } // namespace AirflowNetworkBalanceManager
 

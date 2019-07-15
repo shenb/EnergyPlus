@@ -115,42 +115,42 @@ namespace DualDuct {
     using namespace ScheduleManager;
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const DualDuct_ConstantVolume(1);
-    thread_local int const DualDuct_VariableVolume(2);
-    thread_local int const DualDuct_OutdoorAir(3);
-    thread_local std::string const cCMO_DDConstantVolume("AirTerminal:DualDuct:ConstantVolume");
-    thread_local std::string const cCMO_DDVariableVolume("AirTerminal:DualDuct:VAV");
-    thread_local std::string const cCMO_DDVarVolOA("AirTerminal:DualDuct:VAV:OutdoorAir");
+    EP_GLOBAL int const DualDuct_ConstantVolume(1);
+    EP_GLOBAL int const DualDuct_VariableVolume(2);
+    EP_GLOBAL int const DualDuct_OutdoorAir(3);
+    EP_GLOBAL std::string const cCMO_DDConstantVolume("AirTerminal:DualDuct:ConstantVolume");
+    EP_GLOBAL std::string const cCMO_DDVariableVolume("AirTerminal:DualDuct:VAV");
+    EP_GLOBAL std::string const cCMO_DDVarVolOA("AirTerminal:DualDuct:VAV:OutdoorAir");
 
-    thread_local int const DD_OA_ConstantOAMode(11);
-    thread_local int const DD_OA_ScheduleOAMode(12);
-    thread_local int const DD_OA_DynamicOAMode(13);
+    EP_GLOBAL int const DD_OA_ConstantOAMode(11);
+    EP_GLOBAL int const DD_OA_ScheduleOAMode(12);
+    EP_GLOBAL int const DD_OA_DynamicOAMode(13);
 
-    thread_local int const PerPersonModeNotSet(20);
-    thread_local int const PerPersonDCVByCurrentLevel(21);
-    thread_local int const PerPersonByDesignLevel(22);
+    EP_GLOBAL int const PerPersonModeNotSet(20);
+    EP_GLOBAL int const PerPersonDCVByCurrentLevel(21);
+    EP_GLOBAL int const PerPersonByDesignLevel(22);
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
-    thread_local int NumDampers(0); // The Number of Dampers found in the Input //Autodesk Poss used uninitialized in ReportDualDuctConnections
-    thread_local int NumDualDuctConstVolDampers;
-    thread_local int NumDualDuctVarVolDampers;
-    thread_local int NumDualDuctVarVolOA;
-    thread_local Real64 MassFlowSetToler;
-    thread_local bool GetDualDuctInputFlag(true); // Flag set to make sure you get input once
+    EP_GLOBAL int NumDampers(0); // The Number of Dampers found in the Input //Autodesk Poss used uninitialized in ReportDualDuctConnections
+    EP_GLOBAL int NumDualDuctConstVolDampers;
+    EP_GLOBAL int NumDualDuctVarVolDampers;
+    EP_GLOBAL int NumDualDuctVarVolOA;
+    EP_GLOBAL Real64 MassFlowSetToler;
+    EP_GLOBAL bool GetDualDuctInputFlag(true); // Flag set to make sure you get input once
 
     // Object Data
-    thread_local Array1D<DamperDesignParams> Damper;
-    thread_local std::unordered_map<std::string, std::string> UniqueDamperNames;
-    thread_local Array1D<DamperFlowConditions> DamperInlet;
-    thread_local Array1D<DamperFlowConditions> DamperHotAirInlet;
-    thread_local Array1D<DamperFlowConditions> DamperColdAirInlet;
-    thread_local Array1D<DamperFlowConditions> DamperOutlet;
-    thread_local Array1D<DamperFlowConditions> DamperOAInlet;        // VAV:OutdoorAir Outdoor Air Inlet
-    thread_local Array1D<DamperFlowConditions> DamperRecircAirInlet; // VAV:OutdoorAir Recirculated Air Inlet
+    EP_GLOBAL Array1D<DamperDesignParams> Damper;
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueDamperNames;
+    EP_GLOBAL Array1D<DamperFlowConditions> DamperInlet;
+    EP_GLOBAL Array1D<DamperFlowConditions> DamperHotAirInlet;
+    EP_GLOBAL Array1D<DamperFlowConditions> DamperColdAirInlet;
+    EP_GLOBAL Array1D<DamperFlowConditions> DamperOutlet;
+    EP_GLOBAL Array1D<DamperFlowConditions> DamperOAInlet;        // VAV:OutdoorAir Outdoor Air Inlet
+    EP_GLOBAL Array1D<DamperFlowConditions> DamperRecircAirInlet; // VAV:OutdoorAir Recirculated Air Inlet
 
     void SimulateDualDuct(std::string const &CompName, bool const FirstHVACIteration, int const ZoneNum, int const ZoneNodeNum, int &CompIndex)
     {
@@ -265,7 +265,7 @@ namespace DualDuct {
         using ReportSizingManager::ReportSizingOutput;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetDualDuctInput: "); // include trailing bla
+        EP_GLOBAL static std::string const RoutineName("GetDualDuctInput: "); // include trailing bla
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -274,18 +274,18 @@ namespace DualDuct {
         int NumAlphas;
         int NumNums;
         int IOStat;
-        thread_local static Array1D<Real64> NumArray(2, 0.0);
-        thread_local static Array1D_string AlphArray(7);
-        thread_local static Array1D_string cAlphaFields(7);       // Alpha field names
-        thread_local static Array1D_string cNumericFields(2);     // Numeric field names
-        thread_local static Array1D_bool lAlphaBlanks(7, true);   // Logical array, alpha field input BLANK = .TRUE.
-        thread_local static Array1D_bool lNumericBlanks(2, true); // Logical array, numeric field input BLANK = .TRUE.
+        EP_GLOBAL static Array1D<Real64> NumArray(2, 0.0);
+        EP_GLOBAL static Array1D_string AlphArray(7);
+        EP_GLOBAL static Array1D_string cAlphaFields(7);       // Alpha field names
+        EP_GLOBAL static Array1D_string cNumericFields(2);     // Numeric field names
+        EP_GLOBAL static Array1D_bool lAlphaBlanks(7, true);   // Logical array, alpha field input BLANK = .TRUE.
+        EP_GLOBAL static Array1D_bool lNumericBlanks(2, true); // Logical array, numeric field input BLANK = .TRUE.
         std::string CurrentModuleObject;             // for ease in getting objects
-        thread_local static bool ErrorsFound(false);              // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false);              // If errors detected in input
         int CtrlZone;                                // controlled zone do loop index
         int SupAirIn;                                // controlled zone supply air inlet index
         int ADUNum;                                  // loop control to search Air Distribution Units
-        thread_local static Real64 DummyOAFlow(0.0);
+        EP_GLOBAL static Real64 DummyOAFlow(0.0);
 
         // Flow
         NumDualDuctConstVolDampers = inputProcessor->getNumObjectsFound(cCMO_DDConstantVolume);
@@ -846,11 +846,11 @@ namespace DualDuct {
         int OAInNode; // Outdoor Air Inlet Node for VAV:OutdoorAir units
         int RAInNode; // Reciruclated Air Inlet Node for VAV:OutdoorAir units
         int OutNode;
-        thread_local static bool MyOneTimeFlag(true);
-        thread_local static Array1D_bool MyEnvrnFlag;
-        thread_local static Array1D_bool MySizeFlag;
-        thread_local static Array1D_bool MyAirLoopFlag;
-        thread_local static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
+        EP_GLOBAL static bool MyOneTimeFlag(true);
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;
+        EP_GLOBAL static Array1D_bool MySizeFlag;
+        EP_GLOBAL static Array1D_bool MyAirLoopFlag;
+        EP_GLOBAL static bool ZoneEquipmentListChecked(false); // True after the Zone Equipment List has been checked for items
         int Loop;                                    // Loop checking control variable
         Real64 PeopleFlow;                           // local sum variable, m3/s
         // FLOW:
@@ -1884,7 +1884,7 @@ namespace DualDuct {
 
         // FUNCTION PARAMETER DEFINITIONS:
         bool const UseMinOASchFlag(true); // Always use min OA schedule in calculations.
-        thread_local static std::string const RoutineName("HVACDualDuctSystem:CalcOAOnlyMassFlow");
+        EP_GLOBAL static std::string const RoutineName("HVACDualDuctSystem:CalcOAOnlyMassFlow");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2160,11 +2160,11 @@ namespace DualDuct {
         std::string DamperType;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_100("('! <#Dual Duct Damper Connections>,<Number of Dual Duct Damper Connections>')");
-        thread_local static ObjexxFCL::gio::Fmt Format_101("(A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_102("('! <Dual Duct Damper>,<Dual Duct Damper Count>,<Dual Duct Damper Name>,<Inlet Node>,','<Outlet Node>,<Inlet "
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_100("('! <#Dual Duct Damper Connections>,<Number of Dual Duct Damper Connections>')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_101("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_102("('! <Dual Duct Damper>,<Dual Duct Damper Count>,<Dual Duct Damper Name>,<Inlet Node>,','<Outlet Node>,<Inlet "
                                    "Node Type>,<AirLoopHVAC Name>')");
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         if (!allocated(Damper))
             return; // Autodesk Bug: Can arrive here with Damper unallocated (SimulateDualDuct not yet called) with NumDampers either set >0 or
@@ -2257,17 +2257,17 @@ namespace DualDuct {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         //  INTEGER :: DamperNum
-        thread_local static bool FirstTimeOnly(true);
-        thread_local static Array1D_bool RecircIsUsedARR;
-        thread_local static Array1D_string DamperNamesARR;
+        EP_GLOBAL static bool FirstTimeOnly(true);
+        EP_GLOBAL static Array1D_bool RecircIsUsedARR;
+        EP_GLOBAL static Array1D_string DamperNamesARR;
         int DamperIndex;                 // Loop index to Damper that you are currently loading input into
         std::string CurrentModuleObject; // for ease in getting objects
-        thread_local static Array1D<Real64> NumArray(2, 0.0);
-        thread_local static Array1D_string AlphArray(7);
-        thread_local static Array1D_string cAlphaFields(7);       // Alpha field names
-        thread_local static Array1D_string cNumericFields(2);     // Numeric field names
-        thread_local static Array1D_bool lAlphaBlanks(7, true);   // Logical array, alpha field input BLANK = .TRUE.
-        thread_local static Array1D_bool lNumericBlanks(2, true); // Logical array, numeric field input BLANK = .TRUE.
+        EP_GLOBAL static Array1D<Real64> NumArray(2, 0.0);
+        EP_GLOBAL static Array1D_string AlphArray(7);
+        EP_GLOBAL static Array1D_string cAlphaFields(7);       // Alpha field names
+        EP_GLOBAL static Array1D_string cNumericFields(2);     // Numeric field names
+        EP_GLOBAL static Array1D_bool lAlphaBlanks(7, true);   // Logical array, alpha field input BLANK = .TRUE.
+        EP_GLOBAL static Array1D_bool lNumericBlanks(2, true); // Logical array, numeric field input BLANK = .TRUE.
         int NumAlphas;
         int NumNums;
         int IOStat;

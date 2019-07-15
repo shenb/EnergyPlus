@@ -88,220 +88,220 @@ namespace EconomicTariff {
 
     // ECONOMCIS:TARIFF enumerated lists
 
-    thread_local int const kindUnknown(0);
-    thread_local int const kindTariff(1);
-    thread_local int const kindQualify(2);
-    thread_local int const kindChargeSimple(3);
-    thread_local int const kindChargeBlock(4);
-    thread_local int const kindRatchet(5);
-    thread_local int const kindVariable(6);
-    thread_local int const kindComputation(7);
-    thread_local int const kindCategory(8);
-    thread_local int const kindNative(9);
-    thread_local int const kindAssignCompute(10);
+    EP_GLOBAL int const kindUnknown(0);
+    EP_GLOBAL int const kindTariff(1);
+    EP_GLOBAL int const kindQualify(2);
+    EP_GLOBAL int const kindChargeSimple(3);
+    EP_GLOBAL int const kindChargeBlock(4);
+    EP_GLOBAL int const kindRatchet(5);
+    EP_GLOBAL int const kindVariable(6);
+    EP_GLOBAL int const kindComputation(7);
+    EP_GLOBAL int const kindCategory(8);
+    EP_GLOBAL int const kindNative(9);
+    EP_GLOBAL int const kindAssignCompute(10);
 
-    thread_local int const conversionUSERDEF(0);
-    thread_local int const conversionKWH(1);
-    thread_local int const conversionTHERM(2);
-    thread_local int const conversionMMBTU(3); // million btu
-    thread_local int const conversionMJ(4);
-    thread_local int const conversionKBTU(5);
-    thread_local int const conversionMCF(6); // thousand cubic feet
-    thread_local int const conversionCCF(7); // hundred cubic feet
-    thread_local int const conversionM3(8);  // cubic meter
-    thread_local int const conversionGAL(9);
-    thread_local int const conversionKGAL(10); // thousand gallons
+    EP_GLOBAL int const conversionUSERDEF(0);
+    EP_GLOBAL int const conversionKWH(1);
+    EP_GLOBAL int const conversionTHERM(2);
+    EP_GLOBAL int const conversionMMBTU(3); // million btu
+    EP_GLOBAL int const conversionMJ(4);
+    EP_GLOBAL int const conversionKBTU(5);
+    EP_GLOBAL int const conversionMCF(6); // thousand cubic feet
+    EP_GLOBAL int const conversionCCF(7); // hundred cubic feet
+    EP_GLOBAL int const conversionM3(8);  // cubic meter
+    EP_GLOBAL int const conversionGAL(9);
+    EP_GLOBAL int const conversionKGAL(10); // thousand gallons
 
-    thread_local Array1D_string const convEneStrings({0, 10}, {"", "kWh", "Therm", "MMBtu", "MJ", "kBtu", "MCF", "CCF", "m3", "gal", "kgal"});
-    thread_local Array1D_string const convDemStrings({0, 10}, {"", "kW", "Therm", "MMBtu", "MJ", "kBtu", "MCF", "CCF", "m3", "gal", "kgal"});
+    EP_GLOBAL Array1D_string const convEneStrings({0, 10}, {"", "kWh", "Therm", "MMBtu", "MJ", "kBtu", "MCF", "CCF", "m3", "gal", "kgal"});
+    EP_GLOBAL Array1D_string const convDemStrings({0, 10}, {"", "kW", "Therm", "MMBtu", "MJ", "kBtu", "MCF", "CCF", "m3", "gal", "kgal"});
 
-    thread_local int const demandWindowQuarter(1);
-    thread_local int const demandWindowHalf(2);
-    thread_local int const demandWindowHour(3);
-    thread_local int const demandWindowDay(4);
-    thread_local int const demandWindowWeek(5);
+    EP_GLOBAL int const demandWindowQuarter(1);
+    EP_GLOBAL int const demandWindowHalf(2);
+    EP_GLOBAL int const demandWindowHour(3);
+    EP_GLOBAL int const demandWindowDay(4);
+    EP_GLOBAL int const demandWindowWeek(5);
 
-    thread_local Array1D_string const demWindowStrings({0, 5}, {"", "/Hr", "/Hr", "/Hr", "/Day", "/Wk"});
+    EP_GLOBAL Array1D_string const demWindowStrings({0, 5}, {"", "/Hr", "/Hr", "/Hr", "/Day", "/Wk"});
 
-    thread_local int const buyFromUtility(1);
-    thread_local int const sellToUtility(2);
-    thread_local int const netMetering(3);
+    EP_GLOBAL int const buyFromUtility(1);
+    EP_GLOBAL int const sellToUtility(2);
+    EP_GLOBAL int const netMetering(3);
 
     // For several different objects that reference seasons
-    thread_local int const seasonWinter(1);
-    thread_local int const seasonSpring(2);
-    thread_local int const seasonSummer(3);
-    thread_local int const seasonFall(4);
-    thread_local int const seasonAnnual(5);
-    thread_local int const seasonMonthly(6);
+    EP_GLOBAL int const seasonWinter(1);
+    EP_GLOBAL int const seasonSpring(2);
+    EP_GLOBAL int const seasonSummer(3);
+    EP_GLOBAL int const seasonFall(4);
+    EP_GLOBAL int const seasonAnnual(5);
+    EP_GLOBAL int const seasonMonthly(6);
 
     // For AssignVariablePt
-    thread_local int const varIsArgument(1); // if used as a value or on right side of expression
-    thread_local int const varIsAssigned(2); // if variable is assigned to or on left side of expression
+    EP_GLOBAL int const varIsArgument(1); // if used as a value or on right side of expression
+    EP_GLOBAL int const varIsAssigned(2); // if variable is assigned to or on left side of expression
 
     // For ComputeSteps
     // All are negative because all variables are positive
-    thread_local int const opSUM(-1);
-    thread_local int const opMULTIPLY(-2);
-    thread_local int const opSUBTRACT(-3);
-    thread_local int const opDIVIDE(-4);
-    thread_local int const opABSOLUTE(-5);
-    thread_local int const opINTEGER(-6);
-    thread_local int const opSIGN(-7);
-    thread_local int const opROUND(-8);
-    thread_local int const opMAXIMUM(-9);
-    thread_local int const opMINIMUM(-10);
-    thread_local int const opEXCEEDS(-11);
-    thread_local int const opANNUALMINIMUM(-12);
-    thread_local int const opANNUALMAXIMUM(-13);
-    thread_local int const opANNUALSUM(-14);
-    thread_local int const opANNUALAVERAGE(-15);
-    thread_local int const opANNUALOR(-16);
-    thread_local int const opANNUALAND(-17);
-    thread_local int const opANNUALMAXIMUMZERO(-18);
-    thread_local int const opANNUALMINIMUMZERO(-19);
-    thread_local int const opIF(-20);
-    thread_local int const opGREATERTHAN(-21);
-    thread_local int const opGREATEREQUAL(-22);
-    thread_local int const opLESSTHAN(-23);
-    thread_local int const opLESSEQUAL(-24);
-    thread_local int const opEQUAL(-25);
-    thread_local int const opNOTEQUAL(-26);
-    thread_local int const opAND(-27);
-    thread_local int const opOR(-28);
-    thread_local int const opNOT(-29);
-    thread_local int const opADD(-30);
-    thread_local int const opNOOP(-31); // no operation - just list the operand variables - shown as FROM
+    EP_GLOBAL int const opSUM(-1);
+    EP_GLOBAL int const opMULTIPLY(-2);
+    EP_GLOBAL int const opSUBTRACT(-3);
+    EP_GLOBAL int const opDIVIDE(-4);
+    EP_GLOBAL int const opABSOLUTE(-5);
+    EP_GLOBAL int const opINTEGER(-6);
+    EP_GLOBAL int const opSIGN(-7);
+    EP_GLOBAL int const opROUND(-8);
+    EP_GLOBAL int const opMAXIMUM(-9);
+    EP_GLOBAL int const opMINIMUM(-10);
+    EP_GLOBAL int const opEXCEEDS(-11);
+    EP_GLOBAL int const opANNUALMINIMUM(-12);
+    EP_GLOBAL int const opANNUALMAXIMUM(-13);
+    EP_GLOBAL int const opANNUALSUM(-14);
+    EP_GLOBAL int const opANNUALAVERAGE(-15);
+    EP_GLOBAL int const opANNUALOR(-16);
+    EP_GLOBAL int const opANNUALAND(-17);
+    EP_GLOBAL int const opANNUALMAXIMUMZERO(-18);
+    EP_GLOBAL int const opANNUALMINIMUMZERO(-19);
+    EP_GLOBAL int const opIF(-20);
+    EP_GLOBAL int const opGREATERTHAN(-21);
+    EP_GLOBAL int const opGREATEREQUAL(-22);
+    EP_GLOBAL int const opLESSTHAN(-23);
+    EP_GLOBAL int const opLESSEQUAL(-24);
+    EP_GLOBAL int const opEQUAL(-25);
+    EP_GLOBAL int const opNOTEQUAL(-26);
+    EP_GLOBAL int const opAND(-27);
+    EP_GLOBAL int const opOR(-28);
+    EP_GLOBAL int const opNOT(-29);
+    EP_GLOBAL int const opADD(-30);
+    EP_GLOBAL int const opNOOP(-31); // no operation - just list the operand variables - shown as FROM
 
     // not predefined variable (user defined name - many variables and all objects)
     // used in econvar%specific
-    thread_local int const varUserDefined(1);
-    thread_local int const varNotYetDefined(2);
+    EP_GLOBAL int const varUserDefined(1);
+    EP_GLOBAL int const varNotYetDefined(2);
 
     // category variables (used in econvar%specific)
-    thread_local int const catEnergyCharges(11);
-    thread_local int const catDemandCharges(12);
-    thread_local int const catServiceCharges(13);
-    thread_local int const catBasis(14);
-    thread_local int const catAdjustment(15);
-    thread_local int const catSurcharge(16);
-    thread_local int const catSubtotal(17);
-    thread_local int const catTaxes(18);
-    thread_local int const catTotal(19);
-    thread_local int const catNotIncluded(20);
+    EP_GLOBAL int const catEnergyCharges(11);
+    EP_GLOBAL int const catDemandCharges(12);
+    EP_GLOBAL int const catServiceCharges(13);
+    EP_GLOBAL int const catBasis(14);
+    EP_GLOBAL int const catAdjustment(15);
+    EP_GLOBAL int const catSurcharge(16);
+    EP_GLOBAL int const catSubtotal(17);
+    EP_GLOBAL int const catTaxes(18);
+    EP_GLOBAL int const catTotal(19);
+    EP_GLOBAL int const catNotIncluded(20);
 
     // native variables (based on energy and demands from the simulation) used in econvar%specific
-    thread_local int const nativeTotalEnergy(101);
-    thread_local int const nativeTotalDemand(102);
-    thread_local int const nativePeakEnergy(103);
-    thread_local int const nativePeakDemand(104);
-    thread_local int const nativeShoulderEnergy(105);
-    thread_local int const nativeShoulderDemand(106);
-    thread_local int const nativeOffPeakEnergy(107);
-    thread_local int const nativeOffPeakDemand(108);
-    thread_local int const nativeMidPeakEnergy(109);
-    thread_local int const nativeMidPeakDemand(110);
-    thread_local int const nativePeakExceedsOffPeak(111);
-    thread_local int const nativeOffPeakExceedsPeak(112);
-    thread_local int const nativePeakExceedsMidPeak(113);
-    thread_local int const nativeMidPeakExceedsPeak(114);
-    thread_local int const nativePeakExceedsShoulder(115);
-    thread_local int const nativeShoulderExceedsPeak(116);
-    thread_local int const nativeIsWinter(117);
-    thread_local int const nativeIsNotWinter(118);
-    thread_local int const nativeIsSpring(119);
-    thread_local int const nativeIsNotSpring(120);
-    thread_local int const nativeIsSummer(121);
-    thread_local int const nativeIsNotSummer(122);
-    thread_local int const nativeIsAutumn(123);
-    thread_local int const nativeIsNotAutumn(124);
+    EP_GLOBAL int const nativeTotalEnergy(101);
+    EP_GLOBAL int const nativeTotalDemand(102);
+    EP_GLOBAL int const nativePeakEnergy(103);
+    EP_GLOBAL int const nativePeakDemand(104);
+    EP_GLOBAL int const nativeShoulderEnergy(105);
+    EP_GLOBAL int const nativeShoulderDemand(106);
+    EP_GLOBAL int const nativeOffPeakEnergy(107);
+    EP_GLOBAL int const nativeOffPeakDemand(108);
+    EP_GLOBAL int const nativeMidPeakEnergy(109);
+    EP_GLOBAL int const nativeMidPeakDemand(110);
+    EP_GLOBAL int const nativePeakExceedsOffPeak(111);
+    EP_GLOBAL int const nativeOffPeakExceedsPeak(112);
+    EP_GLOBAL int const nativePeakExceedsMidPeak(113);
+    EP_GLOBAL int const nativeMidPeakExceedsPeak(114);
+    EP_GLOBAL int const nativePeakExceedsShoulder(115);
+    EP_GLOBAL int const nativeShoulderExceedsPeak(116);
+    EP_GLOBAL int const nativeIsWinter(117);
+    EP_GLOBAL int const nativeIsNotWinter(118);
+    EP_GLOBAL int const nativeIsSpring(119);
+    EP_GLOBAL int const nativeIsNotSpring(120);
+    EP_GLOBAL int const nativeIsSummer(121);
+    EP_GLOBAL int const nativeIsNotSummer(122);
+    EP_GLOBAL int const nativeIsAutumn(123);
+    EP_GLOBAL int const nativeIsNotAutumn(124);
 
-    thread_local int const nativePeakAndShoulderEnergy(125);
-    thread_local int const nativePeakAndShoulderDemand(126);
-    thread_local int const nativePeakAndMidPeakEnergy(127);
-    thread_local int const nativePeakAndMidPeakDemand(128);
-    thread_local int const nativeShoulderAndOffPeakEnergy(129);
-    thread_local int const nativeShoulderAndOffPeakDemand(130);
-    thread_local int const nativePeakAndOffPeakEnergy(131);
-    thread_local int const nativePeakAndOffPeakDemand(132);
+    EP_GLOBAL int const nativePeakAndShoulderEnergy(125);
+    EP_GLOBAL int const nativePeakAndShoulderDemand(126);
+    EP_GLOBAL int const nativePeakAndMidPeakEnergy(127);
+    EP_GLOBAL int const nativePeakAndMidPeakDemand(128);
+    EP_GLOBAL int const nativeShoulderAndOffPeakEnergy(129);
+    EP_GLOBAL int const nativeShoulderAndOffPeakDemand(130);
+    EP_GLOBAL int const nativePeakAndOffPeakEnergy(131);
+    EP_GLOBAL int const nativePeakAndOffPeakDemand(132);
 
-    thread_local int const nativeRealTimePriceCosts(133);
-    thread_local int const nativeAboveCustomerBaseCosts(134);
-    thread_local int const nativeBelowCustomerBaseCosts(135);
-    thread_local int const nativeAboveCustomerBaseEnergy(136);
-    thread_local int const nativeBelowCustomerBaseEnergy(137);
+    EP_GLOBAL int const nativeRealTimePriceCosts(133);
+    EP_GLOBAL int const nativeAboveCustomerBaseCosts(134);
+    EP_GLOBAL int const nativeBelowCustomerBaseCosts(135);
+    EP_GLOBAL int const nativeAboveCustomerBaseEnergy(136);
+    EP_GLOBAL int const nativeBelowCustomerBaseEnergy(137);
 
-    thread_local int const countPeriod(4);
-    thread_local int const MaxNumMonths(12);
-    thread_local int const maxNumBlk(15);
+    EP_GLOBAL int const countPeriod(4);
+    EP_GLOBAL int const MaxNumMonths(12);
+    EP_GLOBAL int const maxNumBlk(15);
 
-    thread_local int const periodPeak(1);
-    thread_local int const periodShoulder(2);
-    thread_local int const periodOffPeak(3);
-    thread_local int const periodMidPeak(4);
+    EP_GLOBAL int const periodPeak(1);
+    EP_GLOBAL int const periodShoulder(2);
+    EP_GLOBAL int const periodOffPeak(3);
+    EP_GLOBAL int const periodMidPeak(4);
 
-    thread_local int const kindMeterNotElectric(0); // must be zero because testing of >0 done later.
-    thread_local int const kindMeterElecSimple(1);
-    thread_local int const kindMeterElecProduced(2);
-    thread_local int const kindMeterElecPurchased(3);
-    thread_local int const kindMeterElecSurplusSold(4);
-    thread_local int const kindMeterElecNet(5);
+    EP_GLOBAL int const kindMeterNotElectric(0); // must be zero because testing of >0 done later.
+    EP_GLOBAL int const kindMeterElecSimple(1);
+    EP_GLOBAL int const kindMeterElecProduced(2);
+    EP_GLOBAL int const kindMeterElecPurchased(3);
+    EP_GLOBAL int const kindMeterElecSurplusSold(4);
+    EP_GLOBAL int const kindMeterElecNet(5);
 
-    thread_local int const kindMeterNotWater(0);
-    thread_local int const kindMeterWater(1);
+    EP_GLOBAL int const kindMeterNotWater(0);
+    EP_GLOBAL int const kindMeterWater(1);
 
-    thread_local int const kindMeterNotGas(0);
-    thread_local int const kindMeterGas(1);
+    EP_GLOBAL int const kindMeterNotGas(0);
+    EP_GLOBAL int const kindMeterGas(1);
 
-    thread_local int const varUnitTypeEnergy(1);
-    thread_local int const varUnitTypeDemand(2);
-    thread_local int const varUnitTypeDimensionless(3);
-    thread_local int const varUnitTypeCurrency(4);
+    EP_GLOBAL int const varUnitTypeEnergy(1);
+    EP_GLOBAL int const varUnitTypeDemand(2);
+    EP_GLOBAL int const varUnitTypeDimensionless(3);
+    EP_GLOBAL int const varUnitTypeCurrency(4);
 
     // MODULE PARAMETER DEFINITIONS:
 
-    thread_local int numEconVar(0);
-    thread_local int sizeEconVar(0);
+    EP_GLOBAL int numEconVar(0);
+    EP_GLOBAL int sizeEconVar(0);
 
     // holds the outbound connections for each variable
-    thread_local Array1D_int operand; // sized to sizeOperand
-    thread_local int numOperand(0);
-    thread_local int sizeOperand(0);
+    EP_GLOBAL Array1D_int operand; // sized to sizeOperand
+    EP_GLOBAL int numOperand(0);
+    EP_GLOBAL int sizeOperand(0);
 
-    thread_local int numTariff(0);
+    EP_GLOBAL int numTariff(0);
 
-    thread_local int numQualify(0);
+    EP_GLOBAL int numQualify(0);
 
-    thread_local int numChargeSimple(0);
+    EP_GLOBAL int numChargeSimple(0);
 
-    thread_local int numChargeBlock(0);
+    EP_GLOBAL int numChargeBlock(0);
 
-    thread_local int numRatchet(0);
+    EP_GLOBAL int numRatchet(0);
 
-    thread_local int numComputation(0);
+    EP_GLOBAL int numComputation(0);
 
     // list of pointers to variable, 0 end of line, negative indicate operations
-    thread_local Array1D_int steps;
-    thread_local Array1D_int stepsCopy;
-    thread_local int numSteps(0);
-    thread_local int sizeSteps(0);
+    EP_GLOBAL Array1D_int steps;
+    EP_GLOBAL Array1D_int stepsCopy;
+    EP_GLOBAL int numSteps(0);
+    EP_GLOBAL int sizeSteps(0);
 
-    thread_local int topOfStack(0);
-    thread_local int sizeStack(0);
+    EP_GLOBAL int topOfStack(0);
+    EP_GLOBAL int sizeStack(0);
 
     // MODULE VARIABLE DECLARATIONS:
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    thread_local Array1D<EconVarType> econVar;
-    thread_local Array1D<TariffType> tariff;
-    thread_local Array1D<QualifyType> qualify;
-    thread_local Array1D<ChargeSimpleType> chargeSimple;
-    thread_local Array1D<ChargeBlockType> chargeBlock;
-    thread_local Array1D<RatchetType> ratchet;
-    thread_local Array1D<ComputationType> computation;
-    thread_local Array1D<StackType> stack;
+    EP_GLOBAL Array1D<EconVarType> econVar;
+    EP_GLOBAL Array1D<TariffType> tariff;
+    EP_GLOBAL Array1D<QualifyType> qualify;
+    EP_GLOBAL Array1D<ChargeSimpleType> chargeSimple;
+    EP_GLOBAL Array1D<ChargeBlockType> chargeBlock;
+    EP_GLOBAL Array1D<RatchetType> ratchet;
+    EP_GLOBAL Array1D<ComputationType> computation;
+    EP_GLOBAL Array1D<StackType> stack;
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -309,8 +309,8 @@ namespace EconomicTariff {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool Update_GetInput(true);
-        thread_local int addOperand_prevVarMe(0);
+        EP_GLOBAL bool Update_GetInput(true);
+        EP_GLOBAL int addOperand_prevVarMe(0);
     } // namespace
 
     //======================================================================================================================

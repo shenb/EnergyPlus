@@ -117,37 +117,37 @@ namespace PlantCentralGSHP {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Chiller type parameters: Only water cooled chiller is allowed
-    thread_local int const WaterCooled(2);
-    thread_local int const SmartMixing(1);
-    thread_local int const FullyMixed(2);
-    thread_local bool SimulClgDominant(false);
-    thread_local bool SimulHtgDominant(false);
+    EP_GLOBAL int const WaterCooled(2);
+    EP_GLOBAL int const SmartMixing(1);
+    EP_GLOBAL int const FullyMixed(2);
+    EP_GLOBAL bool SimulClgDominant(false);
+    EP_GLOBAL bool SimulHtgDominant(false);
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local bool GetInputWrapper(true);       // When TRUE, calls subroutine to read input file.
-    thread_local int NumWrappers(0);               // Number of Wrappers specified in input
-    thread_local int NumChillerHeaters(0);         // Number of Chiller/heaters specified in input
-    thread_local Real64 CondenserFanPower(0.0);    // Condenser Fan Power (fan cycles with compressor) [W]
-    thread_local Real64 ChillerCapFT(0.0);         // Chiller/heater capacity fraction (evaluated as a function of temperature)
-    thread_local Real64 ChillerEIRFT(0.0);         // Chiller/heater electric input ratio (EIR = 1 / COP) as a function of temperature
-    thread_local Real64 ChillerEIRFPLR(0.0);       // Chiller/heater EIR as a function of part-load ratio (PLR)
-    thread_local Real64 ChillerPartLoadRatio(0.0); // Chiller/heater part-load ratio (PLR)
-    thread_local Real64 ChillerCyclingRatio(0.0);  // Chiller/heater cycling ratio
-    thread_local Real64 ChillerFalseLoadRate(0.0); // Chiller/heater false load over and above the water-side load [W]
+    EP_GLOBAL bool GetInputWrapper(true);       // When TRUE, calls subroutine to read input file.
+    EP_GLOBAL int NumWrappers(0);               // Number of Wrappers specified in input
+    EP_GLOBAL int NumChillerHeaters(0);         // Number of Chiller/heaters specified in input
+    EP_GLOBAL Real64 CondenserFanPower(0.0);    // Condenser Fan Power (fan cycles with compressor) [W]
+    EP_GLOBAL Real64 ChillerCapFT(0.0);         // Chiller/heater capacity fraction (evaluated as a function of temperature)
+    EP_GLOBAL Real64 ChillerEIRFT(0.0);         // Chiller/heater electric input ratio (EIR = 1 / COP) as a function of temperature
+    EP_GLOBAL Real64 ChillerEIRFPLR(0.0);       // Chiller/heater EIR as a function of part-load ratio (PLR)
+    EP_GLOBAL Real64 ChillerPartLoadRatio(0.0); // Chiller/heater part-load ratio (PLR)
+    EP_GLOBAL Real64 ChillerCyclingRatio(0.0);  // Chiller/heater cycling ratio
+    EP_GLOBAL Real64 ChillerFalseLoadRate(0.0); // Chiller/heater false load over and above the water-side load [W]
 
     // Type defining the component specifications
 
-    thread_local Array1D_bool CheckEquipName;
-    thread_local Array1D_bool CHCheckEquipName;
-    thread_local Array1D_bool HPCheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CHCheckEquipName;
+    EP_GLOBAL Array1D_bool HPCheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ChillerElectricEIR
 
     // Object Data
-    thread_local Array1D<WrapperSpecs> Wrapper;
-    thread_local Array1D<WrapperReportVars> WrapperReport;
-    thread_local Array1D<ChillerHeaterSpecs> ChillerHeater;
-    thread_local Array1D<CHReportVars> ChillerHeaterReport;
+    EP_GLOBAL Array1D<WrapperSpecs> Wrapper;
+    EP_GLOBAL Array1D<WrapperReportVars> WrapperReport;
+    EP_GLOBAL Array1D<ChillerHeaterSpecs> ChillerHeater;
+    EP_GLOBAL Array1D<CHReportVars> ChillerHeaterReport;
 
 
     // MODULE SUBROUTINES:
@@ -346,7 +346,7 @@ namespace PlantCentralGSHP {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("SizeCGSHPChillerHeater");
+        EP_GLOBAL static std::string const RoutineName("SizeCGSHPChillerHeater");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int PltSizNum;     // Plant Sizing index corresponding to CurLoopNum
@@ -701,24 +701,24 @@ namespace PlantCentralGSHP {
         using ScheduleManager::GetScheduleIndex;
 
         // Locals
-        thread_local static int NumChillerHeaters(0); // total number of chiller heater (without identical multiplier)
+        EP_GLOBAL static int NumChillerHeaters(0); // total number of chiller heater (without identical multiplier)
 
         // LOCAL VARIABLES
-        thread_local static std::string CompName;        // component name
-        thread_local static bool ErrorsFound(false);     // True when input errors are found
-        thread_local static bool AllocatedFlag(false);   // True when arrays are allocated
-        thread_local static bool CHAllocatedFlag(false); // True when arrays are allocated
+        EP_GLOBAL static std::string CompName;        // component name
+        EP_GLOBAL static bool ErrorsFound(false);     // True when input errors are found
+        EP_GLOBAL static bool AllocatedFlag(false);   // True when arrays are allocated
+        EP_GLOBAL static bool CHAllocatedFlag(false); // True when arrays are allocated
         int NumAlphas;                      // Number of elements in the alpha array
         int NumNums;                        // Number of elements in the numeric array
         int IOStat;                         // IO Status when calling get input subroutine
         int i_CH;                           // chiller heater index pointer
-        thread_local static int WrapperNum(0);           // wrapper number
-        thread_local static int NumberOfComp(0);         // number of components under each wrapper
-        thread_local static int Comp(0);                 // an index number for input all the components
-        thread_local static int loop(0);                 // an index number for read in all the parameters of a component
-        thread_local static int CompIndex(0);            // component index in the sequence of internal input array
-        thread_local static int ChillerHeaterNum(1);     // chiller heater index pointer for current wrapper object
-        thread_local static int NumChHtrPerWrapper(0);   // total number of chiller heaters (including identical units) per wrapper
+        EP_GLOBAL static int WrapperNum(0);           // wrapper number
+        EP_GLOBAL static int NumberOfComp(0);         // number of components under each wrapper
+        EP_GLOBAL static int Comp(0);                 // an index number for input all the components
+        EP_GLOBAL static int loop(0);                 // an index number for read in all the parameters of a component
+        EP_GLOBAL static int CompIndex(0);            // component index in the sequence of internal input array
+        EP_GLOBAL static int ChillerHeaterNum(1);     // chiller heater index pointer for current wrapper object
+        EP_GLOBAL static int NumChHtrPerWrapper(0);   // total number of chiller heaters (including identical units) per wrapper
 
         if (AllocatedFlag) return;
         cCurrentModuleObject = "CentralHeatPumpSystem";
@@ -1249,10 +1249,10 @@ namespace PlantCentralGSHP {
 
         // LOCAL VARIABLES
         std::string StringVar;             // Used for EIRFPLR warning messages
-        thread_local static bool CHErrorsFound(false);  // True when input errors are found
-        thread_local static bool FoundNegValue(false);  // Used to evaluate PLFFPLR curve objects
+        EP_GLOBAL static bool CHErrorsFound(false);  // True when input errors are found
+        EP_GLOBAL static bool FoundNegValue(false);  // Used to evaluate PLFFPLR curve objects
         int CurveValPtr;                   // Index to EIRFPLR curve output
-        thread_local static int CurveCheck(0);          // Used to evaluate PLFFPLR curve objects
+        EP_GLOBAL static int CurveCheck(0);          // Used to evaluate PLFFPLR curve objects
         int ChillerHeaterNum;              // Chiller counter
         int NumAlphas;                     // Number of elements in the alpha array
         int NumNums;                       // Number of elements in the numeric array
@@ -1262,8 +1262,8 @@ namespace PlantCentralGSHP {
         Real64 CurveValTmp;                // Used to evaluate PLFFPLR curve objects
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_530("('Curve Output = ',11(F7.2))");
-        thread_local static ObjexxFCL::gio::Fmt Format_550("('Curve Output = ',11(F7.2))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_530("('Curve Output = ',11(F7.2))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_550("('Curve Output = ',11(F7.2))");
 
         cCurrentModuleObject = "ChillerHeaterPerformance:Electric:EIR";
         NumChillerHeaters = inputProcessor->getNumObjectsFound(cCurrentModuleObject);
@@ -1611,12 +1611,12 @@ namespace PlantCentralGSHP {
         using Psychrometrics::PsyRhoAirFnPbTdbW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitCGSHPHeatPump");
+        EP_GLOBAL static std::string const RoutineName("InitCGSHPHeatPump");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyWrapperOneTimeFlag(true); // Flag used to execute code only once
-        thread_local static Array1D_bool MyWrapperFlag;      // TRUE in order to set component location
-        thread_local static Array1D_bool MyWrapperEnvrnFlag; // TRUE when new environment is started
+        EP_GLOBAL static bool MyWrapperOneTimeFlag(true); // Flag used to execute code only once
+        EP_GLOBAL static Array1D_bool MyWrapperFlag;      // TRUE in order to set component location
+        EP_GLOBAL static Array1D_bool MyWrapperEnvrnFlag; // TRUE when new environment is started
         int ChillerHeaterNum;                   // Chiller Heater index
         bool errFlag;                           // Err flag
         bool FatalError;                        // Fatal error indicator
@@ -1990,12 +1990,12 @@ namespace PlantCentralGSHP {
         using ScheduleManager::GetCurrentScheduleValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcChillerHeaterModel");
-        thread_local static std::string const RoutineNameElecEIRChiller("CalcElectricEIRChillerModel");
+        EP_GLOBAL static std::string const RoutineName("CalcChillerHeaterModel");
+        EP_GLOBAL static std::string const RoutineNameElecEIRChiller("CalcElectricEIRChillerModel");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool IsLoadCoolRemaining(true);
-        thread_local static bool NextCompIndicator(false); // Component indicator when identical chiller heaters exist
+        EP_GLOBAL static bool IsLoadCoolRemaining(true);
+        EP_GLOBAL static bool NextCompIndicator(false); // Component indicator when identical chiller heaters exist
         int LoopSideNum;                      // Plant loop side which contains the current chiller (usually supply side)
         int CompNum(0);                       // Component number in the loop  REAL(r64) :: FRAC
         int ChillerHeaterNum;                 // Chiller heater number
@@ -2497,12 +2497,12 @@ namespace PlantCentralGSHP {
         using ScheduleManager::GetCurrentScheduleValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("CalcChillerHeaterModel");
-        thread_local static std::string const RoutineNameElecEIRChiller("CalcElectricEIRChillerModel");
+        EP_GLOBAL static std::string const RoutineName("CalcChillerHeaterModel");
+        EP_GLOBAL static std::string const RoutineNameElecEIRChiller("CalcElectricEIRChillerModel");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool IsLoadHeatRemaining(true); // Ture if heating load remains for this chiller heater
-        thread_local static bool NextCompIndicator(false);  // Component indicator when identical chiller heaters exist
+        EP_GLOBAL static bool IsLoadHeatRemaining(true); // Ture if heating load remains for this chiller heater
+        EP_GLOBAL static bool NextCompIndicator(false);  // Component indicator when identical chiller heaters exist
         int LoopSideNum;                       // Plant loop side which contains the current chiller (usually supply side)
         int CompNum(0);                        // Component number
         int ChillerHeaterNum;                  // Chiller heater number

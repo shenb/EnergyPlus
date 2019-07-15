@@ -120,12 +120,12 @@ namespace ChillerGasAbsorption {
     using General::RoundSigDigits;
     using General::TrimSigDigits;
 
-    thread_local int NumGasAbsorbers(0); // number of Absorption Chillers specified in input
+    EP_GLOBAL int NumGasAbsorbers(0); // number of Absorption Chillers specified in input
 
-    thread_local Array1D_bool CheckEquipName;
+    EP_GLOBAL Array1D_bool CheckEquipName;
 
-    thread_local Array1D<GasAbsorberSpecs> GasAbsorber; // dimension to number of machines
-    thread_local Array1D<ReportVars> GasAbsorberReport;
+    EP_GLOBAL Array1D<GasAbsorberSpecs> GasAbsorber; // dimension to number of machines
+    EP_GLOBAL Array1D<ReportVars> GasAbsorberReport;
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -133,13 +133,13 @@ namespace ChillerGasAbsorption {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local Real64 Sim_HeatCap(0.0); // W - nominal heating capacity
-        thread_local bool Sim_GetInput(true); // then TRUE, calls subroutine to read input file.
-        thread_local bool Get_ErrorsFound(false);
-        thread_local bool Init_MyOneTimeFlag(true);
-        thread_local Array1D_bool Init_MyEnvrnFlag;
-        thread_local Array1D_bool Init_MyPlantScanFlag;
-        thread_local Real64 Calc_oldCondSupplyTemp(0.0); // save the last iteration value of leaving condenser water temperature
+        EP_GLOBAL Real64 Sim_HeatCap(0.0); // W - nominal heating capacity
+        EP_GLOBAL bool Sim_GetInput(true); // then TRUE, calls subroutine to read input file.
+        EP_GLOBAL bool Get_ErrorsFound(false);
+        EP_GLOBAL bool Init_MyOneTimeFlag(true);
+        EP_GLOBAL Array1D_bool Init_MyEnvrnFlag;
+        EP_GLOBAL Array1D_bool Init_MyPlantScanFlag;
+        EP_GLOBAL Real64 Calc_oldCondSupplyTemp(0.0); // save the last iteration value of leaving condenser water temperature
     }                                       // namespace
 
     // Beginning of Absorption Chiller Module Driver Subroutines

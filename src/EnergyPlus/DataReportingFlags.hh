@@ -66,16 +66,16 @@ namespace DataReportingFlags {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumOfWarmupDays; // reinitialized for each environment.
-    thread_local extern std::string cWarmupDay;
-    thread_local extern bool DisplayPerfSimulationFlag;        // True when "Performing Simulation" should be displayed
-    thread_local extern bool DoWeatherInitReporting;           // Init reporting -- items that go onto OutputFileInits
-    thread_local extern bool PrintEndDataDictionary;           // Flag for printing "End of Data Dictionary" on output files
-    thread_local extern bool IgnoreInteriorWindowTransmission; // True when section "IgnoreInteriorWindowTransmission" is entered
-    thread_local extern bool MakeMirroredDetachedShading;      // True (default) when Detached Shading Surfaces should be "mirrored"
-    thread_local extern bool MakeMirroredAttachedShading;      // True (default) when Attached Shading Surfaces should be "mirrored"
-    thread_local extern bool DebugOutput;
-    thread_local extern bool EvenDuringWarmup;
+    EP_GLOBAL extern int NumOfWarmupDays; // reinitialized for each environment.
+    EP_GLOBAL extern std::string cWarmupDay;
+    EP_GLOBAL extern bool DisplayPerfSimulationFlag;        // True when "Performing Simulation" should be displayed
+    EP_GLOBAL extern bool DoWeatherInitReporting;           // Init reporting -- items that go onto OutputFileInits
+    EP_GLOBAL extern bool PrintEndDataDictionary;           // Flag for printing "End of Data Dictionary" on output files
+    EP_GLOBAL extern bool IgnoreInteriorWindowTransmission; // True when section "IgnoreInteriorWindowTransmission" is entered
+    EP_GLOBAL extern bool MakeMirroredDetachedShading;      // True (default) when Detached Shading Surfaces should be "mirrored"
+    EP_GLOBAL extern bool MakeMirroredAttachedShading;      // True (default) when Attached Shading Surfaces should be "mirrored"
+    EP_GLOBAL extern bool DebugOutput;
+    EP_GLOBAL extern bool EvenDuringWarmup;
 
 } // namespace DataReportingFlags
 

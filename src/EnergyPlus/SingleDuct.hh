@@ -64,48 +64,48 @@ namespace SingleDuct {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const Normal;
-    thread_local extern int const ReverseAction;
-    thread_local extern int const ReverseActionWithLimits;
-    thread_local extern int const HeatingActionNotUsed;
+    EP_GLOBAL extern int const Normal;
+    EP_GLOBAL extern int const ReverseAction;
+    EP_GLOBAL extern int const ReverseActionWithLimits;
+    EP_GLOBAL extern int const HeatingActionNotUsed;
 
     // SysTypes represented here
-    thread_local extern int const SingleDuctVAVReheat;
-    thread_local extern int const SingleDuctConstVolReheat;
-    thread_local extern int const SingleDuctConstVolNoReheat;
-    thread_local extern int const SingleDuctVAVNoReheat;
-    thread_local extern int const SingleDuctVAVReheatVSFan;
-    thread_local extern int const SingleDuctCBVAVReheat;
-    thread_local extern int const SingleDuctCBVAVNoReheat;
+    EP_GLOBAL extern int const SingleDuctVAVReheat;
+    EP_GLOBAL extern int const SingleDuctConstVolReheat;
+    EP_GLOBAL extern int const SingleDuctConstVolNoReheat;
+    EP_GLOBAL extern int const SingleDuctVAVNoReheat;
+    EP_GLOBAL extern int const SingleDuctVAVReheatVSFan;
+    EP_GLOBAL extern int const SingleDuctCBVAVReheat;
+    EP_GLOBAL extern int const SingleDuctCBVAVNoReheat;
     // Reheat Coil Types used here
-    thread_local extern int const HCoilType_None;
-    thread_local extern int const HCoilType_Gas;
-    thread_local extern int const HCoilType_Electric;
-    thread_local extern int const HCoilType_SimpleHeating;
-    thread_local extern int const HCoilType_SteamAirHeating;
+    EP_GLOBAL extern int const HCoilType_None;
+    EP_GLOBAL extern int const HCoilType_Gas;
+    EP_GLOBAL extern int const HCoilType_Electric;
+    EP_GLOBAL extern int const HCoilType_SimpleHeating;
+    EP_GLOBAL extern int const HCoilType_SteamAirHeating;
 
     // Minimum Flow Fraction Input Method
-    thread_local extern int const ConstantMinFrac;
-    thread_local extern int const ScheduledMinFrac;
-    thread_local extern int const FixedMin;
-    thread_local extern int const MinFracNotUsed;
-    thread_local extern int NumATMixers;
+    EP_GLOBAL extern int const ConstantMinFrac;
+    EP_GLOBAL extern int const ScheduledMinFrac;
+    EP_GLOBAL extern int const FixedMin;
+    EP_GLOBAL extern int const MinFracNotUsed;
+    EP_GLOBAL extern int NumATMixers;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D<Real64> MassFlow1; // previous value of the terminal unit mass flow rate
-    thread_local extern Array1D<Real64> MassFlow2; // previous value of the previous value of the mass flow rate
-    thread_local extern Array1D<Real64> MassFlow3;
-    thread_local extern Array1D<Real64> MassFlowDiff;
-    thread_local extern bool GetInputFlag;   // Flag set to make sure you get input once
-    thread_local extern bool GetATMixerFlag; // Flag set to make sure you get input once
-    thread_local extern int NumConstVolSys;
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D<Real64> MassFlow1; // previous value of the terminal unit mass flow rate
+    EP_GLOBAL extern Array1D<Real64> MassFlow2; // previous value of the previous value of the mass flow rate
+    EP_GLOBAL extern Array1D<Real64> MassFlow3;
+    EP_GLOBAL extern Array1D<Real64> MassFlowDiff;
+    EP_GLOBAL extern bool GetInputFlag;   // Flag set to make sure you get input once
+    EP_GLOBAL extern bool GetATMixerFlag; // Flag set to make sure you get input once
+    EP_GLOBAL extern int NumConstVolSys;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // INTERFACE BLOCK SPECIFICATIONS
 
-    thread_local extern int NumSys; // The Number of Systems found in the Input
+    EP_GLOBAL extern int NumSys; // The Number of Systems found in the Input
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -305,10 +305,10 @@ namespace SingleDuct {
     };
 
     // Object Data
-    thread_local extern Array1D<SysDesignParams> Sys;
-    thread_local extern Array1D<SysFlowConditions> SysInlet;
-    thread_local extern Array1D<SysFlowConditions> SysOutlet;
-    thread_local extern Array1D<AirTerminalMixerData> SysATMixer;
+    EP_GLOBAL extern Array1D<SysDesignParams> Sys;
+    EP_GLOBAL extern Array1D<SysFlowConditions> SysInlet;
+    EP_GLOBAL extern Array1D<SysFlowConditions> SysOutlet;
+    EP_GLOBAL extern Array1D<AirTerminalMixerData> SysATMixer;
 
     // Functions
     void clear_state();

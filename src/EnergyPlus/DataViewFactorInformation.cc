@@ -90,7 +90,7 @@ namespace DataViewFactorInformation {
     // MODULE VARIABLE DECLARATIONS:
 
     // Object Data
-    thread_local Array1D<ZoneViewFactorInformation> ZoneInfo;
+    EP_GLOBAL Array1D<ZoneViewFactorInformation> ZoneInfo;
 
 } // namespace DataViewFactorInformation
 

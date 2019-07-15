@@ -70,78 +70,78 @@ namespace DataZoneEquipment {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const PathInlet;
-    thread_local extern int const CompInlet;
-    thread_local extern int const Intermediate;
-    thread_local extern int const Outlet;
+    EP_GLOBAL extern int const PathInlet;
+    EP_GLOBAL extern int const CompInlet;
+    EP_GLOBAL extern int const Intermediate;
+    EP_GLOBAL extern int const Outlet;
 
-    thread_local extern int const ZoneSplitter_Type;
-    thread_local extern int const ZoneSupplyPlenum_Type;
-    thread_local extern int const ZoneMixer_Type;
-    thread_local extern int const ZoneReturnPlenum_Type;
+    EP_GLOBAL extern int const ZoneSplitter_Type;
+    EP_GLOBAL extern int const ZoneSupplyPlenum_Type;
+    EP_GLOBAL extern int const ZoneMixer_Type;
+    EP_GLOBAL extern int const ZoneReturnPlenum_Type;
 
     // Start zone equip objects
     // list units that are valid for zone system availability managers first
-    thread_local extern int const FanCoil4Pipe_Num;
-    thread_local extern int const PkgTermHPAirToAir_Num;
-    thread_local extern int const PkgTermACAirToAir_Num;
-    thread_local extern int const PkgTermHPWaterToAir_Num;
-    thread_local extern int const WindowAC_Num;
-    thread_local extern int const UnitHeater_Num;
-    thread_local extern int const UnitVentilator_Num;
-    thread_local extern int const ERVStandAlone_Num;
-    thread_local extern int const VentilatedSlab_Num;
-    thread_local extern int const OutdoorAirUnit_Num;
-    thread_local extern int const VRFTerminalUnit_Num;
-    thread_local extern int const PurchasedAir_Num;
-    thread_local extern int const ZoneEvaporativeCoolerUnit_Num;
-    thread_local extern int const ZoneHybridEvaporativeCooler_Num; // #14, last zone equipment type to use zone availability manager. The above list must not
+    EP_GLOBAL extern int const FanCoil4Pipe_Num;
+    EP_GLOBAL extern int const PkgTermHPAirToAir_Num;
+    EP_GLOBAL extern int const PkgTermACAirToAir_Num;
+    EP_GLOBAL extern int const PkgTermHPWaterToAir_Num;
+    EP_GLOBAL extern int const WindowAC_Num;
+    EP_GLOBAL extern int const UnitHeater_Num;
+    EP_GLOBAL extern int const UnitVentilator_Num;
+    EP_GLOBAL extern int const ERVStandAlone_Num;
+    EP_GLOBAL extern int const VentilatedSlab_Num;
+    EP_GLOBAL extern int const OutdoorAirUnit_Num;
+    EP_GLOBAL extern int const VRFTerminalUnit_Num;
+    EP_GLOBAL extern int const PurchasedAir_Num;
+    EP_GLOBAL extern int const ZoneEvaporativeCoolerUnit_Num;
+    EP_GLOBAL extern int const ZoneHybridEvaporativeCooler_Num; // #14, last zone equipment type to use zone availability manager. The above list must not
                                                       // change or NumValidSysAvailZoneComponents(14) must also change.
-    thread_local extern int const AirDistUnit_Num;
-    thread_local extern int const DirectAir_Num;
-    thread_local extern int const BBWaterConvective_Num;
-    thread_local extern int const BBElectricConvective_Num;
-    thread_local extern int const HiTempRadiant_Num;
-    thread_local extern int const LoTempRadiant_Num;
-    thread_local extern int const ZoneExhaustFan_Num;
-    thread_local extern int const HeatXchngr_Num;
-    thread_local extern int const HPWaterHeater_Num;
-    thread_local extern int const BBWater_Num;
-    thread_local extern int const ZoneDXDehumidifier_Num;
-    thread_local extern int const BBSteam_Num;
-    thread_local extern int const BBElectric_Num;
-    thread_local extern int const RefrigerationAirChillerSet_Num;
-    thread_local extern int const UserDefinedZoneHVACForcedAir_Num;
-    thread_local extern int const CoolingPanel_Num;
-    thread_local extern int const ZoneUnitarySys_Num; // UnitarySystem configured as zone equipment
-    thread_local extern int const TotalNumZoneEquipType;
+    EP_GLOBAL extern int const AirDistUnit_Num;
+    EP_GLOBAL extern int const DirectAir_Num;
+    EP_GLOBAL extern int const BBWaterConvective_Num;
+    EP_GLOBAL extern int const BBElectricConvective_Num;
+    EP_GLOBAL extern int const HiTempRadiant_Num;
+    EP_GLOBAL extern int const LoTempRadiant_Num;
+    EP_GLOBAL extern int const ZoneExhaustFan_Num;
+    EP_GLOBAL extern int const HeatXchngr_Num;
+    EP_GLOBAL extern int const HPWaterHeater_Num;
+    EP_GLOBAL extern int const BBWater_Num;
+    EP_GLOBAL extern int const ZoneDXDehumidifier_Num;
+    EP_GLOBAL extern int const BBSteam_Num;
+    EP_GLOBAL extern int const BBElectric_Num;
+    EP_GLOBAL extern int const RefrigerationAirChillerSet_Num;
+    EP_GLOBAL extern int const UserDefinedZoneHVACForcedAir_Num;
+    EP_GLOBAL extern int const CoolingPanel_Num;
+    EP_GLOBAL extern int const ZoneUnitarySys_Num; // UnitarySystem configured as zone equipment
+    EP_GLOBAL extern int const TotalNumZoneEquipType;
     // **NOTE**... if you add another zone equipment object, then increment
     // TotalNumZoneEquipType above to match the total number of zone equipment types
     // End zone equip objects
 
     // Per Person Ventilation Rate Mode
-    thread_local extern int const PerPersonDCVByCurrentLevel;
-    thread_local extern int const PerPersonByDesignLevel;
+    EP_GLOBAL extern int const PerPersonDCVByCurrentLevel;
+    EP_GLOBAL extern int const PerPersonByDesignLevel;
 
-    thread_local extern int const NumValidSysAvailZoneComponents;
-    thread_local extern Array1D_string const cValidSysAvailManagerCompTypes;
+    EP_GLOBAL extern int const NumValidSysAvailZoneComponents;
+    EP_GLOBAL extern Array1D_string const cValidSysAvailManagerCompTypes;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumSupplyAirPaths;
-    thread_local extern int NumReturnAirPaths;
-    thread_local extern bool ZoneEquipInputsFilled;
-    thread_local extern bool ZoneEquipSimulatedOnce;
-    thread_local extern int NumOfZoneEquipLists; // The Number of Zone Equipment List objects
-    thread_local extern Array1D_int ZoneEquipAvail;
+    EP_GLOBAL extern int NumSupplyAirPaths;
+    EP_GLOBAL extern int NumReturnAirPaths;
+    EP_GLOBAL extern bool ZoneEquipInputsFilled;
+    EP_GLOBAL extern bool ZoneEquipSimulatedOnce;
+    EP_GLOBAL extern int NumOfZoneEquipLists; // The Number of Zone Equipment List objects
+    EP_GLOBAL extern Array1D_int ZoneEquipAvail;
 
     // moved from HVACManager.hh to avoid circular call, B Nigusse, 05/14
-    thread_local extern Array1D_bool CrossMixingReportFlag; // TRUE when Cross Mixing is active based on controls
-    thread_local extern Array1D_bool MixingReportFlag;      // TRUE when Mixing is active based on controls
-    thread_local extern Array1D<Real64> VentMCP;            // product of mass rate and Cp for each Venitlation object
-    thread_local extern Array1D<Real64> ZMAT;               // Zone air temperature for zone air mixing
-    thread_local extern Array1D<Real64> ZHumRat;            // Zone air humidity ratio zone air mixing
+    EP_GLOBAL extern Array1D_bool CrossMixingReportFlag; // TRUE when Cross Mixing is active based on controls
+    EP_GLOBAL extern Array1D_bool MixingReportFlag;      // TRUE when Mixing is active based on controls
+    EP_GLOBAL extern Array1D<Real64> VentMCP;            // product of mass rate and Cp for each Venitlation object
+    EP_GLOBAL extern Array1D<Real64> ZMAT;               // Zone air temperature for zone air mixing
+    EP_GLOBAL extern Array1D<Real64> ZHumRat;            // Zone air humidity ratio zone air mixing
     // Utility routines for module
 
     // Types
@@ -472,12 +472,12 @@ namespace DataZoneEquipment {
     };
 
     // Object Data
-    thread_local extern Array1D<EquipConfiguration> ZoneEquipConfig;
-    thread_local extern Array1D<EquipList> ZoneEquipList;
-    thread_local extern Array1D<ControlList> HeatingControlList;
-    thread_local extern Array1D<ControlList> CoolingControlList;
-    thread_local extern Array1D<SupplyAir> SupplyAirPath;
-    thread_local extern Array1D<ReturnAir> ReturnAirPath;
+    EP_GLOBAL extern Array1D<EquipConfiguration> ZoneEquipConfig;
+    EP_GLOBAL extern Array1D<EquipList> ZoneEquipList;
+    EP_GLOBAL extern Array1D<ControlList> HeatingControlList;
+    EP_GLOBAL extern Array1D<ControlList> CoolingControlList;
+    EP_GLOBAL extern Array1D<SupplyAir> SupplyAirPath;
+    EP_GLOBAL extern Array1D<ReturnAir> ReturnAirPath;
 
     // Functions
     // Clears the global data in DataZoneEquipment.

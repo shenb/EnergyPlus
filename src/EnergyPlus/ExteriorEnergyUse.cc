@@ -94,41 +94,41 @@ namespace ExteriorEnergyUse {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const ElecUse(1);                  // Electricity
-    thread_local int const GasUse(2);                   // Gas (Natural)
-    thread_local int const WaterUse(3);                 // Water
-    thread_local int const CoalUse(4);                  // Coal
-    thread_local int const FuelOil1Use(5);              // FuelOil#1
-    thread_local int const FuelOil2Use(6);              // FuelOil#2
-    thread_local int const LPGUse(7);                   // PropaneGas
-    thread_local int const GasolineUse(8);              // Gasoline
-    thread_local int const DieselUse(9);                // Diesel
-    thread_local int const SteamUse(10);                // Steam
-    thread_local int const DistrictCoolUse(11);         // Purchased Cooling
-    thread_local int const DistrictHeatUse(12);         // Purchased Heating
-    thread_local int const OtherFuel1Use(13);           // OtherFuel1
-    thread_local int const OtherFuel2Use(14);           // OtherFuel2
-    thread_local bool GetExteriorEnergyInputFlag(true); // First time, input is "gotten"
+    EP_GLOBAL int const ElecUse(1);                  // Electricity
+    EP_GLOBAL int const GasUse(2);                   // Gas (Natural)
+    EP_GLOBAL int const WaterUse(3);                 // Water
+    EP_GLOBAL int const CoalUse(4);                  // Coal
+    EP_GLOBAL int const FuelOil1Use(5);              // FuelOil#1
+    EP_GLOBAL int const FuelOil2Use(6);              // FuelOil#2
+    EP_GLOBAL int const LPGUse(7);                   // PropaneGas
+    EP_GLOBAL int const GasolineUse(8);              // Gasoline
+    EP_GLOBAL int const DieselUse(9);                // Diesel
+    EP_GLOBAL int const SteamUse(10);                // Steam
+    EP_GLOBAL int const DistrictCoolUse(11);         // Purchased Cooling
+    EP_GLOBAL int const DistrictHeatUse(12);         // Purchased Heating
+    EP_GLOBAL int const OtherFuel1Use(13);           // OtherFuel1
+    EP_GLOBAL int const OtherFuel2Use(14);           // OtherFuel2
+    EP_GLOBAL bool GetExteriorEnergyInputFlag(true); // First time, input is "gotten"
 
-    thread_local int const ScheduleOnly(1);       // exterior lights only on schedule
-    thread_local int const AstroClockOverride(2); // exterior lights controlled to turn off during day.
+    EP_GLOBAL int const ScheduleOnly(1);       // exterior lights only on schedule
+    EP_GLOBAL int const AstroClockOverride(2); // exterior lights controlled to turn off during day.
 
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumExteriorLights; // Number of Exterior Light Inputs
-    thread_local int NumExteriorEqs;    // Number of Exterior Equipment Inputs
+    EP_GLOBAL int NumExteriorLights; // Number of Exterior Light Inputs
+    EP_GLOBAL int NumExteriorEqs;    // Number of Exterior Equipment Inputs
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>
 
     // Name Public routines, optionally name Private routines within this module
 
     // Object Data
-    thread_local Array1D<ExteriorLightUsage> ExteriorLights;        // Structure for Exterior Light reporting
-    thread_local Array1D<ExteriorEquipmentUsage> ExteriorEquipment; // Structure for Exterior Equipment Reporting
-    thread_local std::unordered_map<std::string, std::string> UniqueExteriorEquipNames;
+    EP_GLOBAL Array1D<ExteriorLightUsage> ExteriorLights;        // Structure for Exterior Light reporting
+    EP_GLOBAL Array1D<ExteriorEquipmentUsage> ExteriorEquipment; // Structure for Exterior Equipment Reporting
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueExteriorEquipNames;
 
     // Functions
 
@@ -187,21 +187,21 @@ namespace ExteriorEnergyUse {
         using DataGlobals::AnyEnergyManagementSystemInModel;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetExteriorEnergyUseInput: ");
+        EP_GLOBAL static std::string const RoutineName("GetExteriorEnergyUseInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Item;                       // Item to be "gotten"
         int NumAlphas;                  // Number of Alphas for each GetObjectItem call
         int NumNumbers;                 // Number of Numbers for each GetObjectItem call
         int IOStatus;                   // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool ErrorsFound(false); // Set to true if errors in input, fatal at end of routine
         int NumFuelEq;                  // Temporary -- number of ExteriorFuelEquipment statements
         int NumWtrEq;                   // Temporary -- number of ExteriorWaterEquipment statements
         std::string TypeString;         // Fuel Type string (returned from Validation)
         std::string EndUseSubcategoryName;
         Real64 SchMax;                     // Max value of schedule for item
         Real64 SchMin;                     // Min value of schedule for item
-        thread_local static Real64 sumDesignLevel(0.0); // for predefined report of design level total
+        EP_GLOBAL static Real64 sumDesignLevel(0.0); // for predefined report of design level total
 
         NumExteriorLights = inputProcessor->getNumObjectsFound("Exterior:Lights");
         ExteriorLights.allocate(NumExteriorLights);
@@ -532,7 +532,7 @@ namespace ExteriorEnergyUse {
         // valid values and sets the correct in the returned FuelTypeNumber.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ValidateFuelType: ");
+        EP_GLOBAL static std::string const RoutineName("ValidateFuelType: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 

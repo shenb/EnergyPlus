@@ -64,26 +64,26 @@ namespace PhotovoltaicThermalCollectors {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const SimplePVTmodel;
-    thread_local extern int const LayerByLayerPVTmodel;
+    EP_GLOBAL extern int const SimplePVTmodel;
+    EP_GLOBAL extern int const LayerByLayerPVTmodel;
 
-    thread_local extern int const ScheduledThermEffic; // mode for thermal efficiency is to use schedule
-    thread_local extern int const FixedThermEffic;     // mode for thermal efficiency is to use fixed value
+    EP_GLOBAL extern int const ScheduledThermEffic; // mode for thermal efficiency is to use schedule
+    EP_GLOBAL extern int const FixedThermEffic;     // mode for thermal efficiency is to use fixed value
 
-    thread_local extern int const LiquidWorkingFluid;
-    thread_local extern int const AirWorkingFluid;
+    EP_GLOBAL extern int const LiquidWorkingFluid;
+    EP_GLOBAL extern int const AirWorkingFluid;
 
-    thread_local extern int const CalledFromPlantLoopEquipMgr;
-    thread_local extern int const CalledFromOutsideAirSystem;
+    EP_GLOBAL extern int const CalledFromPlantLoopEquipMgr;
+    EP_GLOBAL extern int const CalledFromOutsideAirSystem;
 
-    thread_local extern Real64 const SimplePVTWaterSizeFactor; // [ m3/s/m2 ] average of collectors in SolarCollectors.idf
+    EP_GLOBAL extern Real64 const SimplePVTWaterSizeFactor; // [ m3/s/m2 ] average of collectors in SolarCollectors.idf
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern int NumPVT;              // count of all types of PVT in input file
-    thread_local extern int NumSimplePVTPerform; // count of simple PVT performance objects in input file
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumPVT;              // count of all types of PVT in input file
+    EP_GLOBAL extern int NumSimplePVTPerform; // count of simple PVT performance objects in input file
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE:
     // Driver/Manager Routines
@@ -183,7 +183,7 @@ namespace PhotovoltaicThermalCollectors {
     };
 
     // Object Data
-    thread_local extern Array1D<PVTCollectorStruct> PVT;
+    EP_GLOBAL extern Array1D<PVTCollectorStruct> PVT;
 
     // Functions
 

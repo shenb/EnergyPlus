@@ -159,53 +159,53 @@ namespace HVACUnitaryBypassVAV {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    thread_local int const On(1);  // Normal compressor operation
-    thread_local int const Off(0); // Signal DXCoil that compressor should not run
+    EP_GLOBAL int const On(1);  // Normal compressor operation
+    EP_GLOBAL int const Off(0); // Signal DXCoil that compressor should not run
 
     // Dehumidification control modes (DehumidControlMode) for Multimode units only
-    thread_local int const DehumidControl_None(0);
-    thread_local int const DehumidControl_Multimode(1);
-    thread_local int const DehumidControl_CoolReheat(2);
+    EP_GLOBAL int const DehumidControl_None(0);
+    EP_GLOBAL int const DehumidControl_Multimode(1);
+    EP_GLOBAL int const DehumidControl_CoolReheat(2);
 
     // Mode of operation
-    thread_local int const CoolingMode(1); // System operating mode is cooling
-    thread_local int const HeatingMode(2); // System operating mode is heating
+    EP_GLOBAL int const CoolingMode(1); // System operating mode is cooling
+    EP_GLOBAL int const HeatingMode(2); // System operating mode is heating
 
     // Priority control mode (prioritized thermostat signal)
-    thread_local int const CoolingPriority(1); // Controls CBVAV system based on cooling priority
-    thread_local int const HeatingPriority(2); // Controls CBVAV system based on heating priority
-    thread_local int const ZonePriority(3);    // Controls CBVAV system based on zone priority
+    EP_GLOBAL int const CoolingPriority(1); // Controls CBVAV system based on cooling priority
+    EP_GLOBAL int const HeatingPriority(2); // Controls CBVAV system based on heating priority
+    EP_GLOBAL int const ZonePriority(3);    // Controls CBVAV system based on zone priority
 
     // Airflow control for contant fan mode
-    thread_local int const UseCompressorOnFlow(1);  // Set compressor OFF air flow rate equal to compressor ON air flow rate
-    thread_local int const UseCompressorOffFlow(2); // Set compressor OFF air flow rate equal to user defined value
+    EP_GLOBAL int const UseCompressorOnFlow(1);  // Set compressor OFF air flow rate equal to compressor ON air flow rate
+    EP_GLOBAL int const UseCompressorOffFlow(2); // Set compressor OFF air flow rate equal to user defined value
 
-    thread_local static std::string const fluidNameSteam("STEAM");
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const fluidNameSteam("STEAM");
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local int NumCBVAV(0);                    // Number of CBVAV systems in input file
-    thread_local Real64 CompOnMassFlow(0.0);         // System air mass flow rate w/ compressor ON
-    thread_local Real64 OACompOnMassFlow(0.0);       // OA mass flow rate w/ compressor ON
-    thread_local Real64 CompOffMassFlow(0.0);        // System air mass flow rate w/ compressor OFF
-    thread_local Real64 OACompOffMassFlow(0.0);      // OA mass flow rate w/ compressor OFF
-    thread_local Real64 CompOnFlowRatio(0.0);        // fan flow ratio when coil on
-    thread_local Real64 CompOffFlowRatio(0.0);       // fan flow ratio when coil off
-    thread_local Real64 FanSpeedRatio(0.0);          // ratio of air flow ratio passed to fan object
-    thread_local Real64 BypassDuctFlowFraction(0.0); // Fraction of unit mass flow that returns to inlet of CBVAV unit through bypass duct
-    thread_local Real64 PartLoadFrac(0.0);           // Compressor part-load fraction
-    thread_local Real64 SaveCompressorPLR(0.0);      // Holds DX compressor PLR from active DX coil
-    thread_local Real64 TempSteamIn(100.0);          // steam coil steam inlet temperature
-    thread_local Array1D_bool CheckEquipName;
-    thread_local bool GetInputFlag(true); // Flag set to make sure you get input once
+    EP_GLOBAL int NumCBVAV(0);                    // Number of CBVAV systems in input file
+    EP_GLOBAL Real64 CompOnMassFlow(0.0);         // System air mass flow rate w/ compressor ON
+    EP_GLOBAL Real64 OACompOnMassFlow(0.0);       // OA mass flow rate w/ compressor ON
+    EP_GLOBAL Real64 CompOffMassFlow(0.0);        // System air mass flow rate w/ compressor OFF
+    EP_GLOBAL Real64 OACompOffMassFlow(0.0);      // OA mass flow rate w/ compressor OFF
+    EP_GLOBAL Real64 CompOnFlowRatio(0.0);        // fan flow ratio when coil on
+    EP_GLOBAL Real64 CompOffFlowRatio(0.0);       // fan flow ratio when coil off
+    EP_GLOBAL Real64 FanSpeedRatio(0.0);          // ratio of air flow ratio passed to fan object
+    EP_GLOBAL Real64 BypassDuctFlowFraction(0.0); // Fraction of unit mass flow that returns to inlet of CBVAV unit through bypass duct
+    EP_GLOBAL Real64 PartLoadFrac(0.0);           // Compressor part-load fraction
+    EP_GLOBAL Real64 SaveCompressorPLR(0.0);      // Holds DX compressor PLR from active DX coil
+    EP_GLOBAL Real64 TempSteamIn(100.0);          // steam coil steam inlet temperature
+    EP_GLOBAL Array1D_bool CheckEquipName;
+    EP_GLOBAL bool GetInputFlag(true); // Flag set to make sure you get input once
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
     // Object Data
-    thread_local Array1D<CBVAVData> CBVAV;
+    EP_GLOBAL Array1D<CBVAVData> CBVAV;
 
     // Functions
 
@@ -505,7 +505,7 @@ namespace HVACUnitaryBypassVAV {
         using FluidProperties::GetSatDensityRefrig;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const getUnitaryHeatCoolVAVChangeoverBypass("GetUnitaryHeatCool:VAVChangeoverBypass");
+        EP_GLOBAL static std::string const getUnitaryHeatCoolVAVChangeoverBypass("GetUnitaryHeatCool:VAVChangeoverBypass");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int CBVAVIndex;                   // Loop index
@@ -519,12 +519,12 @@ namespace HVACUnitaryBypassVAV {
         int NumAlphas;                    // Number of Alphas for each GetObjectItem call
         int NumNumbers;                   // Number of Numbers for each GetObjectItem call
         int IOStatus;                     // Used in GetObjectItem
-        thread_local static bool ErrorsFound(false);   // Set to true if errors in input, fatal at end of routine
-        thread_local static bool DXErrorsFound(false); // Set to true if errors in get coil input
+        EP_GLOBAL static bool ErrorsFound(false);   // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool DXErrorsFound(false); // Set to true if errors in get coil input
         // unused0509  LOGICAL                        :: FanErrorsFound=.FALSE. ! Set to true if errors in get fan input
         std::string CurrentModuleObject;    // Object type for getting and error messages
-        thread_local static bool FanErrFlag(false);      // Error flag returned during CALL to GetFanType
-        thread_local static bool errFlag(false);         // Error flag returned during CALL to mining functions
+        EP_GLOBAL static bool FanErrFlag(false);      // Error flag returned during CALL to GetFanType
+        EP_GLOBAL static bool errFlag(false);         // Error flag returned during CALL to mining functions
         int AirLoopNum;                     // Index to air loop served by this system
         int AirLoopZoneNum;                 // Index to controlled zone
         int BranchNum;                      // Index to branch containing this system
@@ -1487,22 +1487,22 @@ namespace HVACUnitaryBypassVAV {
         using WaterCoils::SimulateWaterCoilComponents;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("InitCBVAV");
+        EP_GLOBAL static std::string const RoutineName("InitCBVAV");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int InNode;                          // Inlet node number in CBVAV loop
         int OutNode;                         // Outlet node number in CBVAV loop
         int MixerOutsideAirNode;             // Outside air node number in CBVAV loop
         Real64 RhoAir;                       // Air density at InNode
-        thread_local static bool MyOneTimeFlag(true);     // Initialization flag
-        thread_local static Array1D_bool MyEnvrnFlag;     // Used for initializations each begin environment flag
-        thread_local static Array1D_bool MySizeFlag;      // Used for sizing CBVAV inputs one time
-        thread_local static Array1D_bool MyPlantScanFlag; // Used for initializations plant component for heating coils
+        EP_GLOBAL static bool MyOneTimeFlag(true);     // Initialization flag
+        EP_GLOBAL static Array1D_bool MyEnvrnFlag;     // Used for initializations each begin environment flag
+        EP_GLOBAL static Array1D_bool MySizeFlag;      // Used for sizing CBVAV inputs one time
+        EP_GLOBAL static Array1D_bool MyPlantScanFlag; // Used for initializations plant component for heating coils
         Real64 QSensUnitOut;                 // Output of CBVAV system with coils off
         Real64 OutsideAirMultiplier;         // Outside air multiplier schedule (= 1.0 if no schedule)
         std::string CurrentModuleObject;     // Object type for error messages
-        thread_local static bool EMSSetPointCheck(false); // local temporary
-        thread_local static bool ErrorsFound(false);      // Set to true if errors in input, fatal at end of routine
+        EP_GLOBAL static bool EMSSetPointCheck(false); // local temporary
+        EP_GLOBAL static bool ErrorsFound(false);      // Set to true if errors in input, fatal at end of routine
         int SteamIndex;                      // steam coil index
         Real64 FluidDensity;                 // steam or water coil fluid density
         Real64 CoilMaxVolFlowRate;           // water or steam max volumetric water flow rate

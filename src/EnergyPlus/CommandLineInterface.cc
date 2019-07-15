@@ -703,8 +703,8 @@ namespace CommandLineInterface {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static std::string LINE;
-        thread_local static std::string LINEOut;
+        EP_GLOBAL static std::string LINE;
+        EP_GLOBAL static std::string LINEOut;
         std::string Param;
         std::string::size_type ILB;
         std::string::size_type IRB;
@@ -718,7 +718,7 @@ namespace CommandLineInterface {
         bool NewHeading;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_700("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_700("(A)");
 
         DataOut.clear();
 

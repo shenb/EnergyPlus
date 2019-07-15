@@ -77,107 +77,107 @@ namespace DataRuntimeLanguage {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const ValueNull(0);       // Erl entity type, "Null" value
-    thread_local int const ValueNumber(1);     // Erl entity type,  hard numeric value
-    thread_local int const ValueString(2);     // Erl entity type,  character data
-    thread_local int const ValueArray(3);      // Erl entity type,  not used yet, for future array type
-    thread_local int const ValueVariable(4);   // Erl entity type,  Erl variable
-    thread_local int const ValueExpression(5); // Erl entity type,  Erl expression
-    thread_local int const ValueTrend(6);      // Erl entity type,  Erl trend variable
-    thread_local int const ValueError(7);      // Erl entity type, processing of an expression failed, returned error
+    EP_GLOBAL int const ValueNull(0);       // Erl entity type, "Null" value
+    EP_GLOBAL int const ValueNumber(1);     // Erl entity type,  hard numeric value
+    EP_GLOBAL int const ValueString(2);     // Erl entity type,  character data
+    EP_GLOBAL int const ValueArray(3);      // Erl entity type,  not used yet, for future array type
+    EP_GLOBAL int const ValueVariable(4);   // Erl entity type,  Erl variable
+    EP_GLOBAL int const ValueExpression(5); // Erl entity type,  Erl expression
+    EP_GLOBAL int const ValueTrend(6);      // Erl entity type,  Erl trend variable
+    EP_GLOBAL int const ValueError(7);      // Erl entity type, processing of an expression failed, returned error
 
-    thread_local int const PntrReal(301);    // data type for overloaded pointer management, double real
-    thread_local int const PntrInteger(302); // data type for overloaded pointer management, integer
-    thread_local int const PntrLogical(303); // data type for overloaded pointer management, logical
+    EP_GLOBAL int const PntrReal(301);    // data type for overloaded pointer management, double real
+    EP_GLOBAL int const PntrInteger(302); // data type for overloaded pointer management, integer
+    EP_GLOBAL int const PntrLogical(303); // data type for overloaded pointer management, logical
 
-    thread_local int const MaxWhileLoopIterations(1000000); // protect from infinite loop in WHILE loops
+    EP_GLOBAL int const MaxWhileLoopIterations(1000000); // protect from infinite loop in WHILE loops
 
     // Parameters for identifying operator types in Erl
     // The number of these parameters indicates the order of precedence
-    thread_local int const OperatorLiteral(1);         // Just stores a literal value
-    thread_local int const OperatorNegative(2);        // -  (unary) No LHS?
-    thread_local int const OperatorDivide(3);          // /
-    thread_local int const OperatorMultiply(4);        // *
-    thread_local int const OperatorSubtract(5);        // -  (binary)
-    thread_local int const OperatorAdd(6);             // +  (binary)
-    thread_local int const OperatorEqual(7);           // ==
-    thread_local int const OperatorNotEqual(8);        // <>
-    thread_local int const OperatorLessOrEqual(9);     // <=
-    thread_local int const OperatorGreaterOrEqual(10); // >=
-    thread_local int const OperatorLessThan(11);       // <
-    thread_local int const OperatorGreaterThan(12);    // >
-    thread_local int const OperatorRaiseToPower(13);   // ^
-    thread_local int const OperatorLogicalAND(14);     // &&
-    thread_local int const OperatiorLogicalOR(15);     // ||
+    EP_GLOBAL int const OperatorLiteral(1);         // Just stores a literal value
+    EP_GLOBAL int const OperatorNegative(2);        // -  (unary) No LHS?
+    EP_GLOBAL int const OperatorDivide(3);          // /
+    EP_GLOBAL int const OperatorMultiply(4);        // *
+    EP_GLOBAL int const OperatorSubtract(5);        // -  (binary)
+    EP_GLOBAL int const OperatorAdd(6);             // +  (binary)
+    EP_GLOBAL int const OperatorEqual(7);           // ==
+    EP_GLOBAL int const OperatorNotEqual(8);        // <>
+    EP_GLOBAL int const OperatorLessOrEqual(9);     // <=
+    EP_GLOBAL int const OperatorGreaterOrEqual(10); // >=
+    EP_GLOBAL int const OperatorLessThan(11);       // <
+    EP_GLOBAL int const OperatorGreaterThan(12);    // >
+    EP_GLOBAL int const OperatorRaiseToPower(13);   // ^
+    EP_GLOBAL int const OperatorLogicalAND(14);     // &&
+    EP_GLOBAL int const OperatiorLogicalOR(15);     // ||
     // note there is an important check "> 15" to distinguish operators from functions
     //  so becareful if renumber these parameters.  Binary operator additions should get inserted here rather than appended
 
     // parameters for built-in Erl functions, these are processed like operators and numbering
     // must be sequential with the operators.
     // math functions
-    thread_local int const FuncRound(16);    // accessor for Fortran's DNINT()
-    thread_local int const FuncMod(17);      // accessor for Fortran's MOD()
-    thread_local int const FuncSin(18);      // accessor for Fortran's SIN()
-    thread_local int const FuncCos(19);      // accessor for Fortran's COS()
-    thread_local int const FuncArcSin(20);   // accessor for Fortran's ASIN()
-    thread_local int const FuncArcCos(21);   // accessor for Fortran's ACOS()
-    thread_local int const FuncDegToRad(22); // Multiplies degrees by DegToRad
-    thread_local int const FuncRadToDeg(23); // Divides radians by DegToRad
-    thread_local int const FuncExp(24);      // accessor for Fortran's EXP()
-    thread_local int const FuncLn(25);       // accessor for Fortran's LOG()
-    thread_local int const FuncMax(26);      // accessor for Fortran's MAX()
-    thread_local int const FuncMin(27);      // accessor for Fortran's MIN()
-    thread_local int const FuncABS(28);      // accessor for Fortran's ABS()
-    thread_local int const FuncRandU(29);    // accessor for Fortran's Random_Number() intrinsic, uniform distribution
-    thread_local int const FuncRandG(30);    // accessor for Gaussian/normal distribution random number
-    thread_local int const FuncRandSeed(31); // accessor for Fortran's Random_Seed() intrinsic
+    EP_GLOBAL int const FuncRound(16);    // accessor for Fortran's DNINT()
+    EP_GLOBAL int const FuncMod(17);      // accessor for Fortran's MOD()
+    EP_GLOBAL int const FuncSin(18);      // accessor for Fortran's SIN()
+    EP_GLOBAL int const FuncCos(19);      // accessor for Fortran's COS()
+    EP_GLOBAL int const FuncArcSin(20);   // accessor for Fortran's ASIN()
+    EP_GLOBAL int const FuncArcCos(21);   // accessor for Fortran's ACOS()
+    EP_GLOBAL int const FuncDegToRad(22); // Multiplies degrees by DegToRad
+    EP_GLOBAL int const FuncRadToDeg(23); // Divides radians by DegToRad
+    EP_GLOBAL int const FuncExp(24);      // accessor for Fortran's EXP()
+    EP_GLOBAL int const FuncLn(25);       // accessor for Fortran's LOG()
+    EP_GLOBAL int const FuncMax(26);      // accessor for Fortran's MAX()
+    EP_GLOBAL int const FuncMin(27);      // accessor for Fortran's MIN()
+    EP_GLOBAL int const FuncABS(28);      // accessor for Fortran's ABS()
+    EP_GLOBAL int const FuncRandU(29);    // accessor for Fortran's Random_Number() intrinsic, uniform distribution
+    EP_GLOBAL int const FuncRandG(30);    // accessor for Gaussian/normal distribution random number
+    EP_GLOBAL int const FuncRandSeed(31); // accessor for Fortran's Random_Seed() intrinsic
 
     // begin psychrometric routines
-    thread_local int const FuncRhoAirFnPbTdbW(32);    // accessor for E+ psych routine
-    thread_local int const FuncCpAirFnWTdb(33);       // accessor for E+ psych routine
-    thread_local int const FuncHfgAirFnWTdb(34);      // accessor for E+ psych routine
-    thread_local int const FuncHgAirFnWTdb(35);       // accessor for E+ psych routine
-    thread_local int const FuncTdpFnTdbTwbPb(36);     // accessor for E+ psych routine
-    thread_local int const FuncTdpFnWPb(37);          // accessor for E+ psych routine
-    thread_local int const FuncHFnTdbW(38);           // accessor for E+ psych routine
-    thread_local int const FuncHFnTdbRhPb(39);        // accessor for E+ psych routine
-    thread_local int const FuncTdbFnHW(40);           // accessor for E+ psych routine
-    thread_local int const FuncRhovFnTdbRh(41);       // accessor for E+ psych routine
-    thread_local int const FuncRhovFnTdbRhLBnd0C(42); // accessor for E+ psych routine
-    thread_local int const FuncRhovFnTdbWPb(43);      // accessor for E+ psych routine
-    thread_local int const FuncRhFnTdbRhov(44);       // accessor for E+ psych routine
-    thread_local int const FuncRhFnTdbRhovLBnd0C(45); // accessor for E+ psych routine
-    thread_local int const FuncRhFnTdbWPb(46);        // accessor for E+ psych routine
-    thread_local int const FuncTwbFnTdbWPb(47);       // accessor for E+ psych routine
-    thread_local int const FuncVFnTdbWPb(48);         // accessor for E+ psych routine
-    thread_local int const FuncWFnTdpPb(49);          // accessor for E+ psych routine
-    thread_local int const FuncWFnTdbH(50);           // accessor for E+ psych routine
-    thread_local int const FuncWFnTdbTwbPb(51);       // accessor for E+ psych routine
-    thread_local int const FuncWFnTdbRhPb(52);        // accessor for E+ psych routine
-    thread_local int const FuncPsatFnTemp(53);        // accessor for E+ psych routine
-    thread_local int const FuncTsatFnHPb(54);         // accessor for E+ psych routine
-    thread_local int const FuncTsatFnPb(55);          // not public in PsychRoutines.cc so not really available in EMS.
-    thread_local int const FuncCpCW(56);              // accessor for E+ psych routine
-    thread_local int const FuncCpHW(57);              // accessor for E+ psych routine
-    thread_local int const FuncRhoH2O(58);            // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhoAirFnPbTdbW(32);    // accessor for E+ psych routine
+    EP_GLOBAL int const FuncCpAirFnWTdb(33);       // accessor for E+ psych routine
+    EP_GLOBAL int const FuncHfgAirFnWTdb(34);      // accessor for E+ psych routine
+    EP_GLOBAL int const FuncHgAirFnWTdb(35);       // accessor for E+ psych routine
+    EP_GLOBAL int const FuncTdpFnTdbTwbPb(36);     // accessor for E+ psych routine
+    EP_GLOBAL int const FuncTdpFnWPb(37);          // accessor for E+ psych routine
+    EP_GLOBAL int const FuncHFnTdbW(38);           // accessor for E+ psych routine
+    EP_GLOBAL int const FuncHFnTdbRhPb(39);        // accessor for E+ psych routine
+    EP_GLOBAL int const FuncTdbFnHW(40);           // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhovFnTdbRh(41);       // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhovFnTdbRhLBnd0C(42); // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhovFnTdbWPb(43);      // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhFnTdbRhov(44);       // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhFnTdbRhovLBnd0C(45); // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhFnTdbWPb(46);        // accessor for E+ psych routine
+    EP_GLOBAL int const FuncTwbFnTdbWPb(47);       // accessor for E+ psych routine
+    EP_GLOBAL int const FuncVFnTdbWPb(48);         // accessor for E+ psych routine
+    EP_GLOBAL int const FuncWFnTdpPb(49);          // accessor for E+ psych routine
+    EP_GLOBAL int const FuncWFnTdbH(50);           // accessor for E+ psych routine
+    EP_GLOBAL int const FuncWFnTdbTwbPb(51);       // accessor for E+ psych routine
+    EP_GLOBAL int const FuncWFnTdbRhPb(52);        // accessor for E+ psych routine
+    EP_GLOBAL int const FuncPsatFnTemp(53);        // accessor for E+ psych routine
+    EP_GLOBAL int const FuncTsatFnHPb(54);         // accessor for E+ psych routine
+    EP_GLOBAL int const FuncTsatFnPb(55);          // not public in PsychRoutines.cc so not really available in EMS.
+    EP_GLOBAL int const FuncCpCW(56);              // accessor for E+ psych routine
+    EP_GLOBAL int const FuncCpHW(57);              // accessor for E+ psych routine
+    EP_GLOBAL int const FuncRhoH2O(58);            // accessor for E+ psych routine
 
     // Simulation Management Functions
-    thread_local int const FuncFatalHaltEp(59);  // accessor for E+ error management, "Fatal" level
-    thread_local int const FuncSevereWarnEp(60); // accessor for E+ error management, "Severe" level
-    thread_local int const FuncWarnEp(61);       // accessor for E+ error management, "Warning" level
+    EP_GLOBAL int const FuncFatalHaltEp(59);  // accessor for E+ error management, "Fatal" level
+    EP_GLOBAL int const FuncSevereWarnEp(60); // accessor for E+ error management, "Severe" level
+    EP_GLOBAL int const FuncWarnEp(61);       // accessor for E+ error management, "Warning" level
 
     // Trend variable handling Functions
-    thread_local int const FuncTrendValue(62);     // accessor for Erl Trend variables, instance value
-    thread_local int const FuncTrendAverage(63);   // accessor for Erl Trend variables, average value
-    thread_local int const FuncTrendMax(64);       // accessor for Erl Trend variables, max value
-    thread_local int const FuncTrendMin(65);       // accessor for Erl Trend variables, min value
-    thread_local int const FuncTrendDirection(66); // accessor for Erl Trend variables, slope value
-    thread_local int const FuncTrendSum(67);       // accessor for Erl Trend variables, sum value
+    EP_GLOBAL int const FuncTrendValue(62);     // accessor for Erl Trend variables, instance value
+    EP_GLOBAL int const FuncTrendAverage(63);   // accessor for Erl Trend variables, average value
+    EP_GLOBAL int const FuncTrendMax(64);       // accessor for Erl Trend variables, max value
+    EP_GLOBAL int const FuncTrendMin(65);       // accessor for Erl Trend variables, min value
+    EP_GLOBAL int const FuncTrendDirection(66); // accessor for Erl Trend variables, slope value
+    EP_GLOBAL int const FuncTrendSum(67);       // accessor for Erl Trend variables, sum value
 
     // Curve and Table access function
-    thread_local int const FuncCurveValue(68);
+    EP_GLOBAL int const FuncCurveValue(68);
 
-    thread_local int const NumPossibleOperators(68); // total number of operators and built-in functions
+    EP_GLOBAL int const NumPossibleOperators(68); // total number of operators and built-in functions
 
     // DERIVED TYPE DEFINITIONS:
 
@@ -186,73 +186,73 @@ namespace DataRuntimeLanguage {
     // INTERFACE BLOCK SPECIFICATIONS: na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local Array1D_int EMSProgram;
+    EP_GLOBAL Array1D_int EMSProgram;
 
-    thread_local int NumProgramCallManagers(0);      // count of Erl program managers with calling points
-    thread_local int NumSensors(0);                  // count of EMS sensors used in model (data from output variables)
-    thread_local int numActuatorsUsed(0);            // count of EMS actuators used in model
-    thread_local int numEMSActuatorsAvailable(0);    // count of EMS actuators available for use in such a model
-    thread_local int maxEMSActuatorsAvailable(0);    // count of EMS current maximum actuators available for use in such a model
-    thread_local int NumInternalVariablesUsed(0);    // count of EMS internal variables used in model
-    thread_local int numEMSInternalVarsAvailable(0); // count of EMS internal variables available for use in such a model
-    thread_local int maxEMSInternalVarsAvailable(0); // count of EMS current maximum internal variables available for use in such a model
-    thread_local int varsAvailableAllocInc(1000);    // allocation increment for variable arrays
+    EP_GLOBAL int NumProgramCallManagers(0);      // count of Erl program managers with calling points
+    EP_GLOBAL int NumSensors(0);                  // count of EMS sensors used in model (data from output variables)
+    EP_GLOBAL int numActuatorsUsed(0);            // count of EMS actuators used in model
+    EP_GLOBAL int numEMSActuatorsAvailable(0);    // count of EMS actuators available for use in such a model
+    EP_GLOBAL int maxEMSActuatorsAvailable(0);    // count of EMS current maximum actuators available for use in such a model
+    EP_GLOBAL int NumInternalVariablesUsed(0);    // count of EMS internal variables used in model
+    EP_GLOBAL int numEMSInternalVarsAvailable(0); // count of EMS internal variables available for use in such a model
+    EP_GLOBAL int maxEMSInternalVarsAvailable(0); // count of EMS current maximum internal variables available for use in such a model
+    EP_GLOBAL int varsAvailableAllocInc(1000);    // allocation increment for variable arrays
 
-    thread_local int NumErlPrograms(0);               // count of Erl programs in model
-    thread_local int NumErlSubroutines(0);            // count of Erl subroutines in model
-    thread_local int NumUserGlobalVariables(0);       // count of global EMS variables defined by user
-    thread_local int NumErlVariables(0);              // count of Erl variables
-    thread_local int NumErlStacks(0);                 // count of Erl program stacks in model. sum of programs and subroutines
-    thread_local int NumExpressions(0);               // count of Erl expressions
-    thread_local int NumEMSOutputVariables(0);        // count of EMS output variables, custom output variables from Erl
-    thread_local int NumEMSMeteredOutputVariables(0); // count of EMS metered output variables, custom meters from Erl
-    thread_local int NumErlTrendVariables(0);         // count of EMS trend variables in model
-    thread_local int NumEMSCurveIndices(0);           // count of EMS curve index variables in model
-    thread_local int NumEMSConstructionIndices(0);    // count of EMS construction index variables in model
+    EP_GLOBAL int NumErlPrograms(0);               // count of Erl programs in model
+    EP_GLOBAL int NumErlSubroutines(0);            // count of Erl subroutines in model
+    EP_GLOBAL int NumUserGlobalVariables(0);       // count of global EMS variables defined by user
+    EP_GLOBAL int NumErlVariables(0);              // count of Erl variables
+    EP_GLOBAL int NumErlStacks(0);                 // count of Erl program stacks in model. sum of programs and subroutines
+    EP_GLOBAL int NumExpressions(0);               // count of Erl expressions
+    EP_GLOBAL int NumEMSOutputVariables(0);        // count of EMS output variables, custom output variables from Erl
+    EP_GLOBAL int NumEMSMeteredOutputVariables(0); // count of EMS metered output variables, custom meters from Erl
+    EP_GLOBAL int NumErlTrendVariables(0);         // count of EMS trend variables in model
+    EP_GLOBAL int NumEMSCurveIndices(0);           // count of EMS curve index variables in model
+    EP_GLOBAL int NumEMSConstructionIndices(0);    // count of EMS construction index variables in model
 
     //######################################################################################################################################
     // code for ExternalInterface
-    thread_local int NumExternalInterfaceGlobalVariables(0);                           // count of ExternalInterface runtime variable
-    thread_local int NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables(0); // count of ExternalInterface runtime variable for FMUImport
+    EP_GLOBAL int NumExternalInterfaceGlobalVariables(0);                           // count of ExternalInterface runtime variable
+    EP_GLOBAL int NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables(0); // count of ExternalInterface runtime variable for FMUImport
     // will be updated with values from ExternalInterface
-    thread_local int NumExternalInterfaceFunctionalMockupUnitExportGlobalVariables(0); // count of ExternalInterface runtime variable for FMUExport
+    EP_GLOBAL int NumExternalInterfaceFunctionalMockupUnitExportGlobalVariables(0); // count of ExternalInterface runtime variable for FMUExport
     // will be updated with values from ExternalInterface
-    thread_local int NumExternalInterfaceActuatorsUsed(0);                           // count of ExternalInterface Actuators
-    thread_local int NumExternalInterfaceFunctionalMockupUnitImportActuatorsUsed(0); // count of ExternalInterface Actuators for FMUImport
-    thread_local int NumExternalInterfaceFunctionalMockupUnitExportActuatorsUsed(0); // count of ExternalInterface Actuators for FMUExport
+    EP_GLOBAL int NumExternalInterfaceActuatorsUsed(0);                           // count of ExternalInterface Actuators
+    EP_GLOBAL int NumExternalInterfaceFunctionalMockupUnitImportActuatorsUsed(0); // count of ExternalInterface Actuators for FMUImport
+    EP_GLOBAL int NumExternalInterfaceFunctionalMockupUnitExportActuatorsUsed(0); // count of ExternalInterface Actuators for FMUExport
 
     //######################################################################################################################################
 
-    thread_local int OutputEMSFileUnitNum(0);             // file lun handle for open EMS output file
-    thread_local bool OutputEDDFile(false);               // set to true if user requests EDD output file be written
-    thread_local bool OutputFullEMSTrace(false);          // how much to write out to trace, if true do verbose for each line
-    thread_local bool OutputEMSErrors(false);             // how much to write out to trace, if true include Erl error messages
-    thread_local bool OutputEMSActuatorAvailFull(false);  // how much to write out to EDD file, if true dump full combinatorial actuator list
-    thread_local bool OutputEMSActuatorAvailSmall(false); // how much to write out to EDD file, if true dump actuator list without key names
-    thread_local bool OutputEMSInternalVarsFull(false);   // how much to write out to EDD file, if true dump full combinatorial internal list
-    thread_local bool OutputEMSInternalVarsSmall(false);  // how much to write out to EDD file, if true dump internal list without key names
+    EP_GLOBAL int OutputEMSFileUnitNum(0);             // file lun handle for open EMS output file
+    EP_GLOBAL bool OutputEDDFile(false);               // set to true if user requests EDD output file be written
+    EP_GLOBAL bool OutputFullEMSTrace(false);          // how much to write out to trace, if true do verbose for each line
+    EP_GLOBAL bool OutputEMSErrors(false);             // how much to write out to trace, if true include Erl error messages
+    EP_GLOBAL bool OutputEMSActuatorAvailFull(false);  // how much to write out to EDD file, if true dump full combinatorial actuator list
+    EP_GLOBAL bool OutputEMSActuatorAvailSmall(false); // how much to write out to EDD file, if true dump actuator list without key names
+    EP_GLOBAL bool OutputEMSInternalVarsFull(false);   // how much to write out to EDD file, if true dump full combinatorial internal list
+    EP_GLOBAL bool OutputEMSInternalVarsSmall(false);  // how much to write out to EDD file, if true dump internal list without key names
 
-    thread_local Array2D_bool EMSConstructActuatorChecked;
-    thread_local Array2D_bool EMSConstructActuatorIsOkay;
+    EP_GLOBAL Array2D_bool EMSConstructActuatorChecked;
+    EP_GLOBAL Array2D_bool EMSConstructActuatorIsOkay;
 
     // Object Data
-    thread_local Array1D<ErlVariableType> ErlVariable;                        // holds Erl variables in a structure array
-    thread_local Array1D<ErlStackType> ErlStack;                              // holds Erl programs in separate "stacks"
-    thread_local Array1D<ErlExpressionType> ErlExpression;                    // holds Erl expressions in structure array
-    thread_local Array1D<OperatorType> PossibleOperators;                     // hard library of available operators and functions
-    thread_local Array1D<TrendVariableType> TrendVariable;                    // holds Erl trend varialbes in a structure array
-    thread_local Array1D<OutputVarSensorType> Sensor;                         // EMS:SENSOR objects used (from output variables)
-    thread_local Array1D<EMSActuatorAvailableType> EMSActuatorAvailable;      // actuators that could be used
-    thread_local Array1D<ActuatorUsedType> EMSActuatorUsed;                   // actuators that are used
-    thread_local Array1D<InternalVarsAvailableType> EMSInternalVarsAvailable; // internal data that could be used
-    thread_local Array1D<InternalVarsUsedType> EMSInternalVarsUsed;           // internal data that are used
-    thread_local Array1D<EMSProgramCallManagementType> EMSProgramCallManager; // program calling managers
-    thread_local ErlValueType Null(0, 0.0, "", 0, 0, false, 0, "", true);     // special "null" Erl variable value instance
-    thread_local ErlValueType False(0, 0.0, "", 0, 0, false, 0, "", true);    // special "false" Erl variable value instance
-    thread_local ErlValueType True(0, 0.0, "", 0, 0, false, 0, "", true);     // special "True" Erl variable value instance, gets reset
+    EP_GLOBAL Array1D<ErlVariableType> ErlVariable;                        // holds Erl variables in a structure array
+    EP_GLOBAL Array1D<ErlStackType> ErlStack;                              // holds Erl programs in separate "stacks"
+    EP_GLOBAL Array1D<ErlExpressionType> ErlExpression;                    // holds Erl expressions in structure array
+    EP_GLOBAL Array1D<OperatorType> PossibleOperators;                     // hard library of available operators and functions
+    EP_GLOBAL Array1D<TrendVariableType> TrendVariable;                    // holds Erl trend varialbes in a structure array
+    EP_GLOBAL Array1D<OutputVarSensorType> Sensor;                         // EMS:SENSOR objects used (from output variables)
+    EP_GLOBAL Array1D<EMSActuatorAvailableType> EMSActuatorAvailable;      // actuators that could be used
+    EP_GLOBAL Array1D<ActuatorUsedType> EMSActuatorUsed;                   // actuators that are used
+    EP_GLOBAL Array1D<InternalVarsAvailableType> EMSInternalVarsAvailable; // internal data that could be used
+    EP_GLOBAL Array1D<InternalVarsUsedType> EMSInternalVarsUsed;           // internal data that are used
+    EP_GLOBAL Array1D<EMSProgramCallManagementType> EMSProgramCallManager; // program calling managers
+    EP_GLOBAL ErlValueType Null(0, 0.0, "", 0, 0, false, 0, "", true);     // special "null" Erl variable value instance
+    EP_GLOBAL ErlValueType False(0, 0.0, "", 0, 0, false, 0, "", true);    // special "false" Erl variable value instance
+    EP_GLOBAL ErlValueType True(0, 0.0, "", 0, 0, false, 0, "", true);     // special "True" Erl variable value instance, gets reset
 
     // EMS Actuator fast duplicate check lookup support
-    thread_local std::unordered_set<std::tuple<std::string, std::string, std::string>, EMSActuatorKey_hash> EMSActuator_lookup; // Fast duplicate lookup structure
+    EP_GLOBAL std::unordered_set<std::tuple<std::string, std::string, std::string>, EMSActuatorKey_hash> EMSActuator_lookup; // Fast duplicate lookup structure
 
     // Functions
     void clear_state()
@@ -337,7 +337,7 @@ namespace DataRuntimeLanguage {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const InvalidStartCharacters("0123456789");
+        EP_GLOBAL static std::string const InvalidStartCharacters("0123456789");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -410,7 +410,7 @@ namespace DataRuntimeLanguage {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const InvalidStartCharacters("0123456789");
+        EP_GLOBAL static std::string const InvalidStartCharacters("0123456789");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na

@@ -63,22 +63,22 @@ namespace ElectricBaseboardRadiator {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const BaseboardRadiator_Electric;
-    thread_local extern std::string const cCMO_BBRadiator_Electric;
+    EP_GLOBAL extern int const BaseboardRadiator_Electric;
+    EP_GLOBAL extern std::string const cCMO_BBRadiator_Electric;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumElecBaseboards;
-    thread_local extern Array1D<Real64> QBBElecRadSource;     // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> QBBElecRadSrcAvg;     // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
+    EP_GLOBAL extern int NumElecBaseboards;
+    EP_GLOBAL extern Array1D<Real64> QBBElecRadSource;     // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> QBBElecRadSrcAvg;     // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to the SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QBBRadSrcAvg locally
-    thread_local extern Array1D<Real64> LastQBBElecRadSrc;  // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D_bool MySizeFlag;
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D<Real64> LastQBBElecRadSrc;  // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
     // SUBROUTINE SPECIFICATIONS FOR MODULE BaseboardRadiator
 
     // Types
@@ -138,8 +138,8 @@ namespace ElectricBaseboardRadiator {
     };
 
     // Object Data
-    thread_local extern Array1D<ElecBaseboardParams> ElecBaseboard;
-    thread_local extern Array1D<ElecBaseboardNumericFieldData> ElecBaseboardNumericFields;
+    EP_GLOBAL extern Array1D<ElecBaseboardParams> ElecBaseboard;
+    EP_GLOBAL extern Array1D<ElecBaseboardNumericFieldData> ElecBaseboardNumericFields;
 
     // Functions
 

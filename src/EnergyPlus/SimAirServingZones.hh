@@ -62,50 +62,50 @@ namespace SimAirServingZones {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // coil operation
-    thread_local extern int const CoilOn;  // normal coil operation
-    thread_local extern int const CoilOff; // signal coil shouldn't run
-    thread_local extern int const BeforeBranchSim;
-    thread_local extern int const AfterBranchSim;
+    EP_GLOBAL extern int const CoilOn;  // normal coil operation
+    EP_GLOBAL extern int const CoilOff; // signal coil shouldn't run
+    EP_GLOBAL extern int const BeforeBranchSim;
+    EP_GLOBAL extern int const AfterBranchSim;
     // CompType numerics -- for this module
     // component types addressed by this module
-    thread_local extern int const OAMixer_Num;
-    thread_local extern int const Fan_Simple_CV;
-    thread_local extern int const Fan_Simple_VAV;
-    thread_local extern int const Fan_System_Object;
-    thread_local extern int const WaterCoil_SimpleCool;
-    thread_local extern int const WaterCoil_Cooling;
-    thread_local extern int const WaterCoil_SimpleHeat;
-    thread_local extern int const SteamCoil_AirHeat;
-    thread_local extern int const WaterCoil_DetailedCool;
-    thread_local extern int const Coil_ElectricHeat;
-    thread_local extern int const Coil_GasHeat;
-    thread_local extern int const WaterCoil_CoolingHXAsst;
-    thread_local extern int const DXCoil_CoolingHXAsst;
-    thread_local extern int const Coil_DeSuperHeat;
-    thread_local extern int const DXSystem;
-    thread_local extern int const HeatXchngr;
-    thread_local extern int const Desiccant;
-    thread_local extern int const Unglazed_SolarCollector;
-    thread_local extern int const EvapCooler;
-    thread_local extern int const Furnace_UnitarySys_HeatOnly;
-    thread_local extern int const Furnace_UnitarySys_HeatCool;
-    thread_local extern int const Humidifier;
-    thread_local extern int const Duct;
-    thread_local extern int const UnitarySystem_BypassVAVSys;
-    thread_local extern int const UnitarySystem_MSHeatPump;
-    thread_local extern int const Fan_ComponentModel; // cpw22Aug2010 (new)
-    thread_local extern int const DXHeatPumpSystem;
-    thread_local extern int const CoilUserDefined;
-    thread_local extern int const Fan_System_Object;
-    thread_local extern int const UnitarySystemModel;
+    EP_GLOBAL extern int const OAMixer_Num;
+    EP_GLOBAL extern int const Fan_Simple_CV;
+    EP_GLOBAL extern int const Fan_Simple_VAV;
+    EP_GLOBAL extern int const Fan_System_Object;
+    EP_GLOBAL extern int const WaterCoil_SimpleCool;
+    EP_GLOBAL extern int const WaterCoil_Cooling;
+    EP_GLOBAL extern int const WaterCoil_SimpleHeat;
+    EP_GLOBAL extern int const SteamCoil_AirHeat;
+    EP_GLOBAL extern int const WaterCoil_DetailedCool;
+    EP_GLOBAL extern int const Coil_ElectricHeat;
+    EP_GLOBAL extern int const Coil_GasHeat;
+    EP_GLOBAL extern int const WaterCoil_CoolingHXAsst;
+    EP_GLOBAL extern int const DXCoil_CoolingHXAsst;
+    EP_GLOBAL extern int const Coil_DeSuperHeat;
+    EP_GLOBAL extern int const DXSystem;
+    EP_GLOBAL extern int const HeatXchngr;
+    EP_GLOBAL extern int const Desiccant;
+    EP_GLOBAL extern int const Unglazed_SolarCollector;
+    EP_GLOBAL extern int const EvapCooler;
+    EP_GLOBAL extern int const Furnace_UnitarySys_HeatOnly;
+    EP_GLOBAL extern int const Furnace_UnitarySys_HeatCool;
+    EP_GLOBAL extern int const Humidifier;
+    EP_GLOBAL extern int const Duct;
+    EP_GLOBAL extern int const UnitarySystem_BypassVAVSys;
+    EP_GLOBAL extern int const UnitarySystem_MSHeatPump;
+    EP_GLOBAL extern int const Fan_ComponentModel; // cpw22Aug2010 (new)
+    EP_GLOBAL extern int const DXHeatPumpSystem;
+    EP_GLOBAL extern int const CoilUserDefined;
+    EP_GLOBAL extern int const Fan_System_Object;
+    EP_GLOBAL extern int const UnitarySystemModel;
 
     // DERIVED TYPE DEFINITIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern bool GetAirLoopInputFlag; // Flag set to make sure you get input once
-    thread_local extern int NumOfTimeStepInDay;   // number of zone time steps in a day
+    EP_GLOBAL extern bool GetAirLoopInputFlag; // Flag set to make sure you get input once
+    EP_GLOBAL extern int NumOfTimeStepInDay;   // number of zone time steps in a day
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines

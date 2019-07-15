@@ -94,7 +94,7 @@ namespace RoomAirModelAirflowNetwork {
     };
 
     // Object data
-    thread_local extern Array1D<RAFNData> RAFN;
+    EP_GLOBAL extern Array1D<RAFNData> RAFN;
 
     void clear_state();
 

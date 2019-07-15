@@ -124,22 +124,22 @@ namespace SurfaceGeometry {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
-    thread_local Array1D_string const BaseSurfCls(3, {"WALL", "FLOOR", "ROOF"});
-    thread_local Array1D_string const SubSurfCls(6, {"WINDOW", "DOOR", "GLASSDOOR", "SHADING", "TUBULARDAYLIGHTDOME", "TUBULARDAYLIGHTDIFFUSER"});
-    thread_local Array1D_int const BaseSurfIDs(3, {SurfaceClass_Wall, SurfaceClass_Floor, SurfaceClass_Roof});
+    EP_GLOBAL static std::string const BlankString;
+    EP_GLOBAL Array1D_string const BaseSurfCls(3, {"WALL", "FLOOR", "ROOF"});
+    EP_GLOBAL Array1D_string const SubSurfCls(6, {"WINDOW", "DOOR", "GLASSDOOR", "SHADING", "TUBULARDAYLIGHTDOME", "TUBULARDAYLIGHTDIFFUSER"});
+    EP_GLOBAL Array1D_int const BaseSurfIDs(3, {SurfaceClass_Wall, SurfaceClass_Floor, SurfaceClass_Roof});
 
-    thread_local Array1D_int const SubSurfIDs(
+    EP_GLOBAL Array1D_int const SubSurfIDs(
         6, {SurfaceClass_Window, SurfaceClass_Door, SurfaceClass_GlassDoor, SurfaceClass_Shading, SurfaceClass_TDD_Dome, SurfaceClass_TDD_Diffuser});
 
-    thread_local int const UnenteredAdjacentZoneSurface(-998); // allows users to enter one zone surface ("Zone")
+    EP_GLOBAL int const UnenteredAdjacentZoneSurface(-998); // allows users to enter one zone surface ("Zone")
     // referencing another in adjacent zone
-    thread_local int const UnreconciledZoneSurface(-999); // interim value between entering surfaces ("Surface") and reconciling
+    EP_GLOBAL int const UnreconciledZoneSurface(-999); // interim value between entering surfaces ("Surface") and reconciling
     // surface names in other zones
 
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-    thread_local static ObjexxFCL::gio::Fmt fmt3("(A,3(1x,f18.13))");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmt3("(A,3(1x,f18.13))");
 
     // DERIVED TYPE DEFINITIONS
 
@@ -151,39 +151,39 @@ namespace SurfaceGeometry {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool ProcessSurfaceVerticesOneTimeFlag(true);
-        thread_local int checkSubSurfAzTiltNormErrCount(0);
-        thread_local Array1D<Real64> Xpsv;
-        thread_local Array1D<Real64> Ypsv;
-        thread_local Array1D<Real64> Zpsv;
+        EP_GLOBAL bool ProcessSurfaceVerticesOneTimeFlag(true);
+        EP_GLOBAL int checkSubSurfAzTiltNormErrCount(0);
+        EP_GLOBAL Array1D<Real64> Xpsv;
+        EP_GLOBAL Array1D<Real64> Ypsv;
+        EP_GLOBAL Array1D<Real64> Zpsv;
 
-        thread_local bool GetSurfaceDataOneTimeFlag(false);
-        thread_local std::unordered_map<std::string, std::string> UniqueSurfaceNames;
+        EP_GLOBAL bool GetSurfaceDataOneTimeFlag(false);
+        EP_GLOBAL std::unordered_map<std::string, std::string> UniqueSurfaceNames;
     } // namespace
 
     // Following are used only during getting vertices, so are module variables here.
-    thread_local Real64 CosBldgRelNorth(0.0);     // Cosine of the building rotation (relative north) (includes appendix G rotation)
-    thread_local Real64 SinBldgRelNorth(0.0);     // Sine of the building rotation (relative north)   (includes appendix G rotation)
-    thread_local Real64 CosBldgRotAppGonly(0.0);  // Cosine of the building rotation for appendix G only(relative north)
-    thread_local Real64 SinBldgRotAppGonly(0.0);  // Sine of the building rotation for appendix G only (relative north)
-    thread_local Array1D<Real64> CosZoneRelNorth; // Cosine of the zone rotation (relative north)
-    thread_local Array1D<Real64> SinZoneRelNorth; // Sine of the zone rotation (relative north)
+    EP_GLOBAL Real64 CosBldgRelNorth(0.0);     // Cosine of the building rotation (relative north) (includes appendix G rotation)
+    EP_GLOBAL Real64 SinBldgRelNorth(0.0);     // Sine of the building rotation (relative north)   (includes appendix G rotation)
+    EP_GLOBAL Real64 CosBldgRotAppGonly(0.0);  // Cosine of the building rotation for appendix G only(relative north)
+    EP_GLOBAL Real64 SinBldgRotAppGonly(0.0);  // Sine of the building rotation for appendix G only (relative north)
+    EP_GLOBAL Array1D<Real64> CosZoneRelNorth; // Cosine of the zone rotation (relative north)
+    EP_GLOBAL Array1D<Real64> SinZoneRelNorth; // Sine of the zone rotation (relative north)
 
-    thread_local bool NoGroundTempObjWarning(true); // This will cause a warning to be issued if surfaces with "Ground"
+    EP_GLOBAL bool NoGroundTempObjWarning(true); // This will cause a warning to be issued if surfaces with "Ground"
     // outside environment are used but no ground temperature object was input.
-    thread_local bool NoFCGroundTempObjWarning(true); // This will cause a warning to be issued if surfaces with "GroundFCfactorMethod"
+    EP_GLOBAL bool NoFCGroundTempObjWarning(true); // This will cause a warning to be issued if surfaces with "GroundFCfactorMethod"
     // outside environment are used but no FC ground temperatures was input.
-    thread_local bool RectSurfRefWorldCoordSystem(false); // GlobalGeometryRules=World (true) or Relative (false)
-    thread_local int Warning1Count(0);                    // counts of Modify Window 5/6 windows
-    thread_local int Warning2Count(0);                    // counts of overriding exterior windows with Window 5/6 glazing systems
-    thread_local int Warning3Count(0);                    // counts of overriding interior windows with Window 5/6 glazing systems
+    EP_GLOBAL bool RectSurfRefWorldCoordSystem(false); // GlobalGeometryRules=World (true) or Relative (false)
+    EP_GLOBAL int Warning1Count(0);                    // counts of Modify Window 5/6 windows
+    EP_GLOBAL int Warning2Count(0);                    // counts of overriding exterior windows with Window 5/6 glazing systems
+    EP_GLOBAL int Warning3Count(0);                    // counts of overriding interior windows with Window 5/6 glazing systems
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SurfaceGeometry
 
     // Object Data
-    thread_local Array1D<SurfaceData> SurfaceTmp; // Allocated/Deallocated during input processing
-    thread_local HeatBalanceKivaManager::KivaManager kivaManager;
-    thread_local ExposedFoundationPerimeter exposedFoundationPerimeter;
+    EP_GLOBAL Array1D<SurfaceData> SurfaceTmp; // Allocated/Deallocated during input processing
+    EP_GLOBAL HeatBalanceKivaManager::KivaManager kivaManager;
+    EP_GLOBAL ExposedFoundationPerimeter exposedFoundationPerimeter;
 
     // Functions
 
@@ -247,9 +247,9 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt ValFmt("(F20.2)");
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-        thread_local static std::string const RoutineName("SetUpZoneGeometry: ");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt ValFmt("(F20.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static std::string const RoutineName("SetUpZoneGeometry: ");
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
 
@@ -275,7 +275,7 @@ namespace SurfaceGeometry {
         int Count; // To count wall surfaces for ceiling height calculation
         Array1D_bool ZoneCeilingHeightEntered;
         Array1D<Real64> ZoneCeilingArea;
-        thread_local static int ErrCount(0);
+        EP_GLOBAL static int ErrCount(0);
         Real64 NominalUwithConvCoeffs;
         std::string cNominalU;
         std::string cNominalUwithConvCoeffs;
@@ -288,8 +288,8 @@ namespace SurfaceGeometry {
         bool DetailedWWR;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_720("(' Zone Information, ',A,28(',',A))");
-        thread_local static ObjexxFCL::gio::Fmt Format_721(
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_720("(' Zone Information, ',A,28(',',A))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_721(
             "('! <Zone Information>,Zone Name,North Axis {deg},','Origin X-Coordinate {m},Origin Y-Coordinate {m},Origin Z-Coordinate "
             "{m},','Centroid X-Coordinate {m},Centroid Y-Coordinate {m},Centroid Z-Coordinate {m},','Type,Zone Multiplier,Zone List "
             "Multiplier,Minimum X {m},Maximum X {m},','Minimum Y {m},Maximum Y {m},Minimum Z {m},Maximum Z {m},Ceiling Height {m},Volume "
@@ -895,7 +895,7 @@ namespace SurfaceGeometry {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const SurfaceClass_Moved(-1);
-        thread_local static std::string const RoutineName("GetSurfaceData: ");
+        EP_GLOBAL static std::string const RoutineName("GetSurfaceData: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -905,10 +905,10 @@ namespace SurfaceGeometry {
         int ZoneNum;                  // DO loop counter (zones)
         int Found;                    // For matching interzone surfaces
         int ConstrNumFound;           // Construction number of matching interzone surface
-        thread_local static bool NonMatch(false);  // Error for non-matching interzone surfaces
+        EP_GLOBAL static bool NonMatch(false);  // Error for non-matching interzone surfaces
         int Lay;                      // Layer number
         int MovedSurfs;               // Number of Moved Surfaces (when sorting into hierarchical structure)
-        thread_local static bool SurfError(false); // General Surface Error, causes fatal error at end of routine
+        EP_GLOBAL static bool SurfError(false); // General Surface Error, causes fatal error at end of routine
         int Loop;
         int BaseSurfNum;
         int TotLay;               // Total layers in a construction
@@ -950,7 +950,7 @@ namespace SurfaceGeometry {
         int OpaqueHTSurfs;        // Number of floors, walls and roofs in a zone
         int OpaqueHTSurfsWithWin; // Number of floors, walls and roofs with windows in a zone
         int InternalMassSurfs;    // Number of internal mass surfaces in a zone
-        thread_local static bool RelWarning(false);
+        EP_GLOBAL static bool RelWarning(false);
         int ConstrNumSh;      // Shaded construction number for a window
         int LayNumOutside;    // Outside material numbers for a shaded construction
         int BlNum;            // Blind number
@@ -969,10 +969,10 @@ namespace SurfaceGeometry {
         int MultFound;
         int MultSurfNum;
         std::string MultString;
-        thread_local static bool WarningDisplayed(false);
-        thread_local static int ErrCount2(0);
-        thread_local static int ErrCount3(0);
-        thread_local static int ErrCount4(0); // counts of interzone area mismatches.
+        EP_GLOBAL static bool WarningDisplayed(false);
+        EP_GLOBAL static int ErrCount2(0);
+        EP_GLOBAL static int ErrCount3(0);
+        EP_GLOBAL static int ErrCount4(0); // counts of interzone area mismatches.
         bool SubSurfaceSevereDisplayed;
         bool subSurfaceError(false);
         // INTEGER :: Warning4Count=0  ! counts of nonmatched flat surface subsurface orientations
@@ -2249,8 +2249,8 @@ namespace SurfaceGeometry {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const AbCorners(4, {"ULC", "LLC", "LRC", "URC"});
-        thread_local static Array1D_string const FlCorners(4, {"UpperLeftCorner", "LowerLeftCorner", "LowerRightCorner", "UpperRightCorner"});
+        EP_GLOBAL static Array1D_string const AbCorners(4, {"ULC", "LLC", "LRC", "URC"});
+        EP_GLOBAL static Array1D_string const FlCorners(4, {"UpperLeftCorner", "LowerLeftCorner", "LowerRightCorner", "UpperRightCorner"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumStmt;
@@ -2264,7 +2264,7 @@ namespace SurfaceGeometry {
         std::string OutMsg;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_720("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_720("(A)");
 
         cCurrentModuleObject = "GlobalGeometryRules";
         NumStmt = inputProcessor->getNumObjectsFound(cCurrentModuleObject);
@@ -2497,7 +2497,7 @@ namespace SurfaceGeometry {
         using ScheduleManager::GetScheduleMinValue;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const cModuleObjects(2, {"Shading:Site:Detailed", "Shading:Building:Detailed"});
+        EP_GLOBAL static Array1D_string const cModuleObjects(2, {"Shading:Site:Detailed", "Shading:Building:Detailed"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int IOStat;     // IO Status when calling get input subroutine
@@ -2654,7 +2654,7 @@ namespace SurfaceGeometry {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const cModuleObjects(2, {"Shading:Site", "Shading:Building"});
+        EP_GLOBAL static Array1D_string const cModuleObjects(2, {"Shading:Site", "Shading:Building"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int IOStat;     // IO Status when calling get input subroutine
@@ -2871,7 +2871,7 @@ namespace SurfaceGeometry {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const cModuleObjects(4, {"BuildingSurface:Detailed", "Wall:Detailed", "Floor:Detailed", "RoofCeiling:Detailed"});
+        EP_GLOBAL static Array1D_string const cModuleObjects(4, {"BuildingSurface:Detailed", "Wall:Detailed", "Floor:Detailed", "RoofCeiling:Detailed"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int IOStat;          // IO Status when calling get input subroutine
@@ -3322,7 +3322,7 @@ namespace SurfaceGeometry {
         using General::TrimSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const cModuleObjects(10,
+        EP_GLOBAL static Array1D_string const cModuleObjects(10,
                                                    {"Wall:Exterior",
                                                     "Wall:Adiabatic",
                                                     "Wall:Interzone",
@@ -4179,7 +4179,7 @@ namespace SurfaceGeometry {
         //  data file entry with two glazing systems
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const cModuleObjects(6, {"Window", "Door", "GlazedDoor", "Window:Interzone", "Door:Interzone", "GlazedDoor:Interzone"});
+        EP_GLOBAL static Array1D_string const cModuleObjects(6, {"Window", "Door", "GlazedDoor", "Window:Interzone", "Door:Interzone", "GlazedDoor:Interzone"});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Item;
@@ -5229,8 +5229,8 @@ namespace SurfaceGeometry {
         using namespace Vectors;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const cModuleObjects(4, {"Shading:Overhang", "Shading:Overhang:Projection", "Shading:Fin", "Shading:Fin:Projection"});
-        thread_local static ObjexxFCL::gio::Fmt dfmt("(A,3(2x,f6.2))");
+        EP_GLOBAL static Array1D_string const cModuleObjects(4, {"Shading:Overhang", "Shading:Overhang:Projection", "Shading:Fin", "Shading:Fin:Projection"});
+        EP_GLOBAL static ObjexxFCL::gio::Fmt dfmt("(A,3(2x,f6.2))");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int Item;
@@ -5605,7 +5605,7 @@ namespace SurfaceGeometry {
         using General::CheckCreatedZoneItemName;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetIntMassSurfaceData: ");
+        EP_GLOBAL static std::string const RoutineName("GetIntMassSurfaceData: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int IOStat;                // IO Status when calling get input subroutine
@@ -6383,7 +6383,7 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetSurfaceLocalEnvData: ");
+        EP_GLOBAL static std::string const RoutineName("GetSurfaceLocalEnvData: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:na
         // DERIVED TYPE DEFINITIONS:na
@@ -6540,7 +6540,7 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetSurfaceSrdSurfsData: ");
+        EP_GLOBAL static std::string const RoutineName("GetSurfaceSrdSurfsData: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:na
         // DERIVED TYPE DEFINITIONS:na
@@ -6664,10 +6664,10 @@ namespace SurfaceGeometry {
         int CountHTAlgoObjectsMultiSurf;
         int CountHTAlgoObjectsSurfList;
         int IOStatus; // Used in GetObjectItem
-        thread_local static bool ErrorsFoundSingleSurf(false);
-        thread_local static bool ErrorsFoundMultiSurf(false);
-        thread_local static bool ErrorsFoundSurfList(false);
-        thread_local static bool ErrorsFoundByConstruct(false);
+        EP_GLOBAL static bool ErrorsFoundSingleSurf(false);
+        EP_GLOBAL static bool ErrorsFoundMultiSurf(false);
+        EP_GLOBAL static bool ErrorsFoundSurfList(false);
+        EP_GLOBAL static bool ErrorsFoundByConstruct(false);
         int tmpAlgoInput;
         int Item;
         int Item1;
@@ -6691,7 +6691,7 @@ namespace SurfaceGeometry {
         std::string AlgoName;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_725("('Surface Heat Transfer Algorithm, ',A,',',A,',',A,',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_725("('Surface Heat Transfer Algorithm, ',A,',',A,',',A,',',A)");
 
         cCurrentModuleObject = "SurfaceProperty:HeatBalanceSourceTerm";
         int CountAddHeatSourceSurf = inputProcessor->getNumObjectsFound(cCurrentModuleObject);
@@ -7247,12 +7247,12 @@ namespace SurfaceGeometry {
         using namespace DataErrorTracking;
 
         // Locals
-        thread_local static ObjexxFCL::gio::Fmt fmt3("(A,I5,A,3(1X,F18.13))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmt3("(A,I5,A,3(1X,F18.13))");
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetVertices: ");
+        EP_GLOBAL static std::string const RoutineName("GetVertices: ");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -7587,12 +7587,12 @@ namespace SurfaceGeometry {
         using General::RoundSigDigits;
 
         // Locals
-        thread_local static ObjexxFCL::gio::Fmt fmt3("(A,I5,A,3(1X,F18.13))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmt3("(A,I5,A,3(1X,F18.13))");
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ReverseAndRecalculate: ");
+        EP_GLOBAL static std::string const RoutineName("ReverseAndRecalculate: ");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -7810,7 +7810,7 @@ namespace SurfaceGeometry {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         int const NumValidShadingTypes(8);
-        thread_local static Array1D_string const cValidShadingTypes(NumValidShadingTypes,
+        EP_GLOBAL static Array1D_string const cValidShadingTypes(NumValidShadingTypes,
                                                        {"INTERIORSHADE",
                                                         "EXTERIORSHADE",
                                                         "EXTERIORSCREEN",
@@ -7819,7 +7819,7 @@ namespace SurfaceGeometry {
                                                         "BETWEENGLASSSHADE",
                                                         "BETWEENGLASSBLIND",
                                                         "SWITCHABLEGLAZING"});
-        thread_local static Array1D_int const ValidShadingTypes(NumValidShadingTypes,
+        EP_GLOBAL static Array1D_int const ValidShadingTypes(NumValidShadingTypes,
                                                    {WSC_ST_InteriorShade,
                                                     WSC_ST_ExteriorShade,
                                                     WSC_ST_ExteriorScreen,
@@ -7830,7 +7830,7 @@ namespace SurfaceGeometry {
                                                     WSC_ST_SwitchableGlazing});
 
         int const NumValidWindowShadingControlTypes(21);
-        thread_local static Array1D_string const cValidWindowShadingControlTypes(NumValidWindowShadingControlTypes,
+        EP_GLOBAL static Array1D_string const cValidWindowShadingControlTypes(NumValidWindowShadingControlTypes,
                                                                     {"ALWAYSON",
                                                                      "ALWAYSOFF",
                                                                      "ONIFSCHEDULEALLOWS",
@@ -7853,7 +7853,7 @@ namespace SurfaceGeometry {
                                                                      "ONIFHIGHZONEAIRTEMPANDHIGHSOLARONWINDOW",
                                                                      "ONIFHIGHZONEAIRTEMPANDHIGHHORIZONTALSOLAR"});
 
-        thread_local static Array1D_int const ValidWindowShadingControlTypes(
+        EP_GLOBAL static Array1D_int const ValidWindowShadingControlTypes(
             NumValidWindowShadingControlTypes,
             {WSCT_AlwaysOn,
              WSCT_AlwaysOff,
@@ -9344,7 +9344,7 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt OSCFormat1(
+        EP_GLOBAL static ObjexxFCL::gio::Fmt OSCFormat1(
             "('! <Other Side Coefficients>,Name,Combined convective/radiative film coefficient {W/m2-K},User selected "
             "Constant Temperature {C},Coefficient modifying the constant temperature term,Coefficient modifying the external "
             "dry bulb temperature term,Coefficient modifying the ground temperature term,Coefficient modifying the wind speed "
@@ -9518,7 +9518,7 @@ namespace SurfaceGeometry {
         using namespace DataIPShortCuts;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt OSCMFormat1("('! <Other Side Conditions Model>,Name,Class')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt OSCMFormat1("('! <Other Side Conditions Model>,Name,Class')");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int NumAlphas;
@@ -9805,7 +9805,7 @@ namespace SurfaceGeometry {
         using General::RoundSigDigits;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt VolFmt("(F20.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt VolFmt("(F20.2)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Real64 SumAreas;  // Sum of the Zone surface areas that are not "internal mass"
@@ -9819,9 +9819,9 @@ namespace SurfaceGeometry {
         Real64 CalcVolume;
         bool initmsg;
         int iside;
-        thread_local static bool ShowZoneSurfaces(false);
-        thread_local static bool ShowZoneSurfaceHeaders(true);
-        thread_local static int ErrCount(0);
+        EP_GLOBAL static bool ShowZoneSurfaces(false);
+        EP_GLOBAL static bool ShowZoneSurfaceHeaders(true);
+        EP_GLOBAL static int ErrCount(0);
 
         // Object Data
         Polyhedron ZoneStruct;
@@ -10626,7 +10626,7 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ProcessSurfaceVertices: ");
+        EP_GLOBAL static std::string const RoutineName("ProcessSurfaceVertices: ");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -10651,8 +10651,8 @@ namespace SurfaceGeometry {
         Real64 X1;            // Intermediate Result
         Real64 Y1;            // Intermediate Result
         Real64 Z1;            // Intermediate Result
-        thread_local static Real64 XSHIFT; // Shift of X to Lower Left Corner
-        thread_local static Real64 YSHIFT; // Shift of Y to Lower Left Corner
+        EP_GLOBAL static Real64 XSHIFT; // Shift of X to Lower Left Corner
+        EP_GLOBAL static Real64 YSHIFT; // Shift of Y to Lower Left Corner
         Real64 XLLC;          // X-coordinate of lower left corner
         Real64 YLLC;          // Y-coordinate of lower left corner
         Real64 ZLLC;          // Z-coordinate of lower left corner
@@ -10663,13 +10663,13 @@ namespace SurfaceGeometry {
         Real64 Xp;
         Real64 Yp;
         Real64 Zp;
-        thread_local static Real64 BaseCosAzimuth;
-        thread_local static Real64 BaseCosTilt;
-        thread_local static Real64 BaseSinAzimuth;
-        thread_local static Real64 BaseSinTilt;
-        thread_local static Real64 BaseXLLC;
-        thread_local static Real64 BaseYLLC;
-        thread_local static Real64 BaseZLLC;
+        EP_GLOBAL static Real64 BaseCosAzimuth;
+        EP_GLOBAL static Real64 BaseCosTilt;
+        EP_GLOBAL static Real64 BaseSinAzimuth;
+        EP_GLOBAL static Real64 BaseSinTilt;
+        EP_GLOBAL static Real64 BaseXLLC;
+        EP_GLOBAL static Real64 BaseYLLC;
+        EP_GLOBAL static Real64 BaseZLLC;
         Real64 SurfWorldAz; // Surface Azimuth (facing)
         Real64 SurfTilt;    // Surface Tilt
         //  TYPE(PlaneEq) PlanarEQ
@@ -11178,7 +11178,7 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt ErrFmt("(' (',F8.3,',',F8.3,',',F8.3,')')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt ErrFmt("(' (',F8.3,',',F8.3,',',F8.3,')')");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -11190,7 +11190,7 @@ namespace SurfaceGeometry {
         int I;        // Loop Control
         Real64 Gamma; // Intermediate Result
         Real64 DotSelfX23;
-        thread_local static std::string ErrLineOut; // Character string for producing error messages
+        EP_GLOBAL static std::string ErrLineOut; // Character string for producing error messages
 
         // Object Data
         Vector x21;
@@ -12232,7 +12232,7 @@ namespace SurfaceGeometry {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const CurrentModuleObject("GeometryTransform");
+        EP_GLOBAL static std::string const CurrentModuleObject("GeometryTransform");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -12246,11 +12246,11 @@ namespace SurfaceGeometry {
         int NAlphas;
         int NNum;
         int IOStat;
-        thread_local static Real64 OldAspectRatio;
-        thread_local static Real64 NewAspectRatio;
-        thread_local static bool firstTime(true);
-        thread_local static bool noTransform(true);
-        thread_local static std::string transformPlane;
+        EP_GLOBAL static Real64 OldAspectRatio;
+        EP_GLOBAL static Real64 NewAspectRatio;
+        EP_GLOBAL static bool firstTime(true);
+        EP_GLOBAL static bool noTransform(true);
+        EP_GLOBAL static std::string transformPlane;
         int n;
         Real64 Xo;
         Real64 XnoRot;
@@ -12365,9 +12365,9 @@ namespace SurfaceGeometry {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
         // Object Data
-        thread_local static Array1D<Vector> Triangle1(3); // working struct for a 3-sided surface
-        thread_local static Array1D<Vector> Triangle2(3); // working struct for a 3-sided surface
-        thread_local static Vector const zero_vector(0.0);
+        EP_GLOBAL static Array1D<Vector> Triangle1(3); // working struct for a 3-sided surface
+        EP_GLOBAL static Array1D<Vector> Triangle2(3); // working struct for a 3-sided surface
+        EP_GLOBAL static Vector const zero_vector(0.0);
         Vector centroid;
 
         int negZcount(0); // for warning error in surface centroids
@@ -12656,7 +12656,7 @@ namespace SurfaceGeometry {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         Real64 const TurnThreshold(0.000001); // Sensitivity of convexity test, in radians
-        thread_local static ObjexxFCL::gio::Fmt ErrFmt("(' (',F8.3,',',F8.3,',',F8.3,')')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt ErrFmt("(' (',F8.3,',',F8.3,',',F8.3,')')");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -12676,22 +12676,22 @@ namespace SurfaceGeometry {
         Real64 V2len;             // Edge vector length
         bool SignFlag;            // Direction of edge turn : true is right, false is left
         bool PrevSignFlag(false); // Container for the sign of the previous iteration's edge turn
-        thread_local static Array1D<Real64> X; // containers for x,y,z vertices of the surface
-        thread_local static Array1D<Real64> Y;
-        thread_local static Array1D<Real64> Z;
-        thread_local static Array1D<Real64> A; // containers for convexity test
-        thread_local static Array1D<Real64> B;
-        thread_local static Array1D_int SurfCollinearVerts; // Array containing indices of collinear vertices
-        thread_local static int VertSize;                   // size of X,Y,Z,A,B arrays
+        EP_GLOBAL static Array1D<Real64> X; // containers for x,y,z vertices of the surface
+        EP_GLOBAL static Array1D<Real64> Y;
+        EP_GLOBAL static Array1D<Real64> Z;
+        EP_GLOBAL static Array1D<Real64> A; // containers for convexity test
+        EP_GLOBAL static Array1D<Real64> B;
+        EP_GLOBAL static Array1D_int SurfCollinearVerts; // Array containing indices of collinear vertices
+        EP_GLOBAL static int VertSize;                   // size of X,Y,Z,A,B arrays
         Real64 cosarg;
         int M;   // Array index for SurfCollinearVerts container
         int J;   // Loop index
         int K;   // Loop index
         int Ind; // Location of surface vertex to be removed
-        thread_local static bool firstTime(true);
-        thread_local static Real64 ACosZero; // set on firstTime
+        EP_GLOBAL static bool firstTime(true);
+        EP_GLOBAL static Real64 ACosZero; // set on firstTime
         bool SurfCollinearWarning;
-        thread_local static std::string ErrLineOut; // Character string for producing error messages
+        EP_GLOBAL static std::string ErrLineOut; // Character string for producing error messages
 
         if (firstTime) {
             ACosZero = std::acos(0.0);
@@ -12951,12 +12951,12 @@ namespace SurfaceGeometry {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Real64 BaseCosAzimuth;
-        thread_local static Real64 BaseCosTilt;
-        thread_local static Real64 BaseSinAzimuth;
-        thread_local static Real64 BaseSinTilt;
-        thread_local static Real64 SurfWorldAz;
-        thread_local static Real64 SurfTilt;
+        EP_GLOBAL static Real64 BaseCosAzimuth;
+        EP_GLOBAL static Real64 BaseCosTilt;
+        EP_GLOBAL static Real64 BaseSinAzimuth;
+        EP_GLOBAL static Real64 BaseSinTilt;
+        EP_GLOBAL static Real64 SurfWorldAz;
+        EP_GLOBAL static Real64 SurfTilt;
         Real64 AspectRatio;  // Aspect ratio
         Real64 NumSurfSides; // Number of surface sides
         Real64 WidthEff;     // Effective width of the surface

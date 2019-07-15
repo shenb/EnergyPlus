@@ -94,14 +94,14 @@ namespace EnergyPlus {
         // The procedural flow depends on the pump(s), loop side, and operation scheme at the time (and current flow lock?)
 
         // MODULE VARIABLE DEFINITIONS
-        thread_local Real64 InitialDemandToLoopSetPoint;
-        thread_local Real64 CurrentAlterationsToDemand;
-        thread_local Real64 UpdatedDemandToLoopSetPoint;
-        thread_local Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
-        thread_local Real64 InitialDemandToLoopSetPointSAVED;
-        thread_local int RefrigIndex(0); // Index denoting refrigerant used (possibly steam)
+        EP_GLOBAL Real64 InitialDemandToLoopSetPoint;
+        EP_GLOBAL Real64 CurrentAlterationsToDemand;
+        EP_GLOBAL Real64 UpdatedDemandToLoopSetPoint;
+        EP_GLOBAL Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
+        EP_GLOBAL Real64 InitialDemandToLoopSetPointSAVED;
+        EP_GLOBAL int RefrigIndex(0); // Index denoting refrigerant used (possibly steam)
 
-        thread_local static std::string const fluidNameSteam("STEAM");
+        EP_GLOBAL static std::string const fluidNameSteam("STEAM");
 
         // Functions
         void clear_state() {
@@ -1382,7 +1382,7 @@ namespace EnergyPlus {
             //  the very beginning of this loop side, so that it is basically for the entire loop side
 
             // FUNCTION PARAMETER DEFINITIONS:
-            thread_local static Array1D_int const InitCompArray(1, 0);
+            EP_GLOBAL static Array1D_int const InitCompArray(1, 0);
 
             Real64 Demand = DataPlant::PlantLoop(LoopNum).loopSolver.EvaluateLoopSetPointLoad(LoopNum, ThisSide, 1, 1,
                                                                                               ThisLoopSideFlow,
@@ -1407,8 +1407,8 @@ namespace EnergyPlus {
             // Return value
             Real64 LoadToLoopSetPoint = 0.0; // function result
 
-            thread_local static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
-            thread_local static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
+            EP_GLOBAL static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
+            EP_GLOBAL static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
 
             //~ General variables
             Real64 SumMdotTimesTemp = 0.0;
@@ -1613,7 +1613,7 @@ namespace EnergyPlus {
             using FluidProperties::GetSpecificHeatGlycol;
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            thread_local static std::string const RoutineName("PlantLoopSolver::UpdateAnyLoopDemandAlterations");
+            EP_GLOBAL static std::string const RoutineName("PlantLoopSolver::UpdateAnyLoopDemandAlterations");
 
             // Init to zero, so that if we don't find anything, we exit early
             Real64 ComponentMassFlowRate(0.0);
@@ -1716,7 +1716,7 @@ namespace EnergyPlus {
             using General::RoundSigDigits;
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            thread_local static Array1D_string const LoopSideName(2, {"Demand", "Supply"});
+            EP_GLOBAL static Array1D_string const LoopSideName(2, {"Demand", "Supply"});
             int const LoopSideSingleBranch(1); // For readability
 
             // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
@@ -2455,8 +2455,8 @@ namespace EnergyPlus {
             using FluidProperties::GetSpecificHeatGlycol;
 
             // SUBROUTINE PARAMETER DEFINITIONS:
-            thread_local static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
-            thread_local static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
+            EP_GLOBAL static std::string const RoutineName("PlantLoopSolver::EvaluateLoopSetPointLoad");
+            EP_GLOBAL static std::string const RoutineNameAlt("PlantSupplySide:EvaluateLoopSetPointLoad");
 
             //~ General variables
             Real64 MassFlowRate;

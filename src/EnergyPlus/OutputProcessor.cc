@@ -134,36 +134,36 @@ namespace OutputProcessor {
     // in this file should obey a USE OutputProcessor, ONLY: rule.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const ReportVDD_No(0);  // Don't report the variable dictionaries in any form
-    thread_local int const ReportVDD_Yes(1); // Report the variable dictionaries in "report format"
-    thread_local int const ReportVDD_IDF(2); // Report the variable dictionaries in "IDF format"
+    EP_GLOBAL int const ReportVDD_No(0);  // Don't report the variable dictionaries in any form
+    EP_GLOBAL int const ReportVDD_Yes(1); // Report the variable dictionaries in "report format"
+    EP_GLOBAL int const ReportVDD_IDF(2); // Report the variable dictionaries in "IDF format"
 
-    thread_local Real64 const MinSetValue(99999999999999.0);
-    thread_local Real64 const MaxSetValue(-99999999999999.0);
-    thread_local int const IMinSetValue(999999);
-    thread_local int const IMaxSetValue(-999999);
+    EP_GLOBAL Real64 const MinSetValue(99999999999999.0);
+    EP_GLOBAL Real64 const MaxSetValue(-99999999999999.0);
+    EP_GLOBAL int const IMinSetValue(999999);
+    EP_GLOBAL int const IMaxSetValue(-999999);
 
-    thread_local int const ZoneVar(1); // Type value for those variables reported on the Zone Time Step
-    thread_local int const HVACVar(2); // Type value for those variables reported on the System Time Step
+    EP_GLOBAL int const ZoneVar(1); // Type value for those variables reported on the Zone Time Step
+    EP_GLOBAL int const HVACVar(2); // Type value for those variables reported on the System Time Step
 
-    thread_local int const VarType_NotFound(0); // ref: GetVariableKeyCountandType, 0 = not found
-    thread_local int const VarType_Integer(1);  // ref: GetVariableKeyCountandType, 1 = integer
-    thread_local int const VarType_Real(2);     // ref: GetVariableKeyCountandType, 2 = real
-    thread_local int const VarType_Meter(3);    // ref: GetVariableKeyCountandType, 3 = meter
-    thread_local int const VarType_Schedule(4); // ref: GetVariableKeyCountandType, 4 = schedule
+    EP_GLOBAL int const VarType_NotFound(0); // ref: GetVariableKeyCountandType, 0 = not found
+    EP_GLOBAL int const VarType_Integer(1);  // ref: GetVariableKeyCountandType, 1 = integer
+    EP_GLOBAL int const VarType_Real(2);     // ref: GetVariableKeyCountandType, 2 = real
+    EP_GLOBAL int const VarType_Meter(3);    // ref: GetVariableKeyCountandType, 3 = meter
+    EP_GLOBAL int const VarType_Schedule(4); // ref: GetVariableKeyCountandType, 4 = schedule
 
-    thread_local int const MeterType_Normal(0);     // Type value for normal meters
-    thread_local int const MeterType_Custom(1);     // Type value for custom meters
-    thread_local int const MeterType_CustomDec(2);  // Type value for custom meters that decrement another meter
-    thread_local int const MeterType_CustomDiff(3); // Type value for custom meters that difference another meter
+    EP_GLOBAL int const MeterType_Normal(0);     // Type value for normal meters
+    EP_GLOBAL int const MeterType_Custom(1);     // Type value for custom meters
+    EP_GLOBAL int const MeterType_CustomDec(2);  // Type value for custom meters that decrement another meter
+    EP_GLOBAL int const MeterType_CustomDiff(3); // Type value for custom meters that difference another meter
 
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
-    thread_local static ObjexxFCL::gio::Fmt TimeStampFormat("(A,',',A,',',i2,',',i2,',',i2,',',i2,',',f5.2,',',f5.2,',',A)");
-    thread_local static ObjexxFCL::gio::Fmt DailyStampFormat("(A,',',A,',',i2,',',i2,',',i2,',',A)");
-    thread_local static ObjexxFCL::gio::Fmt MonthlyStampFormat("(A,',',A,',',i2)");
-    thread_local static ObjexxFCL::gio::Fmt RunPeriodStampFormat("(A,',',A)");
-    thread_local Array1D_string const DayTypes(12,
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt TimeStampFormat("(A,',',A,',',i2,',',i2,',',i2,',',i2,',',f5.2,',',f5.2,',',A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt DailyStampFormat("(A,',',A,',',i2,',',i2,',',i2,',',A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt MonthlyStampFormat("(A,',',A,',',i2)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt RunPeriodStampFormat("(A,',',A)");
+    EP_GLOBAL Array1D_string const DayTypes(12,
                                   {"Sunday",
                                    "Monday",
                                    "Tuesday",
@@ -176,92 +176,92 @@ namespace OutputProcessor {
                                    "WinterDesignDay",
                                    "CustomDay1",
                                    "CustomDay2"});
-    thread_local static std::string const BlankString;
-    thread_local int const UnitsStringLength(16);
+    EP_GLOBAL static std::string const BlankString;
+    EP_GLOBAL int const UnitsStringLength(16);
 
-    thread_local int const RVarAllocInc(1000);
-    thread_local int const LVarAllocInc(1000);
-    thread_local int const IVarAllocInc(10);
+    EP_GLOBAL int const RVarAllocInc(1000);
+    EP_GLOBAL int const LVarAllocInc(1000);
+    EP_GLOBAL int const IVarAllocInc(10);
 
     //  For IP Units (tabular reports) certain resources will be put in sub-tables
     // INTEGER, PARAMETER :: RT_IPUnits_Consumption=0
-    thread_local int const RT_IPUnits_Electricity(1);
-    thread_local int const RT_IPUnits_Gas(2);
-    thread_local int const RT_IPUnits_Cooling(3);
-    thread_local int const RT_IPUnits_Water(4);
-    thread_local int const RT_IPUnits_OtherKG(5);
-    thread_local int const RT_IPUnits_OtherM3(6);
-    thread_local int const RT_IPUnits_OtherL(7);
-    thread_local int const RT_IPUnits_OtherJ(0);
+    EP_GLOBAL int const RT_IPUnits_Electricity(1);
+    EP_GLOBAL int const RT_IPUnits_Gas(2);
+    EP_GLOBAL int const RT_IPUnits_Cooling(3);
+    EP_GLOBAL int const RT_IPUnits_Water(4);
+    EP_GLOBAL int const RT_IPUnits_OtherKG(5);
+    EP_GLOBAL int const RT_IPUnits_OtherM3(6);
+    EP_GLOBAL int const RT_IPUnits_OtherL(7);
+    EP_GLOBAL int const RT_IPUnits_OtherJ(0);
 
     // DERIVED TYPE DEFINITIONS:
 
-    thread_local int InstMeterCacheSize(1000);    // the maximum size of the instant meter cache used in GetInstantMeterValue
-    thread_local int InstMeterCacheSizeInc(1000); // the increment for the instant meter cache used in GetInstantMeterValue
-    thread_local Array1D_int InstMeterCache;      // contains a list of RVariableTypes that make up a specific meter
-    thread_local int InstMeterCacheLastUsed(0);   // the last item in the instant meter cache used
+    EP_GLOBAL int InstMeterCacheSize(1000);    // the maximum size of the instant meter cache used in GetInstantMeterValue
+    EP_GLOBAL int InstMeterCacheSizeInc(1000); // the increment for the instant meter cache used in GetInstantMeterValue
+    EP_GLOBAL Array1D_int InstMeterCache;      // contains a list of RVariableTypes that make up a specific meter
+    EP_GLOBAL int InstMeterCacheLastUsed(0);   // the last item in the instant meter cache used
 
     // INTERFACE BLOCK SPECIFICATIONS:
     // na
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local int CurrentReportNumber(0);
-    thread_local int NumVariablesForOutput(0);
-    thread_local int MaxVariablesForOutput(0);
-    thread_local int NumOfRVariable_Setup(0);
-    thread_local int NumTotalRVariable(0);
-    thread_local int NumOfRVariable_Sum(0);
-    thread_local int NumOfRVariable_Meter(0);
-    thread_local int NumOfRVariable(0);
-    thread_local int MaxRVariable(0);
-    thread_local int NumOfIVariable_Setup(0);
-    thread_local int NumTotalIVariable(0);
-    thread_local int NumOfIVariable_Sum(0);
-    thread_local int NumOfIVariable(0);
-    thread_local int MaxIVariable(0);
-    thread_local bool OutputInitialized(false);
-    thread_local int ProduceReportVDD(ReportVDD_No);
-    thread_local int OutputFileMeterDetails(0); // Unit number for Meter Details file (output)
-    thread_local int NumHoursInDay(24);
-    thread_local int NumHoursInMonth(0);
-    thread_local int NumHoursInSim(0);
-    thread_local Array1D_int ReportList;
-    thread_local int NumReportList(0);
-    thread_local int NumExtraVars(0);
+    EP_GLOBAL int CurrentReportNumber(0);
+    EP_GLOBAL int NumVariablesForOutput(0);
+    EP_GLOBAL int MaxVariablesForOutput(0);
+    EP_GLOBAL int NumOfRVariable_Setup(0);
+    EP_GLOBAL int NumTotalRVariable(0);
+    EP_GLOBAL int NumOfRVariable_Sum(0);
+    EP_GLOBAL int NumOfRVariable_Meter(0);
+    EP_GLOBAL int NumOfRVariable(0);
+    EP_GLOBAL int MaxRVariable(0);
+    EP_GLOBAL int NumOfIVariable_Setup(0);
+    EP_GLOBAL int NumTotalIVariable(0);
+    EP_GLOBAL int NumOfIVariable_Sum(0);
+    EP_GLOBAL int NumOfIVariable(0);
+    EP_GLOBAL int MaxIVariable(0);
+    EP_GLOBAL bool OutputInitialized(false);
+    EP_GLOBAL int ProduceReportVDD(ReportVDD_No);
+    EP_GLOBAL int OutputFileMeterDetails(0); // Unit number for Meter Details file (output)
+    EP_GLOBAL int NumHoursInDay(24);
+    EP_GLOBAL int NumHoursInMonth(0);
+    EP_GLOBAL int NumHoursInSim(0);
+    EP_GLOBAL Array1D_int ReportList;
+    EP_GLOBAL int NumReportList(0);
+    EP_GLOBAL int NumExtraVars(0);
 
-    thread_local int NumOfReqVariables(0); // Current number of Requested Report Variables
+    EP_GLOBAL int NumOfReqVariables(0); // Current number of Requested Report Variables
 
-    thread_local int NumVarMeterArrays(0); // Current number of Arrays pointing to meters
+    EP_GLOBAL int NumVarMeterArrays(0); // Current number of Arrays pointing to meters
 
-    thread_local int NumEnergyMeters(0);     // Current number of Energy Meters
-    thread_local Array1D<Real64> MeterValue; // This holds the current timestep value for each meter.
+    EP_GLOBAL int NumEnergyMeters(0);     // Current number of Energy Meters
+    EP_GLOBAL Array1D<Real64> MeterValue; // This holds the current timestep value for each meter.
 
-    thread_local int TimeStepStampReportNbr;             // TimeStep and Hourly Report number
-    thread_local std::string TimeStepStampReportChr;     // TimeStep and Hourly Report number (character -- for printing)
-    thread_local bool TrackingHourlyVariables(false);    // Requested Hourly Report Variables
-    thread_local int DailyStampReportNbr;                // Daily Report number
-    thread_local std::string DailyStampReportChr;        // Daily Report number (character -- for printing)
-    thread_local bool TrackingDailyVariables(false);     // Requested Daily Report Variables
-    thread_local int MonthlyStampReportNbr;              // Monthly Report number
-    thread_local std::string MonthlyStampReportChr;      // Monthly Report number (character -- for printing)
-    thread_local bool TrackingMonthlyVariables(false);   // Requested Monthly Report Variables
-    thread_local int YearlyStampReportNbr;               // Yearly Report number
-    thread_local std::string YearlyStampReportChr;       // Yearly Report number (character -- for printing)
-    thread_local bool TrackingYearlyVariables(false);    // Requested Yearly Report Variables
-    thread_local int RunPeriodStampReportNbr;            // RunPeriod Report number
-    thread_local std::string RunPeriodStampReportChr;    // RunPeriod Report number (character -- for printing)
-    thread_local bool TrackingRunPeriodVariables(false); // Requested RunPeriod Report Variables
-    thread_local Real64 TimeStepZoneSec;                 // Seconds from NumTimeStepInHour
-    thread_local bool ErrorsLogged(false);
-    thread_local bool ProduceVariableDictionary(false);
+    EP_GLOBAL int TimeStepStampReportNbr;             // TimeStep and Hourly Report number
+    EP_GLOBAL std::string TimeStepStampReportChr;     // TimeStep and Hourly Report number (character -- for printing)
+    EP_GLOBAL bool TrackingHourlyVariables(false);    // Requested Hourly Report Variables
+    EP_GLOBAL int DailyStampReportNbr;                // Daily Report number
+    EP_GLOBAL std::string DailyStampReportChr;        // Daily Report number (character -- for printing)
+    EP_GLOBAL bool TrackingDailyVariables(false);     // Requested Daily Report Variables
+    EP_GLOBAL int MonthlyStampReportNbr;              // Monthly Report number
+    EP_GLOBAL std::string MonthlyStampReportChr;      // Monthly Report number (character -- for printing)
+    EP_GLOBAL bool TrackingMonthlyVariables(false);   // Requested Monthly Report Variables
+    EP_GLOBAL int YearlyStampReportNbr;               // Yearly Report number
+    EP_GLOBAL std::string YearlyStampReportChr;       // Yearly Report number (character -- for printing)
+    EP_GLOBAL bool TrackingYearlyVariables(false);    // Requested Yearly Report Variables
+    EP_GLOBAL int RunPeriodStampReportNbr;            // RunPeriod Report number
+    EP_GLOBAL std::string RunPeriodStampReportChr;    // RunPeriod Report number (character -- for printing)
+    EP_GLOBAL bool TrackingRunPeriodVariables(false); // Requested RunPeriod Report Variables
+    EP_GLOBAL Real64 TimeStepZoneSec;                 // Seconds from NumTimeStepInHour
+    EP_GLOBAL bool ErrorsLogged(false);
+    EP_GLOBAL bool ProduceVariableDictionary(false);
 
-    thread_local int MaxNumSubcategories(1);
-    thread_local bool isFinalYear(false);
+    EP_GLOBAL int MaxNumSubcategories(1);
+    EP_GLOBAL bool isFinalYear(false);
 
-    thread_local bool GetOutputInputFlag(true);
+    EP_GLOBAL bool GetOutputInputFlag(true);
 
-    thread_local ReportingFrequency minimumReportFrequency(ReportingFrequency::EachCall);
+    EP_GLOBAL ReportingFrequency minimumReportFrequency(ReportingFrequency::EachCall);
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -269,12 +269,12 @@ namespace OutputProcessor {
         // These are purposefully not in the header file as an extern variable. No one outside of OutputProcessor should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local int ReportNumberCounter(0);        // The report number is used in output reports as a key.
-        thread_local int LHourP(-1);                    // Helps set hours for timestamp output
-        thread_local Real64 LStartMin(-1.0);            // Helps set minutes for timestamp output
-        thread_local Real64 LEndMin(-1.0);              // Helps set minutes for timestamp output
-        thread_local bool GetMeterIndexFirstCall(true); // trigger setup in GetMeterIndex
-        thread_local bool InitFlag(true);
+        EP_GLOBAL int ReportNumberCounter(0);        // The report number is used in output reports as a key.
+        EP_GLOBAL int LHourP(-1);                    // Helps set hours for timestamp output
+        EP_GLOBAL Real64 LStartMin(-1.0);            // Helps set minutes for timestamp output
+        EP_GLOBAL Real64 LEndMin(-1.0);              // Helps set minutes for timestamp output
+        EP_GLOBAL bool GetMeterIndexFirstCall(true); // trigger setup in GetMeterIndex
+        EP_GLOBAL bool InitFlag(true);
     } // namespace
 
     // All routines should be listed here whether private or not
@@ -282,17 +282,17 @@ namespace OutputProcessor {
     // PUBLIC  SetReportNow
 
     // Object Data
-    thread_local Array1D<TimeSteps> TimeValue(2);                  // Pointers to the actual TimeStep variables
-    thread_local Array1D<RealVariableType> RVariableTypes;         // Variable Types structure (use NumOfRVariables to traverse)
-    thread_local Array1D<IntegerVariableType> IVariableTypes;      // Variable Types structure (use NumOfIVariables to traverse)
-    thread_local Array1D<VariableTypeForDDOutput> DDVariableTypes; // Variable Types structure (use NumVariablesForOutput to traverse)
-    thread_local Reference<RealVariables> RVariable;
-    thread_local Reference<IntegerVariables> IVariable;
-    thread_local Array1D<ReqReportVariables> ReqRepVars;
-    thread_local Array1D<MeterArrayType> VarMeterArrays;
-    thread_local Array1D<MeterType> EnergyMeters;
-    thread_local Array1D<EndUseCategoryType> EndUseCategory;
-    thread_local std::unordered_map<std::string, std::string> UniqueMeterNames;
+    EP_GLOBAL Array1D<TimeSteps> TimeValue(2);                  // Pointers to the actual TimeStep variables
+    EP_GLOBAL Array1D<RealVariableType> RVariableTypes;         // Variable Types structure (use NumOfRVariables to traverse)
+    EP_GLOBAL Array1D<IntegerVariableType> IVariableTypes;      // Variable Types structure (use NumOfIVariables to traverse)
+    EP_GLOBAL Array1D<VariableTypeForDDOutput> DDVariableTypes; // Variable Types structure (use NumVariablesForOutput to traverse)
+    EP_GLOBAL Reference<RealVariables> RVariable;
+    EP_GLOBAL Reference<IntegerVariables> IVariable;
+    EP_GLOBAL Array1D<ReqReportVariables> ReqRepVars;
+    EP_GLOBAL Array1D<MeterArrayType> VarMeterArrays;
+    EP_GLOBAL Array1D<MeterType> EnergyMeters;
+    EP_GLOBAL Array1D<EndUseCategoryType> EndUseCategory;
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueMeterNames;
 
     // Routines tagged on the end of this module:
     //  AddToOutputVariableList
@@ -785,12 +785,12 @@ namespace OutputProcessor {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::vector<std::string> const PossibleFreq({"deta", "time", "hour", "dail", "mont", "runp", "envi", "annu"});
+        EP_GLOBAL static std::vector<std::string> const PossibleFreq({"deta", "time", "hour", "dail", "mont", "runp", "envi", "annu"});
         //=(/'detail','Timestep','Hourly','Daily','Monthly','RunPeriod','Environment','Annual'/)
-        thread_local static std::vector<std::string> const ExactFreqString(
+        EP_GLOBAL static std::vector<std::string> const ExactFreqString(
             {"Detailed", "Timestep", "Hourly", "Daily", "Monthly", "RunPeriod", "Environment", "Annual"});
         // Vector of the result, was { -1, 0, 1, 2, 3, 4, 4, 4 } before the addition of Yearly;
-        thread_local static std::vector<ReportingFrequency> const FreqValues({ReportingFrequency::EachCall,
+        EP_GLOBAL static std::vector<ReportingFrequency> const FreqValues({ReportingFrequency::EachCall,
                                                                  ReportingFrequency::TimeStep,
                                                                  ReportingFrequency::Hourly,
                                                                  ReportingFrequency::Daily,
@@ -869,7 +869,7 @@ namespace OutputProcessor {
         int NumAlpha;
         int NumNumbers;
         int IOStat;
-        thread_local static bool ErrorsFound(false); // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false); // If errors detected in input
         std::string cCurrentModuleObject;
         Array1D_string cAlphaArgs(4);
         Array1D_string cAlphaFieldNames(4);
@@ -879,8 +879,8 @@ namespace OutputProcessor {
         Array1D_bool lNumericFieldBlanks(1);
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_800("('! <Minimum Reporting Frequency (overriding input value)>, Value, Input Value')");
-        thread_local static ObjexxFCL::gio::Fmt Format_801("(' Minimum Reporting Frequency, ',A,',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_800("('! <Minimum Reporting Frequency (overriding input value)>, Value, Input Value')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_801("(' Minimum Reporting Frequency, ',A,',',A)");
 
         // Bail out if the input has already been read in
         if (!GetOutputInputFlag) {
@@ -979,9 +979,9 @@ namespace OutputProcessor {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt DayFormat("(A,',',I2,',',I2)");
-        thread_local static ObjexxFCL::gio::Fmt MonthFormat("(A,',',I2,',',I2,',',I2)");
-        thread_local static ObjexxFCL::gio::Fmt EnvrnFormat("(A,',',I2,',',I2,',',I2,',',I2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt DayFormat("(A,',',I2,',',I2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt MonthFormat("(A,',',I2,',',I2,',',I2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt EnvrnFormat("(A,',',I2,',',I2,',',I2,',',I2)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1050,10 +1050,10 @@ namespace OutputProcessor {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt HrFormat("(A,',',I2.2,':',I2.2)");
-        thread_local static ObjexxFCL::gio::Fmt DayFormat("(A,',',I2,',',I2.2,':',I2.2)");
-        thread_local static ObjexxFCL::gio::Fmt MonthFormat("(A,',',I2,',',I2,',',I2.2,':',I2.2)");
-        thread_local static ObjexxFCL::gio::Fmt EnvrnFormat("(A,',',I2,',',I2,',',I2,',',I2.2,':',I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt HrFormat("(A,',',I2.2,':',I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt DayFormat("(A,',',I2,',',I2.2,':',I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt MonthFormat("(A,',',I2,',',I2,',',I2.2,':',I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt EnvrnFormat("(A,',',I2,',',I2,',',I2,',',I2.2,':',I2.2)");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1127,9 +1127,9 @@ namespace OutputProcessor {
         int ValidateIndexType;
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static Array1D_string ZoneIndexTypes(3);
-        thread_local static Array1D_string SystemIndexTypes(3);
-        thread_local static bool Initialized(false);
+        EP_GLOBAL static Array1D_string ZoneIndexTypes(3);
+        EP_GLOBAL static Array1D_string SystemIndexTypes(3);
+        EP_GLOBAL static bool Initialized(false);
         int Item;
 
         if (!Initialized) {
@@ -1230,10 +1230,10 @@ namespace OutputProcessor {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static Array1D_string StateVariables(3);
-        thread_local static std::vector<std::string> stateVariables({"STATE", "AVERAGE", "AVERAGED"});
-        thread_local static Array1D_string NonStateVariables(4);
-        thread_local static std::vector<std::string> nonStateVariables({"NON STATE", "NONSTATE", "SUM", "SUMMED"});
+        EP_GLOBAL static Array1D_string StateVariables(3);
+        EP_GLOBAL static std::vector<std::string> stateVariables({"STATE", "AVERAGE", "AVERAGED"});
+        EP_GLOBAL static Array1D_string NonStateVariables(4);
+        EP_GLOBAL static std::vector<std::string> nonStateVariables({"NON STATE", "NONSTATE", "SUM", "SUMMED"});
         std::string uppercase(UtilityRoutines::MakeUPPERCase(VariableTypeKey));
 
         auto iter = std::find(stateVariables.begin(), stateVariables.end(), uppercase);
@@ -3048,10 +3048,10 @@ namespace OutputProcessor {
         int Loop; // Loop Control
         bool PrintTimeStamp;
         int CurDayType;
-        thread_local static Real64 rDummy1(0.0);
-        thread_local static Real64 rDummy2(0.0);
-        thread_local static int iDummy1(0);
-        thread_local static int iDummy2(0);
+        EP_GLOBAL static Real64 rDummy1(0.0);
+        EP_GLOBAL static Real64 rDummy2(0.0);
+        EP_GLOBAL static int iDummy1(0);
+        EP_GLOBAL static int iDummy2(0);
         std::string cReportID;
 
         if (!ResultsFramework::OutputSchema->TSMeters.rDataFrameEnabled()) {
@@ -3175,10 +3175,10 @@ namespace OutputProcessor {
         int Loop; // Loop Control
         bool PrintTimeStamp;
         int CurDayType;
-        thread_local static Real64 rDummy1(0.0);
-        thread_local static Real64 rDummy2(0.0);
-        thread_local static int iDummy1(0);
-        thread_local static int iDummy2(0);
+        EP_GLOBAL static Real64 rDummy1(0.0);
+        EP_GLOBAL static Real64 rDummy2(0.0);
+        EP_GLOBAL static int iDummy1(0);
+        EP_GLOBAL static int iDummy2(0);
         std::string cReportID;
 
         if (!ResultsFramework::OutputSchema->HRMeters.rDataFrameEnabled()) {
@@ -3708,7 +3708,7 @@ namespace OutputProcessor {
 
         if (codedDate == 0) return "-";
 
-        thread_local static ObjexxFCL::gio::Fmt DateFmt("(I2.2,'-',A3,'-',I2.2,':',I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt DateFmt("(I2.2,'-',A3,'-',I2.2,':',I2.2)");
 
         // ((month*100 + day)*100 + hour)*100 + minute
         int Month;  // month in integer format (1-12)
@@ -4046,8 +4046,8 @@ namespace OutputProcessor {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static int const N(100);
-        thread_local static char stamp[N];
+        EP_GLOBAL static int const N(100);
+        EP_GLOBAL static char stamp[N];
         assert(reportIDString.length() + DayOfSimChr.length() + (DayType.present() ? DayType().length() : 0u) + 26 <
                N); // Check will fit in stamp size
 
@@ -4200,8 +4200,8 @@ namespace OutputProcessor {
         // na
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static int const N(100);
-        thread_local static char stamp[N];
+        EP_GLOBAL static int const N(100);
+        EP_GLOBAL static char stamp[N];
         assert(reportIDString.length() + yearOfSimChr.length() + 26 < N); // Check will fit in stamp size
 
         if ((!out_stream_p) || (!*out_stream_p)) return; // Stream
@@ -4494,8 +4494,8 @@ namespace OutputProcessor {
             break;
         }
 
-        thread_local static std::string const keyedValueStringCum("Cumulative ");
-        thread_local static std::string const keyedValueStringNon;
+        EP_GLOBAL static std::string const keyedValueStringCum("Cumulative ");
+        EP_GLOBAL static std::string const keyedValueStringNon;
         std::string const &keyedValueString(cumulativeMeterFlag ? keyedValueStringCum : keyedValueStringNon);
 
         if (sqlite) {
@@ -4600,7 +4600,7 @@ namespace OutputProcessor {
         // of the UpdateDataandReport subroutine. The code was moved to facilitate
         // easier maintenance and writing of data to the SQL database.
 
-        thread_local static char s[129];
+        EP_GLOBAL static char s[129];
 
         std::string NumberOut;   // Character for producing "number out"
         Real64 repVal(repValue); // The variable's value
@@ -4685,7 +4685,7 @@ namespace OutputProcessor {
         // This subroutine writes the cumulative meter data to the output files and
         // SQL database.
 
-        thread_local static char s[129];
+        EP_GLOBAL static char s[129];
         std::string NumberOut; // Character for producing "number out"
 
         if (repValue == 0.0) {
@@ -4742,7 +4742,7 @@ namespace OutputProcessor {
         using DataGlobals::StdMeterRecordCount;
         using DataGlobals::StdOutputRecordCount;
 
-        thread_local static char s[129];
+        EP_GLOBAL static char s[129];
         std::string NumberOut; // Character for producing "number out"
 
         if (repValue == 0.0) {
@@ -4859,7 +4859,7 @@ namespace OutputProcessor {
         // of the UpdateDataandReport subroutine. The code was moved to facilitate
         // easier maintenance and writing of data to the SQL database.
 
-        thread_local static char s[129];
+        EP_GLOBAL static char s[129];
 
         if (DataSystemVariables::UpdateDataDuringWarmupExternalInterface && !DataSystemVariables::ReportDuringWarmup) return;
 
@@ -4892,7 +4892,7 @@ namespace OutputProcessor {
         // of the UpdateDataandReport subroutine. The code was moved to facilitate
         // easier maintenance and writing of data to the SQL database.
 
-        thread_local static char s[129];
+        EP_GLOBAL static char s[129];
 
         i32toa(repValue, s);
 
@@ -4923,7 +4923,7 @@ namespace OutputProcessor {
         // of the UpdateDataandReport subroutine. The code was moved to facilitate
         // easier maintenance and writing of data to the SQL database.
 
-        thread_local static char s[129];
+        EP_GLOBAL static char s[129];
 
         i64toa(repValue, s);
 
@@ -5137,7 +5137,7 @@ namespace OutputProcessor {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        thread_local static int indexGroupKey(-1);
+        EP_GLOBAL static int indexGroupKey(-1);
 
         // Facility indices are in the 100s
         if (has(meterName, "Electricity:Facility")) {
@@ -5615,7 +5615,7 @@ void SetupOutputVariable(std::string const &VariableName,           // String Na
     std::string EndUseSub;          // Will hold value of EndUseSubKey
     std::string Group;              // Will hold value of GroupKey
     std::string ZoneName;           // Will hold value of ZoneKey
-    thread_local static bool ErrorsFound(false); // True if Errors Found
+    EP_GLOBAL static bool ErrorsFound(false); // True if Errors Found
     bool ThisOneOnTheList;
     int localIndexGroupKey;
 
@@ -6017,7 +6017,7 @@ void SetupOutputVariable(std::string const &VariableName,           // String Na
     // SUBROUTINE ARGUMENT DEFINITIONS:
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
     // INTERFACE BLOCK SPECIFICATIONS:
     // na
@@ -6112,7 +6112,7 @@ void UpdateDataandReport(int const IndexTypeKey) // What kind of data to update 
     // static Real64 LStartMin( -1.0 ); // Helps set minutes for timestamp output
     // static Real64 LEndMin( -1.0 ); // Helps set minutes for timestamp output
     ////////////////////////////////////////////////////////////////////////////////////
-    thread_local static bool EndTimeStepFlag(false); // True when it's the end of the Zone Time Step
+    EP_GLOBAL static bool EndTimeStepFlag(false); // True when it's the end of the Zone Time Step
     Real64 rxTime;                      // (MinuteNow-StartMinute)/REAL(MinutesPerTimeStep,r64) - for execution time
 
     IndexType = IndexTypeKey;
@@ -6824,7 +6824,7 @@ void GenOutputVariablesAuditReport()
     // na
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    thread_local static std::map<ReportingFrequency, std::string> reportFrequency({{ReportingFrequency::EachCall, "Detailed"},
+    EP_GLOBAL static std::map<ReportingFrequency, std::string> reportFrequency({{ReportingFrequency::EachCall, "Detailed"},
                                                                       {ReportingFrequency::TimeStep, "TimeStep"},
                                                                       {ReportingFrequency::Hourly, "Hourly"},
                                                                       {ReportingFrequency::Daily, "Daily"},
@@ -6838,9 +6838,9 @@ void GenOutputVariablesAuditReport()
     // na
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-    thread_local static bool Rept(false);
+    EP_GLOBAL static bool Rept(false);
     int Loop;
-    thread_local static bool OpaqSurfWarned(false);
+    EP_GLOBAL static bool OpaqSurfWarned(false);
 
     for (Loop = 1; Loop <= NumOfReqVariables; ++Loop) {
         if (ReqRepVars(Loop).Used) continue;
@@ -6937,7 +6937,7 @@ void UpdateMeterReporting()
     ReportingFrequency ReportFreq;
     bool NeverFound;
 
-    thread_local static bool ErrorsFound(false); // If errors detected in input
+    EP_GLOBAL static bool ErrorsFound(false); // If errors detected in input
 
     GetCustomMeterInput(ErrorsFound);
     if (ErrorsFound) {
@@ -7533,9 +7533,9 @@ int GetMeterIndex(std::string const &MeterName)
 
     // FUNCTION LOCAL VARIABLE DECLARATIONS:
     // Valid Meter names because matching case insensitive
-    thread_local static Array1D_string ValidMeterNames;
-    thread_local static Array1D_int iValidMeterNames;
-    thread_local static int NumValidMeters(0);
+    EP_GLOBAL static Array1D_string ValidMeterNames;
+    EP_GLOBAL static Array1D_int iValidMeterNames;
+    EP_GLOBAL static int NumValidMeters(0);
     //////////// hoisted into namespace changed to GetMeterIndexFirstCall////////////
     // static bool FirstCall( true );
     ////////////////////////////////////////////////
@@ -8210,8 +8210,8 @@ void GetVariableKeyCountandType(std::string const &varName,            // Standa
     using SortAndStringUtilities::SetupAndSort;
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-    thread_local static Array1D_int keyVarIndexes; // Array index for specific key name
-    thread_local static int curKeyVarIndexLimit;   // current limit for keyVarIndexes
+    EP_GLOBAL static Array1D_int keyVarIndexes; // Array index for specific key name
+    EP_GLOBAL static int curKeyVarIndexLimit;   // current limit for keyVarIndexes
     //////////// hoisted into namespace ////////////////////////////////////////////////
     // static bool InitFlag( true ); // for initting the keyVarIndexes array
     ////////////////////////////////////////////////////////////////////////////////////
@@ -8223,9 +8223,9 @@ void GetVariableKeyCountandType(std::string const &varName,            // Standa
     bool Duplicate;                  // True if keyname is a duplicate
     std::string VarKeyPlusName;      // Full variable name including keyname and units
     std::string varNameUpper;        // varName pushed to all upper case
-    thread_local static Array1D_string varNames;  // stored variable names
-    thread_local static Array1D_int ivarNames;    // pointers for sorted information
-    thread_local static int numVarNames;          // number of variable names
+    EP_GLOBAL static Array1D_string varNames;  // stored variable names
+    EP_GLOBAL static Array1D_int ivarNames;    // pointers for sorted information
+    EP_GLOBAL static int numVarNames;          // number of variable names
 
     // INITIALIZATIONS
     if (InitFlag) {
@@ -8589,7 +8589,7 @@ void InitPollutionMeterReporting(std::string const &ReportFreqName)
     using namespace OutputProcessor;
     // SUBROUTINE PARAMETER DEFINITIONS:
     //             Now for the Pollution Meters
-    thread_local static Array1D_string const PollutionMeters({1, 29},
+    EP_GLOBAL static Array1D_string const PollutionMeters({1, 29},
                                                 {"Electricity:Facility",
                                                  "Diesel:Facility",
                                                  "DistrictCooling:Facility",

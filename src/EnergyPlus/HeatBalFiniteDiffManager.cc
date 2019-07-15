@@ -159,36 +159,36 @@ namespace HeatBalFiniteDiffManager {
     using HeatBalanceMovableInsulation::EvalOutsideMovableInsulation;
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local Real64 const Lambda(2500000.0);
-    thread_local Real64 const smalldiff(1.e-8); // Used in places where "equality" tests should not be used.
+    EP_GLOBAL Real64 const Lambda(2500000.0);
+    EP_GLOBAL Real64 const smalldiff(1.e-8); // Used in places where "equality" tests should not be used.
 
-    thread_local int const CrankNicholsonSecondOrder(1); // original CondFD scheme.  semi implicit, second order in time
-    thread_local int const FullyImplicitFirstOrder(2);   // fully implicit scheme, first order in time.
-    thread_local Array1D_string const cCondFDSchemeType(2, {"CrankNicholsonSecondOrder", "FullyImplicitFirstOrder"});
+    EP_GLOBAL int const CrankNicholsonSecondOrder(1); // original CondFD scheme.  semi implicit, second order in time
+    EP_GLOBAL int const FullyImplicitFirstOrder(2);   // fully implicit scheme, first order in time.
+    EP_GLOBAL Array1D_string const cCondFDSchemeType(2, {"CrankNicholsonSecondOrder", "FullyImplicitFirstOrder"});
 
-    thread_local Real64 const TempInitValue(23.0);   // Initialization value for Temperature
-    thread_local Real64 const RhovInitValue(0.0115); // Initialization value for Rhov
-    thread_local Real64 const EnthInitValue(100.0);  // Initialization value for Enthalpy
+    EP_GLOBAL Real64 const TempInitValue(23.0);   // Initialization value for Temperature
+    EP_GLOBAL Real64 const RhovInitValue(0.0115); // Initialization value for Rhov
+    EP_GLOBAL Real64 const EnthInitValue(100.0);  // Initialization value for Enthalpy
 
-    thread_local Array1D<Real64> SigmaR; // Total Resistance of construction layers
-    thread_local Array1D<Real64> SigmaC; // Total Capacitance of construction layers
+    EP_GLOBAL Array1D<Real64> SigmaR; // Total Resistance of construction layers
+    EP_GLOBAL Array1D<Real64> SigmaC; // Total Capacitance of construction layers
 
-    thread_local Array1D<Real64> QHeatInFlux;  // HeatFlux on Surface for reporting
-    thread_local Array1D<Real64> QHeatOutFlux; // HeatFlux on Surface for reporting
+    EP_GLOBAL Array1D<Real64> QHeatInFlux;  // HeatFlux on Surface for reporting
+    EP_GLOBAL Array1D<Real64> QHeatOutFlux; // HeatFlux on Surface for reporting
 
-    thread_local int CondFDSchemeType(FullyImplicitFirstOrder); // solution scheme for CondFD - default
-    thread_local Real64 SpaceDescritConstant(3.0);              // spatial descritization constant,
-    thread_local Real64 MinTempLimit(-100.0);                   // lower limit check, degree C
-    thread_local Real64 MaxTempLimit(100.0);                    // upper limit check, degree C
-    thread_local int MaxGSiter(30);                             // maximum number of Gauss Seidel iterations
-    thread_local Real64 fracTimeStepZone_Hour(0.0);
-    thread_local bool GetHBFiniteDiffInputFlag(true);
-    thread_local int WarmupSurfTemp(0);
+    EP_GLOBAL int CondFDSchemeType(FullyImplicitFirstOrder); // solution scheme for CondFD - default
+    EP_GLOBAL Real64 SpaceDescritConstant(3.0);              // spatial descritization constant,
+    EP_GLOBAL Real64 MinTempLimit(-100.0);                   // lower limit check, degree C
+    EP_GLOBAL Real64 MaxTempLimit(100.0);                    // upper limit check, degree C
+    EP_GLOBAL int MaxGSiter(30);                             // maximum number of Gauss Seidel iterations
+    EP_GLOBAL Real64 fracTimeStepZone_Hour(0.0);
+    EP_GLOBAL bool GetHBFiniteDiffInputFlag(true);
+    EP_GLOBAL int WarmupSurfTemp(0);
 
     // Object Data
-    thread_local Array1D<ConstructionDataFD> ConstructFD;
-    thread_local Array1D<SurfaceDataFD> SurfaceFD;
-    thread_local Array1D<MaterialDataFD> MaterialFD;
+    EP_GLOBAL Array1D<ConstructionDataFD> ConstructFD;
+    EP_GLOBAL Array1D<SurfaceDataFD> SurfaceFD;
+    EP_GLOBAL Array1D<MaterialDataFD> MaterialFD;
 
     void clear_state()
     {
@@ -263,7 +263,7 @@ namespace HeatBalFiniteDiffManager {
         int MaterialNumAlpha;               // Number of material alpha names being passed
         int MaterialNumProp;                // Number of material properties being passed
         Array1D<Real64> MaterialProps(40);  // Temporary array to transfer material properties
-        thread_local static bool ErrorsFound(false);     // If errors detected in input
+        EP_GLOBAL static bool ErrorsFound(false);     // If errors detected in input
         //  INTEGER :: CondFDMat                ! Number of variable property CondFD materials in input
         int Loop;
         int NumAlphas;
@@ -525,7 +525,7 @@ namespace HeatBalFiniteDiffManager {
         using DataSurfaces::HeatTransferModel_CondFD;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static bool MyEnvrnFlag(true);
+        EP_GLOBAL static bool MyEnvrnFlag(true);
         int SurfNum;
         int ConstrNum; // Loop counter
         bool ErrorsFound;
@@ -1058,7 +1058,7 @@ namespace HeatBalFiniteDiffManager {
         // Using/Aliasing
         using DataHeatBalance::CondFDRelaxFactor;
 
-        thread_local static Real64 MaxDelTemp(0.0);
+        EP_GLOBAL static Real64 MaxDelTemp(0.0);
 
         int const ConstrNum(Surface(Surf).Construction);
 
@@ -1220,8 +1220,8 @@ namespace HeatBalFiniteDiffManager {
         using General::ScanForReports;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-        thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool DoReport;
@@ -1233,9 +1233,9 @@ namespace HeatBalFiniteDiffManager {
         int Inodes;
 
         // Formats
-        thread_local static ObjexxFCL::gio::Fmt Format_700("(' Construction CondFD,',A,2(',',A),',',A,',',A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_701("(' Material CondFD Summary,',A,',',A,',',A,',',A,',',A,',',A)");
-        thread_local static ObjexxFCL::gio::Fmt Format_702("(' ConductionFiniteDifference Node,',A,',',A,',',A,',',A,',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_700("(' Construction CondFD,',A,2(',',A),',',A,',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_701("(' Material CondFD Summary,',A,',',A,',',A,',',A,',',A,',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt Format_702("(' ConductionFiniteDifference Node,',A,',',A,',',A,',',A,',',A)");
 
         ObjexxFCL::gio::write(OutputFileInits, fmtA) << "! <ConductionFiniteDifference HeatBalanceSettings>,Scheme Type,Space Discretization "
                                              "Constant,Relaxation Factor,Inside Face Surface Temperature Convergence Criteria";

@@ -68,8 +68,8 @@ namespace HVACDuct {
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumDucts;
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern int NumDucts;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE HVACDuct:
 
@@ -91,7 +91,7 @@ namespace HVACDuct {
     };
 
     // Object Data
-    thread_local extern Array1D<DuctData> Duct;
+    EP_GLOBAL extern Array1D<DuctData> Duct;
 
     // Functions
 

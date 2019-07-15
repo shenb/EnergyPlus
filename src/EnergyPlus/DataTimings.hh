@@ -68,7 +68,7 @@ namespace DataTimings {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const MaxTimingStringLength; // string length for timing string array
+    EP_GLOBAL extern int const MaxTimingStringLength; // string length for timing string array
 
     // DERIVED TYPE DEFINITIONS
 
@@ -76,20 +76,20 @@ namespace DataTimings {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumTimingElements;
-    thread_local extern int MaxTimingElements;
-    thread_local extern Real64 dailyWeatherTime;
-    thread_local extern Real64 dailyExteriorEnergyUseTime;
-    thread_local extern Real64 dailyHeatBalanceTime;
-    thread_local extern Real64 hbdailyInit;
-    thread_local extern Real64 hbdailyOutSurf;
-    thread_local extern Real64 hbdailyInSurf;
-    thread_local extern Real64 hbdailyHVAC;
-    thread_local extern Real64 hbdailyRep;
-    thread_local extern Real64 clockrate;
-    thread_local extern bool lprocessingInputTiming;
-    thread_local extern bool lmanageSimulationTiming;
-    thread_local extern bool lcloseoutReportingTiming;
+    EP_GLOBAL extern int NumTimingElements;
+    EP_GLOBAL extern int MaxTimingElements;
+    EP_GLOBAL extern Real64 dailyWeatherTime;
+    EP_GLOBAL extern Real64 dailyExteriorEnergyUseTime;
+    EP_GLOBAL extern Real64 dailyHeatBalanceTime;
+    EP_GLOBAL extern Real64 hbdailyInit;
+    EP_GLOBAL extern Real64 hbdailyOutSurf;
+    EP_GLOBAL extern Real64 hbdailyInSurf;
+    EP_GLOBAL extern Real64 hbdailyHVAC;
+    EP_GLOBAL extern Real64 hbdailyRep;
+    EP_GLOBAL extern Real64 clockrate;
+    EP_GLOBAL extern bool lprocessingInputTiming;
+    EP_GLOBAL extern bool lmanageSimulationTiming;
+    EP_GLOBAL extern bool lcloseoutReportingTiming;
 
     // Following for calls to routines
 #ifdef EP_Count_Calls
@@ -128,7 +128,7 @@ namespace DataTimings {
     };
 
     // Object Data
-    thread_local extern Array1D<timings> Timing;
+    EP_GLOBAL extern Array1D<timings> Timing;
 
     // Functions
 

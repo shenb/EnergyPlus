@@ -74,6 +74,9 @@ option( ENABLE_INSTALL_REMOTE "Enable install_remote and install_remote_plist co
 
 mark_as_advanced( ENABLE_INSTALL_REMOTE )
 
+option( ENABLE_THREAD_LOCAL "Make all global variables have thread_local storage" OFF )
+mark_as_advanced( ENABLE_THREAD_LOCAL )
+
 # we are making python a required dependency, so find it here...starting off by requiring at least 2.7
 find_package(PythonInterp 2.7 REQUIRED)
 

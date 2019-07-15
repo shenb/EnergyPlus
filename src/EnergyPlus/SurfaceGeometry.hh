@@ -71,42 +71,42 @@ namespace SurfaceGeometry {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern Array1D_string const BaseSurfCls;
-    thread_local extern Array1D_string const SubSurfCls;
-    thread_local extern Array1D_int const BaseSurfIDs;
+    EP_GLOBAL extern Array1D_string const BaseSurfCls;
+    EP_GLOBAL extern Array1D_string const SubSurfCls;
+    EP_GLOBAL extern Array1D_int const BaseSurfIDs;
 
-    thread_local extern Array1D_int const SubSurfIDs;
+    EP_GLOBAL extern Array1D_int const SubSurfIDs;
 
-    thread_local extern int const UnenteredAdjacentZoneSurface; // allows users to enter one zone surface ("Zone")
+    EP_GLOBAL extern int const UnenteredAdjacentZoneSurface; // allows users to enter one zone surface ("Zone")
     // referencing another in adjacent zone
-    thread_local extern int const UnreconciledZoneSurface; // interim value between entering surfaces ("Surface") and reconciling
+    EP_GLOBAL extern int const UnreconciledZoneSurface; // interim value between entering surfaces ("Surface") and reconciling
     // surface names in other zones
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
     // Following are used only during getting vertices, so are module variables here.
-    thread_local extern Real64 CosBldgRelNorth;          // Cosine of the building rotation (relative north) (includes appendix G rotation)
-    thread_local extern Real64 SinBldgRelNorth;          // Sine of the building rotation (relative north)   (includes appendix G rotation)
-    thread_local extern Real64 CosBldgRotAppGonly;       // Cosine of the building rotation for appendix G only(relative north)
-    thread_local extern Real64 SinBldgRotAppGonly;       // Sine of the building rotation for appendix G only (relative north)
-    thread_local extern Array1D<Real64> CosZoneRelNorth; // Cosine of the zone rotation (relative north)
-    thread_local extern Array1D<Real64> SinZoneRelNorth; // Sine of the zone rotation (relative north)
+    EP_GLOBAL extern Real64 CosBldgRelNorth;          // Cosine of the building rotation (relative north) (includes appendix G rotation)
+    EP_GLOBAL extern Real64 SinBldgRelNorth;          // Sine of the building rotation (relative north)   (includes appendix G rotation)
+    EP_GLOBAL extern Real64 CosBldgRotAppGonly;       // Cosine of the building rotation for appendix G only(relative north)
+    EP_GLOBAL extern Real64 SinBldgRotAppGonly;       // Sine of the building rotation for appendix G only (relative north)
+    EP_GLOBAL extern Array1D<Real64> CosZoneRelNorth; // Cosine of the zone rotation (relative north)
+    EP_GLOBAL extern Array1D<Real64> SinZoneRelNorth; // Sine of the zone rotation (relative north)
 
-    thread_local extern bool NoGroundTempObjWarning; // This will cause a warning to be issued if surfaces with "Ground"
+    EP_GLOBAL extern bool NoGroundTempObjWarning; // This will cause a warning to be issued if surfaces with "Ground"
     // outside environment are used but no ground temperature object was input.
-    thread_local extern bool NoFCGroundTempObjWarning; // This will cause a warning to be issued if surfaces with "GroundFCfactorMethod"
+    EP_GLOBAL extern bool NoFCGroundTempObjWarning; // This will cause a warning to be issued if surfaces with "GroundFCfactorMethod"
     // outside environment are used but no FC ground temperatures was input.
-    thread_local extern bool RectSurfRefWorldCoordSystem; // GlobalGeometryRules=World (true) or Relative (false)
-    thread_local extern int Warning1Count;                // counts of Modify Window 5/6 windows
-    thread_local extern int Warning2Count;                // counts of overriding exterior windows with Window 5/6 glazing systems
-    thread_local extern int Warning3Count;                // counts of overriding interior windows with Window 5/6 glazing systems
+    EP_GLOBAL extern bool RectSurfRefWorldCoordSystem; // GlobalGeometryRules=World (true) or Relative (false)
+    EP_GLOBAL extern int Warning1Count;                // counts of Modify Window 5/6 windows
+    EP_GLOBAL extern int Warning2Count;                // counts of overriding exterior windows with Window 5/6 glazing systems
+    EP_GLOBAL extern int Warning3Count;                // counts of overriding interior windows with Window 5/6 glazing systems
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE SurfaceGeometry
 
     // Object Data
-    thread_local extern Array1D<SurfaceData> SurfaceTmp; // Allocated/Deallocated during input processing
-    thread_local extern HeatBalanceKivaManager::KivaManager kivaManager;
+    EP_GLOBAL extern Array1D<SurfaceData> SurfaceTmp; // Allocated/Deallocated during input processing
+    EP_GLOBAL extern HeatBalanceKivaManager::KivaManager kivaManager;
 
     // Functions
 
@@ -262,7 +262,7 @@ namespace SurfaceGeometry {
         std::map<int, Data> surfaceMap;
     };
 
-    thread_local extern ExposedFoundationPerimeter exposedFoundationPerimeter;
+    EP_GLOBAL extern ExposedFoundationPerimeter exposedFoundationPerimeter;
 
     void GetVertices(int const SurfNum,             // Current surface number
                      int const NSides,              // Number of sides to figure

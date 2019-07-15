@@ -65,64 +65,64 @@ namespace VentilatedSlab {
     // MODULE PARAMETER DEFINITIONS
 
     // Module Object
-    thread_local extern std::string const cMO_VentilatedSlab;
+    EP_GLOBAL extern std::string const cMO_VentilatedSlab;
 
     // Parameters for outside air control types:
-    thread_local extern int const Heating_ElectricCoilType;
-    thread_local extern int const Heating_GasCoilType;
-    thread_local extern int const Heating_WaterCoilType;
-    thread_local extern int const Heating_SteamCoilType;
-    thread_local extern int const Cooling_CoilWaterCooling;
-    thread_local extern int const Cooling_CoilDetailedCooling;
-    thread_local extern int const Cooling_CoilHXAssisted;
-    thread_local extern int const VariablePercent;
-    thread_local extern int const FixedTemperature;
-    thread_local extern int const FixedOAControl;
-    thread_local extern int const NotOperating; // Parameter for use with OperatingMode variable, set for no heating/cooling
-    thread_local extern int const HeatingMode;  // Parameter for use with OperatingMode variable, set for heating
-    thread_local extern int const CoolingMode;  // Parameter for use with OperatingMode variable, set for cooling
+    EP_GLOBAL extern int const Heating_ElectricCoilType;
+    EP_GLOBAL extern int const Heating_GasCoilType;
+    EP_GLOBAL extern int const Heating_WaterCoilType;
+    EP_GLOBAL extern int const Heating_SteamCoilType;
+    EP_GLOBAL extern int const Cooling_CoilWaterCooling;
+    EP_GLOBAL extern int const Cooling_CoilDetailedCooling;
+    EP_GLOBAL extern int const Cooling_CoilHXAssisted;
+    EP_GLOBAL extern int const VariablePercent;
+    EP_GLOBAL extern int const FixedTemperature;
+    EP_GLOBAL extern int const FixedOAControl;
+    EP_GLOBAL extern int const NotOperating; // Parameter for use with OperatingMode variable, set for no heating/cooling
+    EP_GLOBAL extern int const HeatingMode;  // Parameter for use with OperatingMode variable, set for heating
+    EP_GLOBAL extern int const CoolingMode;  // Parameter for use with OperatingMode variable, set for cooling
     // Ventilated Slab Configurations
-    thread_local extern int const SlabOnly;    // Air circulate through cores of slab only
-    thread_local extern int const SlabAndZone; // Circulated Air is introduced to zone
-    thread_local extern int const SeriesSlabs;
+    EP_GLOBAL extern int const SlabOnly;    // Air circulate through cores of slab only
+    EP_GLOBAL extern int const SlabAndZone; // Circulated Air is introduced to zone
+    EP_GLOBAL extern int const SeriesSlabs;
     //  Control Types
-    thread_local extern int const MATControl;  // Controls system using mean air temperature
-    thread_local extern int const MRTControl;  // Controls system using mean radiant temperature
-    thread_local extern int const OPTControl;  // Controls system using operative temperature
-    thread_local extern int const ODBControl;  // Controls system using outside air dry-bulb temperature
-    thread_local extern int const OWBControl;  // Controls system using outside air wet-bulb temperature
-    thread_local extern int const SURControl;  // Controls system using surface temperature !Phase2-A
-    thread_local extern int const DPTZControl; // Controls system using dew-point temperature of zone!Phase2-A
+    EP_GLOBAL extern int const MATControl;  // Controls system using mean air temperature
+    EP_GLOBAL extern int const MRTControl;  // Controls system using mean radiant temperature
+    EP_GLOBAL extern int const OPTControl;  // Controls system using operative temperature
+    EP_GLOBAL extern int const ODBControl;  // Controls system using outside air dry-bulb temperature
+    EP_GLOBAL extern int const OWBControl;  // Controls system using outside air wet-bulb temperature
+    EP_GLOBAL extern int const SURControl;  // Controls system using surface temperature !Phase2-A
+    EP_GLOBAL extern int const DPTZControl; // Controls system using dew-point temperature of zone!Phase2-A
 
     // coil operation
-    thread_local extern int const On;  // normal coil operation
-    thread_local extern int const Off; // signal coil shouldn't run
-    thread_local extern int const NoneOption;
-    thread_local extern int const BothOption;
-    thread_local extern int const HeatingOption;
-    thread_local extern int const CoolingOption;
-    thread_local extern int OperatingMode; // Used to keep track of whether system is in heating or cooling mode
+    EP_GLOBAL extern int const On;  // normal coil operation
+    EP_GLOBAL extern int const Off; // signal coil shouldn't run
+    EP_GLOBAL extern int const NoneOption;
+    EP_GLOBAL extern int const BothOption;
+    EP_GLOBAL extern int const HeatingOption;
+    EP_GLOBAL extern int const CoolingOption;
+    EP_GLOBAL extern int OperatingMode; // Used to keep track of whether system is in heating or cooling mode
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool HCoilOn;                         // TRUE if the heating coil (gas or electric especially) should be running
-    thread_local extern int NumOfVentSlabs;                   // Number of ventilated slab in the input file
-    thread_local extern Real64 OAMassFlowRate;                // Outside air mass flow rate for the ventilated slab
-    thread_local extern Array1D_double QRadSysSrcAvg;         // Average source over the time step for a particular radiant surfaceD
-    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
-    thread_local extern int MaxCloNumOfSurfaces;              // Used to set allocate size in CalcClo routine
-    thread_local extern Real64 QZnReq;                        // heating or cooling needed by system [watts]
+    EP_GLOBAL extern bool HCoilOn;                         // TRUE if the heating coil (gas or electric especially) should be running
+    EP_GLOBAL extern int NumOfVentSlabs;                   // Number of ventilated slab in the input file
+    EP_GLOBAL extern Real64 OAMassFlowRate;                // Outside air mass flow rate for the ventilated slab
+    EP_GLOBAL extern Array1D_double QRadSysSrcAvg;         // Average source over the time step for a particular radiant surfaceD
+    EP_GLOBAL extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
+    EP_GLOBAL extern int MaxCloNumOfSurfaces;              // Used to set allocate size in CalcClo routine
+    EP_GLOBAL extern Real64 QZnReq;                        // heating or cooling needed by system [watts]
 
     // Record keeping variables used to calculate QRadSysSrcAvg locally
 
-    thread_local extern Array1D_double LastQRadSysSrc;      // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_double LastQRadSysSrc;      // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // Autosizing variables
-    thread_local extern Array1D_bool MySizeFlag;
+    EP_GLOBAL extern Array1D_bool MySizeFlag;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE VentilatedSlab
     // PRIVATE UpdateVentilatedSlabValAvg
@@ -335,8 +335,8 @@ namespace VentilatedSlab {
     };
 
     // Object Data
-    thread_local extern Array1D<VentilatedSlabData> VentSlab;
-    thread_local extern Array1D<VentSlabNumericFieldData> VentSlabNumericFields;
+    EP_GLOBAL extern Array1D<VentilatedSlabData> VentSlab;
+    EP_GLOBAL extern Array1D<VentSlabNumericFieldData> VentSlabNumericFields;
 
     // Functions
 

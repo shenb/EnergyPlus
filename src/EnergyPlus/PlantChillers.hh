@@ -64,68 +64,68 @@ namespace PlantChillers {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Parameters for use in Chillers
-    thread_local extern int const AirCooled;
-    thread_local extern int const WaterCooled;
-    thread_local extern int const EvapCooled;
-    thread_local extern Real64 const KJtoJ; // convert Kjoules to joules
+    EP_GLOBAL extern int const AirCooled;
+    EP_GLOBAL extern int const WaterCooled;
+    EP_GLOBAL extern int const EvapCooled;
+    EP_GLOBAL extern Real64 const KJtoJ; // convert Kjoules to joules
 
     // chiller flow modes
-    thread_local extern int const FlowModeNotSet;
-    thread_local extern int const ConstantFlow;
-    thread_local extern int const NotModulated;
-    thread_local extern int const LeavingSetPointModulated;
+    EP_GLOBAL extern int const FlowModeNotSet;
+    EP_GLOBAL extern int const ConstantFlow;
+    EP_GLOBAL extern int const NotModulated;
+    EP_GLOBAL extern int const LeavingSetPointModulated;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumElectricChillers;    // number of Electric chillers specified in input
-    thread_local extern Real64 CondMassFlowRate;    // Kg/s - condenser mass flow rate, water side
-    thread_local extern Real64 EvapMassFlowRate;    // Kg/s - evaporator mass flow rate, water side
-    thread_local extern Real64 CondOutletTemp;      // C - condenser outlet temperature, air or water side
-    thread_local extern Real64 CondOutletHumRat;    // kg/kg - condenser outlet humditiy ratio, air side
-    thread_local extern Real64 EvapOutletTemp;      // C - evaporator outlet temperature, water side
-    thread_local extern Real64 Power;               // W - rate of chiller energy use
-    thread_local extern Real64 QEvaporator;         // W - rate of heat transfer to the evaporator coil
-    thread_local extern Real64 QCondenser;          // W - rate of heat transfer to the condenser coil
-    thread_local extern Real64 Energy;              // J - chiller energy use
-    thread_local extern Real64 EvaporatorEnergy;    // J - rate of heat transfer to the evaporator coil
-    thread_local extern Real64 CondenserEnergy;     // J - rate of heat transfer to the condenser coil
-    thread_local extern Real64 QHeatRecovered;      // W - rate of heat transfer to the Heat Recovery coil
-    thread_local extern Real64 HeatRecOutletTemp;   // C - Heat Rec outlet temperature, water side
-    thread_local extern Real64 AvgCondSinkTemp;     // condenser temperature value for use in curves [C]
-    thread_local extern Real64 ChillerCyclingRatio; // Cycling ratio for chiller when load is below MinPLR
-    thread_local extern Real64 BasinHeaterPower;    // Basin heater power (W)
+    EP_GLOBAL extern int NumElectricChillers;    // number of Electric chillers specified in input
+    EP_GLOBAL extern Real64 CondMassFlowRate;    // Kg/s - condenser mass flow rate, water side
+    EP_GLOBAL extern Real64 EvapMassFlowRate;    // Kg/s - evaporator mass flow rate, water side
+    EP_GLOBAL extern Real64 CondOutletTemp;      // C - condenser outlet temperature, air or water side
+    EP_GLOBAL extern Real64 CondOutletHumRat;    // kg/kg - condenser outlet humditiy ratio, air side
+    EP_GLOBAL extern Real64 EvapOutletTemp;      // C - evaporator outlet temperature, water side
+    EP_GLOBAL extern Real64 Power;               // W - rate of chiller energy use
+    EP_GLOBAL extern Real64 QEvaporator;         // W - rate of heat transfer to the evaporator coil
+    EP_GLOBAL extern Real64 QCondenser;          // W - rate of heat transfer to the condenser coil
+    EP_GLOBAL extern Real64 Energy;              // J - chiller energy use
+    EP_GLOBAL extern Real64 EvaporatorEnergy;    // J - rate of heat transfer to the evaporator coil
+    EP_GLOBAL extern Real64 CondenserEnergy;     // J - rate of heat transfer to the condenser coil
+    EP_GLOBAL extern Real64 QHeatRecovered;      // W - rate of heat transfer to the Heat Recovery coil
+    EP_GLOBAL extern Real64 HeatRecOutletTemp;   // C - Heat Rec outlet temperature, water side
+    EP_GLOBAL extern Real64 AvgCondSinkTemp;     // condenser temperature value for use in curves [C]
+    EP_GLOBAL extern Real64 ChillerCyclingRatio; // Cycling ratio for chiller when load is below MinPLR
+    EP_GLOBAL extern Real64 BasinHeaterPower;    // Basin heater power (W)
 
     // engine driven:
-    thread_local extern int NumEngineDrivenChillers; // number of EngineDriven chillers specified in input
-    thread_local extern Real64 HeatRecInletTemp;     // Inlet Temperature of the heat recovery fluid
-    thread_local extern Real64 HeatRecMdotActual;    // reporting: Heat Recovery Loop Mass flow rate
-    thread_local extern Real64 HeatRecMdotDesign;
-    thread_local extern Real64 QTotalHeatRecovered; // total heat recovered (W)
-    thread_local extern Real64 QJacketRecovered;    // heat recovered from jacket (W)
-    thread_local extern Real64 QLubeOilRecovered;   // heat recovered from lube (W)
-    thread_local extern Real64 QExhaustRecovered;   // exhaust gas heat recovered (W)
-    thread_local extern Real64 FuelEnergyUseRate;   // Fuel Energy used (W)
-    thread_local extern Real64 TotalHeatEnergyRec;  // total heat recovered (J)
-    thread_local extern Real64 JacketEnergyRec;     // heat recovered from jacket (J)
-    thread_local extern Real64 LubeOilEnergyRec;    // heat recovered from lube (J)
-    thread_local extern Real64 ExhaustEnergyRec;    // exhaust gas heat recovered (J)
-    thread_local extern Real64 FuelEnergy;          // Fuel Energy used (J)
-    thread_local extern Real64 FuelMdot;            // Fuel Amount used (Kg/s)
-    thread_local extern Real64 ExhaustStackTemp;    // Exhaust Stack Temperature (C)
+    EP_GLOBAL extern int NumEngineDrivenChillers; // number of EngineDriven chillers specified in input
+    EP_GLOBAL extern Real64 HeatRecInletTemp;     // Inlet Temperature of the heat recovery fluid
+    EP_GLOBAL extern Real64 HeatRecMdotActual;    // reporting: Heat Recovery Loop Mass flow rate
+    EP_GLOBAL extern Real64 HeatRecMdotDesign;
+    EP_GLOBAL extern Real64 QTotalHeatRecovered; // total heat recovered (W)
+    EP_GLOBAL extern Real64 QJacketRecovered;    // heat recovered from jacket (W)
+    EP_GLOBAL extern Real64 QLubeOilRecovered;   // heat recovered from lube (W)
+    EP_GLOBAL extern Real64 QExhaustRecovered;   // exhaust gas heat recovered (W)
+    EP_GLOBAL extern Real64 FuelEnergyUseRate;   // Fuel Energy used (W)
+    EP_GLOBAL extern Real64 TotalHeatEnergyRec;  // total heat recovered (J)
+    EP_GLOBAL extern Real64 JacketEnergyRec;     // heat recovered from jacket (J)
+    EP_GLOBAL extern Real64 LubeOilEnergyRec;    // heat recovered from lube (J)
+    EP_GLOBAL extern Real64 ExhaustEnergyRec;    // exhaust gas heat recovered (J)
+    EP_GLOBAL extern Real64 FuelEnergy;          // Fuel Energy used (J)
+    EP_GLOBAL extern Real64 FuelMdot;            // Fuel Amount used (Kg/s)
+    EP_GLOBAL extern Real64 ExhaustStackTemp;    // Exhaust Stack Temperature (C)
 
     // gas turbine
-    thread_local extern int NumGTChillers; // number of GT chillers specified in input
+    EP_GLOBAL extern int NumGTChillers; // number of GT chillers specified in input
 
     // const COP
-    thread_local extern int NumConstCOPChillers;
-    thread_local extern Real64 EvapInletTemp;
-    thread_local extern Real64 CondInletTemp;
+    EP_GLOBAL extern int NumConstCOPChillers;
+    EP_GLOBAL extern Real64 EvapInletTemp;
+    EP_GLOBAL extern Real64 CondInletTemp;
 
     // DERIVED TYPE DEFINITIONS
 
-    thread_local extern bool GetEngineDrivenInput; // then TRUE, calls subroutine to read input file.
-    thread_local extern bool GetElectricInput;     // then TRUE, calls subroutine to read input file.
-    thread_local extern bool GetGasTurbineInput;   // then TRUE, calls subroutine to read input file.
-    thread_local extern bool GetConstCOPInput;
+    EP_GLOBAL extern bool GetEngineDrivenInput; // then TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern bool GetElectricInput;     // then TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern bool GetGasTurbineInput;   // then TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern bool GetConstCOPInput;
 
     // Merged routines
 
@@ -496,14 +496,14 @@ namespace PlantChillers {
     };
 
     // Object Data
-    thread_local extern Array1D<ElectricChillerSpecs> ElectricChiller; // dimension to number of machines
-    thread_local extern Array1D<ElectricReportVars> ElectricChillerReport;
-    thread_local extern Array1D<EngineDrivenChillerSpecs> EngineDrivenChiller; // dimension to number of machines
-    thread_local extern Array1D<EngineDrivenReportVars> EngineDrivenChillerReport;
-    thread_local extern Array1D<GTChillerSpecs> GTChiller; // dimension to number of machines
-    thread_local extern Array1D<GasTurbineReportVars> GTChillerReport;
-    thread_local extern Array1D<ConstCOPChillerSpecs> ConstCOPChiller; // dimension to number of machines
-    thread_local extern Array1D<ConstCOPReportVars> ConstCOPChillerReport;
+    EP_GLOBAL extern Array1D<ElectricChillerSpecs> ElectricChiller; // dimension to number of machines
+    EP_GLOBAL extern Array1D<ElectricReportVars> ElectricChillerReport;
+    EP_GLOBAL extern Array1D<EngineDrivenChillerSpecs> EngineDrivenChiller; // dimension to number of machines
+    EP_GLOBAL extern Array1D<EngineDrivenReportVars> EngineDrivenChillerReport;
+    EP_GLOBAL extern Array1D<GTChillerSpecs> GTChiller; // dimension to number of machines
+    EP_GLOBAL extern Array1D<GasTurbineReportVars> GTChillerReport;
+    EP_GLOBAL extern Array1D<ConstCOPChillerSpecs> ConstCOPChiller; // dimension to number of machines
+    EP_GLOBAL extern Array1D<ConstCOPReportVars> ConstCOPChillerReport;
 
     // Functions
 

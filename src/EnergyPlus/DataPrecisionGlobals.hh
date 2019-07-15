@@ -57,19 +57,19 @@ namespace DataPrecisionGlobals {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const i32; // 6 digits
-    thread_local extern int const i64; // 12 digits
-    thread_local extern int const r32;
-    thread_local extern int const r64;
-    thread_local extern int const default_prec;
-    thread_local extern Real64 const constant_zero;
-    thread_local extern Real64 const constant_one;
-    thread_local extern Real64 const constant_minusone;
-    thread_local extern Real64 const constant_twenty;
-    thread_local extern Real64 const constant_pointfive;
-    thread_local extern Real64 const EXP_LowerLimit; // In IVF=2.061153622438558d-009 - used 20
+    EP_GLOBAL extern int const i32; // 6 digits
+    EP_GLOBAL extern int const i64; // 12 digits
+    EP_GLOBAL extern int const r32;
+    EP_GLOBAL extern int const r64;
+    EP_GLOBAL extern int const default_prec;
+    EP_GLOBAL extern Real64 const constant_zero;
+    EP_GLOBAL extern Real64 const constant_one;
+    EP_GLOBAL extern Real64 const constant_minusone;
+    EP_GLOBAL extern Real64 const constant_twenty;
+    EP_GLOBAL extern Real64 const constant_pointfive;
+    EP_GLOBAL extern Real64 const EXP_LowerLimit; // In IVF=2.061153622438558d-009 - used 20
     // because it's already used in other parts of the code
-    thread_local extern Real64 const EXP_UpperLimit; // In IVF=2.353852668370200d+017
+    EP_GLOBAL extern Real64 const EXP_UpperLimit; // In IVF=2.353852668370200d+017
 
 } // namespace DataPrecisionGlobals
 

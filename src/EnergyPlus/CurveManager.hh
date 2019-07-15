@@ -70,48 +70,48 @@ namespace CurveManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern std::string const Blank;
+    EP_GLOBAL extern std::string const Blank;
 
     // Curve Type parameters, these can differ from object types (e.g. a CurveType_TableOneIV can be linear, quadratic, etc)
-    thread_local extern int const Linear;
-    thread_local extern int const BiLinear;
-    thread_local extern int const Quadratic;
-    thread_local extern int const BiQuadratic;
-    thread_local extern int const Cubic;
-    thread_local extern int const QuadraticLinear;
-    thread_local extern int const BiCubic;
-    thread_local extern int const TriQuadratic;
-    thread_local extern int const Exponent;
-    thread_local extern int const Quartic;
-    thread_local extern int const FanPressureRise;
-    thread_local extern int const ExponentialSkewNormal;
-    thread_local extern int const Sigmoid;
-    thread_local extern int const RectangularHyperbola1;
-    thread_local extern int const RectangularHyperbola2;
-    thread_local extern int const ExponentialDecay;
-    thread_local extern int const DoubleExponentialDecay;
-    thread_local extern int const QuadLinear;
-    thread_local extern int const CubicLinear;
-    thread_local extern int const ChillerPartLoadWithLift;
+    EP_GLOBAL extern int const Linear;
+    EP_GLOBAL extern int const BiLinear;
+    EP_GLOBAL extern int const Quadratic;
+    EP_GLOBAL extern int const BiQuadratic;
+    EP_GLOBAL extern int const Cubic;
+    EP_GLOBAL extern int const QuadraticLinear;
+    EP_GLOBAL extern int const BiCubic;
+    EP_GLOBAL extern int const TriQuadratic;
+    EP_GLOBAL extern int const Exponent;
+    EP_GLOBAL extern int const Quartic;
+    EP_GLOBAL extern int const FanPressureRise;
+    EP_GLOBAL extern int const ExponentialSkewNormal;
+    EP_GLOBAL extern int const Sigmoid;
+    EP_GLOBAL extern int const RectangularHyperbola1;
+    EP_GLOBAL extern int const RectangularHyperbola2;
+    EP_GLOBAL extern int const ExponentialDecay;
+    EP_GLOBAL extern int const DoubleExponentialDecay;
+    EP_GLOBAL extern int const QuadLinear;
+    EP_GLOBAL extern int const CubicLinear;
+    EP_GLOBAL extern int const ChillerPartLoadWithLift;
 
     // Interpolation Types
-    thread_local extern int const LinearInterpolationOfTable;
-    thread_local extern int const LagrangeInterpolationLinearExtrapolation;
-    thread_local extern int const EvaluateCurveToLimits;
+    EP_GLOBAL extern int const LinearInterpolationOfTable;
+    EP_GLOBAL extern int const LagrangeInterpolationLinearExtrapolation;
+    EP_GLOBAL extern int const EvaluateCurveToLimits;
 
     // Data Format
-    thread_local extern int const SINGLELINEINDEPENDENTVARIABLEWITHMATRIX;
+    EP_GLOBAL extern int const SINGLELINEINDEPENDENTVARIABLEWITHMATRIX;
 
     // Sort Order
-    thread_local extern int const ASCENDING;
-    thread_local extern int const DESCENDING;
+    EP_GLOBAL extern int const ASCENDING;
+    EP_GLOBAL extern int const DESCENDING;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumCurves;
-    thread_local extern bool GetCurvesInputFlag; // First time, input is "gotten"
+    EP_GLOBAL extern int NumCurves;
+    EP_GLOBAL extern bool GetCurvesInputFlag; // First time, input is "gotten"
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE
 
@@ -293,12 +293,12 @@ namespace CurveManager {
     };
 
     // Object Data
-    thread_local extern Array1D<PerfomanceCurveData> PerfCurve;
-    thread_local extern Array1D<PerfCurveTableDataStruct> PerfCurveTableData;
-    thread_local extern Array1D<TableDataStruct> TableData;
-    thread_local extern Array1D<TableDataStruct> TempTableData;
-    thread_local extern Array1D<TableDataStruct> Temp2TableData;
-    thread_local extern Array1D<TableLookupData> TableLookup;
+    EP_GLOBAL extern Array1D<PerfomanceCurveData> PerfCurve;
+    EP_GLOBAL extern Array1D<PerfCurveTableDataStruct> PerfCurveTableData;
+    EP_GLOBAL extern Array1D<TableDataStruct> TableData;
+    EP_GLOBAL extern Array1D<TableDataStruct> TempTableData;
+    EP_GLOBAL extern Array1D<TableDataStruct> Temp2TableData;
+    EP_GLOBAL extern Array1D<TableLookupData> TableLookup;
 
     // Functions
 

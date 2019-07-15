@@ -79,7 +79,7 @@ namespace EnergyPlus {
 
 namespace OutputReportTabularAnnual {
 
-    thread_local std::vector<AnnualTable> annualTables;
+    EP_GLOBAL std::vector<AnnualTable> annualTables;
 
     void GetInputTabularAnnual()
     {
@@ -91,7 +91,7 @@ namespace OutputReportTabularAnnual {
         // is used for both user defined monthly reports and
         // predefined monthly reports.
 
-        thread_local static std::string const currentModuleObject("Output:Table:Annual");
+        EP_GLOBAL static std::string const currentModuleObject("Output:Table:Annual");
 
         int jAlpha;
         int numParams;            // Number of elements combined
@@ -656,8 +656,8 @@ namespace OutputReportTabularAnnual {
         Real64 sumDuration;
         bool createBinRangeTable = false;
 
-        thread_local static Real64 const storedMaxVal(std::numeric_limits<Real64>::max());
-        thread_local static Real64 const storedMinVal(std::numeric_limits<Real64>::lowest());
+        EP_GLOBAL static Real64 const storedMaxVal(std::numeric_limits<Real64>::max());
+        EP_GLOBAL static Real64 const storedMinVal(std::numeric_limits<Real64>::lowest());
 
         aggString = setupAggString();
         Real64 energyUnitsConversionFactor = AnnualTable::setEnergyUnitStringAndFactor(unitsStyle, energyUnitsString);

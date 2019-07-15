@@ -106,7 +106,7 @@ namespace General {
     // parts of the simulation.
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local static std::string const BlankString;
+    EP_GLOBAL static std::string const BlankString;
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -1189,8 +1189,8 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static Real64 const DeltaAng(Pi / (double(MaxSlatAngs) - 1.0));
-        thread_local static Real64 const DeltaAng_inv((double(MaxSlatAngs) - 1.0) / Pi);
+        EP_GLOBAL static Real64 const DeltaAng(Pi / (double(MaxSlatAngs) - 1.0));
+        EP_GLOBAL static Real64 const DeltaAng_inv((double(MaxSlatAngs) - 1.0) / Pi);
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
         Real64 InterpFac; // Interpolation factor
@@ -1599,9 +1599,9 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static std::string const NAN_string("NAN");
-        thread_local static std::string const ZEROOOO("0.000000000000000000000000000");
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static std::string const NAN_string("NAN");
+        EP_GLOBAL static std::string const ZEROOOO("0.000000000000000000000000000");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1671,7 +1671,7 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1715,10 +1715,10 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static std::string const DigitChar("01234567890");
-        thread_local static std::string const NAN_string("NAN");
-        thread_local static std::string const ZEROOOO("0.000000000000000000000000000");
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static std::string const DigitChar("01234567890");
+        EP_GLOBAL static std::string const NAN_string("NAN");
+        EP_GLOBAL static std::string const ZEROOOO("0.000000000000000000000000000");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1855,7 +1855,7 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1898,8 +1898,8 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static std::string const ED("ED");
-        thread_local static std::string const zero_string("0.");
+        EP_GLOBAL static std::string const ED("ED");
+        EP_GLOBAL static std::string const zero_string("0.");
 
         // INTERFACE BLOCK SPECIFICATIONS:
         // na
@@ -1948,8 +1948,8 @@ namespace General {
         // PURPOSE OF THIS FUNCTION:
         // Remove trailing fractional zeros from floating point representation strings in place.
 
-        thread_local static std::string const ED("ED");
-        thread_local static std::string const zero_string("0.");
+        EP_GLOBAL static std::string const ED("ED");
+        EP_GLOBAL static std::string const zero_string("0.");
 
         assert(!has_any_of(InputString, "ed"));       // Pre Not using lowercase exponent letter
         assert(InputString == stripped(InputString)); // Pre Already stripped surrounding spaces
@@ -2126,14 +2126,14 @@ namespace General {
         // is left.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static int const NumSingleChars(3);
-        thread_local static Array1D_string const SingleChars(NumSingleChars, {"/", ":", "-"});
-        thread_local static int const NumDoubleChars(6);
-        thread_local static Array1D_string const DoubleChars(NumDoubleChars,
+        EP_GLOBAL static int const NumSingleChars(3);
+        EP_GLOBAL static Array1D_string const SingleChars(NumSingleChars, {"/", ":", "-"});
+        EP_GLOBAL static int const NumDoubleChars(6);
+        EP_GLOBAL static Array1D_string const DoubleChars(NumDoubleChars,
                                                 {"ST ", "ND ", "RD ", "TH ", "OF ", "IN "}); // Need trailing spaces: Want thse only at end of words
-        thread_local static Array1D_string const Months(12, {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"});
-        thread_local static Array1D_string const Weekdays(7, {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"});
-        thread_local static std::string const Numbers("0123456789");
+        EP_GLOBAL static Array1D_string const Months(12, {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"});
+        EP_GLOBAL static Array1D_string const Weekdays(7, {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"});
+        EP_GLOBAL static std::string const Numbers("0123456789");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         std::string CurrentString;
@@ -2322,7 +2322,7 @@ namespace General {
         // message when not valid, and sets error flag.
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_int const EndMonthDay(12, {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31});
+        EP_GLOBAL static Array1D_int const EndMonthDay(12, {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31});
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         bool InternalError;
@@ -2382,7 +2382,7 @@ namespace General {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Array1D_int EndDayofMonth(12, {31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365});
+        EP_GLOBAL static Array1D_int EndDayofMonth(12, {31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365});
         // End day numbers of each month (without Leap Year)
 
         if (Month == 1) {
@@ -2431,7 +2431,7 @@ namespace General {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_int const EndOfMonth({0, 12}, {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365});
+        EP_GLOBAL static Array1D_int const EndOfMonth({0, 12}, {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365});
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -2550,8 +2550,8 @@ namespace General {
         // FUNCTION ARGUMENT DEFINITIONS:
 
         // FUNCTION PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt TStmpFmt("(I2.2,':',F3.0)");
-        thread_local static ObjexxFCL::gio::Fmt TStmpFmti("(I2.2,':',I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt TStmpFmt("(I2.2,':',F3.0)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt TStmpFmti("(I2.2,':',I2.2)");
         Real64 const FracToMin(60.0);
 
         // INTERFACE BLOCK SPECIFICATIONS
@@ -3324,7 +3324,7 @@ namespace General {
         // string but in this case the output string is a fixed size so this is more
         // clear for formatting and faster. If formatted string changes, make sure to
         // add more to buffer.
-        thread_local static char buffer[11];
+        EP_GLOBAL static char buffer[11];
         int cx = snprintf(buffer, 11, "%02d:%02d:%04.1f", Hours, Minutes, Seconds);
 
         // Make sure output string is only between 0 and 10 characters so string is
@@ -3479,32 +3479,32 @@ namespace General {
         int NumNames;
         int NumNumbers;
         int IOStat;
-        thread_local static bool SurfVert(false);
-        thread_local static bool SurfDet(false);
-        thread_local static bool SurfDetWVert(false);
-        thread_local static bool DXFReport(false);
-        thread_local static std::string DXFOption1;
-        thread_local static std::string DXFOption2;
-        thread_local static bool DXFWFReport(false);
-        thread_local static std::string DXFWFOption1;
-        thread_local static std::string DXFWFOption2;
-        thread_local static bool VRMLReport(false);
-        thread_local static std::string VRMLOption1;
-        thread_local static std::string VRMLOption2;
-        thread_local static bool CostInfo(false);
-        thread_local static bool ViewFactorInfo(false);
-        thread_local static std::string ViewRptOption1;
-        thread_local static bool Constructions(false);
-        thread_local static bool Materials(false);
-        thread_local static bool LineRpt(false);
-        thread_local static std::string LineRptOption1;
-        thread_local static bool VarDict(false);
-        thread_local static bool EMSoutput(false);
-        thread_local static std::string VarDictOption1;
-        thread_local static std::string VarDictOption2;
+        EP_GLOBAL static bool SurfVert(false);
+        EP_GLOBAL static bool SurfDet(false);
+        EP_GLOBAL static bool SurfDetWVert(false);
+        EP_GLOBAL static bool DXFReport(false);
+        EP_GLOBAL static std::string DXFOption1;
+        EP_GLOBAL static std::string DXFOption2;
+        EP_GLOBAL static bool DXFWFReport(false);
+        EP_GLOBAL static std::string DXFWFOption1;
+        EP_GLOBAL static std::string DXFWFOption2;
+        EP_GLOBAL static bool VRMLReport(false);
+        EP_GLOBAL static std::string VRMLOption1;
+        EP_GLOBAL static std::string VRMLOption2;
+        EP_GLOBAL static bool CostInfo(false);
+        EP_GLOBAL static bool ViewFactorInfo(false);
+        EP_GLOBAL static std::string ViewRptOption1;
+        EP_GLOBAL static bool Constructions(false);
+        EP_GLOBAL static bool Materials(false);
+        EP_GLOBAL static bool LineRpt(false);
+        EP_GLOBAL static std::string LineRptOption1;
+        EP_GLOBAL static bool VarDict(false);
+        EP_GLOBAL static bool EMSoutput(false);
+        EP_GLOBAL static std::string VarDictOption1;
+        EP_GLOBAL static std::string VarDictOption2;
         //  LOGICAL,SAVE :: SchRpt = .FALSE.
         //  CHARACTER(len=MaxNameLength) :: SchRptOption
-        thread_local static bool GetReportInput(true);
+        EP_GLOBAL static bool GetReportInput(true);
 
         if (GetReportInput) {
 

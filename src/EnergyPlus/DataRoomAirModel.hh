@@ -67,56 +67,56 @@ namespace DataRoomAirModel {
     // all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern std::string const cUserDefinedControlObject;
-    thread_local extern std::string const cTempPatternConstGradientObject;
-    thread_local extern std::string const cTempPatternTwoGradientObject;
-    thread_local extern std::string const cTempPatternNDHeightObject;
-    thread_local extern std::string const cTempPatternSurfMapObject;
+    EP_GLOBAL extern std::string const cUserDefinedControlObject;
+    EP_GLOBAL extern std::string const cTempPatternConstGradientObject;
+    EP_GLOBAL extern std::string const cTempPatternTwoGradientObject;
+    EP_GLOBAL extern std::string const cTempPatternNDHeightObject;
+    EP_GLOBAL extern std::string const cTempPatternSurfMapObject;
 
     // Parameters to indicate room air model selected
-    thread_local extern int const RoomAirModel_UserDefined;    // user defined patterns
-    thread_local extern int const RoomAirModel_Mixing;         // mixing air model
-    thread_local extern int const RoomAirModel_Mundt;          // Mundt nodal model
-    thread_local extern int const RoomAirModel_UCSDDV;         // UCSD Displacement Ventilation model
-    thread_local extern int const RoomAirModel_UCSDCV;         // UCSD-CV
-    thread_local extern int const RoomAirModel_UCSDUFI;        // UCSD UFAD interior zone model
-    thread_local extern int const RoomAirModel_UCSDUFE;        // UCSD UFAD interior zone model
-    thread_local extern int const RoomAirModel_AirflowNetwork; // RoomAirModel_AirflowNetwork interior zone model
-    thread_local extern Array1D_string const ChAirModel;
+    EP_GLOBAL extern int const RoomAirModel_UserDefined;    // user defined patterns
+    EP_GLOBAL extern int const RoomAirModel_Mixing;         // mixing air model
+    EP_GLOBAL extern int const RoomAirModel_Mundt;          // Mundt nodal model
+    EP_GLOBAL extern int const RoomAirModel_UCSDDV;         // UCSD Displacement Ventilation model
+    EP_GLOBAL extern int const RoomAirModel_UCSDCV;         // UCSD-CV
+    EP_GLOBAL extern int const RoomAirModel_UCSDUFI;        // UCSD UFAD interior zone model
+    EP_GLOBAL extern int const RoomAirModel_UCSDUFE;        // UCSD UFAD interior zone model
+    EP_GLOBAL extern int const RoomAirModel_AirflowNetwork; // RoomAirModel_AirflowNetwork interior zone model
+    EP_GLOBAL extern Array1D_string const ChAirModel;
 
     // Parameters to indicate air temperature coupling scheme
-    thread_local extern int const DirectCoupling;   // direct coupling scheme
-    thread_local extern int const IndirectCoupling; // indirect coupling scheme
+    EP_GLOBAL extern int const DirectCoupling;   // direct coupling scheme
+    EP_GLOBAL extern int const IndirectCoupling; // indirect coupling scheme
 
     // Parameters to indicate type of air node, which is dependent on air models
-    thread_local extern int const InletAirNode;              // air node at inlet (for Mundt and Rees&Haves Models)
-    thread_local extern int const FloorAirNode;              // air node at floor (for Mundt and Rees&Haves Models)
-    thread_local extern int const ControlAirNode;            // air node at control point (for Mundt Model)
-    thread_local extern int const CeilingAirNode;            // air node at ceiling (for Mundt Model)
-    thread_local extern int const MundtRoomAirNode;          // air node for vertical walls (for Mundt Model)
-    thread_local extern int const ReturnAirNode;             // air node for return (for Mundt and Rees&Haves Models)
-    thread_local extern int const AirflowNetworkRoomAirNode; // air node for airflow network based room air model
-    thread_local extern int const PlumeAirNode1;             // air node for plume load (for Rees&Haves Model)
-    thread_local extern int const PlumeAirNode2;             // air node for plume load (for Rees&Haves Model)
-    thread_local extern int const PlumeAirNode3;             // air node for plume load (for Rees&Haves Model)
-    thread_local extern int const PlumeAirNode4;             // air node for plume load (for Rees&Haves Model)
-    thread_local extern int const RoomAirNode1;              // air node for vertical walls (for Rees&Haves Model)
-    thread_local extern int const RoomAirNode2;              // air node for vertical walls (for Rees&Haves Model)
-    thread_local extern int const RoomAirNode3;              // air node for vertical walls (for Rees&Haves Model)
-    thread_local extern int const RoomAirNode4;              // air node for vertical walls (for Rees&Haves Model)
+    EP_GLOBAL extern int const InletAirNode;              // air node at inlet (for Mundt and Rees&Haves Models)
+    EP_GLOBAL extern int const FloorAirNode;              // air node at floor (for Mundt and Rees&Haves Models)
+    EP_GLOBAL extern int const ControlAirNode;            // air node at control point (for Mundt Model)
+    EP_GLOBAL extern int const CeilingAirNode;            // air node at ceiling (for Mundt Model)
+    EP_GLOBAL extern int const MundtRoomAirNode;          // air node for vertical walls (for Mundt Model)
+    EP_GLOBAL extern int const ReturnAirNode;             // air node for return (for Mundt and Rees&Haves Models)
+    EP_GLOBAL extern int const AirflowNetworkRoomAirNode; // air node for airflow network based room air model
+    EP_GLOBAL extern int const PlumeAirNode1;             // air node for plume load (for Rees&Haves Model)
+    EP_GLOBAL extern int const PlumeAirNode2;             // air node for plume load (for Rees&Haves Model)
+    EP_GLOBAL extern int const PlumeAirNode3;             // air node for plume load (for Rees&Haves Model)
+    EP_GLOBAL extern int const PlumeAirNode4;             // air node for plume load (for Rees&Haves Model)
+    EP_GLOBAL extern int const RoomAirNode1;              // air node for vertical walls (for Rees&Haves Model)
+    EP_GLOBAL extern int const RoomAirNode2;              // air node for vertical walls (for Rees&Haves Model)
+    EP_GLOBAL extern int const RoomAirNode3;              // air node for vertical walls (for Rees&Haves Model)
+    EP_GLOBAL extern int const RoomAirNode4;              // air node for vertical walls (for Rees&Haves Model)
 
     // user-defined pattern two gradient interplotation modes
-    thread_local extern int const OutdoorDryBulbMode;  // by outdoor air bulb.
-    thread_local extern int const SensibleCoolingMode; // by sensible cooling load
-    thread_local extern int const SensibleHeatingMode; // by sensible heating load
-    thread_local extern int const ZoneAirTempMode;     // by zone air temperature
-    thread_local extern int const DeltaOutdoorZone;    // by difference between zone and outdoor
+    EP_GLOBAL extern int const OutdoorDryBulbMode;  // by outdoor air bulb.
+    EP_GLOBAL extern int const SensibleCoolingMode; // by sensible cooling load
+    EP_GLOBAL extern int const SensibleHeatingMode; // by sensible heating load
+    EP_GLOBAL extern int const ZoneAirTempMode;     // by zone air temperature
+    EP_GLOBAL extern int const DeltaOutdoorZone;    // by difference between zone and outdoor
 
     // user defined temperature pattern types
-    thread_local extern int const ConstGradTempPattern;  // constant gradient in vertical direction
-    thread_local extern int const TwoGradInterpPattern;  // two gradient interpolation
-    thread_local extern int const NonDimenHeightPattern; // non-dimensionalized height
-    thread_local extern int const SurfMapTempPattern;    // arbitrary surface mappings
+    EP_GLOBAL extern int const ConstGradTempPattern;  // constant gradient in vertical direction
+    EP_GLOBAL extern int const TwoGradInterpPattern;  // two gradient interpolation
+    EP_GLOBAL extern int const NonDimenHeightPattern; // non-dimensionalized height
+    EP_GLOBAL extern int const SurfMapTempPattern;    // arbitrary surface mappings
 
     // Parameters to indicate type of control for the UCSD UFAD interior zone model
     // INTEGER, PARAMETER :: ConsFlow          = 1     ! constant supply air flow
@@ -124,16 +124,16 @@ namespace DataRoomAirModel {
     // INTEGER, PARAMETER :: VarFlowVarPress   = 3     ! variable supply air flow, variable supply plenum pressure
 
     // parameters to indicate diffuser type
-    thread_local extern int const Swirl;
-    thread_local extern int const VarArea;
-    thread_local extern int const DisplVent;
-    thread_local extern int const LinBarGrille;
-    thread_local extern int const Custom;
+    EP_GLOBAL extern int const Swirl;
+    EP_GLOBAL extern int const VarArea;
+    EP_GLOBAL extern int const DisplVent;
+    EP_GLOBAL extern int const LinBarGrille;
+    EP_GLOBAL extern int const Custom;
 
     // parameters for comfort calculations
-    thread_local extern int const VComfort_Invalid;
-    thread_local extern int const VComfort_Jet;
-    thread_local extern int const VComfort_Recirculation;
+    EP_GLOBAL extern int const VComfort_Invalid;
+    EP_GLOBAL extern int const VComfort_Jet;
+    EP_GLOBAL extern int const VComfort_Recirculation;
 
     // DERIVED TYPE DEFINITIONS
 
@@ -151,135 +151,135 @@ namespace DataRoomAirModel {
     // na
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int TotNumOfAirNodes;
-    thread_local extern int TotNumOfRoomAFNNodes;
-    thread_local extern Array1D_int TotNumOfZoneAirNodes;
-    thread_local extern Array1D<Real64> ConvectiveFloorSplit;
-    thread_local extern Array1D<Real64> InfiltratFloorSplit;
+    EP_GLOBAL extern int TotNumOfAirNodes;
+    EP_GLOBAL extern int TotNumOfRoomAFNNodes;
+    EP_GLOBAL extern Array1D_int TotNumOfZoneAirNodes;
+    EP_GLOBAL extern Array1D<Real64> ConvectiveFloorSplit;
+    EP_GLOBAL extern Array1D<Real64> InfiltratFloorSplit;
     // UCSD
-    thread_local extern Array1D<Real64> DVHcIn;
-    thread_local extern int TotUCSDDV;                // Total number of UCSDDV zones
-    thread_local extern Array1D_bool IsZoneDV;        // Is the air model for the zone UCSDDV?
-    thread_local extern Array1D<Real64> ZTOC;         // Temperature of occupied (lower) zone
-    thread_local extern Array1D<Real64> AvgTempGrad;  // vertical Average Temperature Gradient in the room
-    thread_local extern Array1D<Real64> ZTMX;         // Temperature of the mixing(upper) layer
-    thread_local extern Array1D<Real64> MaxTempGrad;  // maximum Average Temperature Gradient in the room
-    thread_local extern Array1D<Real64> HVACAirTemp;  // HVAC system temperature (DEG C)
-    thread_local extern Array1D<Real64> HVACMassFlow; // HVAC system mass flow rate (KG/S)
-    thread_local extern Array1D<Real64> ZTFloor;
-    thread_local extern Array1D<Real64> HeightTransition;
-    thread_local extern Array1D<Real64> FracMinFlow;
-    thread_local extern Array1D_int ZoneDVMixedFlag;
-    thread_local extern Array1D<Real64> ZoneDVMixedFlagRep;
-    thread_local extern Array1D_bool ZoneAirSystemON;
-    thread_local extern Array1D<Real64> TCMF; // comfort temperature
-    thread_local extern Array1D<Real64> ZoneCeilingHeight;
-    thread_local extern Array1D<Real64> MATFloor;    // [C] floor level mean air temp
-    thread_local extern Array1D<Real64> XMATFloor;   // [C] floor level mean air temp at t minus 1 zone time step
-    thread_local extern Array1D<Real64> XM2TFloor;   // [C] floor level mean air temp at t minus 2 zone time step
-    thread_local extern Array1D<Real64> XM3TFloor;   // [C] floor level mean air temp at t minus 3 zone time step
-    thread_local extern Array1D<Real64> XM4TFloor;   // [C] floor level mean air temp at t minus 4 zone time step
-    thread_local extern Array1D<Real64> DSXMATFloor; // [C] floor level mean air temp at t minus 1 system time step
-    thread_local extern Array1D<Real64> DSXM2TFloor; // [C] floor level mean air temp at t minus 2 system time step
-    thread_local extern Array1D<Real64> DSXM3TFloor; // [C] floor level mean air temp at t minus 3 system time step
-    thread_local extern Array1D<Real64> DSXM4TFloor; // [C] floor level mean air temp at t minus 4 system time step
-    thread_local extern Array1D<Real64> MATOC;       // [C] occupied mean air temp
-    thread_local extern Array1D<Real64> XMATOC;      // [C] occupied mean air temp at t minus 1 zone time step
-    thread_local extern Array1D<Real64> XM2TOC;      // [C] occupied mean air temp at t minus 2 zone time step
-    thread_local extern Array1D<Real64> XM3TOC;      // [C] occupied mean air temp at t minus 3 zone time step
-    thread_local extern Array1D<Real64> XM4TOC;      // [C] occupied mean air temp at t minus 4 zone time step
-    thread_local extern Array1D<Real64> DSXMATOC;    // [C] occupied mean air temp at t minus 1 system time step
-    thread_local extern Array1D<Real64> DSXM2TOC;    // [C] occupied mean air temp at t minus 2 system time step
-    thread_local extern Array1D<Real64> DSXM3TOC;    // [C] occupied mean air temp at t minus 3 system time step
-    thread_local extern Array1D<Real64> DSXM4TOC;    // [C] occupied mean air temp at t minus 4 system time step
-    thread_local extern Array1D<Real64> MATMX;       // [C] mixed (upper) mean air temp
-    thread_local extern Array1D<Real64> XMATMX;      // [C] mixed (upper) mean air temp at t minus 1 zone time step
-    thread_local extern Array1D<Real64> XM2TMX;      // [C] mixed (upper) mean air temp at t minus 2 zone time step
-    thread_local extern Array1D<Real64> XM3TMX;      // [C] mixed (upper) mean air temp at t minus 3 zone time step
-    thread_local extern Array1D<Real64> XM4TMX;      // [C] mixed (upper) mean air temp at t minus 4 zone time step
-    thread_local extern Array1D<Real64> DSXMATMX;    // [C] mixed  mean air temp at t minus 1 system time step
-    thread_local extern Array1D<Real64> DSXM2TMX;    // [C] mixed  mean air temp at t minus 2 system time step
-    thread_local extern Array1D<Real64> DSXM3TMX;    // [C] mixed  mean air temp at t minus 3 system time step
-    thread_local extern Array1D<Real64> DSXM4TMX;    // [C] mixed  mean air temp at t minus 4 system time step
-    thread_local extern Array1D<Real64> ZTM1Floor;   // [C] difference equation's Floor air temp at t minus 1
-    thread_local extern Array1D<Real64> ZTM2Floor;   // [C] difference equation's Floor air temp at t minus 2
-    thread_local extern Array1D<Real64> ZTM3Floor;   // [C] difference equation's Floor air temp at t minus 3
-    thread_local extern Array1D<Real64> ZTM1OC;      // [C] difference equation's Occupied air temp at t minus 1
-    thread_local extern Array1D<Real64> ZTM2OC;      // [C] difference equation's Occupied air temp at t minus 2
-    thread_local extern Array1D<Real64> ZTM3OC;      // [C] difference equation's Occupied air temp at t minus 3
-    thread_local extern Array1D<Real64> ZTM1MX;      // [C] difference equation's Mixed  air temp at t minus 1
-    thread_local extern Array1D<Real64> ZTM2MX;      // [C] difference equation's Mixed  air temp at t minus 1
-    thread_local extern Array1D<Real64> ZTM3MX;      // [C] difference equation's Mixed  air temp at t minus 1
-    thread_local extern Array1D<Real64> AIRRATFloor;
-    thread_local extern Array1D<Real64> AIRRATOC;
-    thread_local extern Array1D<Real64> AIRRATMX;
+    EP_GLOBAL extern Array1D<Real64> DVHcIn;
+    EP_GLOBAL extern int TotUCSDDV;                // Total number of UCSDDV zones
+    EP_GLOBAL extern Array1D_bool IsZoneDV;        // Is the air model for the zone UCSDDV?
+    EP_GLOBAL extern Array1D<Real64> ZTOC;         // Temperature of occupied (lower) zone
+    EP_GLOBAL extern Array1D<Real64> AvgTempGrad;  // vertical Average Temperature Gradient in the room
+    EP_GLOBAL extern Array1D<Real64> ZTMX;         // Temperature of the mixing(upper) layer
+    EP_GLOBAL extern Array1D<Real64> MaxTempGrad;  // maximum Average Temperature Gradient in the room
+    EP_GLOBAL extern Array1D<Real64> HVACAirTemp;  // HVAC system temperature (DEG C)
+    EP_GLOBAL extern Array1D<Real64> HVACMassFlow; // HVAC system mass flow rate (KG/S)
+    EP_GLOBAL extern Array1D<Real64> ZTFloor;
+    EP_GLOBAL extern Array1D<Real64> HeightTransition;
+    EP_GLOBAL extern Array1D<Real64> FracMinFlow;
+    EP_GLOBAL extern Array1D_int ZoneDVMixedFlag;
+    EP_GLOBAL extern Array1D<Real64> ZoneDVMixedFlagRep;
+    EP_GLOBAL extern Array1D_bool ZoneAirSystemON;
+    EP_GLOBAL extern Array1D<Real64> TCMF; // comfort temperature
+    EP_GLOBAL extern Array1D<Real64> ZoneCeilingHeight;
+    EP_GLOBAL extern Array1D<Real64> MATFloor;    // [C] floor level mean air temp
+    EP_GLOBAL extern Array1D<Real64> XMATFloor;   // [C] floor level mean air temp at t minus 1 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM2TFloor;   // [C] floor level mean air temp at t minus 2 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM3TFloor;   // [C] floor level mean air temp at t minus 3 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM4TFloor;   // [C] floor level mean air temp at t minus 4 zone time step
+    EP_GLOBAL extern Array1D<Real64> DSXMATFloor; // [C] floor level mean air temp at t minus 1 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM2TFloor; // [C] floor level mean air temp at t minus 2 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM3TFloor; // [C] floor level mean air temp at t minus 3 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM4TFloor; // [C] floor level mean air temp at t minus 4 system time step
+    EP_GLOBAL extern Array1D<Real64> MATOC;       // [C] occupied mean air temp
+    EP_GLOBAL extern Array1D<Real64> XMATOC;      // [C] occupied mean air temp at t minus 1 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM2TOC;      // [C] occupied mean air temp at t minus 2 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM3TOC;      // [C] occupied mean air temp at t minus 3 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM4TOC;      // [C] occupied mean air temp at t minus 4 zone time step
+    EP_GLOBAL extern Array1D<Real64> DSXMATOC;    // [C] occupied mean air temp at t minus 1 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM2TOC;    // [C] occupied mean air temp at t minus 2 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM3TOC;    // [C] occupied mean air temp at t minus 3 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM4TOC;    // [C] occupied mean air temp at t minus 4 system time step
+    EP_GLOBAL extern Array1D<Real64> MATMX;       // [C] mixed (upper) mean air temp
+    EP_GLOBAL extern Array1D<Real64> XMATMX;      // [C] mixed (upper) mean air temp at t minus 1 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM2TMX;      // [C] mixed (upper) mean air temp at t minus 2 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM3TMX;      // [C] mixed (upper) mean air temp at t minus 3 zone time step
+    EP_GLOBAL extern Array1D<Real64> XM4TMX;      // [C] mixed (upper) mean air temp at t minus 4 zone time step
+    EP_GLOBAL extern Array1D<Real64> DSXMATMX;    // [C] mixed  mean air temp at t minus 1 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM2TMX;    // [C] mixed  mean air temp at t minus 2 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM3TMX;    // [C] mixed  mean air temp at t minus 3 system time step
+    EP_GLOBAL extern Array1D<Real64> DSXM4TMX;    // [C] mixed  mean air temp at t minus 4 system time step
+    EP_GLOBAL extern Array1D<Real64> ZTM1Floor;   // [C] difference equation's Floor air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZTM2Floor;   // [C] difference equation's Floor air temp at t minus 2
+    EP_GLOBAL extern Array1D<Real64> ZTM3Floor;   // [C] difference equation's Floor air temp at t minus 3
+    EP_GLOBAL extern Array1D<Real64> ZTM1OC;      // [C] difference equation's Occupied air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZTM2OC;      // [C] difference equation's Occupied air temp at t minus 2
+    EP_GLOBAL extern Array1D<Real64> ZTM3OC;      // [C] difference equation's Occupied air temp at t minus 3
+    EP_GLOBAL extern Array1D<Real64> ZTM1MX;      // [C] difference equation's Mixed  air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZTM2MX;      // [C] difference equation's Mixed  air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZTM3MX;      // [C] difference equation's Mixed  air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> AIRRATFloor;
+    EP_GLOBAL extern Array1D<Real64> AIRRATOC;
+    EP_GLOBAL extern Array1D<Real64> AIRRATMX;
     // Euler and Exact solution algorithms
-    thread_local extern Array1D<Real64> Zone1Floor;  // [C] difference equation's Floor air temp at previous dt
-    thread_local extern Array1D<Real64> ZoneMXFloor; // [C] difference equation's Floor air temp at t minus 1
-    thread_local extern Array1D<Real64> ZoneM2Floor; // [C] difference equation's Floor air temp at t minus 2
-    thread_local extern Array1D<Real64> Zone1OC;     // [C] difference equation's Occupied air temp at previous dt
-    thread_local extern Array1D<Real64> ZoneMXOC;    // [C] difference equation's Occupied air temp at t minus 1
-    thread_local extern Array1D<Real64> ZoneM2OC;    // [C] difference equation's Occupied air temp at t minus 2
-    thread_local extern Array1D<Real64> Zone1MX;     // [C] difference equation's Mixed  air temp at previous dt
-    thread_local extern Array1D<Real64> ZoneMXMX;    // [C] difference equation's Mixed  air temp at t minus 1
-    thread_local extern Array1D<Real64> ZoneM2MX;    // [C] difference equation's Mixed  air temp at t minus 2
+    EP_GLOBAL extern Array1D<Real64> Zone1Floor;  // [C] difference equation's Floor air temp at previous dt
+    EP_GLOBAL extern Array1D<Real64> ZoneMXFloor; // [C] difference equation's Floor air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZoneM2Floor; // [C] difference equation's Floor air temp at t minus 2
+    EP_GLOBAL extern Array1D<Real64> Zone1OC;     // [C] difference equation's Occupied air temp at previous dt
+    EP_GLOBAL extern Array1D<Real64> ZoneMXOC;    // [C] difference equation's Occupied air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZoneM2OC;    // [C] difference equation's Occupied air temp at t minus 2
+    EP_GLOBAL extern Array1D<Real64> Zone1MX;     // [C] difference equation's Mixed  air temp at previous dt
+    EP_GLOBAL extern Array1D<Real64> ZoneMXMX;    // [C] difference equation's Mixed  air temp at t minus 1
+    EP_GLOBAL extern Array1D<Real64> ZoneM2MX;    // [C] difference equation's Mixed  air temp at t minus 2
     // UCSD-CV
-    thread_local extern Array1D<Real64> CVHcIn;
-    thread_local extern int TotUCSDCV;                   // Total number of UCSDDV zones
-    thread_local extern Array1D_bool IsZoneCV;           // Is the air model for the zone UCSDDV?
-    thread_local extern Array1D<Real64> ZoneCVisMixing;  // Zone set to CV is actually using a mixing model
-    thread_local extern Array1D<Real64> ZTJET;           // Jet Temperatures
-    thread_local extern Array1D<Real64> ZTREC;           // Recirculation Temperatures
-    thread_local extern Array1D<Real64> RoomOutflowTemp; // Temperature of air flowing out of the room
-    thread_local extern Array1D<Real64> JetRecAreaRatio;
-    thread_local extern Array1D<Real64> Urec;           // Recirculation region average velocity
-    thread_local extern Array1D<Real64> Ujet;           // Jet region average velocity
-    thread_local extern Array1D<Real64> Qrec;           // Recirculation zone total flow rate
-    thread_local extern Array1D<Real64> Qtot;           // Total volumetric inflow rate through all active aperatures [m3/s]
-    thread_local extern Array1D<Real64> RecInflowRatio; // Ratio of the recirculation volumetric flow rate to the total inflow flow rate []
-    thread_local extern Array1D<Real64> Uhc;
-    thread_local extern Array1D<Real64> Ain;                     // Inflow aperture area
-    thread_local extern Array1D<Real64> Droom;                   // CV Zone average length
-    thread_local extern Array1D<Real64> Dstar;                   // CV Zone average length, wind direction corrected
-    thread_local extern Array1D<Real64> Tin;                     // Inflow air temperature
-    thread_local extern Array1D<Real64> TotArea;                 // Sum of the areas of all apertures in the zone
-    thread_local extern Array2D_int AirflowNetworkSurfaceUCSDCV; // table for AirflowNetwork surfaces organization
-    thread_local extern int CVNumAirflowNetworkSurfaces;         // total number of AirFlowNetwork surfaces.
+    EP_GLOBAL extern Array1D<Real64> CVHcIn;
+    EP_GLOBAL extern int TotUCSDCV;                   // Total number of UCSDDV zones
+    EP_GLOBAL extern Array1D_bool IsZoneCV;           // Is the air model for the zone UCSDDV?
+    EP_GLOBAL extern Array1D<Real64> ZoneCVisMixing;  // Zone set to CV is actually using a mixing model
+    EP_GLOBAL extern Array1D<Real64> ZTJET;           // Jet Temperatures
+    EP_GLOBAL extern Array1D<Real64> ZTREC;           // Recirculation Temperatures
+    EP_GLOBAL extern Array1D<Real64> RoomOutflowTemp; // Temperature of air flowing out of the room
+    EP_GLOBAL extern Array1D<Real64> JetRecAreaRatio;
+    EP_GLOBAL extern Array1D<Real64> Urec;           // Recirculation region average velocity
+    EP_GLOBAL extern Array1D<Real64> Ujet;           // Jet region average velocity
+    EP_GLOBAL extern Array1D<Real64> Qrec;           // Recirculation zone total flow rate
+    EP_GLOBAL extern Array1D<Real64> Qtot;           // Total volumetric inflow rate through all active aperatures [m3/s]
+    EP_GLOBAL extern Array1D<Real64> RecInflowRatio; // Ratio of the recirculation volumetric flow rate to the total inflow flow rate []
+    EP_GLOBAL extern Array1D<Real64> Uhc;
+    EP_GLOBAL extern Array1D<Real64> Ain;                     // Inflow aperture area
+    EP_GLOBAL extern Array1D<Real64> Droom;                   // CV Zone average length
+    EP_GLOBAL extern Array1D<Real64> Dstar;                   // CV Zone average length, wind direction corrected
+    EP_GLOBAL extern Array1D<Real64> Tin;                     // Inflow air temperature
+    EP_GLOBAL extern Array1D<Real64> TotArea;                 // Sum of the areas of all apertures in the zone
+    EP_GLOBAL extern Array2D_int AirflowNetworkSurfaceUCSDCV; // table for AirflowNetwork surfaces organization
+    EP_GLOBAL extern int CVNumAirflowNetworkSurfaces;         // total number of AirFlowNetwork surfaces.
     // Interzone surfaces counts twice.
-    thread_local extern Array1D<Real64> Rfr;          // Ration between inflow and recirculation air flows
-    thread_local extern Array1D<Real64> ZoneCVhasREC; // Airflow pattern is C(0), CR(1)
-    thread_local extern bool UCSDModelUsed;
-    thread_local extern bool MundtModelUsed;
+    EP_GLOBAL extern Array1D<Real64> Rfr;          // Ration between inflow and recirculation air flows
+    EP_GLOBAL extern Array1D<Real64> ZoneCVhasREC; // Airflow pattern is C(0), CR(1)
+    EP_GLOBAL extern bool UCSDModelUsed;
+    EP_GLOBAL extern bool MundtModelUsed;
     // UCSD-UF
-    thread_local extern int TotUCSDUI;         // total number of UCSDUI zones
-    thread_local extern int TotUCSDUE;         // total number of UCSDUE zones
-    thread_local extern Array1D_bool IsZoneUI; // controls program flow, for interior or exterior UFAD model
-    thread_local extern Array1D_int ZoneUFPtr;
-    thread_local extern Array1D<Real64> UFHcIn;
-    thread_local extern Array1D_int ZoneUFMixedFlag;
-    thread_local extern Array1D<Real64> ZoneUFMixedFlagRep;
-    thread_local extern Array1D<Real64> ZoneUFGamma;
-    thread_local extern Array1D<Real64> ZoneUFPowInPlumes;            // [W]
-    thread_local extern Array1D<Real64> ZoneUFPowInPlumesfromWindows; // [W]
-    thread_local extern Array1D<Real64> Phi;                          // dimensionless measure of occupied subzone temperature
+    EP_GLOBAL extern int TotUCSDUI;         // total number of UCSDUI zones
+    EP_GLOBAL extern int TotUCSDUE;         // total number of UCSDUE zones
+    EP_GLOBAL extern Array1D_bool IsZoneUI; // controls program flow, for interior or exterior UFAD model
+    EP_GLOBAL extern Array1D_int ZoneUFPtr;
+    EP_GLOBAL extern Array1D<Real64> UFHcIn;
+    EP_GLOBAL extern Array1D_int ZoneUFMixedFlag;
+    EP_GLOBAL extern Array1D<Real64> ZoneUFMixedFlagRep;
+    EP_GLOBAL extern Array1D<Real64> ZoneUFGamma;
+    EP_GLOBAL extern Array1D<Real64> ZoneUFPowInPlumes;            // [W]
+    EP_GLOBAL extern Array1D<Real64> ZoneUFPowInPlumesfromWindows; // [W]
+    EP_GLOBAL extern Array1D<Real64> Phi;                          // dimensionless measure of occupied subzone temperature
 
     // END UCSD
 
     // Begin NREL User-defined patterns
 
-    thread_local extern int numTempDistContrldZones; // count of zones with user-defined patterns
-    thread_local extern int NumAirTempPatterns;      // count of all different patterns in input file
-    thread_local extern int NumConstantGradient;     // count of constant gradient patterns in input
-    thread_local extern int NumTwoGradientInterp;    // count of two gradient interp patterns in input
-    thread_local extern int NumNonDimensionalHeight; // count of ND height profile patterns in input
-    thread_local extern int NumSurfaceMapping;       // count of generic surface map patterns in input
+    EP_GLOBAL extern int numTempDistContrldZones; // count of zones with user-defined patterns
+    EP_GLOBAL extern int NumAirTempPatterns;      // count of all different patterns in input file
+    EP_GLOBAL extern int NumConstantGradient;     // count of constant gradient patterns in input
+    EP_GLOBAL extern int NumTwoGradientInterp;    // count of two gradient interp patterns in input
+    EP_GLOBAL extern int NumNonDimensionalHeight; // count of ND height profile patterns in input
+    EP_GLOBAL extern int NumSurfaceMapping;       // count of generic surface map patterns in input
 
-    thread_local extern bool UserDefinedUsed; // true if user-defined model used anywhere
+    EP_GLOBAL extern bool UserDefinedUsed; // true if user-defined model used anywhere
 
     // End User-defined patterns
 
     // RoomAirflowNetwork
-    thread_local extern int NumOfRoomAirflowNetControl; // count of RoomAirSettings:AirflowNetwork
+    EP_GLOBAL extern int NumOfRoomAirflowNetControl; // count of RoomAirSettings:AirflowNetwork
 
     // Types
 
@@ -829,17 +829,17 @@ namespace DataRoomAirModel {
     };
 
     // Object Data
-    thread_local extern Array1D<AirModelData> AirModel;
-    thread_local extern Array1D<AirNodeData> AirNode;
-    thread_local extern Array1D<DVData> ZoneUCSDDV; // UCSD
-    thread_local extern Array1D<CVData> ZoneUCSDCV;
-    thread_local extern Array1D<UFIData> ZoneUCSDUI;
-    thread_local extern Array1D<UFEData> ZoneUCSDUE;
-    thread_local extern Array2D<CVFlow> CVJetRecFlows;                                          // Jet and recirculation zone flows and properties
-    thread_local extern Array1D<CVDVParameters> SurfParametersCVDV;                             // Surface parameters
-    thread_local extern Array1D<TemperaturePatternStruct> RoomAirPattern;                       // user defined patterns ,various types
-    thread_local extern Array1D<AirPatternInfobyZoneStruct> AirPatternZoneInfo;                 // added zone information for user defined patterns
-    thread_local extern Array1D<RoomAirflowNetworkInfoByZoneStruct> RoomAirflowNetworkZoneInfo; // added zone info
+    EP_GLOBAL extern Array1D<AirModelData> AirModel;
+    EP_GLOBAL extern Array1D<AirNodeData> AirNode;
+    EP_GLOBAL extern Array1D<DVData> ZoneUCSDDV; // UCSD
+    EP_GLOBAL extern Array1D<CVData> ZoneUCSDCV;
+    EP_GLOBAL extern Array1D<UFIData> ZoneUCSDUI;
+    EP_GLOBAL extern Array1D<UFEData> ZoneUCSDUE;
+    EP_GLOBAL extern Array2D<CVFlow> CVJetRecFlows;                                          // Jet and recirculation zone flows and properties
+    EP_GLOBAL extern Array1D<CVDVParameters> SurfParametersCVDV;                             // Surface parameters
+    EP_GLOBAL extern Array1D<TemperaturePatternStruct> RoomAirPattern;                       // user defined patterns ,various types
+    EP_GLOBAL extern Array1D<AirPatternInfobyZoneStruct> AirPatternZoneInfo;                 // added zone information for user defined patterns
+    EP_GLOBAL extern Array1D<RoomAirflowNetworkInfoByZoneStruct> RoomAirflowNetworkZoneInfo; // added zone info
 
     void clear_state();
 

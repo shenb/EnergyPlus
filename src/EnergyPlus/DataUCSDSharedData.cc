@@ -91,25 +91,25 @@ namespace DataUCSDSharedData {
     // type of surface. The PosZ_Wall array has dimension 2 times the Number of Zones and
     // for each zone it has 2 positions: the start and end positions in the Apos_Wall array
     // for that specific zone.
-    thread_local Array1D_int APos_Wall;
-    thread_local Array1D_int APos_Floor;
-    thread_local Array1D_int APos_Ceiling;
-    thread_local Array1D_int PosZ_Wall;
-    thread_local Array1D_int PosZ_Floor;
-    thread_local Array1D_int PosZ_Ceiling;
-    thread_local Array1D_int APos_Window;
-    thread_local Array1D_int APos_Door;
-    thread_local Array1D_int APos_Internal;
-    thread_local Array1D_int PosZ_Window;
-    thread_local Array1D_int PosZ_Door;
-    thread_local Array1D_int PosZ_Internal;
+    EP_GLOBAL Array1D_int APos_Wall;
+    EP_GLOBAL Array1D_int APos_Floor;
+    EP_GLOBAL Array1D_int APos_Ceiling;
+    EP_GLOBAL Array1D_int PosZ_Wall;
+    EP_GLOBAL Array1D_int PosZ_Floor;
+    EP_GLOBAL Array1D_int PosZ_Ceiling;
+    EP_GLOBAL Array1D_int APos_Window;
+    EP_GLOBAL Array1D_int APos_Door;
+    EP_GLOBAL Array1D_int APos_Internal;
+    EP_GLOBAL Array1D_int PosZ_Window;
+    EP_GLOBAL Array1D_int PosZ_Door;
+    EP_GLOBAL Array1D_int PosZ_Internal;
     // Convection coeficients for the various surfaces
-    thread_local Array1D<Real64> HCeiling;
-    thread_local Array1D<Real64> HWall;
-    thread_local Array1D<Real64> HFloor;
-    thread_local Array1D<Real64> HInternal;
-    thread_local Array1D<Real64> HWindow;
-    thread_local Array1D<Real64> HDoor;
+    EP_GLOBAL Array1D<Real64> HCeiling;
+    EP_GLOBAL Array1D<Real64> HWall;
+    EP_GLOBAL Array1D<Real64> HFloor;
+    EP_GLOBAL Array1D<Real64> HInternal;
+    EP_GLOBAL Array1D<Real64> HWindow;
+    EP_GLOBAL Array1D<Real64> HDoor;
 
     // Clears the global data in DataAirLoop.
     // Needed for unit tests, should not be normally called.

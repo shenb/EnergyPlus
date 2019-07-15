@@ -66,80 +66,80 @@ namespace DataGenerators {
     // Thus, all variables in this module must be PUBLIC.
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const NormalizedCurveMode; // mode where efficiency curves are modifier curves
-    thread_local extern int const DirectCurveMode;     // mode where efficiency curves are direct
+    EP_GLOBAL extern int const NormalizedCurveMode; // mode where efficiency curves are modifier curves
+    EP_GLOBAL extern int const DirectCurveMode;     // mode where efficiency curves are direct
 
-    thread_local extern int const ConstantRateSkinLoss;  // fixed rate mode for skin losses
-    thread_local extern int const UADTSkinLoss;          // UAdelta T mode for skin losses
-    thread_local extern int const QuadraticFuelNdotSkin; // Quadratic function of fuel flow for skin losses
+    EP_GLOBAL extern int const ConstantRateSkinLoss;  // fixed rate mode for skin losses
+    EP_GLOBAL extern int const UADTSkinLoss;          // UAdelta T mode for skin losses
+    EP_GLOBAL extern int const QuadraticFuelNdotSkin; // Quadratic function of fuel flow for skin losses
 
-    thread_local extern int const QuadraticFuncofNdot;  // function of fuel rate mode for air flow
-    thread_local extern int const ConstantStoicsAirRat; // Constant air ratio in stoics with fuel constituents
-    thread_local extern int const QuadraticFuncofPel;   // function of electric power mode
+    EP_GLOBAL extern int const QuadraticFuncofNdot;  // function of fuel rate mode for air flow
+    EP_GLOBAL extern int const ConstantStoicsAirRat; // Constant air ratio in stoics with fuel constituents
+    EP_GLOBAL extern int const QuadraticFuncofPel;   // function of electric power mode
 
-    thread_local extern int const NoRecoveryOnAirIntake;  // mode for controlling intake air heat recovery
-    thread_local extern int const RecoverBurnInvertBatt;  // mode for controlling intake air heat recovery
-    thread_local extern int const RecoverAuxiliaryBurner; // mode for controlling intake air heat recovery
-    thread_local extern int const RecoverInverterBatt;    // mode for controlling intake air heat recovery
-    thread_local extern int const RecoverInverter;        // mode for controlling intake air heat recovery
-    thread_local extern int const RecoverBattery;         // mode for controlling intake air heat recovery
+    EP_GLOBAL extern int const NoRecoveryOnAirIntake;  // mode for controlling intake air heat recovery
+    EP_GLOBAL extern int const RecoverBurnInvertBatt;  // mode for controlling intake air heat recovery
+    EP_GLOBAL extern int const RecoverAuxiliaryBurner; // mode for controlling intake air heat recovery
+    EP_GLOBAL extern int const RecoverInverterBatt;    // mode for controlling intake air heat recovery
+    EP_GLOBAL extern int const RecoverInverter;        // mode for controlling intake air heat recovery
+    EP_GLOBAL extern int const RecoverBattery;         // mode for controlling intake air heat recovery
 
-    thread_local extern int const RegularAir;
-    thread_local extern int const UserDefinedConstituents;
+    EP_GLOBAL extern int const RegularAir;
+    EP_GLOBAL extern int const UserDefinedConstituents;
 
-    thread_local extern int const FuelInTempFromNode;
-    thread_local extern int const FuelInTempSchedule;
+    EP_GLOBAL extern int const FuelInTempFromNode;
+    EP_GLOBAL extern int const FuelInTempSchedule;
 
-    thread_local extern int const WaterInReformMains;
-    thread_local extern int const WaterInReformAirNode;
-    thread_local extern int const WaterInReformWaterNode;
-    thread_local extern int const WaterInReformSchedule;
+    EP_GLOBAL extern int const WaterInReformMains;
+    EP_GLOBAL extern int const WaterInReformAirNode;
+    EP_GLOBAL extern int const WaterInReformWaterNode;
+    EP_GLOBAL extern int const WaterInReformSchedule;
 
-    thread_local extern int const InverterEffConstant;
-    thread_local extern int const InverterEffQuadratic;
+    EP_GLOBAL extern int const InverterEffConstant;
+    EP_GLOBAL extern int const InverterEffQuadratic;
 
-    thread_local extern int const FixedEffectiveness;   // exhaust gas HX modeling mode
-    thread_local extern int const LMTDempiricalUAeff;   // exhaust gas HX modeling mode
-    thread_local extern int const LMTDfundementalUAeff; // exhaust gas HX modeling mode
-    thread_local extern int const Condensing;           // exhaust gas HX modeling mode
+    EP_GLOBAL extern int const FixedEffectiveness;   // exhaust gas HX modeling mode
+    EP_GLOBAL extern int const LMTDempiricalUAeff;   // exhaust gas HX modeling mode
+    EP_GLOBAL extern int const LMTDfundementalUAeff; // exhaust gas HX modeling mode
+    EP_GLOBAL extern int const Condensing;           // exhaust gas HX modeling mode
 
-    thread_local extern int const SimpleEffConstraints;         // electrical storage modeling mode
-    thread_local extern int const LeadAcidBatterySaupe;         // electrical storage modeling mode
-    thread_local extern int const LeadAcidBatterManwellMcGowan; // electrical storage modeling mode
+    EP_GLOBAL extern int const SimpleEffConstraints;         // electrical storage modeling mode
+    EP_GLOBAL extern int const LeadAcidBatterySaupe;         // electrical storage modeling mode
+    EP_GLOBAL extern int const LeadAcidBatterManwellMcGowan; // electrical storage modeling mode
 
-    thread_local extern int const SurroundingZone;
-    thread_local extern int const AirInletForFC;
+    EP_GLOBAL extern int const SurroundingZone;
+    EP_GLOBAL extern int const AirInletForFC;
 
-    thread_local extern int const OpModeOff;      // CHP operating mode OFF
-    thread_local extern int const OpModeStandby;  // CHP operating mode Stand By
-    thread_local extern int const OpModeWarmUp;   // CHP operating mode Warm Up or start up
-    thread_local extern int const OpModeNormal;   // CHP operating mode Normal
-    thread_local extern int const OpModeCoolDown; // CHP operating mode Cool down or shut down
+    EP_GLOBAL extern int const OpModeOff;      // CHP operating mode OFF
+    EP_GLOBAL extern int const OpModeStandby;  // CHP operating mode Stand By
+    EP_GLOBAL extern int const OpModeWarmUp;   // CHP operating mode Warm Up or start up
+    EP_GLOBAL extern int const OpModeNormal;   // CHP operating mode Normal
+    EP_GLOBAL extern int const OpModeCoolDown; // CHP operating mode Cool down or shut down
 
-    thread_local extern int const fuelModeGaseousConstituents;
-    thread_local extern int const fuelModeGenericLiquid;
+    EP_GLOBAL extern int const fuelModeGaseousConstituents;
+    EP_GLOBAL extern int const fuelModeGenericLiquid;
 
-    thread_local extern Real64 const MinProductGasTemp; // Minimum bound on search for product gas temps
-    thread_local extern Real64 const MaxProductGasTemp; // Maximum bound on search for product gas temps
+    EP_GLOBAL extern Real64 const MinProductGasTemp; // Minimum bound on search for product gas temps
+    EP_GLOBAL extern Real64 const MaxProductGasTemp; // Maximum bound on search for product gas temps
 
-    thread_local extern int const NISTShomate;
-    thread_local extern int const NASAPolynomial;
+    EP_GLOBAL extern int const NISTShomate;
+    EP_GLOBAL extern int const NASAPolynomial;
 
-    thread_local extern Real64 const RinKJperMolpK; // R is ideal gas constant (kJ/mol-K)
-    thread_local extern Real64 const InitHRTemp;    // Initialization temperature for heat recovery water
+    EP_GLOBAL extern Real64 const RinKJperMolpK; // R is ideal gas constant (kJ/mol-K)
+    EP_GLOBAL extern Real64 const InitHRTemp;    // Initialization temperature for heat recovery water
 
-    thread_local extern Real64 const ImBalanceTol; // used as fraction of electrical power at power module
+    EP_GLOBAL extern Real64 const ImBalanceTol; // used as fraction of electrical power at power module
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumFuelConstit;
-    thread_local extern int NumGeneratorFuelSups;
-    thread_local extern int NumFuelCellGenerators; // number of SOFC Generators specified in input
-    thread_local extern int NumMicroCHPs;
-    thread_local extern int NumMicroCHPParams; // number of parameter sets for micro chp
-    thread_local extern int NumGensWDynamics;  // number of dynamics controls for generators
+    EP_GLOBAL extern int NumFuelConstit;
+    EP_GLOBAL extern int NumGeneratorFuelSups;
+    EP_GLOBAL extern int NumFuelCellGenerators; // number of SOFC Generators specified in input
+    EP_GLOBAL extern int NumMicroCHPs;
+    EP_GLOBAL extern int NumMicroCHPParams; // number of parameter sets for micro chp
+    EP_GLOBAL extern int NumGensWDynamics;  // number of dynamics controls for generators
 
     // Types
 
@@ -957,12 +957,12 @@ namespace DataGenerators {
     };
 
     // Object Data
-    thread_local extern Array1D<FCDataStruct> FuelCell; // dimension to number of machines
-    thread_local extern Array1D<GasPropertyDataStruct> GasPhaseThermoChemistryData;
-    thread_local extern Array1D<GeneratorFuelSupplyDataStruct> FuelSupply; // fuel supply (reused across various)
-    thread_local extern Array1D<MicroCHPDataStruct> MicroCHP;
-    thread_local extern Array1D<MicroCHPParamsNonNormalized> MicroCHPParamInput; // Used during get input then put into nested
-    thread_local extern Array1D<GeneratorDynamicsManagerStruct> GeneratorDynamics;
+    EP_GLOBAL extern Array1D<FCDataStruct> FuelCell; // dimension to number of machines
+    EP_GLOBAL extern Array1D<GasPropertyDataStruct> GasPhaseThermoChemistryData;
+    EP_GLOBAL extern Array1D<GeneratorFuelSupplyDataStruct> FuelSupply; // fuel supply (reused across various)
+    EP_GLOBAL extern Array1D<MicroCHPDataStruct> MicroCHP;
+    EP_GLOBAL extern Array1D<MicroCHPParamsNonNormalized> MicroCHPParamInput; // Used during get input then put into nested
+    EP_GLOBAL extern Array1D<GeneratorDynamicsManagerStruct> GeneratorDynamics;
 
     void clear_state();
 

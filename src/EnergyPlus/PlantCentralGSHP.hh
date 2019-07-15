@@ -68,29 +68,29 @@ namespace PlantCentralGSHP {
     // Data
     // MODULE PARAMETER DEFINITIONS:
     // Chiller type parameters: Only water cooled chiller is allowed
-    thread_local extern int const WaterCooled;
-    thread_local extern int const SmartMixing;
-    thread_local extern int const FullyMixed;
-    thread_local extern bool SimulClgDominant;
-    thread_local extern bool SimulHtgDominant;
+    EP_GLOBAL extern int const WaterCooled;
+    EP_GLOBAL extern int const SmartMixing;
+    EP_GLOBAL extern int const FullyMixed;
+    EP_GLOBAL extern bool SimulClgDominant;
+    EP_GLOBAL extern bool SimulHtgDominant;
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern bool GetInputWrapper;        // When TRUE, calls subroutine to read input file.
-    thread_local extern int NumWrappers;             // Number of Wrappers specified in input
-    thread_local extern int NumChillerHeaters;       // Number of Chiller/heaters specified in input
-    thread_local extern Real64 CondenserFanPower;    // Condenser Fan Power (fan cycles with compressor) [W]
-    thread_local extern Real64 ChillerCapFT;         // Chiller/heater capacity fraction (evaluated as a function of temperature)
-    thread_local extern Real64 ChillerEIRFT;         // Chiller/heater electric input ratio (EIR = 1 / COP) as a function of temperature
-    thread_local extern Real64 ChillerEIRFPLR;       // Chiller/heater EIR as a function of part-load ratio (PLR)
-    thread_local extern Real64 ChillerPartLoadRatio; // Chiller/heater part-load ratio (PLR)
-    thread_local extern Real64 ChillerCyclingRatio;  // Chiller/heater cycling ratio
-    thread_local extern Real64 ChillerFalseLoadRate; // Chiller/heater false load over and above the water-side load [W]
+    EP_GLOBAL extern bool GetInputWrapper;        // When TRUE, calls subroutine to read input file.
+    EP_GLOBAL extern int NumWrappers;             // Number of Wrappers specified in input
+    EP_GLOBAL extern int NumChillerHeaters;       // Number of Chiller/heaters specified in input
+    EP_GLOBAL extern Real64 CondenserFanPower;    // Condenser Fan Power (fan cycles with compressor) [W]
+    EP_GLOBAL extern Real64 ChillerCapFT;         // Chiller/heater capacity fraction (evaluated as a function of temperature)
+    EP_GLOBAL extern Real64 ChillerEIRFT;         // Chiller/heater electric input ratio (EIR = 1 / COP) as a function of temperature
+    EP_GLOBAL extern Real64 ChillerEIRFPLR;       // Chiller/heater EIR as a function of part-load ratio (PLR)
+    EP_GLOBAL extern Real64 ChillerPartLoadRatio; // Chiller/heater part-load ratio (PLR)
+    EP_GLOBAL extern Real64 ChillerCyclingRatio;  // Chiller/heater cycling ratio
+    EP_GLOBAL extern Real64 ChillerFalseLoadRate; // Chiller/heater false load over and above the water-side load [W]
 
     // Type defining the component specifications
 
-    thread_local extern Array1D_bool CheckEquipName;
-    thread_local extern Array1D_bool CHCheckEquipName;
-    thread_local extern Array1D_bool HPCheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CHCheckEquipName;
+    EP_GLOBAL extern Array1D_bool HPCheckEquipName;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE ChillerElectricEIR
 
@@ -420,10 +420,10 @@ namespace PlantCentralGSHP {
     };
 
     // Object Data
-    thread_local extern Array1D<WrapperSpecs> Wrapper;
-    thread_local extern Array1D<ChillerHeaterSpecs> ChillerHeater;
-    thread_local extern Array1D<CHReportVars> ChillerHeaterReport;
-    thread_local extern Array1D<WrapperReportVars> WrapperReport;
+    EP_GLOBAL extern Array1D<WrapperSpecs> Wrapper;
+    EP_GLOBAL extern Array1D<ChillerHeaterSpecs> ChillerHeater;
+    EP_GLOBAL extern Array1D<CHReportVars> ChillerHeaterReport;
+    EP_GLOBAL extern Array1D<WrapperReportVars> WrapperReport;
 
     // Functions
 

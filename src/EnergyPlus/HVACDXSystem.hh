@@ -70,32 +70,32 @@ namespace HVACDXSystem {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern Real64 const MinAirMassFlow;
+    EP_GLOBAL extern Real64 const MinAirMassFlow;
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL extern int const On;  // normal compressor operation
+    EP_GLOBAL extern int const Off; // signal DXCoil that compressor shouldn't run
     // Dehumidification control modes (DehumidControlMode)
-    thread_local extern int const DehumidControl_None;
-    thread_local extern int const DehumidControl_Multimode;
-    thread_local extern int const DehumidControl_CoolReheat;
-    thread_local extern bool GetInputFlag; // Flag to get input only once
+    EP_GLOBAL extern int const DehumidControl_None;
+    EP_GLOBAL extern int const DehumidControl_Multimode;
+    EP_GLOBAL extern int const DehumidControl_CoolReheat;
+    EP_GLOBAL extern bool GetInputFlag; // Flag to get input only once
 
     // packaged TES modes
-    thread_local extern int const OffMode;
-    thread_local extern int const CoolingOnlyMode;
-    thread_local extern int const CoolingAndChargeMode;
-    thread_local extern int const CoolingAndDischargeMode;
-    thread_local extern int const ChargeOnlyMode;
-    thread_local extern int const DischargeOnlyMode;
+    EP_GLOBAL extern int const OffMode;
+    EP_GLOBAL extern int const CoolingOnlyMode;
+    EP_GLOBAL extern int const CoolingAndChargeMode;
+    EP_GLOBAL extern int const CoolingAndDischargeMode;
+    EP_GLOBAL extern int const ChargeOnlyMode;
+    EP_GLOBAL extern int const DischargeOnlyMode;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int NumDXSystem;     // The Number of DXCoolingSystems found in the Input
-    thread_local extern bool EconomizerFlag; // holds air loop economizer status
+    EP_GLOBAL extern int NumDXSystem;     // The Number of DXCoolingSystems found in the Input
+    EP_GLOBAL extern bool EconomizerFlag; // holds air loop economizer status
 
     // Make this type allocatable
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -212,7 +212,7 @@ namespace HVACDXSystem {
     };
 
     // Object Data
-    thread_local extern Array1D<DXCoolingConditions> DXCoolingSystem;
+    EP_GLOBAL extern Array1D<DXCoolingConditions> DXCoolingSystem;
 
     // Functions
 

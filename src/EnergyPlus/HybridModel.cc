@@ -85,18 +85,18 @@ namespace HybridModel {
     using DataGlobals::ScheduleAlwaysOn;
     using General::CheckCreatedZoneItemName;
 
-    thread_local bool FlagHybridModel(false);    // True if hybrid model is activated
-    thread_local bool FlagHybridModel_TM(false); // User input IM option - True if hybrid model (thermal mass) is activated
-    thread_local bool FlagHybridModel_AI(false); // User input IM option - True if hybrid model (air infiltration) is activated
-    thread_local bool FlagHybridModel_PC(false); // User input IM option - True if hybrid model (people count) is activated
+    EP_GLOBAL bool FlagHybridModel(false);    // True if hybrid model is activated
+    EP_GLOBAL bool FlagHybridModel_TM(false); // User input IM option - True if hybrid model (thermal mass) is activated
+    EP_GLOBAL bool FlagHybridModel_AI(false); // User input IM option - True if hybrid model (air infiltration) is activated
+    EP_GLOBAL bool FlagHybridModel_PC(false); // User input IM option - True if hybrid model (people count) is activated
 
-    thread_local int NumOfHybridModelZones(0);    // Number of hybrid model zones in the model
-    thread_local std::string CurrentModuleObject; // to assist in getting input
+    EP_GLOBAL int NumOfHybridModelZones(0);    // Number of hybrid model zones in the model
+    EP_GLOBAL std::string CurrentModuleObject; // to assist in getting input
 
     // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
     // Object Data
-    thread_local Array1D<HybridModelProperties> HybridModelZone;
+    EP_GLOBAL Array1D<HybridModelProperties> HybridModelZone;
 
     // Functions
 

@@ -78,76 +78,76 @@ namespace DataPlant {
     using DataLoopNode::NodeID;
     using DataLoopNode::SensedNodeFlagValue;
 
-    thread_local int const LoadRangeBasedMin(0);
-    thread_local int const LoadRangeBasedMax(2);
+    EP_GLOBAL int const LoadRangeBasedMin(0);
+    EP_GLOBAL int const LoadRangeBasedMax(2);
 
     // SimFlagCriteriaTypes for use in performing interconnect re-sim checks
-    thread_local int const CriteriaType_MassFlowRate(1);
-    thread_local int const CriteriaType_Temperature(2);
-    thread_local int const CriteriaType_HeatTransferRate(3);
+    EP_GLOBAL int const CriteriaType_MassFlowRate(1);
+    EP_GLOBAL int const CriteriaType_Temperature(2);
+    EP_GLOBAL int const CriteriaType_HeatTransferRate(3);
 
     // Criteria percentage limits for determining re-simulation of connected loop sides
-    thread_local Real64 const CriteriaDelta_MassFlowRate(0.001);
-    thread_local Real64 const CriteriaDelta_Temperature(0.010);
-    thread_local Real64 const CriteriaDelta_HeatTransferRate(0.100);
+    EP_GLOBAL Real64 const CriteriaDelta_MassFlowRate(0.001);
+    EP_GLOBAL Real64 const CriteriaDelta_Temperature(0.010);
+    EP_GLOBAL Real64 const CriteriaDelta_HeatTransferRate(0.100);
 
-    thread_local int const FreeCoolControlMode_WetBulb(1); // HeatExchanger:Hydronic model control type mode, outdoor wetbulb sensor
-    thread_local int const FreeCoolControlMode_DryBulb(2); // HeatExchanger:Hydronic model control type mode, outdoor drybulb sensor
-    thread_local int const FreeCoolControlMode_Loop(3);    // HeatExchanger:Hydronic model control type mode, loop setpoint sensor
+    EP_GLOBAL int const FreeCoolControlMode_WetBulb(1); // HeatExchanger:Hydronic model control type mode, outdoor wetbulb sensor
+    EP_GLOBAL int const FreeCoolControlMode_DryBulb(2); // HeatExchanger:Hydronic model control type mode, outdoor drybulb sensor
+    EP_GLOBAL int const FreeCoolControlMode_Loop(3);    // HeatExchanger:Hydronic model control type mode, loop setpoint sensor
 
     // Parameters for use in Loop Demand Calculation Schemes
-    thread_local int const SingleSetPoint(1);       // Uses a single temp setpoint to calculate loop demand
-    thread_local int const DualSetPointDeadBand(2); // Uses a dual temp setpoint with a deadband between the high
+    EP_GLOBAL int const SingleSetPoint(1);       // Uses a single temp setpoint to calculate loop demand
+    EP_GLOBAL int const DualSetPointDeadBand(2); // Uses a dual temp setpoint with a deadband between the high
     //  and the low to calculate loop demand
     // Parameters for loop setpoint reference
-    thread_local int const Air(1);
-    thread_local int const Ground(2);
+    EP_GLOBAL int const Air(1);
+    EP_GLOBAL int const Ground(2);
 
     // Parameters for common pipe
-    thread_local int const CommonPipe_No(0);
-    thread_local int const CommonPipe_Single(1);
-    thread_local int const CommonPipe_TwoWay(2);
+    EP_GLOBAL int const CommonPipe_No(0);
+    EP_GLOBAL int const CommonPipe_Single(1);
+    EP_GLOBAL int const CommonPipe_TwoWay(2);
 
     // Parameters for loop side location
-    thread_local int const DemandSupply_No(0);
-    thread_local int const DemandSide(1);
-    thread_local int const SupplySide(2);
+    EP_GLOBAL int const DemandSupply_No(0);
+    EP_GLOBAL int const DemandSide(1);
+    EP_GLOBAL int const SupplySide(2);
 
     // Parameters for economizer
-    thread_local int const Integrated(1);
-    thread_local int const NonIntegrated(2);
-    thread_local int const None(3);
+    EP_GLOBAL int const Integrated(1);
+    EP_GLOBAL int const NonIntegrated(2);
+    EP_GLOBAL int const None(3);
 
     // Parameters for tolerance
-    thread_local Real64 const LoopDemandTol(0.1);   // minimum significant loop cooling or heating demand
-    thread_local Real64 const DeltaTempTol(0.0001); // minimum significant loop temperature difference
+    EP_GLOBAL Real64 const LoopDemandTol(0.1);   // minimum significant loop cooling or heating demand
+    EP_GLOBAL Real64 const DeltaTempTol(0.0001); // minimum significant loop temperature difference
 
     // Parameters for Component/Equipment Types  (ref: TypeOf in CompData)
-    thread_local int const LoopType_Plant(1);
-    thread_local int const LoopType_Condenser(2);
-    thread_local int const LoopType_Both(3);
+    EP_GLOBAL int const LoopType_Plant(1);
+    EP_GLOBAL int const LoopType_Condenser(2);
+    EP_GLOBAL int const LoopType_Both(3);
 
     // Parameters for FlowLock standardization
-    thread_local int const FlowPumpQuery(-1); // Used to ask the pumps for their min/max avail based on no constraints
-    thread_local int const FlowUnlocked(0);   // components request flow
-    thread_local int const FlowLocked(1);     // components take their inlet flow
+    EP_GLOBAL int const FlowPumpQuery(-1); // Used to ask the pumps for their min/max avail based on no constraints
+    EP_GLOBAL int const FlowUnlocked(0);   // components request flow
+    EP_GLOBAL int const FlowLocked(1);     // components take their inlet flow
 
     // Pressure Routine Call Enumeration
-    thread_local int const PressureCall_Init(-1);
-    thread_local int const PressureCall_Calc(-2);
-    thread_local int const PressureCall_Update(-3);
+    EP_GLOBAL int const PressureCall_Init(-1);
+    EP_GLOBAL int const PressureCall_Calc(-2);
+    EP_GLOBAL int const PressureCall_Update(-3);
 
     // Pressure Simulation Types
-    thread_local int const Press_NoPressure(1);          // Nothing for that particular loop
-    thread_local int const Press_PumpPowerCorrection(2); // Only updating the pump power
-    thread_local int const Press_FlowCorrection(3);      // Update pump flow rate based on pump curve
-    thread_local int const Press_FlowSimulation(4);      // Full pressure network simulation
+    EP_GLOBAL int const Press_NoPressure(1);          // Nothing for that particular loop
+    EP_GLOBAL int const Press_PumpPowerCorrection(2); // Only updating the pump power
+    EP_GLOBAL int const Press_FlowCorrection(3);      // Update pump flow rate based on pump curve
+    EP_GLOBAL int const Press_FlowSimulation(4);      // Full pressure network simulation
 
-    thread_local Array1D_string const PressureSimType(4, {"NONE", "PUMPPOWERCORRECTION", "LOOPFLOWCORRECTION", "PRESSURESIMULATION"});
+    EP_GLOBAL Array1D_string const PressureSimType(4, {"NONE", "PUMPPOWERCORRECTION", "LOOPFLOWCORRECTION", "PRESSURESIMULATION"});
 
     // Parameters for Component/Equipment Types  (ref: TypeOf in CompData)
-    thread_local int const NumSimPlantEquipTypes(96);
-    thread_local Array1D_string const SimPlantEquipTypes(NumSimPlantEquipTypes,
+    EP_GLOBAL int const NumSimPlantEquipTypes(96);
+    EP_GLOBAL Array1D_string const SimPlantEquipTypes(NumSimPlantEquipTypes,
                                             {"BOILER:HOTWATER",
                                              "BOILER:STEAM",
                                              "CHILLER:ABSORPTION",
@@ -245,7 +245,7 @@ namespace DataPlant {
                                              "HEATPUMP:WATERTOWATER:EIR:COOLING",
                                              "HEATPUMP:WATERTOWATER:EIR:HEATING"});
 
-    thread_local Array1D_string const ccSimPlantEquipTypes(NumSimPlantEquipTypes,
+    EP_GLOBAL Array1D_string const ccSimPlantEquipTypes(NumSimPlantEquipTypes,
                                               {"Boiler:HotWater",
                                                "Boiler:Steam",
                                                "Chiller:Absorption",
@@ -343,7 +343,7 @@ namespace DataPlant {
                                                "HeatPump:WaterToWater:EIR:Cooling",
                                                "HeatPump:WaterToWater:EIR:Heating"});
 
-    thread_local Array1D_int const ValidLoopEquipTypes(
+    EP_GLOBAL Array1D_int const ValidLoopEquipTypes(
         NumSimPlantEquipTypes,
         {LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Plant,
          LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Plant, LoopType_Plant,
@@ -358,107 +358,107 @@ namespace DataPlant {
          LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Plant, LoopType_Plant, LoopType_Both,
          LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Both,  LoopType_Both});
 
-    thread_local int const TypeOf_Other(-1);
-    thread_local int const TypeOf_Boiler_Simple(1);
-    thread_local int const TypeOf_Boiler_Steam(2);
-    thread_local int const TypeOf_Chiller_Absorption(3);          // older BLAST absorption chiller
-    thread_local int const TypeOf_Chiller_Indirect_Absorption(4); // revised absorption chiller
-    thread_local int const TypeOf_Chiller_CombTurbine(5);
-    thread_local int const TypeOf_Chiller_ConstCOP(6);
-    thread_local int const TypeOf_Chiller_DFAbsorption(7);
-    thread_local int const TypeOf_Chiller_Electric(8); // basic BLAST Chiller
-    thread_local int const TypeOf_Chiller_ElectricEIR(9);
-    thread_local int const TypeOf_Chiller_ElectricReformEIR(10);
-    thread_local int const TypeOf_Chiller_EngineDriven(11);
-    thread_local int const TypeOf_CoolingTower_SingleSpd(12);
-    thread_local int const TypeOf_CoolingTower_TwoSpd(13);
-    thread_local int const TypeOf_CoolingTower_VarSpd(14);
-    thread_local int const TypeOf_Generator_FCExhaust(15);
-    thread_local int const TypeOf_HeatPumpWtrHeaterPumped(16);
-    thread_local int const TypeOf_HPWaterEFCooling(17);
-    thread_local int const TypeOf_HPWaterEFHeating(18);
-    thread_local int const TypeOf_HPWaterPECooling(19);
-    thread_local int const TypeOf_HPWaterPEHeating(20);
-    thread_local int const TypeOf_Pipe(21);
-    thread_local int const TypeOf_PipeSteam(22);
-    thread_local int const TypeOf_PipeExterior(23);
-    thread_local int const TypeOf_PipeInterior(24);
-    thread_local int const TypeOf_PipeUnderground(25);
-    thread_local int const TypeOf_PurchChilledWater(26);
-    thread_local int const TypeOf_PurchHotWater(27);
-    thread_local int const TypeOf_TS_IceDetailed(28);
-    thread_local int const TypeOf_TS_IceSimple(29);
-    thread_local int const TypeOf_ValveTempering(30);
-    thread_local int const TypeOf_WtrHeaterMixed(31);
-    thread_local int const TypeOf_WtrHeaterStratified(32);
-    thread_local int const TypeOf_PumpVariableSpeed(33);
-    thread_local int const TypeOf_PumpConstantSpeed(34);
-    thread_local int const TypeOf_PumpCondensate(35);
-    thread_local int const TypeOf_PumpBankVariableSpeed(36);
-    thread_local int const TypeOf_PumpBankConstantSpeed(37);
-    thread_local int const TypeOf_WaterUseConnection(38);
-    thread_local int const TypeOf_CoilWaterCooling(39);             // demand side component
-    thread_local int const TypeOf_CoilWaterDetailedFlatCooling(40); // demand side component
-    thread_local int const TypeOf_CoilWaterSimpleHeating(41);       // demand side component
-    thread_local int const TypeOf_CoilSteamAirHeating(42);          // demand side component
-    thread_local int const TypeOf_SolarCollectorFlatPlate(43);      // demand side component
-    thread_local int const TypeOf_PlantLoadProfile(44);             // demand side component
-    thread_local int const TypeOf_GrndHtExchgSystem(45);
-    thread_local int const TypeOf_GrndHtExchgSurface(46);
-    thread_local int const TypeOf_GrndHtExchgPond(47);
-    thread_local int const TypeOf_Generator_MicroTurbine(48); // newer FSEC turbine
-    thread_local int const TypeOf_Generator_ICEngine(49);
-    thread_local int const TypeOf_Generator_CTurbine(50); // older BLAST turbine
-    thread_local int const TypeOf_Generator_MicroCHP(51);
-    thread_local int const TypeOf_Generator_FCStackCooler(52);
-    thread_local int const TypeOf_FluidCooler_SingleSpd(53);
-    thread_local int const TypeOf_FluidCooler_TwoSpd(54);
-    thread_local int const TypeOf_EvapFluidCooler_SingleSpd(55);
-    thread_local int const TypeOf_EvapFluidCooler_TwoSpd(56);
-    thread_local int const TypeOf_ChilledWaterTankMixed(57);
-    thread_local int const TypeOf_ChilledWaterTankStratified(58);
-    thread_local int const TypeOf_PVTSolarCollectorFlatPlate(59);
-    thread_local int const TypeOf_Baseboard_Conv_Water(60);
-    thread_local int const TypeOf_Baseboard_Rad_Conv_Steam(61);
-    thread_local int const TypeOf_Baseboard_Rad_Conv_Water(62);
-    thread_local int const TypeOf_LowTempRadiant_VarFlow(63);
-    thread_local int const TypeOf_LowTempRadiant_ConstFlow(64);
-    thread_local int const TypeOf_CooledBeamAirTerminal(65);
-    thread_local int const TypeOf_CoilWAHPHeatingEquationFit(66);
-    thread_local int const TypeOf_CoilWAHPCoolingEquationFit(67);
-    thread_local int const TypeOf_CoilWAHPHeatingParamEst(68);
-    thread_local int const TypeOf_CoilWAHPCoolingParamEst(69);
-    thread_local int const TypeOf_RefrigSystemWaterCondenser(70);
-    thread_local int const TypeOf_RefrigerationWaterCoolRack(71);
-    thread_local int const TypeOf_MultiSpeedHeatPumpRecovery(72);
-    thread_local int const TypeOf_Chiller_ExhFiredAbsorption(73);
-    thread_local int const TypeOf_PipingSystemPipeCircuit(74);
-    thread_local int const TypeOf_SolarCollectorICS(75);
-    thread_local int const TypeOf_CoilVSWAHPHeatingEquationFit(76);
-    thread_local int const TypeOf_CoilVSWAHPCoolingEquationFit(77);
-    thread_local int const TypeOf_PlantComponentUserDefined(78);
-    thread_local int const TypeOf_CoilUserDefined(79);
-    thread_local int const TypeOf_ZoneHVACAirUserDefined(80);
-    thread_local int const TypeOf_AirTerminalUserDefined(81);
-    thread_local int const TypeOf_HeatPumpVRF(82);
-    thread_local int const TypeOf_GrndHtExchgHorizTrench(83);
-    thread_local int const TypeOf_FluidToFluidPlantHtExchg(84);
-    thread_local int const TypeOf_WaterSource(85);
-    thread_local int const TypeOf_CentralGroundSourceHeatPump(86);
-    thread_local int const TypeOf_UnitarySysRecovery(87);
-    thread_local int const TypeOf_PackagedTESCoolingCoil(88);
-    thread_local int const TypeOf_CoolingTower_VarSpdMerkel(89);
-    thread_local int const TypeOf_SwimmingPool_Indoor(90);
-    thread_local int const TypeOf_GrndHtExchgSlinky(91);
-    thread_local int const TypeOf_HeatPumpWtrHeaterWrapped(92);
-    thread_local int const TypeOf_FourPipeBeamAirTerminal(93);
-    thread_local int const TypeOf_CoolingPanel_Simple(94);
-    thread_local int const TypeOf_HeatPumpEIRCooling(95);
-    thread_local int const TypeOf_HeatPumpEIRHeating(96);
+    EP_GLOBAL int const TypeOf_Other(-1);
+    EP_GLOBAL int const TypeOf_Boiler_Simple(1);
+    EP_GLOBAL int const TypeOf_Boiler_Steam(2);
+    EP_GLOBAL int const TypeOf_Chiller_Absorption(3);          // older BLAST absorption chiller
+    EP_GLOBAL int const TypeOf_Chiller_Indirect_Absorption(4); // revised absorption chiller
+    EP_GLOBAL int const TypeOf_Chiller_CombTurbine(5);
+    EP_GLOBAL int const TypeOf_Chiller_ConstCOP(6);
+    EP_GLOBAL int const TypeOf_Chiller_DFAbsorption(7);
+    EP_GLOBAL int const TypeOf_Chiller_Electric(8); // basic BLAST Chiller
+    EP_GLOBAL int const TypeOf_Chiller_ElectricEIR(9);
+    EP_GLOBAL int const TypeOf_Chiller_ElectricReformEIR(10);
+    EP_GLOBAL int const TypeOf_Chiller_EngineDriven(11);
+    EP_GLOBAL int const TypeOf_CoolingTower_SingleSpd(12);
+    EP_GLOBAL int const TypeOf_CoolingTower_TwoSpd(13);
+    EP_GLOBAL int const TypeOf_CoolingTower_VarSpd(14);
+    EP_GLOBAL int const TypeOf_Generator_FCExhaust(15);
+    EP_GLOBAL int const TypeOf_HeatPumpWtrHeaterPumped(16);
+    EP_GLOBAL int const TypeOf_HPWaterEFCooling(17);
+    EP_GLOBAL int const TypeOf_HPWaterEFHeating(18);
+    EP_GLOBAL int const TypeOf_HPWaterPECooling(19);
+    EP_GLOBAL int const TypeOf_HPWaterPEHeating(20);
+    EP_GLOBAL int const TypeOf_Pipe(21);
+    EP_GLOBAL int const TypeOf_PipeSteam(22);
+    EP_GLOBAL int const TypeOf_PipeExterior(23);
+    EP_GLOBAL int const TypeOf_PipeInterior(24);
+    EP_GLOBAL int const TypeOf_PipeUnderground(25);
+    EP_GLOBAL int const TypeOf_PurchChilledWater(26);
+    EP_GLOBAL int const TypeOf_PurchHotWater(27);
+    EP_GLOBAL int const TypeOf_TS_IceDetailed(28);
+    EP_GLOBAL int const TypeOf_TS_IceSimple(29);
+    EP_GLOBAL int const TypeOf_ValveTempering(30);
+    EP_GLOBAL int const TypeOf_WtrHeaterMixed(31);
+    EP_GLOBAL int const TypeOf_WtrHeaterStratified(32);
+    EP_GLOBAL int const TypeOf_PumpVariableSpeed(33);
+    EP_GLOBAL int const TypeOf_PumpConstantSpeed(34);
+    EP_GLOBAL int const TypeOf_PumpCondensate(35);
+    EP_GLOBAL int const TypeOf_PumpBankVariableSpeed(36);
+    EP_GLOBAL int const TypeOf_PumpBankConstantSpeed(37);
+    EP_GLOBAL int const TypeOf_WaterUseConnection(38);
+    EP_GLOBAL int const TypeOf_CoilWaterCooling(39);             // demand side component
+    EP_GLOBAL int const TypeOf_CoilWaterDetailedFlatCooling(40); // demand side component
+    EP_GLOBAL int const TypeOf_CoilWaterSimpleHeating(41);       // demand side component
+    EP_GLOBAL int const TypeOf_CoilSteamAirHeating(42);          // demand side component
+    EP_GLOBAL int const TypeOf_SolarCollectorFlatPlate(43);      // demand side component
+    EP_GLOBAL int const TypeOf_PlantLoadProfile(44);             // demand side component
+    EP_GLOBAL int const TypeOf_GrndHtExchgSystem(45);
+    EP_GLOBAL int const TypeOf_GrndHtExchgSurface(46);
+    EP_GLOBAL int const TypeOf_GrndHtExchgPond(47);
+    EP_GLOBAL int const TypeOf_Generator_MicroTurbine(48); // newer FSEC turbine
+    EP_GLOBAL int const TypeOf_Generator_ICEngine(49);
+    EP_GLOBAL int const TypeOf_Generator_CTurbine(50); // older BLAST turbine
+    EP_GLOBAL int const TypeOf_Generator_MicroCHP(51);
+    EP_GLOBAL int const TypeOf_Generator_FCStackCooler(52);
+    EP_GLOBAL int const TypeOf_FluidCooler_SingleSpd(53);
+    EP_GLOBAL int const TypeOf_FluidCooler_TwoSpd(54);
+    EP_GLOBAL int const TypeOf_EvapFluidCooler_SingleSpd(55);
+    EP_GLOBAL int const TypeOf_EvapFluidCooler_TwoSpd(56);
+    EP_GLOBAL int const TypeOf_ChilledWaterTankMixed(57);
+    EP_GLOBAL int const TypeOf_ChilledWaterTankStratified(58);
+    EP_GLOBAL int const TypeOf_PVTSolarCollectorFlatPlate(59);
+    EP_GLOBAL int const TypeOf_Baseboard_Conv_Water(60);
+    EP_GLOBAL int const TypeOf_Baseboard_Rad_Conv_Steam(61);
+    EP_GLOBAL int const TypeOf_Baseboard_Rad_Conv_Water(62);
+    EP_GLOBAL int const TypeOf_LowTempRadiant_VarFlow(63);
+    EP_GLOBAL int const TypeOf_LowTempRadiant_ConstFlow(64);
+    EP_GLOBAL int const TypeOf_CooledBeamAirTerminal(65);
+    EP_GLOBAL int const TypeOf_CoilWAHPHeatingEquationFit(66);
+    EP_GLOBAL int const TypeOf_CoilWAHPCoolingEquationFit(67);
+    EP_GLOBAL int const TypeOf_CoilWAHPHeatingParamEst(68);
+    EP_GLOBAL int const TypeOf_CoilWAHPCoolingParamEst(69);
+    EP_GLOBAL int const TypeOf_RefrigSystemWaterCondenser(70);
+    EP_GLOBAL int const TypeOf_RefrigerationWaterCoolRack(71);
+    EP_GLOBAL int const TypeOf_MultiSpeedHeatPumpRecovery(72);
+    EP_GLOBAL int const TypeOf_Chiller_ExhFiredAbsorption(73);
+    EP_GLOBAL int const TypeOf_PipingSystemPipeCircuit(74);
+    EP_GLOBAL int const TypeOf_SolarCollectorICS(75);
+    EP_GLOBAL int const TypeOf_CoilVSWAHPHeatingEquationFit(76);
+    EP_GLOBAL int const TypeOf_CoilVSWAHPCoolingEquationFit(77);
+    EP_GLOBAL int const TypeOf_PlantComponentUserDefined(78);
+    EP_GLOBAL int const TypeOf_CoilUserDefined(79);
+    EP_GLOBAL int const TypeOf_ZoneHVACAirUserDefined(80);
+    EP_GLOBAL int const TypeOf_AirTerminalUserDefined(81);
+    EP_GLOBAL int const TypeOf_HeatPumpVRF(82);
+    EP_GLOBAL int const TypeOf_GrndHtExchgHorizTrench(83);
+    EP_GLOBAL int const TypeOf_FluidToFluidPlantHtExchg(84);
+    EP_GLOBAL int const TypeOf_WaterSource(85);
+    EP_GLOBAL int const TypeOf_CentralGroundSourceHeatPump(86);
+    EP_GLOBAL int const TypeOf_UnitarySysRecovery(87);
+    EP_GLOBAL int const TypeOf_PackagedTESCoolingCoil(88);
+    EP_GLOBAL int const TypeOf_CoolingTower_VarSpdMerkel(89);
+    EP_GLOBAL int const TypeOf_SwimmingPool_Indoor(90);
+    EP_GLOBAL int const TypeOf_GrndHtExchgSlinky(91);
+    EP_GLOBAL int const TypeOf_HeatPumpWtrHeaterWrapped(92);
+    EP_GLOBAL int const TypeOf_FourPipeBeamAirTerminal(93);
+    EP_GLOBAL int const TypeOf_CoolingPanel_Simple(94);
+    EP_GLOBAL int const TypeOf_HeatPumpEIRCooling(95);
+    EP_GLOBAL int const TypeOf_HeatPumpEIRHeating(96);
 
     // Parameters for General Equipment Types
-    thread_local int const NumGeneralEquipTypes(23);
-    thread_local Array1D_string const GeneralEquipTypes(NumGeneralEquipTypes,
+    EP_GLOBAL int const NumGeneralEquipTypes(23);
+    EP_GLOBAL Array1D_string const GeneralEquipTypes(NumGeneralEquipTypes,
                                            {"BOILER",
                                             "CHILLER",
                                             "COOLINGTOWER",
@@ -483,64 +483,64 @@ namespace DataPlant {
                                             "PLANTCOMPONENT",
                                             "CENTRALHEATPUMPSYSTEM"});
 
-    thread_local int const GenEquipTypes_Boiler(1);
-    thread_local int const GenEquipTypes_Chiller(2);
-    thread_local int const GenEquipTypes_CoolingTower(3);
-    thread_local int const GenEquipTypes_Generator(4);
-    thread_local int const GenEquipTypes_HeatExchanger(5);
-    thread_local int const GenEquipTypes_HeatPump(6);
-    thread_local int const GenEquipTypes_Pipe(7);
-    thread_local int const GenEquipTypes_Pump(8);
-    thread_local int const GenEquipTypes_Purchased(9);
-    thread_local int const GenEquipTypes_ThermalStorage(10);
-    thread_local int const GenEquipTypes_Valve(11);
-    thread_local int const GenEquipTypes_WaterThermalTank(12);
-    thread_local int const GenEquipTypes_WaterUse(13);
-    thread_local int const GenEquipTypes_DemandCoil(14);
-    thread_local int const GenEquipTypes_SolarCollector(15);
-    thread_local int const GenEquipTypes_LoadProfile(16);
-    thread_local int const GenEquipTypes_FluidCooler(17);
-    thread_local int const GenEquipTypes_EvapFluidCooler(18);
-    thread_local int const GenEquipTypes_GroundHeatExchanger(19);
-    thread_local int const GenEquipTypes_ZoneHVACDemand(20);
-    thread_local int const GenEquipTypes_Refrigeration(21);
-    thread_local int const GenEquipTypes_PlantComponent(22);
-    thread_local int const GenEquipTypes_CentralHeatPumpSystem(23);
+    EP_GLOBAL int const GenEquipTypes_Boiler(1);
+    EP_GLOBAL int const GenEquipTypes_Chiller(2);
+    EP_GLOBAL int const GenEquipTypes_CoolingTower(3);
+    EP_GLOBAL int const GenEquipTypes_Generator(4);
+    EP_GLOBAL int const GenEquipTypes_HeatExchanger(5);
+    EP_GLOBAL int const GenEquipTypes_HeatPump(6);
+    EP_GLOBAL int const GenEquipTypes_Pipe(7);
+    EP_GLOBAL int const GenEquipTypes_Pump(8);
+    EP_GLOBAL int const GenEquipTypes_Purchased(9);
+    EP_GLOBAL int const GenEquipTypes_ThermalStorage(10);
+    EP_GLOBAL int const GenEquipTypes_Valve(11);
+    EP_GLOBAL int const GenEquipTypes_WaterThermalTank(12);
+    EP_GLOBAL int const GenEquipTypes_WaterUse(13);
+    EP_GLOBAL int const GenEquipTypes_DemandCoil(14);
+    EP_GLOBAL int const GenEquipTypes_SolarCollector(15);
+    EP_GLOBAL int const GenEquipTypes_LoadProfile(16);
+    EP_GLOBAL int const GenEquipTypes_FluidCooler(17);
+    EP_GLOBAL int const GenEquipTypes_EvapFluidCooler(18);
+    EP_GLOBAL int const GenEquipTypes_GroundHeatExchanger(19);
+    EP_GLOBAL int const GenEquipTypes_ZoneHVACDemand(20);
+    EP_GLOBAL int const GenEquipTypes_Refrigeration(21);
+    EP_GLOBAL int const GenEquipTypes_PlantComponent(22);
+    EP_GLOBAL int const GenEquipTypes_CentralHeatPumpSystem(23);
 
-    thread_local Array1D<Real64> const ConvergenceHistoryARR(DataPlant::NumConvergenceHistoryTerms, {0.0, -1.0, -2.0, -3.0, -4.0});
-    thread_local Real64 const sum_ConvergenceHistoryARR(sum(ConvergenceHistoryARR));
-    thread_local Real64 const square_sum_ConvergenceHistoryARR(pow_2(sum_ConvergenceHistoryARR));
-    thread_local Real64 const sum_square_ConvergenceHistoryARR(sum(pow(ConvergenceHistoryARR, 2)));
+    EP_GLOBAL Array1D<Real64> const ConvergenceHistoryARR(DataPlant::NumConvergenceHistoryTerms, {0.0, -1.0, -2.0, -3.0, -4.0});
+    EP_GLOBAL Real64 const sum_ConvergenceHistoryARR(sum(ConvergenceHistoryARR));
+    EP_GLOBAL Real64 const square_sum_ConvergenceHistoryARR(pow_2(sum_ConvergenceHistoryARR));
+    EP_GLOBAL Real64 const sum_square_ConvergenceHistoryARR(sum(pow(ConvergenceHistoryARR, 2)));
 
-    thread_local int NumPipes(0);        // Total number of pipes
-    thread_local int NumPlantPipes(0);   // Total number of plant pipes
-    thread_local int NumCondPipes(0);    // Total number of condenser pipes
-    thread_local int TotNumLoops(0);     // number of plant and condenser loops
-    thread_local int TotNumHalfLoops(0); // number of half loops (2 * TotNumLoops)
-    thread_local bool PlantFirstSizeCompleted(false);
-    thread_local bool PlantFirstSizesOkayToFinalize(false); // true if plant sizing is finishing and can save results
-    thread_local bool PlantReSizingCompleted(false);
-    thread_local bool PlantFirstSizesOkayToReport(false);
-    thread_local bool PlantFinalSizesOkayToReport(false);
-    thread_local bool AnyEMSPlantOpSchemesInModel(false);
+    EP_GLOBAL int NumPipes(0);        // Total number of pipes
+    EP_GLOBAL int NumPlantPipes(0);   // Total number of plant pipes
+    EP_GLOBAL int NumCondPipes(0);    // Total number of condenser pipes
+    EP_GLOBAL int TotNumLoops(0);     // number of plant and condenser loops
+    EP_GLOBAL int TotNumHalfLoops(0); // number of half loops (2 * TotNumLoops)
+    EP_GLOBAL bool PlantFirstSizeCompleted(false);
+    EP_GLOBAL bool PlantFirstSizesOkayToFinalize(false); // true if plant sizing is finishing and can save results
+    EP_GLOBAL bool PlantReSizingCompleted(false);
+    EP_GLOBAL bool PlantFirstSizesOkayToReport(false);
+    EP_GLOBAL bool PlantFinalSizesOkayToReport(false);
+    EP_GLOBAL bool AnyEMSPlantOpSchemesInModel(false);
 
-    thread_local Array1D_int EconBranchNum; // Branch num on which economizer is placed
-    thread_local Array1D_int EconCompNum;   // Component num of economizer in the economizer branch
+    EP_GLOBAL Array1D_int EconBranchNum; // Branch num on which economizer is placed
+    EP_GLOBAL Array1D_int EconCompNum;   // Component num of economizer in the economizer branch
 
-    thread_local Array1D_bool LoadChangeDownStream; // sim control flag.
+    EP_GLOBAL Array1D_bool LoadChangeDownStream; // sim control flag.
 
-    thread_local int PlantManageSubIterations(0); // tracks plant iterations to characterize solver
-    thread_local int PlantManageHalfLoopCalls(0); // tracks number of half loop calls
+    EP_GLOBAL int PlantManageSubIterations(0); // tracks plant iterations to characterize solver
+    EP_GLOBAL int PlantManageHalfLoopCalls(0); // tracks number of half loop calls
 
     // Object Data
-    thread_local Array1D<PlantLoopData> PlantLoop;
-    thread_local Array1D<PlantAvailMgrData> PlantAvailMgr;
-    thread_local Array1D<ReportVars> PlantReport;
-    thread_local Array1D<ReportLoopData> VentRepPlantSupplySide;
-    thread_local Array1D<ReportLoopData> VentRepPlantDemandSide;
-    thread_local Array1D<ReportLoopData> VentRepCondSupplySide;
-    thread_local Array1D<ReportLoopData> VentRepCondDemandSide;
-    thread_local Array1D<PlantCallingOrderInfoStruct> PlantCallingOrderInfo;
+    EP_GLOBAL Array1D<PlantLoopData> PlantLoop;
+    EP_GLOBAL Array1D<PlantAvailMgrData> PlantAvailMgr;
+    EP_GLOBAL Array1D<ReportVars> PlantReport;
+    EP_GLOBAL Array1D<ReportLoopData> VentRepPlantSupplySide;
+    EP_GLOBAL Array1D<ReportLoopData> VentRepPlantDemandSide;
+    EP_GLOBAL Array1D<ReportLoopData> VentRepCondSupplySide;
+    EP_GLOBAL Array1D<ReportLoopData> VentRepCondDemandSide;
+    EP_GLOBAL Array1D<PlantCallingOrderInfoStruct> PlantCallingOrderInfo;
 
     // Clears the global data in DataPlant.
     // Needed for unit tests, should not be normally called.

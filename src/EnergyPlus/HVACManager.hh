@@ -64,8 +64,8 @@ namespace HVACManager {
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int HVACManageIteration; // counts iterations to enforce maximum iteration limit
-    thread_local extern int RepIterAir;
+    EP_GLOBAL extern int HVACManageIteration; // counts iterations to enforce maximum iteration limit
+    EP_GLOBAL extern int RepIterAir;
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE PrimaryPlantLoops
     // and zone equipment simulations

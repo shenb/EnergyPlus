@@ -68,29 +68,29 @@ namespace EnergyPlus {
 namespace ExternalInterface {
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern Real64 tComm;
-    thread_local extern Real64 tStop;
-    thread_local extern Real64 tStart;
-    thread_local extern Real64 hStep;
-    thread_local extern bool FlagReIni;
-    thread_local extern std::string FMURootWorkingFolder;
-    thread_local extern int LEN_FMU_ROOT_DIR;
+    EP_GLOBAL extern Real64 tComm;
+    EP_GLOBAL extern Real64 tStop;
+    EP_GLOBAL extern Real64 tStart;
+    EP_GLOBAL extern Real64 hStep;
+    EP_GLOBAL extern bool FlagReIni;
+    EP_GLOBAL extern std::string FMURootWorkingFolder;
+    EP_GLOBAL extern int LEN_FMU_ROOT_DIR;
 
     // MODULE PARAMETER DEFINITIONS:
-    thread_local extern int const maxVar;               // Maximum number of variables to be exchanged
-    thread_local extern int const maxErrMsgLength;      // Maximum error message length from xml schema validation
-    thread_local extern int const indexSchedule;        // Index for schedule in inpVarTypes
-    thread_local extern int const indexVariable;        // Index for variable in inpVarTypes
-    thread_local extern int const indexActuator;        // Index for actuator in inpVarTypes
-    thread_local extern int nInKeys;                    // Number of input variables available in ExternalInterface (=highest index* number)
-    thread_local extern int const fmiOK;                // fmiOK
-    thread_local extern int const fmiWarning;           // fmiWarning
-    thread_local extern int const fmiDiscard;           // fmiDiscard
-    thread_local extern int const fmiError;             // fmiError
-    thread_local extern int const fmiFatal;             // fmiPending
-    thread_local extern int const fmiPending;           // fmiPending
-    thread_local extern std::string const socCfgFilNam; // socket configuration file
-    thread_local extern std::string const BlankString;
+    EP_GLOBAL extern int const maxVar;               // Maximum number of variables to be exchanged
+    EP_GLOBAL extern int const maxErrMsgLength;      // Maximum error message length from xml schema validation
+    EP_GLOBAL extern int const indexSchedule;        // Index for schedule in inpVarTypes
+    EP_GLOBAL extern int const indexVariable;        // Index for variable in inpVarTypes
+    EP_GLOBAL extern int const indexActuator;        // Index for actuator in inpVarTypes
+    EP_GLOBAL extern int nInKeys;                    // Number of input variables available in ExternalInterface (=highest index* number)
+    EP_GLOBAL extern int const fmiOK;                // fmiOK
+    EP_GLOBAL extern int const fmiWarning;           // fmiWarning
+    EP_GLOBAL extern int const fmiDiscard;           // fmiDiscard
+    EP_GLOBAL extern int const fmiError;             // fmiError
+    EP_GLOBAL extern int const fmiFatal;             // fmiPending
+    EP_GLOBAL extern int const fmiPending;           // fmiPending
+    EP_GLOBAL extern std::string const socCfgFilNam; // socket configuration file
+    EP_GLOBAL extern std::string const BlankString;
 
     struct fmuInputVariableType
     {
@@ -286,37 +286,37 @@ namespace ExternalInterface {
         }
     };
 
-    thread_local extern Array1D<FMUType> FMU;                                // Variable Types structure
-    thread_local extern Array1D<FMUType> FMUTemp;                            // Variable Types structure
-    thread_local extern Array1D<checkFMUInstanceNameType> checkInstanceName; // Variable Types structure for checking instance names
-    thread_local extern int NumExternalInterfaces;                           // Number of ExternalInterface objects
-    thread_local extern int NumExternalInterfacesBCVTB;                      // Number of BCVTB ExternalInterface objects
-    thread_local extern int NumExternalInterfacesFMUImport;                  // Number of FMU ExternalInterface objects
-    thread_local extern int NumExternalInterfacesFMUExport;                  // Number of FMU ExternalInterface objects
-    thread_local extern int NumFMUObjects;                                   // Number of FMU objects
-    thread_local extern int FMUExportActivate;                               // FMU Export flag
-    thread_local extern bool haveExternalInterfaceBCVTB;                     // Flag for BCVTB interface
-    thread_local extern bool haveExternalInterfaceFMUImport;                 // Flag for FMU-Import interface
-    thread_local extern bool haveExternalInterfaceFMUExport;                 // Flag for FMU-Export interface
-    thread_local extern int simulationStatus;                                // Status flag. Used to report during
+    EP_GLOBAL extern Array1D<FMUType> FMU;                                // Variable Types structure
+    EP_GLOBAL extern Array1D<FMUType> FMUTemp;                            // Variable Types structure
+    EP_GLOBAL extern Array1D<checkFMUInstanceNameType> checkInstanceName; // Variable Types structure for checking instance names
+    EP_GLOBAL extern int NumExternalInterfaces;                           // Number of ExternalInterface objects
+    EP_GLOBAL extern int NumExternalInterfacesBCVTB;                      // Number of BCVTB ExternalInterface objects
+    EP_GLOBAL extern int NumExternalInterfacesFMUImport;                  // Number of FMU ExternalInterface objects
+    EP_GLOBAL extern int NumExternalInterfacesFMUExport;                  // Number of FMU ExternalInterface objects
+    EP_GLOBAL extern int NumFMUObjects;                                   // Number of FMU objects
+    EP_GLOBAL extern int FMUExportActivate;                               // FMU Export flag
+    EP_GLOBAL extern bool haveExternalInterfaceBCVTB;                     // Flag for BCVTB interface
+    EP_GLOBAL extern bool haveExternalInterfaceFMUImport;                 // Flag for FMU-Import interface
+    EP_GLOBAL extern bool haveExternalInterfaceFMUExport;                 // Flag for FMU-Export interface
+    EP_GLOBAL extern int simulationStatus;                                // Status flag. Used to report during
     // which phase an error occurred.
     // (1=initialization, 2=time stepping)
 
-    thread_local extern Array1D<int> keyVarIndexes; // Array index for specific key name
-    thread_local extern Array1D<int> varTypes;      // Types of variables in keyVarIndexes
-    thread_local extern Array1D<int> varInd;        // Index of ErlVariables for ExternalInterface
-    thread_local extern int socketFD;               // socket file descriptor
-    thread_local extern bool ErrorsFound;           // Set to true if errors are found
-    thread_local extern bool noMoreValues;          // Flag, true if no more values
+    EP_GLOBAL extern Array1D<int> keyVarIndexes; // Array index for specific key name
+    EP_GLOBAL extern Array1D<int> varTypes;      // Types of variables in keyVarIndexes
+    EP_GLOBAL extern Array1D<int> varInd;        // Index of ErlVariables for ExternalInterface
+    EP_GLOBAL extern int socketFD;               // socket file descriptor
+    EP_GLOBAL extern bool ErrorsFound;           // Set to true if errors are found
+    EP_GLOBAL extern bool noMoreValues;          // Flag, true if no more values
     // will be sent by the server
 
-    thread_local extern Array1D<std::string> varKeys;     // Keys of report variables used for data exchange
-    thread_local extern Array1D<std::string> varNames;    // Names of report variables used for data exchange
-    thread_local extern Array1D<int> inpVarTypes;         // Names of report variables used for data exchange
-    thread_local extern Array1D<std::string> inpVarNames; // Names of report variables used for data exchange
+    EP_GLOBAL extern Array1D<std::string> varKeys;     // Keys of report variables used for data exchange
+    EP_GLOBAL extern Array1D<std::string> varNames;    // Names of report variables used for data exchange
+    EP_GLOBAL extern Array1D<int> inpVarTypes;         // Names of report variables used for data exchange
+    EP_GLOBAL extern Array1D<std::string> inpVarNames; // Names of report variables used for data exchange
 
-    thread_local extern bool configuredControlPoints; // True if control points have been configured
-    thread_local extern bool useEMS;                  // Will be set to true if ExternalInterface writes to EMS variables or actuators
+    EP_GLOBAL extern bool configuredControlPoints; // True if control points have been configured
+    EP_GLOBAL extern bool useEMS;                  // Will be set to true if ExternalInterface writes to EMS variables or actuators
 
     // Functions
 

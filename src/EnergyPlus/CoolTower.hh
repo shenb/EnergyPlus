@@ -65,15 +65,15 @@ namespace CoolTower {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const WaterSupplyFromMains;
-    thread_local extern int const WaterSupplyFromTank;
-    thread_local extern int const WaterFlowSchedule;
-    thread_local extern int const WindDrivenFlow;
+    EP_GLOBAL extern int const WaterSupplyFromMains;
+    EP_GLOBAL extern int const WaterSupplyFromTank;
+    EP_GLOBAL extern int const WaterFlowSchedule;
+    EP_GLOBAL extern int const WindDrivenFlow;
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLES DECLARATIONS:
-    thread_local extern int NumCoolTowers; // Total cooltower statements in inputs
+    EP_GLOBAL extern int NumCoolTowers; // Total cooltower statements in inputs
 
     // Subroutine Specifications for the Heat Balance Module
 
@@ -141,7 +141,7 @@ namespace CoolTower {
     };
 
     // Object Data
-    thread_local extern Array1D<CoolTowerParams> CoolTowerSys;
+    EP_GLOBAL extern Array1D<CoolTowerParams> CoolTowerSys;
 
     // Functions
 

@@ -58,9 +58,9 @@ namespace EnergyPlus {
 
 namespace HysteresisPhaseChange {
 
-    thread_local bool getHysteresisModels(true);
-    thread_local int numHysteresisModels = 0;
-    thread_local std::vector<HysteresisPhaseChange> hysteresisPhaseChangeModels;
+    EP_GLOBAL bool getHysteresisModels(true);
+    EP_GLOBAL int numHysteresisModels = 0;
+    EP_GLOBAL std::vector<HysteresisPhaseChange> hysteresisPhaseChangeModels;
 
     HysteresisPhaseChange *HysteresisPhaseChange::factory(const std::string &objectName)
     {

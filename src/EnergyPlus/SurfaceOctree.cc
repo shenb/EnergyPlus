@@ -235,10 +235,10 @@ bool SurfaceOctreeCube::contains(Vertex const &l, Vertex const &u, Surface const
 }
 
 // Static Data Member Definitions
-thread_local std::uint8_t const SurfaceOctreeCube::maxDepth_ = 255u;                   // Max tree depth
-thread_local SurfaceOctreeCube::size_type const SurfaceOctreeCube::maxSurfaces_ = 10u; // Max surfaces in a cube before subdividing
+EP_GLOBAL std::uint8_t const SurfaceOctreeCube::maxDepth_ = 255u;                   // Max tree depth
+EP_GLOBAL SurfaceOctreeCube::size_type const SurfaceOctreeCube::maxSurfaces_ = 10u; // Max surfaces in a cube before subdividing
 
 // Globals
-thread_local SurfaceOctreeCube surfaceOctree;
+EP_GLOBAL SurfaceOctreeCube surfaceOctree;
 
 } // namespace EnergyPlus

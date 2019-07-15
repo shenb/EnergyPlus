@@ -67,16 +67,16 @@ namespace SwimmingPool {
 
     // MODULE VARIABLE DECLARATIONS:
     // Standard, run-of-the-mill variables...
-    thread_local extern int NumSwimmingPools;                 // Number of swimming pools
-    thread_local extern Array1D<int> SurfaceToPoolIndex;      // Average source over the time step for a particular radiant surface
-    thread_local extern Array1D<Real64> QPoolSrcAvg;          // Average source over the time step for a particular pool
-    thread_local extern Array1D<Real64> HeatTransCoefsAvg;    // Average denominator term over the time step for a particular pool
-    thread_local extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
+    EP_GLOBAL extern int NumSwimmingPools;                 // Number of swimming pools
+    EP_GLOBAL extern Array1D<int> SurfaceToPoolIndex;      // Average source over the time step for a particular radiant surface
+    EP_GLOBAL extern Array1D<Real64> QPoolSrcAvg;          // Average source over the time step for a particular pool
+    EP_GLOBAL extern Array1D<Real64> HeatTransCoefsAvg;    // Average denominator term over the time step for a particular pool
+    EP_GLOBAL extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QPoolSrcAvg locally
-    thread_local extern Array1D<Real64> LastQPoolSrc;       // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastHeatTransCoefs; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
-    thread_local extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastQPoolSrc;       // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastHeatTransCoefs; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastSysTimeElapsed; // Need to keep the last value in case we are still iterating
+    EP_GLOBAL extern Array1D<Real64> LastTimeStepSys;    // Need to keep the last value in case we are still iterating
 
     // Types
 
@@ -167,7 +167,7 @@ namespace SwimmingPool {
     };
 
     // Object Data
-    thread_local extern Array1D<SwimmingPoolData> Pool;
+    EP_GLOBAL extern Array1D<SwimmingPoolData> Pool;
 
     // Functions
 

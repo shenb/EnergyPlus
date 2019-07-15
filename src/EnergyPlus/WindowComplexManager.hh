@@ -75,26 +75,26 @@ namespace WindowComplexManager {
     // Data
     // MODULE PARAMETER DEFINITIONS:
 
-    thread_local extern Real64 const sigma; // Stefan-Boltzmann constant
-    thread_local extern Real64 const PressureDefault;
+    EP_GLOBAL extern Real64 const sigma; // Stefan-Boltzmann constant
+    EP_GLOBAL extern Real64 const PressureDefault;
 
-    thread_local extern int const Calculate_Geometry;
-    thread_local extern int const Copy_Geometry;
+    EP_GLOBAL extern int const Calculate_Geometry;
+    EP_GLOBAL extern int const Copy_Geometry;
 
-    thread_local extern int const TmpLen; // Length increment of temporary arrays
+    EP_GLOBAL extern int const TmpLen; // Length increment of temporary arrays
 
-    thread_local extern int const Front_Incident; // Ray identification types
-    thread_local extern int const Front_Transmitted;
-    thread_local extern int const Front_Reflected;
-    thread_local extern int const Back_Incident;
-    thread_local extern int const Back_Transmitted;
-    thread_local extern int const Back_Reflected;
+    EP_GLOBAL extern int const Front_Incident; // Ray identification types
+    EP_GLOBAL extern int const Front_Transmitted;
+    EP_GLOBAL extern int const Front_Reflected;
+    EP_GLOBAL extern int const Back_Incident;
+    EP_GLOBAL extern int const Back_Transmitted;
+    EP_GLOBAL extern int const Back_Reflected;
 
     // DERIVED TYPE DEFINITIONS:
 
     // MODULE VARIABLE DECLARATIONS:
 
-    thread_local extern int NumComplexWind; // Total number of complex windows
+    EP_GLOBAL extern int NumComplexWind; // Total number of complex windows
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE WindowComplexManager:
 
@@ -133,9 +133,9 @@ namespace WindowComplexManager {
     };
 
     // Object Data
-    thread_local extern Array1D<BasisStruct> BasisList;
-    thread_local extern Array1D<WindowIndex> WindowList;
-    thread_local extern Array2D<WindowStateIndex> WindowStateList;
+    EP_GLOBAL extern Array1D<BasisStruct> BasisList;
+    EP_GLOBAL extern Array1D<WindowIndex> WindowList;
+    EP_GLOBAL extern Array2D<WindowStateIndex> WindowStateList;
 
     // Functions
 

@@ -156,30 +156,30 @@ namespace SetPointManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS:
-    thread_local int const MaxTemp(1);
-    thread_local int const MinTemp(2);
-    thread_local int const TempFirst(1);
-    thread_local int const FlowFirst(2);
-    thread_local int const iRefTempType_WetBulb(1);
-    thread_local int const iRefTempType_DryBulb(2);
-    thread_local int const iRefGroundTempObjType_BuildingSurface(1);
-    thread_local int const iRefGroundTempObjType_Shallow(2);
-    thread_local int const iRefGroundTempObjType_Deep(3);
-    thread_local int const iRefGroundTempObjType_FCfactorMethod(4);
+    EP_GLOBAL int const MaxTemp(1);
+    EP_GLOBAL int const MinTemp(2);
+    EP_GLOBAL int const TempFirst(1);
+    EP_GLOBAL int const FlowFirst(2);
+    EP_GLOBAL int const iRefTempType_WetBulb(1);
+    EP_GLOBAL int const iRefTempType_DryBulb(2);
+    EP_GLOBAL int const iRefGroundTempObjType_BuildingSurface(1);
+    EP_GLOBAL int const iRefGroundTempObjType_Shallow(2);
+    EP_GLOBAL int const iRefGroundTempObjType_Deep(3);
+    EP_GLOBAL int const iRefGroundTempObjType_FCfactorMethod(4);
 
     // following are used to reduce string comparisons related to CtrlVarType
-    thread_local int const iCtrlVarType_Temp(1);        // control type 'Temperature'
-    thread_local int const iCtrlVarType_MaxTemp(2);     // control type 'MaximumTemperature'
-    thread_local int const iCtrlVarType_MinTemp(3);     // control type 'MinimumTemperature'
-    thread_local int const iCtrlVarType_HumRat(4);      // control Type 'HumidityRatio'
-    thread_local int const iCtrlVarType_MaxHumRat(5);   // control Type 'MaximumHumidityRatio'
-    thread_local int const iCtrlVarType_MinHumRat(6);   // control Type 'MinimumHumidityRatio'
-    thread_local int const iCtrlVarType_MassFlow(7);    // control type 'MassFlowRate'
-    thread_local int const iCtrlVarType_MaxMassFlow(8); // control Type 'MaximumMassFlowRate'
-    thread_local int const iCtrlVarType_MinMassFlow(9); // control Type 'MinimumMassFlowRate'
+    EP_GLOBAL int const iCtrlVarType_Temp(1);        // control type 'Temperature'
+    EP_GLOBAL int const iCtrlVarType_MaxTemp(2);     // control type 'MaximumTemperature'
+    EP_GLOBAL int const iCtrlVarType_MinTemp(3);     // control type 'MinimumTemperature'
+    EP_GLOBAL int const iCtrlVarType_HumRat(4);      // control Type 'HumidityRatio'
+    EP_GLOBAL int const iCtrlVarType_MaxHumRat(5);   // control Type 'MaximumHumidityRatio'
+    EP_GLOBAL int const iCtrlVarType_MinHumRat(6);   // control Type 'MinimumHumidityRatio'
+    EP_GLOBAL int const iCtrlVarType_MassFlow(7);    // control type 'MassFlowRate'
+    EP_GLOBAL int const iCtrlVarType_MaxMassFlow(8); // control Type 'MaximumMassFlowRate'
+    EP_GLOBAL int const iCtrlVarType_MinMassFlow(9); // control Type 'MinimumMassFlowRate'
 
-    thread_local int const NumValidCtrlTypes(9);
-    thread_local Array1D_string const cValidCtrlTypes(NumValidCtrlTypes,
+    EP_GLOBAL int const NumValidCtrlTypes(9);
+    EP_GLOBAL Array1D_string const cValidCtrlTypes(NumValidCtrlTypes,
                                          {"Temperature",
                                           "MaximumTemperature",
                                           "MinimumTemperature",
@@ -191,39 +191,39 @@ namespace SetPointManager {
                                           "MinimumMassFlowRate"});
 
     // following are used to reduce string comparisons related to CtrlVarType
-    thread_local int const iSPMType_Scheduled(1);
-    thread_local int const iSPMType_ScheduledDual(2);
-    thread_local int const iSPMType_OutsideAir(3);
-    thread_local int const iSPMType_SZReheat(4);
-    thread_local int const iSPMType_SZHeating(5);
-    thread_local int const iSPMType_SZCooling(6);
-    thread_local int const iSPMType_SZMinHum(7);
-    thread_local int const iSPMType_SZMaxHum(8);
-    thread_local int const iSPMType_MixedAir(9);
-    thread_local int const iSPMType_OutsideAirPretreat(10);
-    thread_local int const iSPMType_Warmest(11);
-    thread_local int const iSPMType_Coldest(12);
-    thread_local int const iSPMType_WarmestTempFlow(13);
-    thread_local int const iSPMType_RAB(14);
-    thread_local int const iSPMType_MZCoolingAverage(15);
-    thread_local int const iSPMType_MZHeatingAverage(16);
-    thread_local int const iSPMType_MZMinHumAverage(17);
-    thread_local int const iSPMType_MZMaxHumAverage(18);
-    thread_local int const iSPMType_MZMinHum(19);
-    thread_local int const iSPMType_MZMaxHum(20);
-    thread_local int const iSPMType_FollowOATemp(21);
-    thread_local int const iSPMType_FollowSysNodeTemp(22);
-    thread_local int const iSPMType_GroundTemp(23);
-    thread_local int const iSPMType_CondEntReset(24);
-    thread_local int const iSPMType_IdealCondEntReset(25);
-    thread_local int const iSPMType_SZOneStageCooling(26);
-    thread_local int const iSPMType_SZOneStageHeating(27);
-    thread_local int const iSPMType_ReturnWaterResetChW(28);
-    thread_local int const iSPMType_ReturnWaterResetHW(29);
-    thread_local int const iSPMType_TESScheduled(30);
+    EP_GLOBAL int const iSPMType_Scheduled(1);
+    EP_GLOBAL int const iSPMType_ScheduledDual(2);
+    EP_GLOBAL int const iSPMType_OutsideAir(3);
+    EP_GLOBAL int const iSPMType_SZReheat(4);
+    EP_GLOBAL int const iSPMType_SZHeating(5);
+    EP_GLOBAL int const iSPMType_SZCooling(6);
+    EP_GLOBAL int const iSPMType_SZMinHum(7);
+    EP_GLOBAL int const iSPMType_SZMaxHum(8);
+    EP_GLOBAL int const iSPMType_MixedAir(9);
+    EP_GLOBAL int const iSPMType_OutsideAirPretreat(10);
+    EP_GLOBAL int const iSPMType_Warmest(11);
+    EP_GLOBAL int const iSPMType_Coldest(12);
+    EP_GLOBAL int const iSPMType_WarmestTempFlow(13);
+    EP_GLOBAL int const iSPMType_RAB(14);
+    EP_GLOBAL int const iSPMType_MZCoolingAverage(15);
+    EP_GLOBAL int const iSPMType_MZHeatingAverage(16);
+    EP_GLOBAL int const iSPMType_MZMinHumAverage(17);
+    EP_GLOBAL int const iSPMType_MZMaxHumAverage(18);
+    EP_GLOBAL int const iSPMType_MZMinHum(19);
+    EP_GLOBAL int const iSPMType_MZMaxHum(20);
+    EP_GLOBAL int const iSPMType_FollowOATemp(21);
+    EP_GLOBAL int const iSPMType_FollowSysNodeTemp(22);
+    EP_GLOBAL int const iSPMType_GroundTemp(23);
+    EP_GLOBAL int const iSPMType_CondEntReset(24);
+    EP_GLOBAL int const iSPMType_IdealCondEntReset(25);
+    EP_GLOBAL int const iSPMType_SZOneStageCooling(26);
+    EP_GLOBAL int const iSPMType_SZOneStageHeating(27);
+    EP_GLOBAL int const iSPMType_ReturnWaterResetChW(28);
+    EP_GLOBAL int const iSPMType_ReturnWaterResetHW(29);
+    EP_GLOBAL int const iSPMType_TESScheduled(30);
 
-    thread_local int const NumValidSPMTypes(30);
-    thread_local Array1D_string const cValidSPMTypes(NumValidSPMTypes,
+    EP_GLOBAL int const NumValidSPMTypes(30);
+    EP_GLOBAL Array1D_string const cValidSPMTypes(NumValidSPMTypes,
                                         {"SetpointManager:Scheduled",
                                          "SetpointManager:Scheduled:DualSetpoint",
                                          "SetpointManager:OutdoorAirReset",
@@ -261,58 +261,58 @@ namespace SetPointManager {
     // Aug 2014 (RKS) The AllSetPtMgr structure is no longer deallocated because of additions of new ScheduledTES managers after all others are read
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local int NumAllSetPtMgrs(0);                 // Number of all Setpoint Managers found in input
-    thread_local int NumSchSetPtMgrs(0);                 // Number of Scheduled Setpoint Managers found in input
-    thread_local int NumDualSchSetPtMgrs(0);             // Number of Scheduled Dual Setpoint Managers found in input
-    thread_local int NumOutAirSetPtMgrs(0);              // Number of Outside Air Setpoint Managers found in input
-    thread_local int NumSZRhSetPtMgrs(0);                // number of single zone reheat setpoint managers
-    thread_local int NumSZHtSetPtMgrs(0);                // number of single zone heating setpoint managers
-    thread_local int NumSZClSetPtMgrs(0);                // number of single zone cooling setpoint managers
-    thread_local int NumSZMinHumSetPtMgrs(0);            // number of Single Zone Minimum Humidity Setpoint Managers
-    thread_local int NumSZMaxHumSetPtMgrs(0);            // number of Single Zone Maximum Humidity Setpoint Managers
-    thread_local int NumMixedAirSetPtMgrs(0);            // number of mixed air setpoint managers
-    thread_local int NumOAPretreatSetPtMgrs(0);          // number of outside air pretreat setpoint managers
-    thread_local int NumWarmestSetPtMgrs(0);             // number of Warmest setpoint managers
-    thread_local int NumColdestSetPtMgrs(0);             // number of Coldest setpoint managers
-    thread_local int NumWarmestSetPtMgrsTempFlow(0);     // number of Warmest Temp Flow setpoint managers
-    thread_local int NumRABFlowSetPtMgrs(0);             // number of return air bypass temperature-based flow setpoint manager
-    thread_local int NumMZClgAverageSetPtMgrs(0);        // number of Multizone:Cooling:Average setpoint managers
-    thread_local int NumMZHtgAverageSetPtMgrs(0);        // number of Multizone:Heating:Average setpoint managers
-    thread_local int NumMZAverageMinHumSetPtMgrs(0);     // number of MultiZone:MinimumHumidity:Average setpoint managers
-    thread_local int NumMZAverageMaxHumSetPtMgrs(0);     // number of MultiZone:MaximumHumidity:Average setpoint managers
-    thread_local int NumMZMinHumSetPtMgrs(0);            // number of MultiZone:Humidity:Minimum setpoint managers
-    thread_local int NumMZMaxHumSetPtMgrs(0);            // number of MultiZone:Humidity:Maximum setpoint managers
-    thread_local int NumFollowOATempSetPtMgrs(0);        // number of SetpointManager:FollowOutdoorAirTemperature setpoint managers
-    thread_local int NumFollowSysNodeTempSetPtMgrs(0);   // number of SetpointManager:FollowSystemNodeTemperature setpoint managers
-    thread_local int NumGroundTempSetPtMgrs(0);          // number of SetpointManager:FollowGroundTemperature setpoint managers
-    thread_local int NumCondEntSetPtMgrs(0);             // number of Condenser Entering Reset setpoint managers
-    thread_local int NumIdealCondEntSetPtMgrs(0);        // number of Ideal Condenser Entering Temperature setpoint managers
-    thread_local int NumSZOneStageCoolingSetPtMgrs(0);   // number of single zone one stage cooling setpoint managers
-    thread_local int NumSZOneStageHeatingSetPtMgrs(0);   // number of singel zone one stage heating setpoint managers
-    thread_local int NumReturnWaterResetChWSetPtMgrs(0); // number of return water reset setpoint managers
-    thread_local int NumReturnWaterResetHWSetPtMgrs(0);  // number of hot-water return water reset setpoint managers
-    thread_local int NumSchTESSetPtMgrs(0);              // number of TES scheduled setpoint managers (created internally, not by user input)
+    EP_GLOBAL int NumAllSetPtMgrs(0);                 // Number of all Setpoint Managers found in input
+    EP_GLOBAL int NumSchSetPtMgrs(0);                 // Number of Scheduled Setpoint Managers found in input
+    EP_GLOBAL int NumDualSchSetPtMgrs(0);             // Number of Scheduled Dual Setpoint Managers found in input
+    EP_GLOBAL int NumOutAirSetPtMgrs(0);              // Number of Outside Air Setpoint Managers found in input
+    EP_GLOBAL int NumSZRhSetPtMgrs(0);                // number of single zone reheat setpoint managers
+    EP_GLOBAL int NumSZHtSetPtMgrs(0);                // number of single zone heating setpoint managers
+    EP_GLOBAL int NumSZClSetPtMgrs(0);                // number of single zone cooling setpoint managers
+    EP_GLOBAL int NumSZMinHumSetPtMgrs(0);            // number of Single Zone Minimum Humidity Setpoint Managers
+    EP_GLOBAL int NumSZMaxHumSetPtMgrs(0);            // number of Single Zone Maximum Humidity Setpoint Managers
+    EP_GLOBAL int NumMixedAirSetPtMgrs(0);            // number of mixed air setpoint managers
+    EP_GLOBAL int NumOAPretreatSetPtMgrs(0);          // number of outside air pretreat setpoint managers
+    EP_GLOBAL int NumWarmestSetPtMgrs(0);             // number of Warmest setpoint managers
+    EP_GLOBAL int NumColdestSetPtMgrs(0);             // number of Coldest setpoint managers
+    EP_GLOBAL int NumWarmestSetPtMgrsTempFlow(0);     // number of Warmest Temp Flow setpoint managers
+    EP_GLOBAL int NumRABFlowSetPtMgrs(0);             // number of return air bypass temperature-based flow setpoint manager
+    EP_GLOBAL int NumMZClgAverageSetPtMgrs(0);        // number of Multizone:Cooling:Average setpoint managers
+    EP_GLOBAL int NumMZHtgAverageSetPtMgrs(0);        // number of Multizone:Heating:Average setpoint managers
+    EP_GLOBAL int NumMZAverageMinHumSetPtMgrs(0);     // number of MultiZone:MinimumHumidity:Average setpoint managers
+    EP_GLOBAL int NumMZAverageMaxHumSetPtMgrs(0);     // number of MultiZone:MaximumHumidity:Average setpoint managers
+    EP_GLOBAL int NumMZMinHumSetPtMgrs(0);            // number of MultiZone:Humidity:Minimum setpoint managers
+    EP_GLOBAL int NumMZMaxHumSetPtMgrs(0);            // number of MultiZone:Humidity:Maximum setpoint managers
+    EP_GLOBAL int NumFollowOATempSetPtMgrs(0);        // number of SetpointManager:FollowOutdoorAirTemperature setpoint managers
+    EP_GLOBAL int NumFollowSysNodeTempSetPtMgrs(0);   // number of SetpointManager:FollowSystemNodeTemperature setpoint managers
+    EP_GLOBAL int NumGroundTempSetPtMgrs(0);          // number of SetpointManager:FollowGroundTemperature setpoint managers
+    EP_GLOBAL int NumCondEntSetPtMgrs(0);             // number of Condenser Entering Reset setpoint managers
+    EP_GLOBAL int NumIdealCondEntSetPtMgrs(0);        // number of Ideal Condenser Entering Temperature setpoint managers
+    EP_GLOBAL int NumSZOneStageCoolingSetPtMgrs(0);   // number of single zone one stage cooling setpoint managers
+    EP_GLOBAL int NumSZOneStageHeatingSetPtMgrs(0);   // number of singel zone one stage heating setpoint managers
+    EP_GLOBAL int NumReturnWaterResetChWSetPtMgrs(0); // number of return water reset setpoint managers
+    EP_GLOBAL int NumReturnWaterResetHWSetPtMgrs(0);  // number of hot-water return water reset setpoint managers
+    EP_GLOBAL int NumSchTESSetPtMgrs(0);              // number of TES scheduled setpoint managers (created internally, not by user input)
 
-    thread_local bool ManagerOn(false);
-    thread_local bool GetInputFlag(true); // First time, input is "gotten"
+    EP_GLOBAL bool ManagerOn(false);
+    EP_GLOBAL bool GetInputFlag(true); // First time, input is "gotten"
     namespace {
-        thread_local bool InitSetPointManagersOneTimeFlag(true);
-        thread_local bool InitSetPointManagersOneTimeFlag2(true);
-        thread_local Real64 DCESPMDsn_EntCondTemp(0.0);
-        thread_local Real64 DCESPMDsn_MinCondSetpt(0.0);
-        thread_local Real64 DCESPMCur_MinLiftTD(0.0);
-        thread_local Real64 DCESPMDesign_Load_Sum(0.0);
-        thread_local Real64 DCESPMActual_Load_Sum(0.0);
-        thread_local Real64 DCESPMWeighted_Actual_Load_Sum(0.0);
-        thread_local Real64 DCESPMWeighted_Design_Load_Sum(0.0);
-        thread_local Real64 DCESPMWeighted_Ratio(0.0);
-        thread_local Real64 DCESPMMin_DesignWB(0.0);
-        thread_local Real64 DCESPMMin_ActualWb(0.0);
-        thread_local Real64 DCESPMOpt_CondEntTemp(0.0);
-        thread_local Real64 DCESPMDesignClgCapacity_Watts(0.0);
-        thread_local Real64 DCESPMCurrentLoad_Watts(0.0);
-        thread_local Real64 DCESPMCondInletTemp(0.0);
-        thread_local Real64 DCESPMEvapOutletTemp(0.0);
+        EP_GLOBAL bool InitSetPointManagersOneTimeFlag(true);
+        EP_GLOBAL bool InitSetPointManagersOneTimeFlag2(true);
+        EP_GLOBAL Real64 DCESPMDsn_EntCondTemp(0.0);
+        EP_GLOBAL Real64 DCESPMDsn_MinCondSetpt(0.0);
+        EP_GLOBAL Real64 DCESPMCur_MinLiftTD(0.0);
+        EP_GLOBAL Real64 DCESPMDesign_Load_Sum(0.0);
+        EP_GLOBAL Real64 DCESPMActual_Load_Sum(0.0);
+        EP_GLOBAL Real64 DCESPMWeighted_Actual_Load_Sum(0.0);
+        EP_GLOBAL Real64 DCESPMWeighted_Design_Load_Sum(0.0);
+        EP_GLOBAL Real64 DCESPMWeighted_Ratio(0.0);
+        EP_GLOBAL Real64 DCESPMMin_DesignWB(0.0);
+        EP_GLOBAL Real64 DCESPMMin_ActualWb(0.0);
+        EP_GLOBAL Real64 DCESPMOpt_CondEntTemp(0.0);
+        EP_GLOBAL Real64 DCESPMDesignClgCapacity_Watts(0.0);
+        EP_GLOBAL Real64 DCESPMCurrentLoad_Watts(0.0);
+        EP_GLOBAL Real64 DCESPMCondInletTemp(0.0);
+        EP_GLOBAL Real64 DCESPMEvapOutletTemp(0.0);
     } // namespace
     // temperature-based flow control manager
     // Average Cooling Set Pt Mgr
@@ -327,37 +327,37 @@ namespace SetPointManager {
     // SUBROUTINE SPECIFICATIONS FOR MODULE SetPointManager
 
     // Object Data
-    thread_local Array1D<DataSetPointManager> AllSetPtMgr;                                    // Array for all Setpoint Manager data(warnings)
-    thread_local Array1D<DefineScheduledSetPointManager> SchSetPtMgr;                         // Array for Scheduled Setpoint Manager data
-    thread_local Array1D<DefineSchedDualSetPointManager> DualSchSetPtMgr;                     // Dual Scheduled Setpoint Manager data
-    thread_local Array1D<DefineOutsideAirSetPointManager> OutAirSetPtMgr;                     // Array for Outside Air Setpoint Manager data
-    thread_local Array1D<DefineSZReheatSetPointManager> SingZoneRhSetPtMgr;                   // Array for SZRH Set Pt Mgr
-    thread_local Array1D<DefineSZHeatingSetPointManager> SingZoneHtSetPtMgr;                  // Array for SZ Heating Set Pt Mgr
-    thread_local Array1D<DefineSZCoolingSetPointManager> SingZoneClSetPtMgr;                  // Array for SZ Cooling Set Pt Mgr
-    thread_local Array1D<DefineSZMinHumSetPointManager> SZMinHumSetPtMgr;                     // Array for SZ Min Hum Set Pt Mgr
-    thread_local Array1D<DefineSZMaxHumSetPointManager> SZMaxHumSetPtMgr;                     // Array for SZ Max Hum Set Pt Mgr
-    thread_local Array1D<DefineMixedAirSetPointManager> MixedAirSetPtMgr;                     // Array for Mixed Air Set Pt Mgr
-    thread_local Array1D<DefineOAPretreatSetPointManager> OAPretreatSetPtMgr;                 // Array for OA Pretreat Set Pt Mgr
-    thread_local Array1D<DefineWarmestSetPointManager> WarmestSetPtMgr;                       // Array for Warmest Set Pt Mgr
-    thread_local Array1D<DefineColdestSetPointManager> ColdestSetPtMgr;                       // Array for Coldest Set Pt Mgr
-    thread_local Array1D<DefWarmestSetPtManagerTempFlow> WarmestSetPtMgrTempFlow;             // Array for Warmest Set Pt Mgr
-    thread_local Array1D<DefRABFlowSetPointManager> RABFlowSetPtMgr;                          // Array for return air bypass
-    thread_local Array1D<DefMultiZoneAverageCoolingSetPointManager> MZAverageCoolingSetPtMgr; // Array for MultiZone
-    thread_local Array1D<DefMultiZoneAverageHeatingSetPointManager> MZAverageHeatingSetPtMgr; // Array for MultiZone
-    thread_local Array1D<DefMultiZoneAverageMinHumSetPointManager> MZAverageMinHumSetPtMgr;   // Array for MultiZone
-    thread_local Array1D<DefMultiZoneAverageMaxHumSetPointManager> MZAverageMaxHumSetPtMgr;   // Array for MultiZone
-    thread_local Array1D<DefMultiZoneMinHumSetPointManager> MZMinHumSetPtMgr;                 // Multizone min humidity rat Set Pt Mgr
-    thread_local Array1D<DefMultiZoneMaxHumSetPointManager> MZMaxHumSetPtMgr;                 // Multizone max humidity rat Set Pt Mgr
-    thread_local Array1D<DefineFollowOATempSetPointManager> FollowOATempSetPtMgr;             // Array for Follow Outdoor Air
-    thread_local Array1D<DefineFollowSysNodeTempSetPointManager> FollowSysNodeTempSetPtMgr;   // Array for Follow System
-    thread_local Array1D<DefineGroundTempSetPointManager> GroundTempSetPtMgr;                 // Array for Ground Temp Setpoint
-    thread_local Array1D<DefineCondEntSetPointManager> CondEntSetPtMgr;                       // Condenser Entering Water Set Pt Mgr
-    thread_local Array1D<DefineIdealCondEntSetPointManager> IdealCondEntSetPtMgr;             // Ideal Condenser Entering Set Pt Mgr
-    thread_local Array1D<DefineSZOneStageCoolinggSetPointManager> SZOneStageCoolingSetPtMgr;  // single zone 1 stage cool
-    thread_local Array1D<DefineSZOneStageHeatingSetPointManager> SZOneStageHeatingSetPtMgr;   // single zone 1 stage heat
-    thread_local Array1D<DefineReturnWaterChWSetPointManager> ReturnWaterResetChWSetPtMgr;    // return water reset
-    thread_local Array1D<DefineReturnWaterHWSetPointManager> ReturnWaterResetHWSetPtMgr;      // hot-water return water reset
-    thread_local Array1D<DefineScheduledTESSetPointManager> SchTESSetPtMgr;                   // Array for TES Scheduled Setpoint Manager data
+    EP_GLOBAL Array1D<DataSetPointManager> AllSetPtMgr;                                    // Array for all Setpoint Manager data(warnings)
+    EP_GLOBAL Array1D<DefineScheduledSetPointManager> SchSetPtMgr;                         // Array for Scheduled Setpoint Manager data
+    EP_GLOBAL Array1D<DefineSchedDualSetPointManager> DualSchSetPtMgr;                     // Dual Scheduled Setpoint Manager data
+    EP_GLOBAL Array1D<DefineOutsideAirSetPointManager> OutAirSetPtMgr;                     // Array for Outside Air Setpoint Manager data
+    EP_GLOBAL Array1D<DefineSZReheatSetPointManager> SingZoneRhSetPtMgr;                   // Array for SZRH Set Pt Mgr
+    EP_GLOBAL Array1D<DefineSZHeatingSetPointManager> SingZoneHtSetPtMgr;                  // Array for SZ Heating Set Pt Mgr
+    EP_GLOBAL Array1D<DefineSZCoolingSetPointManager> SingZoneClSetPtMgr;                  // Array for SZ Cooling Set Pt Mgr
+    EP_GLOBAL Array1D<DefineSZMinHumSetPointManager> SZMinHumSetPtMgr;                     // Array for SZ Min Hum Set Pt Mgr
+    EP_GLOBAL Array1D<DefineSZMaxHumSetPointManager> SZMaxHumSetPtMgr;                     // Array for SZ Max Hum Set Pt Mgr
+    EP_GLOBAL Array1D<DefineMixedAirSetPointManager> MixedAirSetPtMgr;                     // Array for Mixed Air Set Pt Mgr
+    EP_GLOBAL Array1D<DefineOAPretreatSetPointManager> OAPretreatSetPtMgr;                 // Array for OA Pretreat Set Pt Mgr
+    EP_GLOBAL Array1D<DefineWarmestSetPointManager> WarmestSetPtMgr;                       // Array for Warmest Set Pt Mgr
+    EP_GLOBAL Array1D<DefineColdestSetPointManager> ColdestSetPtMgr;                       // Array for Coldest Set Pt Mgr
+    EP_GLOBAL Array1D<DefWarmestSetPtManagerTempFlow> WarmestSetPtMgrTempFlow;             // Array for Warmest Set Pt Mgr
+    EP_GLOBAL Array1D<DefRABFlowSetPointManager> RABFlowSetPtMgr;                          // Array for return air bypass
+    EP_GLOBAL Array1D<DefMultiZoneAverageCoolingSetPointManager> MZAverageCoolingSetPtMgr; // Array for MultiZone
+    EP_GLOBAL Array1D<DefMultiZoneAverageHeatingSetPointManager> MZAverageHeatingSetPtMgr; // Array for MultiZone
+    EP_GLOBAL Array1D<DefMultiZoneAverageMinHumSetPointManager> MZAverageMinHumSetPtMgr;   // Array for MultiZone
+    EP_GLOBAL Array1D<DefMultiZoneAverageMaxHumSetPointManager> MZAverageMaxHumSetPtMgr;   // Array for MultiZone
+    EP_GLOBAL Array1D<DefMultiZoneMinHumSetPointManager> MZMinHumSetPtMgr;                 // Multizone min humidity rat Set Pt Mgr
+    EP_GLOBAL Array1D<DefMultiZoneMaxHumSetPointManager> MZMaxHumSetPtMgr;                 // Multizone max humidity rat Set Pt Mgr
+    EP_GLOBAL Array1D<DefineFollowOATempSetPointManager> FollowOATempSetPtMgr;             // Array for Follow Outdoor Air
+    EP_GLOBAL Array1D<DefineFollowSysNodeTempSetPointManager> FollowSysNodeTempSetPtMgr;   // Array for Follow System
+    EP_GLOBAL Array1D<DefineGroundTempSetPointManager> GroundTempSetPtMgr;                 // Array for Ground Temp Setpoint
+    EP_GLOBAL Array1D<DefineCondEntSetPointManager> CondEntSetPtMgr;                       // Condenser Entering Water Set Pt Mgr
+    EP_GLOBAL Array1D<DefineIdealCondEntSetPointManager> IdealCondEntSetPtMgr;             // Ideal Condenser Entering Set Pt Mgr
+    EP_GLOBAL Array1D<DefineSZOneStageCoolinggSetPointManager> SZOneStageCoolingSetPtMgr;  // single zone 1 stage cool
+    EP_GLOBAL Array1D<DefineSZOneStageHeatingSetPointManager> SZOneStageHeatingSetPtMgr;   // single zone 1 stage heat
+    EP_GLOBAL Array1D<DefineReturnWaterChWSetPointManager> ReturnWaterResetChWSetPtMgr;    // return water reset
+    EP_GLOBAL Array1D<DefineReturnWaterHWSetPointManager> ReturnWaterResetHWSetPtMgr;      // hot-water return water reset
+    EP_GLOBAL Array1D<DefineScheduledTESSetPointManager> SchTESSetPtMgr;                   // Array for TES Scheduled Setpoint Manager data
 
     // Functions
 
@@ -510,8 +510,8 @@ namespace SetPointManager {
     void GetSetPointManagerInputs()
     {
         // wrapper for GetInput to allow unit testing when fatal inputs are detected
-        thread_local static bool ErrorsFound(false);
-        thread_local static std::string const RoutineName("GetSetPointManagerInputs: "); // include trailing blank space
+        EP_GLOBAL static bool ErrorsFound(false);
+        EP_GLOBAL static std::string const RoutineName("GetSetPointManagerInputs: "); // include trailing blank space
 
         GetSetPointManagerInputData(ErrorsFound);
 
@@ -577,7 +577,7 @@ namespace SetPointManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("GetSetPointManagerInputs: "); // include trailing blank space
+        EP_GLOBAL static std::string const RoutineName("GetSetPointManagerInputs: "); // include trailing blank space
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         Array1D_string cAlphaFieldNames;
@@ -587,8 +587,8 @@ namespace SetPointManager {
         Array1D_string cAlphaArgs;
         Array1D<Real64> rNumericArgs;
         std::string cCurrentModuleObject;
-        thread_local static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
-        thread_local static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
+        EP_GLOBAL static int MaxNumAlphas(0);  // argument for call to GetObjectDefMaxArgs
+        EP_GLOBAL static int MaxNumNumbers(0); // argument for call to GetObjectDefMaxArgs
 
         int NumNums;   // Number of real numbers returned by GetObjectItem
         int NumAlphas; // Number of alphanumerics returned by GetObjectItem
@@ -602,16 +602,16 @@ namespace SetPointManager {
         int ZoneNum;        // loop index for zone nodes
         int NumNodes;
         Array1D_int NodeNums;
-        thread_local static bool NodeListError(false);
+        EP_GLOBAL static bool NodeListError(false);
         bool ErrInList;
         int Found;
-        thread_local static bool NoSurfaceGroundTempObjWarning(true); // This will cause a warning to be issued if no "surface" ground
+        EP_GLOBAL static bool NoSurfaceGroundTempObjWarning(true); // This will cause a warning to be issued if no "surface" ground
         // temperature object was input.
-        thread_local static bool NoShallowGroundTempObjWarning(true); // This will cause a warning to be issued if no "shallow" ground
+        EP_GLOBAL static bool NoShallowGroundTempObjWarning(true); // This will cause a warning to be issued if no "shallow" ground
         // temperature object was input.
-        thread_local static bool NoDeepGroundTempObjWarning(true); // This will cause a warning to be issued if no "deep" ground
+        EP_GLOBAL static bool NoDeepGroundTempObjWarning(true); // This will cause a warning to be issued if no "deep" ground
         // temperature object was input.
-        thread_local static bool NoFCGroundTempObjWarning(true); // This will cause a warning to be issued if no ground
+        EP_GLOBAL static bool NoFCGroundTempObjWarning(true); // This will cause a warning to be issued if no ground
         // temperature object was input for FC Factor method
 
         NumNodesCtrld = 0;
@@ -3761,7 +3761,7 @@ namespace SetPointManager {
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
-        thread_local static bool MyEnvrnFlag(true); // flag for init once at start of environment
+        EP_GLOBAL static bool MyEnvrnFlag(true); // flag for init once at start of environment
 
         int SetZoneNum;
         int ControlledZoneNum;
@@ -3774,7 +3774,7 @@ namespace SetPointManager {
         int AirLoopNum;
         int LoopNum;
         int LoopNum2;
-        thread_local static bool ErrorsFound(false);
+        EP_GLOBAL static bool ErrorsFound(false);
         int ConZoneNum;
         int MixedAirNode;
         int BranchNum;
@@ -3782,7 +3782,7 @@ namespace SetPointManager {
         int InletBranchNum;
         int CompNum;
         int CompNum2;
-        thread_local static bool LookForFan(false);
+        EP_GLOBAL static bool LookForFan(false);
         std::string CompType;
         std::string cSetPointManagerType;
         int FanNodeIn;
@@ -3793,9 +3793,9 @@ namespace SetPointManager {
         int ZonesCooledIndex; // Cooled zones index in an air loop
         int BranchNumPlantSide;
         int CompNumPlantSide;
-        thread_local static int TypeNum(0);
-        thread_local static int NumChiller(0);
-        thread_local static int TypeOf_Num(0);
+        EP_GLOBAL static int TypeNum(0);
+        EP_GLOBAL static int NumChiller(0);
+        EP_GLOBAL static int TypeOf_Num(0);
 
         ManagerOn = true;
 
@@ -5437,14 +5437,14 @@ namespace SetPointManager {
         int RetNode;
         int OAMixOAInNode;
         Real64 FanDeltaT;
-        thread_local static Real64 TSupNoHC(0.0); // supply temperature with no heating or cooling
+        EP_GLOBAL static Real64 TSupNoHC(0.0); // supply temperature with no heating or cooling
         Real64 TMixAtMinOA;
         Real64 EnthMixAtMinOA;
         Real64 HumRatMixAtMinOA;
         int AirLoopNum;
         Real64 OAFrac;
         int LoopInNode;
-        thread_local static Real64 ExtrRateNoHC(0.0); // the heating (>0) or cooling (<0) that can be done by supply air at TSupNoHC [W]
+        EP_GLOBAL static Real64 ExtrRateNoHC(0.0); // the heating (>0) or cooling (<0) that can be done by supply air at TSupNoHC [W]
 
         ZoneInletNode = this->ZoneInletNodeNum;
         ZoneNum = this->ControlZoneNum;
@@ -5983,7 +5983,7 @@ namespace SetPointManager {
         Real64 MinSetPoint;     // minimum allowed setpoint
         Real64 MaxSetPoint;     // maximum allowed setpoint
         bool HumiditySetPoint;  // logical to indicate if this is a humidity setpoint
-        thread_local static bool LocalSetPointCheckFailed(false);
+        EP_GLOBAL static bool LocalSetPointCheckFailed(false);
 
         RefNode = this->RefNode;
         MixedOutNode = this->MixedOutNode;
@@ -7393,14 +7393,14 @@ namespace SetPointManager {
         using DataLoopNode::Node;
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        thread_local static Real64 CondWaterSetPoint(0.0); // Condenser entering water temperature setpoint this timestep, C
-        thread_local static Real64 EvapOutletTemp(0.0);    // Evaporator water outlet temperature (C)
-        thread_local static Real64 CondTempLimit(0.0);     // Condenser entering water temperature setpoint lower limit
-        thread_local static Real64 CurLoad(0.0);           // Current cooling load, W
-        thread_local static Real64 TotEnergy(0.0);         // Total energy consumptions at this time step
-        thread_local static Real64 TotEnergyPre(0.0);      // Total energy consumptions at the previous time step
-        thread_local static bool RunSubOptCondEntTemp(false);
-        thread_local static bool RunFinalOptCondEntTemp(false);
+        EP_GLOBAL static Real64 CondWaterSetPoint(0.0); // Condenser entering water temperature setpoint this timestep, C
+        EP_GLOBAL static Real64 EvapOutletTemp(0.0);    // Evaporator water outlet temperature (C)
+        EP_GLOBAL static Real64 CondTempLimit(0.0);     // Condenser entering water temperature setpoint lower limit
+        EP_GLOBAL static Real64 CurLoad(0.0);           // Current cooling load, W
+        EP_GLOBAL static Real64 TotEnergy(0.0);         // Total energy consumptions at this time step
+        EP_GLOBAL static Real64 TotEnergyPre(0.0);      // Total energy consumptions at the previous time step
+        EP_GLOBAL static bool RunSubOptCondEntTemp(false);
+        EP_GLOBAL static bool RunFinalOptCondEntTemp(false);
 
         if (MetersHaveBeenInitialized) {
             // Setup meter vars
@@ -8574,7 +8574,7 @@ namespace SetPointManager {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ResetHumidityRatioCtrlVarType: ");
+        EP_GLOBAL static std::string const RoutineName("ResetHumidityRatioCtrlVarType: ");
 
         // SUBROUTINE ARGUMENT DEFINITIONS:
         // na

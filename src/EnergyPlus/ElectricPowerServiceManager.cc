@@ -83,7 +83,7 @@
 
 namespace EnergyPlus {
 
-thread_local std::unique_ptr<ElectricPowerServiceManager> facilityElectricServiceObj;
+EP_GLOBAL std::unique_ptr<ElectricPowerServiceManager> facilityElectricServiceObj;
 
 void clearFacilityElectricPowerServiceObject()
 {

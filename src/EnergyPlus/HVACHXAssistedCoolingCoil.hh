@@ -65,18 +65,18 @@ namespace HVACHXAssistedCoolingCoil {
     // Data
     // MODULE PARAMETER DEFINITIONS
     // Compressor operation
-    thread_local extern int const On;  // normal compressor operation
-    thread_local extern int const Off; // signal DXCoil that compressor shouldn't run
+    EP_GLOBAL extern int const On;  // normal compressor operation
+    EP_GLOBAL extern int const Off; // signal DXCoil that compressor shouldn't run
 
     // DERIVED TYPE DEFINITIONS
 
     // MODULE VARIABLE DECLARATIONS:
-    thread_local extern int TotalNumHXAssistedCoils;                // The total number of HXAssistedCoolingCoil compound objects
-    thread_local extern Array1D<Real64> HXAssistedCoilOutletTemp;   // Outlet temperature from this compound object
-    thread_local extern Array1D<Real64> HXAssistedCoilOutletHumRat; // Outlet humidity ratio from this compound object
+    EP_GLOBAL extern int TotalNumHXAssistedCoils;                // The total number of HXAssistedCoolingCoil compound objects
+    EP_GLOBAL extern Array1D<Real64> HXAssistedCoilOutletTemp;   // Outlet temperature from this compound object
+    EP_GLOBAL extern Array1D<Real64> HXAssistedCoilOutletHumRat; // Outlet humidity ratio from this compound object
     // PUBLIC so others can access this information
-    thread_local extern bool GetCoilsInputFlag; // Flag to allow input data to be retrieved from idf on first call to this subroutine
-    thread_local extern Array1D_bool CheckEquipName;
+    EP_GLOBAL extern bool GetCoilsInputFlag; // Flag to allow input data to be retrieved from idf on first call to this subroutine
+    EP_GLOBAL extern Array1D_bool CheckEquipName;
 
     // Subroutine Specifications for the Module
     // Driver/Manager Routines
@@ -136,7 +136,7 @@ namespace HVACHXAssistedCoolingCoil {
     };
 
     // Object Data
-    thread_local extern Array1D<HXAssistedCoilParameters> HXAssistedCoil;
+    EP_GLOBAL extern Array1D<HXAssistedCoilParameters> HXAssistedCoil;
 
     // Functions
 

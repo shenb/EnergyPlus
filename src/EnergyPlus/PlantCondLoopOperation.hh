@@ -60,12 +60,12 @@ namespace PlantCondLoopOperation {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local extern int const HeatingOp; // Constant for Heating Operation
-    thread_local extern int const CoolingOp; // Constant for Cooling Operation
-    thread_local extern int const DualOp;    // Constant for Cooling or Heating Operation
+    EP_GLOBAL extern int const HeatingOp; // Constant for Heating Operation
+    EP_GLOBAL extern int const CoolingOp; // Constant for Cooling Operation
+    EP_GLOBAL extern int const DualOp;    // Constant for Cooling or Heating Operation
 
-    thread_local extern bool const TurnItemOn;  // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
-    thread_local extern bool const TurnItemOff; // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
+    EP_GLOBAL extern bool const TurnItemOn;  // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
+    EP_GLOBAL extern bool const TurnItemOff; // Convenient for calling TurnPlantItemOnOff instead of hardwired true/false
 
     // MODULE VARIABLE DECLARATIONS:
 

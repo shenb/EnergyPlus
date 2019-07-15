@@ -115,9 +115,9 @@ namespace ScheduleManager {
 
     // Data
     // MODULE PARAMETER DEFINITIONS
-    thread_local int const MaxDayTypes(12);
-    thread_local static std::string const BlankString;
-    thread_local Array1D_string const ValidDayTypes(MaxDayTypes,
+    EP_GLOBAL int const MaxDayTypes(12);
+    EP_GLOBAL static std::string const BlankString;
+    EP_GLOBAL Array1D_string const ValidDayTypes(MaxDayTypes,
                                        {"Sunday",
                                         "Monday",
                                         "Tuesday",
@@ -131,8 +131,8 @@ namespace ScheduleManager {
                                         "CustomDay1",
                                         "CustomDay2"});
 
-    thread_local int const NumScheduleTypeLimitUnitTypes(14);
-    thread_local Array1D_string const ScheduleTypeLimitUnitTypes(NumScheduleTypeLimitUnitTypes,
+    EP_GLOBAL int const NumScheduleTypeLimitUnitTypes(14);
+    EP_GLOBAL Array1D_string const ScheduleTypeLimitUnitTypes(NumScheduleTypeLimitUnitTypes,
                                                     {"Dimensionless",
                                                      "Temperature",
                                                      "DeltaTemperature",
@@ -148,11 +148,11 @@ namespace ScheduleManager {
                                                      "Control",
                                                      "Mode"});
 
-    thread_local int const ScheduleInput_year(1);
-    thread_local int const ScheduleInput_compact(2);
-    thread_local int const ScheduleInput_file(3);
-    thread_local int const ScheduleInput_constant(4);
-    thread_local int const ScheduleInput_external(5);
+    EP_GLOBAL int const ScheduleInput_year(1);
+    EP_GLOBAL int const ScheduleInput_compact(2);
+    EP_GLOBAL int const ScheduleInput_file(3);
+    EP_GLOBAL int const ScheduleInput_constant(4);
+    EP_GLOBAL int const ScheduleInput_external(5);
 
     // DERIVED TYPE DEFINITIONS
 
@@ -161,15 +161,15 @@ namespace ScheduleManager {
     // MODULE VARIABLE DECLARATIONS:
 
     // Integer Variables for the Module
-    thread_local int NumScheduleTypes(0);
-    thread_local int NumDaySchedules(0);
-    thread_local int NumWeekSchedules(0);
-    thread_local int NumSchedules(0);
+    EP_GLOBAL int NumScheduleTypes(0);
+    EP_GLOBAL int NumDaySchedules(0);
+    EP_GLOBAL int NumWeekSchedules(0);
+    EP_GLOBAL int NumSchedules(0);
 
     // Logical Variables for Module
-    thread_local bool ScheduleInputProcessed(false); // This is false until the Schedule Input has been processed.
-    thread_local bool ScheduleDSTSFileWarningIssued(false);
-    thread_local bool ScheduleFileShadingProcessed(false);
+    EP_GLOBAL bool ScheduleInputProcessed(false); // This is false until the Schedule Input has been processed.
+    EP_GLOBAL bool ScheduleDSTSFileWarningIssued(false);
+    EP_GLOBAL bool ScheduleFileShadingProcessed(false);
 
     namespace {
         // These were static variables within different functions. They were pulled out into the namespace
@@ -177,22 +177,22 @@ namespace ScheduleManager {
         // These are purposefully not in the header file as an extern variable. No one outside of this should
         // use these. They are cleared by clear_state() for use by unit tests, but normal simulations should be unaffected.
         // This is purposefully in an anonymous namespace so nothing outside this implementation file can use it.
-        thread_local bool CheckScheduleValueMinMaxRunOnceOnly(true);
+        EP_GLOBAL bool CheckScheduleValueMinMaxRunOnceOnly(true);
     } // namespace
 
     // Derived Types Variables
 
     // Object Data
-    thread_local Array1D<ScheduleTypeData> ScheduleType; // Allowed Schedule Types
-    thread_local Array1D<DayScheduleData> DaySchedule;   // Day Schedule Storage
-    thread_local std::unordered_map<std::string, std::string> UniqueDayScheduleNames;
-    thread_local Array1D<WeekScheduleData> WeekSchedule; // Week Schedule Storage
-    thread_local std::unordered_map<std::string, std::string> UniqueWeekScheduleNames;
-    thread_local Array1D<ScheduleData> Schedule; // Schedule Storage
-    thread_local std::unordered_map<std::string, std::string> UniqueScheduleNames;
+    EP_GLOBAL Array1D<ScheduleTypeData> ScheduleType; // Allowed Schedule Types
+    EP_GLOBAL Array1D<DayScheduleData> DaySchedule;   // Day Schedule Storage
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueDayScheduleNames;
+    EP_GLOBAL Array1D<WeekScheduleData> WeekSchedule; // Week Schedule Storage
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueWeekScheduleNames;
+    EP_GLOBAL Array1D<ScheduleData> Schedule; // Schedule Storage
+    EP_GLOBAL std::unordered_map<std::string, std::string> UniqueScheduleNames;
 
-    thread_local static ObjexxFCL::gio::Fmt fmtLD("*");
-    thread_local static ObjexxFCL::gio::Fmt fmtA("(A)");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtLD("*");
+    EP_GLOBAL static ObjexxFCL::gio::Fmt fmtA("(A)");
 
     // MODULE SUBROUTINES:
     //*************************************************************************
@@ -250,7 +250,7 @@ namespace ScheduleManager {
 
         // Locals
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static std::string const RoutineName("ProcessScheduleInput: ");
+        EP_GLOBAL static std::string const RoutineName("ProcessScheduleInput: ");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
 
@@ -329,10 +329,10 @@ namespace ScheduleManager {
         int UntilFld;
         int xxcount;
         //  REAL(r64) tempval
-        thread_local static bool FullYearSet(false);
-        thread_local static std::string CurrentThrough;
-        thread_local static std::string LastFor;
-        thread_local static std::string errmsg;
+        EP_GLOBAL static bool FullYearSet(false);
+        EP_GLOBAL static std::string CurrentThrough;
+        EP_GLOBAL static std::string LastFor;
+        EP_GLOBAL static std::string errmsg;
         int kdy;
         bool FileExists;
         // for SCHEDULE:FILE
@@ -2379,18 +2379,18 @@ namespace ScheduleManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static Array1D_string const Months(12, {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
-        thread_local static Array1D_string const HrField({0, 24}, {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+        EP_GLOBAL static Array1D_string const Months(12, {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
+        EP_GLOBAL static Array1D_string const HrField({0, 24}, {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
                                                       "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"});
-        thread_local static ObjexxFCL::gio::Fmt SchTFmt0("('! Schedule Details Report=',A,' =====================')");
-        thread_local static ObjexxFCL::gio::Fmt SchTFmt("('! <ScheduleType>,Name,Limited? {Yes/No},Minimum,Maximum,',   'Continuous? {Yes/No - Discrete}')");
-        thread_local static ObjexxFCL::gio::Fmt SchSFmt("('! <Schedule>,Name,ScheduleType,{Until Date,WeekSchedule}** Repeated until Dec 31')");
-        thread_local static ObjexxFCL::gio::Fmt SchTFmtdata("('ScheduleTypeLimits',5(',',A))");
-        thread_local static ObjexxFCL::gio::Fmt SchWFmtdata("('Schedule:Week:Daily',',',A,$)");
-        thread_local static ObjexxFCL::gio::Fmt CMinFmt("(I2.2)");
-        thread_local static ObjexxFCL::gio::Fmt ThruFmt("(',Through ',A,1X,I2.2,',',A)");
-        thread_local static ObjexxFCL::gio::Fmt SchDFmt0("('! <DaySchedule>,Name,ScheduleType,Interpolated {Yes/No},Time (HH:MM) =>',$)");
-        thread_local static ObjexxFCL::gio::Fmt SchDFmtdata0("('DaySchedule,',A,',',A,',',A,',',A,$)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchTFmt0("('! Schedule Details Report=',A,' =====================')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchTFmt("('! <ScheduleType>,Name,Limited? {Yes/No},Minimum,Maximum,',   'Continuous? {Yes/No - Discrete}')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchSFmt("('! <Schedule>,Name,ScheduleType,{Until Date,WeekSchedule}** Repeated until Dec 31')");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchTFmtdata("('ScheduleTypeLimits',5(',',A))");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchWFmtdata("('Schedule:Week:Daily',',',A,$)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt CMinFmt("(I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt ThruFmt("(',Through ',A,1X,I2.2,',',A)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchDFmt0("('! <DaySchedule>,Name,ScheduleType,Interpolated {Yes/No},Time (HH:MM) =>',$)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt SchDFmtdata0("('DaySchedule,',A,',',A,',',A,',',A,$)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3550,7 +3550,7 @@ namespace ScheduleManager {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        thread_local static ObjexxFCL::gio::Fmt hhmmFormat("(I2.2)");
+        EP_GLOBAL static ObjexxFCL::gio::Fmt hhmmFormat("(I2.2)");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -4946,7 +4946,7 @@ namespace ScheduleManager {
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
         int ScheduleIndex;
         int WhichHour;
-        thread_local static bool DoScheduleReportingSetup(true);
+        EP_GLOBAL static bool DoScheduleReportingSetup(true);
         int WeekSchedulePointer;
         int DaySchedulePointer;
 
