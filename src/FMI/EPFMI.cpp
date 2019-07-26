@@ -87,11 +87,13 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
   epcomp->stopTime = stopTime;
 
   auto simulation = [&epcomp](){
+    auto workingPath = boost::filesystem::path(epcomp->instanceName).filename();
+
     const int argc = 8;
     const char * argv[argc];
     argv[0] = "energyplus";
     argv[1] = "-d";
-    argv[2] = epcomp->instanceName.c_str();
+    argv[2] = workingPath.string().c_str();
     argv[3] = "-w";
     argv[4] = epcomp->weatherFilePath.c_str();
     argv[5] = "-i";
