@@ -1,4 +1,5 @@
 #include "EPFMI.hpp"
+#include "Variables.hpp"
 #include "EPComponent.hpp"
 #include <fmi2Functions.h>
 #include "../EnergyPlus/public/EnergyPlusPgm.hh"
@@ -28,6 +29,45 @@ using namespace std::placeholders;
 std::list<EPComponent> epComponents;
 
 using json = nlohmann::json;
+
+void exchange(EPComponent * epcomp)
+{
+  auto zoneNum = [](std::string zoneName) {
+    std::transform(zoneName.begin(), zoneName.end(), zoneName.begin(), ::toupper);
+    for ( int i = 0; i < EnergyPlus::DataGlobals::NumOfZones; ++i ) {
+      if ( EnergyPlus::DataHeatBalance::Zone[i].Name == zoneName ) {
+        return i + 1;
+      }
+    }
+  
+    return 0;
+  };
+
+  for( auto & varmap : epcomp->variables ) {
+    auto & var = varmap.second; 
+    auto varZoneNum = zoneNum(var.key);
+    switch ( var.type ) {
+      case EnergyPlus::FMI::VariableType::T:
+        EnergyPlus::DataHeatBalFanSys::ZT( varZoneNum ) = var.value;
+        EnergyPlus::DataHeatBalFanSys::MAT( varZoneNum ) = var.value;
+        break;
+      case EnergyPlus::FMI::VariableType::V:
+        var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
+        break;
+      case EnergyPlus::FMI::VariableType::AFLO:
+        var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).FloorArea;
+        break;
+      case EnergyPlus::FMI::VariableType::MSENFAC:
+        var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).ZoneVolCapMultpSens;
+        break;
+      case EnergyPlus::FMI::VariableType::QCONSEN_FLOW:
+        var.value = EnergyPlus::ZoneTempPredictorCorrector::HDot( varZoneNum );
+        break;
+      default:
+        break;
+    }
+  }
+}
 
 EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
   fmi2Type fmuType,
@@ -103,17 +143,17 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
   };
 
   {
-    std::unique_lock<std::mutex> lk(epcomp->time_mutex);
+    std::unique_lock<std::mutex> lk(epcomp->control_mutex);
     epcomp->currentTime = 0.0;
-    epcomp->epstatus = EPStatus::WORKING;
+    epcomp->epstatus = EPStatus::ADVANCE;
   }
 
   epcomp->simthread = std::thread(simulation);
 
   {
     // Wait for E+ to go back to IDLE
-    std::unique_lock<std::mutex> lk( epcomp->time_mutex );
-    epcomp->time_cv.wait( lk, [&epcomp](){ return epcomp->epstatus == EPStatus::IDLE; } );
+    std::unique_lock<std::mutex> lk( epcomp->control_mutex );
+    epcomp->control_cv.wait( lk, [&epcomp](){ return epcomp->epstatus == EPStatus::NONE; } );
   }
 
   return fmi2OK;
@@ -121,19 +161,22 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
 
 EPFMI_API fmi2Status fmi2SetTime(fmi2Component c, fmi2Real time)
 {
+  std::cout << "time is: " << time << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
+  exchange(epcomp);
+
   {
-    std::unique_lock<std::mutex> lk(epcomp->time_mutex);
+    std::unique_lock<std::mutex> lk(epcomp->control_mutex);
     epcomp->currentTime = time;
-    epcomp->epstatus = EPStatus::WORKING;
+    epcomp->epstatus = EPStatus::ADVANCE;
   }
   // Notify E+ to advance
-  epcomp->time_cv.notify_one();
+  epcomp->control_cv.notify_one();
   {
     // Wait for E+ to advance and go back to IDLE before returning
-    std::unique_lock<std::mutex> lk( epcomp->time_mutex );
-    epcomp->time_cv.wait( lk, [&epcomp](){ return epcomp->epstatus == EPStatus::IDLE; } );
+    std::unique_lock<std::mutex> lk( epcomp->control_mutex );
+    epcomp->control_cv.wait( lk, [&epcomp](){ return epcomp->epstatus == EPStatus::NONE; } );
   }
   
   return fmi2OK;
@@ -155,13 +198,6 @@ EPFMI_API fmi2Status fmi2SetReal(fmi2Component c,
     }
   }
 
-  epcomp->time_cv.notify_one();
-  {
-    // Wait for E+ to advance and go back to IDLE before returning
-    std::unique_lock<std::mutex> lk( epcomp->time_mutex );
-    epcomp->time_cv.wait( lk, [&epcomp](){ return epcomp->epstatus == EPStatus::IDLE; } );
-  }
-
   return fmi2OK;
 }
 
@@ -171,6 +207,8 @@ EPFMI_API fmi2Status fmi2GetReal(fmi2Component c,
   fmi2Real values[])
 {
   EPComponent * epcomp = static_cast<EPComponent*>(c);
+
+  exchange(epcomp);
 
   for ( size_t i = 0; i < nvr; ++i ) {
     auto valueRef = vr[i];
@@ -199,11 +237,11 @@ void stopEnergyPlus(fmi2Component c) {
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   {
-    std::unique_lock<std::mutex> lk(epcomp->time_mutex);
-    epcomp->epstatus = EPStatus::TERMINATING;
+    std::unique_lock<std::mutex> lk(epcomp->control_mutex);
+    epcomp->epstatus = EPStatus::TERMINATE;
   }
   // Notify E+ to advance
-  epcomp->time_cv.notify_one();
+  epcomp->control_cv.notify_one();
   epcomp->simthread.join();
 }
 

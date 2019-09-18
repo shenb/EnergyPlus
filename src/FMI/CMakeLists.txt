@@ -59,7 +59,7 @@ add_library( epvariables STATIC
   ../EnergyPlus/InputProcessing/IdfParser.cc
 )
 
-target_include_directories(epvariables INTERFACE "${PROJECT_SOURCE_DIR}/src")
+target_include_directories(epvariables INTERFACE "${PROJECT_SOURCE_DIR}/src" "${PROJECT_SOURCE_DIR}/third_party/ObjexxFCL/src/")
 target_link_libraries(epvariables energypluslib)
 
 set(test_src

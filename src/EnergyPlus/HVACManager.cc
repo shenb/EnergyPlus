@@ -224,9 +224,32 @@ namespace HVACManager {
         ReportAirHeatBalanceFirstTimeFlag = true;
     }
 
+    void signal()
+    {
+      // Signal that the step is done
+      {
+          std::unique_lock<std::mutex> lk(epcomp->control_mutex);
+          epcomp->epstatus = EPStatus::NONE;
+      }
+      epcomp->control_cv.notify_one();
+    }
+
+    void wait()
+    {
+      // Wait until we are signaled to make another step
+      {
+        std::unique_lock<std::mutex> lk(epcomp->control_mutex);
+        epcomp->control_cv.wait(lk, []() { 
+          return (
+            (epcomp->epstatus == EPStatus::ADVANCE) || 
+            (epcomp->epstatus == EPStatus::TERMINATE)
+          ); 
+        });
+      }
+    }
+
     void ManageHVAC()
     {
-
         // SUBROUTINE INFORMATION:
         //       AUTHORS:  Russ Taylor, Dan Fisher
         //       DATE WRITTEN:  Jan. 1998
@@ -405,6 +428,7 @@ namespace HVACManager {
         FirstTimeStepSysFlag = true;
 
         while (epcomp->currentTime < epcomp->nextSimTime) {
+
             UpdateInternalGainValues(true, true);
 
             BeginTimeStepFlag = false;
@@ -497,59 +521,11 @@ namespace HVACManager {
 
             FirstTimeStepSysFlag = false;
 
-            auto zoneNum = [](std::string zoneName) {
-              std::transform(zoneName.begin(), zoneName.end(), zoneName.begin(), ::toupper);
-              for ( int i = 0; i < EnergyPlus::DataGlobals::NumOfZones; ++i ) {
-                if ( EnergyPlus::DataHeatBalance::Zone[i].Name == zoneName ) {
-                  return i + 1;
-                }
-              }
-            
-              return 0;
-            };
-
-            // Exchange Data
-            for( auto & varmap : epcomp->variables ) {
-              auto & var = varmap.second; 
-              auto varZoneNum = zoneNum(var.key);
-              switch ( var.type ) {
-                case FMI::VariableType::T:
-                  EnergyPlus::DataHeatBalFanSys::ZT( varZoneNum ) = var.value;
-                  EnergyPlus::DataHeatBalFanSys::MAT( varZoneNum ) = var.value;
-                  break;
-                case FMI::VariableType::V:
-                  var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).Volume;
-                  break;
-                case FMI::VariableType::AFLO:
-                  var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).FloorArea;
-                  break;
-                case FMI::VariableType::MSENFAC:
-                  var.value = EnergyPlus::DataHeatBalance::Zone( varZoneNum ).ZoneVolCapMultpSens;
-                  break;
-                case FMI::VariableType::QCONSEN_FLOW:
-                  var.value = ZoneTempPredictorCorrector::HDot( varZoneNum );
-                  break;
-                default:
-                  break;
-              }
-            }
-
-            // Signal that the step is done
-            {
-                std::unique_lock<std::mutex> lk(epcomp->time_mutex);
-                epcomp->epstatus = EPStatus::IDLE;
-            }
-            epcomp->time_cv.notify_one();
-
-            // Wait until we are signaled to make another step
-            {
-                std::unique_lock<std::mutex> lk(epcomp->time_mutex);
-                epcomp->time_cv.wait(lk, []() { return ((epcomp->epstatus == EPStatus::WORKING) || (epcomp->epstatus == EPStatus::TERMINATING)); });
-
-                if (epcomp->epstatus == EPStatus::TERMINATING) {
-                    // Make this cleaner
-                    break;
-                }
+            signal();
+            wait();
+            if (epcomp->epstatus == EPStatus::TERMINATE) {
+                // Make this cleaner
+                break;
             }
         } // time iteration
 

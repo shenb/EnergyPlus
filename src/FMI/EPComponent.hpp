@@ -59,7 +59,7 @@
 #include "EnergyPlus.hh"
 #include "Variables.hpp"
 
-enum class EPStatus { WORKING, IDLE, TERMINATING };
+enum class EPStatus { ADVANCE, NONE, TERMINATE, EXCHANGE };
 
 struct EPComponent {
   EPComponent() {}
@@ -87,8 +87,8 @@ struct EPComponent {
 
   std::thread simthread;
   EPStatus epstatus;
-  std::condition_variable time_cv;
-  std::mutex time_mutex;
+  std::condition_variable control_cv;
+  std::mutex control_mutex;
 };
 
 #endif
