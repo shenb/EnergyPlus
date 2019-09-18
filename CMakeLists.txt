@@ -7,7 +7,7 @@ endif()
 
 Project(EnergyPlus)
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5.1)
 
 #if(${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} VERSION_GREATER "3.0")
 #  CMAKE_POLICY(SET CMP0054 NEW) # CMake 3.1 added this policy
@@ -58,8 +58,6 @@ endif()
 #  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
 #    "MinSizeRel" "RelWithDebInfo")
 #endif()
-
-set(CPACK_PACKAGE_CONTACT "Edwin Lee <edwin.lee@nrel.gov>")
 
 option( BUILD_PACKAGE "Build package" OFF )
 option( BUILD_TESTING "Build testing targets" OFF )
@@ -135,6 +133,7 @@ include(cmake/CompilerFlags.cmake)
 
 INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/src )
 INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/third_party )
+INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/third_party/btwxt/src )
 INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/third_party/re2 )
 INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/third_party/doj )
 INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/third_party/nlohmann )
@@ -163,10 +162,11 @@ set(RE2_BUILD_TESTING OFF CACHE BOOL "" FORCE)
 if( BUILD_TESTING )
   set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
   set(BUILD_GTEST ON CACHE BOOL "" FORCE)
-  set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+  set(BUILD_GMOCK ON CACHE BOOL "" FORCE)
   option( TEST_ANNUAL_SIMULATION "Use annual simulations for tests instead of only design days" OFF )
   enable_testing()
   include(CTest)
+  ADD_SUBDIRECTORY(third_party/gtest)
 endif()
 
 # E+ required libraries
@@ -178,14 +178,17 @@ ADD_SUBDIRECTORY(third_party/zlib)
 ADD_SUBDIRECTORY(third_party/FMI)
 ADD_SUBDIRECTORY(third_party/DElight)
 ADD_SUBDIRECTORY(third_party/re2)
+
 ADD_SUBDIRECTORY(scripts/dev/generate_embeddable_epJSON_schema)
 #IF( NOT APPLE )
 #  ADD_SUBDIRECTORY(third_party/FMUParser)
 #ENDIF()
 ADD_SUBDIRECTORY(third_party/Windows-CalcEngine)
-if( BUILD_TESTING )
-  ADD_SUBDIRECTORY(third_party/gtest)
-endif()
+
+# Btwxt
+INCLUDE_DIRECTORIES( ${gtest_SOURCE_DIR}/include/ SYSTEM )
+set(BUILD_BTWXT_TESTING ${BUILD_TESTING} CACHE BOOL "" FORCE)
+ADD_SUBDIRECTORY(third_party/btwxt)
 
 # Kiva
 INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/third_party/cmake/kiva.cmake)
@@ -247,6 +250,7 @@ if( BUILD_FORTRAN )
 endif()
 
 if( BUILD_PACKAGE )
+  # We handle everything in a dedicated cmake file
   include(cmake/Install.cmake)
 endif()
 

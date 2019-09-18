@@ -1120,6 +1120,17 @@ namespace DataZoneEquipment {
         DataHVACGlobals::MinAirLoopIterationsAfterFirst = minIterations;
     }
 
+    Real64 EquipList::SequentialHeatingFraction(const int equipNum)
+    {
+        return ScheduleManager::GetCurrentScheduleValue(SequentialHeatingFractionSchedPtr(equipNum));
+    }
+
+    Real64 EquipList::SequentialCoolingFraction(const int equipNum)
+    {
+        return ScheduleManager::GetCurrentScheduleValue(SequentialCoolingFractionSchedPtr(equipNum));
+    }
+
+
 } // namespace DataZoneEquipment
 
 } // namespace EnergyPlus
