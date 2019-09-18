@@ -49,6 +49,7 @@
 extern "C" {
 #include <FMI/main.h>
 }
+#include <FMIDataGlobals.hh>
 
 // C++ Headers
 #include <cstdlib>
@@ -1274,6 +1275,9 @@ void ShowFatalError(std::string const &ErrorMessage, Optional_int OutUnit1, Opti
 
     ShowErrorMessage(" **  Fatal  ** " + ErrorMessage, OutUnit1, OutUnit2);
     DisplayString("**FATAL:" + ErrorMessage);
+    if (epcomp->loggingOn) {
+      epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2Error, "EnergyPlus", ErrorMessage.c_str());
+    }
 
     ShowErrorMessage(" ...Summary of Errors that led to program termination:", OutUnit1, OutUnit2);
     ShowErrorMessage(" ..... Reference severe error count=" + RoundSigDigits(TotalSevereErrors), OutUnit1, OutUnit2);
@@ -1333,6 +1337,9 @@ void ShowSevereError(std::string const &ErrorMessage, Optional_int OutUnit1, Opt
     if (WarmupFlag && !DoingSizing && !KickOffSimulation && !AbortProcessing) ++TotalSevereErrorsDuringWarmup;
     if (DoingSizing) ++TotalSevereErrorsDuringSizing;
     ShowErrorMessage(" ** Severe  ** " + ErrorMessage, OutUnit1, OutUnit2);
+    if (epcomp->loggingOn) {
+      epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2Error, "EnergyPlus", ErrorMessage.c_str());
+    }
     LastSevereError = ErrorMessage;
 
     //  Could set a variable here that gets checked at some point?
@@ -1386,6 +1393,9 @@ void ShowSevereMessage(std::string const &ErrorMessage, Optional_int OutUnit1, O
     }
 
     ShowErrorMessage(" ** Severe  ** " + ErrorMessage, OutUnit1, OutUnit2);
+    if (epcomp->loggingOn) {
+      epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2Error, "EnergyPlus", ErrorMessage.c_str());
+    }
     LastSevereError = ErrorMessage;
 
     //  Could set a variable here that gets checked at some point?
@@ -1430,6 +1440,9 @@ void ShowContinueError(std::string const &Message, Optional_int OutUnit1, Option
     // na
 
     ShowErrorMessage(" **   ~~~   ** " + Message, OutUnit1, OutUnit2);
+    if (epcomp->loggingOn) {
+      epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2Error, "EnergyPlus", Message.c_str());
+    }
     if (sqlite) {
         sqlite->updateSQLiteErrorRecord(Message);
     }
@@ -1546,6 +1559,9 @@ void ShowMessage(std::string const &Message, Optional_int OutUnit1, Optional_int
     if (Message.empty()) {
         ShowErrorMessage(" *************", OutUnit1, OutUnit2);
     } else {
+        if (epcomp->loggingOn) {
+          epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2OK, "EnergyPlus", Message.c_str());
+        }
         ShowErrorMessage(" ************* " + Message, OutUnit1, OutUnit2);
         if (sqlite) {
             sqlite->createSQLiteErrorRecord(1, -1, Message, 0);
@@ -1600,6 +1616,10 @@ void ShowWarningError(std::string const &ErrorMessage, Optional_int OutUnit1, Op
     ++TotalWarningErrors;
     if (WarmupFlag && !DoingSizing && !KickOffSimulation && !AbortProcessing) ++TotalWarningErrorsDuringWarmup;
     if (DoingSizing) ++TotalWarningErrorsDuringSizing;
+
+    if (epcomp->loggingOn) {
+      epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2OK, "EnergyPlus", ErrorMessage.c_str());
+    }
     ShowErrorMessage(" ** Warning ** " + ErrorMessage, OutUnit1, OutUnit2);
 
     if (sqlite) {
@@ -1631,6 +1651,9 @@ void ShowWarningMessage(std::string const &ErrorMessage, Optional_int OutUnit1, 
         if (has(ErrorMessage, MessageSearch(Loop))) ++MatchCounts(Loop);
     }
 
+    if (epcomp->loggingOn) {
+      epcomp->logger(nullptr, epcomp->instanceName.c_str(), fmi2OK, "EnergyPlus", ErrorMessage.c_str());
+    }
     ShowErrorMessage(" ** Warning ** " + ErrorMessage, OutUnit1, OutUnit2);
     if (sqlite) {
         sqlite->createSQLiteErrorRecord(1, 0, ErrorMessage, 0);

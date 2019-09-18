@@ -79,13 +79,13 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
 {
   UNUSED(fmuType);
   UNUSED(fmuGUID);
-  UNUSED(functions);
   UNUSED(visible);
-  UNUSED(loggingOn);
 
   epComponents.emplace_back();
   auto & comp = epComponents.back();
   comp.instanceName = instanceName;
+  comp.logger = functions->logger;
+  comp.loggingOn = loggingOn;
 
 	const auto resourcePathString = std::regex_replace(fmuResourceURI, std::regex("^file://"), "");
   const auto resourcePath = boost::filesystem::path(resourcePathString);
@@ -161,7 +161,6 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
 
 EPFMI_API fmi2Status fmi2SetTime(fmi2Component c, fmi2Real time)
 {
-  std::cout << "time is: " << time << std::endl;
   EPComponent * epcomp = static_cast<EPComponent*>(c);
 
   exchange(epcomp);

@@ -82,6 +82,8 @@ struct EPComponent {
   fmi2Real stopTime;
   fmi2Real currentTime;
   fmi2Real nextSimTime;
+  fmi2CallbackLogger logger;
+  fmi2Boolean loggingOn;
 
   std::map<unsigned int, EnergyPlus::FMI::Variable> variables;
 
