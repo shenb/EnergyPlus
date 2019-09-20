@@ -45,7 +45,7 @@ void exchange(EPComponent * epcomp)
     return 0;
   };
 
-  auto zoneNum = [](std::string zoneName) {
+  auto zoneNum = [](std::string & zoneName) {
     std::transform(zoneName.begin(), zoneName.end(), zoneName.begin(), ::toupper);
     for ( int i = 0; i < EnergyPlus::DataGlobals::NumOfZones; ++i ) {
       if ( EnergyPlus::DataHeatBalance::Zone[i].Name == zoneName ) {
@@ -54,6 +54,27 @@ void exchange(EPComponent * epcomp)
     }
   
     return 0;
+  };
+
+  auto getSensorValue = [&](std::string & sensorName) {
+    auto _sensorNum = sensorNum(sensorName);
+    
+    return EnergyPlus::GetInternalVariableValue(
+        EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Type, 
+        EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Index);
+  };
+
+  auto setActuatorValue = [](std::string & actuatorName, const Real64 & value) {
+    std::transform(actuatorName.begin(), actuatorName.end(), actuatorName.begin(), ::toupper);
+
+    for ( int i = 0; i < EnergyPlus::DataRuntimeLanguage::numActuatorsUsed; ++i ) {
+      auto & used = EnergyPlus::DataRuntimeLanguage::EMSActuatorUsed[i]; 
+      if (used.Name == actuatorName) {
+        auto & actuator = EnergyPlus::DataRuntimeLanguage::EMSActuatorAvailable(used.ActuatorVariableNum);
+        actuator.RealValue = value;
+        actuator.Actuated = true;
+      }
+    }
   };
 
   for( auto & varmap : epcomp->variables ) {
@@ -77,13 +98,10 @@ void exchange(EPComponent * epcomp)
         var.value = EnergyPlus::ZoneTempPredictorCorrector::HDot( varZoneNum );
         break;
       case EnergyPlus::FMI::VariableType::EMS_SENSOR:
-        {
-          auto _sensorNum = sensorNum(var.key);
-
-          var.value = EnergyPlus::GetInternalVariableValue(
-              EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Type, 
-              EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Index);
-        }
+        var.value = getSensorValue(var.key);
+        break;
+      case EnergyPlus::FMI::VariableType::EMS_ACTUATOR:
+        setActuatorValue(var.key, var.value);
         break;
       default:
         break;

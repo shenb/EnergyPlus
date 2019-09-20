@@ -23,7 +23,8 @@ enum class VariableType {
   TRAD,
   X,
   MINLETS_FLOW,
-  EMS_SENSOR
+  EMS_SENSOR,
+  EMS_ACTUATOR
 };
 
 using VariableAttribute = std::pair<std::string, std::string>;

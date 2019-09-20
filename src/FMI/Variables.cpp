@@ -58,6 +58,22 @@ struct IdfInfo {
     return result;
   }
 
+  std::vector<std::string> actuatorNames() const {
+    std::vector<std::string> result;
+    std::string type = "EnergyManagementSystem:Actuator";
+
+    if ( jsonidf.find(type) != jsonidf.end() ) {
+      const auto actuators = jsonidf[type];
+      for( const auto & actuator : actuators.items() ) {
+        result.push_back(actuator.key());
+      }
+    }
+
+    std::sort(result.begin(), result.end());
+
+    return result;
+  }
+
   nlohmann::json jsonidf;
 };
 
@@ -81,6 +97,22 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
     var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
     var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
     var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+    result.emplace(i,std::move(var));
+    ++i;
+  }
+
+  const auto actuators = idfInfo.actuatorNames();
+  for (const auto & actuator : actuators) {
+    Variable var;
+    var.type = VariableType::EMS_ACTUATOR;
+    var.key = actuator;
+
+    var.scalar_attributes.emplace_back(std::make_pair("name",actuator));
+    var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+    var.scalar_attributes.emplace_back(std::make_pair("description","Custom Acutor"));
+    var.scalar_attributes.emplace_back(std::make_pair("causality","input"));
+    var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
 
     result.emplace(i,std::move(var));
     ++i;

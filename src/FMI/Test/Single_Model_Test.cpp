@@ -34,9 +34,9 @@ TEST( Single_Model, static_lib ) {
   double tEnd = 86400;
 
   double outputs[] = {0.0, 0.0};
-  unsigned int outputRefs[] = {1, 2}; // Attic-QConSen_flow, Core_Zone-Lighting Power
-  double inputs[] = {21.0};
-  unsigned int inputRefs[] = {0}; // Attic,T...
+  unsigned int outputRefs[] = {1, 2}; // Attic-QConSen_flow, CORE_LIGHTS
+  double inputs[] = {21.0, 0,0};
+  unsigned int inputRefs[] = {0, 0}; // Attic,T, CORE_LIGHTS_ACTUATOR
   unsigned int paramRefs[] = {3}; // Attic,V
   double params[1];
 
@@ -57,6 +57,8 @@ TEST( Single_Model, static_lib ) {
 
     if (key == "CORE_LIGHTS") {
       outputRefs[1] = pair.first;
+    } else if (key == "CORE_LIGHTS_ACTUATOR") {
+      inputRefs[1] = pair.first;
     }
   }
 
@@ -82,7 +84,7 @@ TEST( Single_Model, static_lib ) {
   while ( time < tEnd ) {
     // Do something interesting with the small office attic.
     inputs[0] = atticTemp;
-    fmi2SetReal(comp, inputRefs, 6, inputs);
+    fmi2SetReal(comp, inputRefs, 2, inputs);
 
     // Advance time of both simulations based on 
     // events from the small office. they should have the same timestep / time events anyway
