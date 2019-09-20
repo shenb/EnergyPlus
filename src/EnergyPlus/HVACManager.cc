@@ -427,8 +427,10 @@ namespace HVACManager {
         Real64 PreTime = DataGlobals::PreSimTime;
         FirstTimeStepSysFlag = true;
 
-        while (epcomp->currentTime < epcomp->nextSimTime) {
+        // I think required to get meters properly setup
+        facilityElectricServiceObj->manageElectricPowerService(false, DummyLogical, true);
 
+        while ((epcomp->currentTime < epcomp->nextSimTime) && (! WarmupFlag)) {
             UpdateInternalGainValues(true, true);
 
             BeginTimeStepFlag = false;
@@ -2696,80 +2698,80 @@ namespace HVACManager {
                 ZnAirRpt(ZoneLoop).MixTotalLoss = -TotalLoad * ADSCorrectionFactor;
             }
 
-            // Reporting combined outdoor air flows
-            for (j = 1; j <= TotZoneAirBalance; ++j) {
-                if (ZoneAirBalance(j).BalanceMethod == AirBalanceQuadrature && ZoneLoop == ZoneAirBalance(j).ZonePtr) {
-                    if (MAT(ZoneLoop) > Zone(ZoneLoop).OutDryBulbTemp) {
-                        ZnAirRpt(ZoneLoop).OABalanceHeatLoss =
-                            MDotCPOA(ZoneLoop) * (MAT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                        ZnAirRpt(ZoneLoop).OABalanceHeatGain = 0.0;
-                    } else {
-                        ZnAirRpt(ZoneLoop).OABalanceHeatLoss = 0.0;
-                        ZnAirRpt(ZoneLoop).OABalanceHeatGain =
-                            -MDotCPOA(ZoneLoop) * (MAT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                    }
-                    H2OHtOfVap = PsyHgAirFnWTdb(OutHumRat, Zone(ZoneLoop).OutDryBulbTemp);
-                    if (ZoneAirHumRat(ZoneLoop) > OutHumRat) {
-                        ZnAirRpt(ZoneLoop).OABalanceLatentLoss = 0.001 * MDotOA(ZoneLoop) * (ZoneAirHumRat(ZoneLoop) - OutHumRat) * H2OHtOfVap *
-                                                                 TimeStepSys * SecInHour * 1000.0 * ADSCorrectionFactor;
-                        ZnAirRpt(ZoneLoop).OABalanceLatentGain = 0.0;
-                    } else if (ZoneAirHumRat(ZoneLoop) <= OutHumRat) {
-                        ZnAirRpt(ZoneLoop).OABalanceLatentGain = 0.001 * MDotOA(ZoneLoop) * (OutHumRat - ZoneAirHumRat(ZoneLoop)) * H2OHtOfVap *
-                                                                 TimeStepSys * SecInHour * 1000.0 * ADSCorrectionFactor;
-                        ZnAirRpt(ZoneLoop).OABalanceLatentLoss = 0.0;
-                    }
-                    // Total ventilation losses and gains
-                    TotalLoad = ZnAirRpt(ZoneLoop).OABalanceHeatGain + ZnAirRpt(ZoneLoop).OABalanceLatentGain - ZnAirRpt(ZoneLoop).OABalanceHeatLoss -
-                                ZnAirRpt(ZoneLoop).OABalanceLatentLoss;
-                    if (TotalLoad > 0) {
-                        ZnAirRpt(ZoneLoop).OABalanceTotalGain = TotalLoad * ADSCorrectionFactor;
-                        ZnAirRpt(ZoneLoop).OABalanceTotalLoss = 0.0;
-                    } else {
-                        ZnAirRpt(ZoneLoop).OABalanceTotalGain = 0.0;
-                        ZnAirRpt(ZoneLoop).OABalanceTotalLoss = -TotalLoad * ADSCorrectionFactor;
-                    }
-                    ZnAirRpt(ZoneLoop).OABalanceMass = (MDotOA(ZoneLoop)) * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                    ZnAirRpt(ZoneLoop).OABalanceMdot = (MDotOA(ZoneLoop)) * ADSCorrectionFactor;
-                    AirDensity = PsyRhoAirFnPbTdbW(OutBaroPress, MAT(ZoneLoop), ZoneAirHumRatAvg(ZoneLoop), BlankString);
-                    ZnAirRpt(ZoneLoop).OABalanceVolumeCurDensity = (MDotOA(ZoneLoop) / AirDensity) * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                    ZnAirRpt(ZoneLoop).OABalanceAirChangeRate = ZnAirRpt(ZoneLoop).OABalanceVolumeCurDensity / (TimeStepSys * Zone(ZoneLoop).Volume);
-                    ZnAirRpt(ZoneLoop).OABalanceVdotCurDensity = (MDotOA(ZoneLoop) / AirDensity) * ADSCorrectionFactor;
-                    AirDensity = StdRhoAir;
-                    ZnAirRpt(ZoneLoop).OABalanceVolumeStdDensity = (MDotOA(ZoneLoop) / AirDensity) * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                    ZnAirRpt(ZoneLoop).OABalanceVdotStdDensity = (MDotOA(ZoneLoop) / AirDensity) * ADSCorrectionFactor;
-                    ZnAirRpt(ZoneLoop).OABalanceFanElec = ZnAirRpt(ZoneLoop).VentilFanElec;
-                }
-            }
-            // Reports exfiltration loss
-            H2OHtOfVap = PsyHgAirFnWTdb(OutHumRat, Zone(ZoneLoop).OutDryBulbTemp);
-            ZnAirRpt(ZoneLoop).SysInletMass = 0;
-            ZnAirRpt(ZoneLoop).SysOutletMass = 0;
-            if (!ZoneEquipConfig(ZoneLoop).IsControlled) {
-                for (int j = 1; j <= ZoneEquipConfig(ZoneLoop).NumInletNodes; ++j) {
-                    ZnAirRpt(ZoneLoop).SysInletMass +=
-                        Node(ZoneEquipConfig(ZoneLoop).InletNode(j)).MassFlowRate * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                }
-                for (int j = 1; j <= ZoneEquipConfig(ZoneLoop).NumExhaustNodes; ++j) {
-                    ZnAirRpt(ZoneLoop).SysOutletMass +=
-                        Node(ZoneEquipConfig(ZoneLoop).ExhaustNode(j)).MassFlowRate * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                }
-                for (int j = 1; j <= ZoneEquipConfig(ZoneLoop).NumReturnNodes; ++j) {
-                    ZnAirRpt(ZoneLoop).SysOutletMass +=
-                        Node(ZoneEquipConfig(ZoneLoop).ReturnNode(j)).MassFlowRate * TimeStepSys * SecInHour * ADSCorrectionFactor;
-                }
-            }
+            //// Reporting combined outdoor air flows
+            //for (j = 1; j <= TotZoneAirBalance; ++j) {
+            //    if (ZoneAirBalance(j).BalanceMethod == AirBalanceQuadrature && ZoneLoop == ZoneAirBalance(j).ZonePtr) {
+            //        if (MAT(ZoneLoop) > Zone(ZoneLoop).OutDryBulbTemp) {
+            //            ZnAirRpt(ZoneLoop).OABalanceHeatLoss =
+            //                MDotCPOA(ZoneLoop) * (MAT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //            ZnAirRpt(ZoneLoop).OABalanceHeatGain = 0.0;
+            //        } else {
+            //            ZnAirRpt(ZoneLoop).OABalanceHeatLoss = 0.0;
+            //            ZnAirRpt(ZoneLoop).OABalanceHeatGain =
+            //                -MDotCPOA(ZoneLoop) * (MAT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //        }
+            //        H2OHtOfVap = PsyHgAirFnWTdb(OutHumRat, Zone(ZoneLoop).OutDryBulbTemp);
+            //        if (ZoneAirHumRat(ZoneLoop) > OutHumRat) {
+            //            ZnAirRpt(ZoneLoop).OABalanceLatentLoss = 0.001 * MDotOA(ZoneLoop) * (ZoneAirHumRat(ZoneLoop) - OutHumRat) * H2OHtOfVap *
+            //                                                     TimeStepSys * SecInHour * 1000.0 * ADSCorrectionFactor;
+            //            ZnAirRpt(ZoneLoop).OABalanceLatentGain = 0.0;
+            //        } else if (ZoneAirHumRat(ZoneLoop) <= OutHumRat) {
+            //            ZnAirRpt(ZoneLoop).OABalanceLatentGain = 0.001 * MDotOA(ZoneLoop) * (OutHumRat - ZoneAirHumRat(ZoneLoop)) * H2OHtOfVap *
+            //                                                     TimeStepSys * SecInHour * 1000.0 * ADSCorrectionFactor;
+            //            ZnAirRpt(ZoneLoop).OABalanceLatentLoss = 0.0;
+            //        }
+            //        // Total ventilation losses and gains
+            //        TotalLoad = ZnAirRpt(ZoneLoop).OABalanceHeatGain + ZnAirRpt(ZoneLoop).OABalanceLatentGain - ZnAirRpt(ZoneLoop).OABalanceHeatLoss -
+            //                    ZnAirRpt(ZoneLoop).OABalanceLatentLoss;
+            //        if (TotalLoad > 0) {
+            //            ZnAirRpt(ZoneLoop).OABalanceTotalGain = TotalLoad * ADSCorrectionFactor;
+            //            ZnAirRpt(ZoneLoop).OABalanceTotalLoss = 0.0;
+            //        } else {
+            //            ZnAirRpt(ZoneLoop).OABalanceTotalGain = 0.0;
+            //            ZnAirRpt(ZoneLoop).OABalanceTotalLoss = -TotalLoad * ADSCorrectionFactor;
+            //        }
+            //        ZnAirRpt(ZoneLoop).OABalanceMass = (MDotOA(ZoneLoop)) * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //        ZnAirRpt(ZoneLoop).OABalanceMdot = (MDotOA(ZoneLoop)) * ADSCorrectionFactor;
+            //        AirDensity = PsyRhoAirFnPbTdbW(OutBaroPress, MAT(ZoneLoop), ZoneAirHumRatAvg(ZoneLoop), BlankString);
+            //        ZnAirRpt(ZoneLoop).OABalanceVolumeCurDensity = (MDotOA(ZoneLoop) / AirDensity) * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //        ZnAirRpt(ZoneLoop).OABalanceAirChangeRate = ZnAirRpt(ZoneLoop).OABalanceVolumeCurDensity / (TimeStepSys * Zone(ZoneLoop).Volume);
+            //        ZnAirRpt(ZoneLoop).OABalanceVdotCurDensity = (MDotOA(ZoneLoop) / AirDensity) * ADSCorrectionFactor;
+            //        AirDensity = StdRhoAir;
+            //        ZnAirRpt(ZoneLoop).OABalanceVolumeStdDensity = (MDotOA(ZoneLoop) / AirDensity) * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //        ZnAirRpt(ZoneLoop).OABalanceVdotStdDensity = (MDotOA(ZoneLoop) / AirDensity) * ADSCorrectionFactor;
+            //        ZnAirRpt(ZoneLoop).OABalanceFanElec = ZnAirRpt(ZoneLoop).VentilFanElec;
+            //    }
+            //}
+            //// Reports exfiltration loss
+            //H2OHtOfVap = PsyHgAirFnWTdb(OutHumRat, Zone(ZoneLoop).OutDryBulbTemp);
+            //ZnAirRpt(ZoneLoop).SysInletMass = 0;
+            //ZnAirRpt(ZoneLoop).SysOutletMass = 0;
+            //if (!ZoneEquipConfig(ZoneLoop).IsControlled) {
+            //    for (int j = 1; j <= ZoneEquipConfig(ZoneLoop).NumInletNodes; ++j) {
+            //        ZnAirRpt(ZoneLoop).SysInletMass +=
+            //            Node(ZoneEquipConfig(ZoneLoop).InletNode(j)).MassFlowRate * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //    }
+            //    for (int j = 1; j <= ZoneEquipConfig(ZoneLoop).NumExhaustNodes; ++j) {
+            //        ZnAirRpt(ZoneLoop).SysOutletMass +=
+            //            Node(ZoneEquipConfig(ZoneLoop).ExhaustNode(j)).MassFlowRate * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //    }
+            //    for (int j = 1; j <= ZoneEquipConfig(ZoneLoop).NumReturnNodes; ++j) {
+            //        ZnAirRpt(ZoneLoop).SysOutletMass +=
+            //            Node(ZoneEquipConfig(ZoneLoop).ReturnNode(j)).MassFlowRate * TimeStepSys * SecInHour * ADSCorrectionFactor;
+            //    }
+            //}
 
-            ZnAirRpt(ZoneLoop).ExfilMass = ZnAirRpt(ZoneLoop).InfilMass + ZnAirRpt(ZoneLoop).VentilMass + ZnAirRpt(ZoneLoop).MixMass +
-                                           ZnAirRpt(ZoneLoop).OABalanceMass + ZnAirRpt(ZoneLoop).SysInletMass -
-                                           ZnAirRpt(ZoneLoop).SysOutletMass; // kg
-            ZnAirRpt(ZoneLoop).ExfilSensiLoss =
-                ZnAirRpt(ZoneLoop).ExfilMass / (TimeStepSys * SecInHour) * (MAT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * CpAir; // W
-            ZnAirRpt(ZoneLoop).ExfilLatentLoss =
-                ZnAirRpt(ZoneLoop).ExfilMass / (TimeStepSys * SecInHour) * (ZoneAirHumRat(ZoneLoop) - OutHumRat) * H2OHtOfVap;
-            ZnAirRpt(ZoneLoop).ExfilTotalLoss = ZnAirRpt(ZoneLoop).ExfilLatentLoss + ZnAirRpt(ZoneLoop).ExfilSensiLoss;
+            //ZnAirRpt(ZoneLoop).ExfilMass = ZnAirRpt(ZoneLoop).InfilMass + ZnAirRpt(ZoneLoop).VentilMass + ZnAirRpt(ZoneLoop).MixMass +
+            //                               ZnAirRpt(ZoneLoop).OABalanceMass + ZnAirRpt(ZoneLoop).SysInletMass -
+            //                               ZnAirRpt(ZoneLoop).SysOutletMass; // kg
+            //ZnAirRpt(ZoneLoop).ExfilSensiLoss =
+            //    ZnAirRpt(ZoneLoop).ExfilMass / (TimeStepSys * SecInHour) * (MAT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * CpAir; // W
+            //ZnAirRpt(ZoneLoop).ExfilLatentLoss =
+            //    ZnAirRpt(ZoneLoop).ExfilMass / (TimeStepSys * SecInHour) * (ZoneAirHumRat(ZoneLoop) - OutHumRat) * H2OHtOfVap;
+            //ZnAirRpt(ZoneLoop).ExfilTotalLoss = ZnAirRpt(ZoneLoop).ExfilLatentLoss + ZnAirRpt(ZoneLoop).ExfilSensiLoss;
 
-            ZoneTotalExfiltrationHeatLoss += ZnAirRpt(ZoneLoop).ExfilTotalLoss * TimeStepSys * SecInHour;
-            ZoneTotalExhaustHeatLoss += ZnAirRpt(ZoneLoop).ExhTotalLoss * TimeStepSys * SecInHour;
+            //ZoneTotalExfiltrationHeatLoss += ZnAirRpt(ZoneLoop).ExfilTotalLoss * TimeStepSys * SecInHour;
+            //ZoneTotalExhaustHeatLoss += ZnAirRpt(ZoneLoop).ExhTotalLoss * TimeStepSys * SecInHour;
         }
     }
 

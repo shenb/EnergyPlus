@@ -10,6 +10,8 @@
 #include "../EnergyPlus/DataHeatBalance.hh"
 #include "../EnergyPlus/DataEnvironment.hh"
 #include "../EnergyPlus/FMIDataGlobals.hh"
+#include "../EnergyPlus/DataRuntimeLanguage.hh"
+#include "../EnergyPlus/OutputProcessor.hh"
 #include "../EnergyPlus/InputProcessing/IdfParser.hh"
 #include "../EnergyPlus/InputProcessing/EmbeddedEpJSONSchema.hh"
 #include <boost/filesystem.hpp>
@@ -32,6 +34,17 @@ using json = nlohmann::json;
 
 void exchange(EPComponent * epcomp)
 {
+  auto sensorNum = [](std::string sensorName) {
+    std::transform(sensorName.begin(), sensorName.end(), sensorName.begin(), ::toupper);
+    for ( int i = 0; i < EnergyPlus::DataRuntimeLanguage::NumSensors; ++i ) {
+      if ( EnergyPlus::DataRuntimeLanguage::Sensor[i].Name == sensorName ) {
+        return i + 1;
+      }
+    }
+
+    return 0;
+  };
+
   auto zoneNum = [](std::string zoneName) {
     std::transform(zoneName.begin(), zoneName.end(), zoneName.begin(), ::toupper);
     for ( int i = 0; i < EnergyPlus::DataGlobals::NumOfZones; ++i ) {
@@ -62,6 +75,15 @@ void exchange(EPComponent * epcomp)
         break;
       case EnergyPlus::FMI::VariableType::QCONSEN_FLOW:
         var.value = EnergyPlus::ZoneTempPredictorCorrector::HDot( varZoneNum );
+        break;
+      case EnergyPlus::FMI::VariableType::EMS_SENSOR:
+        {
+          auto _sensorNum = sensorNum(var.key);
+
+          var.value = EnergyPlus::GetInternalVariableValue(
+              EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Type, 
+              EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Index);
+        }
         break;
       default:
         break;

@@ -338,7 +338,7 @@ namespace SimulationManager {
 
         BeginSimFlag = true;
         BeginFullSimFlag = false;
-        DoOutputReporting = false;
+        DoOutputReporting = true;
         DisplayPerfSimulationFlag = false;
         DoWeatherInitReporting = false;
         RunPeriodsInInput =
@@ -363,7 +363,7 @@ namespace SimulationManager {
         createFacilityElectricPowerServiceObject();
         createCoilSelectionReportObj();
 
-        // ManageBranchInput(); // just gets input and returns.
+        //ManageBranchInput(); // just gets input and returns.
 
         DoingSizing = true;
         // ManageSizing();
@@ -395,6 +395,7 @@ namespace SimulationManager {
         KickOffSimulation = true;
 
         ResetEnvironmentCounter();
+        SetupSimulation(ErrorsFound);
 
         CheckAndReadFaults();
 
@@ -405,7 +406,7 @@ namespace SimulationManager {
         WarmupFlag = false;
         DoWeatherInitReporting = true;
 
-        // DataZoneEquipment::GetZoneEquipmentData();
+        //DataZoneEquipment::GetZoneEquipmentData();
         GetNextEnvironment(Available, ErrorsFound);
         Available = true;
 

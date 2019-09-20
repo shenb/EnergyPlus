@@ -434,8 +434,6 @@ namespace HeatBalanceManager {
         static bool ErrorsFound(false); // If errors detected in input
         bool ValidSimulationWithNoZones;
 
-        std::cout << "get heat balance input" << std::endl;
-
         // FLOW:
 
         GetProjectControlData(ErrorsFound);

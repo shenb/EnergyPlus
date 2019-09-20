@@ -257,7 +257,6 @@ namespace EMSManager {
                    Optional_int_const ProgramManagerToRun // specific program manager to run
     )
     {
-
         // SUBROUTINE INFORMATION:
         //       AUTHOR         Peter Graham Ellis
         //       DATE WRITTEN   June 2006
@@ -532,7 +531,6 @@ namespace EMSManager {
 
     void GetEMSInput()
     {
-
         // SUBROUTINE INFORMATION:
         //       AUTHOR         Peter Graham Ellis
         //       DATE WRITTEN   June 2006

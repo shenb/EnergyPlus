@@ -63,7 +63,8 @@ target_include_directories(epvariables INTERFACE "${PROJECT_SOURCE_DIR}/src" "${
 target_link_libraries(epvariables energypluslib)
 
 set(test_src
-  Test/EPFMI_Test.cpp
+  Test/Single_Model_Test.cpp
+  Test/Two_Model_Test.cpp
   Test/main.cc
 )
 
@@ -74,7 +75,8 @@ CREATE_TEST_TARGETS( epfmi "${test_src}" "epfmi" )
 set(MY_FMU_RESOURCES "${CMAKE_CURRENT_BINARY_DIR}/MyFMU/resources/")
 execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory "${MY_FMU_RESOURCES}")
 execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-  "${PROJECT_SOURCE_DIR}/testfiles/RefBldgSmallHotelNew2004_Chicago.idf" 
+  #"${PROJECT_SOURCE_DIR}/testfiles/RefBldgSmallHotelNew2004_Chicago.idf" 
+  "${PROJECT_SOURCE_DIR}/src/FMI/Test/RefBldgSmallOfficeNew2004_Chicago.idf" 
   "${PROJECT_SOURCE_DIR}/weather/USA_IL_Chicago-OHare_TMY2.epw"
   "${PROJECT_BINARY_DIR}/Products/Energy+.idd"
   "${MY_FMU_RESOURCES}/"

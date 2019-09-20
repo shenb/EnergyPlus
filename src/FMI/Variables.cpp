@@ -10,38 +10,83 @@ using json = nlohmann::json;
 namespace EnergyPlus {
 namespace FMI {
 
-std::vector<std::string> zoneNames(const std::string & idfPath) {
-  std::vector<std::string> result;
+struct IdfInfo {
+  IdfInfo(const std::string & idfPath) {
+    std::ifstream input_stream(idfPath, std::ifstream::in);
 
-  std::ifstream input_stream(idfPath, std::ifstream::in);
-
-  std::string input_file;
-  std::string line;
-  while (std::getline(input_stream, line)) {
-    input_file.append(line + EnergyPlus::DataStringGlobals::NL);
-  }
-  
-  IdfParser parser;
-  const auto embeddedEpJSONSchema = EnergyPlus::EmbeddedEpJSONSchema::embeddedEpJSONSchema();
-  const auto schema = json::from_cbor(embeddedEpJSONSchema.first, embeddedEpJSONSchema.second);
-  const auto jsonidf = parser.decode(input_file, schema);
-
-  const auto zones = jsonidf["Zone"];
-  for( const auto & zone : zones.items() ) {
-    result.push_back(zone.key());
+    std::string input_file;
+    std::string line;
+    while (std::getline(input_stream, line)) {
+      input_file.append(line + EnergyPlus::DataStringGlobals::NL);
+    }
+    
+    IdfParser parser;
+    const auto embeddedEpJSONSchema = EnergyPlus::EmbeddedEpJSONSchema::embeddedEpJSONSchema();
+    const auto schema = json::from_cbor(embeddedEpJSONSchema.first, embeddedEpJSONSchema.second);
+    jsonidf = parser.decode(input_file, schema);
   }
 
-  std::sort(result.begin(), result.end());
+  std::vector<std::string> zoneNames() const {
+    std::vector<std::string> result;
+    std::string type = "Zone";
 
-  return result;
-}
+    if ( jsonidf.find(type) != jsonidf.end() ) {
+      const auto zones = jsonidf[type];
+      for( const auto & zone : zones.items() ) {
+        result.push_back(zone.key());
+      }
+    }
+
+    std::sort(result.begin(), result.end());
+
+    return result;
+  }
+
+  std::vector<std::string> sensorNames() const {
+    std::vector<std::string> result;
+    std::string type = "EnergyManagementSystem:Sensor";
+
+    if ( jsonidf.find(type) != jsonidf.end() ) {
+      const auto sensors = jsonidf[type];
+      for( const auto & sensor : sensors.items() ) {
+        result.push_back(sensor.key());
+      }
+    }
+
+    std::sort(result.begin(), result.end());
+
+    return result;
+  }
+
+  nlohmann::json jsonidf;
+};
 
 std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
   std::map<unsigned int, Variable> result;
 
-  const auto zones = zoneNames(idf);
+  IdfInfo idfInfo(idf);
+
 
   unsigned int i = 0;
+
+  const auto sensors = idfInfo.sensorNames();
+  for (const auto & sensor : sensors) {
+    Variable var;
+    var.type = VariableType::EMS_SENSOR;
+    var.key = sensor;
+
+    var.scalar_attributes.emplace_back(std::make_pair("name",sensor));
+    var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+    var.scalar_attributes.emplace_back(std::make_pair("description","Custom Sensor"));
+    var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
+    var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+    var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+    result.emplace(i,std::move(var));
+    ++i;
+  }
+
+  const auto zones = idfInfo.zoneNames();
   for (const auto & zone : zones) {
     {
       Variable var;

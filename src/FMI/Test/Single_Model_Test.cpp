@@ -5,50 +5,62 @@
 #include <test-config.h>
 #include <gtest/gtest.h>
 
-TEST( EPFMI, static_lib ) {
+void logger(fmi2ComponentEnvironment, fmi2String, fmi2Status, fmi2String, fmi2String, ...) {
+}
+
+TEST( Single_Model, static_lib ) {
+
+  fmi2CallbackFunctions callbacks {
+    logger,
+    nullptr,
+    nullptr,
+    nullptr,
+    nullptr,
+  };
+
   auto resourcePath = boost::filesystem::path(projectBinaryDir) / "src/FMI/MyFMU/resources/";
 
   auto comp = fmi2Instantiate("Building_1", // instanceName
     fmi2ModelExchange, // fmuType
     "", // fmuGUID
     resourcePath.string().c_str(), // fmuResourceLocation
-    NULL, // functions
+    &callbacks, // functions
     true, // visible
-    false); // loggingOn
+    true); // loggingOn
 
-  auto comp2 = fmi2Instantiate("Building_2", // instanceName
-    fmi2ModelExchange, // fmuType
-    "", // fmuGUID
-    resourcePath.string().c_str(), // fmuResourceLocation
-    NULL, // functions
-    true, // visible
-    false); // loggingOn
+  const auto variables = static_cast<EPComponent*>(comp)->variables;
 
   double tStart = 0.0;
   double tEnd = 86400;
 
-  double outputs[] = {0.0};
-  const unsigned int outputRefs[] = {1}; // Attic,QConSen_flow
+  double outputs[] = {0.0, 0.0};
+  unsigned int outputRefs[] = {1, 2}; // Attic-QConSen_flow, Core_Zone-Lighting Power
   double inputs[] = {21.0};
-  const unsigned int inputRefs[] = {0}; // Attic,T...
-  const unsigned int paramRefs[] = {3}; // Attic,V
+  unsigned int inputRefs[] = {0}; // Attic,T...
+  unsigned int paramRefs[] = {3}; // Attic,V
   double params[1];
 
-  double outputs2[] = {0.0};
-  const unsigned int outputRefs2[] = {1}; // Attic,QConSen_flow
-  double inputs2[] = {21.0};
-  const unsigned int inputRefs2[] = {0}; // Attic,T...
-  const unsigned int paramRefs2[] = {3}; // Attic,V
-  double params2[1];
+  for (const auto & pair : variables) {
+    const auto & var = pair.second;
+    const auto & type = var.type;
+    const auto & key = var.key;
+
+    if (key == "Attic") {
+      if (type == EnergyPlus::FMI::VariableType::QCONSEN_FLOW) {
+        outputRefs[0] = pair.first;
+      } else if (type == EnergyPlus::FMI::VariableType::T) {
+        inputRefs[0] = pair.first;
+      } else if (type == EnergyPlus::FMI::VariableType::V) {
+        paramRefs[0] = pair.first;
+      }
+    }
+
+    if (key == "CORE_LIGHTS") {
+      outputRefs[1] = pair.first;
+    }
+  }
 
   fmi2SetupExperiment(comp, // component
-    false, // toleranceDefined
-    0, // tolerance
-    tStart, // startTime
-    true, // stopTimeDefined
-    tEnd); // stopTime
-
-  fmi2SetupExperiment(comp2, // component
     false, // toleranceDefined
     0, // tolerance
     tStart, // startTime
@@ -78,14 +90,13 @@ TEST( EPFMI, static_lib ) {
     double lastTime = time;
     time = eventInfo.nextEventTime;
     fmi2SetTime(comp, time);
-    fmi2SetTime(comp2, time);
     double dt = time - lastTime;
 
     // update atticTemp
-    fmi2GetReal(comp, outputRefs, 1, outputs);
+    fmi2GetReal(comp, outputRefs, 2, outputs);
 
     double atticQFlow = outputs[0]; // J/s 
-    std::cout << "atticQFlow: " << atticQFlow << std::endl;
+    double lightingPower = outputs[1];
     double densityAir = 1.276; // kg/m^3
     double heatCapacity = 1000.6; // J/kgK
     double tempDot = atticQFlow / ( atticVolume * densityAir * heatCapacity );
@@ -94,10 +105,10 @@ TEST( EPFMI, static_lib ) {
 
     std::cout << "Current time: " << time << std::endl;
     std::cout << "Attic Temp is: " << atticTemp << std::endl;
+    std::cout << "Core_Zone lighting power is: " << lightingPower << std::endl;
   }
 
   fmi2Terminate(comp);
-  fmi2Terminate(comp2);
 
   std::cout << "epfmi test is now complete" << std::endl;
 }

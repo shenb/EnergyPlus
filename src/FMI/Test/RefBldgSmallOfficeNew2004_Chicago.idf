@@ -98,8 +98,7 @@
     No,                      !- Use Weather File Daylight Saving Period
     No,                      !- Apply Weekend Holiday Rule
     Yes,                     !- Use Weather File Rain Indicators
-    Yes,                     !- Use Weather File Snow Indicators
-    ;                        !- Treat Weather as Actual
+    Yes;                     !- Use Weather File Snow Indicators
 
 ! ***HOLIDAYS & DAYLIGHT SAVINGS***
 
@@ -239,7 +238,7 @@
     7,                       !- Calculation Frequency
     15000;                   !- Maximum Figures in Shadow Overlap Calculations
 
-  Timestep,6;
+  Timestep,60;
 
 ! WeatherFileName=USA_IL_Chicago-OHare_TMY2.epw
 
@@ -250,7 +249,7 @@
     -6.00,                   !- Time Zone {hr}
     190;                     !- Elevation {m}
 
- ! CHICAGO_IL_USA Annual Heating 99.6%, MaxDB=-20.6°C
+ ! CHICAGO_IL_USA Annual Heating 99.6%, MaxDB=-20.6Â°C
 
   SizingPeriod:DesignDay,
     CHICAGO Ann Htg 99.6% Condns DB,  !- Name
@@ -280,7 +279,7 @@
     ,                        !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud) {dimensionless}
     0.00;                    !- Sky Clearness
 
- ! CHICAGO_IL_USA Annual Cooling (WB=>MDB) .4%, MDB=31.2°C WB=25.5°C
+ ! CHICAGO_IL_USA Annual Cooling (WB=>MDB) .4%, MDB=31.2Â°C WB=25.5Â°C
 
   SizingPeriod:DesignDay,
     CHICAGO Ann Clg .4% Condns WB=>MDB,  !- Name
@@ -390,14 +389,6 @@
     ;                        !- Visible Transmittance
 
 ! ***COMMON CONSTRUCTIONS AND MATERIALS***
-
-  Construction,
-    DropCeiling,             !- Name
-    Std AC02;                !- Outside Layer
-
-  Construction,
-    AIR-WALL,                !- Name
-    MAT-AIR-WALL;            !- Outside Layer
 
   Construction,
     InteriorFurnishings,     !- Name
@@ -2314,8 +2305,7 @@
     ConstantCubic,           !- Total Cooling Capacity Function of Flow Fraction Curve Name
     Cool-EIR-fT,             !- Energy Input Ratio Function of Temperature Curve Name
     ConstantCubic,           !- Energy Input Ratio Function of Flow Fraction Curve Name
-    Cool-PLF-fPLR,           !- Part Load Fraction Correlation Curve Name
-    ;                        !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+    Cool-PLF-fPLR;           !- Part Load Fraction Correlation Curve Name
 
   Coil:Cooling:DX:SingleSpeed,
     PSZ-AC:2_CoolC DXCoil,   !- Name
@@ -2331,8 +2321,7 @@
     ConstantCubic,           !- Total Cooling Capacity Function of Flow Fraction Curve Name
     Cool-EIR-fT,             !- Energy Input Ratio Function of Temperature Curve Name
     ConstantCubic,           !- Energy Input Ratio Function of Flow Fraction Curve Name
-    Cool-PLF-fPLR,           !- Part Load Fraction Correlation Curve Name
-    ;                        !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+    Cool-PLF-fPLR;           !- Part Load Fraction Correlation Curve Name
 
   Coil:Cooling:DX:SingleSpeed,
     PSZ-AC:3_CoolC DXCoil,   !- Name
@@ -2348,8 +2337,7 @@
     ConstantCubic,           !- Total Cooling Capacity Function of Flow Fraction Curve Name
     Cool-EIR-fT,             !- Energy Input Ratio Function of Temperature Curve Name
     ConstantCubic,           !- Energy Input Ratio Function of Flow Fraction Curve Name
-    Cool-PLF-fPLR,           !- Part Load Fraction Correlation Curve Name
-    ;                        !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+    Cool-PLF-fPLR;           !- Part Load Fraction Correlation Curve Name
 
   Coil:Cooling:DX:SingleSpeed,
     PSZ-AC:4_CoolC DXCoil,   !- Name
@@ -2365,8 +2353,7 @@
     ConstantCubic,           !- Total Cooling Capacity Function of Flow Fraction Curve Name
     Cool-EIR-fT,             !- Energy Input Ratio Function of Temperature Curve Name
     ConstantCubic,           !- Energy Input Ratio Function of Flow Fraction Curve Name
-    Cool-PLF-fPLR,           !- Part Load Fraction Correlation Curve Name
-    ;                        !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+    Cool-PLF-fPLR;           !- Part Load Fraction Correlation Curve Name
 
   Coil:Cooling:DX:SingleSpeed,
     PSZ-AC:5_CoolC DXCoil,   !- Name
@@ -2382,8 +2369,7 @@
     ConstantCubic,           !- Total Cooling Capacity Function of Flow Fraction Curve Name
     Cool-EIR-fT,             !- Energy Input Ratio Function of Temperature Curve Name
     ConstantCubic,           !- Energy Input Ratio Function of Flow Fraction Curve Name
-    Cool-PLF-fPLR,           !- Part Load Fraction Correlation Curve Name
-    ;                        !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+    Cool-PLF-fPLR;           !- Part Load Fraction Correlation Curve Name
 
   ZoneHVAC:EquipmentList,
     Core_ZN Equipment,       !- Name
@@ -4834,4 +4820,13 @@
     0,                       !- Nuclear High Level Emission Factor {g/MJ}
     ,                        !- Nuclear High Level Emission Factor Schedule Name
     0;                       !- Nuclear Low Level Emission Factor {m3/MJ}
+
+
+!Output:Variable,Core_ZN_Lights,Lights Electric Power,hourly; !- Zone Average [W]
+
+EnergyManagementSystem:Sensor,
+  CORE_LIGHTS,          !- Name
+  Core_ZN_Lights,          !- Output:Variable or Output:Meter Index Key Name
+  Lights Electric Power;  !- Output:Variable or Output:Meter Name
+
 

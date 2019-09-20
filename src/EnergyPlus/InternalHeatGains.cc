@@ -313,9 +313,6 @@ namespace InternalHeatGains {
         static ObjexxFCL::gio::Fmt Format_723("('! <',A,' Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,',A)");
         static ObjexxFCL::gio::Fmt Format_724("(' ',A,', ',A)");
 
-        std::cout << RoutineName << std::endl;
-        std::cout << NumOfZones << std::endl;
-
         // FLOW:
         ZoneIntGain.allocate(NumOfZones);
         ZnRpt.allocate(NumOfZones);
