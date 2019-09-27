@@ -169,13 +169,15 @@ if( BUILD_TESTING )
   include(CTest)
 endif()
 
+ADD_SUBDIRECTORY(third_party/FMI)
+ADD_SUBDIRECTORY(src/FMI)
+
 # E+ required libraries
 ADD_SUBDIRECTORY(third_party/SQLite)
 ADD_SUBDIRECTORY(third_party/ObjexxFCL)
 ADD_SUBDIRECTORY(third_party/BCVTB)
 ADD_SUBDIRECTORY(third_party/Expat)
 ADD_SUBDIRECTORY(third_party/zlib)
-ADD_SUBDIRECTORY(third_party/FMI)
 ADD_SUBDIRECTORY(third_party/DElight)
 ADD_SUBDIRECTORY(third_party/re2)
 ADD_SUBDIRECTORY(scripts/dev/generate_embeddable_epJSON_schema)
@@ -209,7 +211,6 @@ configure_file( "workflows/transition.py" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wor
 
 # of course E+ itself
 ADD_SUBDIRECTORY(src/EnergyPlus)
-ADD_SUBDIRECTORY(src/FMI)
 
 if( BUILD_TESTING )
   #ADD_SUBDIRECTORY(third_party/gtest)
