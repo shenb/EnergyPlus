@@ -13,7 +13,7 @@ conan_add_remote(NAME bincrafters
   URL https://api.bintray.com/conan/bincrafters/public-conan)
 
 conan_cmake_run(REQUIRES 
-  boost_filesystem/1.69.0@bincrafters/stable
+  boost/1.69.0@conan/stable
   BASIC_SETUP CMAKE_TARGETS NO_OUTPUT_DIRS
   BUILD missing
 )
@@ -40,7 +40,7 @@ set(src
 add_library( epfmi SHARED ${src} )
 set_target_properties( epfmi PROPERTIES OUTPUT_NAME "epfmi" )
 
-target_link_libraries( epfmi energypluslib CONAN_PKG::boost_filesystem)
+target_link_libraries( epfmi energypluslib CONAN_PKG::boost)
 
 install( TARGETS epfmi
   RUNTIME DESTINATION ./bin
