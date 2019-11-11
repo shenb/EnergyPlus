@@ -74,6 +74,7 @@ struct EPComponent {
   std::string weatherFilePath;
   std::string iddPath;
   std::string idfInputPath;
+  std::string spawnInputPath;
 
   fmi2Boolean toleranceDefined;
   fmi2Real tolerance;

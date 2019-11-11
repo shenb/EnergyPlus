@@ -12,6 +12,7 @@
 #include "../EnergyPlus/FMIDataGlobals.hh"
 #include "../EnergyPlus/DataRuntimeLanguage.hh"
 #include "../EnergyPlus/OutputProcessor.hh"
+#include "../EnergyPlus/EMSManager.hh"
 #include "../EnergyPlus/InputProcessing/IdfParser.hh"
 #include "../EnergyPlus/InputProcessing/EmbeddedEpJSONSchema.hh"
 #include <boost/filesystem.hpp>
@@ -34,16 +35,16 @@ using json = nlohmann::json;
 
 void exchange(EPComponent * epcomp)
 {
-  auto sensorNum = [](std::string sensorName) {
-    std::transform(sensorName.begin(), sensorName.end(), sensorName.begin(), ::toupper);
-    for ( int i = 0; i < EnergyPlus::DataRuntimeLanguage::NumSensors; ++i ) {
-      if ( EnergyPlus::DataRuntimeLanguage::Sensor[i].Name == sensorName ) {
-        return i + 1;
-      }
-    }
+  //auto sensorNum = [](std::string sensorName) {
+  //  std::transform(sensorName.begin(), sensorName.end(), sensorName.begin(), ::toupper);
+  //  for ( int i = 0; i < EnergyPlus::DataRuntimeLanguage::NumSensors; ++i ) {
+  //    if ( EnergyPlus::DataRuntimeLanguage::Sensor[i].Name == sensorName ) {
+  //      return i + 1;
+  //    }
+  //  }
 
-    return 0;
-  };
+  //  return 0;
+  //};
 
   auto zoneNum = [](std::string & zoneName) {
     std::transform(zoneName.begin(), zoneName.end(), zoneName.begin(), ::toupper);
@@ -56,12 +57,12 @@ void exchange(EPComponent * epcomp)
     return 0;
   };
 
-  auto getSensorValue = [&](std::string & sensorName) {
-    auto _sensorNum = sensorNum(sensorName);
-    
-    return EnergyPlus::GetInternalVariableValue(
-        EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Type, 
-        EnergyPlus::DataRuntimeLanguage::Sensor(_sensorNum).Index);
+  auto getSensorValue = [&](EnergyPlus::FMI::Variable & var) {
+    int varType;
+    int varIndex;
+
+    EnergyPlus::EMSManager::GetVariableTypeAndIndex(var.epname, var.epkey, varType, varIndex);
+    return EnergyPlus::GetInternalVariableValue(varType, varIndex);
   };
 
   auto setActuatorValue = [](std::string & actuatorName, const Real64 & value) {
@@ -97,8 +98,8 @@ void exchange(EPComponent * epcomp)
       case EnergyPlus::FMI::VariableType::QCONSEN_FLOW:
         var.value = EnergyPlus::ZoneTempPredictorCorrector::HDot( varZoneNum );
         break;
-      case EnergyPlus::FMI::VariableType::EMS_SENSOR:
-        var.value = getSensorValue(var.key);
+      case EnergyPlus::FMI::VariableType::SENSOR:
+        var.value = getSensorValue(var);
         break;
       case EnergyPlus::FMI::VariableType::EMS_ACTUATOR:
         setActuatorValue(var.key, var.value);
@@ -140,10 +141,12 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
       comp.weatherFilePath = path.string();
     } else if ( extension == ".idd" ) {
       comp.iddPath = path.string();
+    } else if ( extension == ".spawn" ) {
+      comp.spawnInputPath = path.string();
     }
   }
 
-  comp.variables = EnergyPlus::FMI::parseVariables(comp.idfInputPath);
+  comp.variables = EnergyPlus::FMI::parseVariables(comp.idfInputPath, comp.spawnInputPath);
 
   return &comp;
 }
@@ -181,6 +184,20 @@ EPFMI_API fmi2Status fmi2SetupExperiment(fmi2Component c,
     EnergyPlus::CommandLineInterface::ProcessArgs( argc, argv );
     RunEnergyPlus();
   };
+
+  //for (const auto & var: epcomp->variables) {
+  //  if (var.second.type == EnergyPlus::FMI::VariableType::SENSOR) {
+  //    std::cout << "adding variable: " << var.second.epname << std::endl;
+  //    EnergyPlus::OutputProcessor::NumOfReqVariables++; 
+  //    EnergyPlus::OutputProcessor::ReqRepVars.redimension(EnergyPlus::OutputProcessor::NumOfReqVariables);
+
+  //    auto & newvar = EnergyPlus::OutputProcessor::ReqRepVars(EnergyPlus::OutputProcessor::NumOfReqVariables);
+  //    newvar.VarName = var.second.epname;
+  //    newvar.Key = var.second.epkey;
+  //    newvar.frequency = EnergyPlus::OutputProcessor::ReportingFrequency::TimeStep;
+  //    newvar.Used = true;
+  //  }
+  //}
 
   {
     std::unique_lock<std::mutex> lk(epcomp->control_mutex);
@@ -310,7 +327,7 @@ EPFMI_API fmi2Status fmi2Reset(fmi2Component c)
 {
   EPComponent * epcomp = static_cast<EPComponent*>(c);
   stopEnergyPlus(c);
-  epcomp->variables = EnergyPlus::FMI::parseVariables(epcomp->idfInputPath);
+  epcomp->variables = EnergyPlus::FMI::parseVariables(epcomp->idfInputPath,epcomp->spawnInputPath);
 
   return fmi2OK;
 }

@@ -23,7 +23,7 @@ enum class VariableType {
   TRAD,
   X,
   MINLETS_FLOW,
-  EMS_SENSOR,
+  SENSOR,
   EMS_ACTUATOR
 };
 
@@ -35,9 +35,15 @@ struct Variable {
   Real64 value;
   std::vector<VariableAttribute> scalar_attributes;
   std::vector<VariableAttribute> real_attributes;
+
+  // This is used for VariableType::OUTPUT which corresponds to an E+ output var
+  std::string epname;
+  std::string epkey;
 };
 
-std::map<unsigned int, Variable> parseVariables(const std::string & idf);
+std::map<unsigned int, Variable> parseVariables(const std::string & idf,
+    const std::string & jsonInput
+);
 
 }
 }

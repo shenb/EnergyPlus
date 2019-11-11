@@ -2,6 +2,8 @@
 #include "../EnergyPlus/InputProcessing/IdfParser.hh"
 #include "../EnergyPlus/InputProcessing/EmbeddedEpJSONSchema.hh"
 #include "../EnergyPlus/DataStringGlobals.hh"
+#include "../EnergyPlus/UtilityRoutines.hh"
+#include <nlohmann/json.hpp>
 #include <iostream>
 #include <fstream>
 
@@ -10,8 +12,9 @@ using json = nlohmann::json;
 namespace EnergyPlus {
 namespace FMI {
 
-struct IdfInfo {
-  IdfInfo(const std::string & idfPath) {
+struct FMUInfo {
+  FMUInfo(const std::string & idfPath)
+  {
     std::ifstream input_stream(idfPath, std::ifstream::in);
 
     std::string input_file;
@@ -42,21 +45,21 @@ struct IdfInfo {
     return result;
   }
 
-  std::vector<std::string> sensorNames() const {
-    std::vector<std::string> result;
-    std::string type = "EnergyManagementSystem:Sensor";
+  //std::vector<std::string> sensorNames() const {
+  //  std::vector<std::string> result;
+  //  std::string type = "EnergyManagementSystem:Sensor";
 
-    if ( jsonidf.find(type) != jsonidf.end() ) {
-      const auto sensors = jsonidf[type];
-      for( const auto & sensor : sensors.items() ) {
-        result.push_back(sensor.key());
-      }
-    }
+  //  if ( jsonidf.find(type) != jsonidf.end() ) {
+  //    const auto sensors = jsonidf[type];
+  //    for( const auto & sensor : sensors.items() ) {
+  //      result.push_back(sensor.key());
+  //    }
+  //  }
 
-    std::sort(result.begin(), result.end());
+  //  std::sort(result.begin(), result.end());
 
-    return result;
-  }
+  //  return result;
+  //}
 
   std::vector<std::string> actuatorNames() const {
     std::vector<std::string> result;
@@ -77,21 +80,38 @@ struct IdfInfo {
   nlohmann::json jsonidf;
 };
 
-std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
+std::map<unsigned int, Variable> parseVariables(const std::string & idf,
+    const std::string & jsonInput) 
+{
   std::map<unsigned int, Variable> result;
 
-  IdfInfo idfInfo(idf);
-
+  FMUInfo fmuInfo(idf);
 
   unsigned int i = 0;
 
-  const auto sensors = idfInfo.sensorNames();
-  for (const auto & sensor : sensors) {
-    Variable var;
-    var.type = VariableType::EMS_SENSOR;
-    var.key = sensor;
+  json j;
+  std::ifstream jsonFileInput(jsonInput);
+  if (!jsonFileInput.fail()) {
+    // deserialize from file
+    jsonFileInput >> j;
+  } else {
+    // Try to parse command line input as json string
+    j = json::parse(jsonInput, nullptr, false);
+  }
 
-    var.scalar_attributes.emplace_back(std::make_pair("name",sensor));
+  auto outputVariables = j.at("outputVariables");
+  for (const auto & outputVariable : outputVariables) {
+    auto epname = outputVariable.at("name").get<std::string>();
+    auto epkey = outputVariable.at("key").get<std::string>();
+    auto fmiName = outputVariable.at("fmiName").get<std::string>();
+
+    Variable var;
+    var.type = VariableType::SENSOR;
+    var.key = fmiName;
+    var.epname = UtilityRoutines::MakeUPPERCase(epname);
+    var.epkey = UtilityRoutines::MakeUPPERCase(epkey);
+
+    var.scalar_attributes.emplace_back(std::make_pair("name",fmiName));
     var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
     var.scalar_attributes.emplace_back(std::make_pair("description","Custom Sensor"));
     var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
@@ -102,7 +122,24 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
     ++i;
   }
 
-  const auto actuators = idfInfo.actuatorNames();
+  //const auto sensors = fmuInfo.sensorNames();
+  //for (const auto & sensor : sensors) {
+  //  Variable var;
+  //  var.type = VariableType::EMS_SENSOR;
+  //  var.key = sensor;
+
+  //  var.scalar_attributes.emplace_back(std::make_pair("name",sensor));
+  //  var.scalar_attributes.emplace_back(std::make_pair("valueReference", std::to_string(i)));
+  //  var.scalar_attributes.emplace_back(std::make_pair("description","Custom Sensor"));
+  //  var.scalar_attributes.emplace_back(std::make_pair("causality","output"));
+  //  var.scalar_attributes.emplace_back(std::make_pair("variability","continuous"));
+  //  var.scalar_attributes.emplace_back(std::make_pair("initial","calculated"));
+
+  //  result.emplace(i,std::move(var));
+  //  ++i;
+  //}
+
+  const auto actuators = fmuInfo.actuatorNames();
   for (const auto & actuator : actuators) {
     Variable var;
     var.type = VariableType::EMS_ACTUATOR;
@@ -118,7 +155,7 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf) {
     ++i;
   }
 
-  const auto zones = idfInfo.zoneNames();
+  const auto zones = fmuInfo.zoneNames();
   for (const auto & zone : zones) {
     {
       Variable var;
