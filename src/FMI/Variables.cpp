@@ -99,7 +99,7 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf,
     j = json::parse(jsonInput, nullptr, false);
   }
 
-  auto outputVariables = j.at("outputVariables");
+  auto outputVariables = j.at("model").at("outputVariables");
   for (const auto & outputVariable : outputVariables) {
     auto epname = outputVariable.at("name").get<std::string>();
     auto epkey = outputVariable.at("key").get<std::string>();
