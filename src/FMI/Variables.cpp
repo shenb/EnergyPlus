@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using json = nlohmann::json;
 
@@ -99,7 +100,7 @@ std::map<unsigned int, Variable> parseVariables(const std::string & idf,
     j = json::parse(jsonInput, nullptr, false);
   }
 
-  auto outputVariables = j.at("model").at("outputVariables");
+  auto outputVariables = j.value("model",json()).value("outputVariables", std::vector<json>(0));
   for (const auto & outputVariable : outputVariables) {
     auto epname = outputVariable.at("name").get<std::string>();
     auto epkey = outputVariable.at("key").get<std::string>();
