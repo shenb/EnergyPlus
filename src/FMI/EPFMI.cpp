@@ -143,6 +143,8 @@ EPFMI_API fmi2Component fmi2Instantiate(fmi2String instanceName,
       comp.iddPath = path.string();
     } else if ( extension == ".spawn" ) {
       comp.spawnInputPath = path.string();
+    } else if ( extension == ".json" ) {
+      comp.spawnInputPath = path.string();
     }
   }
 
