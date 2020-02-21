@@ -84,6 +84,8 @@
 #include <EnergyPlus/PlantUtilities.hh>
 #include <EnergyPlus/UtilityRoutines.hh>
 
+std::ofstream static file("gTemps.csv", std::ofstream::out);
+
 namespace EnergyPlus {
 
     namespace PlantPipingSystemsManager {
@@ -1479,7 +1481,7 @@ namespace EnergyPlus {
 
         bool SiteGroundDomainUsingNoMassMat(Real64 const MaterialThickness,
                                             int const MaterialNum) {
-            
+
             if ( (MaterialThickness <= 0.0) || (DataHeatBalance::Material(MaterialNum).ROnly) ) {
                 return true;
             } else {
@@ -1487,7 +1489,7 @@ namespace EnergyPlus {
             }
 
         }
-        
+
         void SiteGroundDomainNoMassMatError(std::string const &FieldName,
                                             std::string const &UserInputField,
                                             std::string const &ObjectName) {
@@ -1499,7 +1501,7 @@ namespace EnergyPlus {
 
         }
 
-        
+
         void ReadPipeCircuitInputs(bool &ErrorsFound) {
 
             // SUBROUTINE INFORMATION:
@@ -4984,8 +4986,18 @@ namespace EnergyPlus {
             //       MODIFIED       na
             //       RE-ENGINEERED  na
 
+            static bool printedTemps(true);
+
             Real64 CurTime = this->Cur.CurSimTimeSeconds;
             Real64 z = this->Extents.yMax - cell.Centroid.Y;
+
+            if (printedTemps) {
+                for (int day = 0; day<365; ++day) {
+                    file << day << "," << this->groundTempModel->getGroundTempAtTimeInSeconds(0.25, day * 24 * 3600) << "\n";
+                }
+                printedTemps = false;
+            }
+
             return this->groundTempModel->getGroundTempAtTimeInSeconds(z, CurTime);
         }
 
