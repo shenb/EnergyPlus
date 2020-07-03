@@ -364,6 +364,10 @@ namespace VariableSpeedCoils {
         bool reportCoilFinalSizes; // one time report of sizes to coil selection report
         Real64 capModFacTotal;     // coil  TotCapTempModFac * TotCapAirFFModFac * TotCapWaterFFModFac, for result for simulation peak reporting
 
+        int GridScheduleIndex;    //index referring to grid signal schedule
+        Real64 GridLowBound;      //value above which, apply grid responsive control
+        Real64 GridHighBound;      // value below which, apply grid responsive control
+        Real64 GridMaxSpeed;      // maximum speed level when apply grid responsive control
         // Default Constructor
         VariableSpeedCoilData();
     };
