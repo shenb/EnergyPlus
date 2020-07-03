@@ -110,6 +110,7 @@ namespace VariableSpeedCoils {
     using DXCoils::AdjustCBF;
     using DXCoils::CalcCBF;
     using General::RoundSigDigits;
+    using ScheduleManager::GetCurrentScheduleValue;
 
     // Use statements for access to subroutines in other modules
 
@@ -428,6 +429,7 @@ namespace VariableSpeedCoils {
         //       AUTHOR         Bo Shen
         //       DATE WRITTEN   March, 2012
         //       MODIFIED       Bo Shen, 12/2014, add variable-speed HPWH
+        //       MODIFIED       Bo Shen, add grid responsive speed control, 07/2020
         //       RE-ENGINEERED  na
 
         // PURPOSE OF THIS SUBROUTINE:
@@ -5062,7 +5064,7 @@ namespace VariableSpeedCoils {
 
         //       AUTHOR         Bo Shen, based on WaterToAirHeatPumpSimple:CalcHPCoolingSimple
         //       DATE WRITTEN   March 2012
-        //       MODIFIED       na
+        //       MODIFIED       Bo Shen, add grid responsive speed control, 07/2020
         //       RE-ENGINEERED  na
 
         // PURPOSE OF THIS SUBROUTINE:
@@ -5153,6 +5155,7 @@ namespace VariableSpeedCoils {
         Real64 PLF;                             // part-load function
         Real64 MaxHumRat;                       // max possible humidity
         Real64 MaxOutletEnth;                   // max possible outlet enthalpy
+        Real64 dGridSignal(0.0);                // real time grid signal
 
         // ADDED VARIABLES FOR air source coil
         static Real64 OutdoorDryBulb(0.0);        // Outdoor dry-bulb temperature at condenser (C)
@@ -5185,6 +5188,19 @@ namespace VariableSpeedCoils {
         LoadSideInletWBTemp_Init = PsyTwbFnTdbWPb(LoadSideInletDBTemp_Init, LoadSideInletHumRat_Init, OutBaroPress, RoutineName);
 
         MaxSpeed = VarSpeedCoil(DXCoilNum).NumOfSpeeds;
+                
+        if (VarSpeedCoil(DXCoilNum).GridScheduleIndex > 0) {
+            dGridSignal = GetCurrentScheduleValue(VarSpeedCoil(DXCoilNum).GridScheduleIndex);
+
+            if ((dGridSignal >= VarSpeedCoil(DXCoilNum).GridLowBound) && (dGridSignal <= VarSpeedCoil(DXCoilNum).GridHighBound)) {
+                MaxSpeed = min(int(VarSpeedCoil(DXCoilNum).GridMaxSpeed), MaxSpeed);
+            }
+
+            if (MaxSpeed <= 0) {
+                VarSpeedCoil(DXCoilNum).SimFlag = false;
+                return;
+            }
+        }
 
         // must be placed inside the loop, otherwise cause bug in release mode, need to be present at two places
         if (SpeedNum > MaxSpeed) {
@@ -6277,7 +6293,7 @@ namespace VariableSpeedCoils {
 
         //       AUTHOR         Bo Shen, based on WaterToAirHeatPumpSimple:CalcHPHeatingSimple
         //       DATE WRITTEN   March 2012
-        //       MODIFIED       na
+        //       MODIFIED       Bo Shen, add grid responsive speed control, 07/2020
         //       RE-ENGINEERED  na
 
         // PURPOSE OF THIS SUBROUTINE:
@@ -6340,6 +6356,7 @@ namespace VariableSpeedCoils {
         Real64 PLF;                 // part-load function
         Real64 ReportingConstant;
         Real64 rhoair(0.0); // entering air density
+        Real64 dGridSignal(0.0); // real time grid signal
 
         // ADDED VARIABLES FOR air source coil
         static Real64 OutdoorCoilT(0.0);              // Outdoor coil temperature (C)
@@ -6357,6 +6374,19 @@ namespace VariableSpeedCoils {
         static Real64 TotRatedCapacity(0.0);          // total rated capacity at the given speed and speed ratio for defrosting
 
         MaxSpeed = VarSpeedCoil(DXCoilNum).NumOfSpeeds;
+
+        if (VarSpeedCoil(DXCoilNum).GridScheduleIndex > 0) {
+            dGridSignal = GetCurrentScheduleValue(VarSpeedCoil(DXCoilNum).GridScheduleIndex);
+
+            if ((dGridSignal >= VarSpeedCoil(DXCoilNum).GridLowBound) && (dGridSignal <= VarSpeedCoil(DXCoilNum).GridHighBound)) {
+                MaxSpeed = min(int(VarSpeedCoil(DXCoilNum).GridMaxSpeed), MaxSpeed);
+            }
+
+            if (MaxSpeed <= 0) {
+                VarSpeedCoil(DXCoilNum).SimFlag = false;
+                return;
+            }
+        }
 
         //  LOAD LOCAL VARIABLES FROM DATA STRUCTURE (for code readability)
         if (!(CyclingScheme == ContFanCycCoil) && PartLoadRatio > 0.0) {
