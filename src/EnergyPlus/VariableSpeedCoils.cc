@@ -418,8 +418,22 @@ namespace VariableSpeedCoils {
         }
 
         // two additional output variables
-        VarSpeedCoil(DXCoilNum).SpeedNumReport = SpeedCal;
-        VarSpeedCoil(DXCoilNum).SpeedRatioReport = SpeedRatio;
+        int MaxSpeed = SpeedCal; //correct real running speed considering grid contro request
+        MaxSpeed = CompareGridSpeed(DXCoilNum, MaxSpeed);
+
+        if (MaxSpeed < SpeedCal) { // corrected by grid signal
+            if (MaxSpeed <= 0) {
+                VarSpeedCoil(DXCoilNum).SpeedNumReport = 1;
+                VarSpeedCoil(DXCoilNum).SpeedRatioReport = 0.0;
+            } else {
+                VarSpeedCoil(DXCoilNum).SpeedNumReport = MaxSpeed;
+                VarSpeedCoil(DXCoilNum).SpeedRatioReport = 1.0;
+            }
+        } else {
+            VarSpeedCoil(DXCoilNum).SpeedNumReport = SpeedCal;
+            VarSpeedCoil(DXCoilNum).SpeedRatioReport = SpeedRatio;
+        }
+
     }
 
     void GetVarSpeedCoilInput()
@@ -5189,18 +5203,12 @@ namespace VariableSpeedCoils {
 
         MaxSpeed = VarSpeedCoil(DXCoilNum).NumOfSpeeds;
                 
-        if (VarSpeedCoil(DXCoilNum).GridScheduleIndex > 0) {
-            dGridSignal = GetCurrentScheduleValue(VarSpeedCoil(DXCoilNum).GridScheduleIndex);
-
-            if ((dGridSignal >= VarSpeedCoil(DXCoilNum).GridLowBound) && (dGridSignal <= VarSpeedCoil(DXCoilNum).GridHighBound)) {
-                MaxSpeed = min(int(VarSpeedCoil(DXCoilNum).GridMaxSpeed), MaxSpeed);
-            }
-
-            if (MaxSpeed <= 0) {
-                VarSpeedCoil(DXCoilNum).SimFlag = false;
-                return;
-            }
+        MaxSpeed = CompareGridSpeed(DXCoilNum, MaxSpeed); 
+        if (MaxSpeed <= 0) {
+            VarSpeedCoil(DXCoilNum).SimFlag = false;
+            return;
         }
+
 
         // must be placed inside the loop, otherwise cause bug in release mode, need to be present at two places
         if (SpeedNum > MaxSpeed) {
@@ -6375,17 +6383,10 @@ namespace VariableSpeedCoils {
 
         MaxSpeed = VarSpeedCoil(DXCoilNum).NumOfSpeeds;
 
-        if (VarSpeedCoil(DXCoilNum).GridScheduleIndex > 0) {
-            dGridSignal = GetCurrentScheduleValue(VarSpeedCoil(DXCoilNum).GridScheduleIndex);
-
-            if ((dGridSignal >= VarSpeedCoil(DXCoilNum).GridLowBound) && (dGridSignal <= VarSpeedCoil(DXCoilNum).GridHighBound)) {
-                MaxSpeed = min(int(VarSpeedCoil(DXCoilNum).GridMaxSpeed), MaxSpeed);
-            }
-
-            if (MaxSpeed <= 0) {
-                VarSpeedCoil(DXCoilNum).SimFlag = false;
-                return;
-            }
+        MaxSpeed = CompareGridSpeed(DXCoilNum, MaxSpeed);
+        if (MaxSpeed <= 0) {
+            VarSpeedCoil(DXCoilNum).SimFlag = false;
+            return;
         }
 
         //  LOAD LOCAL VARIABLES FROM DATA STRUCTURE (for code readability)
@@ -7185,7 +7186,7 @@ namespace VariableSpeedCoils {
         return MinOAT;
     }
 
-    int GetVSCoilLowerSpeed(int &CompIndex, const int SpeedInput)
+    int CompareGridSpeed(const int CompIndex, const int SpeedInput)
     {
         // FUNCTION INFORMATION:
         //       AUTHOR         Bo Shen
@@ -7195,7 +7196,7 @@ namespace VariableSpeedCoils {
         //      PURPOSE OF THIS FUNCTION:
         //      check the maximum allow speed to drive air flow rate in the air loop
         
-        int MaxSpeed = SpeedInput; 
+        int MinSpeed = SpeedInput; 
 
         if (CompIndex > 0) {
             if (VarSpeedCoil(CompIndex).GridScheduleIndex > 0) {
@@ -7203,14 +7204,12 @@ namespace VariableSpeedCoils {
 
                 if ((dGridSignal >= VarSpeedCoil(CompIndex).GridLowBound) && 
                     (dGridSignal <= VarSpeedCoil(CompIndex).GridHighBound)) {
-                    MaxSpeed = min(int(VarSpeedCoil(CompIndex).GridMaxSpeed), MaxSpeed);
+                    MinSpeed = min(int(VarSpeedCoil(CompIndex).GridMaxSpeed), MinSpeed);
                 }
-
-                if (MaxSpeed <= 0) MaxSpeed = SpeedInput; //means the coil is turned off, then allow the max speed for air flow
             }
         } 
 
-        return (MaxSpeed);
+        return (MinSpeed);
     }
 
     int GetVSCoilNumOfSpeeds(std::string const &CoilName, // must match coil names for the coil type

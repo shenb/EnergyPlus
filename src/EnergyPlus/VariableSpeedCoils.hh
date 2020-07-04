@@ -482,7 +482,7 @@ namespace VariableSpeedCoils {
     );
 
 
-    int GetVSCoilLowerSpeed(int &CompIndex, //coil index No
+    int CompareGridSpeed(const int CompIndex, //coil index No
                             const int SpeedInput // input speed level
     );
 

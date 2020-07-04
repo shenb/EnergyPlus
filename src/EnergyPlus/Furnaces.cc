@@ -10512,7 +10512,7 @@ namespace Furnaces {
         using Fans::SimulateFanComponents;
         using IntegratedHeatPump::SimIHP;
         using VariableSpeedCoils::SimVariableSpeedCoils;
-        using VariableSpeedCoils::GetVSCoilLowerSpeed; 
+        using VariableSpeedCoils::CompareGridSpeed; 
         using VariableSpeedCoils::VarSpeedCoil;
 
         // Locals
@@ -10552,8 +10552,10 @@ namespace Furnaces {
         if (Furnace(FurnaceNum).bIsIHP) {
 
         } else {
-            FanSpeed= min(GetVSCoilLowerSpeed(Furnace(FurnaceNum).CoolingCoilIndex, SpeedNum), SpeedNum); 
-            FanSpeed = min(GetVSCoilLowerSpeed(Furnace(FurnaceNum).HeatingCoilIndex, FanSpeed), FanSpeed); 
+            FanSpeed = CompareGridSpeed(Furnace(FurnaceNum).CoolingCoilIndex, SpeedNum); 
+            if (FanSpeed == 0) FanSpeed = SpeedNum; //compressor off, allow maximum fan flow speed
+            FanSpeed = CompareGridSpeed(Furnace(FurnaceNum).HeatingCoilIndex, FanSpeed); 
+            if (FanSpeed == 0) FanSpeed = SpeedNum; //compressor off, allow maximum fan flow speed
         }
 
         // Set inlet air mass flow rate based on PLR and compressor on/off air flow rates
