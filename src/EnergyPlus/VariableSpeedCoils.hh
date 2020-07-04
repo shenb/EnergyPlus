@@ -481,6 +481,11 @@ namespace VariableSpeedCoils {
                                                bool &ErrorsFound    // set to true if problem
     );
 
+
+    int GetVSCoilLowerSpeed(int &CompIndex, //coil index No
+                            const int SpeedInput // input speed level
+    );
+
     int GetVSCoilNumOfSpeeds(std::string const &CoilName, // must match coil names for the coil type
                              bool &ErrorsFound            // set to true if problem
     );

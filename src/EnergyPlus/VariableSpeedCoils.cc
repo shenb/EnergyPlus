@@ -7185,6 +7185,34 @@ namespace VariableSpeedCoils {
         return MinOAT;
     }
 
+    int GetVSCoilLowerSpeed(int &CompIndex, const int SpeedInput)
+    {
+        // FUNCTION INFORMATION:
+        //       AUTHOR         Bo Shen
+        //       DATE WRITTEN   07/2020
+        //       MODIFIED       na
+        //       RE-ENGINEERED  na
+        //      PURPOSE OF THIS FUNCTION:
+        //      check the maximum allow speed to drive air flow rate in the air loop
+        
+        int MaxSpeed = SpeedInput; 
+
+        if (CompIndex > 0) {
+            if (VarSpeedCoil(CompIndex).GridScheduleIndex > 0) {
+                const double dGridSignal = GetCurrentScheduleValue(VarSpeedCoil(CompIndex).GridScheduleIndex);
+
+                if ((dGridSignal >= VarSpeedCoil(CompIndex).GridLowBound) && 
+                    (dGridSignal <= VarSpeedCoil(CompIndex).GridHighBound)) {
+                    MaxSpeed = min(int(VarSpeedCoil(CompIndex).GridMaxSpeed), MaxSpeed);
+                }
+
+                if (MaxSpeed <= 0) MaxSpeed = SpeedInput; //means the coil is turned off, then allow the max speed for air flow
+            }
+        } 
+
+        return (MaxSpeed);
+    }
+
     int GetVSCoilNumOfSpeeds(std::string const &CoilName, // must match coil names for the coil type
                              bool &ErrorsFound            // set to true if problem
     )

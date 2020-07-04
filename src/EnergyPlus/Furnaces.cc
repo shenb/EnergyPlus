@@ -10512,6 +10512,7 @@ namespace Furnaces {
         using Fans::SimulateFanComponents;
         using IntegratedHeatPump::SimIHP;
         using VariableSpeedCoils::SimVariableSpeedCoils;
+        using VariableSpeedCoils::GetVSCoilLowerSpeed; 
         using VariableSpeedCoils::VarSpeedCoil;
 
         // Locals
@@ -10537,6 +10538,7 @@ namespace Furnaces {
         Real64 ErrorToler;        // supplemental heating coil convergence tollerance
         bool SuppHeatingCoilFlag; // whether to turn on the supplemental heater
         Real64 HeatCoilLoad;      // REQUIRED HEAT COIL LOAD
+        int FanSpeed = SpeedNum;  //speed level to drive fan flow
 
         // FLOW
         InletNode = Furnace(FurnaceNum).FurnaceInletNodeNum;
@@ -10547,8 +10549,15 @@ namespace Furnaces {
         SavePartloadRatio = 0.0;
         ErrorToler = 0.001;
 
+        if (Furnace(FurnaceNum).bIsIHP) {
+
+        } else {
+            FanSpeed= min(GetVSCoilLowerSpeed(Furnace(FurnaceNum).CoolingCoilIndex, SpeedNum), SpeedNum); 
+            FanSpeed = min(GetVSCoilLowerSpeed(Furnace(FurnaceNum).HeatingCoilIndex, FanSpeed), FanSpeed); 
+        }
+
         // Set inlet air mass flow rate based on PLR and compressor on/off air flow rates
-        SetVSHPAirFlow(state, FurnaceNum, PartLoadFrac, OnOffAirFlowRatio, SpeedNum, SpeedRatio);
+        SetVSHPAirFlow(state, FurnaceNum, PartLoadFrac, OnOffAirFlowRatio, FanSpeed, SpeedRatio);
 
         if ((SupHeaterLoad > 1.0e-10) && (Furnace(FurnaceNum).FurnaceType_Num == UnitarySys_HeatCool) &&
             (Furnace(FurnaceNum).SuppHeatCoilIndex == 0)) {
