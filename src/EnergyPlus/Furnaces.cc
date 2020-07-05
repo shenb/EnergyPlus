@@ -10114,6 +10114,10 @@ namespace Furnaces {
         using IntegratedHeatPump::GetMaxSpeedNumIHP;
         using IntegratedHeatPump::IHPOperationMode;
         using IntegratedHeatPump::IntegratedHeatPumps;
+        using VariableSpeedCoils::GetGridLoadCtrlMode;
+        using VariableSpeedCoils::GRID_LATENT; 
+        using VariableSpeedCoils::GRID_SENSIBLE;
+        using VariableSpeedCoils::GRID_SENLAT;
         using Psychrometrics::PsyCpAirFnW;
 
         // SUBROUTINE PARAMETER DEFINITIONS:
@@ -10134,6 +10138,7 @@ namespace Furnaces {
         static int ErrCountCyc(0); // Counter used to minimize the occurrence of output warnings
         static int ErrCountVar(0); // Counter used to minimize the occurrence of output warnings
         IHPOperationMode IHPMode(IHPOperationMode::IdleMode);
+        int GridResponseMode(VariableSpeedCoils::GRID_SENLAT); 
 
         // FLOW
         SupHeaterLoad = 0.0;
@@ -10209,7 +10214,15 @@ namespace Furnaces {
                              OnOffAirFlowRatio,
                              SupHeaterLoad);
 
-        if (QLatReq < (-1.0 * SmallLoad)) { // dehumidification mode
+        if (Furnace(FurnaceNum).bIsIHP) 
+        {
+        
+        } else {
+            GridResponseMode = GetGridLoadCtrlMode(Furnace(FurnaceNum).CoolingCoilIndex); 
+        }
+        
+        if ((QLatReq < (-1.0 * SmallLoad)) && 
+            (GridResponseMode != VariableSpeedCoils::GRID_SENSIBLE)) { // dehumidification mode
             if (QLatReq <= LatOutput || (QZnReq < -SmallLoad && QZnReq <= FullOutput) || (QZnReq > SmallLoad && QZnReq >= FullOutput)) {
                 PartLoadFrac = 1.0;
                 SpeedRatio = 1.0;
@@ -10238,7 +10251,9 @@ namespace Furnaces {
             ErrorToler = 0.001; // Error tolerance for convergence from input deck
         }
 
-        if ((QZnReq < -SmallLoad && NoCompOutput - QZnReq > SmallLoad) || (QZnReq > SmallLoad && QZnReq - NoCompOutput > SmallLoad)) {
+        if (((QZnReq < -SmallLoad && NoCompOutput - QZnReq > SmallLoad) || (QZnReq > SmallLoad && QZnReq - NoCompOutput > SmallLoad)) 
+            && (GridResponseMode != VariableSpeedCoils::GRID_LATENT))
+        {
             if ((QZnReq > SmallLoad && QZnReq < FullOutput) || (QZnReq < (-1.0 * SmallLoad) && QZnReq > FullOutput)) {
 
                 Par(1) = FurnaceNum;
@@ -10389,8 +10404,11 @@ namespace Furnaces {
             LatOutput = noLatOutput; // reset full output if not needed for sensible load
             SpeedNum = 1;            // reset speed from full output test
         }
+        
         // meet the latent load
-        if (QLatReq < -SmallLoad && QLatReq < LatOutput) {
+        if ((QLatReq < -SmallLoad && QLatReq < LatOutput) 
+            && (GridResponseMode != VariableSpeedCoils::GRID_SENSIBLE))
+        {
             PartLoadFrac = 1.0;
             SpeedRatio = 1.0;
             for (i = SpeedNum; i <= Furnace(FurnaceNum).NumOfSpeedCooling; ++i) {

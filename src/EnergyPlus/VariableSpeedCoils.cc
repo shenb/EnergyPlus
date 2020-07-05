@@ -292,7 +292,8 @@ namespace VariableSpeedCoils {
           GridScheduleIndex(0), //grid schedule index
           GridLowBound(1.0e10), //low bound to apply grid responsive control
           GridHighBound(-1.0e10), //high bound to apply grid responsive control
-          GridMaxSpeed(10.0) //max speed level to apply grid responsive control
+          GridMaxSpeed(10.0), //max speed level to apply grid responsive control
+          GridLoadCtrlMode(GRID_SENLAT) // control sensible or latent load durign grid responsive operation
     {
     }
 
@@ -1136,6 +1137,19 @@ namespace VariableSpeedCoils {
             VarSpeedCoil(DXCoilNum).GridHighBound = NumArray(14);
             VarSpeedCoil(DXCoilNum).GridMaxSpeed = NumArray(15);
 
+            if(UtilityRoutines::SameString(AlphArray(11), "Sensible")) 
+            {
+                VarSpeedCoil(DXCoilNum).GridLoadCtrlMode = GRID_SENSIBLE;
+            }
+            else if (UtilityRoutines::SameString(AlphArray(11), "Latent"))
+            {
+                VarSpeedCoil(DXCoilNum).GridLoadCtrlMode = GRID_LATENT;
+            } 
+            else 
+            {
+                VarSpeedCoil(DXCoilNum).GridLoadCtrlMode = GRID_SENLAT;
+            }
+
             for (I = 1; I <= VarSpeedCoil(DXCoilNum).NumOfSpeeds; ++I) {
                 VarSpeedCoil(DXCoilNum).MSRatedTotCap(I) = NumArray(16 + (I - 1) * 6);
                 VarSpeedCoil(DXCoilNum).MSRatedSHR(I) = NumArray(17 + (I - 1) * 6);
@@ -1151,7 +1165,7 @@ namespace VariableSpeedCoils {
                     ErrorsFound = true;
                 }
 
-                AlfaFieldIncre = 11 + (I - 1) * 4;
+                AlfaFieldIncre = 12 + (I - 1) * 4;
                 VarSpeedCoil(DXCoilNum).MSCCapFTemp(I) = GetCurveIndex(AlphArray(AlfaFieldIncre)); // convert curve name to number
                 if (VarSpeedCoil(DXCoilNum).MSCCapFTemp(I) == 0) {
                     if (lAlphaBlanks(AlfaFieldIncre)) {
@@ -1181,7 +1195,7 @@ namespace VariableSpeedCoils {
                     }
                 }
 
-                AlfaFieldIncre = 12 + (I - 1) * 4;
+                AlfaFieldIncre = 13 + (I - 1) * 4;
                 VarSpeedCoil(DXCoilNum).MSCCapAirFFlow(I) = GetCurveIndex(AlphArray(AlfaFieldIncre)); // convert curve name to number
                 if (VarSpeedCoil(DXCoilNum).MSCCapAirFFlow(I) == 0) {
                     if (lAlphaBlanks(AlfaFieldIncre)) {
@@ -1211,7 +1225,7 @@ namespace VariableSpeedCoils {
                     }
                 }
 
-                AlfaFieldIncre = 13 + (I - 1) * 4;
+                AlfaFieldIncre = 14 + (I - 1) * 4;
                 VarSpeedCoil(DXCoilNum).MSEIRFTemp(I) = GetCurveIndex(AlphArray(AlfaFieldIncre)); // convert curve name to number
                 if (VarSpeedCoil(DXCoilNum).MSEIRFTemp(I) == 0) {
                     if (lAlphaBlanks(AlfaFieldIncre)) {
@@ -1241,7 +1255,7 @@ namespace VariableSpeedCoils {
                     }
                 }
 
-                AlfaFieldIncre = 14 + (I - 1) * 4;
+                AlfaFieldIncre = 15 + (I - 1) * 4;
                 VarSpeedCoil(DXCoilNum).MSEIRAirFFlow(I) = GetCurveIndex(AlphArray(AlfaFieldIncre)); // convert curve name to number
                 if (VarSpeedCoil(DXCoilNum).MSEIRAirFFlow(I) == 0) {
                     if (lAlphaBlanks(AlfaFieldIncre)) {
@@ -7186,7 +7200,9 @@ namespace VariableSpeedCoils {
         return MinOAT;
     }
 
-    int CompareGridSpeed(const int CompIndex, const int SpeedInput)
+    int CompareGridSpeed(const int CompIndex, // coil index No
+        const int SpeedInput //loop commanded speed level
+    )
     {
         // FUNCTION INFORMATION:
         //       AUTHOR         Bo Shen
@@ -7210,6 +7226,32 @@ namespace VariableSpeedCoils {
         } 
 
         return (MinSpeed);
+    }
+
+    int GetGridLoadCtrlMode(const int CompIndex // coil index No
+    )
+    {
+        // FUNCTION INFORMATION:
+        //       AUTHOR         Bo Shen
+        //       DATE WRITTEN   07/2020
+        //       MODIFIED       na
+        //       RE-ENGINEERED  na
+        //      PURPOSE OF THIS FUNCTION:
+        //      check the maximum allow speed to drive air flow rate in the air loop
+
+        int iMode = GRID_SENLAT; 
+        if (CompIndex > 0) {
+            if (VarSpeedCoil(CompIndex).GridScheduleIndex > 0) {
+                const double dGridSignal = GetCurrentScheduleValue(VarSpeedCoil(CompIndex).GridScheduleIndex);
+
+                if ((dGridSignal >= VarSpeedCoil(CompIndex).GridLowBound) && 
+                    (dGridSignal <= VarSpeedCoil(CompIndex).GridHighBound)) {
+                    iMode = VarSpeedCoil(CompIndex).GridLoadCtrlMode;
+                }
+            }
+        }
+
+        return (iMode);
     }
 
     int GetVSCoilNumOfSpeeds(std::string const &CoilName, // must match coil names for the coil type

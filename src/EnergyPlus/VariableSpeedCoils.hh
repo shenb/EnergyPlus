@@ -66,6 +66,11 @@ namespace VariableSpeedCoils {
     // Data
     // MODULE PARAMETER DEFINITIONS
 
+    // Condenser Type (using same numbering scheme as for chillers)
+    int const GRID_SENSIBLE(1);   // CONTROL SENSIBLE LOAD DURING GRID RESPONSIVE OPERTION
+    int const GRID_LATENT(-1);    // CONTROL LATENT LOAD DURING GRID RESPONSIVE OPERTION
+    int const GRID_SENLAT(0);  // CONTROL BOTH SENISIBLE AND LATENT LOAD DURING GRID RESPONSIVE OPERTION
+
     extern Real64 const RatedInletAirTemp;       // 26.6667C or 80F
     extern Real64 const RatedInletWetBulbTemp;   // 19.44 or 67F, cooling mode
     extern Real64 const RatedInletAirHumRat;     // Humidity ratio corresponding to 80F dry bulb/67F wet bulb
@@ -368,6 +373,7 @@ namespace VariableSpeedCoils {
         Real64 GridLowBound;      //value above which, apply grid responsive control
         Real64 GridHighBound;      // value below which, apply grid responsive control
         Real64 GridMaxSpeed;      // maximum speed level when apply grid responsive control
+        int GridLoadCtrlMode;     //control sensible or latent load during grid responsive control
         // Default Constructor
         VariableSpeedCoilData();
     };
@@ -484,6 +490,9 @@ namespace VariableSpeedCoils {
 
     int CompareGridSpeed(const int CompIndex, //coil index No
                             const int SpeedInput // input speed level
+    );
+
+    int GetGridLoadCtrlMode(const int CompIndex // coil index No
     );
 
     int GetVSCoilNumOfSpeeds(std::string const &CoilName, // must match coil names for the coil type
