@@ -10279,9 +10279,39 @@ namespace Furnaces {
                                     PartLoadFrac);
                             }
                         }
+
+                        // update LatOutput
+                        CalcVarSpeedHeatPump(state,
+                                             FurnaceNum,
+                                             FirstHVACIteration,
+                                             CompOp,
+                                             1,
+                                             0.0,
+                                             PartLoadFrac,
+                                             TempOutput,
+                                             LatOutput,
+                                             QZnReq,
+                                             QLatReq,
+                                             OnOffAirFlowRatio,
+                                             SupHeaterLoad);
                     } else if (SolFla == -2) {
                         ShowFatalError("VS WSHP unit cycling ratio calculation failed: cycling limits exceeded, for unit=" +
                                        Furnace(FurnaceNum).Name);
+                    } else {
+                        //update LatOutput
+                        CalcVarSpeedHeatPump(state,
+                                             FurnaceNum,
+                                             FirstHVACIteration,
+                                             CompOp,
+                                             1,
+                                             0.0,
+                                             PartLoadFrac,
+                                             TempOutput,
+                                             LatOutput,
+                                             QZnReq,
+                                             QLatReq,
+                                             OnOffAirFlowRatio,
+                                             SupHeaterLoad);
                     }
                 } else {
                     // Check to see which speed to meet the load
@@ -10346,9 +10376,39 @@ namespace Furnaces {
                                     SpeedRatio);
                             }
                         }
+
+                        // update LatOutput
+                        CalcVarSpeedHeatPump(state,
+                                             FurnaceNum,
+                                             FirstHVACIteration,
+                                             CompOp,
+                                             SpeedNum,
+                                             SpeedRatio,
+                                             PartLoadFrac,
+                                             TempOutput,
+                                             LatOutput,
+                                             QZnReq,
+                                             QLatReq,
+                                             OnOffAirFlowRatio,
+                                             SupHeaterLoad);
                     } else if (SolFla == -2) {
                         ShowFatalError("VS WSHP unit compressor speed calculation failed: speed limits exceeded, for unit=" +
                                        Furnace(FurnaceNum).Name);
+                    } else {
+                        // update LatOutput
+                        CalcVarSpeedHeatPump(state,
+                                             FurnaceNum,
+                                             FirstHVACIteration,
+                                             CompOp,
+                                             SpeedNum,
+                                             SpeedRatio,
+                                             PartLoadFrac,
+                                             TempOutput,
+                                             LatOutput,
+                                             QZnReq,
+                                             QLatReq,
+                                             OnOffAirFlowRatio,
+                                             SupHeaterLoad);
                     }
                 }
             } else {
