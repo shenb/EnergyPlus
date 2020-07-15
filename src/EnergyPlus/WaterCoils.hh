@@ -375,6 +375,56 @@ namespace WaterCoils {
                      Real64 const PartLoadRatio // part-load ratio of heating coil
     );
 
+    void LiquidDesiccantCoil(int const CoilNum,
+                             bool const FirstHVACIteration,
+                             int const CalcMode,
+                             int const FanOpMode,       // fan operating mode
+                             Real64 const PartLoadRatio // part-load ratio of heating coil
+    );
+
+    void LiqDesiccantCoil_Ntu_Dawne(int const CoilNum,            // Number of Coil
+                              Real64 const WaterTempIn,     // Water temperature IN to this function (C)
+                              Real64 const AirTempIn,       // Air dry bulb temperature IN to this function(C)
+                              Real64 const AirHumRat,       // Air Humidity Ratio IN to this funcation (C)
+                              Real64 const UAInternalTotal, // Internal overall heat transfer coefficient(W/m2 C)
+                              Real64 const UAExternalTotal, // External overall heat transfer coefficient(W/m2 C)
+                              Real64 &OutletWaterTemp,      // Leaving water temperature (C)
+                              Real64 &OutletAirTemp,        // Leaving air dry bulb temperature(C)
+                              Real64 &OutletAirHumRat,      // Leaving air humidity ratio
+                              Real64 &TotWaterCoilLoad,     // Total heat transfer rate(W)
+                              Real64 &SenWaterCoilLoad,     // Sensible heat transfer rate(W)
+                              Real64 &SurfAreaWetFraction,  // Fraction of surface area wet
+                              Real64 &AirInletCoilSurfTemp, // Surface temperature at air entrance(C)
+                              int const FanOpMode,          // fan operating mode
+                              Real64 const PartLoadRatio    // part-load ratio of heating coil)
+    );
+
+    void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,            // Number of Coil
+                                    Real64 const WaterTempIn,     // Water temperature IN to this function (C)
+                                    Real64 const AirTempIn,       // Air dry bulb temperature IN to this function(C)
+                                    Real64 const AirHumRat,       // Air Humidity Ratio IN to this funcation (C)
+                                    Real64 const UAInternalTotal, // Internal overall heat transfer coefficient(W/m2 C)
+                                    Real64 const UAExternalTotal, // External overall heat transfer coefficient(W/m2 C)
+                                    Real64 &OutletWaterTemp,      // Leaving water temperature (C)
+                                    Real64 &OutletAirTemp,        // Leaving air dry bulb temperature(C)
+                                    Real64 &OutletAirHumRat,      // Leaving air humidity ratio
+                                    Real64 &TotWaterCoilLoad,     // Total heat transfer rate(W)
+                                    Real64 &SenWaterCoilLoad,     // Sensible heat transfer rate(W)
+                                    Real64 &SurfAreaWetFraction,  // Fraction of surface area wet
+                                    Real64 &AirInletCoilSurfTemp, // Surface temperature at air entrance(C)
+                                    int const FanOpMode,          // fan operating mode
+                                    Real64 const PartLoadRatio    // part-load ratio of heating coil)
+    );
+ 
+    double TSHSX(double t, double x, double h);
+    double WSSE(double h, double x, double p);
+    double wftx9(double t, double xi);
+    void pft3(double &p, double const &t);
+    double cpftx9(double tsi, double xsi);
+    double hftx9(double t, double x);
+    double LDSatEnthalpy(double t, double x, double dPatm);
+    double PsyHFnTdbW_new(double T, double W);
+
     // End Algorithm Section of the Module
 
     // Coil Completely Dry Subroutine for Cooling Coil

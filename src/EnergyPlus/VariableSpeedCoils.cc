@@ -406,7 +406,7 @@ namespace VariableSpeedCoils {
                              CyclingScheme,
                              OnOffAirFlowRatio,
                              SpeedRatio,
-                             SpeedCal);
+ SpeedCal);
             CalcVarSpeedHPWH(DXCoilNum, RuntimeFrac, PartLoadFrac, SpeedRatio, SpeedNum, CyclingScheme);
             UpdateVarSpeedCoil(DXCoilNum);
         } else {
