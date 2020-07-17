@@ -162,7 +162,7 @@ namespace WaterCoils {
 
     // coil types in this module
     int const WaterCoil_SimpleHeating(TypeOf_CoilWaterSimpleHeating);
-    int const WaterCoil_DetFlatFinCooling(TypeOf_CoilWaterDetailedFlatCooling);
+    //int const WaterCoil_DetFlatFinCooling(TypeOf_CoilWaterDetailedFlatCooling);
     int const WaterCoil_Cooling(TypeOf_CoilWaterCooling);
 
     int const CoilType_Cooling(1);
@@ -170,7 +170,7 @@ namespace WaterCoils {
 
     int const CoilModel_Simple(1);
     int const CoilModel_Cooling(2);
-    int const CoilModel_Detailed(3);
+    //int const CoilModel_Detailed(3);
 
     // Parameters for Heat Exchanger Configuration
     int const CounterFlow(1);
@@ -309,23 +309,13 @@ namespace WaterCoils {
         // With the correct CoilNum Initialize
         InitWaterCoil(state, CoilNum, FirstHVACIteration); // Initialize all WaterCoil related parameters
 
-        if (present(FanOpMode)) {
-            OpMode = FanOpMode;
-        } else {
-            OpMode = ContFanCycCoil;
-        }
-        if (present(PartLoadRatio)) {
-            PartLoadFrac = PartLoadRatio;
-        } else {
-            PartLoadFrac = 1.0;
-        }
+        //if (present(FanOpMode)) {
+        //    OpMode = FanOpMode;
+        //} else {
+        OpMode = ContFanCycCoil;
+        PartLoadFrac = 1.0;
 
-
-           
         CoolingCoil(CoilNum, FirstHVACIteration, SimCalc, OpMode, PartLoadFrac);
-
-
-
 
         // Update the current WaterCoil to the outlet nodes
         UpdateWaterCoil(CoilNum);
@@ -392,7 +382,7 @@ namespace WaterCoils {
 
         // Flow
         NumSimpHeat = inputProcessor->getNumObjectsFound("Coil:Heating:Water");
-        NumFlatFin = inputProcessor->getNumObjectsFound("Coil:Cooling:Water:DetailedGeometry");
+        //NumFlatFin = inputProcessor->getNumObjectsFound("Coil:Cooling:Water:DetailedGeometry");
         NumCooling = inputProcessor->getNumObjectsFound("Coil:Cooling:Water");
         NumWaterCoils = NumSimpHeat + NumFlatFin + NumCooling;
 
@@ -407,9 +397,9 @@ namespace WaterCoils {
         inputProcessor->getObjectDefMaxArgs("Coil:Heating:Water", TotalArgs, NumAlphas, NumNums);
         MaxNums = max(MaxNums, NumNums);
         MaxAlphas = max(MaxAlphas, NumAlphas);
-        inputProcessor->getObjectDefMaxArgs("Coil:Cooling:Water:DetailedGeometry", TotalArgs, NumAlphas, NumNums);
-        MaxNums = max(MaxNums, NumNums);
-        MaxAlphas = max(MaxAlphas, NumAlphas);
+        //inputProcessor->getObjectDefMaxArgs("Coil:Cooling:Water:DetailedGeometry", TotalArgs, NumAlphas, NumNums);
+        //MaxNums = max(MaxNums, NumNums);
+        //MaxAlphas = max(MaxAlphas, NumAlphas);
         inputProcessor->getObjectDefMaxArgs("Coil:Cooling:Water", TotalArgs, NumAlphas, NumNums);
         MaxNums = max(MaxNums, NumNums);
         MaxAlphas = max(MaxAlphas, NumAlphas);
@@ -566,187 +556,6 @@ namespace WaterCoils {
                                 "System",
                                 "Average",
                                 WaterCoil(CoilNum).Name);
-        }
-
-        CurrentModuleObject = "Coil:Cooling:Water:DetailedGeometry";
-        // Get the data for detailed cooling coils.
-        for (FlatFinNum = 1; FlatFinNum <= NumFlatFin; ++FlatFinNum) {
-
-            CoilNum = NumSimpHeat + FlatFinNum;
-
-            inputProcessor->getObjectItem(CurrentModuleObject,
-                                          FlatFinNum,
-                                          AlphArray,
-                                          NumAlphas,
-                                          NumArray,
-                                          NumNums,
-                                          IOStat,
-                                          lNumericBlanks,
-                                          lAlphaBlanks,
-                                          cAlphaFields,
-                                          cNumericFields);
-
-            WaterCoilNumericFields(CoilNum).FieldNames.allocate(MaxNums);
-            WaterCoilNumericFields(CoilNum).FieldNames = "";
-            WaterCoilNumericFields(CoilNum).FieldNames = cNumericFields;
-            UtilityRoutines::IsNameEmpty(AlphArray(1), cCurrentModuleObject, ErrorsFound);
-
-            // ErrorsFound will be set to True if problem was found, left untouched otherwise
-            VerifyUniqueCoilName(CurrentModuleObject, AlphArray(1), ErrorsFound, CurrentModuleObject + " Name");
-
-            WaterCoil(CoilNum).Name = AlphArray(1);
-            WaterCoil(CoilNum).Schedule = AlphArray(2);
-            if (lAlphaBlanks(2)) {
-                WaterCoil(CoilNum).SchedPtr = ScheduleAlwaysOn;
-            } else {
-                WaterCoil(CoilNum).SchedPtr = GetScheduleIndex(AlphArray(2));
-                if (WaterCoil(CoilNum).SchedPtr == 0) {
-                    ShowSevereError(CurrentModuleObject + ": invalid " + cAlphaFields(2) + " entered =" + AlphArray(2) + " for " + cAlphaFields(1) +
-                                    '=' + AlphArray(1));
-                    ErrorsFound = true;
-                }
-            }
-
-            WaterCoil(CoilNum).WaterCoilTypeA = "Cooling";
-            WaterCoil(CoilNum).WaterCoilType = CoilType_Cooling; // 'Cooling'
-            WaterCoil(CoilNum).WaterCoilModelA = "DETAILED FLAT FIN";
-            WaterCoil(CoilNum).WaterCoilModel = CoilModel_Detailed; // 'DETAILED FLAT FIN'
-            WaterCoil(CoilNum).WaterCoilType_Num = WaterCoil_DetFlatFinCooling;
-
-            WaterCoil(CoilNum).MaxWaterVolFlowRate = NumArray(1);
-            if (WaterCoil(CoilNum).MaxWaterVolFlowRate == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).TubeOutsideSurfArea = NumArray(2);
-            if (WaterCoil(CoilNum).TubeOutsideSurfArea == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).TotTubeInsideArea = NumArray(3);
-            if (WaterCoil(CoilNum).TotTubeInsideArea == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).FinSurfArea = NumArray(4);
-            if (WaterCoil(CoilNum).FinSurfArea == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).MinAirFlowArea = NumArray(5);
-            if (WaterCoil(CoilNum).MinAirFlowArea == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).CoilDepth = NumArray(6);
-            if (WaterCoil(CoilNum).CoilDepth == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).FinDiam = NumArray(7);
-            if (WaterCoil(CoilNum).FinDiam == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            WaterCoil(CoilNum).FinThickness = NumArray(8);
-            if (WaterCoil(CoilNum).FinThickness <= 0.0) {
-                ShowSevereError(CurrentModuleObject + ": " + cNumericFields(8) + " must be > 0.0, for " + cAlphaFields(1) + " = " +
-                                WaterCoil(CoilNum).Name);
-                ErrorsFound = true;
-            }
-            WaterCoil(CoilNum).TubeInsideDiam = NumArray(9);
-            WaterCoil(CoilNum).TubeOutsideDiam = NumArray(10);
-            WaterCoil(CoilNum).TubeThermConductivity = NumArray(11);
-            if (WaterCoil(CoilNum).TubeThermConductivity <= 0.0) {
-                ShowSevereError(CurrentModuleObject + ": " + cNumericFields(11) + " must be > 0.0, for " + cAlphaFields(1) + " = " +
-                                WaterCoil(CoilNum).Name);
-                ErrorsFound = true;
-            }
-            WaterCoil(CoilNum).FinThermConductivity = NumArray(12);
-            if (WaterCoil(CoilNum).FinThermConductivity <= 0.0) {
-                ShowSevereError(CurrentModuleObject + ": " + cNumericFields(12) + " must be > 0.0, for " + cAlphaFields(1) + " = " +
-                                WaterCoil(CoilNum).Name);
-                ErrorsFound = true;
-            }
-            WaterCoil(CoilNum).FinSpacing = NumArray(13);
-            WaterCoil(CoilNum).TubeDepthSpacing = NumArray(14);
-            WaterCoil(CoilNum).NumOfTubeRows = NumArray(15);
-            WaterCoil(CoilNum).NumOfTubesPerRow = NumArray(16);
-            if (WaterCoil(CoilNum).NumOfTubesPerRow == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
-            if (!lNumericBlanks(17)) {
-                WaterCoil(CoilNum).DesignWaterDeltaTemp = NumArray(17);
-                WaterCoil(CoilNum).UseDesignWaterDeltaTemp = true;
-            } else {
-                WaterCoil(CoilNum).UseDesignWaterDeltaTemp = false;
-            }
-            WaterCoil(CoilNum).WaterInletNodeNum = GetOnlySingleNode(
-                AlphArray(3), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Water, NodeConnectionType_Inlet, 2, ObjectIsNotParent);
-            WaterCoil(CoilNum).WaterOutletNodeNum = GetOnlySingleNode(
-                AlphArray(4), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Water, NodeConnectionType_Outlet, 2, ObjectIsNotParent);
-            WaterCoil(CoilNum).AirInletNodeNum = GetOnlySingleNode(
-                AlphArray(5), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
-            WaterCoil(CoilNum).AirOutletNodeNum = GetOnlySingleNode(
-                AlphArray(6), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
-
-            // A7 ; \field Name of Water Storage Tank for Condensate Collection
-            WaterCoil(CoilNum).CondensateCollectName = AlphArray(7);
-            if (lAlphaBlanks(7)) {
-                WaterCoil(CoilNum).CondensateCollectMode = CondensateDiscarded;
-            } else {
-                WaterCoil(CoilNum).CondensateCollectMode = CondensateToTank;
-                SetupTankSupplyComponent(WaterCoil(CoilNum).Name,
-                                         CurrentModuleObject,
-                                         WaterCoil(CoilNum).CondensateCollectName,
-                                         ErrorsFound,
-                                         WaterCoil(CoilNum).CondensateTankID,
-                                         WaterCoil(CoilNum).CondensateTankSupplyARRID);
-            }
-
-            TestCompSet(CurrentModuleObject, AlphArray(1), AlphArray(3), AlphArray(4), "Water Nodes");
-            TestCompSet(CurrentModuleObject, AlphArray(1), AlphArray(5), AlphArray(6), "Air Nodes");
-
-            // Setup Report variables for the Detailed Flat Fin Cooling Coils
-            // CurrentModuleObject = "Coil:Cooling:Water:DetailedGeometry"
-            SetupOutputVariable("Cooling Coil Total Cooling Energy",
-                                OutputProcessor::Unit::J,
-                                WaterCoil(CoilNum).TotWaterCoolingCoilEnergy,
-                                "System",
-                                "Sum",
-                                WaterCoil(CoilNum).Name,
-                                _,
-                                "ENERGYTRANSFER",
-                                "COOLINGCOILS",
-                                _,
-                                "System");
-            SetupOutputVariable("Cooling Coil Source Side Heat Transfer Energy",
-                                OutputProcessor::Unit::J,
-                                WaterCoil(CoilNum).TotWaterCoolingCoilEnergy,
-                                "System",
-                                "Sum",
-                                WaterCoil(CoilNum).Name,
-                                _,
-                                "PLANTLOOPCOOLINGDEMAND",
-                                "COOLINGCOILS",
-                                _,
-                                "System");
-            SetupOutputVariable("Cooling Coil Sensible Cooling Energy",
-                                OutputProcessor::Unit::J,
-                                WaterCoil(CoilNum).SenWaterCoolingCoilEnergy,
-                                "System",
-                                "Sum",
-                                WaterCoil(CoilNum).Name);
-            SetupOutputVariable("Cooling Coil Total Cooling Rate",
-                                OutputProcessor::Unit::W,
-                                WaterCoil(CoilNum).TotWaterCoolingCoilRate,
-                                "System",
-                                "Average",
-                                WaterCoil(CoilNum).Name);
-            SetupOutputVariable("Cooling Coil Sensible Cooling Rate",
-                                OutputProcessor::Unit::W,
-                                WaterCoil(CoilNum).SenWaterCoolingCoilRate,
-                                "System",
-                                "Average",
-                                WaterCoil(CoilNum).Name);
-
-            if (WaterCoil(CoilNum).CondensateCollectMode == CondensateToTank) {
-
-                SetupOutputVariable("Cooling Coil Condensate Volume Flow Rate",
-                                    OutputProcessor::Unit::m3_s,
-                                    WaterCoil(CoilNum).CondensateVdot,
-                                    "System",
-                                    "Average",
-                                    WaterCoil(CoilNum).Name);
-                SetupOutputVariable("Cooling Coil Condensate Volume",
-                                    OutputProcessor::Unit::m3,
-                                    WaterCoil(CoilNum).CondensateVol,
-                                    "System",
-                                    "Sum",
-                                    WaterCoil(CoilNum).Name,
-                                    _,
-                                    "OnSiteWater",
-                                    "Condensate",
-                                    _,
-                                    "System");
-            }
         }
 
         CurrentModuleObject = "Coil:Cooling:Water";
@@ -951,7 +760,6 @@ namespace WaterCoils {
         lAlphaBlanks.deallocate();
         lNumericBlanks.deallocate();
     }
-
     // End of Get Input subroutines for the HB Module
     //******************************************************************************
 
@@ -1062,6 +870,10 @@ namespace WaterCoils {
         Real64 LogMeanEnthDiff;       // long mean enthalpy difference {J/kg}
         Real64 LogMeanTempDiff;       // long mean temperature difference {C}
 
+        Real64 CpAir;
+        Real64 DesSenCoilLoad;
+        Real64 DesLatCoilLoad;
+
         Real64 DesOutletWaterTemp;
         Real64 DesSatEnthAtWaterOutTemp;
         Real64 DesEnthAtWaterOutTempAirInHumRat;
@@ -1072,8 +884,20 @@ namespace WaterCoils {
         static Real64 EnthCorrFrac(0.0); // enthalpy correction factor
         static Real64 TempCorrFrac(0.0); // temperature correction factor
 
-        // FLOW:
+        // added variables for desiccant coil
+        Real64 DesHdAvVt;
+        Real64 Qlat;           // Coil latent load
+        Real64 msi;            // Solution mass flow rate IN to this function(kg/s)
+        Real64 Tsi;            // Solution temperature IN to this function (C)
+        Real64 Xsi;            // Solution concentration IN to this function (weight fraction)
+        Real64 Tso;            // Solution temperature IN to this function (C)
+        Real64 ma;             // Air mass flow rate IN to this function(kg/s)
+        Real64 Tai;            // Air dry bulb temperature IN to this function(C)
+        Real64 Wai;            // Air Humidity Ratio IN to this funcation (C)
+        Real64 Tao;            // Air dry bulb temperature OUT to this function(C)
+        Real64 Wao;            // Air Humidity Ratio OUT to this funcation (C)
 
+        // FLOW:
         if (InitWaterCoilOneTimeFlag) {
             // initialize the environment and sizing flags
             MyEnvrnFlag.allocate(NumWaterCoils);
@@ -1114,9 +938,6 @@ namespace WaterCoils {
                     if (WaterCoil(tempCoilNum).WaterCoilType_Num == WaterCoils::WaterCoil_Cooling) {
                         CoilTypeNum = SimAirServingZones::WaterCoil_Cooling;
                         CompType = cAllCoilTypes(DataHVACGlobals::Coil_CoolingWater);
-                    //} else if (WaterCoil(tempCoilNum).WaterCoilType_Num == WaterCoils::WaterCoil_DetFlatFinCooling) {
-                    //    CoilTypeNum = SimAirServingZones::WaterCoil_DetailedCool;
-                    //    CompType = cAllCoilTypes(DataHVACGlobals::Coil_CoolingWaterDetailed);
                     } else if (WaterCoil(tempCoilNum).WaterCoilType_Num == WaterCoils::WaterCoil_SimpleHeating) {
                         CoilTypeNum = SimAirServingZones::WaterCoil_SimpleHeat;
                         CompType = cAllCoilTypes(DataHVACGlobals::Coil_HeatingWater);
@@ -1235,67 +1056,6 @@ namespace WaterCoils {
                                WaterCoil(CoilNum).WaterLoopBranchNum,
                                WaterCoil(CoilNum).WaterLoopCompNum);
 
-            // effective fin diameter for detailed flat fin coil
-
-            /*
-            if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-                WaterCoil(CoilNum).EffectiveFinDiam = std::sqrt(4.0 * WaterCoil(CoilNum).FinDiam * WaterCoil(CoilNum).CoilDepth /
-                                                                (Pi * WaterCoil(CoilNum).NumOfTubeRows * WaterCoil(CoilNum).NumOfTubesPerRow));
-
-                //   calculate fixed geometric parameters of the coil:
-                //   Total Area
-                WaterCoil(CoilNum).TotCoilOutsideSurfArea = WaterCoil(CoilNum).TubeOutsideSurfArea + WaterCoil(CoilNum).FinSurfArea;
-                //   Effective Tube Inside Diameter - the model assumes that the coil
-                //   can be simulated as a tube with an equivalent hydraulic diameter.
-                WaterCoil(CoilNum).CoilEffectiveInsideDiam =
-                    4.0 * WaterCoil(CoilNum).MinAirFlowArea * WaterCoil(CoilNum).CoilDepth / WaterCoil(CoilNum).TotCoilOutsideSurfArea;
-                //   Ratio of tube outside diameter to effective fin diameter should always
-                //   be less than 1
-                TubeToFinDiamRatio = WaterCoil(CoilNum).TubeOutsideDiam / WaterCoil(CoilNum).EffectiveFinDiam;
-                if (TubeToFinDiamRatio > 1.0) {
-                    ShowWarningError("InitWaterCoil: Detailed Flat Fin Coil, TubetoFinDiamRatio > 1.0, [" + RoundSigDigits(TubeToFinDiamRatio, 4) +
-                                     ']');
-                    // reset tube depth spacing and recalc dependent parameters
-                    WaterCoil(CoilNum).TubeDepthSpacing *= (pow_2(TubeToFinDiamRatio) + 0.1);
-                    WaterCoil(CoilNum).CoilDepth = WaterCoil(CoilNum).TubeDepthSpacing * WaterCoil(CoilNum).NumOfTubeRows;
-                    WaterCoil(CoilNum).EffectiveFinDiam = std::sqrt(4.0 * WaterCoil(CoilNum).FinDiam * WaterCoil(CoilNum).CoilDepth /
-                                                                    (Pi * WaterCoil(CoilNum).NumOfTubeRows * WaterCoil(CoilNum).NumOfTubesPerRow));
-                    WaterCoil(CoilNum).CoilEffectiveInsideDiam =
-                        4.0 * WaterCoil(CoilNum).MinAirFlowArea * WaterCoil(CoilNum).CoilDepth / WaterCoil(CoilNum).TotCoilOutsideSurfArea;
-                    TubeToFinDiamRatio = WaterCoil(CoilNum).TubeOutsideDiam / WaterCoil(CoilNum).EffectiveFinDiam;
-                    ShowContinueError("  Resetting tube depth spacing to " + RoundSigDigits(WaterCoil(CoilNum).TubeDepthSpacing, 4) + " meters");
-                    ShowContinueError("  Resetting coil depth to " + RoundSigDigits(WaterCoil(CoilNum).CoilDepth, 4) + " meters");
-                }
-
-                CalcDryFinEffCoef(TubeToFinDiamRatio, CoefSeries);
-
-                WaterCoil(CoilNum).DryFinEfficncyCoef = CoefSeries;
-
-                FinDiamVar = 0.5 * (WaterCoil(CoilNum).EffectiveFinDiam - WaterCoil(CoilNum).TubeOutsideDiam);
-
-                WaterCoil(CoilNum).GeometryCoef1 = 0.159 *
-                                                   std::pow(WaterCoil(CoilNum).FinThickness / WaterCoil(CoilNum).CoilEffectiveInsideDiam, -0.065) *
-                                                   std::pow(WaterCoil(CoilNum).FinThickness / FinDiamVar, 0.141);
-                WaterCoil(CoilNum).GeometryCoef2 = -0.323 * std::pow(WaterCoil(CoilNum).FinSpacing / FinDiamVar, 0.049) *
-                                                   std::pow(WaterCoil(CoilNum).EffectiveFinDiam / WaterCoil(CoilNum).TubeDepthSpacing, 0.549) *
-                                                   std::pow(WaterCoil(CoilNum).FinThickness / WaterCoil(CoilNum).FinSpacing, -0.028);
-
-                // Set some initial values for simulation
-                WaterCoil(CoilNum).SatEnthlCurveConstCoef = -10.57;
-                WaterCoil(CoilNum).SatEnthlCurveSlope = 3.3867;
-                WaterCoil(CoilNum).EnthVsTempCurveAppxSlope = 3.3867;
-                WaterCoil(CoilNum).EnthVsTempCurveConst = -10.57;
-                // Set Saved Values to Zero
-                WaterCoil(CoilNum).SurfAreaWetSaved = 0.0;
-                WaterCoil(CoilNum).MeanWaterTempSaved = 0.0;
-                WaterCoil(CoilNum).InWaterTempSaved = 0.0;
-                WaterCoil(CoilNum).OutWaterTempSaved = 0.0;
-
-            } // End the Detailed Flat Fin Coil Initialization
-
-            */
-
-
 
             // Calculation for Cooling Coil, The part between the '@@@' are design condition
             // and are calculated only once to calculate standard values for UAs and other physical parameters of
@@ -1305,12 +1065,14 @@ namespace WaterCoils {
             // calculating the UA. A fictitious specific heat is also defined to caculate the conventional UA.
             // On the air side, enthalpy capacity rate is the air mass flow rate,while on water side it is
             // enthalpy of saturated air at water temperature.
+            
+            
             //@@@ DESIGN CONDITION BEGIN HERE @@@
 
             // Check for zero design cooling capacity as specified by coil design inputs
             if (MyCoilDesignFlag(CoilNum) && (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Cooling) &&
                 (WaterCoil(CoilNum).DesAirVolFlowRate > 0.0) && (WaterCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) {
-
+                
                 DesInletAirEnth = PsyHFnTdbW(WaterCoil(CoilNum).DesInletAirTemp, WaterCoil(CoilNum).DesInletAirHumRat);
                 DesOutletAirEnth = PsyHFnTdbW(WaterCoil(CoilNum).DesOutletAirTemp, WaterCoil(CoilNum).DesOutletAirHumRat);
                 DesSatEnthAtWaterInTemp =
@@ -1388,11 +1150,9 @@ namespace WaterCoils {
                                 WaterCoil(CoilNum).DesOutletAirTemp = TOutNew;
                                 // update outlet air conditions used for sizing
                                 std::string CompType;
-                                //if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) {
-                                //    CompType = cAllCoilTypes(Coil_CoolingWaterDetailed);
-                                //} else {
+
                                     CompType = cAllCoilTypes(Coil_CoolingWater);
-                                //}
+       
                                 coilSelectionReportObj->setCoilLvgAirTemp(WaterCoil(CoilNum).Name, CompType, TOutNew);
                                 coilSelectionReportObj->setCoilLvgAirHumRat(WaterCoil(CoilNum).Name, CompType, WOutNew);
                                 // end update outlet air conditions used for sizing
@@ -1635,11 +1395,48 @@ namespace WaterCoils {
                 */
 
             
+                // Caculate the desiccant UA
+                // Enthalpy of Air at Inlet design conditions
+                DesInletAirEnth = PsyHFnTdbW(WaterCoil(CoilNum).DesInletAirTemp, WaterCoil(CoilNum).DesInletAirHumRat);
+
+                // Enthalpy of Air at outlet at design conditions
+                DesOutletAirEnth = PsyHFnTdbW(WaterCoil(CoilNum).DesOutletAirTemp, WaterCoil(CoilNum).DesOutletAirHumRat);
+
+                // Total Coil Load from Inlet and Outlet Air States (which include fan heat as appropriate).
+                WaterCoil(CoilNum).DesTotWaterCoilLoad = WaterCoil(CoilNum).DesAirMassFlowRate * (DesInletAirEnth - DesOutletAirEnth);
+
+                CpAir = PsyCpAirFnW(WaterCoil(CoilNum).DesInletAirHumRat);
+                DesSenCoilLoad =
+                    WaterCoil(CoilNum).DesAirMassFlowRate * CpAir * (WaterCoil(CoilNum).DesInletAirTemp - WaterCoil(CoilNum).DesOutletAirTemp);
+                DesLatCoilLoad = WaterCoil(CoilNum).DesTotWaterCoilLoad - DesSenCoilLoad;
+                
+                Qlat = DesLatCoilLoad;
+                msi = WaterCoil(CoilNum).DesAirMassFlowRate;
+                Tsi = WaterCoil(CoilNum).DesInletWaterTemp;
+                Xsi = 0.4;
+//                Tso = 50; // WaterCoil(CoilNum).DesOutletWaterTemp;
+                ma = WaterCoil(CoilNum).MaxWaterMassFlowRate;
+                Tai = WaterCoil(CoilNum).DesInletAirTemp;
+                Wai = WaterCoil(CoilNum).DesInletAirHumRat;
+                Tao = WaterCoil(CoilNum).DesOutletAirTemp;
+                Wao = WaterCoil(CoilNum).DesOutletAirHumRat;
+                DesHdAvVt = CalculateDesHdAvVt(Qlat, // Coil latent load
+                                 msi,  // Solution mass flow rate IN to this function(kg/s)
+                                 Tsi,  // Solution temperature IN to this function (C)
+                                 Xsi,  // Solution concentration IN to this function (weight fraction)
+                                 ma,   // Air mass flow rate IN to this function(kg/s)
+                                 Tai,  // Air dry bulb temperature IN to this function(C)
+                                 Wai,  // Air Humidity Ratio IN to this funcation (C)
+                                 Tao,  // Air dry bulb temperature OUT to this function(C)
+                                 Wao); // Air Humidity Ratio OUT to this funcation (C)
+
+
+                WaterCoil(CoilNum).HdAvVt = DesHdAvVt;
                 // %%%%%%%% add code here %%%%%%%%%%%%%%%%%%%%%%%%%%%
-                WaterCoil(CoilNum).DesAirMassFlowRate = 1.50;
-                WaterCoil(CoilNum).DesTotWaterCoilLoad = 36984;
-                WaterCoil(CoilNum).MaxWaterVolFlowRate = 0.00132;
-                WaterCoil(CoilNum).MaxWaterMassFlowRate = 1.32;
+                //WaterCoil(CoilNum).DesAirMassFlowRate = 1.50;
+                //WaterCoil(CoilNum).DesTotWaterCoilLoad = 36984;
+                //WaterCoil(CoilNum).MaxWaterVolFlowRate = 0.00132;
+                //WaterCoil(CoilNum).MaxWaterMassFlowRate = 1.32;
                 WaterCoil(CoilNum).UACoilExternal = 2989; // make the UA large
                 WaterCoil(CoilNum).UACoilInternal = 9864;
                 WaterCoil(CoilNum).UACoilTotal = 1.0 / (1.0 / WaterCoil(CoilNum).UACoilExternal + 1.0 / WaterCoil(CoilNum).UACoilInternal);
@@ -1883,7 +1680,7 @@ namespace WaterCoils {
                     WaterCoil(CoilNum).OutletAirTemp, WaterCoil(CoilNum).OutletAirHumRat, DataEnvironment::StdPressureSeaLevel, "InitWaterCoil");
 
                 // call set routine in coil report
-                if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling ||
+                if (//WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling ||
                     WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
                     coilSelectionReportObj->setRatedCoilConditions(WaterCoil(CoilNum).Name,
                                                                    coilTypeName,
@@ -2231,11 +2028,8 @@ namespace WaterCoils {
                 DataPltSizCoolNum = PltSizCoolNum;
                 DataWaterLoopNum = WaterCoil(CoilNum).WaterLoopNum;
 
-                if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-                    CompType = cAllCoilTypes(Coil_CoolingWaterDetailed);       // Coil:Cooling:Water:DetailedGeometry
-                } else {
                     CompType = cAllCoilTypes(Coil_CoolingWater); // Coil:Cooling:Water
-                }
+           
                 bPRINT = false;       // do not print this sizing request since the autosized value is needed and this input may not be autosized (we
                                       // should print this!)
                 TempSize = AutoSize;  // get the autosized air volume flow rate for use in other calculations
@@ -2257,11 +2051,11 @@ namespace WaterCoils {
 
                 // calculate pre-sizing data needed for specific functions (e.g., CoolingWaterDesAirInletTempSizing needs HRin and air flow)
                 // these will be calculated again after other parameters are known
-                if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-                    TempSize = AutoSize;                                       // coil report
-                } else {
+                //if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
+                //    TempSize = AutoSize;                                       // coil report
+                //} else {
                     TempSize = WaterCoil(CoilNum).DesInletAirHumRat; // preserve input if entered
-                }
+                //}
                 RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
                 DataDesInletAirHumRat = TempSize;
                 TempSize = AutoSize;
@@ -2272,60 +2066,40 @@ namespace WaterCoils {
                 DataWaterFlowUsedForSizing = TempSize;
                 // end pre-sizing data calculations
 
-              //  if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-              //      bPRINT = false;       // do not print this sizing request since this coil does not have a design inlet air temp input field (we
-                                          // should print this!)
-              //      TempSize = AutoSize;  // not an input for this model
-              //      SizingString.clear(); // doesn't matter
-               // } else {
                     FieldNum = 4; //  N4 , \field Design Inlet Air Temperature
                     bPRINT = true;
                     TempSize = WaterCoil(CoilNum).DesInletAirTemp; // preserve input if entered
                     SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [C]";
-               // }
 
                 RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletTempSizing, SizingString, TempSize, bPRINT, RoutineName);
                 WaterCoil(CoilNum).DesInletAirTemp = TempSize;
                 DataDesInletAirTemp = TempSize;
 
-              //  if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-               //     bPRINT = false;                                            // no field for detailed water coil, should print to eio anyway
-               //     TempSize = AutoSize;                                       // coil report
-               //     SizingString.clear();                                      // doesn't matter
-              //  } else {
                     FieldNum = 3; //  N3 , \field Design Inlet Water Temperature
                     bPRINT = true;
                     TempSize = WaterCoil(CoilNum).DesInletWaterTemp; // preserve input if entered
                     SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [C]";
-               // }
+           
                 RequestSizing(state, CompType, CompName, CoolingWaterDesWaterInletTempSizing, SizingString, TempSize, bPRINT, RoutineName);
                 WaterCoil(CoilNum).DesInletWaterTemp = TempSize;
 
                 if (CurZoneEqNum > 0) { // zone equipment use air inlet humrat to calculate design outlet air temperature
-                  //  if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-                  //      bPRINT = false;                                            // no field for detailed water coil, should print to eio anyway
-                  //      TempSize = AutoSize;                                       // coil report
-                  //      SizingString.clear();                                      // doesn't matter
-                  //  } else {
+
                         FieldNum = 6; //  N6 , \field Design Inlet Air Humidity Ratio
                         bPRINT = true;
                         TempSize = WaterCoil(CoilNum).DesInletAirHumRat;                     // preserve input if entered
                         SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [kgWater/kgDryAir]";
-                  //  }
+              
                     RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
                     WaterCoil(CoilNum).DesInletAirHumRat = TempSize;
                 }
 
-               // if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-               //     bPRINT = false;                                            // no field for detailed water coil, should print to eio anyway
-              //      TempSize = AutoSize;                                       // coil report
-              //      SizingString.clear();                                      // doesn't matter
-               // } else {
+
                     FieldNum = 5; //  N5 , \field Design Outlet Air Temperature
                     bPRINT = true;
                     TempSize = WaterCoil(CoilNum).DesOutletAirTemp; // preserve input if entered
                     SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [C]";
-              //  }
+          
 
                 DataDesInletWaterTemp = WaterCoil(CoilNum).DesInletWaterTemp; // used for warning messages
                 RequestSizing(state, CompType, CompName, CoolingWaterDesAirOutletTempSizing, SizingString, TempSize, bPRINT, RoutineName);
@@ -2334,30 +2108,21 @@ namespace WaterCoils {
 
                 if (CurSysNum > 0) { // This call can be deleted at a future time and remove the if ( CurZoneEqNum > 0 ) check above. This will
                                      // change the order of the eio file.
-                 //   if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-                 //       bPRINT = false;       // no field for detailed water coil, should print this to eio anyway
-                 //       TempSize = AutoSize;  // coil report
-                 //       SizingString.clear(); // doesn't matter
-                 //   } else {
+
                         FieldNum = 6; //  N6 , \field Design Inlet Air Humidity Ratio
                         bPRINT = true;
                         TempSize = WaterCoil(CoilNum).DesInletAirHumRat;
                         SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [kgWater/kgDryAir]";
-                //    }
-                    RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
+                                 RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
                     WaterCoil(CoilNum).DesInletAirHumRat = TempSize;
                 }
 
-             //   if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-              //      bPRINT = false;                                            // no field for detailed water coil, should print this to eio anyway
-             //       TempSize = AutoSize;                                       // coil report
-             //       SizingString.clear();                                      // doesn't matter
-             //   } else {
+
                     FieldNum = 7; //  N7 , \field Design Outlet Air Humidity Ratio
                     bPRINT = true;
                     TempSize = WaterCoil(CoilNum).DesOutletAirHumRat;                    // preserve input if entered
                     SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [kgWater/kgDryAir]";
-             //   }
+         
                 RequestSizing(state, CompType, CompName, CoolingWaterDesAirOutletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
                 WaterCoil(CoilNum).DesOutletAirHumRat = TempSize;
                 DataDesOutletAirHumRat = TempSize;
@@ -2385,15 +2150,11 @@ namespace WaterCoils {
                 WaterCoil(CoilNum).MaxWaterVolFlowRate = TempSize;
                 DataWaterFlowUsedForSizing = TempSize;
 
-               // if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
-               //     bPRINT = false;       // do not print this sizing request since this coil does not have a design air flow rate input field (we
-                                          // should print this!)
-               //     SizingString.clear(); // doesn't matter
-               // } else {
+    
                     FieldNum = 2; //  N2 , \field Design Air Flow Rate
                     bPRINT = true;
                     SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m3/s]";
-               // }
+             
                 TempSize = WaterCoil(CoilNum).DesAirVolFlowRate;
                 RequestSizing(state, CompType, CompName, CoolingAirflowSizing, SizingString, TempSize, bPRINT, RoutineName);
                 WaterCoil(CoilNum).DesAirVolFlowRate = TempSize;
@@ -2405,93 +2166,6 @@ namespace WaterCoils {
                     ShowContinueError("The autosize value for max air volume flow rate is zero");
                 }
 
-                /*
-                
-                if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) {
-
-                    FieldNum = 16; //  N16, \field Number of Tubes per Row
-                    bPRINT = true;
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum);
-                    // Auto size detailed cooling coil number of tubes per row = int( 13750.0 * WaterCoil( CoilNum ).MaxWaterVolFlowRate ) + 1
-                    DataFlowUsedForSizing = WaterCoil(CoilNum).MaxWaterVolFlowRate;
-                    TempSize = float(WaterCoil(CoilNum).NumOfTubesPerRow);
-                    RequestSizing(state, CompType, CompName, CoolingWaterNumofTubesPerRowSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).NumOfTubesPerRow = int(TempSize);
-
-                    FieldNum = 7; //  N7 , \field Fin Diameter
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m]";
-                    // Auto size water coil fin diameter = 0.335 * WaterCoil( CoilNum ).InletAirMassFlowRate
-                    DataConstantUsedForSizing = WaterCoil(CoilNum).InletAirMassFlowRate;
-                    DataFractionUsedForSizing = 0.335;
-                    TempSize = WaterCoil(CoilNum).FinDiam;
-                    RequestSizing(state, CompType, CompName, AutoCalculateSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).FinDiam = TempSize;
-
-                    FieldNum = 5; //  N5 , \field Minimum Airflow Area
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m2]";
-                    // Auto size water coil minimum airflow area = 0.44 * WaterCoil( CoilNum ).InletAirMassFlowRate
-                    DataConstantUsedForSizing = WaterCoil(CoilNum).InletAirMassFlowRate;
-                    DataFractionUsedForSizing = 0.44;
-                    TempSize = WaterCoil(CoilNum).MinAirFlowArea;
-                    RequestSizing(state, CompType, CompName, AutoCalculateSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).MinAirFlowArea = TempSize;
-                    if (WaterCoil(CoilNum).MinAirFlowArea <= 0.0) {
-                        ShowSevereError("Coil:Cooling:Water:DetailedGeometry: \"" + WaterCoil(CoilNum).Name + "\"");
-                        ShowContinueError("Coil Minimum Airflow Area must be greater than 0. Coil area = " +
-                                          TrimSigDigits(WaterCoil(CoilNum).MinAirFlowArea, 6));
-                        ErrorsFound = true;
-                    }
-
-                    FieldNum = 4; //  N4 , \field Fin Surface Area
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m2]";
-                    // Auto size water coil finned surface area = 78.5 * WaterCoil( CoilNum ).InletAirMassFlowRate
-                    DataConstantUsedForSizing =
-                        WaterCoil(CoilNum).InletAirMassFlowRate; // actual autosized air mass flow rate, not calculated from user input
-                    DataFractionUsedForSizing = 78.5;
-                    TempSize = WaterCoil(CoilNum).FinSurfArea;
-                    RequestSizing(state, CompType, CompName, AutoCalculateSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).FinSurfArea = TempSize;
-
-                    FieldNum = 3; //  N3 , \field Total Tube Inside Area
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m2]";
-                    // Auto size water coil total tube inside surface area = 4.4 * WaterCoil( CoilNum ).TubeInsideDiam * WaterCoil( CoilNum
-                    // ).NumOfTubeRows * WaterCoil( CoilNum ).NumOfTubesPerRow
-                    DataConstantUsedForSizing =
-                        WaterCoil(CoilNum).TubeInsideDiam * WaterCoil(CoilNum).NumOfTubeRows * WaterCoil(CoilNum).NumOfTubesPerRow;
-                    DataFractionUsedForSizing = 4.4;
-                    TempSize = WaterCoil(CoilNum).TotTubeInsideArea;
-                    RequestSizing(state, CompType, CompName, AutoCalculateSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).TotTubeInsideArea = TempSize;
-
-                    FieldNum = 2; //  N2 , \field Tube Outside Surface Area
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m2]";
-                    // Auto size water coil total tube outside surface area = 4.1 * WaterCoil( CoilNum ).TubeOutsideDiam * WaterCoil( CoilNum
-                    // ).NumOfTubeRows * WaterCoil( CoilNum ).NumOfTubesPerRow
-                    DataConstantUsedForSizing =
-                        WaterCoil(CoilNum).TubeOutsideDiam * WaterCoil(CoilNum).NumOfTubeRows * WaterCoil(CoilNum).NumOfTubesPerRow;
-                    DataFractionUsedForSizing = 4.1;
-                    TempSize = WaterCoil(CoilNum).TubeOutsideSurfArea;
-                    RequestSizing(state, CompType, CompName, AutoCalculateSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).TubeOutsideSurfArea = TempSize;
-                    if ((WaterCoil(CoilNum).FinSurfArea + WaterCoil(CoilNum).TubeOutsideSurfArea) <= 0.0) {
-                        ShowSevereError("Coil:Cooling:Water:DetailedGeometry: \"" + WaterCoil(CoilNum).Name + "\"");
-                        ShowContinueError("Coil Fin Surface Area plus Coil Tube Outside Surface Area must be greater than 0. Total surface area = " +
-                                          TrimSigDigits((WaterCoil(CoilNum).FinSurfArea + WaterCoil(CoilNum).TubeOutsideSurfArea), 6));
-                        ErrorsFound = true;
-                    }
-
-                    FieldNum = 6; //  N6 , \field Coil Depth
-                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m]";
-                    // Auto size water coil coil depth = WaterCoil( CoilNum ).TubeDepthSpacing * WaterCoil( CoilNum ).NumOfTubeRows
-                    DataConstantUsedForSizing = WaterCoil(CoilNum).TubeDepthSpacing;
-                    DataFractionUsedForSizing = WaterCoil(CoilNum).NumOfTubeRows;
-                    TempSize = WaterCoil(CoilNum).CoilDepth;
-                    RequestSizing(state, CompType, CompName, AutoCalculateSizing, SizingString, TempSize, bPRINT, RoutineName);
-                    WaterCoil(CoilNum).CoilDepth = TempSize;
-                }
-               
-                */
-                
                 DataPltSizCoolNum = 0; // reset all globals to 0 to ensure correct sizing for other child components
                 DataWaterLoopNum = 0;
                 DataConstantUsedForSizing = 0.0;
@@ -2517,6 +2191,8 @@ namespace WaterCoils {
             //} // end of cooling Plant Sizing existence IF - ELSE
         } // end cooling coil IF
 
+
+
         // if this is a heating coil
         if (WaterCoil(CoilNum).WaterCoilType == CoilType_Heating && WaterCoil(CoilNum).RequestingAutoSize) {
             // find the appropriate heating Plant Sizing object
@@ -2527,7 +2203,7 @@ namespace WaterCoils {
                                                                LoopErrorsFound);
         }
 
-
+        // Size the heat coil
         /*
         if (WaterCoil(CoilNum).WaterCoilType == CoilType_Heating) {
 
@@ -3202,113 +2878,77 @@ namespace WaterCoils {
         // RE-ENGINEERED  na
 
         // PURPOSE OF THIS FUNCTION:
-        // The subroutine has the coil logic. Three types of Cooling Coils exist:
-        // They are 1.CoilDry , 2.CoilWet, 3. CoilPartDryPartWet. The logic for
-        // the three individual cases is in this subroutine.
-
+        // 
         // METHODOLOGY EMPLOYED:
-        // Simulates a Coil Model from Design conditions and subsequently uses
-        // configuration values (example: UA)calculated from those design conditions
-        // to calculate new performance of coil from operating inputs.The values are
-        // calculated in the Subroutine InitWaterCoil
-
+        // 
         // REFERENCES:
-        // ASHRAE Secondary HVAC Toolkit TRNSYS.  1990.  A Transient System
-        // Simulation Program: Reference Manual. Solar Energy Laboratory, Univ. Wisconsin-
-        // Madison, pp. 4.6.8-1 - 4.6.8-12.
-        // Threlkeld, J.L.  1970.  Thermal Environmental Engineering, 2nd Edition,
-        // Englewood Cliffs: Prentice-Hall,Inc. pp. 254-270.
+        // 
 
         // Using/Aliasing
         using General::SafeDivide;
-
-        // Enforce explicit typing of all variables in this routine
-
-        // Locals
-        // FUNCTION ARGUMENT DEFINITIONS:
-
-        // FUNCTION PARAMETER DEFINITIONS:
-        // na
-
-        // INTERFACE BLOCK SPECIFICATIONS
-        // na
-
-        // DERIVED TYPE DEFINITIONS
-        // na
-
-         using namespace std;
+        using namespace std;
 
         // FUNCTION LOCAL VARIABLE DECLARATIONS:
-        Real64 AirInletCoilSurfTemp; // Coil surface temperature at air entrance(C)
-        Real64 AirDewPointTemp;      // Temperature dew point at operating condition
-        Real64 OutletAirTemp;        // Outlet air temperature at operating condition
-        Real64 OutletAirHumRat;      // Outlet air humidity ratio at operating condition
-        Real64 OutletWaterTemp;      // Outlet water temperature at operating condtitons
-        Real64 TotWaterCoilLoad;     // Total heat transfer rate(W)
-        Real64 SenWaterCoilLoad;     // Sensible heat transfer rate
-        Real64 SurfAreaWetFraction;  // Fraction of surface area wet
-        Real64 AirMassFlowRate;      // Air mass flow rate for the calculation
+        Real64 SolnMassFlowRateIn = 0.0;    // Solution mass flow rate IN to this function (kg/s) 
+        Real64 SolnTempIn = 1.0;            // Solution temperature IN to this function (C)
+        Real64 SolnConcIn = 1.0;            // Solution concentration IN to this function (weight fraction)
+        Real64 AirMassFlowRateIn = 1.0;     // Air mass flow rate IN to this function (kg/s) 
+        Real64 AirTempIn = 1.0;             // Air dry bulb temperature IN to this function(C)
+        Real64 AirHumRat = 1.0;             // Air Humidity Ratio IN to this funcation (C)
+        Real64 Coeff_HdAvVt = 1.0;          // Mass Tansfer Coefficient Area Product 
+        Real64 LewisNum = 1.0;              // External overall heat transfer coefficient(W/m2 C)
+        Real64 OutletSolnTemp = 0.0;           // Leaving solution temperature (C)
+        Real64 OutletSolnConc = 0.0;          // Leaving solution concentration (weight fraction)
+        Real64 OutletSolnMassFlowRate = 0.0;  // Leaving solution mass flow rate (kg/s)
+        Real64 OutletAirTemp = 0.0;           // Leaving air dry bulb temperature(C)
+        Real64 OutletAirHumRat = 0.0;         // Leaving air humidity ratio
+        Real64 TotWaterCoilLoad = 0.0;        // Total heat transfer rate(W)
+        Real64 WaterEvaporate = 0.0;          // Total water evaporate (kg)
 
-        AirInletCoilSurfTemp = 0.0; // Coil surface temperature at air entrance(C)
-        AirDewPointTemp = 0.0;      // Temperature dew point at operating condition
-        OutletAirTemp = 0.0;        // Outlet air temperature at operating condition
-        OutletAirHumRat = 0.0;      // Outlet air humidity ratio at operating condition
-        OutletWaterTemp = 0.0;      // Outlet water temperature at operating condtitons
-        TotWaterCoilLoad = 0.0;     // Total heat transfer rate(W)
-        SenWaterCoilLoad = 0.0;     // Sensible heat transfer rate
-        SurfAreaWetFraction = 0.0;  // Fraction of surface area wet
-
-        if (FanOpMode == CycFanCycCoil && PartLoadRatio > 0.0) { // FB Start
-            AirMassFlowRate = WaterCoil(CoilNum).InletAirMassFlowRate / PartLoadRatio;
-        } else {
-            AirMassFlowRate = WaterCoil(CoilNum).InletAirMassFlowRate;
-        }
 
         // If Coil is Scheduled ON then do the simulation
         if (((GetCurrentScheduleValue(WaterCoil(CoilNum).SchedPtr) > 0.0) && (WaterCoil(CoilNum).InletWaterMassFlowRate > 0.0) &&
-             (AirMassFlowRate >= MinAirMassFlow) && (WaterCoil(CoilNum).DesAirVolFlowRate > 0.0) &&
-             (WaterCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) ||
-            (CalcMode == DesignCalc)) {
-
-            // Calculate Temperature Dew Point at operating conditions.
-            AirDewPointTemp = PsyTdpFnWPb(WaterCoil(CoilNum).InletAirHumRat, OutBaroPress);
-            // Else If AirDewPointTemp is greater than InletWaterTemp then assume the
-            // external surface of coil is completely wet,hence Call CoilCompletelyWet
-            // Calculate the leaving conditions and performance of wet coil
+             (WaterCoil(CoilNum).InletAirMassFlowRate >= MinAirMassFlow) && (WaterCoil(CoilNum).DesAirVolFlowRate > 0.0) &&
+             (WaterCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) || (CalcMode == DesignCalc)) {
 
             std::cout << "******************************CoilNum:"<< CoilNum<< "start * **************************" << endl;
-            LiqDesiccantCoil_Ntu_HPDM(CoilNum,
-                WaterCoil(CoilNum).InletWaterTemp,
-                WaterCoil(CoilNum).InletAirTemp,
-                WaterCoil(CoilNum).InletAirHumRat,
-                WaterCoil(CoilNum).UACoilInternal,
-                WaterCoil(CoilNum).UACoilExternal,
-                OutletWaterTemp,
-                OutletAirTemp,
-                OutletAirHumRat,
-                TotWaterCoilLoad,
-                SenWaterCoilLoad,
-                SurfAreaWetFraction,
-                AirInletCoilSurfTemp,
-                FanOpMode,
-                PartLoadRatio);
+            
+            SolnMassFlowRateIn = WaterCoil(CoilNum).InletWaterMassFlowRate;
+            SolnTempIn = WaterCoil(CoilNum).InletWaterTemp;
+            SolnConcIn = 0.4; 
+            AirMassFlowRateIn = WaterCoil(CoilNum).InletAirMassFlowRate;
+            AirTempIn = WaterCoil(CoilNum).InletAirTemp;
+            AirHumRat = WaterCoil(CoilNum).InletAirHumRat;
+            Coeff_HdAvVt = WaterCoil(CoilNum).HdAvVt;
+            LewisNum = 1.0;
+            LiqDesiccantCoil_Ntu_HPDM(CoilNum,                // Number of Coil
+                                      SolnMassFlowRateIn,     // Solution mass flow rate IN to this function(kg/s)
+                                      SolnTempIn,             // Solution temperature IN to this function (C)
+                                      SolnConcIn,             // Solution concentration IN to this function (weight fraction)
+                                      AirMassFlowRateIn,      // Air mass flow rate IN to this function(kg/s)
+                                      AirTempIn,              // Air dry bulb temperature IN to this function(C)
+                                      AirHumRat,              // Air Humidity Ratio IN to this funcation (C)
+                                      Coeff_HdAvVt,           // Mass Tansfer Coefficient Area Product (kg/s)
+                                      LewisNum,               // External overall heat transfer coefficient(W/m2 C)
+                                      OutletSolnTemp,         // Leaving solution temperature (C)
+                                      OutletSolnConc,         // Leaving solution concentration (weight fraction)
+                                      OutletSolnMassFlowRate, // Leaving solution mass flow rate (kg/s)
+                                      OutletAirTemp,          // Leaving air dry bulb temperature(C)
+                                      OutletAirHumRat,        // Leaving air humidity ratio
+                                      TotWaterCoilLoad,       // Total heat transfer rate(W)
+                                      WaterEvaporate);        // Total water evaporate (kg)
             std::cout << "************************************End ***************************" << endl;
             
 
             // Report outlet variables at nodes
             WaterCoil(CoilNum).OutletAirTemp = OutletAirTemp;
             WaterCoil(CoilNum).OutletAirHumRat = OutletAirHumRat;
-            WaterCoil(CoilNum).OutletWaterTemp = OutletWaterTemp;
+            WaterCoil(CoilNum).OutletWaterTemp = OutletSolnTemp;
             // Report output results if the coil was operating
 
-            if (FanOpMode == CycFanCycCoil) {
-                TotWaterCoilLoad *= PartLoadRatio;
-                SenWaterCoilLoad *= PartLoadRatio;
-            }
-
             WaterCoil(CoilNum).TotWaterCoolingCoilRate = TotWaterCoilLoad;
-            WaterCoil(CoilNum).SenWaterCoolingCoilRate = SenWaterCoilLoad;
-            WaterCoil(CoilNum).SurfAreaWetFraction = SurfAreaWetFraction;
+            WaterCoil(CoilNum).SenWaterCoolingCoilRate = TotWaterCoilLoad*0.5;
+            //WaterCoil(CoilNum).SurfAreaWetFraction = SurfAreaWetFraction;
             //       WaterCoil(CoilNum)%OutletWaterEnthalpy = WaterCoil(CoilNum)%InletWaterEnthalpy+ &
             //                                WaterCoil(CoilNum)%TotWaterCoolingCoilRate/WaterCoil(CoilNum)%InletWaterMassFlowRate
             WaterCoil(CoilNum).OutletWaterEnthalpy = WaterCoil(CoilNum).InletWaterEnthalpy + SafeDivide(WaterCoil(CoilNum).TotWaterCoolingCoilRate,
@@ -3322,7 +2962,7 @@ namespace WaterCoils {
             WaterCoil(CoilNum).OutletWaterEnthalpy = WaterCoil(CoilNum).InletWaterEnthalpy;
             WaterCoil(CoilNum).TotWaterCoolingCoilEnergy = 0.0;
             WaterCoil(CoilNum).SenWaterCoolingCoilEnergy = 0.0;
-            WaterCoil(CoilNum).SurfAreaWetFraction = 0.0;
+            //WaterCoil(CoilNum).SurfAreaWetFraction = 0.0;
 
         } // End of the Flow or No flow If block
         WaterCoil(CoilNum).OutletWaterMassFlowRate = WaterCoil(CoilNum).InletWaterMassFlowRate;
@@ -3331,20 +2971,22 @@ namespace WaterCoils {
     }
 
    void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,            // Number of Coil
-                              Real64 const WaterTempIn,     // Water temperature IN to this function (C)
-                              Real64 const AirTempIn,       // Air dry bulb temperature IN to this function(C)
-                              Real64 const AirHumRat,       // Air Humidity Ratio IN to this funcation (C)
-                              Real64 const UAInternalTotal, // Internal overall heat transfer coefficient(W/m2 C)
-                              Real64 const UAExternalTotal, // External overall heat transfer coefficient(W/m2 C)
-                              Real64 &OutletWaterTemp,      // Leaving water temperature (C)
-                              Real64 &OutletAirTemp,        // Leaving air dry bulb temperature(C)
-                              Real64 &OutletAirHumRat,      // Leaving air humidity ratio
-                              Real64 &TotWaterCoilLoad,     // Total heat transfer rate(W)
-                              Real64 &SenWaterCoilLoad,     // Sensible heat transfer rate(W)
-                              Real64 &SurfAreaWetFraction,  // Fraction of surface area wet
-                              Real64 &AirInletCoilSurfTemp, // Surface temperature at air entrance(C)
-                              int const FanOpMode,          // fan operating mode
-                              Real64 const PartLoadRatio    // part-load ratio of heating coil)
+                              Real64 const SolnMassFlowRateIn,  // Solution mass flow rate IN to this function(kg/s)
+                              Real64 const SolnTempIn,          // Solution temperature IN to this function (C)
+                              Real64 const SolnConcIn,          // Solution concentration IN to this function (weight fraction)
+                              Real64 const AirMassFlowRateIn,   // Air mass flow rate IN to this function(kg/s)
+                              Real64 const AirTempIn,           // Air dry bulb temperature IN to this function(C)
+                              Real64 const AirHumRat,           // Air Humidity Ratio IN to this funcation (C)
+                              Real64 const Coeff_HdAvVt,        // Mass Tansfer Coefficient Area Product (kg/s) 
+                              Real64 const LewisNum,            // External overall heat transfer coefficient(W/m2 C)
+                              Real64 &OutletSolnTemp,           // Leaving solution temperature (C)
+                              Real64 &OutletSolnConc,           // Leaving solution concentration (weight fraction)
+                              Real64 &OutletSolnMassFlowRate,   // Leaving solution mass flow rate (kg/s)
+                              Real64 &OutletAirTemp,            // Leaving air dry bulb temperature(C)
+                              Real64 &OutletAirHumRat,          // Leaving air humidity ratio
+                              Real64 &TotWaterCoilLoad,         // Total heat transfer rate(W)
+                              Real64 &WaterEvaporate            // Total water evaporate (kg)
+
     )
     {
         using General::Iterate;
@@ -3353,17 +2995,17 @@ namespace WaterCoils {
         double const BtuLbToJKg = 2326.0;
 
         // new varibales
-        Real64 Patm = 101325; // OutBaroPress;
-        Real64 HdAvVt = 1.5;
+        Real64 Patm = OutBaroPress;
+        Real64 HdAvVt = Coeff_HdAvVt;
 
-        Real64 ma = 0.3;
-        Real64 Tai = AirTempIn; // 30 * 1.8 + 32;  
+        Real64 ma = 0.3; // AirMassFlowRateIn;
+        Real64 Tai = AirTempIn*1.8 + 32 ; // 30 * 1.8 + 32;  
         //Real64 Twbai = 23 * 1.8 + 32; // 
         Real64 Wai = AirHumRat; // PsyWFnTdbTwbPb((Tai - 32) / 1.8, (Twbai - 32) / 1.8, Patm);
 
-        Real64 msi = 0.3;
-        Real64 Xsi = 0.4;
-        Real64 Tsi = 25 * 1.8 + 32; // WaterTempIn; // degree C
+        Real64 msi = 0.3; //SolnMassFlowRateIn; // 0.3;
+        Real64 Xsi = SolnConcIn;            // 0 .4;
+        Real64 Tsi = SolnTempIn * 1.8 + 32; // 25 * 1.8 + 32; // WaterTempIn; // degree C
 
         // Output Varibles
         Real64 Wao = 1.0, Tao;
@@ -3500,23 +3142,99 @@ namespace WaterCoils {
         RHao = PsyRhFnTdbWPb((Tao - 32) / 1.8, Wao, Patm); // dRes9 = FluidRH(dTAIROUT, Wao, PATM, m_iFLD, 2) - RHao;
 
         // Step 10: Caculate other output variables
-        Qtot = ma * (Hao - Hai);      // Res7
+        Qtot = ma * (Hao - Hai) * BtuLbToJKg; // Res7
         Wevaprate = ma * (Wao - Wai); // dRes10 = ma * (Wao - Wai) - WEVAPRATE;
 
         //  ********************* new calcuation code: end *************************
 
-        OutletWaterTemp = Tso;
+        OutletSolnTemp = Tso;
+        OutletSolnConc = Xso;
+        OutletSolnMassFlowRate = mso;
         OutletAirTemp = Tao;
         OutletAirHumRat = Wao;
         TotWaterCoilLoad = Qtot;
-        SenWaterCoilLoad = 0.0;
-        SurfAreaWetFraction = 1.0;
-        AirInletCoilSurfTemp = TSSeff;
+        WaterEvaporate = Wevaprate;
     }
     
     // End Algorithm Section of the Module
 
+
     // Subroutine for Liquid Desiccant Coil calculation
+    double CalculateDesHdAvVt(Real64 Qlat, // Coil latent load
+                       Real64 msi,  // Solution mass flow rate IN to this function(kg/s)
+                       Real64 Tsi,  // Solution temperature IN to this function (C)
+                       Real64 Xsi,  // Solution concentration IN to this function (weight fraction)
+                       //Real64 Tso,  // Solution temperature IN to this function (C)
+                       Real64 ma,   // Air mass flow rate IN to this function(kg/s)
+                       Real64 Tai,  // Air dry bulb temperature IN to this function(C)
+                       Real64 Wai,  // Air Humidity Ratio IN to this funcation (C)
+                       Real64 Tao,  // Air dry bulb temperature OUT to this function(C)
+                       Real64 Wao   // Air Humidity Ratio OUT to this funcation (C)
+    )
+    {
+        double const BtuLbToJKg = 2326.0;
+        // new varibales
+        Real64 Patm = OutBaroPress;
+        // Output Varibles
+        Real64 mso, Xso, Tso;
+
+        Real64 LogMeanEnthDiff;
+        Real64 DesUACoilEnth;
+        Real64 DesHdAvVt; 
+
+        // Local Variables
+
+        Real64 RHai, Hai = 1.0, HSSi, Hsi;
+        Real64 RHao, Hao = 1.0, HSSo, Hso;
+
+        Real64 cps, wsatl, wsath, hsatl, hsath, csat; 
+        Real64 mcp_min; 
+        Real64 Error_Hso; 
+
+
+   
+        Hsi = hftx9(Tsi * 1.8 + 32, Xsi);
+        mso = msi + ma * (Wai - Wao);
+        Xso = msi * Xsi / mso;
+
+        //Hso = msi * Hsi + (Qlat / BtuLbToJKg) / mso;
+        //Hso = hftx9(Tso * 1.8 + 32, Xso);
+        Hso = msi * Hsi + (Qlat / BtuLbToJKg) / mso;
+        Tso = tfhx9(Hso, Xso);
+        Error_Hso = hftx9(Tso, Xso)/Hso - 1;
+
+        cps = cpftx9(Tsi * 1.8 + 32, Xsi); // Cps = (Hso - Hsi )/(Tso - Tsi)
+
+        // #### Step 1: Calculate the saturation specific heat which is the derivative of the saturated air enthaply with respect to
+        // temperature
+        wsatl = cpftx9(Tsi * 1.8 + 32, Xsi);
+        wsath = cpftx9(Tso * 1.8 + 32, Xso); // Tso & Xso unknown, iterative variables
+        hsatl = (1.006 * (Tsi - 32) / 1.8 + wsatl * (1.84 * (Tsi - 32) / 1.8 + 2501)) / 2.326;
+        hsath = (1.006 * (Tso - 32) / 1.8 + wsath * (1.84 * (Tso - 32) / 1.8 + 2501)) / 2.326;
+        // hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) / 2.326;
+        // hsath = (1.006 * Tso + wsath * (1.84 * Tso + 2501)) / 2.326;
+
+        csat = (hsatl - hsath) / (Tsi - Tso) / 1.8; // P30 (3.23)
+
+        // Step 2: Calculate the capacitance ratio
+        mcp_min = min((ma * csat), (msi * cps));
+
+        RHai = PsyRhFnTdbWPb(Tai, Wai, Patm);              //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
+        Hai = PsyHFnTdbRhPb(Tai, RHai, Patm) / BtuLbToJKg; // per lb dry air  Hai
+        HSSi = LDSatEnthalpy(Tsi, Xsi, Patm) / BtuLbToJKg; // H_Ts.sat.i
+
+        RHao = PsyRhFnTdbWPb(Tao, Wao, Patm);              //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
+        Hao = PsyHFnTdbRhPb(Tao, RHao, Patm) / BtuLbToJKg; // per lb dry air  Hai
+        HSSo = LDSatEnthalpy(Tso, Xso, Patm) / BtuLbToJKg; // H_Ts.sat.i
+
+        LogMeanEnthDiff = ((Hai - HSSo) - (Hao - HSSi)) / std::log((Hai - HSSo) / (Hao - HSSi));
+
+        DesUACoilEnth = (Qlat / BtuLbToJKg) / LogMeanEnthDiff;
+        DesHdAvVt = DesUACoilEnth / mcp_min;
+        return (DesHdAvVt);
+    };
+    
+
 
     double TSHSX(double t, double x, double h){
         double resiual = abs(h - hftx9(t, x));
@@ -3655,7 +3373,7 @@ namespace WaterCoils {
         //    qDebug()<<"LiCl cp"<<cps;
     };
     
-    double hftx9(double t, double x)
+    Real64 hftx9(Real64 t, Real64 x)
     {
         // C*********************************************************************
         // C******  SUBROUTINE  CALCULATES  ENTHALPY  IN  BTU/LB  OF   **********
@@ -3687,6 +3405,125 @@ namespace WaterCoils {
         return (hs);
     };
     
+    Real64 tfhx9(Real64 h, Real64 x)
+    {
+        // FUNCTION INFORMATION:
+        //       AUTHOR         Fred Buhl
+        //       DATE WRITTEN   April 1, 2009
+        //       MODIFIED       na
+        //       RE-ENGINEERED  na
+
+        // PURPOSE OF THIS FUNCTION:
+        // Given the specific enthalpy, relative humidity, and the
+        // barometric pressure, the function returns the dry bulb temperature.
+
+        // METHODOLOGY EMPLOYED:
+        // Inverts PsyHFnTdbRhPb
+
+        // REFERENCES:
+        // none
+
+        // Using/Aliasing
+        using General::RoundSigDigits;
+        using General::SolveRoot;
+
+        // Return value
+        Real64 T; // result=> humidity ratio
+
+        // Locals
+        // FUNCTION ARGUMENT DEFINITIONS:
+
+        // FUNCTION PARAMETER DEFINITIONS:
+        int const MaxIte(500); // Maximum number of iterations
+        Real64 const Acc(1.0); // Accuracy of result
+
+        // INTERFACE BLOCK SPECIFICATIONS
+        // na
+
+        // DERIVED TYPE DEFINITIONS
+        // na
+
+        // FUNCTION LOCAL VARIABLE DECLARATIONS:
+        int SolFla;               // Flag of solver
+        Real64 T0;                // lower bound for Tprov [C]
+        Real64 T1;                // upper bound for Tprov [C]
+        static Real64 Tprov(0.0); // provisional value of drybulb temperature [C]
+        Array1D<Real64> Par(3);   // Par(1) = desired enthaply H [J/kg]
+        // Par(2) = desired relative humidity (0.0 - 1.0)
+        // Par(3) = barometric pressure [N/m2 (Pascals)]
+
+        T0 = 1.0;
+        T1 = 100.0;
+        Par(1) = h;
+        Par(2) = x;
+        SolveRoot(Acc, MaxIte, SolFla, Tprov, SolnTempResidual, T0, T1, Par);
+        // if the numerical inversion failed, issue error messages.
+        if (SolFla == -1) {
+            ShowSevereError("Calculation of soultion temperature failed in tfhx9(h,x)");
+            ShowContinueError("   Iteration limit exceeded");
+            //ShowContinueError("   H=[" + RoundSigDigits(H, 6) + "], RH=[" + RoundSigDigits(RH, 4) + "], PB=[" + RoundSigDigits(PB, 5) + "].");
+        } else if (SolFla == -2) {
+            ShowSevereError("Calculation of drybulb temperature failed in tfhx9(h,x)");
+            ShowContinueError("  Bad starting values for Tdb");
+            //ShowContinueError("   H=[" + RoundSigDigits(H, 6) + "], RH=[" + RoundSigDigits(RH, 4) + "], PB=[" + RoundSigDigits(PB, 5) + "].");
+        }
+        if (SolFla < 0) {
+            T = 0.0;
+        } else {
+            T = Tprov;
+        }
+
+        return T;
+    }
+          
+    
+    Real64 SolnTempResidual(Real64 const t,        // test value of Tdb [C]
+                            Array1D<Real64> const &Par // Par(1) = desired enthaply H [J/kg]
+    )
+    {
+
+        // FUNCTION INFORMATION:
+        //       AUTHOR        
+        //       DATE WRITTEN   
+        //       MODIFIED
+        
+        // PURPOSE OF THIS FUNCTION:
+        // Calculates residual function hdesired - hftx
+
+        // METHODOLOGY EMPLOYED:
+        // Calls PsyHFnTdbRhPb
+
+        // REFERENCES:
+
+        // Using/Aliasing
+        //using Psychrometrics::PsyHFnTdbRhPb;
+
+        // Return value
+        Real64 Residuum; // residual to be minimized to zero
+
+        // Argument array dimensioning
+
+        // Locals
+        // SUBROUTINE ARGUMENT DEFINITIONS:
+        // Par(2) = desired relative humidity (0.0 - 1.0)
+        // Par(3) = barometric pressure [N/m2 (Pascals)]
+
+        // FUNCTION PARAMETER DEFINITIONS:
+        // na
+
+        // INTERFACE BLOCK SPECIFICATIONS
+        // na
+
+        // DERIVED TYPE DEFINITIONS
+        // na
+
+        // FUNCTION LOCAL VARIABLE DECLARATIONS:
+
+        Residuum = Par(1) - hftx9(t, Par(2));
+
+        return Residuum;
+    };
+
     double LDSatEnthalpy(double t, double x, double dPatm)
     {
         double Wlsati = wftx9(t, x);
@@ -3835,15 +3672,15 @@ namespace WaterCoils {
                                                               WaterCoil(CoilNum).DesAirVolFlowRate,
                                                               WaterCoil(CoilNum).MaxWaterVolFlowRate);
                     WaterCoil(CoilNum).reportCoilFinalSizes = false;
-                } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling) {
-                    coilObjClassName = "Coil:Cooling:Water:DetailedGeometry";
-                    coilSelectionReportObj->setCoilFinalSizes(WaterCoil(CoilNum).Name,
-                                                              coilObjClassName,
-                                                              WaterCoil(CoilNum).DesWaterCoolingCoilRate,
-                                                              -999.0,
-                                                              WaterCoil(CoilNum).DesAirVolFlowRate,
-                                                              WaterCoil(CoilNum).MaxWaterVolFlowRate);
-                    WaterCoil(CoilNum).reportCoilFinalSizes = false;
+             //   } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling) {
+             //       coilObjClassName = "Coil:Cooling:Water:DetailedGeometry";
+             //       coilSelectionReportObj->setCoilFinalSizes(WaterCoil(CoilNum).Name,
+             //                                                 coilObjClassName,
+             //                                                 WaterCoil(CoilNum).DesWaterCoolingCoilRate,
+             //                                                 -999.0,
+             //                                                 WaterCoil(CoilNum).DesAirVolFlowRate,
+             //                                                 WaterCoil(CoilNum).MaxWaterVolFlowRate);
+             //       WaterCoil(CoilNum).reportCoilFinalSizes = false;
                 } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
                     coilObjClassName = "Coil:Cooling:Water";
                     coilSelectionReportObj->setCoilFinalSizes(WaterCoil(CoilNum).Name,
@@ -5205,9 +5042,10 @@ namespace WaterCoils {
         // a setpoint is also specified on the water coil outlet node
         if (!NodeNotFound) {
             if (WhichCoil > 0) {
-                if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling) {
-                    WaterCoilType = "Coil:Cooling:Water:DetailedGeometry";
-                } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
+               // if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling) {
+               //     WaterCoilType = "Coil:Cooling:Water:DetailedGeometry";
+               // } else 
+                if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
                     WaterCoilType = "Coil:Cooling:Water";
                 } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
                     WaterCoilType = "Coil:Heating:Water";
@@ -5267,7 +5105,7 @@ namespace WaterCoils {
 
 
     // TdbFnHRhPb, EnthalpyResidual
-    /*
+    
     Real64 TdbFnHRhPb(Real64 const H,  // specific enthalpy {J/kg}
                       Real64 const RH, // relative humidity value (0.0-1.0)
                       Real64 const PB  // barometric pressure {Pascals}
@@ -5391,7 +5229,7 @@ namespace WaterCoils {
 
         return Residuum;
     }
-    */
+    
 
  
     // used by SimpleCoolingCoilUAResidual
