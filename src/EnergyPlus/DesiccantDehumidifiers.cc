@@ -146,6 +146,7 @@ namespace DesiccantDehumidifiers {
     using DataHVACGlobals::DrawThru;
     using DataHVACGlobals::OnOffFanPartLoadFraction;
     using DataHVACGlobals::SmallMassFlow;
+
     // Use statements for access to subroutines in other modules
     using namespace ScheduleManager;
     using namespace HeatingCoils;
