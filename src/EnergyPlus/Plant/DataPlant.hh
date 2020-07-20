@@ -186,6 +186,7 @@ namespace DataPlant {
     extern int const TypeOf_PumpBankConstantSpeed;
     extern int const TypeOf_WaterUseConnection;
     extern int const TypeOf_CoilWaterCooling;             // demand side component
+    extern int const TypeOf_CoilLiquidDesiccantCooling;   // demand side component
     extern int const TypeOf_CoilWaterDetailedFlatCooling; // demand side component
     extern int const TypeOf_CoilWaterSimpleHeating;       // demand side component
     extern int const TypeOf_CoilSteamAirHeating;          // demand side component

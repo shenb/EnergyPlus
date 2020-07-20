@@ -115,6 +115,7 @@
 #include <EnergyPlus/UtilityRoutines.hh>
 #include <EnergyPlus/WaterCoils.hh>
 #include <EnergyPlus/ZonePlenum.hh>
+#include <EnergyPlus/LiquidDesiccantCoil.hh>
 
 namespace EnergyPlus {
 
@@ -197,6 +198,7 @@ namespace SimAirServingZones {
     int const Fan_System_Object(28);
     int const UnitarySystemModel(29);
     int const ZoneVRFasAirLoopEquip(30);
+    int const LiquidDesiccantCoil_Cooling(31);
 
     // DERIVED TYPE DEFINITIONS:
     // na
@@ -1195,6 +1197,7 @@ namespace SimAirServingZones {
                                     CompType = PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).TypeOf;
                                     if (UtilityRoutines::SameString(CompType, "Coil:Cooling:Water:DetailedGeometry") ||
                                         UtilityRoutines::SameString(CompType, "Coil:Heating:Water") ||
+                                        UtilityRoutines::SameString(CompType, "Coil:Cooling:LiquidDesiccant") ||
                                         UtilityRoutines::SameString(CompType, "Coil:Cooling:Water")) {
                                         WaterCoilNodeNum = GetCoilWaterInletNode(
                                             CompType, PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).Name, ErrorsFound);
@@ -1288,6 +1291,8 @@ namespace SimAirServingZones {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = WaterCoil_DetailedCool;
                         } else if (componentType == "COIL:COOLING:WATER") {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = WaterCoil_Cooling;
+                        } else if (componentType == "COIL:COOLING:LiquidDesiccant") {
+                            PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = LiquidDesiccantCoil_Cooling;
                         } else if (componentType == "COIL:HEATING:ELECTRIC") {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = Coil_ElectricHeat;
                         } else if (componentType == "COIL:HEATING:FUEL") {
@@ -1403,7 +1408,9 @@ namespace SimAirServingZones {
             for (BranchNum = 1; BranchNum <= PrimaryAirSystem(AirSysNum).NumBranches; ++BranchNum) {
                 for (CompNum = 1; CompNum <= PrimaryAirSystem(AirSysNum).Branch(BranchNum).TotalComponents; ++CompNum) {
                     CompType_Num = PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num;
-                    if (CompType_Num == WaterCoil_DetailedCool || CompType_Num == WaterCoil_SimpleHeat || CompType_Num == WaterCoil_Cooling) {
+                    if (CompType_Num == WaterCoil_DetailedCool || CompType_Num == WaterCoil_SimpleHeat || 
+                        CompType_Num == LiquidDesiccantCoil_Cooling ||
+                        CompType_Num == WaterCoil_Cooling) {
                         WaterCoilNodeNum = GetCoilWaterInletNode(PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).TypeOf,
                                                                  PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).Name,
                                                                  ErrorsFound);
@@ -1425,7 +1432,10 @@ namespace SimAirServingZones {
             NumInList = GetOACompListNumber(state, OASysNum);
             for (int OACompNum = 1; OACompNum <= NumInList; ++OACompNum) {
                 CompType_Num = GetOACompTypeNum(state, OASysNum, OACompNum);
-                if (CompType_Num == WaterCoil_DetailedCool || CompType_Num == WaterCoil_SimpleHeat || CompType_Num == WaterCoil_Cooling) {
+                if (CompType_Num == WaterCoil_DetailedCool || CompType_Num == WaterCoil_SimpleHeat || 
+                    CompType_Num == LiquidDesiccantCoil_Cooling ||
+                    CompType_Num == WaterCoil_Cooling )
+                    {
                     WaterCoilNodeNum = GetCoilWaterInletNode(GetOACompType(state, OASysNum, OACompNum), GetOACompName(state, OASysNum, OACompNum), ErrorsFound);
                     CheckCoilWaterInletNode(state, WaterCoilNodeNum, NodeNotFound);
                     if (NodeNotFound) {
@@ -2059,7 +2069,8 @@ namespace SimAirServingZones {
                             FoundOASys = true;
                         }
                         if (CompTypeNum == WaterCoil_SimpleCool || CompTypeNum == WaterCoil_Cooling || CompTypeNum == WaterCoil_DetailedCool ||
-                            CompTypeNum == WaterCoil_CoolingHXAsst || CompTypeNum == DXSystem) {
+                            CompTypeNum == LiquidDesiccantCoil_Cooling || 
+                            CompTypeNum == WaterCoil_CoolingHXAsst || CompTypeNum == DXSystem  ) {
                             FoundCentralCoolCoil = true;
                         }
                         if (CompTypeNum == Fan_Simple_CV || CompTypeNum == Fan_Simple_VAV || CompTypeNum == Fan_ComponentModel) {
@@ -2159,7 +2170,8 @@ namespace SimAirServingZones {
                         if (CompTypeNum == WaterCoil_SimpleCool || CompTypeNum == WaterCoil_Cooling || CompTypeNum == WaterCoil_DetailedCool ||
                             CompTypeNum == WaterCoil_CoolingHXAsst || CompTypeNum == DXCoil_CoolingHXAsst || CompTypeNum == DXSystem ||
                             CompTypeNum == Furnace_UnitarySys_HeatCool || CompTypeNum == UnitarySystem_BypassVAVSys ||
-                            CompTypeNum == UnitarySystem_MSHeatPump || CompTypeNum == CoilUserDefined) {
+                            CompTypeNum == LiquidDesiccantCoil_Cooling || 
+                            CompTypeNum == UnitarySystem_MSHeatPump || CompTypeNum == CoilUserDefined  ) {
                             FoundCentralCoolCoil = true;
                         } else if (CompTypeNum == UnitarySystemModel) {
                             // mine CoolHeat coil exists from UnitarySys
@@ -3529,6 +3541,7 @@ namespace SimAirServingZones {
         using SteamCoils::SimulateSteamCoilComponents;
         using UserDefinedComponents::SimCoilUserDefined;
         using WaterCoils::SimulateWaterCoilComponents;
+        using LiquidDesiccantCoil::SimulateLiquideDesiccantCoilComponents;
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
@@ -3598,6 +3611,10 @@ namespace SimAirServingZones {
 
             } else if (SELECT_CASE_var == WaterCoil_Cooling) { // 'Coil:Cooling:Water'
                 SimulateWaterCoilComponents(state, CompName, FirstHVACIteration, CompIndex, QActual);
+                if (QActual > 0.0) CoolingActive = true; // determine if coil is ON
+
+            } else if (SELECT_CASE_var == LiquidDesiccantCoil_Cooling) { // 'Coil:Cooling:LiquidDesiccant'
+                SimulateLiquideDesiccantCoilComponents(state, CompName, FirstHVACIteration, CompIndex, QActual);
                 if (QActual > 0.0) CoolingActive = true; // determine if coil is ON
 
                 // stand-alone coils are temperature controlled (do not pass QCoilReq in argument list, QCoilReq overrides temp SP)
@@ -7726,7 +7743,8 @@ namespace SimAirServingZones {
             // check if the water coil is placed on 'CoilSystem:Cooling:Water:HeatExchangerAssisted' object
             for (int HXASSCoilNum = 1; HXASSCoilNum <= HVACHXAssistedCoolingCoil::TotalNumHXAssistedCoils; ++HXASSCoilNum) {
                 std::string CompType = HXAssistedCoil(HXASSCoilNum).CoolingCoilType;
-                if ((UtilityRoutines::SameString(CompType, "Coil:Cooling:Water") ||
+                if ((UtilityRoutines::SameString(CompType, "Coil:Cooling:Water") || 
+                     UtilityRoutines::SameString(CompType, "Coil:Cooling:LiquidDesiccant") ||
                      UtilityRoutines::SameString(CompType, "Coil:Cooling:Water:DetailedGeometry")) &&
                     UtilityRoutines::SameString(CompName, HXAssistedCoil(HXASSCoilNum).CoolingCoilName)) {
                     CoilSystemName = HXAssistedCoil(HXASSCoilNum).Name;

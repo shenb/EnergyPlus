@@ -1915,7 +1915,8 @@ namespace ReportSizingManager {
                     } else {
                         AutosizeDes = FinalZoneSizing(CurZoneEqNum).CoolDesHumRat;
                     }
-                    if (AutosizeDes > DataDesInletAirHumRat && (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                    if (AutosizeDes > DataDesInletAirHumRat && (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") || 
+                                                                UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                                                                 UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY"))) {
                         ShowWarningError(CallingRoutine + ":" + " Coil=\"" + CompName +
                                          "\", Cooling Coil has leaving humidity ratio > entering humidity ratio.");
@@ -1935,6 +1936,7 @@ namespace ReportSizingManager {
                     DesHumRatAtWaterInTemp = PsyWFnTdbH(DataDesInletWaterTemp, DesSatEnthAtWaterInTemp, CallingRoutine);
                     if (AutosizeDes < DataDesInletAirHumRat && DesHumRatAtWaterInTemp > DataDesInletAirHumRat) {
                         if (AutosizeDes < DataDesInletAirHumRat && (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                                                                    UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                                                                     UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY"))) {
                             ShowWarningError(
                                 CallingRoutine + ":" + " Coil=\"" + CompName +
@@ -2005,6 +2007,7 @@ namespace ReportSizingManager {
                         TotCapTempModFac = DataSizing::DataCoilSizingCapFT;
                     } else {
                         if (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                            UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                             UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY") ||
                             UtilityRoutines::SameString(CompType, "ZONEHVAC:IDEALLOADSAIRSYSTEM")) {
                             if (TermUnitIU && (CurTermUnitSizingNum > 0)) {
@@ -2121,6 +2124,7 @@ namespace ReportSizingManager {
                                               " [W]");
                         } else {
                             if (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                                UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                                 UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY") ||
                                 UtilityRoutines::SameString(CompType, "ZONEHVAC:IDEALLOADSAIRSYSTEM")) {
                                 if (TermUnitIU || ZoneEqFanCoil) {
@@ -3012,6 +3016,7 @@ namespace ReportSizingManager {
                     }
                     if (AutosizeDes > DataDesInletAirHumRat &&
                         (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                         UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                          UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY"))) { // flow here is water vol flow rate
                         ShowWarningError(CallingRoutine + ":" + " Coil=\"" + CompName +
                                          "\", Cooling Coil has leaving humidity ratio > entering humidity ratio.");
@@ -3031,6 +3036,7 @@ namespace ReportSizingManager {
                     DesHumRatAtWaterInTemp = PsyWFnTdbH(DataDesInletWaterTemp, DesSatEnthAtWaterInTemp, CallingRoutine);
                     if (AutosizeDes < DataDesInletAirHumRat && DesHumRatAtWaterInTemp > DataDesInletAirHumRat) {
                         if (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                            UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                             UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY")) {
                             ShowWarningError(CallingRoutine + ":" + " Coil=\"" + CompName +
                                              "\", Cooling Coil is running dry for sizing because minimum humidity ratio at saturation for inlet "
@@ -3220,6 +3226,7 @@ namespace ReportSizingManager {
                             }
                             OutTemp = FinalSysSizing(CurSysNum).OutTempAtCoolPeak;
                             if (UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER") ||
+                                UtilityRoutines::SameString(CompType, "COIL:COOLING:LIQUIDDESICCANT") ||
                                 UtilityRoutines::SameString(CompType, "COIL:COOLING:WATER:DETAILEDGEOMETRY")) {
                                 rhoair = StdRhoAir;
                             } else {

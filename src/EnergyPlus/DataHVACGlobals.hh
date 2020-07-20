@@ -210,6 +210,8 @@ namespace DataHVACGlobals {
     extern int const Coil_HeatingWater;
     extern int const Coil_HeatingSteam;
     extern int const CoilWater_CoolingHXAssisted;
+    extern int const Coil_CoolingLiquidDesiccant;
+
 
     extern int const Coil_CoolingWaterToAirHP;
     extern int const Coil_HeatingWaterToAirHP;

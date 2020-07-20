@@ -140,11 +140,11 @@ namespace LiquidDesiccantCoil {
     {
         // Members
         std::string Name;            // Name of the WaterCoil
-        std::string WaterCoilTypeA;  // Type of WaterCoil ie. Heating or Cooling
-        std::string WaterCoilModelA; // Type of WaterCoil ie. Simple, Detailed, etc.
-        int WaterCoilType;           // Type of WaterCoil ie. Heating or Cooling
-        int WaterCoilModel;          // Type of WaterCoil ie. Simple, Detailed, etc.
-        int WaterCoilType_Num;
+        std::string LiquidDesiccantCoilTypeA;  // Type of WaterCoil ie. Heating or Cooling
+        std::string LiquidDesiccantCoilModelA; // Type of WaterCoil ie. Simple, Detailed, etc.
+        int LiquidDesiccantCoilType;           // Type of WaterCoil ie. Heating or Cooling
+        int LiquidDesiccantCoilModel;          // Type of WaterCoil ie. Simple, Detailed, etc.
+        int LiquidDesiccantCoilType_Num;
         std::string Schedule;             // WaterCoil Operation Schedule
         int SchedPtr;                     // Pointer to the correct schedule
         bool RequestingAutoSize;          // True if this coil has appropriate autosize fields
@@ -179,21 +179,21 @@ namespace LiquidDesiccantCoil {
         Real64 InletWaterEnthalpy;      // Inlet Water Enthalpy
         Real64 OutletWaterEnthalpy;     // Outlet Water Enthalpy
         // These are the additional Geometry and Design Variables for Detailed Flat Fin Coil
-        Real64 TubeOutsideSurfArea; // Tube Primary Surface Area
-        Real64 TotTubeInsideArea;   // Total Tube inside Surface Area
-        Real64 FinSurfArea;         // Fin Surface Area
-        Real64 MinAirFlowArea;
-        Real64 CoilDepth;
-        Real64 FinDiam; // Fin Diameter or the Coil Height
-        Real64 FinThickness;
-        Real64 TubeInsideDiam;  // Inner diameter of Tubes
-        Real64 TubeOutsideDiam; // Outer Diameter of the Tubes
-        Real64 TubeThermConductivity;
-        Real64 FinThermConductivity;
-        Real64 FinSpacing; // Fin Spacing or Distance
-        Real64 TubeDepthSpacing;
-        int NumOfTubeRows;
-        int NumOfTubesPerRow;
+        //Real64 TubeOutsideSurfArea; // Tube Primary Surface Area
+        //Real64 TotTubeInsideArea;   // Total Tube inside Surface Area
+        //Real64 FinSurfArea;         // Fin Surface Area
+        //Real64 MinAirFlowArea;
+        //Real64 CoilDepth;
+        //Real64 FinDiam; // Fin Diameter or the Coil Height
+        //Real64 FinThickness;
+        //Real64 TubeInsideDiam;  // Inner diameter of Tubes
+        //Real64 TubeOutsideDiam; // Outer Diameter of the Tubes
+        //Real64 TubeThermConductivity;
+        //Real64 FinThermConductivity;
+        //Real64 FinSpacing; // Fin Spacing or Distance
+        //Real64 TubeDepthSpacing;
+        //int NumOfTubeRows;
+        //int NumOfTubesPerRow;
         // BEGIN calculated parameters for detailed flat fin coil
         Real64 EffectiveFinDiam;
         Real64 TotCoilOutsideSurfArea;
@@ -262,12 +262,12 @@ namespace LiquidDesiccantCoil {
         int CoilPerfInpMeth;            // 1 = UA and Design Water Flow Rate; 2 = Nominal Capacity
 
         // Operational fault parameters
-        bool FaultyCoilFoulingFlag;     // True if the coil has fouling fault
-        int FaultyCoilFoulingIndex;     // Index of the fault object corresponding to the coil
-        Real64 FaultyCoilFoulingFactor; // Coil fouling factor [m2K/W]
-        Real64 OriginalUACoilVariable;
-        Real64 OriginalUACoilExternal;
-        Real64 OriginalUACoilInternal;
+        //bool FaultyCoilFoulingFlag;     // True if the coil has fouling fault
+        //int FaultyCoilFoulingIndex;     // Index of the fault object corresponding to the coil
+        //Real64 FaultyCoilFoulingFactor; // Coil fouling factor [m2K/W]
+        //Real64 OriginalUACoilVariable;
+        //Real64 OriginalUACoilExternal;
+        //Real64 OriginalUACoilInternal;
         Real64 HdAvVt; 
         Real64 DesInletSolnConcentration; // Entering solution concentration at Design(%)
 
@@ -282,6 +282,35 @@ namespace LiquidDesiccantCoil {
 
 
         // Default Constructor
+        CoilEquipConditions()
+            : LiquidDesiccantCoilType(0), LiquidDesiccantCoilModel(0), LiquidDesiccantCoilType_Num(0), SchedPtr(0), RequestingAutoSize(false),
+              InletAirMassFlowRate(0.0),
+              OutletAirMassFlowRate(0.0), InletAirTemp(0.0), OutletAirTemp(0.0), InletAirHumRat(0.0), OutletAirHumRat(0.0), InletAirEnthalpy(0.0),
+              OutletAirEnthalpy(0.0), TotWaterCoilLoad(0.0), SenWaterCoilLoad(0.0), TotWaterHeatingCoilEnergy(0.0), TotWaterCoolingCoilEnergy(0.0),
+              SenWaterCoolingCoilEnergy(0.0), DesWaterHeatingCoilRate(0.0), TotWaterHeatingCoilRate(0.0), DesWaterCoolingCoilRate(0.0),
+              TotWaterCoolingCoilRate(0.0), SenWaterCoolingCoilRate(0.0), UACoil(0.0), LeavingRelHum(0.0), DesiredOutletTemp(0.0),
+              DesiredOutletHumRat(0.0), InletWaterTemp(0.0), OutletWaterTemp(0.0), InletWaterMassFlowRate(0.0), OutletWaterMassFlowRate(0.0),
+              MaxWaterVolFlowRate(0.0), MaxWaterMassFlowRate(0.0), InletWaterEnthalpy(0.0), OutletWaterEnthalpy(0.0),
+              EffectiveFinDiam(0.0), TotCoilOutsideSurfArea(0.0), CoilEffectiveInsideDiam(0.0), GeometryCoef1(0.0),
+              GeometryCoef2(0.0), DryFinEfficncyCoef(5, 0.0), SatEnthlCurveConstCoef(0.0), SatEnthlCurveSlope(0.0), EnthVsTempCurveAppxSlope(0.0),
+              EnthVsTempCurveConst(0.0), MeanWaterTempSaved(0.0), InWaterTempSaved(0.0), OutWaterTempSaved(0.0), SurfAreaWetSaved(0.0),
+              SurfAreaWetFraction(0.0), DesInletWaterTemp(0.0), DesAirVolFlowRate(0.0), DesInletAirTemp(0.0), DesInletAirHumRat(0.0),
+              DesTotWaterCoilLoad(0.0), DesSenWaterCoilLoad(0.0), DesAirMassFlowRate(0.0), UACoilTotal(0.0), UACoilInternal(0.0), UACoilExternal(0.0),
+              UACoilInternalDes(0.0), UACoilExternalDes(0.0), DesOutletAirTemp(0.0), DesOutletAirHumRat(0.0), DesOutletWaterTemp(0.0),
+              HeatExchType(0), CoolingCoilAnalysisMode(0), UACoilInternalPerUnitArea(0.0), UAWetExtPerUnitArea(0.0), UADryExtPerUnitArea(0.0),
+              SurfAreaWetFractionSaved(0.0), UACoilVariable(0.0), RatioAirSideToWaterSideConvect(1.0), AirSideNominalConvect(0.0),
+              LiquidSideNominalConvect(0.0), Control(0), AirInletNodeNum(0), AirOutletNodeNum(0), WaterInletNodeNum(0), WaterOutletNodeNum(0),
+              WaterLoopNum(0), WaterLoopSide(0), WaterLoopBranchNum(0), WaterLoopCompNum(0), CondensateCollectMode(CondensateDiscarded),
+              CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0), CoilPerfInpMeth(0),
+              HdAvVt(1.0), DesInletSolnConcentration(0.5),
+              DesiccantRegenerationCoil(false), DesiccantDehumNum(0), DesignWaterDeltaTemp(0.0), UseDesignWaterDeltaTemp(false), ControllerName(""), ControllerIndex(0),
+              reportCoilFinalSizes(true), AirLoopDOASFlag(false)
+        {
+        }
+
+
+        //CoilEquipConditions()
+        /*
         CoilEquipConditions()
             : WaterCoilType(0), WaterCoilModel(0), WaterCoilType_Num(0), SchedPtr(0), RequestingAutoSize(false), InletAirMassFlowRate(0.0),
               OutletAirMassFlowRate(0.0), InletAirTemp(0.0), OutletAirTemp(0.0), InletAirHumRat(0.0), OutletAirHumRat(0.0), InletAirEnthalpy(0.0),
@@ -304,11 +333,14 @@ namespace LiquidDesiccantCoil {
               WaterLoopNum(0), WaterLoopSide(0), WaterLoopBranchNum(0), WaterLoopCompNum(0), CondensateCollectMode(CondensateDiscarded),
               CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0), CoilPerfInpMeth(0),
               FaultyCoilFoulingFlag(false), FaultyCoilFoulingIndex(0), FaultyCoilFoulingFactor(0.0), OriginalUACoilVariable(1.0),
-              OriginalUACoilExternal(1.0), OriginalUACoilInternal(1.0), HdAvVt(1.0), DesInletSolnConcentration(0.5),
-              DesiccantRegenerationCoil(false), DesiccantDehumNum(0), DesignWaterDeltaTemp(0.0), UseDesignWaterDeltaTemp(false), ControllerName(""), ControllerIndex(0),
+              OriginalUACoilExternal(1.0), OriginalUACoilInternal(1.0), HdAvVt(1.0), DesInletSolnConcentration(0.5), DesiccantRegenerationCoil(false),
+              DesiccantDehumNum(0), DesignWaterDeltaTemp(0.0), UseDesignWaterDeltaTemp(false), ControllerName(""), ControllerIndex(0),
               reportCoilFinalSizes(true), AirLoopDOASFlag(false)
         {
         }
+                */
+    
+
     };
 
     struct CoilNumericFieldData

@@ -125,8 +125,8 @@ namespace LiquidDesiccantCoil{
     using DataEnvironment::StdRhoAir;
     using namespace DataHVACGlobals;
     using DataPlant::PlantLoop;
-    using DataPlant::TypeOf_CoilWaterCooling;
-    using DataPlant::TypeOf_CoilWaterDetailedFlatCooling;
+    using DataPlant::TypeOf_CoilLiquidDesiccantCooling;
+    //using DataPlant::TypeOf_CoilWaterDetailedFlatCooling;
     using DataPlant::TypeOf_CoilWaterSimpleHeating;
     using FluidProperties::GetDensityGlycol;
     using FluidProperties::GetSpecificHeatGlycol;
@@ -161,8 +161,8 @@ namespace LiquidDesiccantCoil{
     Real64 const MinAirMassFlow(0.001);
 
     // coil types in this module
-    int const WaterCoil_SimpleHeating(TypeOf_CoilWaterSimpleHeating);
-    int const WaterCoil_Cooling(TypeOf_CoilWaterCooling);
+    //int const WaterCoil_SimpleHeating(TypeOf_CoilWaterSimpleHeating);
+    int const LiquidDesiccantCoil_Cooling(TypeOf_CoilLiquidDesiccantCooling);
 
     int const CoilType_Cooling(1);
     int const CoilType_Heating(2);
@@ -285,7 +285,7 @@ namespace LiquidDesiccantCoil{
 
         // Find the correct WaterCoilNumber with the Coil Name
         if (CompIndex == 0) {
-            CoilNum = UtilityRoutines::FindItemInList(CompName, WaterCoil);
+            CoilNum = 1; // UtilityRoutines::FindItemInList(CompName, WaterCoil);
             if (CoilNum == 0) {
                 ShowFatalError("SimulateWaterCoilComponents: Coil not found=" + CompName);
             }
@@ -381,9 +381,9 @@ namespace LiquidDesiccantCoil{
         static bool ErrorsFound(false); // If errors detected in input
 
         // Flow
-        NumSimpHeat = inputProcessor->getNumObjectsFound("Coil:Heating:Water");
-        //NumFlatFin = inputProcessor->getNumObjectsFound("Coil:Cooling:Water:DetailedGeometry");
-        NumCooling = inputProcessor->getNumObjectsFound("Coil:Cooling:Water");
+        NumSimpHeat = 0;        //inputProcessor->getNumObjectsFound("Coil:Heating:Water");
+        NumFlatFin = 0;   // inputProcessor->getNumObjectsFound("Coil:Cooling:Water:DetailedGeometry");
+        NumCooling = inputProcessor->getNumObjectsFound("Coil:Cooling:LiquidDesiccant");
         NumWaterCoils = NumSimpHeat + NumFlatFin + NumCooling;
 
         if (NumWaterCoils > 0) {
@@ -395,11 +395,11 @@ namespace LiquidDesiccantCoil{
             CheckEquipName.dimension(NumWaterCoils, true);
         }
 
-        inputProcessor->getObjectDefMaxArgs("Coil:Heating:Water", TotalArgs, NumAlphas, NumNums);
-        MaxNums = max(MaxNums, NumNums);
-        MaxAlphas = max(MaxAlphas, NumAlphas);
+        //inputProcessor->getObjectDefMaxArgs("Coil:Heating:Water", TotalArgs, NumAlphas, NumNums);
+        //MaxNums = max(MaxNums, NumNums);
+        //MaxAlphas = max(MaxAlphas, NumAlphas);
 
-        inputProcessor->getObjectDefMaxArgs("Coil:Cooling:Water", TotalArgs, NumAlphas, NumNums);
+        inputProcessor->getObjectDefMaxArgs("Coil:Cooling:LiquidDesiccant", TotalArgs, NumAlphas, NumNums);
         MaxNums = max(MaxNums, NumNums);
         MaxAlphas = max(MaxAlphas, NumAlphas);
 
@@ -561,7 +561,7 @@ namespace LiquidDesiccantCoil{
         */
         
 
-        CurrentModuleObject = "Coil:Cooling:Water";
+        CurrentModuleObject = "Coil:Cooling:LiquidDesiccant";
         // Get the data for Cooling coils.
         for (CoolingNum = 1; CoolingNum <= NumCooling; ++CoolingNum) {
 
@@ -600,11 +600,11 @@ namespace LiquidDesiccantCoil{
                 }
             }
 
-            LiquidDesiccantCoil(CoilNum).WaterCoilTypeA = "Cooling";
-            LiquidDesiccantCoil(CoilNum).WaterCoilType = CoilType_Cooling; // 'Cooling'
-            LiquidDesiccantCoil(CoilNum).WaterCoilModelA = "Cooling";
-            LiquidDesiccantCoil(CoilNum).WaterCoilModel = CoilModel_Cooling; // 'Cooling'
-            LiquidDesiccantCoil(CoilNum).WaterCoilType_Num = WaterCoil_Cooling;
+            LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilTypeA = "Cooling";
+            LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType = CoilType_Cooling; // 'Cooling'
+            LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilModelA = "Cooling";
+            LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilModel = CoilModel_Cooling; // 'Cooling'
+            LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num = LiquidDesiccantCoil_Cooling;
 
             LiquidDesiccantCoil(CoilNum).MaxWaterVolFlowRate = NumArray(1); // Liquid mass flow rate at Design  kg/s
             if (LiquidDesiccantCoil(CoilNum).MaxWaterVolFlowRate == AutoSize) LiquidDesiccantCoil(CoilNum).RequestingAutoSize = true;
@@ -929,12 +929,12 @@ namespace LiquidDesiccantCoil{
                     int CoilTypeNum(0);
                     std::string CompType;
                     std::string CompName = LiquidDesiccantCoil(tempCoilNum).Name;
-                    if (LiquidDesiccantCoil(tempCoilNum).WaterCoilType_Num == LiquidDesiccantCoil::WaterCoil_Cooling) {
-                        CoilTypeNum = SimAirServingZones::WaterCoil_Cooling;
-                        CompType = cAllCoilTypes(DataHVACGlobals::Coil_CoolingWater);
-                    } else if (LiquidDesiccantCoil(tempCoilNum).WaterCoilType_Num == LiquidDesiccantCoil::WaterCoil_SimpleHeating) {
-                        CoilTypeNum = SimAirServingZones::WaterCoil_SimpleHeat;
-                        CompType = cAllCoilTypes(DataHVACGlobals::Coil_HeatingWater);
+                    if (LiquidDesiccantCoil(tempCoilNum).LiquidDesiccantCoilType_Num == LiquidDesiccantCoil::LiquidDesiccantCoil_Cooling) {
+                        CoilTypeNum = SimAirServingZones::LiquidDesiccantCoil_Cooling;
+                        CompType = cAllCoilTypes(DataHVACGlobals::Coil_CoolingLiquidDesiccant);
+                    //} else if (LiquidDesiccantCoil(tempCoilNum).WaterCoilType_Num == LiquidDesiccantCoil::WaterCoil_SimpleHeating) {
+                    //    CoilTypeNum = SimAirServingZones::WaterCoil_SimpleHeat;
+                    //    CompType = cAllCoilTypes(DataHVACGlobals::Coil_HeatingWater);
                     }
                     WaterCoilOnAirLoop = true;
                     CheckWaterCoilIsOnAirLoop(state, CoilTypeNum, CompType, CompName, WaterCoilOnAirLoop);
@@ -954,7 +954,7 @@ namespace LiquidDesiccantCoil{
             errFlag = false;
             ScanPlantLoopsForObject(state.dataBranchInputManager,
                                     LiquidDesiccantCoil(CoilNum).Name,
-                                    LiquidDesiccantCoil(CoilNum).WaterCoilType_Num,
+                                    LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num,
                                     LiquidDesiccantCoil(CoilNum).WaterLoopNum,
                                     LiquidDesiccantCoil(CoilNum).WaterLoopSide,
                                     LiquidDesiccantCoil(CoilNum).WaterLoopBranchNum,
@@ -972,7 +972,7 @@ namespace LiquidDesiccantCoil{
         }
         if (!SysSizingCalc && MySizeFlag(CoilNum)) {
             // for each coil, do the sizing once.
-            SizeWaterCoil(state, CoilNum);
+            SizeLiquideDesiccantCoil(state, CoilNum);
 
             MySizeFlag(CoilNum) = false;
         }
@@ -984,7 +984,7 @@ namespace LiquidDesiccantCoil{
                                    PlantLoop(LiquidDesiccantCoil(CoilNum).WaterLoopNum).FluidIndex,
                                    RoutineName);
             // Initialize all report variables to a known state at beginning of simulation
-            LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilEnergy = 0.0;
+           // LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilEnergy = 0.0;
             LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilEnergy = 0.0;
             LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilEnergy = 0.0;
             LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilRate = 0.0;
@@ -999,7 +999,7 @@ namespace LiquidDesiccantCoil{
             //DesCpAir(CoilNum) = PsyCpAirFnW(0.0);
             //DesUARangeCheck(CoilNum) = (-1568.6 * LiquidDesiccantCoil(CoilNum).DesInletAirHumRat + 20.157);
 
-            if (LiquidDesiccantCoil(CoilNum).WaterCoilType == CoilType_Cooling) { // 'Cooling'
+            if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType == CoilType_Cooling) { // 'Cooling'
                 Node(WaterInletNode).Temp = 5.0;
 
                 Cp = GetSpecificHeatGlycol(PlantLoop(LiquidDesiccantCoil(CoilNum).WaterLoopNum).FluidName,
@@ -1014,7 +1014,7 @@ namespace LiquidDesiccantCoil{
             }
 
             
-            if (LiquidDesiccantCoil(CoilNum).WaterCoilType == CoilType_Heating) { // 'Heating'
+            if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType == CoilType_Heating) { // 'Heating'
                 Node(WaterInletNode).Temp = 60.0;
 
                 Cp = GetSpecificHeatGlycol(PlantLoop(LiquidDesiccantCoil(CoilNum).WaterLoopNum).FluidName,
@@ -1101,7 +1101,7 @@ namespace LiquidDesiccantCoil{
             */
 
             
-            if (MyCoilDesignFlag(CoilNum) && (LiquidDesiccantCoil(CoilNum).WaterCoilModel == CoilModel_Cooling) &&
+            if (MyCoilDesignFlag(CoilNum) && (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilModel == CoilModel_Cooling) &&
                 (LiquidDesiccantCoil(CoilNum).DesAirVolFlowRate > 0.0) && (LiquidDesiccantCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) { // 'Cooling'
 
                 MyCoilDesignFlag(CoilNum) = false;
@@ -1518,7 +1518,8 @@ namespace LiquidDesiccantCoil{
                 // create predefined report entries
                 MyCoilReportFlag(CoilNum) = false;
                 {
-                    auto const SELECT_CASE_var(LiquidDesiccantCoil(CoilNum).WaterCoilType_Num);
+                    auto const SELECT_CASE_var(LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num);
+                    /*
                     if (SELECT_CASE_var == WaterCoil_SimpleHeating) {
                         if (RptCoilHeaderFlag(1)) {
                             print(state.outputFiles.eio, "{}", "! <Water Heating Coil Capacity Information>,Component Type,Name,Nominal Total Capacity {W}\n");
@@ -1547,7 +1548,9 @@ namespace LiquidDesiccantCoil{
                                                                                    LiquidDesiccantCoil(CoilNum).WaterInletNodeNum,
                                                                                    LiquidDesiccantCoil(CoilNum).WaterOutletNodeNum,
                                                                                    LiquidDesiccantCoil(CoilNum).WaterLoopNum); // coil report
-                    } else if (SELECT_CASE_var == WaterCoil_Cooling) {
+                    } else if (SELECT_CASE_var == LiquidDesiccantCoil_Cooling) {
+                        */
+
                         if (RptCoilHeaderFlag(2)) {
                             print(state.outputFiles.eio,
                                   "{}\n",
@@ -1558,7 +1561,7 @@ namespace LiquidDesiccantCoil{
                         }
                         RatedLatentCapacity = LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate - LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilRate;
                         RatedSHR = SafeDivide(LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilRate, LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate);
-                        PreDefTableEntry(pdchCoolCoilType, LiquidDesiccantCoil(CoilNum).Name, "Coil:Cooling:Water");
+                        PreDefTableEntry(pdchCoolCoilType, LiquidDesiccantCoil(CoilNum).Name, "Coil:Cooling:LiquidDesiccant");
                         PreDefTableEntry(pdchCoolCoilDesCap, LiquidDesiccantCoil(CoilNum).Name, LiquidDesiccantCoil(CoilNum).DesWaterCoolingCoilRate);
                         PreDefTableEntry(pdchCoolCoilTotCap, LiquidDesiccantCoil(CoilNum).Name, LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate);
                         PreDefTableEntry(pdchCoolCoilSensCap, LiquidDesiccantCoil(CoilNum).Name, LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilRate);
@@ -1572,7 +1575,7 @@ namespace LiquidDesiccantCoil{
                             "Nominal values are gross at rated conditions, i.e., the supply air fan heat and electric power NOT accounted for.");
                         print(state.outputFiles.eio,
                               "{},{},{:.2R},{:.2R},{:.2R},{:.2R},{:.2R},{:.2R}\n",
-                              "Water Cooling Coil Capacity Information,Coil:Cooling:Water",
+                              "Water Cooling Coil Capacity Information,Coil:Cooling:LiquidDesiccant",
                               LiquidDesiccantCoil(CoilNum).Name,
                               LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate,
                               LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilRate,
@@ -1581,17 +1584,17 @@ namespace LiquidDesiccantCoil{
                               UATotal,
                               SurfaceArea);
                         coilSelectionReportObj->setCoilAirFlow(LiquidDesiccantCoil(CoilNum).Name,
-                                                               "Coil:Cooling:Water",
+                                                               "Coil:Cooling:LiquidDesiccant",
                                                                LiquidDesiccantCoil(CoilNum).DesAirVolFlowRate,
                                                                LiquidDesiccantCoil(CoilNum).RequestingAutoSize); // Coil Report
                         coilSelectionReportObj->setCoilWaterCoolingCapacity(LiquidDesiccantCoil(CoilNum).Name,
-                                                                            "Coil:Cooling:Water",
+                                                                            "Coil:Cooling:LiquidDesiccant",
                                                                             LiquidDesiccantCoil(CoilNum).DesWaterCoolingCoilRate,
                                                                             LiquidDesiccantCoil(CoilNum).RequestingAutoSize,
                                                                             LiquidDesiccantCoil(CoilNum).WaterInletNodeNum,
                                                                             LiquidDesiccantCoil(CoilNum).WaterOutletNodeNum,
                                                                             LiquidDesiccantCoil(CoilNum).WaterLoopNum); // Coil Report
-                    }
+                 //   }
                 }
                 if (LiquidDesiccantCoil(CoilNum).DesWaterCoolingCoilRate <= 0.0)
                     LiquidDesiccantCoil(CoilNum).DesWaterCoolingCoilRate = LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate;
@@ -1615,7 +1618,7 @@ namespace LiquidDesiccantCoil{
                 LiquidDesiccantCoil(CoilNum).InletWaterEnthalpy = cp * LiquidDesiccantCoil(CoilNum).InletWaterTemp;
 
                 LiquidDesiccantCoil(CoilNum).UACoilVariable = LiquidDesiccantCoil(CoilNum).UACoil;
-                LiquidDesiccantCoil(CoilNum).FaultyCoilFoulingFactor = 0.0;
+                //LiquidDesiccantCoil(CoilNum).FaultyCoilFoulingFactor = 0.0;
                 Real64 holdOutBaroPress = DataEnvironment::OutBaroPress;
                 DataEnvironment::OutBaroPress = DataEnvironment::StdPressureSeaLevel; // assume rating is for sea level.
                 //CalcAdjustedCoilUA(CoilNum);
@@ -1626,13 +1629,13 @@ namespace LiquidDesiccantCoil{
                //     CalcDetailFlatFinCoolingCoil(CoilNum, SimCalc, ContFanCycCoil, 1.0);
                //     coilTypeName = "Coil:Cooling:Water:DetailedGeometry";
                // } else 
-               // if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num == WaterCoil_Cooling) {
+               if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num == LiquidDesiccantCoil_Cooling) {
                 SimuLiquideDesiccantCoil(CoilNum, FirstHVACIteration, SimCalc, ContFanCycCoil, 1.0);
-                    coilTypeName = "Coil:Cooling:Water";
+                    coilTypeName = "Coil:Cooling:LiquidDesiccant";
                // } else if (LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
                //     CalcSimpleHeatingCoil(CoilNum, ContFanCycCoil, 1.0, SimCalc);
                //     coilTypeName = "Coil:Heating:Water";
-               // }
+               }
 
                 // coil outlets
                 Real64 RatedOutletWetBulb(0.0);
@@ -1641,7 +1644,7 @@ namespace LiquidDesiccantCoil{
 
                 // call set routine in coil report
                 if (//WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling ||
-                    LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
+                    LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num == LiquidDesiccantCoil_Cooling) {
                     coilSelectionReportObj->setRatedCoilConditions(LiquidDesiccantCoil(CoilNum).Name,
                                                                    coilTypeName,
                                                                    LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate, // this is the report variable
@@ -1657,7 +1660,9 @@ namespace LiquidDesiccantCoil{
                                                                    -999.0,
                                                                    -999.0,
                                                                    -999.0); // coil effectiveness
-                } else if (LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
+                } 
+                /*
+                else if (LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
                     coilSelectionReportObj->setRatedCoilConditions(LiquidDesiccantCoil(CoilNum).Name,
                                                                    coilTypeName,
                                                                    LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilRate, // this is the report variable
@@ -1674,6 +1679,7 @@ namespace LiquidDesiccantCoil{
                                                                    -999.0,
                                                                    -999.0); // coil effectiveness
                 }
+                */
                 // now replace the outdoor air conditions set above for one time rating point calc
                 DataEnvironment::OutBaroPress = holdOutBaroPress;
             }
@@ -1988,7 +1994,7 @@ namespace LiquidDesiccantCoil{
         CpAirStd = PsyCpAirFnW(0.0);
 
         // cooling coils
-        if (LiquidDesiccantCoil(CoilNum).WaterCoilType == CoilType_Cooling && LiquidDesiccantCoil(CoilNum).RequestingAutoSize) {
+        if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType == CoilType_Cooling && LiquidDesiccantCoil(CoilNum).RequestingAutoSize) {
             // find the appropriate Plant Sizing object
             PltSizCoolNum = PlantUtilities::MyPlantSizingIndex("chilled water coil",
                                                                LiquidDesiccantCoil(CoilNum).Name,
@@ -1998,7 +2004,7 @@ namespace LiquidDesiccantCoil{
         }
 
         // Liquid desiccant coil (Cooling Coil): Sizing cooling coil parameter whick is defined as autosize in IDF file 
-        if (LiquidDesiccantCoil(CoilNum).WaterCoilType == CoilType_Cooling) { // 'Cooling'
+        if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType == CoilType_Cooling) { // 'Cooling'
 
             if (LiquidDesiccantCoil(CoilNum).UseDesignWaterDeltaTemp) {
                 DataWaterCoilSizCoolDeltaT = LiquidDesiccantCoil(CoilNum).DesignWaterDeltaTemp;
@@ -2154,7 +2160,7 @@ namespace LiquidDesiccantCoil{
 
                 if (LiquidDesiccantCoil(CoilNum).DesAirVolFlowRate <= 0.0) {
                     LiquidDesiccantCoil(CoilNum).DesAirVolFlowRate = 0.0;
-                    ShowWarningError("The design air flow rate is zero for Coil:Cooling:Water " + LiquidDesiccantCoil(CoilNum).Name);
+                    ShowWarningError("The design air flow rate is zero for Coil:Cooling:LiquidDesiccant " + LiquidDesiccantCoil(CoilNum).Name);
                     ShowContinueError("The autosize value for max air volume flow rate is zero");
                 }
 
@@ -3438,13 +3444,13 @@ namespace LiquidDesiccantCoil{
         // na
 
         // Using/Aliasing
-        using DataWater::WaterStorage;
+        //using DataWater::WaterStorage;
 
         // Locals
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
-        static std::string const RoutineName("ReportWaterCoil");
+        static std::string const RoutineName("ReportLiquidDesiccantCoil");
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -3462,15 +3468,15 @@ namespace LiquidDesiccantCoil{
         if (LiquidDesiccantCoil(CoilNum).reportCoilFinalSizes) {
             if (!DataGlobals::WarmupFlag && !DataGlobals::DoingHVACSizingSimulations && !DataGlobals::DoingSizing) {
                 std::string coilObjClassName;
-                if (LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
-                    coilObjClassName = "Coil:Heating:Water";
-                    coilSelectionReportObj->setCoilFinalSizes(LiquidDesiccantCoil(CoilNum).Name,
-                                                              coilObjClassName,
-                                                              LiquidDesiccantCoil(CoilNum).DesWaterHeatingCoilRate,
-                                                              LiquidDesiccantCoil(CoilNum).DesWaterHeatingCoilRate,
-                                                              LiquidDesiccantCoil(CoilNum).DesAirVolFlowRate,
-                                                              LiquidDesiccantCoil(CoilNum).MaxWaterVolFlowRate);
-                    LiquidDesiccantCoil(CoilNum).reportCoilFinalSizes = false;
+             //   if (LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
+             //       coilObjClassName = "Coil:Heating:Water";
+             //       coilSelectionReportObj->setCoilFinalSizes(LiquidDesiccantCoil(CoilNum).Name,
+             //                                                 coilObjClassName,
+             //                                                 LiquidDesiccantCoil(CoilNum).DesWaterHeatingCoilRate,
+             //                                                 LiquidDesiccantCoil(CoilNum).DesWaterHeatingCoilRate,
+             //                                                 LiquidDesiccantCoil(CoilNum).DesAirVolFlowRate,
+             //                                                 LiquidDesiccantCoil(CoilNum).MaxWaterVolFlowRate);
+             //       LiquidDesiccantCoil(CoilNum).reportCoilFinalSizes = false;
              //   } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_DetFlatFinCooling) {
              //       coilObjClassName = "Coil:Cooling:Water:DetailedGeometry";
              //       coilSelectionReportObj->setCoilFinalSizes(WaterCoil(CoilNum).Name,
@@ -3480,8 +3486,9 @@ namespace LiquidDesiccantCoil{
              //                                                 WaterCoil(CoilNum).DesAirVolFlowRate,
              //                                                 WaterCoil(CoilNum).MaxWaterVolFlowRate);
              //       WaterCoil(CoilNum).reportCoilFinalSizes = false;
-                } else if (LiquidDesiccantCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
-                    coilObjClassName = "Coil:Cooling:Water";
+             //   } else 
+                if (LiquidDesiccantCoil(CoilNum).LiquidDesiccantCoilType_Num == LiquidDesiccantCoil_Cooling) {
+                    coilObjClassName = "Coil:Cooling:LiquidDesiccant";
                     coilSelectionReportObj->setCoilFinalSizes(LiquidDesiccantCoil(CoilNum).Name,
                                                               coilObjClassName,
                                                               LiquidDesiccantCoil(CoilNum).DesWaterCoolingCoilRate,
@@ -3494,12 +3501,12 @@ namespace LiquidDesiccantCoil{
         }
         ReportingConstant = TimeStepSys * SecInHour;
         // report the WaterCoil energy from this component
-        LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilEnergy = LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilRate * ReportingConstant;
+       // LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilEnergy = LiquidDesiccantCoil(CoilNum).TotWaterHeatingCoilRate * ReportingConstant;
         LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilEnergy = LiquidDesiccantCoil(CoilNum).TotWaterCoolingCoilRate * ReportingConstant;
         LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilEnergy = LiquidDesiccantCoil(CoilNum).SenWaterCoolingCoilRate * ReportingConstant;
 
         // report the WaterCoil water collection to water storage tank (if needed)
-
+        /*
         if (LiquidDesiccantCoil(CoilNum).CondensateCollectMode == CondensateToTank) {
             // calculate and report condensation rates  (how much water extracted from the air stream)
             // water volumetric flow of water in m3/s for water system interactions
@@ -3520,6 +3527,9 @@ namespace LiquidDesiccantCoil{
             WaterStorage(LiquidDesiccantCoil(CoilNum).CondensateTankID).TwaterSupply(LiquidDesiccantCoil(CoilNum).CondensateTankSupplyARRID) =
                 LiquidDesiccantCoil(CoilNum).OutletAirTemp;
         }
+        */
+
+
     }
 
     //        End of Reporting subroutines for the WaterCoil Module

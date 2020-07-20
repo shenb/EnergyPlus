@@ -9811,6 +9811,12 @@ namespace AirflowNetworkBalanceManager {
                         ErrorsFound = true;
                     }
 
+                } else if (SELECT_CASE_var == "COIL:COOLING:LIQUIDDESICCANT") {
+                    ValidateComponent("Coil:Cooling:LiquidDesiccant", DisSysCompCoilData(i).name, IsNotOK, RoutineName + CurrentModuleObject);
+                    if (IsNotOK) {
+                        ErrorsFound = true;
+                    }
+
                 } else if (SELECT_CASE_var == "COIL:HEATING:WATER") {
                     ValidateComponent("Coil:Heating:Water", DisSysCompCoilData(i).name, IsNotOK, RoutineName + CurrentModuleObject);
                     if (IsNotOK) {

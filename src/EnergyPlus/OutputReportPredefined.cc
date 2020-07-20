@@ -1855,6 +1855,7 @@ namespace OutputReportPredefined {
 
         pdstCoolCoil = newPreDefSubTable(pdrEquip, "Cooling Coils");
 
+
         pdchCoolCoilType = newPreDefColumn(pdstCoolCoil, "Type");
         pdchCoolCoilDesCap = newPreDefColumn(pdstCoolCoil, "Design Coil Load [W]");
         pdchCoolCoilTotCap = newPreDefColumn(pdstCoolCoil, "Nominal Total Capacity [W]");
