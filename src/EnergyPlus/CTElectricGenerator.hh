@@ -55,12 +55,10 @@
 #include <EnergyPlus/DataGlobalConstants.hh>
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/PlantComponent.hh>
 
 namespace EnergyPlus {
-
-// Forward declarations
-struct BranchInputManagerData;
 
 namespace CTElectricGenerator {
 
@@ -149,8 +147,7 @@ namespace CTElectricGenerator {
 
         void setupOutputVars();
 
-        void InitCTGenerators(BranchInputManagerData &dataBranchInputManager,
-                              bool RunFlag, bool FirstHVACIteration);
+        void InitCTGenerators(bool RunFlag, bool FirstHVACIteration);
 
         void CalcCTGeneratorModel(bool RunFlag, Real64 MyLoad, bool FirstHVACIteration);
 

@@ -284,7 +284,7 @@ namespace SteamBaseboardRadiator {
                                      SteamBaseboard(BaseboardNum).LoopSideNum,
                                      SteamBaseboard(BaseboardNum).BranchNum,
                                      SteamBaseboard(BaseboardNum).CompNum);
-                CalcSteamBaseboard(state.dataZoneTempPredictorCorrector, BaseboardNum, PowerMet);
+                CalcSteamBaseboard(BaseboardNum, PowerMet);
             }
 
             UpdateSteamBaseboard(BaseboardNum);
@@ -801,8 +801,7 @@ namespace SteamBaseboardRadiator {
         if (SetLoopIndexFlag(BaseboardNum)) {
             if (allocated(PlantLoop)) {
                 errFlag = false;
-                ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                        SteamBaseboard(BaseboardNum).EquipID,
+                ScanPlantLoopsForObject(SteamBaseboard(BaseboardNum).EquipID,
                                         SteamBaseboard(BaseboardNum).EquipType,
                                         SteamBaseboard(BaseboardNum).LoopNum,
                                         SteamBaseboard(BaseboardNum).LoopSideNum,
@@ -1091,7 +1090,7 @@ namespace SteamBaseboardRadiator {
         }
     }
 
-    void CalcSteamBaseboard(ZoneTempPredictorCorrectorData &dataZoneTempPredictorCorrector, int &BaseboardNum, Real64 &LoadMet)
+    void CalcSteamBaseboard(int &BaseboardNum, Real64 &LoadMet)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         Daeho Kang
@@ -1169,7 +1168,7 @@ namespace SteamBaseboardRadiator {
             DistributeBBSteamRadGains();
             // Now "simulate" the system by recalculating the heat balances
             HeatBalanceSurfaceManager::CalcHeatBalanceOutsideSurf(ZoneNum);
-            HeatBalanceSurfaceManager::CalcHeatBalanceInsideSurf(dataZoneTempPredictorCorrector, ZoneNum);
+            HeatBalanceSurfaceManager::CalcHeatBalanceInsideSurf(ZoneNum);
 
             // Here an assumption is made regarding radiant heat transfer to people.
             // While the radiant heat transfer to people array will be used by the thermal comfort

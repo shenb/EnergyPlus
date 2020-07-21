@@ -62,7 +62,6 @@ namespace EnergyPlus {
 
 // Forward declarations
 struct EnergyPlusData;
-struct BranchInputManagerData;
 struct ChillerGasAbsorptionData;
 
 namespace ChillerGasAbsorption {
@@ -218,7 +217,7 @@ namespace ChillerGasAbsorption {
 
         void getDesignTemperatures(Real64 &TempDesCondIn, Real64 &TempDesEvapOut) override;
 
-        void initialize(BranchInputManagerData &dataBranchInputManager);
+        void initialize();
 
         void setupOutputVariables();
 

@@ -233,7 +233,7 @@ namespace Psychrometrics {
 
     void InitializePsychRoutines();
 
-    void ShowPsychrometricSummary(OutputFile &auditFile);
+    void ShowPsychrometricSummary();
 
 #ifdef EP_psych_errors
     void PsyRhoAirFnPbTdbW_error(Real64 const pb,                             // barometric pressure (Pascals)

@@ -59,10 +59,6 @@
 
 namespace EnergyPlus {
 
-// Forward declarations
-struct EnergyPlusData;
-struct BranchInputManagerData;
-
 namespace MicroturbineElectricGenerator {
 
     using DataGlobalConstants::iGeneratorMicroturbine;
@@ -206,8 +202,7 @@ namespace MicroturbineElectricGenerator {
                                  Real64 &EP_UNUSED(MinLoad),
                                  Real64 &EP_UNUSED(OptLoad)) override;
 
-        void InitMTGenerators(BranchInputManagerData &dataBranchInputManager,
-                              bool RunFlag,
+        void InitMTGenerators(bool RunFlag,
                               Real64 MyLoad, // electrical load in W
                               bool FirstHVACIteration);
 

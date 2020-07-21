@@ -60,8 +60,7 @@ namespace ThermalEN673Calc {
 
     // Functions
 
-    void Calc_EN673(TARCOGOutput::Files &files,
-                    int const standard,
+    void Calc_EN673(int const standard,
                     int const nlayer,
                     Real64 const tout,
                     Real64 const tind,

@@ -963,22 +963,20 @@ namespace EvaporativeFluidCoolers {
         _SizFac = this->SizFac;
     }
 
-    void EvapFluidCoolerSpecs::onInitLoopEquip(EnergyPlusData &state, const PlantLocation &EP_UNUSED(calledFromLocation))
-    {
-        this->InitEvapFluidCooler(state.dataBranchInputManager);
-        this->SizeEvapFluidCooler();
-    }
-
     void EvapFluidCoolerSpecs::getDesignCapacities(const PlantLocation &, Real64 &MaxLoad, Real64 &MinLoad, Real64 &OptLoad)
     {
         if (this->TypeOf_Num == DataPlant::TypeOf_EvapFluidCooler_SingleSpd) {
 
+            this->InitEvapFluidCooler();
+            this->SizeEvapFluidCooler();
             MinLoad = 0.0; // signifies non-load based model (i.e. forward)
             MaxLoad = this->HighSpeedStandardDesignCapacity * this->HeatRejectCapNomCapSizingRatio;
             OptLoad = this->HighSpeedStandardDesignCapacity;
 
         } else if (this->TypeOf_Num == DataPlant::TypeOf_EvapFluidCooler_TwoSpd) {
 
+            this->InitEvapFluidCooler();
+            this->SizeEvapFluidCooler();
             MinLoad = 0.0; // signifies non-load based model (i.e. forward heat exhanger model)
             MaxLoad = this->HighSpeedStandardDesignCapacity * this->HeatRejectCapNomCapSizingRatio;
             OptLoad = this->HighSpeedStandardDesignCapacity;
@@ -988,7 +986,7 @@ namespace EvaporativeFluidCoolers {
         }
     }
 
-    void EvapFluidCoolerSpecs::simulate(EnergyPlusData &state, const PlantLocation &EP_UNUSED(calledFromLocation),
+    void EvapFluidCoolerSpecs::simulate(EnergyPlusData &EP_UNUSED(state), const PlantLocation &EP_UNUSED(calledFromLocation),
                                         bool EP_UNUSED(FirstHVACIteration),
                                         Real64 &EP_UNUSED(CurLoad),
                                         bool RunFlag)
@@ -1009,7 +1007,7 @@ namespace EvaporativeFluidCoolers {
 
         this->AirFlowRateRatio = 0.0; // Ratio of air flow rate through VS Evaporative fluid cooler to design air flow rate
 
-        this->InitEvapFluidCooler(state.dataBranchInputManager);
+        this->InitEvapFluidCooler();
 
         if (this->TypeOf_Num == DataPlant::TypeOf_EvapFluidCooler_SingleSpd) {
             this->CalcSingleSpeedEvapFluidCooler();
@@ -1024,7 +1022,7 @@ namespace EvaporativeFluidCoolers {
         this->ReportEvapFluidCooler(RunFlag);
     }
 
-    void EvapFluidCoolerSpecs::InitEvapFluidCooler(BranchInputManagerData &dataBranchInputManager)
+    void EvapFluidCoolerSpecs::InitEvapFluidCooler()
     {
 
         // SUBROUTINE INFORMATION:
@@ -1069,7 +1067,7 @@ namespace EvaporativeFluidCoolers {
 
         if (this->OneTimeFlagForEachEvapFluidCooler) {
             // Locate the tower on the plant loops for later usage
-            PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
+            PlantUtilities::ScanPlantLoopsForObject(
                 this->Name, this->TypeOf_Num, this->LoopNum, this->LoopSideNum, this->BranchNum, this->CompNum, ErrorsFound, _, _, _, _, _);
 
             if (ErrorsFound) {

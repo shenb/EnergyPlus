@@ -101,6 +101,7 @@ namespace EnergyPlus {
 namespace UtilityRoutines {
     bool outputErrorHeader(true);
     ObjexxFCL::gio::Fmt fmtLD("*");
+    ObjexxFCL::gio::Fmt fmtA("(A)");
     std::string appendPerfLog_headerRow("");
     std::string appendPerfLog_valuesRow("");
 
@@ -662,6 +663,7 @@ namespace UtilityRoutines {
         // SUBROUTINE ARGUMENT DEFINITIONS:
 
         // SUBROUTINE PARAMETER DEFINITIONS:
+        static ObjexxFCL::gio::Fmt fmtLD("*");
         static ObjexxFCL::gio::Fmt OutFmt("('Press ENTER to continue after reading above message>')");
 
         // INTERFACE BLOCK SPECIFICATIONS
@@ -670,6 +672,7 @@ namespace UtilityRoutines {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
+        int tempfl;
         std::string NumWarnings;
         std::string NumSevere;
         std::string NumWarningsDuringWarmup;
@@ -681,6 +684,7 @@ namespace UtilityRoutines {
         Real64 Seconds; // Elapsed Time Second Reporting
         bool ErrFound;
         bool TerminalError;
+        int write_stat;
 
         if (sqlite) {
             sqlite->updateSQLiteSimulationRecord(true, false);
@@ -695,7 +699,7 @@ namespace UtilityRoutines {
 
             ErrFound = false;
             TerminalError = false;
-            TestBranchIntegrity(state.dataBranchInputManager, state.outputFiles, ErrFound);
+            TestBranchIntegrity(state.outputFiles, ErrFound);
             if (ErrFound) TerminalError = true;
             TestAirPathIntegrity(state, state.outputFiles, ErrFound);
             if (ErrFound) TerminalError = true;
@@ -746,6 +750,7 @@ namespace UtilityRoutines {
         Elapsed_Time -= Minutes * 60.0;
         Seconds = Elapsed_Time;
         if (Seconds < 0.0) Seconds = 0.0;
+        static ObjexxFCL::gio::Fmt ETimeFmt("(I2.2,'hr ',I2.2,'min ',F5.2,'sec')");
         const auto Elapsed = format("{:02}hr {:02}min {:5.2F}sec", Hours, Minutes, Seconds);
 
         ResultsFramework::OutputSchema->SimulationInformation.setRunTime(Elapsed);
@@ -760,19 +765,20 @@ namespace UtilityRoutines {
         ShowMessage("EnergyPlus Terminated--Fatal Error Detected. " + NumWarnings + " Warning; " + NumSevere +
                     " Severe Errors; Elapsed Time=" + Elapsed);
         DisplayString("EnergyPlus Run Time=" + Elapsed);
-
+        tempfl = GetNewUnitNumber();
         {
-            auto tempfl = state.outputFiles.endFile.try_open();
-
-            if (!tempfl.good()) {
-                DisplayString("AbortEnergyPlus: Could not open file " + tempfl.fileName + " for output (write).");
-            }
-            print(tempfl,
-                  "EnergyPlus Terminated--Fatal Error Detected. {} Warning; {} Severe Errors; Elapsed Time={}\n",
-                  NumWarnings,
-                  NumSevere,
-                  Elapsed);
+            IOFlags flags;
+            flags.ACTION("write");
+            ObjexxFCL::gio::open(tempfl, DataStringGlobals::outputEndFileName, flags);
+            write_stat = flags.ios();
         }
+        if (write_stat != 0) {
+            DisplayString("AbortEnergyPlus: Could not open file " + DataStringGlobals::outputEndFileName + " for output (write).");
+        }
+        ObjexxFCL::gio::write(tempfl, fmtLD) << "EnergyPlus Terminated--Fatal Error Detected. " + NumWarnings + " Warning; " + NumSevere +
+                                                    " Severe Errors; Elapsed Time=" + Elapsed;
+
+        ObjexxFCL::gio::close(tempfl);
 
         // Output detailed ZONE time series data
         SimulationManager::OpenOutputJsonFiles();
@@ -786,7 +792,7 @@ namespace UtilityRoutines {
         }
 
 #ifdef EP_Detailed_Timings
-        epSummaryTimes(state.outputFiles.audit, Time_Finish - Time_Start);
+        epSummaryTimes(Time_Finish - Time_Start);
 #endif
         std::cerr << "Program terminated: "
                   << "EnergyPlus Terminated--Error(s) Detected." << std::endl;
@@ -948,6 +954,8 @@ namespace UtilityRoutines {
         // na
 
         // SUBROUTINE PARAMETER DEFINITIONS:
+        static ObjexxFCL::gio::Fmt fmtA("(A)");
+        static ObjexxFCL::gio::Fmt ETimeFmt("(I2.2,'hr ',I2.2,'min ',F5.2,'sec')");
 
         // INTERFACE BLOCK SPECIFICATIONS
 
@@ -955,15 +963,18 @@ namespace UtilityRoutines {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
+        int tempfl;
         std::string NumWarnings;
         std::string NumSevere;
         std::string NumWarningsDuringWarmup;
         std::string NumSevereDuringWarmup;
         std::string NumWarningsDuringSizing;
         std::string NumSevereDuringSizing;
+        std::string Elapsed;
         int Hours;      // Elapsed Time Hour Reporting
         int Minutes;    // Elapsed Time Minute Reporting
         Real64 Seconds; // Elapsed Time Second Reporting
+        int write_stat;
 
         if (sqlite) {
             sqlite->updateSQLiteSimulationRecord(true, true);
@@ -1001,7 +1012,7 @@ namespace UtilityRoutines {
         Elapsed_Time -= Minutes * 60.0;
         Seconds = Elapsed_Time;
         if (Seconds < 0.0) Seconds = 0.0;
-        const auto Elapsed = format("{:02}hr {:02}min {:5.2F}sec", Hours, Minutes, Seconds);
+        ObjexxFCL::gio::write(Elapsed, ETimeFmt) << Hours << Minutes << Seconds;
 
         ResultsFramework::OutputSchema->SimulationInformation.setRunTime(Elapsed);
         ResultsFramework::OutputSchema->SimulationInformation.setNumErrorsWarmup(NumWarningsDuringWarmup, NumSevereDuringWarmup);
@@ -1019,14 +1030,19 @@ namespace UtilityRoutines {
                     " Severe Errors.");
         ShowMessage("EnergyPlus Completed Successfully-- " + NumWarnings + " Warning; " + NumSevere + " Severe Errors; Elapsed Time=" + Elapsed);
         DisplayString("EnergyPlus Run Time=" + Elapsed);
-
+        tempfl = GetNewUnitNumber();
         {
-            auto tempfl = outputFiles.endFile.try_open();
-            if (!tempfl.good()) {
-                DisplayString("EndEnergyPlus: Could not open file " + tempfl.fileName + " for output (write).");
-            }
-            print(tempfl, "EnergyPlus Completed Successfully-- {} Warning; {} Severe Errors; Elapsed Time={}\n", NumWarnings, NumSevere, Elapsed);
+            IOFlags flags;
+            flags.ACTION("write");
+            ObjexxFCL::gio::open(tempfl, DataStringGlobals::outputEndFileName, flags);
+            write_stat = flags.ios();
         }
+        if (write_stat != 0) {
+            DisplayString("EndEnergyPlus: Could not open file " + DataStringGlobals::outputEndFileName + " for output (write).");
+        }
+        ObjexxFCL::gio::write(tempfl, fmtA) << "EnergyPlus Completed Successfully-- " + NumWarnings + " Warning; " + NumSevere +
+                                                   " Severe Errors; Elapsed Time=" + Elapsed;
+        ObjexxFCL::gio::close(tempfl);
 
         // Output detailed ZONE time series data
         SimulationManager::OpenOutputJsonFiles();
@@ -2056,6 +2072,7 @@ namespace UtilityRoutines {
         // na
 
         // Using/Aliasing
+        using DataGlobals::CacheIPErrorFile;
         using DataGlobals::DoingInputProcessing;
         using DataGlobals::err_stream;
         using DataStringGlobals::IDDVerString;
@@ -2083,10 +2100,7 @@ namespace UtilityRoutines {
         if (!DoingInputProcessing) {
             if (err_stream) *err_stream << "  " << ErrorMessage << DataStringGlobals::NL;
         } else {
-            // CacheIPErrorFile is never opened or closed
-            // so this output would just go to stdout
-            // ObjexxFCL::gio::write(CacheIPErrorFile, fmtA) << ErrorMessage;
-            std::cout << ErrorMessage << '\n';
+            ObjexxFCL::gio::write(CacheIPErrorFile, fmtA) << ErrorMessage;
         }
         if (present(OutUnit1)) {
             print(OutUnit1(), "  {}", ErrorMessage);

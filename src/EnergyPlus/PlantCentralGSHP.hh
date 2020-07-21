@@ -54,11 +54,10 @@
 // EnergyPlus Headers
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/PlantComponent.hh>
 
 namespace EnergyPlus {
-    // Forward declarations
-    struct EnergyPlusData;
 
 namespace PlantCentralGSHP {
 
@@ -380,7 +379,6 @@ namespace PlantCentralGSHP {
         bool SimulHtgDominant;
         WrapperReportVars Report;
         bool setupOutputVarsFlag;
-        bool mySizesReported;
 
         WrapperSpecs()
             : VariableFlowCH(false), SchedPtr(0), CHSchedPtr(0), ControlMode(0), CHWInletNodeNum(0), CHWOutletNodeNum(0), HWInletNodeNum(0),
@@ -391,7 +389,7 @@ namespace PlantCentralGSHP {
               HWLoopSideNum(0), HWBranchNum(0), HWCompNum(0), GLHELoopNum(0), GLHELoopSideNum(0), GLHEBranchNum(0), GLHECompNum(0),
               CHWMassFlowIndex(0), HWMassFlowIndex(0), GLHEMassFlowIndex(0), SizingFactor(1.0), CHWVolFlowRate(0.0), HWVolFlowRate(0.0),
               GLHEVolFlowRate(0.0), MyWrapperFlag(true), MyWrapperEnvrnFlag(true), SimulClgDominant(false), SimulHtgDominant(false),
-              setupOutputVarsFlag(true), mySizesReported(false)
+              setupOutputVarsFlag(true)
         {
         }
 
@@ -403,8 +401,7 @@ namespace PlantCentralGSHP {
 
         void setupOutputVars();
 
-        void initialize(BranchInputManagerData &dataBranchInputManager,
-                        Real64 MyLoad, // Demand Load
+        void initialize(Real64 MyLoad, // Demand Load
                         int LoopNum    // Loop Number Index
         );
 
@@ -421,9 +418,6 @@ namespace PlantCentralGSHP {
         void UpdateChillerHeaterRecords();
 
         void UpdateChillerRecords();
-
-        void onInitLoopEquip(EnergyPlusData &EP_UNUSED(state), const PlantLocation &EP_UNUSED(calledFromLocation)) override;
-
     };
 
     extern Array1D<WrapperSpecs> Wrapper;

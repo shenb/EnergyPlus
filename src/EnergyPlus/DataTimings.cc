@@ -295,29 +295,29 @@ namespace DataTimings {
                 {
                     auto const SELECT_CASE_var(wprint);
                     if (SELECT_CASE_var == "PRINT_TIME0") {
-                        fmt::print("{:80}{16.4F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a80,f16.4)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIME1") {
-                        fmt::print("{:70}{16.4F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a70,f16.4)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIME2") {
-                        fmt::print("{:60}{10.4F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a60,f10.4)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIME2i") {
-                        fmt::print("{:56}{:4}{10.4F}\n", ctimingElementstring, Timing(found).calls, Timing(found).currentTimeSum);
+                        ObjexxFCL::gio::write("(a56,i4,f10.4)") << ctimingElementstring << Timing(found).calls << Timing(found).currentTimeSum;
                     } else if (SELECT_CASE_var == "PRINT_TIME3") {
-                        fmt::print("{:50}{:10.4F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a50,f10.4)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIME3i") {
-                        fmt::print("{:46}{:4}{:10.4F}\n", ctimingElementstring, Timing(found).calls, Timing(found).currentTimeSum);
+                        ObjexxFCL::gio::write("(a46,i4,f10.4)") << ctimingElementstring << Timing(found).calls << Timing(found).currentTimeSum;
                     } else if (SELECT_CASE_var == "PRINT_TIME4") {
-                        fmt::print("{:40}{:10.4F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a40,f10.4)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIMEX") {
-                        fmt::print("{:100}{:16.6F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a100,f16.6)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINTES") {
-                        fmt::print("{:80}{:22.15}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a80,es22.15)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIME_AF") {
-                        fmt::print("{:55}          {:16.4F}\n", ctimingElementstring, stoptime - Timing(found).rstartTime);
+                        ObjexxFCL::gio::write("(a55,10x,f16.4)") << ctimingElementstring << stoptime - Timing(found).rstartTime;
                     } else if (SELECT_CASE_var == "PRINT_TIME_AIF") {
-                        fmt::print("{:55}{:10}{:16.4F}\n", ctimingElementstring, Timing(found).calls, Timing(found).currentTimeSum);
+                        ObjexxFCL::gio::write("(a55,i10,f16.4)") << ctimingElementstring << Timing(found).calls << Timing(found).currentTimeSum;
                     } else {
-                        fmt::print("{}{}", ctimingElementstring, Timing(found).currentTimeSum);
+                        ObjexxFCL::gio::write("*") << ctimingElementstring << Timing(found).currentTimeSum;
                     }
                 }
             }
@@ -330,12 +330,10 @@ namespace DataTimings {
 
     void epSummaryTimes(
 #ifdef EP_NO_Timings
-        OutputFile &,
         Real64 &EP_UNUSED(TimeUsed_CPUTime)
 #endif
 #ifdef EP_Timings
-        OutputFile &auditFile,
-        Real64 &TimeUsed_CPUTime
+            Real64 &TimeUsed_CPUTime
 #endif
     )
     {
@@ -376,22 +374,23 @@ namespace DataTimings {
 #ifdef EP_NO_Timings
         return;
 #endif
-
 #ifdef EP_Timings
         int loop;
-
-        print(auditFile, "Timing Element{}# calls{}Time {{s}}{}Time {{s}} (per call)\n", tabchar, tabchar, tabchar);
+        int EchoInputFile;
+        EchoInputFile = FindUnitNumber(outputAuditFile);
+        ObjexxFCL::gio::write(EchoInputFile, fmtA) << "Timing Element" + tabchar + "# calls" + tabchar + "Time {s}" + tabchar + "Time {s} (per call)";
 
         for (loop = 1; loop <= NumTimingElements; ++loop) {
             if (Timing(loop).calls > 0) {
-                print(auditFile, "{}{}{}{}{:.3R}{}{:.3R}\n", Timing(loop).Element, tabchar, Timing(loop).calls, tabchar,
-                      Timing(loop).currentTimeSum, tabchar, Timing(loop).currentTimeSum / double(Timing(loop).calls));
+                ObjexxFCL::gio::write(EchoInputFile, fmtA) << Timing(loop).Element + tabchar + RoundSigDigits(Timing(loop).calls) + tabchar +
+                                                       RoundSigDigits(Timing(loop).currentTimeSum, 3) + tabchar +
+                                                       RoundSigDigits(Timing(loop).currentTimeSum / double(Timing(loop).calls), 3);
             } else {
-                print(auditFile, "{}{}{}{}{:.3R}{}{:.3R}\n", Timing(loop).Element, tabchar, Timing(loop).calls, tabchar ,
-                      Timing(loop).currentTimeSum, tabchar , -999.0);
+                ObjexxFCL::gio::write(EchoInputFile, fmtA) << Timing(loop).Element + tabchar + RoundSigDigits(Timing(loop).calls) + tabchar +
+                                                       RoundSigDigits(Timing(loop).currentTimeSum, 3) + tabchar + RoundSigDigits(-999.0, 3);
             }
         }
-        print(auditFile, "Time from CPU_Time{}{:.3R}\n", tabchar, TimeUsed_CPUTime);
+        ObjexxFCL::gio::write(EchoInputFile, fmtA) << "Time from CPU_Time" + tabchar + RoundSigDigits(TimeUsed_CPUTime, 3);
 #endif
     }
 

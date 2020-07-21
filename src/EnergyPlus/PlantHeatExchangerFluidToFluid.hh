@@ -54,14 +54,11 @@
 // EnergyPlus Headers
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/Plant/PlantLocation.hh>
 #include <EnergyPlus/PlantComponent.hh>
 
 namespace EnergyPlus {
-
-// Forward declarations
-struct EnergyPlusData;
-struct BranchInputManagerData;
 
 namespace PlantHeatExchangerFluidToFluid {
 
@@ -162,7 +159,7 @@ namespace PlantHeatExchangerFluidToFluid {
 
         void setupOutputVars();
 
-        void initialize(BranchInputManagerData &dataBranchInputManager);
+        void initialize();
 
         void size();
 

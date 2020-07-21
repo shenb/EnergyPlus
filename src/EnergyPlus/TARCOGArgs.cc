@@ -93,8 +93,7 @@ namespace TARCOGArgs {
 
     // Functions
 
-    int ArgCheck(Files &files,
-                 int const nlayer,
+    int ArgCheck(int const nlayer,
                  int const iwd,
                  Real64 const tout,
                  Real64 const tind,
@@ -236,11 +235,9 @@ namespace TARCOGArgs {
 
         // bi...Write debug output files - if debug flag = 1:
 
-        if (files.WriteDebugOutput) {
+        if (WriteDebugOutput) {
 
-            WriteInputArguments(files.DebugOutputFile,
-                                files.DBGD,
-                                tout,
+            WriteInputArguments(tout,
                                 tind,
                                 trmin,
                                 wso,
@@ -299,8 +296,7 @@ namespace TARCOGArgs {
                                 xgcp,
                                 xwght);
 
-            WriteTARCOGInputFile(files,
-                                 VersionNumber,
+            WriteTARCOGInputFile(VersionNumber,
                                  tout,
                                  tind,
                                  trmin,

@@ -60,12 +60,14 @@
 #include <ObjexxFCL/time.hh>
 
 // EnergyPlus Headers
+#include <EnergyPlus/CommandLineInterface.hh>
 #include <EnergyPlus/DataEnvironment.hh>
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/DataHeatBalance.hh>
 #include <EnergyPlus/DataIPShortCuts.hh>
 #include <EnergyPlus/DataPrecisionGlobals.hh>
 #include <EnergyPlus/DataReportingFlags.hh>
+#include <EnergyPlus/DataSizing.hh>
 #include <EnergyPlus/DataStringGlobals.hh>
 #include <EnergyPlus/DataSurfaces.hh>
 #include <EnergyPlus/DataSystemVariables.hh>
@@ -8810,6 +8812,7 @@ namespace WeatherManager {
         int DateType;
         int NumHdArgs;
         bool errFlag;
+        std::string ErrNum;
         int CurCount;
         int CurOne;
         int NumEPWHolidays;
@@ -9398,10 +9401,10 @@ namespace WeatherManager {
                                         DataPeriods(CurCount).WeekDay =
                                             UtilityRoutines::FindItemInList(DataPeriods(CurCount).DayOfWeek, DaysOfWeek, 7);
                                         if (DataPeriods(CurCount).WeekDay == 0) {
-                                            ShowSevereError(
-                                                fmt::format("Weather File -- Invalid Start Day of Week for Data Period #{}, Invalid day={}",
-                                                            CurCount,
-                                                            DataPeriods(CurCount).DayOfWeek));
+                                            ObjexxFCL::gio::write(ErrNum, fmtLD) << CurCount;
+                                            strip(ErrNum);
+                                            ShowSevereError("Weather File -- Invalid Start Day of Week for Data Period #" + ErrNum +
+                                                            ", Invalid day=" + DataPeriods(CurCount).DayOfWeek);
                                             ErrorsFound = true;
                                         }
                                     }

@@ -62,6 +62,7 @@ namespace DataStringGlobals {
     // -only module should be available to other modules and routines.
     // Thus, all variables in this module must be PUBLIC.
 
+    extern std::string outputEndFileName;
     extern std::string outputErrFileName;
 
     extern std::string outputJsonFileName;
@@ -116,6 +117,7 @@ namespace DataStringGlobals {
     extern std::string outputSqliteErrFileName;
     extern std::string EnergyPlusIniFileName;
     extern std::string inStatFileName;
+    extern std::string TarcogIterationsFileName;
     extern std::string eplusADSFileName;
     extern std::string outputCsvFileName;
     extern std::string outputMtrCsvFileName;

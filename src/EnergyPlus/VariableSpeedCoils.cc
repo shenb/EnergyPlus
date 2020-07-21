@@ -406,7 +406,7 @@ namespace VariableSpeedCoils {
                              CyclingScheme,
                              OnOffAirFlowRatio,
                              SpeedRatio,
- SpeedCal);
+                             SpeedCal);
             CalcVarSpeedHPWH(DXCoilNum, RuntimeFrac, PartLoadFrac, SpeedRatio, SpeedNum, CyclingScheme);
             UpdateVarSpeedCoil(DXCoilNum);
         } else {
@@ -3285,8 +3285,7 @@ namespace VariableSpeedCoils {
                     plantTypeOfNum = DataPlant::TypeOf_CoilVSWAHPHeatingEquationFit;
                 }
                 errFlag = false;
-                ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                        VarSpeedCoil(DXCoilNum).Name,
+                ScanPlantLoopsForObject(VarSpeedCoil(DXCoilNum).Name,
                                         plantTypeOfNum,
                                         VarSpeedCoil(DXCoilNum).LoopNum,
                                         VarSpeedCoil(DXCoilNum).LoopSide,

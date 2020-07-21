@@ -232,7 +232,7 @@ namespace PoweredInductionUnits {
 
         DataSizing::CurTermUnitSizingNum = DataDefineEquip::AirDistUnit(PIU(PIUNum).ADUNum).TermUnitSizingNum;
         // initialize the unit
-        InitPIU(state.dataBranchInputManager, PIUNum, FirstHVACIteration);
+        InitPIU(PIUNum, FirstHVACIteration);
 
         TermUnitPIU = true;
 
@@ -739,8 +739,7 @@ namespace PoweredInductionUnits {
         }
     }
 
-    void InitPIU(BranchInputManagerData &dataBranchInputManager,
-                 int const PIUNum,             // number of the current fan coil unit being simulated
+    void InitPIU(int const PIUNum,             // number of the current fan coil unit being simulated
                  bool const FirstHVACIteration // TRUE if first zone equip this HVAC step
     )
     {
@@ -804,8 +803,7 @@ namespace PoweredInductionUnits {
         if (MyPlantScanFlag(PIUNum) && allocated(PlantLoop)) {
             if ((PIU(PIUNum).HCoil_PlantTypeNum == TypeOf_CoilWaterSimpleHeating) || (PIU(PIUNum).HCoil_PlantTypeNum == TypeOf_CoilSteamAirHeating)) {
                 errFlag = false;
-                ScanPlantLoopsForObject(dataBranchInputManager,
-                                        PIU(PIUNum).HCoil,
+                ScanPlantLoopsForObject(PIU(PIUNum).HCoil,
                                         PIU(PIUNum).HCoil_PlantTypeNum,
                                         PIU(PIUNum).HWLoopNum,
                                         PIU(PIUNum).HWLoopSide,

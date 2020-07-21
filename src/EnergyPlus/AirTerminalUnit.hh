@@ -56,9 +56,6 @@
 
 namespace EnergyPlus {
 
-// Forward declarations
-struct EnergyPlusData;
-
 // types of air terminal units, refactored from old DataDefineEquip
 enum AirTerminalUnitType
 {
@@ -119,8 +116,7 @@ protected: // Assignment
 #endif
 
 public:                                                  // Methods
-    virtual void simulate(EnergyPlusData &state,
-                          bool const FirstHVACIteration, // TRUE if first HVAC iteration in time step
+    virtual void simulate(bool const FirstHVACIteration, // TRUE if first HVAC iteration in time step
                           Real64 &NonAirSysOutput        // convective cooling by the beam system [W]
                           ) = 0;
 

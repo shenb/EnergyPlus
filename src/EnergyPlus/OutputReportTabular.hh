@@ -62,13 +62,11 @@
 
 // EnergyPlus Headers
 #include <EnergyPlus/DataGlobals.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/EnergyPlus.hh>
 #include <EnergyPlus/OutputProcessor.hh>
 
 namespace EnergyPlus {
-    // Forward declarations
-    struct EnergyPlusData;
-    struct ZoneTempPredictorCorrectorData;
 
 namespace OutputReportTabular {
 
@@ -795,13 +793,13 @@ namespace OutputReportTabular {
                                    int const colNum             // Column number
     );
 
-    void FillRemainingPredefinedEntries(EnergyPlusData &state);
+    void FillRemainingPredefinedEntries(EnergyPlus::EnergyPlusData &state);
 
     void WriteMonthlyTables();
 
     void WriteTimeBinTables();
 
-    void WriteBEPSTable(ZoneTempPredictorCorrectorData &dataZoneTempPredictorCorrector);
+    void WriteBEPSTable();
 
     std::string ResourceWarningMessage(std::string resource);
 

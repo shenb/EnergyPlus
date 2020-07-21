@@ -55,14 +55,11 @@
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/Plant/DataPlant.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/Plant/PlantLocation.hh>
 #include <EnergyPlus/PlantComponent.hh>
 
 namespace EnergyPlus {
-
-// Forward declarations
-struct EnergyPlusData;
-struct BranchInputManagerData;
 
 namespace PlantComponentTemperatureSources {
 
@@ -113,7 +110,7 @@ namespace PlantComponentTemperatureSources {
         // Destructor
         ~WaterSourceSpecs() = default;
 
-        void initialize(BranchInputManagerData &dataBranchInputManager, Real64 &MyLoad);
+        void initialize(Real64 &MyLoad);
 
         void setupOutputVars();
 

@@ -54,10 +54,9 @@
 // EnergyPlus Headers
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 
 namespace EnergyPlus {
-    // Forward declarations
-    struct EnergyPlusData;
 
 namespace SteamBaseboardRadiator {
 
@@ -186,7 +185,7 @@ namespace SteamBaseboardRadiator {
 
     void SizeSteamBaseboard(EnergyPlusData &state, int const BaseboardNum);
 
-    void CalcSteamBaseboard(ZoneTempPredictorCorrectorData &dataZoneTempPredictorCorrector, int &BaseboardNum, Real64 &LoadMet);
+    void CalcSteamBaseboard(int &BaseboardNum, Real64 &LoadMet);
 
     void UpdateSteamBaseboard(int const BaseboardNum);
 

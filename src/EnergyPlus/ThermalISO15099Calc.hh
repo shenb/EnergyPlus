@@ -65,8 +65,7 @@ namespace ThermalISO15099Calc {
 
     void film(Real64 const tex, Real64 const tw, Real64 const ws, int const iwd, Real64 &hcout, int const ibc);
 
-    void Calc_ISO15099(TARCOGOutput::Files &files,
-                       int const nlayer,
+    void Calc_ISO15099(int const nlayer,
                        int const iwd,
                        Real64 &tout,
                        Real64 &tind,
@@ -101,9 +100,9 @@ namespace ThermalISO15099Calc {
                        const Array1D<Real64> &xwght,
                        const Array1D<Real64> &gama,
                        const Array1D_int &nmix,
-                       const Array1D_int &SupportPillar,
-                       const Array1D<Real64> &PillarSpacing,
-                       const Array1D<Real64> &PillarRadius,
+                       const Array1D_int &SupportPillar,     // Shows whether or not gap have support pillar
+                       const Array1D<Real64> &PillarSpacing, // Pillar spacing for each gap (used in case there is support pillar)
+                       const Array1D<Real64> &PillarRadius,  // Pillar radius for each gap (used in case there is support pillar)
                        Array1D<Real64> &theta,
                        Array1D<Real64> &q,
                        Array1D<Real64> &qv,
@@ -146,7 +145,7 @@ namespace ThermalISO15099Calc {
                        Array1D<Real64> &Ra,
                        Array1D<Real64> &Nu,
                        int const ThermalMod,
-                       int const Debug_mode,
+                       int const Debug_mode, // Switch for debug output files:
                        Real64 &ShadeEmisRatioOut,
                        Real64 &ShadeEmisRatioIn,
                        Real64 &ShadeHcRatioOut,
@@ -156,12 +155,12 @@ namespace ThermalISO15099Calc {
                        Array1D<Real64> &Keff,
                        Array1D<Real64> &ShadeGapKeffConv,
                        Real64 const SDScalar,
-                       int const SHGCCalc,
+                       int const SHGCCalc, // SHGC calculation switch:
                        int &NumOfIterations,
-                       Real64 const egdeGlCorrFac);
+                       Real64 const egdeGlCorrFac // Edge of glass correction factor
+    );
 
-    void therm1d(TARCOGOutput::Files &files,
-                 int const nlayer,
+    void therm1d(int const nlayer,
                  int const iwd,
                  Real64 &tout,
                  Real64 &tind,
@@ -222,7 +221,7 @@ namespace ThermalISO15099Calc {
                  const Array1D<Real64> &Al,
                  const Array1D<Real64> &Ar,
                  const Array1D<Real64> &Ah,
-                 const Array1D<Real64> &EffectiveOpenness,
+                 const Array1D<Real64> &EffectiveOpenness, // Effective layer openness [m2]
                  const Array1D<Real64> &vvent,
                  const Array1D<Real64> &tvent,
                  const Array1D_int &LayerType,
@@ -240,10 +239,11 @@ namespace ThermalISO15099Calc {
                  Real64 &ShadeHcModifiedOut,
                  Real64 &ShadeHcModifiedIn,
                  int const ThermalMod,
-                 int const Debug_mode,
+                 int const Debug_mode, // Switch for debug output files:
                  Real64 &AchievedErrorTolerance,
                  int &TotalIndex,
-                 Real64 const edgeGlCorrFac);
+                 Real64 const edgeGlCorrFac // Edge of glass correction factor
+    );
 
     void guess(Real64 const tout,
                Real64 const tind,
@@ -461,8 +461,7 @@ namespace ThermalISO15099Calc {
                     int &nperr,
                     std::string &ErrorMessage);
 
-    void storeIterationResults(TARCOGOutput::Files &files,
-                               int const nlayer,
+    void storeIterationResults(int const nlayer,
                                int const index,
                                const Array1D<Real64> &theta,
                                Real64 const trmout,
@@ -481,7 +480,7 @@ namespace ThermalISO15099Calc {
                                const Array1D<Real64> &Ebf,
                                const Array1D<Real64> &Rb,
                                const Array1D<Real64> &Rf,
-                               int &);
+                               int &EP_UNUSED(nperr));
 
     void CalculateFuncResults(int const nlayer, Array2<Real64> const &a, const Array1D<Real64> &b, const Array1D<Real64> &x, Array1D<Real64> &FRes);
 

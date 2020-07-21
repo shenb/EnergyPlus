@@ -61,10 +61,6 @@
 
 namespace EnergyPlus {
 
-// Forward declarations
-struct EnergyPlusData;
-struct BranchInputManagerData;
-
 namespace FourPipeBeam {
 
     class HVACFourPipeBeam : public AirTerminalUnit
@@ -98,8 +94,7 @@ namespace FourPipeBeam {
     public: // Methods		MARK ANY THAT DON'T ALTER STATE const !!!
         ///// Note use of shared_ptr here is not a good pattern, not to be replicated without further discussion.
         static std::shared_ptr<AirTerminalUnit> fourPipeBeamFactory(int objectType, std::string objectName);
-        void simulate(EnergyPlusData &state,
-                      bool const FirstHVACIteration, // TRUE if first HVAC iteration in time step
+        void simulate(bool const FirstHVACIteration, // TRUE if first HVAC iteration in time step
                       Real64 &NonAirSysOutput        // convective cooling by the beam system [W]
         );
 
@@ -113,7 +108,7 @@ namespace FourPipeBeam {
 
     private: // Methods
         void
-        init(BranchInputManagerData &dataBranchInputManager, bool const FirstHVACIteration // TRUE if first air loop solution this HVAC step         MAYBE THIS SHOULD HAVE A DEFAULT ARG OF = false
+        init(bool const FirstHVACIteration // TRUE if first air loop solution this HVAC step         MAYBE THIS SHOULD HAVE A DEFAULT ARG OF = false
         );
 
         void set_size();

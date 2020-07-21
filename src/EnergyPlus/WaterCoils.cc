@@ -1137,8 +1137,7 @@ namespace WaterCoils {
 
         if (PlantLoopScanFlag(CoilNum) && allocated(PlantLoop)) {
             errFlag = false;
-            ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                    WaterCoil(CoilNum).Name,
+            ScanPlantLoopsForObject(WaterCoil(CoilNum).Name,
                                     WaterCoil(CoilNum).WaterCoilType_Num,
                                     WaterCoil(CoilNum).WaterLoopNum,
                                     WaterCoil(CoilNum).WaterLoopSide,

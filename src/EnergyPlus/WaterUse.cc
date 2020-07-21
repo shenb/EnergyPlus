@@ -54,7 +54,6 @@
 
 // EnergyPlus Headers
 #include <EnergyPlus/BranchNodeConnections.hh>
-#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/DataEnvironment.hh>
 #include <EnergyPlus/DataHVACGlobals.hh>
 #include <EnergyPlus/DataHeatBalFanSys.hh>
@@ -63,6 +62,7 @@
 #include <EnergyPlus/DataLoopNode.hh>
 #include <EnergyPlus/Plant/DataPlant.hh>
 #include <EnergyPlus/DataWater.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/HeatBalanceInternalHeatGains.hh>
 #include <EnergyPlus/InputProcessing/InputProcessor.hh>
 #include <EnergyPlus/NodeInputManager.hh>
@@ -103,7 +103,7 @@ namespace WaterUse {
         WaterConnections.deallocate();
     }
 
-    void SimulateWaterUse(BranchInputManagerData &dataBranchInputManager, bool FirstHVACIteration)
+    void SimulateWaterUse(bool FirstHVACIteration)
     {
 
         // SUBROUTINE INFORMATION:
@@ -167,7 +167,7 @@ namespace WaterUse {
 
             if (!WaterConnections(WaterConnNum).StandAlone) continue; // only model non plant connections here
 
-            WaterConnections(WaterConnNum).InitConnections(dataBranchInputManager);
+            WaterConnections(WaterConnNum).InitConnections();
 
             NumIteration = 0;
 
@@ -222,7 +222,7 @@ namespace WaterUse {
         return nullptr; // LCOV_EXCL_LINE
     }
 
-    void WaterConnectionsType::simulate(EnergyPlusData &state, const PlantLocation &EP_UNUSED(calledFromLocation),
+    void WaterConnectionsType::simulate(EnergyPlusData &EP_UNUSED(state), const PlantLocation &EP_UNUSED(calledFromLocation),
                                         bool FirstHVACIteration,
                                         Real64 &EP_UNUSED(CurLoad),
                                         bool EP_UNUSED(RunFlag))
@@ -262,7 +262,7 @@ namespace WaterUse {
 
         if (!DataGlobals::BeginEnvrnFlag) this->MyEnvrnFlag = true;
 
-        this->InitConnections(state.dataBranchInputManager);
+        this->InitConnections();
 
         int NumIteration = 0;
 
@@ -978,7 +978,7 @@ namespace WaterUse {
         }
     }
 
-    void WaterConnectionsType::InitConnections(BranchInputManagerData &dataBranchInputManager)
+    void WaterConnectionsType::InitConnections()
     {
 
         // SUBROUTINE INFORMATION:
@@ -994,8 +994,7 @@ namespace WaterUse {
 
         if (this->plantScanFlag && allocated(DataPlant::PlantLoop) && !this->StandAlone) {
             bool errFlag = false;
-            PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                    this->Name,
+            PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                     DataPlant::TypeOf_WaterUseConnection,
                                                     this->PlantLoopNum,
                                                     this->PlantLoopSide,

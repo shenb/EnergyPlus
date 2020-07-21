@@ -788,8 +788,7 @@ namespace UnitHeater {
             if ((UnitHeat(UnitHeatNum).HCoil_PlantTypeNum == TypeOf_CoilWaterSimpleHeating) ||
                 (UnitHeat(UnitHeatNum).HCoil_PlantTypeNum == TypeOf_CoilSteamAirHeating)) {
                 errFlag = false;
-                ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                        UnitHeat(UnitHeatNum).HCoilName,
+                ScanPlantLoopsForObject(UnitHeat(UnitHeatNum).HCoilName,
                                         UnitHeat(UnitHeatNum).HCoil_PlantTypeNum,
                                         UnitHeat(UnitHeatNum).HWLoopNum,
                                         UnitHeat(UnitHeatNum).HWLoopSide,
@@ -1850,7 +1849,7 @@ namespace UnitHeater {
                                          UnitHeat(UnitHeatNum).HWLoopSide,
                                          UnitHeat(UnitHeatNum).HWBranchNum,
                                          UnitHeat(UnitHeatNum).HWCompNum);
-                    SimulateSteamCoilComponents(state,
+                    SimulateSteamCoilComponents(state, 
                         UnitHeat(UnitHeatNum).HCoilName, FirstHVACIteration, UnitHeat(UnitHeatNum).HCoil_Index, QCoilReq, _, FanOpMode, PartLoadFrac);
                 } else if ((SELECT_CASE_var == ElectricCoil) || (SELECT_CASE_var == GasCoil)) {
 

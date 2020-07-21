@@ -67,6 +67,7 @@ OutputFile &OutputFile::ensure_open(const std::string &caller)
     return *this;
 }
 
+
 bool OutputFile::good() const
 {
     if (os) {
@@ -94,13 +95,6 @@ void OutputFile::open_as_stringstream()
     os = std::unique_ptr<std::iostream>(new std::stringstream());
 }
 
-void OutputFile::flush()
-{
-    if (os) {
-        os->flush();
-    }
-}
-
 std::string OutputFile::get_output()
 {
     auto *ss = dynamic_cast<std::stringstream *>(os.get());
@@ -120,18 +114,11 @@ std::ostream::pos_type OutputFile::position() const noexcept
     return os->tellg();
 }
 
-void OutputFile::open(const bool forAppend)
+void OutputFile::open()
 {
-    auto appendMode = [=]() {
-        if (forAppend) {
-            return std::ios_base::app;
-        } else {
-            return std::ios_base::trunc;
-        }
-    }();
-
-    os = std::unique_ptr<std::iostream>(new std::fstream(fileName.c_str(), std::ios_base::in | std::ios_base::out | appendMode));
+    os = std::unique_ptr<std::iostream>(new std::fstream(fileName.c_str(), std::ios_base::in | std::ios_base::out | std::ios_base::trunc));
 }
+
 
 std::vector<std::string> OutputFile::getLines()
 {
@@ -170,8 +157,7 @@ void OutputFiles::setSingleton(OutputFiles *newSingleton) noexcept
     getSingletonInternal() = newSingleton;
 }
 
-OutputFiles *&OutputFiles::getSingletonInternal()
-{
+OutputFiles *&OutputFiles::getSingletonInternal() {
     static OutputFiles *singleton{nullptr};
     return singleton;
 }

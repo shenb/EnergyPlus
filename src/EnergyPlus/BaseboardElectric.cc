@@ -49,7 +49,6 @@
 
 // EnergyPlus Headers
 #include <EnergyPlus/BaseboardElectric.hh>
-#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/DataHVACGlobals.hh>
 #include <EnergyPlus/DataHeatBalance.hh>
 #include <EnergyPlus/DataIPShortCuts.hh>

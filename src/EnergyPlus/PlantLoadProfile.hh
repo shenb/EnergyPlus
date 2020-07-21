@@ -54,13 +54,10 @@
 // EnergyPlus Headers
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/PlantComponent.hh>
 
 namespace EnergyPlus {
-
-// Forward declarations
-struct EnergyPlusData;
-struct BranchInputManagerData;
 
 namespace PlantLoadProfile {
     // Using/Aliasing
@@ -128,7 +125,7 @@ namespace PlantLoadProfile {
 
         void onInitLoopEquip(EnergyPlusData &EP_UNUSED(state), const PlantLocation &calledFromLocation) override;
 
-        void InitPlantProfile(BranchInputManagerData &dataBranchInputManager);
+        void InitPlantProfile();
 
         void UpdatePlantProfile();
 

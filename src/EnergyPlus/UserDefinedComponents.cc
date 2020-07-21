@@ -51,6 +51,7 @@
 // ObjexxFCL Headers
 #include <ObjexxFCL/Fmath.hh>
 #include <ObjexxFCL/gio.hh>
+#include <ObjexxFCL/string.functions.hh>
 
 // EnergyPlus Headers
 #include <EnergyPlus/BranchNodeConnections.hh>
@@ -148,13 +149,13 @@ namespace UserDefinedComponents {
         return nullptr; // LCOV_EXCL_LINE
     }
 
-    void UserPlantComponentStruct::onInitLoopEquip(EnergyPlusData &state, const PlantLocation &calledFromLocation)
+    void UserPlantComponentStruct::onInitLoopEquip(EnergyPlusData &EP_UNUSED(state), const PlantLocation &calledFromLocation)
     {
         bool anyEMSRan;
         Real64 myLoad = 0.0;
         int thisLoop = 0;
 
-        this->initialize(state.dataBranchInputManager, calledFromLocation.loopNum, myLoad);
+        this->initialize(calledFromLocation.loopNum, myLoad);
 
         for (int loop = 1; loop <= this->NumPlantConnections; ++loop) {
             if (calledFromLocation.loopNum != this->Loop(loop).LoopNum) continue;
@@ -229,7 +230,7 @@ namespace UserDefinedComponents {
             thisLoop = loop;
         }
 
-        this->initialize(state.dataBranchInputManager, thisLoop, CurLoad);
+        this->initialize(thisLoop, CurLoad);
 
         if (thisLoop > 0) {
             if (this->Loop(thisLoop).ErlSimProgramMngr > 0) {
@@ -248,8 +249,7 @@ namespace UserDefinedComponents {
         this->report(thisLoop);
     }
 
-    void SimCoilUserDefined(BranchInputManagerData &dataBranchInputManager,
-                            std::string const &EquipName, // user name for component
+    void SimCoilUserDefined(std::string const &EquipName, // user name for component
                             int &CompIndex,
                             int const AirLoopNum,
                             bool &HeatingActive,
@@ -313,7 +313,7 @@ namespace UserDefinedComponents {
             }
         }
 
-        UserCoil(CompNum).initialize(dataBranchInputManager);
+        UserCoil(CompNum).initialize();
 
         if (UserCoil(CompNum).ErlSimProgramMngr > 0) {
             EMSManager::ManageEMS(DataGlobals::emsCallFromUserDefinedComponentModel, anyEMSRan, UserCoil(CompNum).ErlSimProgramMngr);
@@ -336,8 +336,7 @@ namespace UserDefinedComponents {
         }
     }
 
-    void SimZoneAirUserDefined(BranchInputManagerData &dataBranchInputManager,
-                               std::string const &CompName,    // name of the packaged terminal heat pump
+    void SimZoneAirUserDefined(std::string const &CompName,    // name of the packaged terminal heat pump
                                int const ZoneNum,              // number of zone being served
                                Real64 &SensibleOutputProvided, // sensible capacity delivered to zone
                                Real64 &LatentOutputProvided,   // Latent add/removal  (kg/s), dehumid = negative
@@ -381,7 +380,7 @@ namespace UserDefinedComponents {
         }
         bool anyEMSRan;
         if (DataGlobals::BeginEnvrnFlag) {
-            UserZoneAirHVAC(CompNum).initialize(dataBranchInputManager, ZoneNum);
+            UserZoneAirHVAC(CompNum).initialize(ZoneNum);
 
             if (UserZoneAirHVAC(CompNum).ErlInitProgramMngr > 0) {
                 EMSManager::ManageEMS(DataGlobals::emsCallFromUserDefinedComponentModel, anyEMSRan, UserZoneAirHVAC(CompNum).ErlInitProgramMngr);
@@ -407,7 +406,7 @@ namespace UserDefinedComponents {
 
         } // BeginEnvrnFlag
 
-        UserZoneAirHVAC(CompNum).initialize(dataBranchInputManager, ZoneNum);
+        UserZoneAirHVAC(CompNum).initialize(ZoneNum);
 
         if (UserZoneAirHVAC(CompNum).ErlSimProgramMngr > 0) {
             EMSManager::ManageEMS(DataGlobals::emsCallFromUserDefinedComponentModel, anyEMSRan, UserZoneAirHVAC(CompNum).ErlSimProgramMngr);
@@ -432,7 +431,7 @@ namespace UserDefinedComponents {
         LatentOutputProvided = AirMassFlow * (SpecHumOut - SpecHumIn); // Latent rate, kg/s (dehumid = negative)
     }
 
-    void SimAirTerminalUserDefined(BranchInputManagerData &dataBranchInputManager,
+    void SimAirTerminalUserDefined(
         std::string const &CompName, bool const EP_UNUSED(FirstHVACIteration), int const ZoneNum, int const EP_UNUSED(ZoneNodeNum), int &CompIndex)
     {
 
@@ -475,7 +474,7 @@ namespace UserDefinedComponents {
         }
         bool anyEMSRan;
         if (DataGlobals::BeginEnvrnFlag) {
-            UserAirTerminal(CompNum).initialize(dataBranchInputManager, ZoneNum);
+            UserAirTerminal(CompNum).initialize(ZoneNum);
 
             if (UserAirTerminal(CompNum).ErlInitProgramMngr > 0) {
                 EMSManager::ManageEMS(DataGlobals::emsCallFromUserDefinedComponentModel, anyEMSRan, UserAirTerminal(CompNum).ErlInitProgramMngr);
@@ -501,7 +500,7 @@ namespace UserDefinedComponents {
 
         } // BeginEnvrnFlag
 
-        UserAirTerminal(CompNum).initialize(dataBranchInputManager, ZoneNum);
+        UserAirTerminal(CompNum).initialize(ZoneNum);
 
         if (UserAirTerminal(CompNum).ErlSimProgramMngr > 0) {
             EMSManager::ManageEMS(DataGlobals::emsCallFromUserDefinedComponentModel, anyEMSRan, UserAirTerminal(CompNum).ErlSimProgramMngr);
@@ -2068,7 +2067,7 @@ namespace UserDefinedComponents {
         }
     }
 
-    void UserPlantComponentStruct::initialize(BranchInputManagerData &dataBranchInputManager, int LoopNum, Real64 MyLoad)
+    void UserPlantComponentStruct::initialize(int LoopNum, Real64 MyLoad)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         <author>
@@ -2082,8 +2081,7 @@ namespace UserDefinedComponents {
             // locate the connections to the plant loops
             for (int ConnectionNum = 1; ConnectionNum <= this->NumPlantConnections; ++ConnectionNum) {
                 bool errFlag = false;
-                PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                        this->Name,
+                PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                         DataPlant::TypeOf_PlantComponentUserDefined,
                                                         this->Loop(ConnectionNum).LoopNum,
                                                         this->Loop(ConnectionNum).LoopSideNum,
@@ -2143,7 +2141,7 @@ namespace UserDefinedComponents {
         }
     }
 
-    void UserCoilComponentStruct::initialize(BranchInputManagerData &dataBranchInputManager)
+    void UserCoilComponentStruct::initialize()
     {
 
         // SUBROUTINE INFORMATION:
@@ -2157,8 +2155,7 @@ namespace UserDefinedComponents {
         if (this->myOneTimeFlag) {
             if (this->PlantIsConnected) {
                 bool errFlag = false;
-                PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                        this->Name,
+                PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                         DataPlant::TypeOf_CoilUserDefined,
                                                         this->Loop.LoopNum,
                                                         this->Loop.LoopSideNum,
@@ -2212,7 +2209,7 @@ namespace UserDefinedComponents {
         }
     }
 
-    void UserZoneHVACForcedAirComponentStruct::initialize(BranchInputManagerData &dataBranchInputManager, int const ZoneNum)
+    void UserZoneHVACForcedAirComponentStruct::initialize(int const ZoneNum)
     {
 
         // SUBROUTINE INFORMATION:
@@ -2230,8 +2227,7 @@ namespace UserDefinedComponents {
             if (this->NumPlantConnections > 0) {
                 for (int loop = 1; loop <= this->NumPlantConnections; ++loop) {
                     bool errFlag = false;
-                    PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                            this->Name,
+                    PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                             DataPlant::TypeOf_ZoneHVACAirUserDefined,
                                                             this->Loop(loop).LoopNum,
                                                             this->Loop(loop).LoopSideNum,
@@ -2302,7 +2298,7 @@ namespace UserDefinedComponents {
         }
     }
 
-    void UserAirTerminalComponentStruct::initialize(BranchInputManagerData &dataBranchInputManager, int const ZoneNum)
+    void UserAirTerminalComponentStruct::initialize(int const ZoneNum)
     {
 
         // SUBROUTINE INFORMATION:
@@ -2317,8 +2313,7 @@ namespace UserDefinedComponents {
             if (this->NumPlantConnections > 0) {
                 for (int loop = 1; loop <= this->NumPlantConnections; ++loop) {
                     bool errFlag = false;
-                    PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                            this->Name,
+                    PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                             DataPlant::TypeOf_AirTerminalUserDefined,
                                                             this->Loop(loop).LoopNum,
                                                             this->Loop(loop).LoopSideNum,

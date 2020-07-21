@@ -121,6 +121,8 @@ namespace DaylightingManager {
 
     extern Array1D_bool CheckTDDZone;
 
+    extern std::string mapLine; // character variable to hold map outputs
+
     // Functions
     void clear_state();
 
@@ -480,7 +482,7 @@ namespace DaylightingManager {
     void CheckForGeometricTransform(bool &doTransform, Real64 &OldAspectRatio, Real64 &NewAspectRatio);
 
     void WriteDaylightMapTitle(int const mapNum,
-                               OutputFile &mapFile,
+                               int const unitNo,
                                std::string const &mapName,
                                std::string const &environmentName,
                                int const ZoneNum,

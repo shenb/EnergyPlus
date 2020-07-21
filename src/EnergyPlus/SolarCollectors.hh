@@ -55,13 +55,10 @@
 // EnergyPlus Headers
 #include <EnergyPlus/DataGlobals.hh>
 #include <EnergyPlus/EnergyPlus.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/PlantComponent.hh>
 
 namespace EnergyPlus {
-
-// Forward declarations
-struct EnergyPlusData;
-struct BranchInputManagerData;
 
 namespace SolarCollectors {
 
@@ -234,7 +231,7 @@ namespace SolarCollectors {
 
         void setupOutputVars();
 
-        void initialize(BranchInputManagerData &dataBranchInputManager);
+        void initialize();
 
         void simulate(EnergyPlusData &EP_UNUSED(state), const PlantLocation &calledFromLocation, bool FirstHVACIteration, Real64 &CurLoad, bool RunFlag) override;
 

@@ -133,7 +133,6 @@ namespace HVACControllers {
 
     // Types
 
-
     struct SolutionTrackerType
     {
         // Members
@@ -223,7 +222,7 @@ namespace HVACControllers {
         // --------------------
         // Trace mechanism
         // --------------------
-        SharedFileHandle TraceFile;
+        int TraceFileUnit;     // File unit for individual controller trace file to use if > 0
         bool FirstTraceFlag;   // To detect first individual write operation to individual controller trace file
         int BadActionErrCount; // Counts number of incorrect action errors
         int BadActionErrIndex; // index to recurring error structure for bad action error
@@ -244,7 +243,7 @@ namespace HVACControllers {
               MinVolFlowActuated(0.0), MaxActuated(0.0), MinActuated(0.0), ActuatedNode(0), ActuatedValue(0.0), NextActuatedValue(0.0),
               ActuatedNodePlantLoopNum(0), ActuatedNodePlantLoopSide(0), ActuatedNodePlantLoopBranchNum(0), SensedNode(0),
               IsSetPointDefinedFlag(false), SetPointValue(0.0), SensedValue(0.0), DeltaSensed(0.0), Offset(0.0), HumRatCntrlType(0), Range(0.0),
-              Limit(0.0), FirstTraceFlag(true), BadActionErrCount(0), BadActionErrIndex(0), FaultyCoilSATFlag(false),
+              Limit(0.0), TraceFileUnit(0), FirstTraceFlag(true), BadActionErrCount(0), BadActionErrIndex(0), FaultyCoilSATFlag(false),
               FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0), BypassControllerCalc(false), AirLoopControllerIndex(0), HumRatCtrlOverride(false)
         {
         }
@@ -267,10 +266,7 @@ namespace HVACControllers {
     struct AirLoopStatsType
     {
         // Members
-
-        // Shared_ptr because we need to put this into an Array1D which is not
-        // friendly with move-only types
-        SharedFileHandle TraceFile;
+        int TraceFileUnit; // File unit for trace file for all controllers on each air loop.
         // Used only if > 0. Same size as NumPrimaryAirSys
         bool FirstTraceFlag;                          // To detect first trace to air loop trace file
         int NumCalls;                                 // Number of times air loop is simulated (number of calls to SimAirLoop)
@@ -395,9 +391,9 @@ namespace HVACControllers {
         bool const FirstHVACIteration, int const AirLoopNum, int const AirLoopPass, bool const AirLoopConverged, int const AirLoopNumCalls);
 
     void TraceIterationStamp(
-        OutputFile &TraceFile, bool const FirstHVACIteration, int const AirLoopPass, bool const AirLoopConverged, int const AirLoopNumCalls);
+        int const TraceFileUnit, bool const FirstHVACIteration, int const AirLoopPass, bool const AirLoopConverged, int const AirLoopNumCalls);
 
-    void TraceAirLoopController(OutputFile &TraceFile, int const ControlNum);
+    void TraceAirLoopController(int const TraceFileUnit, int const ControlNum);
 
     void SetupIndividualControllerTracer(int const ControlNum);
 

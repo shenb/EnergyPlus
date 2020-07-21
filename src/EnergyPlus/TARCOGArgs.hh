@@ -52,7 +52,6 @@
 #include <ObjexxFCL/Array2A.hh>
 
 // EnergyPlus Headers
-#include "TARCOGOutput.hh"
 #include <EnergyPlus/EnergyPlus.hh>
 
 namespace EnergyPlus {
@@ -61,8 +60,7 @@ namespace TARCOGArgs {
 
     // Functions
 
-    int ArgCheck(EnergyPlus::TARCOGOutput::Files &files,
-                 int const nlayer,
+    int ArgCheck(int const nlayer,
                  int const iwd,
                  Real64 const tout,
                  Real64 const tind,

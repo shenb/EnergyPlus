@@ -3799,8 +3799,7 @@ namespace PackagedTerminalHeatPump {
                 if (PTUnit(PTUnitNum).ACHeatCoilType_Num == Coil_HeatingWater) {
 
                     errFlag = false;
-                    ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                            PTUnit(PTUnitNum).ACHeatCoilName,
+                    ScanPlantLoopsForObject(PTUnit(PTUnitNum).ACHeatCoilName,
                                             TypeOf_CoilWaterSimpleHeating,
                                             PTUnit(PTUnitNum).HeatCoilLoopNum,
                                             PTUnit(PTUnitNum).HeatCoilLoopSide,
@@ -3833,8 +3832,7 @@ namespace PackagedTerminalHeatPump {
                 } else if (PTUnit(PTUnitNum).ACHeatCoilType_Num == Coil_HeatingSteam) {
 
                     errFlag = false;
-                    ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                            PTUnit(PTUnitNum).ACHeatCoilName,
+                    ScanPlantLoopsForObject(PTUnit(PTUnitNum).ACHeatCoilName,
                                             TypeOf_CoilSteamAirHeating,
                                             PTUnit(PTUnitNum).HeatCoilLoopNum,
                                             PTUnit(PTUnitNum).HeatCoilLoopSide,
@@ -3874,8 +3872,7 @@ namespace PackagedTerminalHeatPump {
                        (PTUnit(PTUnitNum).SuppHeatCoilType_Num == Coil_HeatingSteam)) {
                 if (PTUnit(PTUnitNum).SuppHeatCoilType_Num == Coil_HeatingWater) {
                     errFlag = false;
-                    ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                            PTUnit(PTUnitNum).SuppHeatCoilName,
+                    ScanPlantLoopsForObject(PTUnit(PTUnitNum).SuppHeatCoilName,
                                             TypeOf_CoilWaterSimpleHeating,
                                             PTUnit(PTUnitNum).SuppCoilLoopNum,
                                             PTUnit(PTUnitNum).SuppCoilLoopSide,
@@ -3903,8 +3900,7 @@ namespace PackagedTerminalHeatPump {
                     }
                 } else if (PTUnit(PTUnitNum).SuppHeatCoilType_Num == Coil_HeatingSteam) {
                     errFlag = false;
-                    ScanPlantLoopsForObject(state.dataBranchInputManager,
-                                            PTUnit(PTUnitNum).SuppHeatCoilName,
+                    ScanPlantLoopsForObject(PTUnit(PTUnitNum).SuppHeatCoilName,
                                             TypeOf_CoilSteamAirHeating,
                                             PTUnit(PTUnitNum).SuppCoilLoopNum,
                                             PTUnit(PTUnitNum).SuppCoilLoopSide,
@@ -5702,7 +5698,7 @@ namespace PackagedTerminalHeatPump {
                                              PTUnit(PTUnitNum).SuppCoilLoopSide,
                                              PTUnit(PTUnitNum).SuppCoilBranchNum,
                                              PTUnit(PTUnitNum).SuppCoilCompNum);
-                        SimulateSteamCoilComponents(state,
+                        SimulateSteamCoilComponents(state, 
                             PTUnit(PTUnitNum).SuppHeatCoilName, FirstHVACIteration, PTUnit(PTUnitNum).SuppHeatCoilIndex, SupHeaterLoad);
                     }
                 }
@@ -6453,7 +6449,7 @@ namespace PackagedTerminalHeatPump {
                              PTUnit(PTUnitNum).SuppCoilBranchNum,
                              PTUnit(PTUnitNum).SuppCoilCompNum);
         // simulate the hot water supplemental heating coil
-        SimulateWaterCoilComponents(state,
+        SimulateWaterCoilComponents(state, 
             PTUnit(PTUnitNum).SuppHeatCoilName, FirstHVACSoln, PTUnit(PTUnitNum).SuppHeatCoilIndex, QCoilActual, PTUnit(PTUnitNum).OpMode);
 
         if (SupHeaterLoad != 0.0) {
@@ -7619,7 +7615,7 @@ namespace PackagedTerminalHeatPump {
                 {
                     auto const SELECT_CASE_var(PTUnit(PTUnitNum).SuppHeatCoilType_Num);
                     if ((SELECT_CASE_var == Coil_HeatingGasOrOtherFuel) || (SELECT_CASE_var == Coil_HeatingElectric)) {
-                        SimulateHeatingCoilComponents(state,
+                        SimulateHeatingCoilComponents(state, 
                             PTUnit(PTUnitNum).SuppHeatCoilName, FirstHVACIteration, SupHeaterLoad, PTUnit(PTUnitNum).SuppHeatCoilIndex);
                     } else if (SELECT_CASE_var == Coil_HeatingWater) {
                         mdot = 0.0;

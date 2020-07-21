@@ -46,6 +46,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 // C++ Headers
+#include <cassert>
 #include <cmath>
 
 // ObjexxFCL Headers
@@ -116,14 +117,14 @@ namespace Boilers {
         return nullptr; // LCOV_EXCL_LINE
     }
 
-    void BoilerSpecs::simulate(EnergyPlusData &state,
+    void BoilerSpecs::simulate(EnergyPlusData &EP_UNUSED(state),
                                const PlantLocation &EP_UNUSED(calledFromLocation),
                                bool const EP_UNUSED(FirstHVACIteration),
                                Real64 &CurLoad,
                                bool const RunFlag)
     {
         auto &sim_component(DataPlant::PlantLoop(this->LoopNum).LoopSide(this->LoopSideNum).Branch(this->BranchNum).Comp(this->CompNum));
-        this->InitBoiler(state.dataBranchInputManager);
+        this->InitBoiler();
         this->CalcBoilerModel(CurLoad, RunFlag, sim_component.FlowCtrl);
         this->UpdateBoilerRecords(CurLoad, RunFlag);
     }
@@ -140,9 +141,9 @@ namespace Boilers {
         SizFactor = this->SizFac;
     }
 
-    void BoilerSpecs::onInitLoopEquip(EnergyPlusData &state, const PlantLocation &EP_UNUSED(calledFromLocation))
+    void BoilerSpecs::onInitLoopEquip(EnergyPlusData &EP_UNUSED(state), const PlantLocation &EP_UNUSED(calledFromLocation))
     {
-        this->InitBoiler(state.dataBranchInputManager);
+        this->InitBoiler();
         this->SizeBoiler();
     }
 
@@ -231,7 +232,7 @@ namespace Boilers {
                 thisBoiler.NomCapWasAutoSized = true;
             }
 
-            thisBoiler.NomEffic = DataIPShortCuts::rNumericArgs(2);
+            thisBoiler.Effic = DataIPShortCuts::rNumericArgs(2);
             if (DataIPShortCuts::rNumericArgs(2) == 0.0) {
                 ShowSevereError(RoutineName + DataIPShortCuts::cCurrentModuleObject + "=\"" + DataIPShortCuts::cAlphaArgs(1) + "\",");
                 ShowContinueError("Invalid " + DataIPShortCuts::cNumericFieldNames(2) + '=' +
@@ -408,13 +409,12 @@ namespace Boilers {
                             "Boiler Parasitic",
                             "Plant");
         SetupOutputVariable("Boiler Part Load Ratio", OutputProcessor::Unit::None, this->BoilerPLR, "System", "Average", this->Name);
-        SetupOutputVariable("Boiler Efficiency", OutputProcessor::Unit::None, this->BoilerEff, "System", "Average", this->Name);
         if (DataGlobals::AnyEnergyManagementSystemInModel) {
             SetupEMSInternalVariable("Boiler Nominal Capacity", this->Name, "[W]", this->NomCap);
         }
     }
 
-    void BoilerSpecs::InitBoiler(BranchInputManagerData &dataBranchInputManager) // number of the current boiler being simulated
+    void BoilerSpecs::InitBoiler() // number of the current boiler being simulated
     {
 
         // SUBROUTINE INFORMATION:
@@ -440,8 +440,7 @@ namespace Boilers {
 
             // Locate the boilers on the plant loops for later usage
             bool errFlag = false;
-            PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                    this->Name,
+            PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                     DataPlant::TypeOf_Boiler_Simple,
                                                     this->LoopNum,
                                                     this->LoopSideNum,
@@ -685,7 +684,7 @@ namespace Boilers {
             // create predefined report
             std::string const equipName = this->Name;
             OutputReportPredefined::PreDefTableEntry(OutputReportPredefined::pdchMechType, equipName, "Boiler:HotWater");
-            OutputReportPredefined::PreDefTableEntry(OutputReportPredefined::pdchMechNomEff, equipName, this->NomEffic);
+            OutputReportPredefined::PreDefTableEntry(OutputReportPredefined::pdchMechNomEff, equipName, this->Effic);
             OutputReportPredefined::PreDefTableEntry(OutputReportPredefined::pdchMechNomCap, equipName, this->NomCap);
         }
 
@@ -730,7 +729,7 @@ namespace Boilers {
         Real64 BoilerNomCap = this->NomCap;                         // W - boiler nominal capacity
         Real64 const BoilerMaxPLR = this->MaxPartLoadRat;           // boiler maximum part load ratio
         Real64 const BoilerMinPLR = this->MinPartLoadRat;           // boiler minimum part load ratio
-        Real64 BoilerNomEff = this->NomEffic;                             // boiler efficiency
+        Real64 BoilerEff = this->Effic;                             // boiler efficiency
         Real64 const TempUpLimitBout = this->TempUpLimitBoilerOut;  // C - boiler high temperature limit
         Real64 const BoilerMassFlowRateMax = this->DesMassFlowRate; // Max Design Boiler Mass Flow Rate converted from Volume Flow Rate
 
@@ -752,14 +751,14 @@ namespace Boilers {
         if (this->FaultyBoilerFoulingFlag && (!DataGlobals::WarmupFlag) && (!DataGlobals::DoingSizing) && (!DataGlobals::KickOffSimulation)) {
             int FaultIndex = this->FaultyBoilerFoulingIndex;
             Real64 NomCap_ff = BoilerNomCap;
-            Real64 BoilerNomEff_ff = BoilerNomEff;
+            Real64 BoilerEff_ff = BoilerEff;
 
             // calculate the Faulty Boiler Fouling Factor using fault information
             this->FaultyBoilerFoulingFactor = FaultsManager::FaultsBoilerFouling(FaultIndex).CalFoulingFactor();
 
             // update the boiler nominal capacity at faulty cases
             BoilerNomCap = NomCap_ff * this->FaultyBoilerFoulingFactor;
-            BoilerNomEff = BoilerNomEff_ff * this->FaultyBoilerFoulingFactor;
+            BoilerEff = BoilerEff_ff * this->FaultyBoilerFoulingFactor;
         }
 
         // Set the current load equal to the boiler load
@@ -831,7 +830,7 @@ namespace Boilers {
         this->BoilerPLR = max(this->BoilerPLR, BoilerMinPLR);
 
         // calculate theoretical fuel use based on nominal thermal efficiency
-        Real64 const TheorFuelUse = this->BoilerLoad / BoilerNomEff; // Theoretical (stoichiometric) fuel use
+        Real64 const TheorFuelUse = this->BoilerLoad / BoilerEff; // Theoretical (stoichiometric) fuel use
         Real64 EffCurveOutput = 1.0;                              // Output of boiler efficiency curve
 
         // calculate normalized efficiency based on curve object type
@@ -846,7 +845,6 @@ namespace Boilers {
                 EffCurveOutput = CurveManager::CurveValue(this->EfficiencyCurvePtr, this->BoilerPLR);
             }
         }
-        BoilerEff = EffCurveOutput * BoilerNomEff;
 
         // warn if efficiency curve produces zero or negative results
         if (!DataGlobals::WarmupFlag && EffCurveOutput <= 0.0) {
@@ -865,7 +863,7 @@ namespace Boilers {
                         }
                     }
                     ShowContinueError("...Curve output (normalized eff) = " + General::TrimSigDigits(EffCurveOutput, 5));
-                    ShowContinueError("...Calculated Boiler efficiency  = " + General::TrimSigDigits(BoilerEff, 5) +
+                    ShowContinueError("...Calculated Boiler efficiency  = " + General::TrimSigDigits(EffCurveOutput * BoilerEff, 5) +
                                       " (Boiler efficiency = Nominal Thermal Efficiency * Normalized Boiler Efficiency Curve output)");
                     ShowContinueErrorTimeStamp("...Curve output reset to 0.01 and simulation continues.");
                 } else {
@@ -880,7 +878,7 @@ namespace Boilers {
         }
 
         // warn if overall efficiency greater than 1.1
-        if (!DataGlobals::WarmupFlag && BoilerEff > 1.1) {
+        if (!DataGlobals::WarmupFlag && EffCurveOutput * BoilerEff > 1.1) {
             if (this->BoilerLoad > 0.0 && this->EfficiencyCurvePtr > 0) {
                 if (this->CalculatedEffError < 1) {
                     ++this->CalculatedEffError;
@@ -897,15 +895,15 @@ namespace Boilers {
                         }
                     }
                     ShowContinueError("...Curve output (normalized eff) = " + General::TrimSigDigits(EffCurveOutput, 5));
-                    ShowContinueError("...Calculated Boiler efficiency  = " + General::TrimSigDigits(BoilerEff, 5) +
+                    ShowContinueError("...Calculated Boiler efficiency  = " + General::TrimSigDigits(EffCurveOutput * BoilerEff, 5) +
                                       " (Boiler efficiency = Nominal Thermal Efficiency * Normalized Boiler Efficiency Curve output)");
                     ShowContinueErrorTimeStamp("...Curve output reset to 1.1 and simulation continues.");
                 } else {
                     ShowRecurringWarningErrorAtEnd("Boiler:HotWater \"" + this->Name +
                                                        "\": Calculated Boiler Efficiency is greater than 1.1 warning continues...",
                                                    this->CalculatedEffIndex,
-                                                   BoilerEff,
-                                                   BoilerEff);
+                                                   EffCurveOutput * BoilerEff,
+                                                   EffCurveOutput * BoilerEff);
                 }
             }
             EffCurveOutput = 1.1;
@@ -939,7 +937,6 @@ namespace Boilers {
             this->FuelUsed = 0.0;
             this->ParasiticElecPower = 0.0;
             this->BoilerPLR = 0.0;
-            this->BoilerEff = 0.0;
         } else {
             PlantUtilities::SafeCopyPlantNode(BoilerInletNode, BoilerOutletNode);
             DataLoopNode::Node(BoilerOutletNode).Temp = this->BoilerOutletTemp;

@@ -52,7 +52,6 @@
 // EnergyPlus Headers
 #include <EnergyPlus/AirTerminalUnit.hh>
 #include <EnergyPlus/BranchNodeConnections.hh>
-#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/DataAirLoop.hh>
 #include <EnergyPlus/DataDefineEquip.hh>
 #include <EnergyPlus/DataGlobals.hh>
@@ -65,6 +64,7 @@
 #include <EnergyPlus/DualDuct.hh>
 #include <EnergyPlus/General.hh>
 #include <EnergyPlus/GeneralRoutines.hh>
+#include <EnergyPlus/Data/EnergyPlusData.hh>
 #include <EnergyPlus/HVACCooledBeam.hh>
 #include <EnergyPlus/HVACFourPipeBeam.hh>
 #include <EnergyPlus/HVACSingleDuctInduc.hh>
@@ -104,7 +104,7 @@ namespace ZoneAirLoopEquipmentManager {
         bool InitAirDistUnitsFlag(true); // If TRUE, not all Air Distribution Units have been initialized
         Array1D_bool EachOnceFlag;       // If TRUE, Air Distribution unit has not been initialized yet
         int numADUInitialized(0);        // Count of ADUs that have been initialized
-    }
+    } 
 
     // Functions
     void clear_state()
@@ -745,8 +745,7 @@ namespace ZoneAirLoopEquipmentManager {
                                        AirDistUnit(AirDistUnitNum).EquipIndex(AirDistCompNum));
 
                 } else if (SELECT_CASE_var == SingleDuctConstVolCooledBeam) {
-                    SimCoolBeam(state.dataBranchInputManager,
-                                AirDistUnit(AirDistUnitNum).EquipName(AirDistCompNum),
+                    SimCoolBeam(AirDistUnit(AirDistUnitNum).EquipName(AirDistCompNum),
                                 FirstHVACIteration,
                                 ActualZoneNum,
                                 ZoneEquipConfig(ControlledZoneNum).ZoneNode,
@@ -754,11 +753,10 @@ namespace ZoneAirLoopEquipmentManager {
                                 NonAirSysOutput);
 
                 } else if (SELECT_CASE_var == SingleDuctConstVolFourPipeBeam) {
-                    AirDistUnit(AirDistUnitNum).airTerminalPtr->simulate(state, FirstHVACIteration, NonAirSysOutput);
+                    AirDistUnit(AirDistUnitNum).airTerminalPtr->simulate(FirstHVACIteration, NonAirSysOutput);
 
                 } else if (SELECT_CASE_var == SingleDuctUserDefined) {
-                    SimAirTerminalUserDefined(state.dataBranchInputManager,
-                                              AirDistUnit(AirDistUnitNum).EquipName(AirDistCompNum),
+                    SimAirTerminalUserDefined(AirDistUnit(AirDistUnitNum).EquipName(AirDistCompNum),
                                               FirstHVACIteration,
                                               ActualZoneNum,
                                               ZoneEquipConfig(ControlledZoneNum).ZoneNode,

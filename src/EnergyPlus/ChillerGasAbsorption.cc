@@ -132,7 +132,7 @@ namespace ChillerGasAbsorption {
         return nullptr; // LCOV_EXCL_LINE
     }
 
-    void GasAbsorberSpecs::simulate(EnergyPlusData &state, const PlantLocation &calledFromLocation, bool FirstHVACIteration, Real64 &CurLoad, bool RunFlag)
+    void GasAbsorberSpecs::simulate(EnergyPlusData &EP_UNUSED(state), const PlantLocation &calledFromLocation, bool FirstHVACIteration, Real64 &CurLoad, bool RunFlag)
     {
 
         // kind of a hacky way to find the location of this, but it's what plantloopequip was doing
@@ -144,14 +144,14 @@ namespace ChillerGasAbsorption {
             // Calculate Node Values
             // Calculate Equipment and Update Variables
             this->InCoolingMode = RunFlag != 0;
-            this->initialize(state.dataBranchInputManager);
+            this->initialize();
             this->calculateChiller(CurLoad);
             this->updateCoolRecords(CurLoad, RunFlag);
         } else if (BranchInletNodeNum == this->HeatReturnNodeNum) { // Operate as heater
             // Calculate Node Values
             // Calculate Equipment and Update Variables
             this->InHeatingMode = RunFlag != 0;
-            this->initialize(state.dataBranchInputManager);
+            this->initialize();
             this->calculateHeater(CurLoad, RunFlag);
             this->updateHeatRecords(CurLoad, RunFlag);
         } else if (BranchInletNodeNum == this->CondReturnNodeNum) { // called from condenser loop
@@ -205,9 +205,9 @@ namespace ChillerGasAbsorption {
         _SizFac = this->SizFac;
     }
 
-    void GasAbsorberSpecs::onInitLoopEquip(EnergyPlusData &state, const PlantLocation &calledFromLocation)
+    void GasAbsorberSpecs::onInitLoopEquip(EnergyPlusData &EP_UNUSED(state), const PlantLocation &calledFromLocation)
     {
-        this->initialize(state.dataBranchInputManager);
+        this->initialize();
 
         // kind of a hacky way to find the location of this, but it's what plantloopequip was doing
         int BranchInletNodeNum =
@@ -617,7 +617,7 @@ namespace ChillerGasAbsorption {
             "Chiller Heater Runtime Fraction", OutputProcessor::Unit::None, this->FractionOfPeriodRunning, "System", "Average", ChillerName);
     }
 
-    void GasAbsorberSpecs::initialize(BranchInputManagerData &dataBranchInputManager)
+    void GasAbsorberSpecs::initialize()
     {
         //       AUTHOR         Fred Buhl
         //       DATE WRITTEN   June 2003
@@ -647,8 +647,7 @@ namespace ChillerGasAbsorption {
 
             // Locate the chillers on the plant loops for later usage
             errFlag = false;
-            PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                    this->Name,
+            PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                     DataPlant::TypeOf_Chiller_DFAbsorption,
                                                     this->CWLoopNum,
                                                     this->CWLoopSideNum,
@@ -664,8 +663,7 @@ namespace ChillerGasAbsorption {
                 ShowFatalError("InitGasAbsorber: Program terminated due to previous condition(s).");
             }
 
-            PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                    this->Name,
+            PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                     DataPlant::TypeOf_Chiller_DFAbsorption,
                                                     this->HWLoopNum,
                                                     this->HWLoopSideNum,
@@ -682,8 +680,7 @@ namespace ChillerGasAbsorption {
             }
 
             if (this->isWaterCooled) {
-                PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
-                                                        this->Name,
+                PlantUtilities::ScanPlantLoopsForObject(this->Name,
                                                         DataPlant::TypeOf_Chiller_DFAbsorption,
                                                         this->CDLoopNum,
                                                         this->CDLoopSideNum,

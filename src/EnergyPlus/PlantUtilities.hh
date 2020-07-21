@@ -56,9 +56,6 @@
 
 namespace EnergyPlus {
 
-// Forward declarations
-struct BranchInputManagerData;
-
 namespace PlantUtilities {
 
     // Functions
@@ -177,8 +174,7 @@ namespace PlantUtilities {
 
     void LogPlantConvergencePoints(bool const FirstHVACIteration);
 
-    void ScanPlantLoopsForObject(BranchInputManagerData &dataBranchInputManager,
-                                 std::string const &CompName,
+    void ScanPlantLoopsForObject(std::string const &CompName,
                                  int const CompType,
                                  int &LoopNum,
                                  int &LoopSideNum,

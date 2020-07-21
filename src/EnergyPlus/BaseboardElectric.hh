@@ -118,7 +118,7 @@ namespace BaseboardElectric {
 } // namespace BaseboardElectric
 
     struct BaseboardElectricData : BaseGlobalStruct {
-        int NumBaseboards;
+        int NumBaseboards = 0;
         Array1D<BaseboardElectric::BaseboardParams> Baseboard;
         Array1D<BaseboardElectric::BaseboardNumericFieldData> BaseboardNumericFields;
         void clear_state() override
@@ -127,9 +127,6 @@ namespace BaseboardElectric {
             Baseboard.deallocate();
             BaseboardNumericFields.deallocate();
         }
-        // Default Constructor
-        BaseboardElectricData()
-            : NumBaseboards(0) {}
     };
 
 } // namespace EnergyPlus
