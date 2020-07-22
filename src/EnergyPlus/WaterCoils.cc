@@ -331,6 +331,10 @@ namespace WaterCoils {
             CalcSimpleHeatingCoil(CoilNum, OpMode, PartLoadFrac, SimCalc);
             if (present(QActual)) QActual = WaterCoil(CoilNum).TotWaterHeatingCoilRate;
         }
+        if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_LiqDesiccantDehum) {
+            CalcLiqDesiccantDehumCoil(CoilNum, FirstHVACIteration, SimCalc, OpMode, PartLoadFrac);
+            if (present(QActual)) QActual = WaterCoil(CoilNum).TotWaterCoolingCoilRate;
+        }
 
         // Update the current WaterCoil to the outlet nodes
         UpdateWaterCoil(CoilNum);
