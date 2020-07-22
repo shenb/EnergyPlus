@@ -126,6 +126,7 @@ namespace WaterCoils {
     using DataPlant::TypeOf_CoilWaterCooling;
     using DataPlant::TypeOf_CoilWaterDetailedFlatCooling;
     using DataPlant::TypeOf_CoilWaterSimpleHeating;
+    using DataPlant::TypeOf_CoilWaterLiqDesiccantDehum;
     using FluidProperties::GetDensityGlycol;
     using FluidProperties::GetSpecificHeatGlycol;
     using Psychrometrics::PsyCpAirFnW;
@@ -158,13 +159,16 @@ namespace WaterCoils {
     int const WaterCoil_SimpleHeating(TypeOf_CoilWaterSimpleHeating);
     int const WaterCoil_DetFlatFinCooling(TypeOf_CoilWaterDetailedFlatCooling);
     int const WaterCoil_Cooling(TypeOf_CoilWaterCooling);
+    int const WaterCoil_LiqDesiccantDehum(TypeOf_CoilWaterLiqDesiccantDehum);
 
     int const CoilType_Cooling(1);
     int const CoilType_Heating(2);
+    int const CoilType_Dehumidification(3);
 
     int const CoilModel_Simple(1);
     int const CoilModel_Cooling(2);
     int const CoilModel_Detailed(3);
+    int const CoilModel_LiqDesiccantDehum(4);
 
     // Parameters for Heat Exchanger Configuration
     int const CounterFlow(1);
@@ -372,9 +376,13 @@ namespace WaterCoils {
         static int NumSimpHeat(0);
         static int NumFlatFin(0);
         static int NumCooling(0);
+        static int NumLiqDesiccantDehum(0);
+
         int SimpHeatNum;
         int FlatFinNum;
         int CoolingNum;
+        int LiqDesiccantDehumNum;
+
         int NumAlphas;
         int NumNums;
         int IOStat;
@@ -395,7 +403,9 @@ namespace WaterCoils {
         NumSimpHeat = inputProcessor->getNumObjectsFound("Coil:Heating:Water");
         NumFlatFin = inputProcessor->getNumObjectsFound("Coil:Cooling:Water:DetailedGeometry");
         NumCooling = inputProcessor->getNumObjectsFound("Coil:Cooling:Water");
-        NumWaterCoils = NumSimpHeat + NumFlatFin + NumCooling;
+        NumLiqDesiccantDehum = inputProcessor->getNumObjectsFound("Coil:Dehumidification:LiquidDesiccant");
+
+        NumWaterCoils = NumSimpHeat + NumFlatFin + NumCooling + NumLiqDesiccantDehum;
 
         if (NumWaterCoils > 0) {
             WaterCoil.allocate(NumWaterCoils);
@@ -412,6 +422,9 @@ namespace WaterCoils {
         MaxNums = max(MaxNums, NumNums);
         MaxAlphas = max(MaxAlphas, NumAlphas);
         inputProcessor->getObjectDefMaxArgs("Coil:Cooling:Water", TotalArgs, NumAlphas, NumNums);
+        MaxNums = max(MaxNums, NumNums);
+        MaxAlphas = max(MaxAlphas, NumAlphas);
+        inputProcessor->getObjectDefMaxArgs("Coil:Dehumidification:LiquidDesiccant", TotalArgs, NumAlphas, NumNums);
         MaxNums = max(MaxNums, NumNums);
         MaxAlphas = max(MaxAlphas, NumAlphas);
 
@@ -918,6 +931,197 @@ namespace WaterCoils {
                                 "System",
                                 "Average",
                                 WaterCoil(CoilNum).Name);
+
+            if (WaterCoil(CoilNum).CondensateCollectMode == CondensateToTank) {
+
+                SetupOutputVariable("Cooling Coil Condensate Volume Flow Rate",
+                                    OutputProcessor::Unit::m3_s,
+                                    WaterCoil(CoilNum).CondensateVdot,
+                                    "System",
+                                    "Average",
+                                    WaterCoil(CoilNum).Name);
+                SetupOutputVariable("Cooling Coil Condensate Volume",
+                                    OutputProcessor::Unit::m3,
+                                    WaterCoil(CoilNum).CondensateVol,
+                                    "System",
+                                    "Sum",
+                                    WaterCoil(CoilNum).Name,
+                                    _,
+                                    "OnSiteWater",
+                                    "Condensate",
+                                    _,
+                                    "System");
+            }
+        }
+
+        CurrentModuleObject = "Coil:Dehumidification:LiquidDesiccant";
+        // Get the data for liquid desiccant dehumidification coils.
+        for (LiqDesiccantDehumNum = 1; LiqDesiccantDehumNum <= NumLiqDesiccantDehum; ++LiqDesiccantDehumNum) {
+
+            CoilNum = NumSimpHeat + NumFlatFin + CoolingNum + LiqDesiccantDehumNum;
+
+            inputProcessor->getObjectItem(CurrentModuleObject,
+                                          LiqDesiccantDehumNum,
+                                          AlphArray,
+                                          NumAlphas,
+                                          NumArray,
+                                          NumNums,
+                                          IOStat,
+                                          lNumericBlanks,
+                                          lAlphaBlanks,
+                                          cAlphaFields,
+                                          cNumericFields);
+
+            WaterCoilNumericFields(CoilNum).FieldNames.allocate(MaxNums);
+            WaterCoilNumericFields(CoilNum).FieldNames = "";
+            WaterCoilNumericFields(CoilNum).FieldNames = cNumericFields;
+            UtilityRoutines::IsNameEmpty(AlphArray(1), cCurrentModuleObject, ErrorsFound);
+
+            // ErrorsFound will be set to True if problem was found, left untouched otherwise
+            VerifyUniqueCoilName(CurrentModuleObject, AlphArray(1), ErrorsFound, CurrentModuleObject + " Name");
+
+            WaterCoil(CoilNum).Name = AlphArray(1);
+            WaterCoil(CoilNum).Schedule = AlphArray(2);
+            if (lAlphaBlanks(2)) {
+                WaterCoil(CoilNum).SchedPtr = ScheduleAlwaysOn;
+            } else {
+                WaterCoil(CoilNum).SchedPtr = GetScheduleIndex(AlphArray(2));
+                if (WaterCoil(CoilNum).SchedPtr == 0) {
+                    ShowSevereError(CurrentModuleObject + ": invalid " + cAlphaFields(2) + " entered =" + AlphArray(2) + " for " + cAlphaFields(1) +
+                                    '=' + AlphArray(1));
+                    ErrorsFound = true;
+                }
+            }
+
+            WaterCoil(CoilNum).WaterCoilTypeA = "Dehumidification";
+            WaterCoil(CoilNum).WaterCoilType = CoilType_Dehumidification; // 'Cooling'
+            WaterCoil(CoilNum).WaterCoilModelA = "LiquidDesiccant";
+            WaterCoil(CoilNum).WaterCoilModel = CoilModel_LiqDesiccantDehum; // 'Cooling'
+            WaterCoil(CoilNum).WaterCoilType_Num = WaterCoil_LiqDesiccantDehum;
+
+            WaterCoil(CoilNum).MaxWaterVolFlowRate = NumArray(1); // Liquid mass flow rate at Design  kg/s
+            if (WaterCoil(CoilNum).MaxWaterVolFlowRate == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            WaterCoil(CoilNum).DesAirVolFlowRate = NumArray(2); // Dry air mass flow rate at Design (kg/s)
+            if (WaterCoil(CoilNum).DesAirVolFlowRate == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            WaterCoil(CoilNum).DesInletWaterTemp = NumArray(3); // Entering water temperature at Design C
+            if (WaterCoil(CoilNum).DesInletWaterTemp == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            WaterCoil(CoilNum).DesInletAirTemp = NumArray(4); // Entering air dry bulb temperature at Design(C)
+            if (WaterCoil(CoilNum).DesInletAirTemp == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            WaterCoil(CoilNum).DesOutletAirTemp = NumArray(5); // Leaving air dry bulb temperature at Design(C)
+            if (WaterCoil(CoilNum).DesOutletAirTemp == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            WaterCoil(CoilNum).DesInletAirHumRat = NumArray(6); // Entering air humidity ratio  at Design
+            if (WaterCoil(CoilNum).DesInletAirHumRat == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            WaterCoil(CoilNum).DesOutletAirHumRat = NumArray(7); // Leaving air humidity ratio  at Design
+            if (WaterCoil(CoilNum).DesOutletAirHumRat == AutoSize) WaterCoil(CoilNum).RequestingAutoSize = true;
+            if (!lNumericBlanks(8)) {
+                WaterCoil(CoilNum).DesignWaterDeltaTemp = NumArray(8);
+                WaterCoil(CoilNum).UseDesignWaterDeltaTemp = true;
+            } else {
+                WaterCoil(CoilNum).UseDesignWaterDeltaTemp = false;
+            }
+
+            WaterCoil(CoilNum).WaterInletNodeNum = GetOnlySingleNode(
+                AlphArray(3), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Water, NodeConnectionType_Inlet, 2, ObjectIsNotParent);
+            WaterCoil(CoilNum).WaterOutletNodeNum = GetOnlySingleNode(
+                AlphArray(4), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Water, NodeConnectionType_Outlet, 2, ObjectIsNotParent);
+            WaterCoil(CoilNum).AirInletNodeNum = GetOnlySingleNode(
+                AlphArray(5), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            WaterCoil(CoilNum).AirOutletNodeNum = GetOnlySingleNode(
+                AlphArray(6), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+
+            {
+                auto const SELECT_CASE_var(AlphArray(7));
+                // The default is SimpleAnalysis = 2.  and DetailedAnalysis   =1
+                if (SELECT_CASE_var == "SIMPLEANALYSIS") {
+                    WaterCoil(CoilNum).CoolingCoilAnalysisMode = SimpleAnalysis;
+
+                } else if (SELECT_CASE_var == "DETAILEDANALYSIS") {
+                    WaterCoil(CoilNum).CoolingCoilAnalysisMode = DetailedAnalysis;
+
+                } else {
+                    WaterCoil(CoilNum).CoolingCoilAnalysisMode = SimpleAnalysis;
+                }
+            }
+
+            {
+                auto const SELECT_CASE_var(AlphArray(8));
+                // The default is CrossFlow = 2.  and CounterFlow=1
+                if (SELECT_CASE_var == "CROSSFLOW") {
+                    WaterCoil(CoilNum).HeatExchType = CrossFlow;
+
+                } else if (SELECT_CASE_var == "COUNTERFLOW") {
+                    WaterCoil(CoilNum).HeatExchType = CounterFlow;
+
+                } else {
+                    WaterCoil(CoilNum).HeatExchType = CrossFlow;
+                }
+            }
+
+            // A9; \field Name of Water Storage Tank for Condensate Collection
+            WaterCoil(CoilNum).CondensateCollectName = AlphArray(9);
+            if (lAlphaBlanks(9)) {
+                WaterCoil(CoilNum).CondensateCollectMode = CondensateDiscarded;
+            } else {
+                WaterCoil(CoilNum).CondensateCollectMode = CondensateToTank;
+                SetupTankSupplyComponent(WaterCoil(CoilNum).Name,
+                                         CurrentModuleObject,
+                                         WaterCoil(CoilNum).CondensateCollectName,
+                                         ErrorsFound,
+                                         WaterCoil(CoilNum).CondensateTankID,
+                                         WaterCoil(CoilNum).CondensateTankSupplyARRID);
+            }
+
+            TestCompSet(CurrentModuleObject, AlphArray(1), AlphArray(3), AlphArray(4), "Water Nodes");
+            TestCompSet(CurrentModuleObject, AlphArray(1), AlphArray(5), AlphArray(6), "Air Nodes");
+
+            // Setup Report variables for the Design input Cooling Coils
+            // CurrentModuleObject = "Coil:Cooling:Water"
+            SetupOutputVariable("Dehumidification Coil Total Energy",
+                                OutputProcessor::Unit::J,
+                                WaterCoil(CoilNum).TotDehumidificationCoilEnergy,
+                                "System",
+                                "Sum",
+                                WaterCoil(CoilNum).Name,
+                                _,
+                                "ENERGYTRANSFER",
+                                "COOLINGCOILS",
+                                _,
+                                "System");
+            SetupOutputVariable("Dehumidification Coil Source Side Heat Transfer Energy",
+                                OutputProcessor::Unit::J,
+                                WaterCoil(CoilNum).TotDehumidificationCoilEnergy,
+                                "System",
+                                "Sum",
+                                WaterCoil(CoilNum).Name,
+                                _,
+                                "PLANTLOOPCOOLINGDEMAND",
+                                "COOLINGCOILS",
+                                _,
+                                "System");
+            //   SetupOutputVariable("Cooling Coil Sensible Cooling Energy",
+            //        OutputProcessor::Unit::J,
+            //        WaterCoil(CoilNum).SenWaterCoolingCoilEnergy,
+            //        "System",
+            //        "Sum",
+            //        WaterCoil(CoilNum).Name);
+            //    SetupOutputVariable("Dehumidification Coil Total Cooling Rate",
+            //        OutputProcessor::Unit::W,
+            //        WaterCoil(CoilNum).TotWaterCoolingCoilRate,
+            //       "System",
+            //       "Average",
+            //       WaterCoil(CoilNum).Name);
+            //   SetupOutputVariable("Cooling Coil Sensible Cooling Rate",
+            //       OutputProcessor::Unit::W,
+            //       WaterCoil(CoilNum).SenWaterCoolingCoilRate,
+            //        "System",
+            //        "Average",
+            //       WaterCoil(CoilNum).Name);
+            //    SetupOutputVariable("Cooling Coil Wetted Area Fraction",
+            //       OutputProcessor::Unit::None,
+            //        WaterCoil(CoilNum).SurfAreaWetFraction,
+            //       "System",
+            //       "Average",
+            //       WaterCoil(CoilNum).Name);
 
             if (WaterCoil(CoilNum).CondensateCollectMode == CondensateToTank) {
 

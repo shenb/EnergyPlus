@@ -80,13 +80,16 @@ namespace WaterCoils {
     extern int const WaterCoil_SimpleHeating;
     extern int const WaterCoil_DetFlatFinCooling;
     extern int const WaterCoil_Cooling;
+    extern int const WaterCoil_LiqDesiccantDehum;
 
     extern int const CoilType_Cooling;
     extern int const CoilType_Heating;
+    extern int const CoilType_Dehumidification;
 
     extern int const CoilModel_Simple;
     extern int const CoilModel_Cooling;
     extern int const CoilModel_Detailed;
+    extern int const CoilModel_LiqDesiccantDehum;
 
     // Parameters for Heat Exchanger Configuration
     extern int const CounterFlow;
@@ -160,6 +163,7 @@ namespace WaterCoils {
         Real64 SenWaterCoilLoad;          // Sensible Load on the Coil [W]
         Real64 TotWaterHeatingCoilEnergy; // Total Heating Coil energy of the Coil [J]
         Real64 TotWaterCoolingCoilEnergy; // Total Cooling Coil energy of the Coil [J]
+        Real64 TotDehumidificationCoilEnergy; // Total Cooling Coil energy of the Coil [J]
         Real64 SenWaterCoolingCoilEnergy; // Sensible Cooling Coil energy of the Coil [J]
         Real64 DesWaterHeatingCoilRate;   // Design Heating Coil Rate used for sizing [W]
         Real64 TotWaterHeatingCoilRate;   // Total Heating Coil Rate on the Coil [W]
@@ -283,6 +287,7 @@ namespace WaterCoils {
             : WaterCoilType(0), WaterCoilModel(0), WaterCoilType_Num(0), SchedPtr(0), RequestingAutoSize(false), InletAirMassFlowRate(0.0),
               OutletAirMassFlowRate(0.0), InletAirTemp(0.0), OutletAirTemp(0.0), InletAirHumRat(0.0), OutletAirHumRat(0.0), InletAirEnthalpy(0.0),
               OutletAirEnthalpy(0.0), TotWaterCoilLoad(0.0), SenWaterCoilLoad(0.0), TotWaterHeatingCoilEnergy(0.0), TotWaterCoolingCoilEnergy(0.0),
+              TotDehumidificationCoilEnergy(0.0),
               SenWaterCoolingCoilEnergy(0.0), DesWaterHeatingCoilRate(0.0), TotWaterHeatingCoilRate(0.0), DesWaterCoolingCoilRate(0.0),
               TotWaterCoolingCoilRate(0.0), SenWaterCoolingCoilRate(0.0), UACoil(0.0), LeavingRelHum(0.0), DesiredOutletTemp(0.0),
               DesiredOutletHumRat(0.0), InletWaterTemp(0.0), OutletWaterTemp(0.0), InletWaterMassFlowRate(0.0), OutletWaterMassFlowRate(0.0),
