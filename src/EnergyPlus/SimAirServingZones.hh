@@ -79,6 +79,7 @@ namespace SimAirServingZones {
     extern int const WaterCoil_SimpleCool;
     extern int const WaterCoil_Cooling;
     extern int const WaterCoil_SimpleHeat;
+    extern int const WaterCoil_LiqDesiccantDehum;
     extern int const SteamCoil_AirHeat;
     extern int const WaterCoil_DetailedCool;
     extern int const Coil_ElectricHeat;

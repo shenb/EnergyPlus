@@ -140,8 +140,9 @@ namespace WaterCoils {
     using Psychrometrics::PsyWFnTdbRhPb;
     using Psychrometrics::PsyWFnTdbTwbPb;
     using Psychrometrics::PsyWFnTdpPb;
+    using Psychrometrics::PsyRhFnTdbWPb;
     using namespace ScheduleManager;
-
+    
     // Data
     // PRIVATE ! Everything private unless explicitly made public
 
@@ -1276,6 +1277,23 @@ namespace WaterCoils {
         static Real64 EnthCorrFrac(0.0); // enthalpy correction factor
         static Real64 TempCorrFrac(0.0); // temperature correction factor
 
+        // Variables for liquid desiccant dehumidification coil
+        Real64 CpAirDes; // specific heat of air at design conditions
+        Real64 DesSenCoilLoad;
+        Real64 DesLatCoilLoad;
+        Real64 DesHdAvVt;
+        Real64 Qlat; // Coil latent load
+        Real64 msi;  // Solution mass flow rate IN to this function(kg/s)
+        Real64 Tsi;  // Solution temperature IN to this function (C)
+        Real64 Xsi;  // Solution concentration IN to this function (weight fraction)
+        Real64 Tso;  // Solution temperature IN to this function (C)
+        Real64 ma;   // Air mass flow rate IN to this function(kg/s)
+        Real64 Tai;  // Air dry bulb temperature IN to this function(C)
+        Real64 Wai;  // Air Humidity Ratio IN to this funcation (C)
+        Real64 Tao;  // Air dry bulb temperature OUT to this function(C)
+        Real64 Wao;  // Air Humidity Ratio OUT to this funcation (C)
+
+
         // FLOW:
 
         if (InitWaterCoilOneTimeFlag) {
@@ -1324,7 +1342,11 @@ namespace WaterCoils {
                     } else if (WaterCoil(tempCoilNum).WaterCoilType_Num == WaterCoils::WaterCoil_SimpleHeating) {
                         CoilTypeNum = SimAirServingZones::WaterCoil_SimpleHeat;
                         CompType = cAllCoilTypes(DataHVACGlobals::Coil_HeatingWater);
+                    } else if (WaterCoil(tempCoilNum).WaterCoilType_Num == WaterCoils::WaterCoil_LiqDesiccantDehum) {
+                        CoilTypeNum = SimAirServingZones::WaterCoil_LiqDesiccantDehum;
+                        CompType = cAllCoilTypes(DataHVACGlobals::Coil_DehumidificationLiqDesiccant);
                     }
+
                     WaterCoilOnAirLoop = true;
                     CheckWaterCoilIsOnAirLoop(state, CoilTypeNum, CompType, CompName, WaterCoilOnAirLoop);
                     if (!WaterCoilOnAirLoop) {
@@ -1388,7 +1410,7 @@ namespace WaterCoils {
             DesCpAir(CoilNum) = PsyCpAirFnW(0.0);
             DesUARangeCheck(CoilNum) = (-1568.6 * WaterCoil(CoilNum).DesInletAirHumRat + 20.157);
 
-            if (WaterCoil(CoilNum).WaterCoilType == CoilType_Cooling) { // 'Cooling'
+            if (WaterCoil(CoilNum).WaterCoilType == CoilType_Cooling || WaterCoil(CoilNum).WaterCoilType == CoilType_Dehumidification) { // 'Cooling' or Dehumidification'
                 Node(WaterInletNode).Temp = 5.0;
 
                 Cp = GetSpecificHeatGlycol(PlantLoop(WaterCoil(CoilNum).WaterLoopNum).FluidName,
@@ -1819,6 +1841,49 @@ namespace WaterCoils {
                 // save the design internal and external UAs
                 WaterCoil(CoilNum).UACoilExternalDes = WaterCoil(CoilNum).UACoilExternal;
                 WaterCoil(CoilNum).UACoilInternalDes = WaterCoil(CoilNum).UACoilInternal;
+            }
+
+             if (MyCoilDesignFlag(CoilNum) && (WaterCoil(CoilNum).WaterCoilModel == CoilModel_LiqDesiccantDehum) &&
+                (WaterCoil(CoilNum).DesAirVolFlowRate > 0.0) && (WaterCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) {
+                MyCoilDesignFlag(CoilNum) = false;
+
+                // Caculate the liquid desiccant coil HdAvVt at design conditions
+
+                // Enthalpy of Air at Inlet design conditions
+                DesInletAirEnth = PsyHFnTdbW(WaterCoil(CoilNum).DesInletAirTemp, WaterCoil(CoilNum).DesInletAirHumRat);
+
+                // Enthalpy of Air at outlet at design conditions
+                DesOutletAirEnth = PsyHFnTdbW(WaterCoil(CoilNum).DesOutletAirTemp, WaterCoil(CoilNum).DesOutletAirHumRat);
+
+                // Total Coil Load from Inlet and Outlet Air States (which include fan heat as appropriate).
+                WaterCoil(CoilNum).DesTotWaterCoilLoad = WaterCoil(CoilNum).DesAirMassFlowRate * (DesInletAirEnth - DesOutletAirEnth);
+
+                CpAirDes = PsyCpAirFnW(WaterCoil(CoilNum).DesInletAirHumRat);
+                DesSenCoilLoad = WaterCoil(CoilNum).DesAirMassFlowRate * CpAirDes * (WaterCoil(CoilNum).DesInletAirTemp - WaterCoil(CoilNum).DesOutletAirTemp);
+                DesLatCoilLoad = WaterCoil(CoilNum).DesTotWaterCoilLoad - DesSenCoilLoad;
+
+                Qlat = DesLatCoilLoad;
+                msi = WaterCoil(CoilNum).DesAirMassFlowRate;
+                Tsi = WaterCoil(CoilNum).DesInletWaterTemp;
+                Xsi = WaterCoil(CoilNum).DesInletSolnConcentration;
+                ma =  WaterCoil(CoilNum).MaxWaterMassFlowRate;
+                Tai = WaterCoil(CoilNum).DesInletAirTemp;
+                Wai = WaterCoil(CoilNum).DesInletAirHumRat;
+                Tao = WaterCoil(CoilNum).DesOutletAirTemp;
+                Wao = WaterCoil(CoilNum).DesOutletAirHumRat;
+                DesHdAvVt = CalculateDesHdAvVt(Qlat, // Coil latent load
+                                               msi,  // Solution mass flow rate IN to this function(kg/s)
+                                               Tsi,  // Solution temperature IN to this function (C)
+                                               Xsi,  // Solution concentration IN to this function (weight fraction)
+                                               ma,   // Air mass flow rate IN to this function(kg/s)
+                                               Tai,  // Air dry bulb temperature IN to this function(C)
+                                               Wai,  // Air Humidity Ratio IN to this funcation (C)
+                                               Tao,  // Air dry bulb temperature OUT to this function(C)
+                                               Wao); // Air Humidity Ratio OUT to this funcation (C)
+
+                WaterCoil(CoilNum).HdAvVt = DesHdAvVt;
+
+
             }
 
             //@@@@ DESIGN CONDITION END HERE @@@@
@@ -2954,7 +3019,7 @@ namespace WaterCoils {
             if (PltSizCoolNum > 0) {
                 DataPltSizCoolNum = PltSizCoolNum;
                 DataWaterLoopNum = WaterCoil(CoilNum).WaterLoopNum;
-                CompType = cAllCoilTypes(Coil_CoolingWater); // Coil:Cooling:Water
+                CompType = cAllCoilTypes(Coil_DehumidificationLiqDesiccant); // Coil:Dehumidification:LiqDesiccant
                 bPRINT = false;       // do not print this sizing request since the autosized value is needed and this input may not be autosized (we
                                       // should print this!)
                 TempSize = AutoSize;  // get the autosized air volume flow rate for use in other calculations
@@ -4932,6 +4997,395 @@ namespace WaterCoils {
         EnergyOutStreamOne = EnergyInStreamOne - effectiveness * MaxHeatTransfer / max(CapacityStream1, SmallNo);
         EnergyOutStreamTwo = EnergyInStreamTwo + effectiveness * MaxHeatTransfer / max(CapacityStream2, SmallNo);
     }
+
+    // Subroutine for Liquid Desiccant Coil calculation
+    double CalculateDesHdAvVt(Real64 Qlat, // Coil latent load
+                              Real64 msi,  // Solution mass flow rate IN to this function(kg/s)
+                              Real64 Tsi,  // Solution temperature IN to this function (C)
+                              Real64 Xsi,  // Solution concentration IN to this function (weight fraction)
+                              Real64 ma,  // Air mass flow rate IN to this function(kg/s)
+                              Real64 Tai, // Air dry bulb temperature IN to this function(C)
+                              Real64 Wai, // Air Humidity Ratio IN to this funcation (C)
+                              Real64 Tao, // Air dry bulb temperature OUT to this function(C)
+                              Real64 Wao  // Air Humidity Ratio OUT to this funcation (C)
+    )
+    {
+        double const BtuLbToJKg = 2326.0;
+        // new varibales
+        Real64 Patm = OutBaroPress;
+        // Output Varibles
+        Real64 mso, Xso, Tso;
+
+        Real64 LogMeanEnthDiff;
+        Real64 DesUACoilEnth;
+        Real64 DesHdAvVt;
+
+        // Local Variables
+
+        Real64 RHai, Hai = 1.0, HSSi, Hsi;
+        Real64 RHao, Hao = 1.0, HSSo, Hso;
+
+        Real64 cps, wsatl, wsath, hsatl, hsath, csat;
+        Real64 mcp_min;
+        Real64 Error_Hso;
+
+        Hsi = hftx9(Tsi * 1.8 + 32, Xsi);
+        mso = msi + ma * (Wai - Wao);
+        Xso = msi * Xsi / mso;
+
+        // Hso = msi * Hsi + (Qlat / BtuLbToJKg) / mso;
+        // Hso = hftx9(Tso * 1.8 + 32, Xso);
+        Hso = msi * Hsi + (Qlat / BtuLbToJKg) / mso;
+        Tso = tfhx9(Hso, Xso);
+        Error_Hso = hftx9(Tso, Xso) / Hso - 1;
+
+        cps = cpftx9(Tsi * 1.8 + 32, Xsi); // Cps = (Hso - Hsi )/(Tso - Tsi)
+
+        // #### Step 1: Calculate the saturation specific heat which is the derivative of the saturated air enthaply with respect to
+        // temperature
+        wsatl = cpftx9(Tsi * 1.8 + 32, Xsi);
+        wsath = cpftx9(Tso * 1.8 + 32, Xso); // Tso & Xso unknown, iterative variables
+        hsatl = (1.006 * (Tsi - 32) / 1.8 + wsatl * (1.84 * (Tsi - 32) / 1.8 + 2501)) / 2.326;
+        hsath = (1.006 * (Tso - 32) / 1.8 + wsath * (1.84 * (Tso - 32) / 1.8 + 2501)) / 2.326;
+        // hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) / 2.326;
+        // hsath = (1.006 * Tso + wsath * (1.84 * Tso + 2501)) / 2.326;
+
+        csat = (hsatl - hsath) / (Tsi - Tso) / 1.8; // P30 (3.23)
+
+        // Step 2: Calculate the capacitance ratio
+        mcp_min = min((ma * csat), (msi * cps));
+
+        RHai = PsyRhFnTdbWPb(Tai, Wai, Patm);              //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
+        Hai = PsyHFnTdbRhPb(Tai, RHai, Patm) / BtuLbToJKg; // per lb dry air  Hai
+        HSSi = LDSatEnthalpy(Tsi, Xsi, Patm) / BtuLbToJKg; // H_Ts.sat.i
+
+        RHao = PsyRhFnTdbWPb(Tao, Wao, Patm);              //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
+        Hao = PsyHFnTdbRhPb(Tao, RHao, Patm) / BtuLbToJKg; // per lb dry air  Hai
+        HSSo = LDSatEnthalpy(Tso, Xso, Patm) / BtuLbToJKg; // H_Ts.sat.i
+
+        LogMeanEnthDiff = ((Hai - HSSo) - (Hao - HSSi)) / std::log((Hai - HSSo) / (Hao - HSSi));
+
+        DesUACoilEnth = (Qlat / BtuLbToJKg) / LogMeanEnthDiff;
+        DesHdAvVt = DesUACoilEnth / mcp_min;
+        return (DesHdAvVt);
+    };
+
+    double TSHSX(double t, double x, double h)
+    {
+        double resiual = abs(h - hftx9(t, x));
+        return resiual;
+    };
+
+    double WSSE(double h, double x, double p)
+    {
+        using namespace std;
+
+        bool LOF = true;
+        double relax = 0.0;
+        double WTOL = 1.0e-5;
+        double WSOL = 1.0;
+        double WSSP = 1.0;
+        double WAIR = 0.0;
+        double SOLSLOPE = 1.0;
+        double HUMP = 1.0;
+        double AIRSLOPE = 1.0;
+        double Wdiff = 1.0;
+        double SLOPEdiff = 1.0;
+        double TG = 20.0;
+        double _WSSE = 1.0;
+        if (h > 150) {
+            relax = 0.3;
+        } else {
+            relax = 0.8;
+        };
+
+        while (abs(WSOL - WAIR) >= WTOL) {
+            WSSP = wftx9((TG + 1) * 1.8 + 32, x);
+            WSOL = wftx9(TG * 1.8 + 32, x);
+            SOLSLOPE = WSSP - WSOL;
+            HUMP = PsyWFnTdbH(TG + 1, h);
+            WAIR = PsyWFnTdbH(TG, h);
+            AIRSLOPE = HUMP - WAIR;
+            Wdiff = WSOL - WAIR;
+            SLOPEdiff = AIRSLOPE - SOLSLOPE;
+            if (SLOPEdiff < 1.0e-6) {
+                if (abs(WSOL - WAIR) < WTOL) {
+                    _WSSE = WSOL;
+                    return (_WSSE);
+                } else {
+                    std::cout << "error in function WSSE " << endl;
+                    return (999.0);
+
+                } // end of if (abs(WSOL - WAIR) < WTOL)
+            }     // end of if (SLOPEdiff < 1.0e-6)
+            TG = TG + relax * (WSOL - WAIR) / (AIRSLOPE - SOLSLOPE);
+        }
+
+        _WSSE = WSOL;
+        return (_WSSE);
+    };
+
+    double wftx9(double t, double xi)
+    {
+        // C*********************************************************************
+        // C****** SUBROUTINE CALCULATES HUMIDITY RATIO OF MOIST AIR IN *********
+        // C****** EQUILIBRIUM WITH LICL /WATER SOLUTION AS A FUNCTION  *********
+        // C****** OF TEMP IN F AND CONCENTRATION IN PERCENTS           *********
+        // C*********************************************************************
+        //    double tc,pKpa;
+        //    tc = (t-32)/1.8;
+        //    if(isDehum)
+        //        pKpa = (4.58208-0.159174*tc+0.0072594*pow(tc,2))
+        //                +(-18.3816+0.5661*tc-0.019314*pow(tc,2))*x
+        //                +(21.312-0.666*tc+0.01332*pow(tc,2))*pow(x,2);
+        //    else
+        //        pKpa = (16.294-0.8893*tc+0.01927*pow(tc,2))
+        //                +(74.3-1.8035*tc-0.01875*pow(tc,2))*x
+        //                +(-226.4+7.49*tc-0.039*pow(tc,2))*pow(x,2);
+        //   data from Goswami 2001
+
+        double psat, psatKpa, tk, pv1;
+        double A, B, C, a25;
+        double x = xi;
+
+        pft3(psat, t);
+        tk = (t - 32) / 1.8 + 273.15;
+        psatKpa = psat * 6.895;
+        A = 2 - pow((1 + pow((x / 0.28), 4.3)), 0.6);
+        B = pow(1 + pow((x / 0.21), 5.1), 0.49) - 1;
+        a25 = 1 - pow((1 + pow((x / 0.362), -4.75)), -0.4) - 0.03 * exp(-pow((x - 0.1), 2) / 0.005);
+        C = tk / 647.1;
+        pv1 = psatKpa * a25 * (A + B * C);
+
+        //    double pv;
+        //    pftx9(cmn,pv,t,x*100);
+        //    pv = pv* 6.8947;
+
+        const double w = 0.622 * (pv1 / (101.3 - pv1));
+
+        return (w);
+    };
+
+    void pft3(double &p, double const &t)
+    {
+        // C***********************************************************************
+        // C******  SUBROUTINE CALCULATES SATURATION PRESSURE IN PSIA  ************
+        // C******  OF WATER AS A FUNCTION OF TEMPERATURE IN DEG F     ************
+        // C***********************************************************************
+        double tc = (t - 32.e0) / 1.8e0;
+        double tk = tc + 273.15e0;
+        double tau = 1.0e0 - tk / 647.14e0;
+        if (tau < 1e-6) {
+            tau = 1e-6;
+        }
+        double pkpa = 647.14e0 / tk *
+                      (-7.85823e0 * tau + 1.83991e0 * pow(tau, 1.5e0) - 11.7811e0 * pow(tau, 3.0) + 22.6705e0 * pow(tau, 3.5e0) -
+                       15.9393e0 * pow(tau, 4.0) + 1.77516e0 * pow(tau, 7.5e0));
+        pkpa = 22064.e0 * exp(pkpa);
+        p = pkpa / 6.895e0;
+    };
+
+    double cpftx9(double tsi, double xsi)
+    {
+        double ts = (tsi - 32) / 1.8;
+        double T = (273.15 + ts);
+        double xi = xsi / 100;
+        double B0 = 1.43980, B1 = -1.24317, B2 = -0.12070, B3 = 0.12825, B4 = 0.62934, B5 = 58.5225, B6 = -105.6343, B7 = 47.7948;
+        double theta = T / 228 - 1;
+        double A0 = 88.7891, A1 = -120.1959, A2 = -16.9264, A3 = 52.4654, A4 = 0.10826, A5 = 0.46988;
+        double cp_H2O = A0 + A1 * pow(theta, 0.02) + A2 * pow(theta, 0.04) + A3 * pow(theta, 0.06) + A4 * pow(theta, 1.8) + A5 * pow(theta, 8);
+        double f1;
+        if (xi < 0.31)
+            f1 = B0 * xi + B1 * pow(xi, 2) + B2 * pow(xi, 3);
+        else
+            f1 = B3 + B4 * xi;
+        double f2 = B5 * pow(theta, 0.02) + B6 * pow(theta, 0.04) + B7 * pow(theta, 0.06);
+        double cps = cp_H2O * (1 - f1 * f2);
+        cps = cps / 4.186798188;
+
+        return (cps);
+        //    qDebug()<<"LiCl cp"<<cps;
+    };
+
+    Real64 hftx9(Real64 t, Real64 x)
+    {
+        // C*********************************************************************
+        // C******  SUBROUTINE  CALCULATES  ENTHALPY  IN  BTU/LB  OF   **********
+        // C******  LICL /WATER  SOLUTION  AS  A  FUNCTION  OF  TEMP   **********
+        // C******  IN  DEG  F  AND  CONC  IN  PERCENTS                **********
+        // C*********************************************************************
+
+        // C      IMPLICIT REAL*8(A-H,O-Z)
+        //  double t0 = t;
+        //  double x0 = x;
+        //  double tsol = (t0 - 32.0f) / 1.8f;
+        //  double tdum = (tsol + 25.f) / 2;
+        //  double a0 = 1.002f - 0.0125f * x0 + (7.575e-05) * x0 * x0;
+        //  double a1 = -0.0005554f - (1.518e-05) * x0 + (6.1828e-07) * x0 * x0;
+        //  double a2 = (5.2266e-09) + (3.6623e-08) * x0 - (3.8345e-09) * x0 * x0;
+        //  double cpsol = 4.184f * (a0 + a1 * tdum + a2 * tdum * tdum);
+        //  double h0 = 560.7f + x0 * (17.63f * fem::dlog(x0) - 82.6f) + cpsol * (
+        //    tsol - 25.f);
+        //  double hs0 = h0 / 2.326f;
+
+        double ts = (t - 32) / 1.8;
+        double xs = x * 100.0;
+        double A = -66.2324 + 11.2711 * xs - 0.79853 * pow(xs, 2) + (2.1534E-02) * pow(xs, 3) - (1.66352E-04) * pow(xs, 4);
+        double B = 4.5751 - 0.146924 * xs + (6.307226E-03) * pow(xs, 2) - (1.38054E-04) * pow(xs, 3) + (1.06690E-06) * pow(xs, 4);
+        double C = (-8.09689E-04) + (2.18145E-04) * xs - (1.36194E-05) * pow(xs, 2) + (3.20998E-07) * pow(xs, 3) - (2.64266E-09) * pow(xs, 4);
+        double h = A + B * ts + C * pow(ts, 2);
+        double hs = h / 2.326;
+
+        return (hs);
+    };
+
+    Real64 tfhx9(Real64 h, Real64 x)
+    {
+        // FUNCTION INFORMATION:
+        //       AUTHOR         Fred Buhl
+        //       DATE WRITTEN   April 1, 2009
+        //       MODIFIED       na
+        //       RE-ENGINEERED  na
+
+        // PURPOSE OF THIS FUNCTION:
+        // Given the specific enthalpy, relative humidity, and the
+        // barometric pressure, the function returns the dry bulb temperature.
+
+        // METHODOLOGY EMPLOYED:
+        // Inverts PsyHFnTdbRhPb
+
+        // REFERENCES:
+        // none
+
+        // Using/Aliasing
+        using General::RoundSigDigits;
+        using General::SolveRoot;
+
+        // Return value
+        Real64 T; // result=> humidity ratio
+
+        // Locals
+        // FUNCTION ARGUMENT DEFINITIONS:
+
+        // FUNCTION PARAMETER DEFINITIONS:
+        int const MaxIte(500); // Maximum number of iterations
+        Real64 const Acc(1.0); // Accuracy of result
+
+        // INTERFACE BLOCK SPECIFICATIONS
+        // na
+
+        // DERIVED TYPE DEFINITIONS
+        // na
+
+        // FUNCTION LOCAL VARIABLE DECLARATIONS:
+        int SolFla;               // Flag of solver
+        Real64 T0;                // lower bound for Tprov [C]
+        Real64 T1;                // upper bound for Tprov [C]
+        static Real64 Tprov(0.0); // provisional value of drybulb temperature [C]
+        Array1D<Real64> Par(3);   // Par(1) = desired enthaply H [J/kg]
+        // Par(2) = desired relative humidity (0.0 - 1.0)
+        // Par(3) = barometric pressure [N/m2 (Pascals)]
+
+        T0 = 1.0;
+        T1 = 100.0;
+        Par(1) = h;
+        Par(2) = x;
+        SolveRoot(Acc, MaxIte, SolFla, Tprov, SolnTempResidual, T0, T1, Par);
+        // if the numerical inversion failed, issue error messages.
+        if (SolFla == -1) {
+            ShowSevereError("Calculation of soultion temperature failed in tfhx9(h,x)");
+            ShowContinueError("   Iteration limit exceeded");
+            // ShowContinueError("   H=[" + RoundSigDigits(H, 6) + "], RH=[" + RoundSigDigits(RH, 4) + "], PB=[" + RoundSigDigits(PB, 5) + "].");
+        } else if (SolFla == -2) {
+            ShowSevereError("Calculation of drybulb temperature failed in tfhx9(h,x)");
+            ShowContinueError("  Bad starting values for Tdb");
+            // ShowContinueError("   H=[" + RoundSigDigits(H, 6) + "], RH=[" + RoundSigDigits(RH, 4) + "], PB=[" + RoundSigDigits(PB, 5) + "].");
+        }
+        if (SolFla < 0) {
+            T = 0.0;
+        } else {
+            T = Tprov;
+        }
+
+        return T;
+    }
+
+    Real64 SolnTempResidual(Real64 const t,            // test value of Tdb [C]
+                            Array1D<Real64> const &Par // Par(1) = desired enthaply H [J/kg]
+    )
+    {
+
+        // FUNCTION INFORMATION:
+        //       AUTHOR
+        //       DATE WRITTEN
+        //       MODIFIED
+
+        // PURPOSE OF THIS FUNCTION:
+        // Calculates residual function hdesired - hftx
+
+        // METHODOLOGY EMPLOYED:
+        // Calls PsyHFnTdbRhPb
+
+        // REFERENCES:
+
+        // Using/Aliasing
+        // using Psychrometrics::PsyHFnTdbRhPb;
+
+        // Return value
+        Real64 Residuum; // residual to be minimized to zero
+
+        // Argument array dimensioning
+
+        // Locals
+        // SUBROUTINE ARGUMENT DEFINITIONS:
+        // Par(2) = desired relative humidity (0.0 - 1.0)
+        // Par(3) = barometric pressure [N/m2 (Pascals)]
+
+        // FUNCTION PARAMETER DEFINITIONS:
+        // na
+
+        // INTERFACE BLOCK SPECIFICATIONS
+        // na
+
+        // DERIVED TYPE DEFINITIONS
+        // na
+
+        // FUNCTION LOCAL VARIABLE DECLARATIONS:
+
+        Residuum = Par(1) - hftx9(t, Par(2));
+
+        return Residuum;
+    };
+
+    double LDSatEnthalpy(double t, double x, double dPatm)
+    {
+        double Wlsati = wftx9(t, x);
+        double dHret = PsyHFnTdbW((t - 32) / 1.8, Wlsati);
+        return (dHret);
+    };
+
+    double PsyHFnTdbW_new(double T, double W)
+    {
+        const double cpad = 0.24050, hfgd = 1064.0, cpwd = 0.4095;
+        // double W = max(0.0, W);
+        if (W < 0.0) {
+            W = 0.0;
+        }
+        double _AIR_H_TW = cpad * T + W * (hfgd + cpwd * T);
+        return (_AIR_H_TW);
+    };
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Subroutine for caculating outlet condition if coil is wet , for Cooling Coil
 

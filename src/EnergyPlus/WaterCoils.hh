@@ -273,6 +273,7 @@ namespace WaterCoils {
         Real64 OriginalUACoilVariable;
         Real64 OriginalUACoilExternal;
         Real64 OriginalUACoilInternal;
+        Real64 HdAvVt;
 
         bool DesiccantRegenerationCoil; // true if it is a regeneration air heating coil defined in Desiccant Dehumidifier system
         int DesiccantDehumNum;          // index to desiccant dehumidifier object
@@ -305,8 +306,8 @@ namespace WaterCoils {
               SurfAreaWetFractionSaved(0.0), UACoilVariable(0.0), RatioAirSideToWaterSideConvect(1.0), AirSideNominalConvect(0.0),
               LiquidSideNominalConvect(0.0), Control(0), AirInletNodeNum(0), AirOutletNodeNum(0), WaterInletNodeNum(0), WaterOutletNodeNum(0),
               WaterLoopNum(0), WaterLoopSide(0), WaterLoopBranchNum(0), WaterLoopCompNum(0), CondensateCollectMode(CondensateDiscarded),
-              CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0), CoilPerfInpMeth(0),
-              FaultyCoilFoulingFlag(false), FaultyCoilFoulingIndex(0), FaultyCoilFoulingFactor(0.0),
+              CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0), CoilPerfInpMeth(0), FaultyCoilFoulingFlag(false), FaultyCoilFoulingIndex(0),
+              FaultyCoilFoulingFactor(0.0), HdAvVt(1.0),
               DesiccantRegenerationCoil(false), DesiccantDehumNum(0), DesignWaterDeltaTemp(0.0), UseDesignWaterDeltaTemp(false), ControllerName(""),
               ControllerIndex(0), reportCoilFinalSizes(true), AirLoopDOASFlag(false)
         {
@@ -454,6 +455,30 @@ namespace WaterCoils {
                                    Real64 &EnergyOutStreamOne,     // Outlet state of stream1 (C)
                                    Real64 &EnergyOutStreamTwo      // Outlet state of stream2 (C)
     );
+
+       
+    double CalculateDesHdAvVt(Real64 Qlat, // Coil latent load
+                              Real64 msi,  // Solution mass flow rate IN to this function(kg/s)
+                              Real64 Tsi,  // Solution temperature IN to this function (C)
+                              Real64 Xsi,  // Solution concentration IN to this function (weight fraction)
+                              Real64 ma,   // Air mass flow rate IN to this function(kg/s)
+                              Real64 Tai,  // Air dry bulb temperature IN to this function(C)
+                              Real64 Wai,  // Air Humidity Ratio IN to this funcation (C)
+                              Real64 Tao,  // Air dry bulb temperature OUT to this function(C)
+                              Real64 Wao   // Air Humidity Ratio OUT to this funcation (C)
+    );
+
+    double TSHSX(double t, double x, double h);
+    double WSSE(double h, double x, double p);
+    double wftx9(double t, double xi);
+    void pft3(double &p, double const &t);
+    double cpftx9(double tsi, double xsi);
+    Real64 hftx9(Real64 t, Real64 x);
+    double LDSatEnthalpy(double t, double x, double dPatm);
+    double PsyHFnTdbW_new(double T, double W);
+    Real64 tfhx9(Real64 h, Real64 x);
+    Real64 SolnTempResidual(Real64 const t,              // test value of Tdb [C]
+                            Array1D<Real64> const &Par); // Par(1) = desired enthaply H [J/kg]
 
     // Subroutine for caculating outlet condition if coil is wet , for Cooling Coil
 
