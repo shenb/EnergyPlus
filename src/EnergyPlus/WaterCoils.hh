@@ -382,10 +382,33 @@ namespace WaterCoils {
                      Real64 const PartLoadRatio // part-load ratio of heating coil
     );
 
+   void CalcLiqDesiccantDehumCoil(int const CoilNum, // LiquidDesiccantCoil
+                                   bool const FirstHVACIteration,
+                                   int const CalcMode,
+                                   int const FanOpMode,       // fan operating mode
+                                   Real64 const PartLoadRatio // part-load ratio of heating coil
+    );
+
+    void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,               // Number of Coil
+                                   Real64 const SolnMassFlowRateIn, // Solution mass flow rate IN to this function(kg/s)
+                                   Real64 const SolnTempIn,         // Solution temperature IN to this function (C)
+                                   Real64 const SolnConcIn,         // Solution concentration IN to this function (weight fraction)
+                                   Real64 const AirMassFlowRateIn,  // Air mass flow rate IN to this function(kg/s)
+                                   Real64 const AirTempIn,          // Air dry bulb temperature IN to this function(C)
+                                   Real64 const AirHumRat,          // Air Humidity Ratio IN to this funcation (C)
+                                   Real64 const Coeff_HdAvVt,       // Mass Tansfer Coefficient Area Product (kg/s)
+                                   Real64 const LewisNum,           // External overall heat transfer coefficient(W/m2 C)
+                                   Real64 &OutletSolnTemp,          // Leaving solution temperature (C)
+                                   Real64 &OutletSolnConc,          // Leaving solution concentration (weight fraction)
+                                   Real64 &OutletSolnMassFlowRate,  // Leaving solution mass flow rate (kg/s)
+                                   Real64 &OutletAirTemp,           // Leaving air dry bulb temperature(C)
+                                   Real64 &OutletAirHumRat,         // Leaving air humidity ratio
+                                   Real64 &TotWaterCoilLoad,        // Total heat transfer rate(W)
+                                   Real64 &WaterEvaporate           // Total water evaporate (kg)
+    );
     // End Algorithm Section of the Module
 
     // Coil Completely Dry Subroutine for Cooling Coil
-
     void CoilCompletelyDry(int const CoilNum,
                            Real64 const WaterTempIn,  // Entering water temperature
                            Real64 const AirTempIn,    // Entering air dry bulb temperature

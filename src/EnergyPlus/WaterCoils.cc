@@ -327,7 +327,6 @@ namespace WaterCoils {
             CoolingCoil(CoilNum, FirstHVACIteration, SimCalc, OpMode, PartLoadFrac);
             if (present(QActual)) QActual = WaterCoil(CoilNum).SenWaterCoolingCoilRate;
         }
-
         if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_SimpleHeating) {
             CalcSimpleHeatingCoil(CoilNum, OpMode, PartLoadFrac, SimCalc);
             if (present(QActual)) QActual = WaterCoil(CoilNum).TotWaterHeatingCoilRate;
@@ -4249,7 +4248,116 @@ namespace WaterCoils {
         WaterCoil(CoilNum).OutletAirEnthalpy = PsyHFnTdbW(WaterCoil(CoilNum).OutletAirTemp, WaterCoil(CoilNum).OutletAirHumRat);
     }
 
-       void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,               // Number of Coil
+    void CalcLiqDesiccantDehumCoil(int const CoilNum, // LiquidDesiccantCoil
+                                  bool const FirstHVACIteration,
+                                  int const CalcMode,
+                                  int const FanOpMode,       // fan operating mode
+                                  Real64 const PartLoadRatio // part-load ratio of heating coil
+    )
+    {
+
+        // FUNCTION INFORMATION:
+        // AUTHOR
+        // DATE WRITTEN
+        // MODIFIED       na
+        // RE-ENGINEERED  na
+
+        // PURPOSE OF THIS FUNCTION:
+        //
+        // METHODOLOGY EMPLOYED:
+        //
+        // REFERENCES:
+        //
+
+        // Using/Aliasing
+        using General::SafeDivide;
+        using namespace std;
+
+        // FUNCTION LOCAL VARIABLE DECLARATIONS:
+        Real64 SolnMassFlowRateIn = 0.0;     // Solution mass flow rate IN to this function (kg/s)
+        Real64 SolnTempIn = 1.0;             // Solution temperature IN to this function (C)
+        Real64 SolnConcIn = 1.0;             // Solution concentration IN to this function (weight fraction)
+        Real64 AirMassFlowRateIn = 1.0;      // Air mass flow rate IN to this function (kg/s)
+        Real64 AirTempIn = 1.0;              // Air dry bulb temperature IN to this function(C)
+        Real64 AirHumRat = 1.0;              // Air Humidity Ratio IN to this funcation (C)
+        Real64 Coeff_HdAvVt = 1.0;           // Mass Tansfer Coefficient Area Product
+        Real64 LewisNum = 1.0;               // External overall heat transfer coefficient(W/m2 C)
+        Real64 OutletSolnTemp = 0.0;         // Leaving solution temperature (C)
+        Real64 OutletSolnConc = 0.0;         // Leaving solution concentration (weight fraction)
+        Real64 OutletSolnMassFlowRate = 0.0; // Leaving solution mass flow rate (kg/s)
+        Real64 OutletAirTemp = 0.0;          // Leaving air dry bulb temperature(C)
+        Real64 OutletAirHumRat = 0.0;        // Leaving air humidity ratio
+        Real64 TotWaterCoilLoad = 0.0;       // Total heat transfer rate(W)
+        Real64 WaterEvaporate = 0.0;         // Total water evaporate (kg)
+
+        // If Coil is Scheduled ON then do the simulation
+        if (((GetCurrentScheduleValue(WaterCoil(CoilNum).SchedPtr) > 0.0) && (WaterCoil(CoilNum).InletWaterMassFlowRate > 0.0) &&
+             (WaterCoil(CoilNum).InletAirMassFlowRate >= MinAirMassFlow) && (WaterCoil(CoilNum).DesAirVolFlowRate > 0.0) &&
+             (WaterCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) ||
+            (CalcMode == DesignCalc)) {
+
+         //   std::cout << "******************************CoilNum:" << CoilNum << "start * **************************" << endl;
+
+            SolnMassFlowRateIn = WaterCoil(CoilNum).InletWaterMassFlowRate;
+            SolnTempIn = WaterCoil(CoilNum).InletWaterTemp;
+            SolnConcIn = 0.4;
+            AirMassFlowRateIn = WaterCoil(CoilNum).InletAirMassFlowRate;
+            AirTempIn = WaterCoil(CoilNum).InletAirTemp;
+            AirHumRat = WaterCoil(CoilNum).InletAirHumRat;
+            Coeff_HdAvVt = WaterCoil(CoilNum).HdAvVt;
+            LewisNum = 1.0;
+            LiqDesiccantCoil_Ntu_HPDM(CoilNum,                // Number of Coil
+                                      SolnMassFlowRateIn,     // Solution mass flow rate IN to this function(kg/s)
+                                      SolnTempIn,             // Solution temperature IN to this function (C)
+                                      SolnConcIn,             // Solution concentration IN to this function (weight fraction)
+                                      AirMassFlowRateIn,      // Air mass flow rate IN to this function(kg/s)
+                                      AirTempIn,              // Air dry bulb temperature IN to this function(C)
+                                      AirHumRat,              // Air Humidity Ratio IN to this funcation (C)
+                                      Coeff_HdAvVt,           // Mass Tansfer Coefficient Area Product (kg/s)
+                                      LewisNum,               // External overall heat transfer coefficient(W/m2 C)
+                                      OutletSolnTemp,         // Leaving solution temperature (C)
+                                      OutletSolnConc,         // Leaving solution concentration (weight fraction)
+                                      OutletSolnMassFlowRate, // Leaving solution mass flow rate (kg/s)
+                                      OutletAirTemp,          // Leaving air dry bulb temperature(C)
+                                      OutletAirHumRat,        // Leaving air humidity ratio
+                                      TotWaterCoilLoad,       // Total heat transfer rate(W)
+                                      WaterEvaporate);        // Total water evaporate (kg)
+         //   std::cout << "************************************End ***************************" << endl;
+
+            // Report outlet variables at nodes
+            WaterCoil(CoilNum).OutletAirTemp = OutletAirTemp;
+            WaterCoil(CoilNum).OutletAirHumRat = OutletAirHumRat;
+            WaterCoil(CoilNum).OutletWaterTemp = OutletSolnTemp;
+            // Report output results if the coil was operating
+
+            WaterCoil(CoilNum).TotWaterCoolingCoilRate = TotWaterCoilLoad;
+            WaterCoil(CoilNum).SenWaterCoolingCoilRate = TotWaterCoilLoad * 0.5;
+            // WaterCoil(CoilNum).SurfAreaWetFraction = SurfAreaWetFraction;
+            //       WaterCoil(CoilNum)%OutletWaterEnthalpy = WaterCoil(CoilNum)%InletWaterEnthalpy+ &
+            //                                WaterCoil(CoilNum)%TotWaterCoolingCoilRate/WaterCoil(CoilNum)%InletWaterMassFlowRate
+            WaterCoil(CoilNum).OutletWaterEnthalpy =
+                WaterCoil(CoilNum).InletWaterEnthalpy + SafeDivide(WaterCoil(CoilNum).TotWaterCoolingCoilRate, WaterCoil(CoilNum).InletWaterMassFlowRate);
+
+        } else {
+            // If both mass flow rates are zero, set outputs to inputs and return
+            WaterCoil(CoilNum).OutletWaterTemp = WaterCoil(CoilNum).InletWaterTemp;
+            WaterCoil(CoilNum).OutletAirTemp = WaterCoil(CoilNum).InletAirTemp;
+            WaterCoil(CoilNum).OutletAirHumRat = WaterCoil(CoilNum).InletAirHumRat;
+            WaterCoil(CoilNum).OutletWaterEnthalpy = WaterCoil(CoilNum).InletWaterEnthalpy;
+            WaterCoil(CoilNum).TotWaterCoolingCoilEnergy = 0.0;
+            WaterCoil(CoilNum).SenWaterCoolingCoilEnergy = 0.0;
+            // WaterCoil(CoilNum).SurfAreaWetFraction = 0.0;
+
+        } // End of the Flow or No flow If block
+        WaterCoil(CoilNum).OutletWaterMassFlowRate = WaterCoil(CoilNum).InletWaterMassFlowRate;
+        WaterCoil(CoilNum).OutletAirMassFlowRate = WaterCoil(CoilNum).InletAirMassFlowRate;
+        WaterCoil(CoilNum).OutletAirEnthalpy = PsyHFnTdbW(WaterCoil(CoilNum).OutletAirTemp, WaterCoil(CoilNum).OutletAirHumRat);
+    }
+
+
+
+
+    void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,               // Number of Coil
                                    Real64 const SolnMassFlowRateIn, // Solution mass flow rate IN to this function(kg/s)
                                    Real64 const SolnTempIn,         // Solution temperature IN to this function (C)
                                    Real64 const SolnConcIn,         // Solution concentration IN to this function (weight fraction)
