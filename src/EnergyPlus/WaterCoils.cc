@@ -4249,6 +4249,208 @@ namespace WaterCoils {
         WaterCoil(CoilNum).OutletAirEnthalpy = PsyHFnTdbW(WaterCoil(CoilNum).OutletAirTemp, WaterCoil(CoilNum).OutletAirHumRat);
     }
 
+       void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,               // Number of Coil
+                                   Real64 const SolnMassFlowRateIn, // Solution mass flow rate IN to this function(kg/s)
+                                   Real64 const SolnTempIn,         // Solution temperature IN to this function (C)
+                                   Real64 const SolnConcIn,         // Solution concentration IN to this function (weight fraction)
+                                   Real64 const AirMassFlowRateIn,  // Air mass flow rate IN to this function(kg/s)
+                                   Real64 const AirTempIn,          // Air dry bulb temperature IN to this function(C)
+                                   Real64 const AirHumRat,          // Air Humidity Ratio IN to this funcation (C)
+                                   Real64 const Coeff_HdAvVt,       // Mass Tansfer Coefficient Area Product (kg/s)
+                                   Real64 const LewisNum,           // External overall heat transfer coefficient(W/m2 C)
+                                   Real64 &OutletSolnTemp,          // Leaving solution temperature (C)
+                                   Real64 &OutletSolnConc,          // Leaving solution concentration (weight fraction)
+                                   Real64 &OutletSolnMassFlowRate,  // Leaving solution mass flow rate (kg/s)
+                                   Real64 &OutletAirTemp,           // Leaving air dry bulb temperature(C)
+                                   Real64 &OutletAirHumRat,         // Leaving air humidity ratio
+                                   Real64 &TotWaterCoilLoad,        // Total heat transfer rate(W)
+                                   Real64 &WaterEvaporate           // Total water evaporate (kg)
+
+    )
+    {
+        // FUNCTION INFORMATION:
+        // AUTHOR         
+        // DATE WRITTEN   
+        // MODIFIED       na
+        // RE-ENGINEERED  na
+
+        // PURPOSE OF THIS FUNCTION:
+        // The subroutine 
+
+        // METHODOLOGY EMPLOYED:
+        // 
+
+        // REFERENCES:
+        // 
+
+        using General::Iterate;
+        using namespace std;
+
+        double const BtuLbToJKg = 2326.0;
+
+        // new varibales
+        Real64 Patm = OutBaroPress;
+        Real64 HdAvVt = Coeff_HdAvVt;
+
+        Real64 ma = 0.3;                   // AirMassFlowRateIn;
+        Real64 Tai = AirTempIn * 1.8 + 32; // 30 * 1.8 + 32;
+        // Real64 Twbai = 23 * 1.8 + 32; //
+        Real64 Wai = AirHumRat; // PsyWFnTdbTwbPb((Tai - 32) / 1.8, (Twbai - 32) / 1.8, Patm);
+
+        Real64 msi = 0.3;                   // SolnMassFlowRateIn; // 0.3;
+        Real64 Xsi = SolnConcIn;            // 0 .4;
+        Real64 Tsi = SolnTempIn * 1.8 + 32; // 25 * 1.8 + 32; // WaterTempIn; // degree C
+
+        // Output Varibles
+        Real64 Wao = 1.0, Tao;
+        Real64 mso, Xso, Tso;
+        Real64 Qtot, Wevaprate;
+
+        // Local Variables
+        Real64 Ntu, Effect;
+        Real64 cps;
+        Real64 wsatl, wsath, hsatl, hsath;
+        Real64 csat, m_star;
+        Real64 RHai, Hai = 1.0, HSSi, Hsi;
+        Real64 RHao, Hao = 1.0, HSSo, Hso, Hso_p;
+        Real64 HSSeff, WSSeff = 1.0, TSSeff = 1.0, HSSeff_p;
+        Real64 TsoG = 20.0 * 1.8 + 32;
+        Real64 TSSeff_G = 20.0 * 1.8 + 32;
+
+        int iter_Tso, itmax_Tso = 10, icvg_Tso = 0;
+        Real64 ResultX_Tso = 1.0, X1_Tso = 1.0, Y1_Tso = 1.0, error_Tso;
+
+        int iter_Hsseff, itmax_Hsseff = 10, icvg_Hsseff = 0;
+        Real64 ResultX_Hsseff = 1.0, X1_Hsseff = 1.0, Y1_Hsseff = 1.0, error_Hsseff;
+        Ntu = HdAvVt / ma;
+        Hsi = hftx9(Tsi, Xsi);
+
+        Xso = Xsi;  // Xsi is the initial guess of Xso
+        Tso = TsoG; // TsoG is the initial guess of Tso
+
+        // --------------- Iteration starts -------------------------------
+        if (Tso == Tsi) Tso = Tsi + 1.0;
+        for (iter_Tso = 1; iter_Tso <= itmax_Tso; ++iter_Tso) {
+
+            Hso = hftx9(Tso, Xso);
+            cps = cpftx9(Tsi, Xsi); // Cps = (Hso - Hsi )/(Tso - Tsi)
+
+            // #### Step 1: Calculate the saturation specific heat which is the derivative of the saturated air enthaply with respect to
+            // temperature
+            wsatl = cpftx9(Tsi, Xsi);
+            wsath = cpftx9(Tso, Xso); // Tso & Xso unknown, iterative variables
+            hsatl = (1.006 * (Tsi - 32) / 1.8 + wsatl * (1.84 * (Tsi - 32) / 1.8 + 2501)) / 2.326;
+            hsath = (1.006 * (Tso - 32) / 1.8 + wsath * (1.84 * (Tso - 32) / 1.8 + 2501)) / 2.326;
+            // hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) / 2.326;
+            // hsath = (1.006 * Tso + wsath * (1.84 * Tso + 2501)) / 2.326;
+
+            csat = (hsatl - hsath) / (Tsi - Tso); // P30 (3.23)
+
+            // Step 2: Calculate the capacitance ratio
+            m_star = (ma * csat) / (msi * cps); // P30 (3.24)
+            // double Cr = ma / msi;
+
+            // Step 3: Calculate the effectiveness
+            Effect = (1 - exp(-Ntu * (1 - m_star))) / (1 - m_star * (exp(-Ntu * (1 - m_star)))); // p31 (3.26)
+
+            // Step 4: Calculate the air outlet enthalpy
+            RHai = PsyRhFnTdbWPb((Tai - 32) / 1.8, Wai, Patm);              //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
+            Hai = PsyHFnTdbRhPb((Tai - 32) / 1.8, RHai, Patm) / BtuLbToJKg; // per lb dry air  Hai
+            HSSi = LDSatEnthalpy(Tsi, Xsi, Patm) / BtuLbToJKg;              // H_Ts.sat.i
+            Hao = Hai + Effect * (HSSi - Hai);                              // res 0  ; p31 (3.27)
+
+            // Step 5: Calculate the effective saturation enthalpy
+            HSSeff = Hai + (Hao - Hai) / (1.0 - exp(-1.0 * Ntu)); // Res 1 ;  p31 (3.28) H_Ts,sat.eff
+
+            // use the effective sauration enthaply and a saturated condition to find effective saturation humidity ratio
+            TSSeff = TSSeff_G; // TSSeff = TEFF  " to see if can find WSSeff = f (HSSeff, Xso, Xsi)"
+            for (iter_Hsseff = 1; iter_Hsseff <= itmax_Hsseff; ++iter_Hsseff) {
+
+                WSSeff = wftx9(TSSeff, (Xsi + Xso) / 2.0);                       // dRes6 = wftx9(TEFF, (Xsi + Xso) / 2.0) - WSSeff;
+                HSSeff_p = PsyHFnTdbW((TSSeff - 32) / 1.8, WSSeff) / BtuLbToJKg; // Res 1 ; HUMEFF - W_Ts.sat.eff
+                error_Hsseff = (HSSeff_p - HSSeff) / HSSeff;
+                Iterate(ResultX_Hsseff, 0.01, TSSeff, error_Hsseff, X1_Hsseff, Y1_Hsseff, iter_Hsseff, icvg_Hsseff);
+                // std::cout << "iter_Hsseff = " << iter_Hsseff << "   "
+                //           << "error_Hsseff = " << error_Hsseff << "   "
+                //           << "ResultX_Hsseff  = " << ResultX_Hsseff  << "   "
+                //           << "icvg_Hsseff = " << icvg_Hsseff << endl;
+                TSSeff = ResultX_Hsseff;
+                // If converged, exit loop
+                if (icvg_Hsseff == 1) {
+                    TSSeff_G = TSSeff;
+                    goto TSSeff_Loop_exit;
+                }
+                // If not converged due to low Humidity Ratio approximate value at outlet conditions
+                if (iter_Hsseff == itmax_Hsseff) {
+                    // NoSatCurveIntersect = true;
+                    // DesAirTempApparatusDewPt = PsyTdpFnWPb(WaterCoil(CoilNum).DesOutletAirHumRat, OutBaroPress);
+                    // DesAirHumRatApparatusDewPt = PsyWFnTdpPb(DesAirTempApparatusDewPt, OutBaroPress);
+                    TSSeff_G = TSSeff;
+                    goto TSSeff_Loop_exit;
+                }
+            }
+        TSSeff_Loop_exit:;
+
+            // Step 6: calculate the air outlet humidity ratio
+            Wao = WSSeff + (Wai - WSSeff) * exp(-1.0 * Ntu); // res 2 ; p31 (3.29) ; HUMOUT - Wao
+
+            // Step 7: calculate soultion outlet conditions
+            mso = msi + ma * (Wai - Wao); // res 3 ; MASSFLOWLIQOUT = mso , MASSFLOWLIQIN = msi
+
+            // Step 8: Caculate the iterative variable Tso
+            // Hsi = hftx9(Tsi, Xsi); // Hsi has been calcuated outside the iterative loop
+            Xso = msi * Xsi / mso;                        // res 4
+            Hso_p = (ma * (Hai - Hao) + msi * Hsi) / mso; // dRes5 = ma * (Hai - Hao) + msi * Hsi	- mso * hftx(Tso, Xso); // res 5
+            error_Tso = (Hso_p - Hso) / Hso;
+            Iterate(ResultX_Tso, 0.01, Tso, error_Tso, X1_Tso, Y1_Tso, iter_Tso, icvg_Tso);
+            // std::cout << "iter_Tso = " << iter_Tso << "    "
+            //           << "itmax_Tso = " << itmax_Tso << "    "
+            //           << "error_Tso = " << error_Tso << endl
+            //          << "ResultX_Tso = " << ResultX_Tso << endl
+            //          << "icvg_Tso = " << icvg_Tso << endl
+            //          << endl;
+            Tso = ResultX_Tso;
+
+            // Residual = (Hso_p - Hso) / Hso;
+            // SolveRoot(0.001, MaxIte, SolFla, Tso, Residual, UA0, UA1, Par)
+            // If converged, exit loop
+            if (icvg_Tso == 1) {
+                goto Tso_Loop_exit;
+            }
+
+            // If not converged due to low Humidity Ratio approximate value at outlet conditions
+            if (iter_Tso == itmax_Tso) {
+                // NoSatCurveIntersect = true;
+                // DesAirTempApparatusDewPt = PsyTdpFnWPb(WaterCoil(CoilNum).DesOutletAirHumRat, OutBaroPress);
+                // DesAirHumRatApparatusDewPt = PsyWFnTdpPb(DesAirTempApparatusDewPt, OutBaroPress);
+                goto Tso_Loop_exit;
+            }
+        }
+    Tso_Loop_exit:;
+
+        // ---------------- Iteration ends ------------------------------------
+
+        // Step 9: Caculate other outlet conditions
+        // double Hao = FluidEnthalpy(Tao, RHao, PATM, m_iFLD, 1);  // Hao
+        Tao = PsyTdbFnHW(Hao, Wao); // inline Real64 PsyTdbFnHW(Real64 const H, Real64 const dW)  // enthalpy {J/kg} // humidity ratio
+        RHao = PsyRhFnTdbWPb((Tao - 32) / 1.8, Wao, Patm); // dRes9 = FluidRH(dTAIROUT, Wao, PATM, m_iFLD, 2) - RHao;
+
+        // Step 10: Caculate other output variables
+        Qtot = ma * (Hao - Hai) * BtuLbToJKg; // Res7
+        Wevaprate = ma * (Wao - Wai);         // dRes10 = ma * (Wao - Wai) - WEVAPRATE;
+
+        //  ********************* new calcuation code: end *************************
+
+        OutletSolnTemp = Tso;
+        OutletSolnConc = Xso;
+        OutletSolnMassFlowRate = mso;
+        OutletAirTemp = Tao;
+        OutletAirHumRat = Wao;
+        TotWaterCoilLoad = Qtot;
+        WaterEvaporate = Wevaprate;
+    }
+    
+
     // End Algorithm Section of the Module
 
     // Coil Completely Dry Subroutine for Cooling Coil
