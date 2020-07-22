@@ -2931,6 +2931,200 @@ namespace WaterCoils {
             //} // end of heating Plant Sizing existence IF - ELSE
         } // end heating coil IF
 
+        // if this is a dehumidification coil
+        if (WaterCoil(CoilNum).WaterCoilType == CoilType_Dehumidification && WaterCoil(CoilNum).RequestingAutoSize) {
+            // find the appropriate Plant Sizing object
+            PltSizCoolNum = PlantUtilities::MyPlantSizingIndex("dehumidification coil",
+                                                               WaterCoil(CoilNum).Name,
+                                                               WaterCoil(CoilNum).WaterInletNodeNum,
+                                                               WaterCoil(CoilNum).WaterOutletNodeNum,
+                                                               LoopErrorsFound);
+        }
+
+        if (WaterCoil(CoilNum).WaterCoilType == CoilType_Dehumidification) { // 'Dehumidification'
+
+            if (WaterCoil(CoilNum).UseDesignWaterDeltaTemp) {
+                DataWaterCoilSizCoolDeltaT = WaterCoil(CoilNum).DesignWaterDeltaTemp;
+            } else {
+                if (PltSizCoolNum > 0) {
+                    DataWaterCoilSizCoolDeltaT = PlantSizData(PltSizCoolNum).DeltaT;
+                }
+            }
+
+            if (PltSizCoolNum > 0) {
+                DataPltSizCoolNum = PltSizCoolNum;
+                DataWaterLoopNum = WaterCoil(CoilNum).WaterLoopNum;
+                CompType = cAllCoilTypes(Coil_CoolingWater); // Coil:Cooling:Water
+                bPRINT = false;       // do not print this sizing request since the autosized value is needed and this input may not be autosized (we
+                                      // should print this!)
+                TempSize = AutoSize;  // get the autosized air volume flow rate for use in other calculations
+                SizingString.clear(); // doesn't matter
+                CompName = WaterCoil(CoilNum).Name;
+                RequestSizing(state, CompType, CompName, CoolingAirflowSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).InletAirMassFlowRate = StdRhoAir * TempSize; // inlet air mass flow rate is the autosized value
+                DataAirFlowUsedForSizing = TempSize; // many autosized inputs use the design (autosized) air volume flow rate, save this value
+                DataFlowUsedForSizing = TempSize;
+
+                if (CurSysNum > 0 && CurOASysNum == 0) {
+                    Real64 DesCoilExitHumRat(0.0); // fix coil sizing inconsistency
+                    GetCoilDesFlowT(CurSysNum, CpAirStd, DesCoilAirFlow, DesCoilExitTemp, DesCoilExitHumRat);
+                    DataAirFlowUsedForSizing = DesCoilAirFlow;
+                    DataFlowUsedForSizing = DesCoilAirFlow;
+                    DataDesOutletAirTemp = DesCoilExitTemp;
+                    DataDesOutletAirHumRat = DesCoilExitHumRat; // need to test for dry coil but inlet conditions not yet known
+                }
+
+                // calculate pre-sizing data needed for specific functions (e.g., CoolingWaterDesAirInletTempSizing needs HRin and air flow)
+                // these will be calculated again after other parameters are known
+                // if (WaterCoil(CoilNum).WaterCoilModel == CoilModel_Detailed) { // 'DETAILED FLAT FIN'
+                //    TempSize = AutoSize;                                       // coil report
+                //} else {
+                TempSize = WaterCoil(CoilNum).DesInletAirHumRat; // preserve input if entered
+                //}
+                RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
+                DataDesInletAirHumRat = TempSize;
+                TempSize = AutoSize;
+                RequestSizing(state, CompType, CompName, CoolingCapacitySizing, SizingString, TempSize, bPRINT, RoutineName);
+                DataCapacityUsedForSizing = TempSize;
+                TempSize = WaterCoil(CoilNum).MaxWaterVolFlowRate;
+                RequestSizing(state, CompType, CompName, CoolingWaterflowSizing, SizingString, TempSize, bPRINT, RoutineName);
+                DataWaterFlowUsedForSizing = TempSize;
+                // end pre-sizing data calculations
+
+                FieldNum = 4; //  N4 , \field Design Inlet Air Temperature
+                bPRINT = true;
+                TempSize = WaterCoil(CoilNum).DesInletAirTemp; // preserve input if entered
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [C]";
+
+                RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletTempSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesInletAirTemp = TempSize;
+                DataDesInletAirTemp = TempSize;
+
+                FieldNum = 3; //  N3 , \field Design Inlet Water Temperature
+                bPRINT = true;
+                TempSize = WaterCoil(CoilNum).DesInletWaterTemp; // preserve input if entered
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [C]";
+
+                RequestSizing(state, CompType, CompName, CoolingWaterDesWaterInletTempSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesInletWaterTemp = TempSize;
+
+                if (CurZoneEqNum > 0) { // zone equipment use air inlet humrat to calculate design outlet air temperature
+
+                    FieldNum = 6; //  N6 , \field Design Inlet Air Humidity Ratio
+                    bPRINT = true;
+                    TempSize = WaterCoil(CoilNum).DesInletAirHumRat; // preserve input if entered
+                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [kgWater/kgDryAir]";
+
+                    RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
+                    WaterCoil(CoilNum).DesInletAirHumRat = TempSize;
+                }
+
+                FieldNum = 5; //  N5 , \field Design Outlet Air Temperature
+                bPRINT = true;
+                TempSize = WaterCoil(CoilNum).DesOutletAirTemp; // preserve input if entered
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [C]";
+
+                DataDesInletWaterTemp = WaterCoil(CoilNum).DesInletWaterTemp; // used for warning messages
+                RequestSizing(state, CompType, CompName, CoolingWaterDesAirOutletTempSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesOutletAirTemp = TempSize;
+                DataDesOutletAirTemp = TempSize;
+
+                if (CurSysNum > 0) { // This call can be deleted at a future time and remove the if ( CurZoneEqNum > 0 ) check above. This will
+                                     // change the order of the eio file.
+
+                    FieldNum = 6; //  N6 , \field Design Inlet Air Humidity Ratio
+                    bPRINT = true;
+                    TempSize = WaterCoil(CoilNum).DesInletAirHumRat;
+                    SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [kgWater/kgDryAir]";
+                    RequestSizing(state, CompType, CompName, CoolingWaterDesAirInletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
+                    WaterCoil(CoilNum).DesInletAirHumRat = TempSize;
+                }
+
+                FieldNum = 7; //  N7 , \field Design Outlet Air Humidity Ratio
+                bPRINT = true;
+                TempSize = WaterCoil(CoilNum).DesOutletAirHumRat; // preserve input if entered
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [kgWater/kgDryAir]";
+
+                RequestSizing(state, CompType, CompName, CoolingWaterDesAirOutletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesOutletAirHumRat = TempSize;
+                DataDesOutletAirHumRat = TempSize;
+
+                FieldNum = 8; //  N8 , \field Design Inlet Soultion Concentration {-}
+                bPRINT = true;
+                TempSize = WaterCoil(CoilNum).DesInletSolnConcentration; // preserve input if entered
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [%]";
+
+                // RequestSizing(state, CompType, CompName, CoolingWaterDesAirOutletHumRatSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesInletSolnConcentration = 0.4;
+                // DataDesOutletAirHumRat = TempSize;
+
+                TempSize = AutoSize;
+                bPRINT = true;
+                if (WaterCoil(CoilNum).MaxWaterVolFlowRate != AutoSize) bPRINT = false;
+                if (CurSysNum == 0) bPRINT = false;
+                SizingString = "Design Coil Load [W]"; // there is no input field for this value and this is not the rated capacity (we should
+                                                       // always print this!)
+                // air inlet/outlet conditions should be known. Don't include fan heat in capacity calculation.
+                DataDesAccountForFanHeat = false;
+                RequestSizing(state, CompType, CompName, CoolingCapacitySizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesWaterCoolingCoilRate = TempSize;
+                WaterCoil(CoilNum).InletAirMassFlowRate =
+                    StdRhoAir * DataFlowUsedForSizing; // inlet air mass flow rate is the autosized value
+                DataCapacityUsedForSizing = WaterCoil(CoilNum).DesWaterCoolingCoilRate;
+
+                // Why isn't the water volume flow rate based on the user inputs for inlet/outlet air/water temps? Water volume flow rate is
+                // always based on autosized inputs.
+                bPRINT = true;
+                FieldNum = 1; //  CoilModel_Detailed: N1 , \field Maximum Water Flow Rate, else: N1 , \field Design Water Flow Rate
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m3/s]";
+                TempSize = WaterCoil(CoilNum).MaxWaterVolFlowRate;
+                RequestSizing(state, CompType, CompName, CoolingWaterflowSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).MaxWaterVolFlowRate = TempSize;
+                DataWaterFlowUsedForSizing = TempSize;
+
+                FieldNum = 2; //  N2 , \field Design Air Flow Rate
+                bPRINT = true;
+                SizingString = WaterCoilNumericFields(CoilNum).FieldNames(FieldNum) + " [m3/s]";
+
+                TempSize = WaterCoil(CoilNum).DesAirVolFlowRate;
+                RequestSizing(state, CompType, CompName, CoolingAirflowSizing, SizingString, TempSize, bPRINT, RoutineName);
+                WaterCoil(CoilNum).DesAirVolFlowRate = TempSize;
+                WaterCoil(CoilNum).DesAirMassFlowRate = WaterCoil(CoilNum).DesAirVolFlowRate * StdRhoAir;
+
+                if (WaterCoil(CoilNum).DesAirVolFlowRate <= 0.0) {
+                    WaterCoil(CoilNum).DesAirVolFlowRate = 0.0;
+                    ShowWarningError("The design air flow rate is zero for Coil:Cooling:LiquidDesiccant " + WaterCoil(CoilNum).Name);
+                    ShowContinueError("The autosize value for max air volume flow rate is zero");
+                }
+
+                DataPltSizCoolNum = 0; // reset all globals to 0 to ensure correct sizing for other child components
+                DataWaterLoopNum = 0;
+                DataConstantUsedForSizing = 0.0;
+                DataFractionUsedForSizing = 0.0;
+                DataAirFlowUsedForSizing = 0.0;
+                DataFlowUsedForSizing = 0.0;
+                DataWaterFlowUsedForSizing = 0.0;
+                DataCapacityUsedForSizing = 0.0;
+                DataDesInletAirTemp = 0.0;
+                DataDesOutletAirTemp = 0.0;
+                DataDesOutletAirHumRat = 0.0;
+                DataDesInletAirHumRat = 0.0;
+                DataDesInletWaterTemp = 0.0;
+                DataWaterCoilSizCoolDeltaT = 0.0;
+            } else {
+                // If there is no cooling Plant Sizing object and autosizing was requested, issue fatal error message
+                if (WaterCoil(CoilNum).RequestingAutoSize) {
+                    ShowSevereError("Autosizing of water coil requires a cooling loop Sizing:Plant object");
+                    ShowContinueError("Occurs in water coil object= " + WaterCoil(CoilNum).Name);
+                    ErrorsFound = true;
+                }
+            }
+            //} // end of cooling Plant Sizing existence IF - ELSE
+        } // end cooling coil IF
+
+
+
+
         // save the design water volumetric flow rate for use by the water loop sizing algorithms
         if (WaterCoil(CoilNum).MaxWaterVolFlowRate > 0.0) {
             RegisterPlantCompDesignFlow(WaterCoil(CoilNum).WaterInletNodeNum, WaterCoil(CoilNum).MaxWaterVolFlowRate);
