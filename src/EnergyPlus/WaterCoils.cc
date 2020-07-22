@@ -5691,16 +5691,6 @@ namespace WaterCoils {
 
 
 
-
-
-
-
-
-
-
-
-
-
     // Subroutine for caculating outlet condition if coil is wet , for Cooling Coil
 
     void WetCoilOutletCondition(int const CoilNum,
@@ -5944,6 +5934,15 @@ namespace WaterCoils {
                     WaterCoil(CoilNum).reportCoilFinalSizes = false;
                 } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_Cooling) {
                     coilObjClassName = "Coil:Cooling:Water";
+                    coilSelectionReportObj->setCoilFinalSizes(WaterCoil(CoilNum).Name,
+                                                              coilObjClassName,
+                                                              WaterCoil(CoilNum).DesWaterCoolingCoilRate,
+                                                              -999.0,
+                                                              WaterCoil(CoilNum).DesAirVolFlowRate,
+                                                              WaterCoil(CoilNum).MaxWaterVolFlowRate);
+                    WaterCoil(CoilNum).reportCoilFinalSizes = false;
+                } else if (WaterCoil(CoilNum).WaterCoilType_Num == WaterCoil_LiqDesiccantDehum) {
+                    coilObjClassName = "Coil:Dehumidification:LiquidDesiccant";
                     coilSelectionReportObj->setCoilFinalSizes(WaterCoil(CoilNum).Name,
                                                               coilObjClassName,
                                                               WaterCoil(CoilNum).DesWaterCoolingCoilRate,
