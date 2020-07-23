@@ -80,11 +80,11 @@ namespace WaterCoils {
     extern int const WaterCoil_SimpleHeating;
     extern int const WaterCoil_DetFlatFinCooling;
     extern int const WaterCoil_Cooling;
-    extern int const WaterCoil_LiqDesiccantDehum;
+    extern int const WaterCoil_DehumLiqDesiccant;
 
     extern int const CoilType_Cooling;
     extern int const CoilType_Heating;
-    extern int const CoilType_Dehumidification;
+    extern int const CoilType_LiqDesiccant;
 
     extern int const CoilModel_Simple;
     extern int const CoilModel_Cooling;
@@ -389,23 +389,25 @@ namespace WaterCoils {
                                    Real64 const PartLoadRatio // part-load ratio of heating coil
     );
 
-    void LiqDesiccantCoil_Ntu_HPDM(int const CoilNum,               // Number of Coil
-                                   Real64 const SolnMassFlowRateIn, // Solution mass flow rate IN to this function(kg/s)
-                                   Real64 const SolnTempIn,         // Solution temperature IN to this function (C)
-                                   Real64 const SolnConcIn,         // Solution concentration IN to this function (weight fraction)
-                                   Real64 const AirMassFlowRateIn,  // Air mass flow rate IN to this function(kg/s)
-                                   Real64 const AirTempIn,          // Air dry bulb temperature IN to this function(C)
-                                   Real64 const AirHumRat,          // Air Humidity Ratio IN to this funcation (C)
-                                   Real64 const Coeff_HdAvVt,       // Mass Tansfer Coefficient Area Product (kg/s)
-                                   Real64 const LewisNum,           // External overall heat transfer coefficient(W/m2 C)
-                                   Real64 &OutletSolnTemp,          // Leaving solution temperature (C)
-                                   Real64 &OutletSolnConc,          // Leaving solution concentration (weight fraction)
-                                   Real64 &OutletSolnMassFlowRate,  // Leaving solution mass flow rate (kg/s)
-                                   Real64 &OutletAirTemp,           // Leaving air dry bulb temperature(C)
-                                   Real64 &OutletAirHumRat,         // Leaving air humidity ratio
-                                   Real64 &TotWaterCoilLoad,        // Total heat transfer rate(W)
-                                   Real64 &WaterEvaporate           // Total water evaporate (kg)
-    );
+    void LiqDesiccantCoil_Ntu(int const CoilNum,               // Number of Coil
+                             Real64 const SolnMassFlowRateIn, // Solution mass flow rate IN to this function(kg/s)
+                             Real64 const SolnTempIn,         // Solution temperature IN to this function (C)
+                             Real64 const SolnConcIn,         // Solution concentration IN to this function (weight fraction)
+                             Real64 const AirMassFlowRateIn,  // Air mass flow rate IN to this function(kg/s)
+                             Real64 const AirTempIn,          // Air dry bulb temperature IN to this function(C)
+                             Real64 const AirHumRat,          // Air Humidity Ratio IN to this funcation (C)
+                             Real64 const Coeff_HdAvVt,       // Mass Tansfer Coefficient Area Product (kg/s)
+                             Real64 const LewisNum,           // External overall heat transfer coefficient(W/m2 C)
+                             Real64 &OutletSolnTemp,          // Leaving solution temperature (C)
+                             Real64 &OutletSolnConc,          // Leaving solution concentration (weight fraction)
+                             Real64 &OutletSolnMassFlowRate,  // Leaving solution mass flow rate (kg/s)
+                             Real64 &OutletAirTemp,           // Leaving air dry bulb temperature(C)
+                             Real64 &OutletAirHumRat,         // Leaving air humidity ratio
+                             Real64 &OutletSolnEnthaly,       // Leaving solution enthalpy
+                             Real64 &InletSolnEnthaly,        // Leaving solution enthalpy
+                             Real64 &TotWaterCoilLoad,        // Total heat transfer rate(W)
+                             Real64 &SenWaterCoilLoad         // Total sensiable heat transfer rate(W)
+   );
     // End Algorithm Section of the Module
 
     // Coil Completely Dry Subroutine for Cooling Coil
@@ -492,16 +494,26 @@ namespace WaterCoils {
     );
 
     double TSHSX(double t, double x, double h);
-    double WSSE(double h, double x, double p);
-    double wftx9(double t, double xi);
-    void pft3(double &p, double const &t);
-    double cpftx9(double tsi, double xsi);
-    Real64 hftx9(Real64 t, Real64 x);
-    double LDSatEnthalpy(double t, double x, double dPatm);
-    double PsyHFnTdbW_new(double T, double W);
-    Real64 tfhx9(Real64 h, Real64 x);
+    double WSSE(int MatlOfLiqDesiccant, double h, double x, double p);
+
+    double SolnWFnTX(int MatlOfLiqDesiccant, double t, double x);
+    double WFnTX_LiCl(double t, double xi);
+
+    void PsatFnT(double &p, double const &t);
+
+    double SolnCpFnTX(int MatlOfLiqDesiccant, double tsi, double xsi);
+    double CpFnTX_LiCl(double tsi, double xsi);
+
+    Real64 SolnHFnTX(int MatlOfLiqDesiccant, double tsi, double xsi);
+    Real64 HFnTX_LiCl(Real64 t, Real64 x);
+
+    double LDSatEnthalpy(int MatlOfLiqDesiccant, double t, double x, double dPatm);
+
+    Real64 SolnTFnHX(int MatlOfLiqDesiccant, Real64 h, Real64 x);
     Real64 SolnTempResidual(Real64 const t,              // test value of Tdb [C]
                             Array1D<Real64> const &Par); // Par(1) = desired enthaply H [J/kg]
+
+    double PsyHFnTdbW_new(double T, double W);
 
     // Subroutine for caculating outlet condition if coil is wet , for Cooling Coil
 

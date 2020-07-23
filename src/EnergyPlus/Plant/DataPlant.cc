@@ -228,7 +228,7 @@ namespace DataPlant {
                                              "ZONEHVAC:COOLINGPANEL:RADIANTCONVECTIVE:WATER",
                                              "HEATPUMP:PLANTLOOP:EIR:COOLING",
                                              "HEATPUMP:PLANTLOOP:EIR:HEATING",
-                                             "COIL:DEHUMIDIFICATION:LIQUIDDESICCANT"});
+                                             "COIL:LIQUIDDESICCANT:DEHUMIDIFICATION"});
 
     Array1D_string const ccSimPlantEquipTypes(NumSimPlantEquipTypes,
                                               {"Boiler:HotWater",
@@ -327,7 +327,7 @@ namespace DataPlant {
                                                "ZoneHVAC:CoolingPanel:RadiantConvective:Water",
                                                "HeatPump:PlantLoop:EIR:Cooling",
                                                "HeatPump:PlantLoop:EIR:Heating",
-                                               "Coil:Dehumidification:LiquidDesiccant"});
+                                               "Coil:LiquidDesiccant:Dehumidification"});
 
     Array1D_int const ValidLoopEquipTypes(
         NumSimPlantEquipTypes,

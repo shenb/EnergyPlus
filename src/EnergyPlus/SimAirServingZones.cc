@@ -197,7 +197,7 @@ namespace SimAirServingZones {
     int const Fan_System_Object(28);
     int const UnitarySystemModel(29);
     int const ZoneVRFasAirLoopEquip(30);
-    int const WaterCoil_LiqDesiccantDehum(31);
+    int const WaterCoil_DehumLiqDesiccant(31);
 
     // DERIVED TYPE DEFINITIONS:
     // na
