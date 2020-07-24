@@ -274,6 +274,7 @@ namespace WaterCoils {
         Real64 OriginalUACoilExternal;
         Real64 OriginalUACoilInternal;
         Real64 HdAvVt;
+        int MatlLiqDesiccant; // materials of liquid desiccant
 
         bool DesiccantRegenerationCoil; // true if it is a regeneration air heating coil defined in Desiccant Dehumidifier system
         int DesiccantDehumNum;          // index to desiccant dehumidifier object
@@ -306,8 +307,8 @@ namespace WaterCoils {
               SurfAreaWetFractionSaved(0.0), UACoilVariable(0.0), RatioAirSideToWaterSideConvect(1.0), AirSideNominalConvect(0.0),
               LiquidSideNominalConvect(0.0), Control(0), AirInletNodeNum(0), AirOutletNodeNum(0), WaterInletNodeNum(0), WaterOutletNodeNum(0),
               WaterLoopNum(0), WaterLoopSide(0), WaterLoopBranchNum(0), WaterLoopCompNum(0), CondensateCollectMode(CondensateDiscarded),
-              CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0), CoilPerfInpMeth(0), FaultyCoilFoulingFlag(false), FaultyCoilFoulingIndex(0),
-              FaultyCoilFoulingFactor(0.0), HdAvVt(1.0),
+              CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0), CoilPerfInpMeth(0), FaultyCoilFoulingFlag(false), FaultyCoilFoulingIndex(0), FaultyCoilFoulingFactor(0.0),
+              HdAvVt(1.0), MatlLiqDesiccant(0),
               DesiccantRegenerationCoil(false), DesiccantDehumNum(0), DesignWaterDeltaTemp(0.0), UseDesignWaterDeltaTemp(false), ControllerName(""),
               ControllerIndex(0), reportCoilFinalSizes(true), AirLoopDOASFlag(false)
         {
