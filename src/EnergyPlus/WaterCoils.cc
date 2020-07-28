@@ -362,6 +362,7 @@ namespace WaterCoils {
         // METHODOLOGY EMPLOYED:
         // Uses "Get" routines to read in data.
 
+         using namespace std;
         // Using/Aliasing
         using BranchNodeConnections::TestCompSet;
         using DataSizing::AutoSize;
@@ -457,6 +458,7 @@ namespace WaterCoils {
                                           cAlphaFields,
                                           cNumericFields);
 
+         
             WaterCoilNumericFields(CoilNum).FieldNames.allocate(MaxNums);
             WaterCoilNumericFields(CoilNum).FieldNames = "";
             WaterCoilNumericFields(CoilNum).FieldNames = cNumericFields;
@@ -962,7 +964,7 @@ namespace WaterCoils {
         // Get the data for liquid desiccant dehumidification coils.
         for (LiqDesiccantDehumNum = 1; LiqDesiccantDehumNum <= NumLiqDesiccantDehum; ++LiqDesiccantDehumNum) {
 
-            CoilNum = NumSimpHeat + NumFlatFin + CoolingNum + LiqDesiccantDehumNum;
+            CoilNum = NumSimpHeat + NumFlatFin + NumCooling + LiqDesiccantDehumNum;
 
             inputProcessor->getObjectItem(CurrentModuleObject,
                                           LiqDesiccantDehumNum,
@@ -975,6 +977,7 @@ namespace WaterCoils {
                                           lAlphaBlanks,
                                           cAlphaFields,
                                           cNumericFields);
+            
 
             WaterCoilNumericFields(CoilNum).FieldNames.allocate(MaxNums);
             WaterCoilNumericFields(CoilNum).FieldNames = "";
