@@ -84,7 +84,7 @@ namespace WaterCoils {
 
     extern int const CoilType_Cooling;
     extern int const CoilType_Heating;
-    extern int const CoilType_LiqDesiccant;
+    extern int const CoilType_Dehumidification;
 
     extern int const CoilModel_Simple;
     extern int const CoilModel_Cooling;

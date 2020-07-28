@@ -1197,7 +1197,7 @@ namespace SimAirServingZones {
                                     if (UtilityRoutines::SameString(CompType, "Coil:Cooling:Water:DetailedGeometry") ||
                                         UtilityRoutines::SameString(CompType, "Coil:Heating:Water") ||
                                         UtilityRoutines::SameString(CompType, "Coil:Cooling:Water") ||
-                                        UtilityRoutines::SameString(CompType, "Coil:LiquidDesiccant:Dehumidification")) {
+                                        UtilityRoutines::SameString(CompType, "Coil:Dehumidification:LiquidDesiccant")) {
                                         WaterCoilNodeNum = GetCoilWaterInletNode(
                                             CompType, PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).Name, ErrorsFound);
                                         if (WaterCoilNodeNum == ActuatorNodeNum) {
@@ -1290,7 +1290,7 @@ namespace SimAirServingZones {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = WaterCoil_DetailedCool;
                         } else if (componentType == "COIL:COOLING:WATER") {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = WaterCoil_Cooling;
-                        } else if (componentType == "COIL:LIQUIDDESICCANT:DEHUMIDIFICATION") {
+                        } else if (componentType == "COIL:DEHUMIDIFICATION:LIQUIDDESICCANT") {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = WaterCoil_DehumLiqDesiccant;
                         } else if (componentType == "COIL:HEATING:ELECTRIC") {
                             PrimaryAirSystem(AirSysNum).Branch(BranchNum).Comp(CompNum).CompType_Num = Coil_ElectricHeat;

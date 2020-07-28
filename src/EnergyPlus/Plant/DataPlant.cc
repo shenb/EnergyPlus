@@ -228,7 +228,7 @@ namespace DataPlant {
                                              "ZONEHVAC:COOLINGPANEL:RADIANTCONVECTIVE:WATER",
                                              "HEATPUMP:PLANTLOOP:EIR:COOLING",
                                              "HEATPUMP:PLANTLOOP:EIR:HEATING",
-                                             "COIL:LIQUIDDESICCANT:DEHUMIDIFICATION"});
+                                             "COIL:DEHUMIDIFICATION:LIQUIDDESICCANT"});
 
     Array1D_string const ccSimPlantEquipTypes(NumSimPlantEquipTypes,
                                               {"Boiler:HotWater",
@@ -327,7 +327,7 @@ namespace DataPlant {
                                                "ZoneHVAC:CoolingPanel:RadiantConvective:Water",
                                                "HeatPump:PlantLoop:EIR:Cooling",
                                                "HeatPump:PlantLoop:EIR:Heating",
-                                               "Coil:LiquidDesiccant:Dehumidification"});
+                                               "Coil:Dehumidification:LiquidDesiccant"});
 
     Array1D_int const ValidLoopEquipTypes(
         NumSimPlantEquipTypes,
@@ -442,7 +442,7 @@ namespace DataPlant {
     int const TypeOf_CoolingPanel_Simple(94);
     int const TypeOf_HeatPumpEIRCooling(95);
     int const TypeOf_HeatPumpEIRHeating(96);
-    int const TypeOf_CoilWaterLiqDesiccantDehum(97);
+    int const TypeOf_CoilLiqDesiccantDehum(97);
 
     Array1D<Real64> const ConvergenceHistoryARR(DataPlant::NumConvergenceHistoryTerms, {0.0, -1.0, -2.0, -3.0, -4.0});
     Real64 const sum_ConvergenceHistoryARR(sum(ConvergenceHistoryARR));

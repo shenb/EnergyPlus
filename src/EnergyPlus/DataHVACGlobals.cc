@@ -281,7 +281,7 @@ namespace DataHVACGlobals {
                                         "Coil:Heating:DX:VariableRefrigerantFlow:FluidTemperatureControl",
                                         "Coil:Cooling:DX",
                                         "",
-                                        "Coil:LiquidDesiccant:Dehumidification"});
+                                        "Coil:Dehumidification:LiquidDesiccant"});
 
     Array1D_string const cCoolingCoilTypes(NumAllCoilTypes,
                                            {"Coil:Cooling:DX:SingleSpeed",

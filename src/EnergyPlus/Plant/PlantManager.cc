@@ -978,8 +978,8 @@ namespace EnergyPlus {
                             } else if (UtilityRoutines::SameString(this_comp_type, "Coil:Cooling:Water")) {
                                 this_comp.TypeOf_Num = TypeOf_CoilWaterCooling;
                                 this_comp.CurOpSchemeType = DemandOpSchemeType;
-                            } else if (UtilityRoutines::SameString(this_comp_type, "Coil:LiquidDesiccant:Dehumidification")) {
-                                this_comp.TypeOf_Num = TypeOf_CoilWaterLiqDesiccantDehum;
+                            } else if (UtilityRoutines::SameString(this_comp_type, "Coil:Dehumidification:LiquidDesiccant")) {
+                                this_comp.TypeOf_Num = TypeOf_CoilLiqDesiccantDehum;
                                 this_comp.CurOpSchemeType = DemandOpSchemeType;
                             } else if (UtilityRoutines::SameString(this_comp_type,
                                                                    "Coil:Cooling:Water:DetailedGeometry")) {
@@ -2874,7 +2874,7 @@ namespace EnergyPlus {
                                         ShouldBeACTIVE = true;
                                     } else if (SELECT_CASE_var == TypeOf_CoilWaterCooling) {
                                         ShouldBeACTIVE = true;
-                                    } else if (SELECT_CASE_var == TypeOf_CoilWaterLiqDesiccantDehum) {
+                                    } else if (SELECT_CASE_var == TypeOf_CoilLiqDesiccantDehum) {
                                         ShouldBeACTIVE = true;
                                     } else if (SELECT_CASE_var == TypeOf_CoilWaterDetailedFlatCooling) {
                                         ShouldBeACTIVE = true;
@@ -3953,7 +3953,7 @@ namespace EnergyPlus {
                                     this_component.FlowCtrl = ControlType_Active;
                                     this_component.FlowPriority = LoopFlowStatus_NeedyAndTurnsLoopOn;
                                     this_component.HowLoadServed = HowMet_NoneDemand;
-                                } else if (SELECT_CASE_var == TypeOf_CoilWaterLiqDesiccantDehum) { //               = 97  ! demand side component
+                                } else if (SELECT_CASE_var == TypeOf_CoilLiqDesiccantDehum) { //               = 97  ! demand side component
                                     this_component.FlowCtrl = ControlType_Active;
                                     this_component.FlowPriority = LoopFlowStatus_NeedyAndTurnsLoopOn;
                                     this_component.HowLoadServed = HowMet_NoneDemand;
