@@ -130,7 +130,7 @@ namespace DataPlant {
     Array1D_string const PressureSimType(4, {"NONE", "PUMPPOWERCORRECTION", "LOOPFLOWCORRECTION", "PRESSURESIMULATION"});
 
     // Parameters for Component/Equipment Types  (ref: TypeOf in CompData)
-    int const NumSimPlantEquipTypes(97);
+    int const NumSimPlantEquipTypes(98);
     Array1D_string const SimPlantEquipTypes(NumSimPlantEquipTypes,
                                             {"BOILER:HOTWATER",
                                              "BOILER:STEAM",
@@ -228,7 +228,8 @@ namespace DataPlant {
                                              "ZONEHVAC:COOLINGPANEL:RADIANTCONVECTIVE:WATER",
                                              "HEATPUMP:PLANTLOOP:EIR:COOLING",
                                              "HEATPUMP:PLANTLOOP:EIR:HEATING",
-                                             "COIL:DEHUMIDIFICATION:LIQUIDDESICCANT"});
+                                             "COIL:DEHUMIDIFICATION:LIQUIDDESICCANT",
+                                             "THERMALSTORAGE:PCM:SIMPLE"});
 
     Array1D_string const ccSimPlantEquipTypes(NumSimPlantEquipTypes,
                                               {"Boiler:HotWater",
@@ -327,7 +328,8 @@ namespace DataPlant {
                                                "ZoneHVAC:CoolingPanel:RadiantConvective:Water",
                                                "HeatPump:PlantLoop:EIR:Cooling",
                                                "HeatPump:PlantLoop:EIR:Heating",
-                                               "Coil:Dehumidification:LiquidDesiccant"});
+                                               "Coil:Dehumidification:LiquidDesiccant",
+                                               "ThermalStorage:Pcm:Simple"});
 
     Array1D_int const ValidLoopEquipTypes(
         NumSimPlantEquipTypes,
@@ -343,7 +345,7 @@ namespace DataPlant {
          LoopType_Plant, LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,
          LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Plant, LoopType_Plant, LoopType_Both,
          LoopType_Both,  LoopType_Both,  LoopType_Both,  LoopType_Plant, LoopType_Plant, LoopType_Plant, LoopType_Both,  LoopType_Both,
-         LoopType_Plant});
+         LoopType_Plant, LoopType_Plant});
 
     int const TypeOf_Other(-1);
     int const TypeOf_Boiler_Simple(1);
@@ -443,6 +445,7 @@ namespace DataPlant {
     int const TypeOf_HeatPumpEIRCooling(95);
     int const TypeOf_HeatPumpEIRHeating(96);
     int const TypeOf_CoilLiqDesiccantDehum(97);
+    int const TypeOf_TS_PcmSimple(98); 
 
     Array1D<Real64> const ConvergenceHistoryARR(DataPlant::NumConvergenceHistoryTerms, {0.0, -1.0, -2.0, -3.0, -4.0});
     Real64 const sum_ConvergenceHistoryARR(sum(ConvergenceHistoryARR));
