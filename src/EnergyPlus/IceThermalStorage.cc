@@ -1922,7 +1922,102 @@ namespace IceThermalStorage {
         }
     }
 
-    // PCM thermal storage 
+    
+    // ****************** PCM thermal storage *****************************************
+
+    void SimplePcmStorageData::InitSimplePcmStorage(BranchInputManagerData &dataBranchInputManager)
+    {
+
+        bool errFlag;
+
+        if (this->MyPlantScanFlag) {
+            // Locate the storage on the plant loops for later usage
+            errFlag = false;
+            PlantUtilities::ScanPlantLoopsForObject(dataBranchInputManager,
+                                                    this->Name,
+                                                    DataPlant::TypeOf_TS_PcmSimple,
+                                                    this->LoopNum,
+                                                    this->LoopSideNum,
+                                                    this->BranchNum,
+                                                    this->CompNum,
+                                                    errFlag,
+                                                    _,
+                                                    _,
+                                                    _,
+                                                    _,
+                                                    _);
+            if (errFlag) {
+                ShowFatalError("InitSimplePcmStorage: Program terminated due to previous condition(s).");
+            }
+
+            this->setupOutputVars();
+            this->MyPlantScanFlag = false;
+        }
+
+        if (DataGlobals::BeginEnvrnFlag && this->MyEnvrnFlag2) {
+            this->DesignMassFlowRate = DataPlant::PlantLoop(this->LoopNum).MaxMassFlowRate;
+            // no design flow rates for model, assume min is zero and max is plant loop's max
+            PlantUtilities::InitComponentNodes(0.0,
+                                               this->DesignMassFlowRate,
+                                               this->PltInletNodeNum,
+                                               this->PltOutletNodeNum,
+                                               this->LoopNum,
+                                               this->LoopSideNum,
+                                               this->BranchNum,
+                                               this->CompNum);
+            if ((DataPlant::PlantLoop(this->LoopNum).CommonPipeType == DataPlant::CommonPipe_TwoWay) &&
+                (this->LoopSideNum == DataPlant::SupplySide)) {
+                // up flow priority of other components on the same branch as the Ice tank
+                for (int compNum = 1;
+                     compNum <= DataPlant::PlantLoop(this->LoopNum).LoopSide(DataPlant::SupplySide).Branch(this->BranchNum).TotalComponents;
+                     ++compNum) {
+                    DataPlant::PlantLoop(this->LoopNum).LoopSide(DataPlant::SupplySide).Branch(this->BranchNum).Comp(compNum).FlowPriority =
+                        DataPlant::LoopFlowStatus_NeedyAndTurnsLoopOn;
+                }
+            }
+            this->MyLoad = 0.0;
+            this->Urate = 0.0;
+            this->PcmFracRemain = 1.0;
+            this->PcmTSCoolingRate = 0.0;
+            this->PcmTSCoolingEnergy_rep = 0.0;
+            this->PcmTSChargingRate = 0.0;
+            this->PcmTSChargingEnergy = 0.0;
+            this->PcmTSmdot = 0.0;
+            this->PcmTSInletTemp = 0.0;
+            this->PcmTSOutletTemp = 0.0;
+
+            this->MyEnvrnFlag2 = false;
+        }
+
+        if (!DataGlobals::BeginEnvrnFlag) this->MyEnvrnFlag2 = true;
+    }
+
+    void SimplePcmStorageData::setupOutputVars()
+    {
+        SetupOutputVariable("Pcm Thermal Storage Requested Load", OutputProcessor::Unit::W, this->MyLoad, "System", "Average", this->Name);
+
+        SetupOutputVariable("Pcm Thermal Storage End Fraction", OutputProcessor::Unit::None, this->PcmFracRemain, "Zone", "Average", this->Name);
+
+        SetupOutputVariable("Pcm Thermal Storage Mass Flow Rate", OutputProcessor::Unit::kg_s, this->PcmTSmdot, "System", "Average", this->Name);
+
+        SetupOutputVariable("Pcm Thermal Storage Inlet Temperature", OutputProcessor::Unit::C, this->PcmTSInletTemp, "System", "Average", this->Name);
+
+        SetupOutputVariable("Pcm Thermal Storage Outlet Temperature", OutputProcessor::Unit::C, this->PcmTSOutletTemp, "System", "Average", this->Name);
+
+        SetupOutputVariable(
+            "Pcm Thermal Storage Cooling Discharge Rate", OutputProcessor::Unit::W, this->PcmTSCoolingRate_rep, "System", "Average", this->Name);
+
+        SetupOutputVariable(
+            "Pcm Thermal Storage Cooling Discharge Energy", OutputProcessor::Unit::J, this->PcmTSCoolingEnergy_rep, "System", "Sum", this->Name);
+
+        SetupOutputVariable(
+            "Pcm Thermal Storage Cooling Charge Rate", OutputProcessor::Unit::W, this->PcmTSChargingRate, "System", "Average", this->Name);
+
+        SetupOutputVariable(
+            "Pcm Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, this->PcmTSChargingEnergy, "System", "Sum", this->Name);
+    }
+
+
 
     void SimplePcmStorageData::CalcPcmStorageCharge()
     {

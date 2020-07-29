@@ -352,7 +352,7 @@ namespace IceThermalStorage {
 
         //void RecordOutput(Real64 myLoad, bool RunFlag);
 
-        //void setupOutputVars();
+        void setupOutputVars();
 
     };
 
@@ -383,6 +383,8 @@ namespace IceThermalStorage {
     Real64 TempIPtoSI(Real64 Temp);
 
     void UpdateIceFractions();
+
+    
 
 } // namespace IceThermalStorage
 
