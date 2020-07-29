@@ -348,9 +348,9 @@ namespace IceThermalStorage {
 
         //void CalcUAIce(Real64 XCurIceFrac_loc, Real64 &UAIceCh_loc, Real64 &UAIceDisCh_loc, Real64 &HLoss_loc);
 
-        //void UpdateNode(Real64 myLoad, bool RunFlag);
+        void UpdateNode(Real64 myLoad, bool RunFlag);
 
-        //void RecordOutput(Real64 myLoad, bool RunFlag);
+        void RecordOutput(Real64 myLoad, bool RunFlag);
 
         void setupOutputVars();
 

@@ -2017,8 +2017,6 @@ namespace IceThermalStorage {
             "Pcm Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, this->PcmTSChargingEnergy, "System", "Sum", this->Name);
     }
 
-
-
     void SimplePcmStorageData::CalcPcmStorageCharge()
     {
         //--------------------------------------------------------
@@ -2125,8 +2123,8 @@ namespace IceThermalStorage {
                                                       Real64 &QpcmMaxByPcmTS            // [W]
     )
     {
-        // Qice is maximized when ChillerInletTemp and ChillerOutletTemp(input data) is almost same due to LMTD method.
-        // Qice is minimized(=0) when ChillerInletTemp is almost same as FreezTemp(=0).
+        // Qpcm is maximized when ChillerInletTemp and ChillerOutletTemp(input data) is almost same due to LMTD method.
+        // Qpcm is minimized(=0) when ChillerInletTemp is almost same as FreezTemp(=0).
 
         // Initilize
         Real64 OnsetTempIP = 50;  // move to global variable later
@@ -2166,6 +2164,45 @@ namespace IceThermalStorage {
         }
     }
 
+    void SimplePcmStorageData::UpdateNode(Real64 const myLoad, bool const RunFlag)
+    {
+
+        // Update Node Inlet & Outlet MassFlowRat
+        PlantUtilities::SafeCopyPlantNode(this->PltInletNodeNum, this->PltOutletNodeNum);
+        if (myLoad == 0 || !RunFlag) {
+            // Update Outlet Conditions so that same as Inlet, so component can be bypassed if necessary
+            DataLoopNode::Node(this->PltOutletNodeNum).Temp = DataLoopNode::Node(this->PltInletNodeNum).Temp;
+        } else {
+            DataLoopNode::Node(this->PltOutletNodeNum).Temp = this->PcmTSOutletTemp;
+        }
+    }
+
+    void SimplePcmStorageData::RecordOutput(Real64 const myLoad, bool const RunFlag)
+    {
+        if (myLoad == 0 || !RunFlag) {
+            this->MyLoad = myLoad;
+            this->PcmTSCoolingRate_rep = 0.0;
+            this->PcmTSCoolingEnergy_rep = 0.0;
+            this->PcmTSChargingRate = 0.0;
+            this->PcmTSChargingEnergy = 0.0;
+            this->PcmTSmdot = 0.0;
+
+        } else {
+            this->MyLoad = myLoad;
+            if (this->PcmTSCoolingRate > 0.0) {
+                this->PcmTSCoolingRate_rep = this->PcmTSCoolingRate;
+                this->PcmTSCoolingEnergy_rep = this->PcmTSCoolingEnergy;
+                this->PcmTSChargingRate = 0.0;
+                this->PcmTSChargingEnergy = 0.0;
+            } else {
+                this->PcmTSCoolingRate_rep = 0.0;
+                this->PcmTSCoolingEnergy_rep = 0.0;
+                this->PcmTSChargingRate = -this->PcmTSCoolingRate;
+                this->PcmTSChargingEnergy = -this->PcmTSCoolingEnergy;
+            }
+            this->PcmTSmdot = this->PcmTSMassFlowRate;
+        }
+    }
 
 } // namespace IceThermalStorage
 
