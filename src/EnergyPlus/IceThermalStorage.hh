@@ -332,7 +332,7 @@ namespace IceThermalStorage {
 
         void InitSimplePcmStorage(BranchInputManagerData &dataBranchInputManager);
 
-        //void CalcPcmStorageDormant();
+        void CalcPcmStorageDormant();
 
         //void CalcPcmStorageCapacity(Real64 &MaxCap, Real64 &MinCap, Real64 &OptCap);
 

@@ -2017,6 +2017,32 @@ namespace IceThermalStorage {
             "Pcm Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, this->PcmTSChargingEnergy, "System", "Sum", this->Name);
     }
 
+      
+    void SimplePcmStorageData::CalcPcmStorageDormant()
+    {
+        // Provide output results for ITS.
+        this->PcmTSMassFlowRate = 0.0; //[kg/s]
+
+        PlantUtilities::SetComponentFlowRate(
+            this->PcmTSMassFlowRate, this->PltInletNodeNum, this->PltOutletNodeNum, this->LoopNum, this->LoopSideNum, this->BranchNum, this->CompNum);
+
+        this->PcmTSInletTemp = DataLoopNode::Node(this->PltInletNodeNum).Temp; //[C]
+        this->PcmTSOutletTemp = this->PcmTSInletTemp;                            //[C]
+        {
+            auto const SELECT_CASE_var1(DataPlant::PlantLoop(this->LoopNum).LoopDemandCalcScheme);
+            if (SELECT_CASE_var1 == DataPlant::SingleSetPoint) {
+                this->PcmTSOutletSetPointTemp = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPoint;
+            } else if (SELECT_CASE_var1 == DataPlant::DualSetPointDeadBand) {
+                this->PcmTSOutletSetPointTemp = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPointHi;
+            }
+        }
+        this->PcmTSCoolingRate = 0.0;   //[W]
+        this->PcmTSCoolingEnergy = 0.0; //[J]
+
+        this->Urate = 0.0; //[n/a]
+    }
+
+    
     void SimplePcmStorageData::CalcPcmStorageCharge()
     {
         //--------------------------------------------------------
