@@ -182,6 +182,28 @@ namespace IceThermalStorage {
         return nullptr; // LCOV_EXCL_LINE
     }
 
+    PlantComponent *SimplePcmStorageData::factory(std::string const &objectName)
+    {
+        // Process the input data for boilers if it hasn't been done already
+        if (getITSInput) {
+            GetIceStorageInput();
+            getITSInput = false;
+        }
+
+        // Now look for this particular pipe in the list
+        for (auto &PcmTS : SimplePcmStorage) {
+            if (PcmTS.Name == objectName) {
+                return &PcmTS;
+            }
+        }
+        // If we didn't find it, fatal
+        ShowFatalError("LocalSimpleIceStorageFactory: Error getting inputs for simple ice storage named: " + objectName); // LCOV_EXCL_LINE
+        // Shut up the compiler
+        return nullptr; // LCOV_EXCL_LINE
+    }
+
+
+
     void SimpleIceStorageData::simulate(EnergyPlusData &state, const PlantLocation &calledFromLocation,
                                         bool EP_UNUSED(FirstHVACIteration),
                                         Real64 &EP_UNUSED(CurLoad),
