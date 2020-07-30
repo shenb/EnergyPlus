@@ -2192,6 +2192,106 @@ namespace IceThermalStorage {
         MinCap = PcmTSCoolingRateMin;
     }
 
+    
+    void SimplePcmStorageData::CalcPcmStorageDischarge(Real64 const myLoad, // operating load
+                                                       bool const RunFlag,  // TRUE when ice storage operating
+                                                       Real64 const MaxCap  // Max possible discharge rate (positive value)
+    )
+    {
+        std::string const RoutineName("SimplePcmStorageData::CalcPcmStorageDischarge");
+
+        Real64 OnsetTemp = (50 -32)*5/9;         // move to global variable later
+        Real64 FinishTemp = (60-32)*5/9;          // move to global variable later
+        Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTemp + this->XCurPcmFrac * FinishTemp; // FreezTempIP;
+        
+
+
+        // Initialize processed Rate and Energy
+        this->PcmTSMassFlowRate = 0.0;
+        this->PcmTSCoolingRate = 0.0;
+        this->PcmTSCoolingEnergy = 0.0;
+
+        {
+            auto const SELECT_CASE_var1(DataPlant::PlantLoop(this->LoopNum).LoopDemandCalcScheme);
+            if (SELECT_CASE_var1 == DataPlant::SingleSetPoint) {
+                this->PcmTSOutletSetPointTemp = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPoint;
+            } else if (SELECT_CASE_var1 == DataPlant::DualSetPointDeadBand) {
+                this->PcmTSOutletSetPointTemp = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPointHi;
+            }
+        }
+
+        // Initialize processed U values
+        this->Urate = 0.0;
+
+        // If no component demand or ITS OFF, then RETURN.
+        if (myLoad == 0 || !RunFlag) {
+            this->PcmTSMassFlowRate = 0.0;
+            this->PcmTSInletTemp = DataLoopNode::Node(this->PltInletNodeNum).Temp;
+            this->PcmTSOutletTemp = this->PcmTSInletTemp;
+            this->PcmTSCoolingRate = 0.0;
+            this->PcmTSCoolingEnergy = 0.0;
+            return;
+        }
+
+        // If FlowLock(provided by PlantSupplyManager) is False(=0), that is, MyLoad is not changed.
+        // then based on MyLoad, new ITSMassFlowRate will be calculated.
+
+        //----------------------------
+        int loopNum = this->LoopNum;
+
+        Real64 CpFluid = FluidProperties::GetDensityGlycol(DataPlant::PlantLoop(loopNum).FluidName,
+                                                           DataLoopNode::Node(this->PltInletNodeNum).Temp,
+                                                           DataPlant::PlantLoop(loopNum).FluidIndex,
+                                                           RoutineName);
+
+        // Calculate Umyload based on MyLoad from E+
+        Real64 Umyload = -myLoad * TimeInterval / this->PcmTSNomCap;
+        // Calculate Umax and Umin
+        // Cannot discharge more than the fraction that is left
+        Real64 Umax = -this->PcmFracRemain / DataHVACGlobals::TimeStepSys;
+        // Calculate Umin based on returned MyLoad from E+.
+        Real64 Umin = min(Umyload, 0.0);
+        // Based on Umax and Umin, if necessary to run E+, calculate proper Uact
+        // U is negative here.
+        Real64 Uact = max(Umin, Umax);
+
+        // Set ITSInletTemp provided by E+
+        this->PcmTSInletTemp = DataLoopNode::Node(this->PltInletNodeNum).Temp;
+        // The first thing is to set the ITSMassFlowRate
+        this->PcmTSMassFlowRate = this->DesignMassFlowRate; //[kg/s]
+
+        PlantUtilities::SetComponentFlowRate(
+            this->PcmTSMassFlowRate, this->PltInletNodeNum, this->PltOutletNodeNum, this->LoopNum, this->LoopSideNum, this->BranchNum, this->CompNum);
+
+        // Qice is calculate input U which is within boundary between Umin and Umax.
+        Real64 Qpcm = Uact * this->PcmTSNomCap / TimeInterval;
+        // Qice cannot exceed MaxCap calulated by CalcIceStorageCapacity
+        // Note Qice is negative here, MaxCap is positive
+        Qpcm = max(Qpcm, -MaxCap);
+
+        // Calculate leaving water temperature
+        if ((Qpcm >= 0.0) || (this->XCurPcmFrac <= 0.0) || (this->PcmTSMassFlowRate < DataBranchAirLoopPlant::MassFlowTolerance)) {
+            this->PcmTSOutletTemp = this->PcmTSInletTemp;
+            Qpcm = 0.0;
+            Uact = 0.0;
+        } else {
+            Real64 DeltaTemp = Qpcm / CpFluid / this->PcmTSMassFlowRate;
+            this->PcmTSOutletTemp = this->PcmTSInletTemp + DeltaTemp;
+            // Limit leaving temp to be no less than setpoint or freezing temp plus 1C
+            this->PcmTSOutletTemp = max(this->PcmTSOutletTemp, this->PcmTSOutletSetPointTemp, (Tfr + 1));
+            // Limit leaving temp to be no greater than inlet temp
+            this->PcmTSOutletTemp = min(this->PcmTSOutletTemp, this->PcmTSInletTemp);
+            DeltaTemp = this->PcmTSOutletTemp - this->PcmTSInletTemp;
+            Qpcm = DeltaTemp * CpFluid * this->PcmTSMassFlowRate;
+            Uact = Qpcm / (this->PcmTSNomCap / TimeInterval);
+        } // End of leaving temp checks
+
+        // Calculate reported U value
+        this->Urate = Uact;
+        // Calculate ITSCoolingEnergy [J]
+        this->PcmTSCoolingRate = -Qpcm;
+        this->PcmTSCoolingEnergy = this->PcmTSCoolingRate * DataHVACGlobals::TimeStepSys * DataGlobals::SecInHour;
+    }
 
 
     void SimplePcmStorageData::CalcQpcmChargeMaxByNtu(Real64 const chillerOutletTemp, // [degC]
@@ -2204,22 +2304,22 @@ namespace IceThermalStorage {
         // Initilize
         Real64 OnsetTempIP = 50;  // move to global variable later
         Real64 FinishTempIP = 60; // move to global variable later
-        Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTempIP + this->XCurPcmFrac * FinishTempIP; // FreezTempIP;
+        Real64 TfrIP = (1 - this->XCurPcmFrac) * OnsetTempIP + this->XCurPcmFrac * FinishTempIP; // FreezTempIP;
 
-        Real64 OnsetUA = 50;                                                               // move to global variable later
-        Real64 FinishUA = 60;                                                              // move to global variable later
+        Real64 OnsetUA = 0.8;                                                               // move to global variable later
+        Real64 FinishUA = 1.2;                                                              // move to global variable later
         Real64 UAfr = (1 - this->XCurPcmFrac) * OnsetUA + this->XCurPcmFrac * FinishUA;     // FreezUA;
 
         Real64 ChOutletTemp = TempSItoIP(chillerOutletTemp); //[degF] = ConvertSItoIP[degC]
         // Chiller outlet temp must be below freeze temp, or else no charge
-        if (ChOutletTemp >= Tfr) {
+        if (ChOutletTemp >= TfrIP) {
             QpcmMaxByPcmTS = 0.0;
         } else {
             // Effectiveness-Ntu method 
             Real64 Cmin = Psychrometrics::CPCW(this->PcmTSInletTemp) * this->PcmTSMassFlowRate;
             Real64 Ntu = UAfr / Cmin;
             Real64 Effectiveness = 1 - exp(-Ntu);
-            QpcmMaxByPcmTS = Effectiveness * Cmin * (Tfr - ChOutletTemp);
+            QpcmMaxByPcmTS = Effectiveness * Cmin * (TfrIP - ChOutletTemp);
             /*
             // Make ChillerInletTemp as almost same as ChillerOutletTemp(input data)
             Real64 ChillerInletTemp = ChOutletTemp + 0.01;
@@ -2242,9 +2342,10 @@ namespace IceThermalStorage {
     void SimplePcmStorageData::CalcQpcmDischageMax(Real64 &QpcmMin)
     {
         // Initilize
-        Real64 OnsetTempIP = 50;  // move to global variable later
-        Real64 FinishTempIP = 60;    // move to global variable later
-        Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTempIP + this->XCurPcmFrac * FinishTempIP; // FreezTempIP;
+        Real64 OnsetTemp = (50 - 32) * 5 / 9;                                              // move to global variable later
+        Real64 FinishTemp = (60 - 32) * 5 / 9;                                             // move to global variable later
+        Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTemp + this->XCurPcmFrac * FinishTemp; // FreezTempIP;
+        
 
         Real64 OnsetUA = 50;   // move to global variable later
         Real64 FinishUA = 60;    // move to global variable later
