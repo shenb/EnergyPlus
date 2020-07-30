@@ -2145,6 +2145,55 @@ namespace IceThermalStorage {
         this->PcmTSCoolingEnergy = this->PcmTSCoolingRate * DataHVACGlobals::TimeStepSys * DataGlobals::SecInHour;
     }
 
+    
+    void SimplePcmStorageData::CalcPcmStorageCapacity(Real64 &MaxCap, Real64 &MinCap, Real64 &OptCap)
+    {
+        //------------------------------------------------------------------------
+        // FIRST PROCESS (MyLoad = 0.0 as IN)
+        // At this moment as first calling of ITS, ITS provide ONLY MaxCap/OptCap/MinCap.
+        //------------------------------------------------------------------------
+
+        // Initialize Capacity
+        MaxCap = 0.0;
+        MinCap = 0.0;
+        OptCap = 0.0;
+
+        // XCurIceFrac is reset to 1.0 when first hour of day.
+        // Starting full is assumed, because most ice systems are fully charged overnight
+        if (this->ResetXForPcmTSFlag) {
+            this->XCurPcmFrac = 1.0;
+            this->PcmFracRemain = 1.0;
+            this->Urate = 0.0;
+            this->ResetXForPcmTSFlag = false;
+        }
+
+        // Calculate UAIceDisch[W/C] and UAIceCh[W/F] based on ONLY XCurIceFrac
+        //this->CalcUAIce(this->XCurIceFrac, this->UAIceCh, this->UAIceDisCh, this->HLoss);
+
+        // Calculate QiceMin by UAIceDisCh*deltaTlm
+        //   with UAIceDisCh(function of XCurIceFrac), ITSInletTemp and ITSOutletTemp(=Node(OutletNodeNum)%TempSetPoint by E+[C])
+        // QiceMin is REAL(r64) ITS capacity.
+        Real64 QpcmMin;
+        this->CalcQpcmDischageMax(QpcmMin);
+
+        // At the first call of ITS model, MyLoad is 0. After that proper MyLoad will be provided by E+.
+        // Therefore, Umin is decided between input U and ITS REAL(r64) capacity.
+        Real64 Umin = min(max((-(1.0 - EpsLimitForDisCharge) * QpcmMin * TimeInterval / this->PcmTSNomCap), (-this->XCurPcmFrac + EpsLimitForX)), 0.0);
+
+        // Calculate CoolingRate with Uact to provide E+.
+        Real64 Uact = Umin;
+        Real64 PcmTSCoolingRateMax = std::abs(Uact * this->PcmTSNomCap / TimeInterval);
+        Real64 PcmTSCoolingRateOpt = PcmTSCoolingRateMax;
+        Real64 PcmTSCoolingRateMin = 0.0;
+
+        // Define MaxCap, OptCap, and MinCap
+        MaxCap = PcmTSCoolingRateMax;
+        OptCap = PcmTSCoolingRateOpt;
+        MinCap = PcmTSCoolingRateMin;
+    }
+
+
+
     void SimplePcmStorageData::CalcQpcmChargeMaxByNtu(Real64 const chillerOutletTemp, // [degC]
                                                       Real64 &QpcmMaxByPcmTS            // [W]
     )
