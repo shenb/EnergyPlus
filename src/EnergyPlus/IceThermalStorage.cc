@@ -2189,6 +2189,56 @@ namespace IceThermalStorage {
             */
         }
     }
+    
+    void SimplePcmStorageData::CalcQpcmDischageMax(Real64 &QpcmMin)
+    {
+        // Initilize
+        Real64 OnsetTempIP = 50;  // move to global variable later
+        Real64 FinishTempIP = 60;    // move to global variable later
+        Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTempIP + this->XCurPcmFrac * FinishTempIP; // FreezTempIP;
+
+        Real64 OnsetUA = 50;   // move to global variable later
+        Real64 FinishUA = 60;    // move to global variable later
+        Real64 UAfr = (1 - this->XCurPcmFrac) * OnsetUA + this->XCurPcmFrac * FinishUA; // FreezUA;
+
+        // Qice is minimized when ITSInletTemp and ITSOutletTemp is almost same due to LMTD method.
+        // Qice is maximized(=0) when ITSOutletTemp is almost same as FreezTemp(=0).
+
+        Real64 PcmTSInletTemp_loc = DataLoopNode::Node(this->PltInletNodeNum).Temp;
+        Real64 PcmTSOutletTemp_loc = 0.0;
+        {
+            auto const SELECT_CASE_var(DataPlant::PlantLoop(this->LoopNum).LoopDemandCalcScheme);
+            if (SELECT_CASE_var == DataPlant::SingleSetPoint) {
+                PcmTSOutletTemp_loc = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPoint;
+            } else if (SELECT_CASE_var == DataPlant::DualSetPointDeadBand) {
+                PcmTSOutletTemp_loc = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPointHi;
+            } else {
+                assert(false);
+            }
+        }
+
+        // Chiller outlet temp must be below freeze temp, or else no charge
+        if (PcmTSOutletTemp_loc >= Tfr) {
+            QpcmMin = 0.0;
+        } else {
+            // Effectiveness-Ntu method
+            Real64 Cmin = Psychrometrics::CPCW(this->PcmTSInletTemp) * this->PcmTSMassFlowRate;
+            Real64 Ntu = UAfr / Cmin;
+            Real64 Effectiveness = 1 - exp(-Ntu);
+            QpcmMin = Effectiveness * Cmin * (Tfr - PcmTSOutletTemp_loc);
+        }
+
+        /*
+        Real64 LogTerm = (PcmTSInletTemp_loc - FreezTemp) / (ITSOutletTemp_loc - FreezTemp);
+
+        if (LogTerm <= 1) {
+            QiceMin = 0.0;
+        } else {
+            QiceMin = this->UAIceDisCh * (ITSInletTemp_loc - ITSOutletTemp_loc) / std::log(LogTerm);
+        }
+        */
+
+    }
 
     void SimplePcmStorageData::UpdateNode(Real64 const myLoad, bool const RunFlag)
     {
@@ -2229,6 +2279,8 @@ namespace IceThermalStorage {
             this->PcmTSmdot = this->PcmTSMassFlowRate;
         }
     }
+
+
 
 } // namespace IceThermalStorage
 
