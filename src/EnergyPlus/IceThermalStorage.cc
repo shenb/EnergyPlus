@@ -1923,7 +1923,118 @@ namespace IceThermalStorage {
     }
 
     
-    // ****************** PCM thermal storage *****************************************
+    // ********************************** PCM thermal storage *****************************************
+
+    void SimplePcmStorageData::simulate(
+        EnergyPlusData &state, const PlantLocation &calledFromLocation, bool EP_UNUSED(FirstHVACIteration), Real64 &EP_UNUSED(CurLoad), bool RunFlag)
+    {
+        std::string const RoutineName("SimplePcmStorageData::simulate");
+
+        // this was happening in PlantLoopEquip before
+        auto &thisComp(DataPlant::PlantLoop(calledFromLocation.loopNum)
+                           .LoopSide(calledFromLocation.loopSideNum)
+                           .Branch(calledFromLocation.branchNum)
+                           .Comp(calledFromLocation.compNum));
+
+        // If component setpoint based control is active for this equipment
+        // then reset CurLoad to original EquipDemand.
+        // Allow negative CurLoad.  For cold storage this means the storage should
+        // charge, for hot storage, this means the storage should discharge.
+        if (thisComp.CurOpSchemeType == DataPlant::CompSetPtBasedSchemeType) {
+            Real64 localCurLoad = thisComp.EquipDemand;
+            if (localCurLoad != 0) RunFlag = true;
+        }
+
+        if (DataGlobals::BeginEnvrnFlag && this->MyEnvrnFlag) {
+            this->ResetXForPcmTSFlag = true;
+            this->MyEnvrnFlag = false;
+        }
+
+        if (!DataGlobals::BeginEnvrnFlag) {
+            this->MyEnvrnFlag = true;
+        }
+
+        this->InitSimplePcmStorage(state.dataBranchInputManager);
+
+        //------------------------------------------------------------------------
+        // FIRST PROCESS (MyLoad = 0.0 as IN)
+        // At this moment as first calling of ITS, ITS provide ONLY MaxCap/OptCap/MinCap.
+        //------------------------------------------------------------------------
+        // First process is in subroutine CalcIceStorageCapacity(MaxCap,MinCap,OptCap) shown bellow.
+
+        //------------------------------------------------------------------------
+        // SECOND PROCESS (MyLoad is provided by E+ based on MaxCap/OptCap/MinCap)
+        //------------------------------------------------------------------------
+        // Below routines are starting when second calling.
+        // After previous return, MyLoad is calculated based on MaxCap, OptCap, and MinCap.
+        // Then PlandSupplySideManager provides MyLoad to simulate Ice Thermal Storage.
+        // The process will be decided based on sign(+,-,0) of input U.
+
+        // MJW 19 Sep 2005 - New approach - calculate MyLoad locally from inlet node temp
+        //                   and outlet node setpoint until MyLoad that is passed in behaves well
+
+        // DSU? can we now use MyLoad? lets not yet to try to avoid scope creep
+
+        Real64 TempSetPt(0.0);
+        Real64 TempIn = DataLoopNode::Node(this->PltInletNodeNum).Temp;
+        {
+            auto const SELECT_CASE_var1(DataPlant::PlantLoop(this->LoopNum).LoopDemandCalcScheme);
+            if (SELECT_CASE_var1 == DataPlant::SingleSetPoint) {
+                TempSetPt = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPoint;
+            } else if (SELECT_CASE_var1 == DataPlant::DualSetPointDeadBand) {
+                TempSetPt = DataLoopNode::Node(this->PltOutletNodeNum).TempSetPointHi;
+            } else {
+                assert(false);
+            }
+        }
+        Real64 DemandMdot = this->DesignMassFlowRate;
+
+        Real64 Cp = FluidProperties::GetSpecificHeatGlycol(
+            DataPlant::PlantLoop(this->LoopNum).FluidName, TempIn, DataPlant::PlantLoop(this->LoopNum).FluidIndex, RoutineName);
+
+        Real64 MyLoad2 = (DemandMdot * Cp * (TempIn - TempSetPt));
+        MyLoad = MyLoad2;
+
+        //     Set fraction of ice remaining in storage
+        this->XCurPcmFrac = this->PcmFracRemain;
+
+        //***** Dormant Process for ITS *****************************************
+        //************************************************************************
+        //        IF( U .EQ. 0.0 ) THEN
+        if ((MyLoad2 == 0.0) || (DemandMdot == 0.0)) {
+            this->CalcPcmStorageDormant();
+
+            //***** Charging Process for ITS *****************************************
+            //************************************************************************
+            //        ELSE IF( U .GT. 0.0 ) THEN
+        } else if (MyLoad2 < 0.0) {
+
+            Real64 MaxCap;
+            Real64 MinCap;
+            Real64 OptCap;
+            this->CalcPcmStorageCapacity(MaxCap, MinCap, OptCap);
+            this->CalcPcmStorageCharge();
+
+            //***** Discharging Process for ITS *****************************************
+            //************************************************************************
+            //        ELSE IF( U .LT. 0.0 ) THEN
+        } else if (MyLoad2 > 0.0) {
+
+            Real64 MaxCap;
+            Real64 MinCap;
+            Real64 OptCap;
+            this->CalcPcmStorageCapacity(MaxCap, MinCap, OptCap);
+            this->CalcPcmStorageDischarge(MyLoad, RunFlag, MaxCap);
+        } // Based on input of U value, deciding Dormant/Charge/Discharge process
+
+        // Update Node properties: mdot and Temperature
+        this->UpdateNode(MyLoad2, RunFlag);
+
+        // Update report variables.
+        this->RecordOutput(MyLoad2, RunFlag);
+    }
+
+
 
     void SimplePcmStorageData::InitSimplePcmStorage(BranchInputManagerData &dataBranchInputManager)
     {
