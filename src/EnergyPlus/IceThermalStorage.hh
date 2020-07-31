@@ -70,6 +70,7 @@ namespace IceThermalStorage {
     // ITS numbers and FoundOrNot
     extern int NumSimpleIceStorage;
     extern int NumDetailedIceStorage;
+    extern int NumSimplePcmStorage;
     extern int TotalNumIceStorage;
 
     enum class IceStorageType
@@ -312,7 +313,7 @@ namespace IceThermalStorage {
         bool MyPlantScanFlag;
         bool MyEnvrnFlag2;
 
-                // Default Constructor
+        // Default Constructor
         SimplePcmStorageData()
             : MapNum(0), UratePtr(0), PcmTSNomCap(0.0), PltInletNodeNum(0), PltOutletNodeNum(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0),
               DesignMassFlowRate(0.0), FreezeTemp(0.0), ResetXForPcmTSFlag(false), MyEnvrnFlag(true), UAIceCh(0.0), UAIceDisCh(0.0), HLoss(0.0),

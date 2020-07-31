@@ -120,6 +120,7 @@ namespace IceThermalStorage {
 
     int NumSimpleIceStorage(0);
     int NumDetailedIceStorage(0);
+    int NumSimplePcmStorage(0);
     int TotalNumIceStorage(0);
 
     bool getITSInput = true;
@@ -747,6 +748,8 @@ namespace IceThermalStorage {
         // LOAD ARRAYS WITH SimpleIceStorage DATA
         NumSimpleIceStorage = inputProcessor->getNumObjectsFound(cIceStorageSimple); // by ZG
         NumDetailedIceStorage = inputProcessor->getNumObjectsFound(cIceStorageDetailed);
+        NumSimplePcmStorage = inputProcessor->getNumObjectsFound(cPcmStorageSimple); // 
+ 
 
         // Allocate SimpleIceStorage based on NumOfIceStorage
         SimpleIceStorage.allocate(NumSimpleIceStorage);
@@ -1094,6 +1097,106 @@ namespace IceThermalStorage {
         if (ErrorsFound) {
             ShowFatalError("Errors found in processing input for " + DataIPShortCuts::cCurrentModuleObject);
         }
+
+        ErrorsFound = false; // Always need to reset this since there are multiple types of ice storage systems
+        
+                             
+        // Allocate SimplePcmStorage based on NumOfIceStorage --------------------------------------------
+        SimplePcmStorage.allocate(NumSimplePcmStorage);
+
+        DataIPShortCuts::cCurrentModuleObject = cPcmStorageSimple;
+        for (int iceNum = 1; iceNum <= NumSimplePcmStorage; ++iceNum) {
+
+            int NumAlphas;
+            int NumNums;
+            int IOStat;
+            inputProcessor->getObjectItem(DataIPShortCuts::cCurrentModuleObject,
+                                          iceNum,
+                                          DataIPShortCuts::cAlphaArgs,
+                                          NumAlphas,
+                                          DataIPShortCuts::rNumericArgs,
+                                          NumNums,
+                                          IOStat,
+                                          _,
+                                          _,
+                                          _,
+                                          DataIPShortCuts::cNumericFieldNames);
+            UtilityRoutines::IsNameEmpty(DataIPShortCuts::cAlphaArgs(1), DataIPShortCuts::cCurrentModuleObject, ErrorsFound);
+
+            ++TotalNumIceStorage;
+            SimplePcmStorage(iceNum).MapNum = TotalNumIceStorage;
+
+            // PcmTS name
+            SimplePcmStorage(iceNum).Name = DataIPShortCuts::cAlphaArgs(1);
+
+            // Get Pcm Thermal Storage Type
+            SimplePcmStorage(iceNum).PcmTSType = DataIPShortCuts::cAlphaArgs(2);
+            if (UtilityRoutines::SameString(SimplePcmStorage(iceNum).PcmTSType, "PcmOnCoilInternal")) {
+                SimplePcmStorage(iceNum).PcmTSType_Num = ITSType::IceOnCoilInternal;
+            } else if (UtilityRoutines::SameString(SimplePcmStorage(iceNum).PcmTSType, "PcmOnCoilExternal")) {
+                SimplePcmStorage(iceNum).PcmTSType_Num = ITSType::IceOnCoilExternal;
+            } else {
+                ShowSevereError(DataIPShortCuts::cCurrentModuleObject + '=' + DataIPShortCuts::cAlphaArgs(1));
+                ShowContinueError("Invalid " + DataIPShortCuts::cAlphaFieldNames(2) + '=' + DataIPShortCuts::cAlphaArgs(2));
+                ErrorsFound = true;
+            }
+
+            // Get and Verify ITS nominal Capacity (user input is in GJ, internal value in in J)
+            SimplePcmStorage(iceNum).PcmTSNomCap = DataIPShortCuts::rNumericArgs(1) * 1.e+09;
+            if (DataIPShortCuts::rNumericArgs(1) == 0.0) {
+                ShowSevereError(DataIPShortCuts::cCurrentModuleObject + '=' + DataIPShortCuts::cAlphaArgs(1));
+                ShowContinueError("Invalid " + DataIPShortCuts::cNumericFieldNames(1) + '=' +
+                                  General::RoundSigDigits(DataIPShortCuts::rNumericArgs(1), 2));
+                ErrorsFound = true;
+            }
+
+            // Get Plant Inlet Node Num
+            SimplePcmStorage(iceNum).PltInletNodeNum = NodeInputManager::GetOnlySingleNode(DataIPShortCuts::cAlphaArgs(3),
+                                                                                           ErrorsFound,
+                                                                                           DataIPShortCuts::cCurrentModuleObject,
+                                                                                           DataIPShortCuts::cAlphaArgs(1),
+                                                                                           DataLoopNode::NodeType_Water,
+                                                                                           DataLoopNode::NodeConnectionType_Inlet,
+                                                                                           1,
+                                                                                           DataLoopNode::ObjectIsNotParent);
+
+            // Get Plant Outlet Node Num
+            SimplePcmStorage(iceNum).PltOutletNodeNum = NodeInputManager::GetOnlySingleNode(DataIPShortCuts::cAlphaArgs(4),
+                                                                                            ErrorsFound,
+                                                                                            DataIPShortCuts::cCurrentModuleObject,
+                                                                                            DataIPShortCuts::cAlphaArgs(1),
+                                                                                            DataLoopNode::NodeType_Water,
+                                                                                            DataLoopNode::NodeConnectionType_Outlet,
+                                                                                            1,
+                                                                                            DataLoopNode::ObjectIsNotParent);
+
+            // Test InletNode and OutletNode
+            BranchNodeConnections::TestCompSet(DataIPShortCuts::cCurrentModuleObject,
+                                               DataIPShortCuts::cAlphaArgs(1),
+                                               DataIPShortCuts::cAlphaArgs(3),
+                                               DataIPShortCuts::cAlphaArgs(4),
+                                               "Chilled Water Nodes");
+
+            // Initialize Report Variables
+            SimplePcmStorage(iceNum).MyLoad = 0.0;
+            SimplePcmStorage(iceNum).Urate = 0.0;
+            SimplePcmStorage(iceNum).PcmFracRemain = 1.0;
+            SimplePcmStorage(iceNum).PcmTSCoolingRate_rep = 0.0;
+            SimplePcmStorage(iceNum).PcmTSCoolingEnergy_rep = 0.0;
+            SimplePcmStorage(iceNum).PcmTSChargingRate = 0.0;
+            SimplePcmStorage(iceNum).PcmTSChargingEnergy = 0.0;
+            SimplePcmStorage(iceNum).PcmTSmdot = 0.0;
+            SimplePcmStorage(iceNum).PcmTSInletTemp = 0.0;
+            SimplePcmStorage(iceNum).PcmTSOutletTemp = 0.0;
+
+        } // IceNum
+
+        if (ErrorsFound) {
+            ShowFatalError("Errors found in processing input for " + DataIPShortCuts::cCurrentModuleObject);
+        }
+
+        // -----------------------------------------------------------------------------------------------
+
     }
 
     void SimpleIceStorageData::setupOutputVars()
