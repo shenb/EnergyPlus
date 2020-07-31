@@ -138,9 +138,11 @@ namespace IceThermalStorage {
         getITSInput = true;
         NumSimpleIceStorage = 0;
         NumDetailedIceStorage = 0;
+        NumSimplePcmStorage = 0;
         TotalNumIceStorage = 0;
         SimpleIceStorage.deallocate();
         DetailedIceStorage.deallocate();
+        SimplePcmStorage.deallocate();
     }
 
     PlantComponent *SimpleIceStorageData::factory(std::string const &objectName)
@@ -1965,6 +1967,12 @@ namespace IceThermalStorage {
             } else { // Outside melt system so IceFracOnCoil is always the same as IceFracRemaining (needs to be done for reporting only)
                 thisITS.IceFracOnCoil = thisITS.IceFracRemaining;
             }
+        }
+
+        for (auto &thisPcmTS : SimplePcmStorage) {
+            thisPcmTS.PcmFracRemain += thisPcmTS.Urate * DataHVACGlobals::TimeStepSys;
+            if (thisPcmTS.PcmFracRemain <= 0.001) thisPcmTS.PcmFracRemain = 0.0;
+            if (thisPcmTS.PcmFracRemain > 1.0) thisPcmTS.PcmFracRemain = 1.0;
         }
     }
 
