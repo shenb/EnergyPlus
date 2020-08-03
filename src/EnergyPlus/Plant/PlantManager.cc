@@ -1214,6 +1214,9 @@ namespace EnergyPlus {
                             } else if (UtilityRoutines::SameString(this_comp_type, "ThermalStorage:Ice:Simple")) {
                                 this_comp.TypeOf_Num = TypeOf_TS_IceSimple;
                                 this_comp.compPtr = IceThermalStorage::SimpleIceStorageData::factory(CompNames(CompNum));
+                            } else if (UtilityRoutines::SameString(this_comp_type, "ThermalStorage:Pcm:Simple")) {
+                                this_comp.TypeOf_Num = TypeOf_TS_PcmSimple;
+                                this_comp.compPtr = IceThermalStorage::SimplePcmStorageData::factory(CompNames(CompNum));
                             } else if (UtilityRoutines::SameString(this_comp_type, "ThermalStorage:Ice:Detailed")) {
                                 this_comp.TypeOf_Num = TypeOf_TS_IceDetailed;
                                 this_comp.compPtr = IceThermalStorage::DetailedIceStorageData::factory(CompNames(CompNum));
@@ -3897,6 +3900,10 @@ namespace EnergyPlus {
                                     this_component.FlowPriority = LoopFlowStatus_NeedyIfLoopOn;
                                     this_component.HowLoadServed = HowMet_PassiveCap;
                                 } else if (SELECT_CASE_var == TypeOf_TS_IceSimple) { //                    = 29
+                                    this_component.FlowCtrl = ControlType_Active;
+                                    this_component.FlowPriority = LoopFlowStatus_NeedyIfLoopOn;
+                                    this_component.HowLoadServed = HowMet_PassiveCap;
+                                } else if (SELECT_CASE_var == TypeOf_TS_PcmSimple) { //                    = 29
                                     this_component.FlowCtrl = ControlType_Active;
                                     this_component.FlowPriority = LoopFlowStatus_NeedyIfLoopOn;
                                     this_component.HowLoadServed = HowMet_PassiveCap;

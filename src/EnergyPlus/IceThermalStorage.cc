@@ -97,6 +97,7 @@ namespace IceThermalStorage {
     // which in turn calls the appropriate Ice Thermal Storage model.
 
     // REFERENCES: Dion J. King, ASHRAE Transactions v104, pt1, 1998.
+    using namespace std;
 
     std::string const cIceStorageSimple("ThermalStorage:Ice:Simple");
     std::string const cIceStorageDetailed("ThermalStorage:Ice:Detailed");
@@ -283,12 +284,16 @@ namespace IceThermalStorage {
         //************************************************************************
         //        IF( U .EQ. 0.0 ) THEN
         if ((MyLoad2 == 0.0) || (DemandMdot == 0.0)) {
+//            std::cout << "CalcPcmStorageCharge" << endl;
+
             this->CalcIceStorageDormant();
 
             //***** Charging Process for ITS *****************************************
             //************************************************************************
             //        ELSE IF( U .GT. 0.0 ) THEN
         } else if (MyLoad2 < 0.0) {
+ //           std::cout << "CalcIceStorageCharge" << endl;
+
 
             Real64 MaxCap;
             Real64 MinCap;
@@ -300,6 +305,8 @@ namespace IceThermalStorage {
             //************************************************************************
             //        ELSE IF( U .LT. 0.0 ) THEN
         } else if (MyLoad2 > 0.0) {
+ //           std::cout << "CalcIceStorageDischarge" << endl;
+
 
             Real64 MaxCap;
             Real64 MinCap;
@@ -1091,10 +1098,10 @@ namespace IceThermalStorage {
 
         } // ...over detailed ice storage units
 
-        if ((NumSimpleIceStorage + NumDetailedIceStorage) <= 0) {
-            ShowSevereError("No Ice Storage Equipment found in GetIceStorage");
-            ErrorsFound = true;
-        }
+ //       if ((NumSimpleIceStorage + NumDetailedIceStorage) <= 0) {
+ //           ShowSevereError("No Ice Storage Equipment found in GetIceStorage");
+ //           ErrorsFound = true;
+ //       }
 
         if (ErrorsFound) {
             ShowFatalError("Errors found in processing input for " + DataIPShortCuts::cCurrentModuleObject);
@@ -1132,16 +1139,17 @@ namespace IceThermalStorage {
             SimplePcmStorage(iceNum).Name = DataIPShortCuts::cAlphaArgs(1);
 
             // Get Pcm Thermal Storage Type
-            SimplePcmStorage(iceNum).PcmTSType = DataIPShortCuts::cAlphaArgs(2);
-            if (UtilityRoutines::SameString(SimplePcmStorage(iceNum).PcmTSType, "PcmOnCoilInternal")) {
-                SimplePcmStorage(iceNum).PcmTSType_Num = ITSType::IceOnCoilInternal;
-            } else if (UtilityRoutines::SameString(SimplePcmStorage(iceNum).PcmTSType, "PcmOnCoilExternal")) {
-                SimplePcmStorage(iceNum).PcmTSType_Num = ITSType::IceOnCoilExternal;
-            } else {
-                ShowSevereError(DataIPShortCuts::cCurrentModuleObject + '=' + DataIPShortCuts::cAlphaArgs(1));
-                ShowContinueError("Invalid " + DataIPShortCuts::cAlphaFieldNames(2) + '=' + DataIPShortCuts::cAlphaArgs(2));
-                ErrorsFound = true;
-            }
+ //           SimplePcmStorage(iceNum).PcmTSType = DataIPShortCuts::cAlphaArgs(2);
+ //           if (UtilityRoutines::SameString(SimplePcmStorage(iceNum).PcmTSType, "IceOnCoilInternal")) {
+ //               SimplePcmStorage(iceNum).PcmTSType_Num = ITSType::IceOnCoilInternal;
+ //           } else if (UtilityRoutines::SameString(SimplePcmStorage(iceNum).PcmTSType, "IceOnCoilExternal")) {
+ //               SimplePcmStorage(iceNum).PcmTSType_Num = ITSType::IceOnCoilExternal;
+ //           } else {
+ //               ShowSevereError(DataIPShortCuts::cCurrentModuleObject + '=' + DataIPShortCuts::cAlphaArgs(1));
+ //               ShowContinueError("Invalid " + DataIPShortCuts::cAlphaFieldNames(2) + '=' + DataIPShortCuts::cAlphaArgs(2));
+ //               ErrorsFound = true;
+ //           }
+            
 
             // Get and Verify ITS nominal Capacity (user input is in GJ, internal value in in J)
             SimplePcmStorage(iceNum).PcmTSNomCap = DataIPShortCuts::rNumericArgs(1) * 1.e+09;
@@ -1192,6 +1200,12 @@ namespace IceThermalStorage {
             SimplePcmStorage(iceNum).PcmTSOutletTemp = 0.0;
 
         } // IceNum
+
+        if ((NumSimpleIceStorage + NumDetailedIceStorage + NumSimplePcmStorage) <= 0) {
+            ShowSevereError("No Ice Storage Equipment found in GetIceStorage");
+            ErrorsFound = true;
+        }
+
 
         if (ErrorsFound) {
             ShowFatalError("Errors found in processing input for " + DataIPShortCuts::cCurrentModuleObject);
@@ -2135,12 +2149,15 @@ namespace IceThermalStorage {
         //************************************************************************
         //        IF( U .EQ. 0.0 ) THEN
         if ((MyLoad2 == 0.0) || (DemandMdot == 0.0)) {
+ //           std::cout << "CalcPcmStorageDormant" << endl;
+
             this->CalcPcmStorageDormant();
 
             //***** Charging Process for ITS *****************************************
             //************************************************************************
             //        ELSE IF( U .GT. 0.0 ) THEN
         } else if (MyLoad2 < 0.0) {
+ //           std::cout << "CalcPcmStorageCharge" << endl;
 
             Real64 MaxCap;
             Real64 MinCap;
@@ -2152,6 +2169,7 @@ namespace IceThermalStorage {
             //************************************************************************
             //        ELSE IF( U .LT. 0.0 ) THEN
         } else if (MyLoad2 > 0.0) {
+ //           std::cout << "CalcPcmStorageDischarge" << endl;
 
             Real64 MaxCap;
             Real64 MinCap;
@@ -2166,8 +2184,6 @@ namespace IceThermalStorage {
         // Update report variables.
         this->RecordOutput(MyLoad2, RunFlag);
     }
-
-
 
     void SimplePcmStorageData::InitSimplePcmStorage(BranchInputManagerData &dataBranchInputManager)
     {
@@ -2261,7 +2277,6 @@ namespace IceThermalStorage {
             "Pcm Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, this->PcmTSChargingEnergy, "System", "Sum", this->Name);
     }
 
-      
     void SimplePcmStorageData::CalcPcmStorageDormant()
     {
         // Provide output results for ITS.
@@ -2286,7 +2301,6 @@ namespace IceThermalStorage {
         this->Urate = 0.0; //[n/a]
     }
 
-    
     void SimplePcmStorageData::CalcPcmStorageCharge()
     {
         //--------------------------------------------------------
@@ -2389,7 +2403,6 @@ namespace IceThermalStorage {
         this->PcmTSCoolingEnergy = this->PcmTSCoolingRate * DataHVACGlobals::TimeStepSys * DataGlobals::SecInHour;
     }
 
-    
     void SimplePcmStorageData::CalcPcmStorageCapacity(Real64 &MaxCap, Real64 &MinCap, Real64 &OptCap)
     {
         //------------------------------------------------------------------------
@@ -2436,7 +2449,6 @@ namespace IceThermalStorage {
         MinCap = PcmTSCoolingRateMin;
     }
 
-    
     void SimplePcmStorageData::CalcPcmStorageDischarge(Real64 const myLoad, // operating load
                                                        bool const RunFlag,  // TRUE when ice storage operating
                                                        Real64 const MaxCap  // Max possible discharge rate (positive value)
@@ -2444,8 +2456,8 @@ namespace IceThermalStorage {
     {
         std::string const RoutineName("SimplePcmStorageData::CalcPcmStorageDischarge");
 
-        Real64 OnsetTemp = (50 -32)*5/9;         // move to global variable later
-        Real64 FinishTemp = (60-32)*5/9;          // move to global variable later
+        Real64 OnsetTemp = (30 -32)*5/9;         // move to global variable later
+        Real64 FinishTemp = (34-32)*5/9;          // move to global variable later
         Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTemp + this->XCurPcmFrac * FinishTemp; // FreezTempIP;
         
 
@@ -2537,7 +2549,6 @@ namespace IceThermalStorage {
         this->PcmTSCoolingEnergy = this->PcmTSCoolingRate * DataHVACGlobals::TimeStepSys * DataGlobals::SecInHour;
     }
 
-
     void SimplePcmStorageData::CalcQpcmChargeMaxByNtu(Real64 const chillerOutletTemp, // [degC]
                                                       Real64 &QpcmMaxByPcmTS            // [W]
     )
@@ -2546,13 +2557,21 @@ namespace IceThermalStorage {
         // Qpcm is minimized(=0) when ChillerInletTemp is almost same as FreezTemp(=0).
 
         // Initilize
-        Real64 OnsetTempIP = 50;  // move to global variable later
-        Real64 FinishTempIP = 60; // move to global variable later
+        Real64 OnsetTempIP = 30;  // move to global variable later
+        Real64 FinishTempIP = 34; // move to global variable later
         Real64 TfrIP = (1 - this->XCurPcmFrac) * OnsetTempIP + this->XCurPcmFrac * FinishTempIP; // FreezTempIP;
 
-        Real64 OnsetUA = 0.8;                                                               // move to global variable later
-        Real64 FinishUA = 1.2;                                                              // move to global variable later
+        Real64 OnsetUA = 20000;                                                   // move to global variable later
+        Real64 FinishUA = 20000;                                                              // move to global variable later
         Real64 UAfr = (1 - this->XCurPcmFrac) * OnsetUA + this->XCurPcmFrac * FinishUA;     // FreezUA;
+
+        // Set ITSInletTemp provided by E+
+        this->PcmTSInletTemp = DataLoopNode::Node(this->PltInletNodeNum).Temp;
+        // The first thing is to set the ITSMassFlowRate
+        this->PcmTSMassFlowRate = this->DesignMassFlowRate; //[kg/s]
+
+        PlantUtilities::SetComponentFlowRate(
+            this->PcmTSMassFlowRate, this->PltInletNodeNum, this->PltOutletNodeNum, this->LoopNum, this->LoopSideNum, this->BranchNum, this->CompNum);
 
         Real64 ChOutletTemp = TempSItoIP(chillerOutletTemp); //[degF] = ConvertSItoIP[degC]
         // Chiller outlet temp must be below freeze temp, or else no charge
@@ -2586,13 +2605,13 @@ namespace IceThermalStorage {
     void SimplePcmStorageData::CalcQpcmDischageMax(Real64 &QpcmMin)
     {
         // Initilize
-        Real64 OnsetTemp = (50 - 32) * 5 / 9;                                              // move to global variable later
-        Real64 FinishTemp = (60 - 32) * 5 / 9;                                             // move to global variable later
+        Real64 OnsetTemp = (30 - 32) * 5 / 9;                                              // move to global variable later
+        Real64 FinishTemp = (34 - 32) * 5 / 9;                                             // move to global variable later
         Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTemp + this->XCurPcmFrac * FinishTemp; // FreezTempIP;
         
 
-        Real64 OnsetUA = 50;   // move to global variable later
-        Real64 FinishUA = 60;    // move to global variable later
+        Real64 OnsetUA = 20000;   // move to global variable later
+        Real64 FinishUA = 20000;    // move to global variable later
         Real64 UAfr = (1 - this->XCurPcmFrac) * OnsetUA + this->XCurPcmFrac * FinishUA; // FreezUA;
 
         // Qice is minimized when ITSInletTemp and ITSOutletTemp is almost same due to LMTD method.
@@ -2617,6 +2636,8 @@ namespace IceThermalStorage {
         } else {
             // Effectiveness-Ntu method
             Real64 Cmin = Psychrometrics::CPCW(this->PcmTSInletTemp) * this->PcmTSMassFlowRate;
+ //           std::cout << "CPCW =" << Psychrometrics::CPCW(this->PcmTSInletTemp) << endl;
+ //           std::cout << "PcmTSMassFlowRate = " << this->PcmTSMassFlowRate << endl;
             Real64 Ntu = UAfr / Cmin;
             Real64 Effectiveness = 1 - exp(-Ntu);
             QpcmMin = Effectiveness * Cmin * (Tfr - PcmTSOutletTemp_loc);
@@ -2673,8 +2694,6 @@ namespace IceThermalStorage {
             this->PcmTSmdot = this->PcmTSMassFlowRate;
         }
     }
-
-
 
 } // namespace IceThermalStorage
 
