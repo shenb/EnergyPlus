@@ -313,13 +313,18 @@ namespace IceThermalStorage {
         bool MyPlantScanFlag;
         bool MyEnvrnFlag2;
 
+        Real64 OnsetTemp;
+        Real64 FinishTemp; 
+        Real64 OnsetUA;
+        Real64 FinishUA;
+
         // Default Constructor
         SimplePcmStorageData()
             : MapNum(0), UratePtr(0), PcmTSNomCap(0.0), PltInletNodeNum(0), PltOutletNodeNum(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0),
               DesignMassFlowRate(0.0), FreezeTemp(0.0), ResetXForPcmTSFlag(false), MyEnvrnFlag(true), UAIceCh(0.0), UAIceDisCh(0.0), HLoss(0.0),
               XCurPcmFrac(0.0), PcmTSMassFlowRate(0.0), PcmTSInletTemp(0.0), PcmTSOutletTemp(0.0), PcmTSOutletSetPointTemp(0.0), PcmTSCoolingRate(0.0),
-              PcmTSCoolingEnergy(0.0), CheckEquipName(true), MyLoad(0.0), Urate(0.0), PcmFracRemain(0.0), PcmTSChargingRate(0.0), PcmTSChargingEnergy(0.0),
-              PcmTSmdot(0.0), PcmTSCoolingRate_rep(0.0), PcmTSCoolingEnergy_rep(0.0), MyPlantScanFlag(true), MyEnvrnFlag2(true)
+              PcmTSCoolingEnergy(0.0), CheckEquipName(true), MyLoad(0.0), Urate(0.0), PcmFracRemain(0.0), PcmTSChargingRate(0.0), PcmTSChargingEnergy(0.0), PcmTSmdot(0.0), PcmTSCoolingRate_rep(0.0), PcmTSCoolingEnergy_rep(0.0),
+              MyPlantScanFlag(true), MyEnvrnFlag2(true), OnsetTemp(0.0), FinishTemp(0.0), OnsetUA(10000), FinishUA(10000)
         {
         }
 

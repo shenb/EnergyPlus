@@ -2149,7 +2149,7 @@ namespace IceThermalStorage {
         //************************************************************************
         //        IF( U .EQ. 0.0 ) THEN
         if ((MyLoad2 == 0.0) || (DemandMdot == 0.0)) {
- //           std::cout << "CalcPcmStorageDormant" << endl;
+        //    std::cout << "CalcPcmStorageDormant - OFF - OFF - OFF" << endl;
 
             this->CalcPcmStorageDormant();
 
@@ -2157,7 +2157,7 @@ namespace IceThermalStorage {
             //************************************************************************
             //        ELSE IF( U .GT. 0.0 ) THEN
         } else if (MyLoad2 < 0.0) {
- //           std::cout << "CalcPcmStorageCharge" << endl;
+        //    std::cout << "CalcPcmStorageCharge - Charge - CHarge - Charge - Charge" << endl;
 
             Real64 MaxCap;
             Real64 MinCap;
@@ -2169,7 +2169,7 @@ namespace IceThermalStorage {
             //************************************************************************
             //        ELSE IF( U .LT. 0.0 ) THEN
         } else if (MyLoad2 > 0.0) {
- //           std::cout << "CalcPcmStorageDischarge" << endl;
+        //    std::cout << "CalcPcmStorageDischarge - Discharge  - Discharge - Discharge - Discharge - Discharge" << endl;
 
             Real64 MaxCap;
             Real64 MinCap;
@@ -2247,6 +2247,11 @@ namespace IceThermalStorage {
             this->PcmTSOutletTemp = 0.0;
 
             this->MyEnvrnFlag2 = false;
+
+            this->OnsetTemp = -2;
+            this->FinishTemp = 2;
+            this->OnsetUA = 20000;
+            this->FinishUA = 20000;
         }
 
         if (!DataGlobals::BeginEnvrnFlag) this->MyEnvrnFlag2 = true;
@@ -2456,8 +2461,8 @@ namespace IceThermalStorage {
     {
         std::string const RoutineName("SimplePcmStorageData::CalcPcmStorageDischarge");
 
-        Real64 OnsetTemp = (30 -32)*5/9;         // move to global variable later
-        Real64 FinishTemp = (34-32)*5/9;          // move to global variable later
+        Real64 OnsetTemp = this->OnsetTemp;         // move to global variable later
+        Real64 FinishTemp = this->FinishTemp;          // move to global variable later
         Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTemp + this->XCurPcmFrac * FinishTemp; // FreezTempIP;
         
 
@@ -2557,12 +2562,12 @@ namespace IceThermalStorage {
         // Qpcm is minimized(=0) when ChillerInletTemp is almost same as FreezTemp(=0).
 
         // Initilize
-        Real64 OnsetTempIP = 30;  // move to global variable later
-        Real64 FinishTempIP = 34; // move to global variable later
+        Real64 OnsetTempIP = this->OnsetTemp *9.0/5.0 +32 ;   // move to global variable later
+        Real64 FinishTempIP = this->FinishTemp*9.0/5.0 + 32; // move to global variable later
         Real64 TfrIP = (1 - this->XCurPcmFrac) * OnsetTempIP + this->XCurPcmFrac * FinishTempIP; // FreezTempIP;
 
-        Real64 OnsetUA = 20000;                                                   // move to global variable later
-        Real64 FinishUA = 20000;                                                              // move to global variable later
+        Real64 OnsetUA = this->OnsetUA;                                                   // move to global variable later
+        Real64 FinishUA = this->FinishUA;                                                              // move to global variable later
         Real64 UAfr = (1 - this->XCurPcmFrac) * OnsetUA + this->XCurPcmFrac * FinishUA;     // FreezUA;
 
         // Set ITSInletTemp provided by E+
@@ -2605,13 +2610,13 @@ namespace IceThermalStorage {
     void SimplePcmStorageData::CalcQpcmDischageMax(Real64 &QpcmMin)
     {
         // Initilize
-        Real64 OnsetTemp = (30 - 32) * 5 / 9;                                              // move to global variable later
-        Real64 FinishTemp = (34 - 32) * 5 / 9;                                             // move to global variable later
+        Real64 OnsetTemp = this->OnsetTemp;                                              // move to global variable later
+        Real64 FinishTemp = this->FinishTemp;                                             // move to global variable later
         Real64 Tfr = (1 - this->XCurPcmFrac) * OnsetTemp + this->XCurPcmFrac * FinishTemp; // FreezTempIP;
         
 
-        Real64 OnsetUA = 20000;   // move to global variable later
-        Real64 FinishUA = 20000;    // move to global variable later
+        Real64 OnsetUA = this->OnsetUA;   // move to global variable later
+        Real64 FinishUA = this->FinishUA;    // move to global variable later
         Real64 UAfr = (1 - this->XCurPcmFrac) * OnsetUA + this->XCurPcmFrac * FinishUA; // FreezUA;
 
         // Qice is minimized when ITSInletTemp and ITSOutletTemp is almost same due to LMTD method.
