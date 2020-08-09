@@ -98,7 +98,8 @@ namespace WaterCoils {
     // MODULE INFORMATION:
     //       AUTHOR         Richard J. Liesen
     //       DATE WRITTEN   April 1998
-    //       MODIFIED       April 2004: Rahul Chillar
+    //       MODIFIED       Aug. 2020, Jian Sun, add liquid desiccant dehumidification coil 
+    //                      April 2004: Rahul Chillar
     //                      Feb. 2010, Brent Griffith, Plant Demand Side Update, general fluid properties
     //       RE-ENGINEERED  na
 
@@ -267,6 +268,7 @@ namespace WaterCoils {
         // PURPOSE OF THIS SUBROUTINE:
         // This subroutine manages WaterCoil component simulation.
 
+        using namespace std; 
         // Using/Aliasing
         using General::TrimSigDigits;
 
@@ -286,6 +288,9 @@ namespace WaterCoils {
         // Find the correct WaterCoilNumber with the Coil Name
         if (CompIndex == 0) {
             CoilNum = UtilityRoutines::FindItemInList(CompName, WaterCoil);
+        //    std::cout << "CoilNum = " << CoilNum << endl;
+        //    std::cout << "CompName = " << CompName << endl;
+
             if (CoilNum == 0) {
                 ShowFatalError("SimulateWaterCoilComponents: Coil not found=" + CompName);
             }
@@ -4431,6 +4436,7 @@ namespace WaterCoils {
         using General::Iterate;
         using namespace std;
 
+ //       std::cout << "------  LiqDesiccantCoil_Ntu: Start ---------" << endl;
         double const BtuLbToJKg = 2326.0;
 
         // new varibales
@@ -4477,7 +4483,7 @@ namespace WaterCoils {
         // --------------- Iteration starts -------------------------------
         if (Tso == Tsi) Tso = Tsi + 1.0;
         for (iter_Tso = 1; iter_Tso <= itmax_Tso; ++iter_Tso) {
-
+            
             Hso = SolnHFnTX(MatlOfLiqDesiccant, Tso, Xso);
             cps = SolnCpFnTX(MatlOfLiqDesiccant, Tsi, Xsi); // Cps = (Hso - Hsi )/(Tso - Tsi)
 
@@ -4516,10 +4522,10 @@ namespace WaterCoils {
                 HSSeff_p = PsyHFnTdbW((TSSeff - 32) / 1.8, WSSeff) / BtuLbToJKg; // Res 1 ; HUMEFF - W_Ts.sat.eff
                 error_Hsseff = (HSSeff_p - HSSeff) / HSSeff;
                 Iterate(ResultX_Hsseff, 0.01, TSSeff, error_Hsseff, X1_Hsseff, Y1_Hsseff, iter_Hsseff, icvg_Hsseff);
-                // std::cout << "iter_Hsseff = " << iter_Hsseff << "   "
-                //           << "error_Hsseff = " << error_Hsseff << "   "
-                //           << "ResultX_Hsseff  = " << ResultX_Hsseff  << "   "
-                //           << "icvg_Hsseff = " << icvg_Hsseff << endl;
+ //               std::cout << "iter_Hsseff = " << iter_Hsseff << "   "
+ //                          << "error_Hsseff = " << error_Hsseff << "   "
+ //                          << "ResultX_Hsseff  = " << ResultX_Hsseff  << "   "
+ //                          << "icvg_Hsseff = " << icvg_Hsseff << endl;
                 TSSeff = ResultX_Hsseff;
                 // If converged, exit loop
                 if (icvg_Hsseff == 1) {

@@ -3605,6 +3605,11 @@ namespace SimAirServingZones {
                 if (QActual > 0.0) CoolingActive = true; // determine if coil is ON
 
                 // stand-alone coils are temperature controlled (do not pass QCoilReq in argument list, QCoilReq overrides temp SP)
+            } else if (SELECT_CASE_var == WaterCoil_DehumLiqDesiccant) { // 'Coil:Dehumidification:LiquidDesiccant'
+                SimulateWaterCoilComponents(state, CompName, FirstHVACIteration, CompIndex, QActual);
+                if (QActual > 0.0) CoolingActive = true; // determine if coil is ON
+
+                // stand-alone coils are temperature controlled (do not pass QCoilReq in argument list, QCoilReq overrides temp SP)
             } else if (SELECT_CASE_var == Coil_ElectricHeat) { // 'Coil:Heating:Electric'
                 SimulateHeatingCoilComponents(state, CompName, FirstHVACIteration, _, CompIndex, QActual);
                 if (QActual > 0.0) HeatingActive = true; // determine if coil is ON

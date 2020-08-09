@@ -81,7 +81,8 @@ namespace IceThermalStorage {
     // MODULE INFORMATION:
     //       AUTHOR         Pyeongchan Ihm
     //       DATE WRITTEN   April 2002
-    //       MODIFIED       Modified Refined model, added Simple model, by Guo Zhou, Oct 2002
+    //       MODIFIED       Add PCM storage model, by Jian Sun, Aug. 2020
+    //                      Modified Refined model, added Simple model, by Guo Zhou, Oct 2002
     //                      Remove chiller, make just a storage tank, Michael J. Witte, Sep 2005
     //                      Added detailed ice storage model, Rick Strand, Feb 2006
     //                      B. Griffith, Sept 2010, plant upgrades, fluid properties
