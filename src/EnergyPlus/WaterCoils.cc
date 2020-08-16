@@ -4337,11 +4337,11 @@ namespace WaterCoils {
 
             std::cout << "******************************CoilNum:" << CoilNum << "start * **************************" << endl;
 
-            SolnMassFlowRateIn =   WaterCoil(CoilNum).InletWaterMassFlowRate;//0.099;// 0.3; //
-            SolnTempIn = 34.4;    // WaterCoil(CoilNum).InletWaterTemp;                           //
-            SolnConcIn =  WaterCoil(CoilNum).DesInletSolnConcentration;//0.095; // 0.4; //
+            SolnMassFlowRateIn = WaterCoil(CoilNum).InletWaterMassFlowRate;//0.099;// 0.3; //
+            SolnTempIn = WaterCoil(CoilNum).InletWaterTemp;    // 34.4;    //                       //
+            SolnConcIn = WaterCoil(CoilNum).DesInletSolnConcentration;//0.095; // 0.4; //
             AirMassFlowRateIn = WaterCoil(CoilNum).InletAirMassFlowRate; //0.1507; //
-            AirTempIn =  WaterCoil(CoilNum).InletAirTemp;//82.2; //
+            AirTempIn = WaterCoil(CoilNum).InletAirTemp;//82.2; //
             AirHumRat =  WaterCoil(CoilNum).InletAirHumRat; //0.0167; //
             Coeff_HdAvVt =  WaterCoil(CoilNum).HdAvVt;//0.098; //
             LewisNum = 1.0;
@@ -5453,10 +5453,10 @@ namespace WaterCoils {
         wsath = SolnWFnTX(MatlOfLiqDesiccant, Tso, Xso); // Tso & Xso unknown, iterative variables
         //hsatl = (1.006 * (Tsi - 32) / 1.8 + wsatl * (1.84 * (Tsi - 32) / 1.8 + 2501)); // / 2.326;
         //hsath = (1.006 * (Tso - 32) / 1.8 + wsath * (1.84 * (Tso - 32) / 1.8 + 2501)); // / 2.326;
-        hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) * 1000; // / 2.326;   // KJ/Kg
-        hsath = (1.006 * Tso + wsath * (1.84 * Tso + 2501)) * 1000; // / 2.326;
+        hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) * 1000;  // J/Kg
+        hsath = (1.006 * Tso + wsath * (1.84 * Tso + 2501)) * 1000;  // J/Kg
 
-        csat = (hsatl - hsath) / (Tsi - Tso);  // / 1.8; // P30 (3.23)
+        csat = (hsatl - hsath) / (Tsi - Tso);  // P30 (3.23)
 
         // Step 2: Calculate the capacitance ratio
         mcp_min = min((ma * csat), (msi * cps));
@@ -5653,7 +5653,7 @@ namespace WaterCoils {
             f1 = B3 + B4 * xi;
         double f2 = B5 * pow(theta, 0.02) + B6 * pow(theta, 0.04) + B7 * pow(theta, 0.06);
         double cps = cp_H2O * (1 - f1 * f2);
-        cps = cps*1000 / 4.186798188;
+        cps = cps * 1000; // / 4.186798188;
 
         return (cps);  // J/kg-k
         //    qDebug()<<"LiCl cp"<<cps;
@@ -5704,7 +5704,7 @@ namespace WaterCoils {
         double B = 4.5751 - 0.146924 * xs + (6.307226E-03) * pow(xs, 2) - (1.38054E-04) * pow(xs, 3) + (1.06690E-06) * pow(xs, 4);
         double C = (-8.09689E-04) + (2.18145E-04) * xs - (1.36194E-05) * pow(xs, 2) + (3.20998E-07) * pow(xs, 3) - (2.64266E-09) * pow(xs, 4);
         double h = A + B * ts + C * pow(ts, 2);
-        double hs = 1000*h / 2.326;
+        double hs = 1000 * h; // / 2.326;
 
         return (hs);
     };
