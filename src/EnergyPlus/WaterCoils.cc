@@ -4335,16 +4335,17 @@ namespace WaterCoils {
              (WaterCoil(CoilNum).MaxWaterMassFlowRate > 0.0)) ||
             (CalcMode == DesignCalc)) {
 
-            std::cout << "******************************CoilNum:" << CoilNum << "start * **************************" << endl;
+            //std::cout << "******************************CoilNum:" << CoilNum << "start * **************************" << endl;
 
-            SolnMassFlowRateIn = WaterCoil(CoilNum).InletWaterMassFlowRate;//0.099;// 0.3; //
-            SolnTempIn = WaterCoil(CoilNum).InletWaterTemp;    // 34.4;    //                       //
-            SolnConcIn = WaterCoil(CoilNum).DesInletSolnConcentration;//0.095; // 0.4; //
-            AirMassFlowRateIn = WaterCoil(CoilNum).InletAirMassFlowRate; //0.1507; //
-            AirTempIn = WaterCoil(CoilNum).InletAirTemp;//82.2; //
-            AirHumRat =  WaterCoil(CoilNum).InletAirHumRat; //0.0167; //
-            Coeff_HdAvVt =  WaterCoil(CoilNum).HdAvVt;//0.098; //
+            SolnMassFlowRateIn =  WaterCoil(CoilNum).InletWaterMassFlowRate; // 0.000125997881 *622.294;                   
+            SolnTempIn =  WaterCoil(CoilNum).InletWaterTemp;    //(65.395-32)*5/9.0;      
+            SolnConcIn =  WaterCoil(CoilNum).DesInletSolnConcentration;//0.2768;                            
+            AirMassFlowRateIn =  WaterCoil(CoilNum).InletAirMassFlowRate; //0.000125997881 * 2251.74;  
+            AirTempIn =  WaterCoil(CoilNum).InletAirTemp; //(57.0-32)*5.0/9.0;                                           
+            AirHumRat =  WaterCoil(CoilNum).InletAirHumRat; //0.007889;                                  
+            Coeff_HdAvVt =  WaterCoil(CoilNum).HdAvVt; //1.5 * AirMassFlowRateIn;                 
             LewisNum = 1.0;
+            /*
             std::cout << " -------- inputs ----------- " << endl;
             std::cout << "SolnMassFlowRateIn =" << SolnMassFlowRateIn << endl;
             std::cout << " SolnTempIn=" << SolnTempIn << endl;
@@ -4353,6 +4354,7 @@ namespace WaterCoils {
             std::cout << " AirTempIn=" << AirTempIn << endl;
             std::cout << " AirHumRat=" << AirHumRat << endl;
             std::cout << " Coeff_HdAvVt=" << Coeff_HdAvVt << endl << endl;
+            */
 
             LiqDesiccantCoil_Ntu(CoilNum,                // Number of Coil
                 SolnMassFlowRateIn,     // Solution mass flow rate IN to this function(kg/s)
@@ -4373,14 +4375,7 @@ namespace WaterCoils {
                 TotWaterCoilLoad,       // Total heat transfer rate(W)
                 SenWaterCoilLoad); // Total water evaporate (kg)
               
-            std::cout << " -------- outputs ----------- " << endl;
-            std::cout << "OutletAirTemp =" << OutletAirTemp << endl;
-            std::cout << " OutletAirHumRat=" << OutletAirHumRat << endl;
-            std::cout << " OutletSolnTemp=" << OutletSolnTemp << endl;
-            std::cout << " OutletSolnConc=" << OutletSolnConc << endl;
-            std::cout << " OutletSolnEnthaly=" << OutletSolnEnthaly << endl<<endl;
-        
-            std::cout << "************************************End ***************************" << endl<<endl;
+
 
             // Report outlet variables at nodes
             WaterCoil(CoilNum).OutletAirTemp = OutletAirTemp;
@@ -4436,42 +4431,43 @@ namespace WaterCoils {
     )
     {
         // FUNCTION INFORMATION:
-        // AUTHOR         
-        // DATE WRITTEN   
+        // AUTHOR
+        // DATE WRITTEN
         // MODIFIED       na
         // RE-ENGINEERED  na
 
         // PURPOSE OF THIS FUNCTION:
-        // The subroutine 
+        // The subroutine
 
         // METHODOLOGY EMPLOYED:
-        // 
+        //
 
         // REFERENCES:
-        // 
+        //
 
         using General::Iterate;
         using namespace std;
 
- //       std::cout << "------  LiqDesiccantCoil_Ntu: Start ---------" << endl;
+        //       std::cout << "------  LiqDesiccantCoil_Ntu: Start ---------" << endl;
 
         // new varibales
         int MatlOfLiqDesiccant = WaterCoil(CoilNum).MatlLiqDesiccant;
-        Real64 Patm = OutBaroPress;
-        Real64 HdAvVt = 1; //  Coeff_HdAvVt;
+        Real64 Patm =  OutBaroPress;
+       
+        Real64 HdAvVt = Coeff_HdAvVt;
 
-        Real64 ma =  AirMassFlowRateIn;//0.3;    // kg/s 
-        Real64 Tai = AirTempIn ; // 30 ;  // C o F 
-        Real64 Wai = AirHumRat; // PsyWFnTdbTwbPb(Tai, Twbai, Patm);
+        Real64 ma = AirMassFlowRateIn; // 0.3;    // kg/s
+        Real64 Tai = AirTempIn;        // 30 ;  // C o F
+        Real64 Wai = AirHumRat;        // PsyWFnTdbTwbPb(Tai, Twbai, Patm);
 
-        Real64 msi = SolnMassFlowRateIn; // 0.3; // kg/s 
-        Real64 Xsi = SolnConcIn;            // 0 .4;
-        Real64 Tsi = SolnTempIn; // 25; // WaterTempIn; // degree C
+        Real64 msi = SolnMassFlowRateIn; // 0.3; // kg/s
+        Real64 Xsi = SolnConcIn;         // 0 .4;
+        Real64 Tsi = SolnTempIn;         // 25; // WaterTempIn; // degree C
 
         // Output Varibles
         Real64 Wao = 1.0, Tao;
         Real64 mso, Xso, Tso;
-        Real64 Qtot, QSen;
+        Real64 Qtot, QSen, Wevaprate;
 
         // Local Variables
         Real64 Ntu, Effect;
@@ -4481,7 +4477,7 @@ namespace WaterCoils {
         Real64 RHai, Hai = 1.0, HSSi, Hsi;
         Real64 RHao, Hao = 1.0, HSSo, Hso, Hso_p;
         Real64 HSSeff, WSSeff = 1.0, TSSeff = 1.0, HSSeff_p;
-        Real64 TsoG = 20.0 ;
+        Real64 TsoG = 20.0;
         Real64 TSSeff_G = 20.0;
 
         int iter_Tso, itmax_Tso = 10, icvg_Tso = 0;
@@ -4498,7 +4494,7 @@ namespace WaterCoils {
         // --------------- Iteration starts -------------------------------
         if (Tso == Tsi) Tso = Tsi + 1.0;
         for (iter_Tso = 1; iter_Tso <= itmax_Tso; ++iter_Tso) {
-            
+
             Hso = SolnHFnTX(MatlOfLiqDesiccant, Tso, Xso);
             cps = SolnCpFnTX(MatlOfLiqDesiccant, Tsi, Xsi); // Cps = (Hso - Hsi )/(Tso - Tsi)
 
@@ -4506,8 +4502,6 @@ namespace WaterCoils {
             // temperature
             wsatl = SolnWFnTX(MatlOfLiqDesiccant, Tsi, Xsi);
             wsath = SolnWFnTX(MatlOfLiqDesiccant, Tso, Xso); // Tso & Xso unknown, iterative variables
-            //hsatl = (1.006 * (Tsi - 32) / 1.8 + wsatl * (1.84 * (Tsi - 32) / 1.8 + 2501)); //    / 2.326;
-            //hsath = (1.006 * (Tso - 32) / 1.8 + wsath * (1.84 * (Tso - 32) / 1.8 + 2501)); // / 2.326;
             hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) * 1000; // /2.326;
             hsath = (1.006 * Tso + wsath * (1.84 * Tso + 2501)) * 1000; // /2.326;
 
@@ -4521,10 +4515,10 @@ namespace WaterCoils {
             Effect = (1 - exp(-Ntu * (1 - m_star))) / (1 - m_star * (exp(-Ntu * (1 - m_star)))); // p31 (3.26)
 
             // Step 4: Calculate the air outlet enthalpy
-            RHai = PsyRhFnTdbWPb(Tai, Wai, Patm);              //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
-            Hai = PsyHFnTdbRhPb(Tai, RHai, Patm); // per lb dry air  Hai
+            RHai = PsyRhFnTdbWPb(Tai, Wai, Patm);                     //  FluidRH(Tai, Wai, Patm, m_iFLD, 2); // place hold Res 8
+            Hai = PsyHFnTdbRhPb(Tai, RHai, Patm);                     // per lb dry air  Hai
             HSSi = LDSatEnthalpy(MatlOfLiqDesiccant, Tsi, Xsi, Patm); // H_Ts.sat.i
-            Hao = Hai + Effect * (HSSi - Hai);                              // res 0  ; p31 (3.27)
+            Hao = Hai + Effect * (HSSi - Hai);                        // res 0  ; p31 (3.27)
 
             // Step 5: Calculate the effective saturation enthalpy
             HSSeff = Hai + (Hao - Hai) / (1.0 - exp(-1.0 * Ntu)); // Res 1 ;  p31 (3.28) H_Ts,sat.eff
@@ -4534,7 +4528,7 @@ namespace WaterCoils {
             for (iter_Hsseff = 1; iter_Hsseff <= itmax_Hsseff; ++iter_Hsseff) {
 
                 WSSeff = SolnWFnTX(MatlOfLiqDesiccant, TSSeff, (Xsi + Xso) / 2.0); // dRes6 = wftx9(TEFF, (Xsi + Xso) / 2.0) - WSSeff;
-                HSSeff_p = PsyHFnTdbW(TSSeff, WSSeff); // Res 1 ; HUMEFF - W_Ts.sat.eff
+                HSSeff_p = PsyHFnTdbW(TSSeff, WSSeff);                             // Res 1 ; HUMEFF - W_Ts.sat.eff
                 error_Hsseff = (HSSeff_p - HSSeff) / HSSeff;
 
                 Iterate(ResultX_Hsseff, 0.01, TSSeff, error_Hsseff, X1_Hsseff, Y1_Hsseff, iter_Hsseff, icvg_Hsseff);
@@ -4619,21 +4613,22 @@ namespace WaterCoils {
 
         // Step 9: Caculate other outlet conditions
         // double Hao = FluidEnthalpy(Tao, RHao, PATM, m_iFLD, 1);  // Hao
-        Tao = PsyTdbFnHW(Hao, Wao); // inline Real64 PsyTdbFnHW(Real64 const H, Real64 const dW)  // enthalpy {J/kg} // humidity ratio
-        RHao = PsyRhFnTdbWPb(Tao , Wao, Patm); // dRes9 = FluidRH(dTAIROUT, Wao, PATM, m_iFLD, 2) - RHao;
+        Tao = PsyTdbFnHW(Hao, Wao);           // inline Real64 PsyTdbFnHW(Real64 const H, Real64 const dW)  // enthalpy {J/kg} // humidity ratio
+        RHao = PsyRhFnTdbWPb(Tao, Wao, Patm); // dRes9 = FluidRH(dTAIROUT, Wao, PATM, m_iFLD, 2) - RHao;
 
         // Step 10: Caculate other output variables
-        Qtot = ma * (Hao - Hai); // Res7  // J
-        //Wevaprate = ma * (Wao - Wai);         // dRes10 = ma * (Wao - Wai) - WEVAPRATE;
-        QSen = ma * PsyCpAirFnW(0.5*(Wai+Wao)) * (Tao - Tai);  // J
+        Qtot = ma * (Hao - Hai);            //mso * Hso - msi * Hsi;      // Res7  // J
+        Wevaprate = ma * (Wao - Wai);                             // dRes10 = ma * (Wao - Wai) - WEVAPRATE;
+        QSen = ma * PsyCpAirFnW(0.5 * (Wai + Wao)) * (Tao - Tai); // J
 
         //  ********************* new calcuation code: end *************************
-        
+        /*
         std::cout << endl;
         std::cout << endl;
-        std::cout <<" ----------------------------------- Resluts -----------------------------" << endl;
-        std::cout << " Ntu = " << Ntu  << endl;
+        std::cout << " ----------------------------------- Resluts Start-----------------------------" << endl;
+        std::cout << " Ntu = " << Ntu << endl;
         std::cout << " Tao = " << Tao << endl;
+        std::cout << " Wao = " << Wao << endl;
         std::cout << " RHao = " << RHao << endl;
         std::cout << " Hao = " << Hao << endl;
         std::cout << " Tso = " << Tso << endl;
@@ -4641,17 +4636,20 @@ namespace WaterCoils {
         std::cout << " Hso = " << Hso << endl;
         std::cout << " Qtot = " << Qtot << endl;
         std::cout << " QSen = " << QSen << endl;
+        std::cout << " Wevaprate = " << Wevaprate << endl;
         std::cout << " iter_Tso = " << iter_Tso << endl;
-        
-        OutletSolnTemp = Tso;  // C
-        OutletSolnConc = Xso;  // dimensionless 
-        OutletSolnMassFlowRate = mso;  // kg/s
-        OutletAirTemp = Tao;  // C
-        OutletAirHumRat = Wao;  // kg/kg
-        OutletSolnEnthaly = Hso;     // J/kg
-        TotWaterCoilLoad = Qtot;  // J
-        SenWaterCoilLoad = QSen;  // J
-        InletSolnEnthaly = Hsi;  // J/kg
+        std::cout << " ----------------------------------- Resluts End-----------------------------" << endl;
+        */
+
+        OutletSolnTemp = Tso;         // C
+        OutletSolnConc = Xso;         // dimensionless
+        OutletSolnMassFlowRate = mso; // kg/s
+        OutletAirTemp = Tao;          // C
+        OutletAirHumRat = Wao;        // kg/kg
+        OutletSolnEnthaly = Hso;      // J/kg
+        TotWaterCoilLoad = Qtot;      // J
+        SenWaterCoilLoad = QSen;      // J
+        InletSolnEnthaly = Hsi;       // J/kg
     }
     
 
@@ -5449,8 +5447,8 @@ namespace WaterCoils {
 
         // #### Step 1: Calculate the saturation specific heat which is the derivative of the saturated air enthaply with respect to
         // temperature
-        wsatl = SolnWFnTX(MatlOfLiqDesiccant, Tsi, Xsi);
-        wsath = SolnWFnTX(MatlOfLiqDesiccant, Tso, Xso); // Tso & Xso unknown, iterative variables
+        wsatl =  SolnWFnTX(MatlOfLiqDesiccant, Tsi, Xsi);
+        wsath =  SolnWFnTX(MatlOfLiqDesiccant, Tso, Xso); // Tso & Xso unknown, iterative variables
         //hsatl = (1.006 * (Tsi - 32) / 1.8 + wsatl * (1.84 * (Tsi - 32) / 1.8 + 2501)); // / 2.326;
         //hsath = (1.006 * (Tso - 32) / 1.8 + wsath * (1.84 * (Tso - 32) / 1.8 + 2501)); // / 2.326;
         hsatl = (1.006 * Tsi + wsatl * (1.84 * Tsi + 2501)) * 1000;  // J/Kg
@@ -5530,7 +5528,7 @@ namespace WaterCoils {
         _WSSE = WSOL;
         return (_WSSE);
     };
-
+    
     double SolnWFnTX(int MatlOfLiqDesiccant, double t, double x)
     {
         // inputs
@@ -5543,7 +5541,7 @@ namespace WaterCoils {
         return (WFnTX_LiCl(t, x));
     };
 
-    double WFnTX_LiCl(double t, double xi ) // wftx9 (double t, double xi)
+    double WFnTX_LiCl(double t, double xi) // wftx9 (double t, double xi)
     {
         // C*********************************************************************
         // C****** SUBROUTINE CALCULATES HUMIDITY RATIO OF MOIST AIR IN *********
@@ -5561,12 +5559,12 @@ namespace WaterCoils {
         //                +(74.3-1.8035*tc-0.01875*pow(tc,2))*x
         //                +(-226.4+7.49*tc-0.039*pow(tc,2))*pow(x,2);
         //   data from Goswami 2001
-        
+
         // inputs
         // t  - dry bulb temperature, C
         // xi - dimensionless
 
-        // outputs 
+        // outputs
         // w  - kg/kg
 
         double psat, psatKpa, tk, pv1;
@@ -5574,7 +5572,7 @@ namespace WaterCoils {
         double x = xi;
 
         PsatFnT(psat, t);
-        tk = t; // (t - 32) / 1.8 + 273.15;
+        tk = t + 273.15; // (t - 32) / 1.8 + 273.15;
         psatKpa = psat; // * 6.895;
         A = 2 - pow((1 + pow((x / 0.28), 4.3)), 0.6);
         B = pow(1 + pow((x / 0.21), 5.1), 0.49) - 1;
@@ -5591,7 +5589,7 @@ namespace WaterCoils {
         return (w);
     };
 
-    void PsatFnT(double &p, double const &t)  // pft3(double &p, double const &t)
+    void PsatFnT(double &p, double const &t) // pft3(double &p, double const &t)
     {
         // C***********************************************************************
         // C******  SUBROUTINE CALCULATES SATURATION PRESSURE IN PSIA  ************
@@ -5626,11 +5624,11 @@ namespace WaterCoils {
 
         // outputs
         // Cp  - kJ/kg-k
-     
-        return (CpFnTX_LiCl(tsi, xsi));
-     };
 
-    double CpFnTX_LiCl(double tsi, double xsi)  // cpftx9(double tsi, double xsi)
+        return (CpFnTX_LiCl(tsi, xsi));
+    };
+
+    double CpFnTX_LiCl(double tsi, double xsi) // cpftx9(double tsi, double xsi)
     {
         // inputs
         // tsi  - dry bulb temperature, C
@@ -5641,7 +5639,7 @@ namespace WaterCoils {
 
         double ts = tsi; // (tsi - 32) / 1.8;
         double T = (273.15 + ts);
-        double xi = xsi/ 100;
+        double xi = xsi / 100;
         double B0 = 1.43980, B1 = -1.24317, B2 = -0.12070, B3 = 0.12825, B4 = 0.62934, B5 = 58.5225, B6 = -105.6343, B7 = 47.7948;
         double theta = T / 228 - 1;
         double A0 = 88.7891, A1 = -120.1959, A2 = -16.9264, A3 = 52.4654, A4 = 0.10826, A5 = 0.46988;
@@ -5655,7 +5653,7 @@ namespace WaterCoils {
         double cps = cp_H2O * (1 - f1 * f2);
         cps = cps * 1000; // / 4.186798188;
 
-        return (cps);  // J/kg-k
+        return (cps); // J/kg-k
         //    qDebug()<<"LiCl cp"<<cps;
     };
 
@@ -5668,7 +5666,6 @@ namespace WaterCoils {
         // outputs
         // h  - J/kg
         return (HFnTX_LiCl(tsi, xsi));
-    
     };
     Real64 HFnTX_LiCl(Real64 t, Real64 x) // hftx9(Real64 t, Real64 x)
     {
@@ -5756,7 +5753,7 @@ namespace WaterCoils {
         // Par(2) = desired relative humidity (0.0 - 1.0)
         // Par(3) = barometric pressure [N/m2 (Pascals)]
 
-        T0 = 1.0;  //*1.8+32;
+        T0 = 1.0;   //*1.8+32;
         T1 = 100.0; //*1.8+32;
         Par(1) = h;
         Par(2) = x;
@@ -5780,7 +5777,7 @@ namespace WaterCoils {
         return T; // return degreee C
     }
 
-    Real64 SolnTempResidual(Real64 const t, // test value of Tdb [C]
+    Real64 SolnTempResidual(Real64 const t,            // test value of Tdb [C]
                             Array1D<Real64> const &Par // Par(1) = desired enthaply H [J/kg]
     )
     {
@@ -5809,10 +5806,8 @@ namespace WaterCoils {
         // outputs
         // Residuum - kJ/kg
 
-
         // Return value
         Real64 Residuum; // residual to be minimized to zero
-
 
         Residuum = Par(1) - SolnHFnTX(1, t, Par(2));
 
@@ -5830,7 +5825,7 @@ namespace WaterCoils {
     {
         // T - F
         // W - kg/kg
-        // _AIR_H_TW - 
+        // _AIR_H_TW -
         const double cpad = 0.24050, hfgd = 1064.0, cpwd = 0.4095;
         // double W = max(0.0, W);
         if (W < 0.0) {
@@ -5839,6 +5834,7 @@ namespace WaterCoils {
         double _AIR_H_TW = cpad * T + W * (hfgd + cpwd * T);
         return (_AIR_H_TW);
     };
+
 
 
 
