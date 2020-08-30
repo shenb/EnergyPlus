@@ -344,7 +344,7 @@ namespace IceThermalStorage {
 
         void CalcPcmStorageDischarge(Real64 myLoad, bool RunFlag, Real64 MaxCap);
 
-        void CalcQpcmDischageMax(Real64 &QpcmMin);
+        void CalcQpcmDischageMaxByNtu(Real64 &QpcmMin);
 
         void CalcPcmStorageCharge();
 
